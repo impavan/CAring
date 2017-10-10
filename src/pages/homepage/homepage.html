@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+  <ion-content>
+
+<ion-slides zoom="true">
+  <ion-slide>
+    <div class="swiper-zoom-container">
+      <img src="assets/img/health1.jpg">
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="swiper-zoom-container">
+      <img src="assets/img/health2.jpg">
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="swiper-zoom-container">
+      <img src="assets/img/health3.jpg">
+    </div>
+  </ion-slide>
+</ion-slides>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col col-6>
+  <ion-card>
+    <img src="assets/img/promotion.jpg"/>
+    <div class="card-title">Promotion</div>
+
+  </ion-card>
+  </ion-col>
+   <ion-col col-6>
+  <ion-card>
+    <img src="assets/img/member.jpg"/>
+    <div class="card-title">Member</div>
+  </ion-card>
+   </ion-col>
+  </ion-row>
+
+<ion-row>
+  <ion-col col-6 clickable (click)="goto('HappeningsPage')">
+  <ion-card>
+    <img src="assets/img/happenings.jpg"/>
+    <div class="card-title">Happenings</div>
+
+  </ion-card>
+  </ion-col>
+ <ion-col col-6>
+  <ion-card>
+    <img src="assets/img/health.jpg"/>
+    <div class="card-title">Health info</div>
+
+  </ion-card>
+  </ion-col>
+</ion-row>
+</ion-grid>
+
+</ion-content>
+
+<ion-footer>
+   <ion-toolbar>
+    <page-tabs></page-tabs>
+  </ion-toolbar>
+</ion-footer>
+
+

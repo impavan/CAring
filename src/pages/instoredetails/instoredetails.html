@@ -1,0 +1,33 @@
+<!--
+  Generated template for the InstoredetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>instoredetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+    <div>
+       <img src="{{storeDetail?.bannerimage}}"/>
+    </div>
+    <h5>{{storeDetail?.title}}</h5>
+    <h6>{{storeDetail?.subtitle}}</h6>
+    <p>{{storeDetail?.description}}</p>
+  </ion-card>
+
+
+</ion-content>
+<ion-footer>
+   <ion-toolbar>
+    <page-tabs></page-tabs>
+  </ion-toolbar>
+</ion-footer>
