@@ -27,8 +27,8 @@
 </ion-row>
 
   <ion-grid>
-  <ion-row *ngFor="let hpn of happenList">
-  <ion-col col-6>
+  <ion-row>
+  <ion-col col-6 *ngFor="let hpn of happenList" clickable (click)="gotoHappenDetail(hpn)">
   <ion-card>
     <img src="{{hpn?.eventbanner}}"/>
     <div class="card-title">{{hpn?.title}}</div>

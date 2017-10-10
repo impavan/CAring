@@ -45,7 +45,7 @@ export class HomepagePage {
   // }
 
     goto(page:string){
-      this.navCtrl.push(page);
+      this.navCtrl.setRoot(page);
     }
 
 }

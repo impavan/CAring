@@ -16,8 +16,8 @@
 <ion-content padding>
 
     <ion-grid>
-  <ion-row *ngFor="let activity of storeActivityList" clickable (click)="gotoInstoredetailsPage(activity)">
-  <ion-col col-6>
+  <ion-row>
+  <ion-col col-6 *ngFor="let activity of storeActivityList" clickable (click)="gotoInstoredetailsPage(activity)">
   <ion-card>
     <img src="{{activity?.bannerimage}}"/>
     <div class="card-title">{{activity?.title}}</div>

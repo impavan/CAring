@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 
 /**
  * Generated class for the HealthInfoPage page.
@@ -15,11 +16,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HealthInfoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  _healthInfoList:any =[];
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+              public hapenningsProvider:HapenningsProvider) {
+  }
+
+  ionViewDidEnter(){
+
+      this.getHealthInfo();
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HealthInfoPage');
+  }
+
+  getHealthInfo(){
+
+        this.hapenningsProvider.getHealthInfo()
+
+              .subscribe(res => {
+
+                    this._healthInfoList = res.data;
+                    console.log(this._healthInfoList);
+
+              })
+
   }
 
 }

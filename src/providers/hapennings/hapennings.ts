@@ -69,6 +69,36 @@ export class HapenningsProvider {
 
   }
 
+  public getPromotions(){
+
+      return this.http.get(this.configProvider.sttarterBaseUrl + 'promotions?lang=' + this.lang, this.contentType)
+
+        .map((res:Response) => res)
+
+        .do((res:Response)=> res.json())
+
+        .map((res:Response) => res.json())
+
+      
+
+  }
+
+
+   public getHealthInfo(){
+
+      return this.http.get(this.configProvider.sttarterBaseUrl + 'healthinfo?lang=' + this.lang, this.contentType)
+
+        .map((res:Response) => res)
+
+        .do((res:Response)=> res.json())
+
+        .map((res:Response) => res.json())
+
+      
+
+  }
+
+
 
 
 }

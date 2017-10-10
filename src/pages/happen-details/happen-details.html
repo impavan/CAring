@@ -1,0 +1,32 @@
+<!--
+  Generated template for the HappenDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>happenDetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+    <div>
+       <img src="{{_happenList?.eventbanner}}"/>
+    </div>
+    <h5>{{_happenList?.title}}</h5>
+    <h6>{{_happenList?.eventdate}}</h6>
+    <p>{{_happenList?.description}}</p>
+    <button ion-button><a href="http://caring2u.com/events-healthtalk-info.php?health_event_id=23"> Register </a></button>
+  </ion-card>
+
+</ion-content>
+<ion-footer>
+   <ion-toolbar>
+    <page-tabs></page-tabs>
+  </ion-toolbar>
+</ion-footer>

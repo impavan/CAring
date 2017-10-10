@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 
 /**
  * Generated class for the PromotionsPage page.
@@ -15,11 +16,40 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PromotionsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+_promotionList:any = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public hapenningsProvider:HapenningsProvider) {
+
+               
+  }
+
+  ionViewDidEnter(){
+
+     this.getPromotions();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PromotionsPage');
+  }
+
+  getPromotions(){
+
+      this.hapenningsProvider.getPromotions()
+
+          .subscribe(res => {
+
+              this._promotionList = res.data;
+
+          })
+      
+
+  }
+
+
+  goto(value){
+
+    this.navCtrl.push('PromotionDetailsPage', { promodetails:value });
   }
 
 }

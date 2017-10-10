@@ -47,6 +47,10 @@ export class HappeningsPage {
     this.navCtrl.push(page);
   }
 
+  gotoHappenDetail(value){
+    this.navCtrl.push('HappenDetailsPage', { happendata:value });
+  }
+
 
 
 }
