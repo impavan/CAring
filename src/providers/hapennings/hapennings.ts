@@ -7,17 +7,14 @@ import 'rxjs/add/operator/do';
 import { ConfigProvider } from '../../providers/config/config';
 import { stores, happenings, instoreactivities } from '../../url';
 
-/*
-  Generated class for the HapenningsProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class HapenningsProvider {
 
   contentType: any;
   lang = 'en';
+
+  
   constructor(public http: Http, private configProvider: ConfigProvider) {
     console.log('Hello HapenningsProvider Provider');
     this.contentType = new Headers();
@@ -25,20 +22,9 @@ export class HapenningsProvider {
   }
 
 
-  getStores() {
-
-    return this.http.get(this.configProvider.sttarterBaseUrl + stores + this.lang  , this.contentType)
-
-   
-        .map((res:Response) => res)
-
-        .do((res:Response)=> res.json())
-
-        .map((res:Response) => res.json())
-  }
 
 
-
+//Get all the happenings
   getHappenings(){
 
       return this.http.get(this.configProvider.sttarterBaseUrl + happenings + this.lang, this.contentType)
@@ -55,6 +41,7 @@ export class HapenningsProvider {
 
 
 
+//Get all Instore Activities
    public getInStoreActivities(){
 
       return this.http.get(this.configProvider.sttarterBaseUrl + 'instoreactivities?lang=' + this.lang, this.contentType)
@@ -69,6 +56,8 @@ export class HapenningsProvider {
 
   }
 
+
+//Get all promotions
   public getPromotions(){
 
       return this.http.get(this.configProvider.sttarterBaseUrl + 'promotions?lang=' + this.lang, this.contentType)
@@ -84,6 +73,8 @@ export class HapenningsProvider {
   }
 
 
+
+//Get all health info
    public getHealthInfo(){
 
       return this.http.get(this.configProvider.sttarterBaseUrl + 'healthinfo?lang=' + this.lang, this.contentType)
