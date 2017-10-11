@@ -102,17 +102,40 @@ map:any;
     //   });
 
 
-      let latLng = new google.maps.LatLng(12.957283, 77.641737);
+      
+
+       navigator.geolocation.getCurrentPosition((position)=>{
+
+                let lat =  position.coords.latitude;
+                let lng = position.coords.longitude;
+
+                let latLng = new google.maps.LatLng(lat, lng);
+
+         ;
 
       let mapOptions = {
 
             center:latLng,
-            zoom:15,
+            zoom:18,
             mapTypeId: google.maps.MapTypeId.ROADMAP
+            
 
       };
 
+     
+
+
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      
+            let marker = new google.maps.Marker();
+                marker.setPosition(latLng);
+                marker.setTitle("current Position");
+                marker.setMap(this.map);
+       
+
+      })
+
+       
   }
 }
 
