@@ -14,3 +14,107 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+/*
+============== Gloabal Font =================*/
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Regular.eot');
+	src: url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Roboto-Regular.woff2') format('woff2'),
+		url('../fonts/Roboto-Regular.woff') format('woff'),
+		url('../fonts/Roboto-Regular.ttf') format('truetype'),
+		url('../fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+
+/*
+============== Color Theme =================*/
+$cp-primary-color:#007066;
+$cp-medium-green-color:#16AB9E;
+$cp-white-color:#fff;
+$cp-black-color:#000;
+$cp-lighter-grey:#f1f1f1;
+
+
+/*
+============== Custom Ionic Style =================*/
+.header-md::after{
+	background-image:none;
+	height: 0;
+}
+
+ion-header{
+	/*.toolbar-content-md{
+		flex: none;
+		width: 100%;
+	}*/
+	.toolbar-background-md {
+	    border-color: $cp-primary-color;
+	    background: $cp-primary-color;
+	}
+
+}
+
+
+
+ion-footer{
+	box-shadow: 0px -2px 10px #bfbfbf;
+	.toolbar-background-md {
+	    border-color: $cp-lighter-grey;
+	    background: $cp-lighter-grey;
+	}
+	.button-md{
+		background-color:transparent;
+		height: auto;
+		box-shadow: none;
+		margin: 0;
+    	padding: 0;
+	}
+}
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+	color: $cp-white-color;
+}
+
+
+
+
+/*
+============== General Style =================*/
+.text-right{
+	text-align:right;
+}
+.text-center{
+	text-align:center;
+}
+
+
+.customHeader{
+	.logo{
+		margin:0px 0 0 0;
+	}
+	.notification{
+		position:relative;
+		margin: 7px 0 0 0;
+		.count{
+			position: absolute;
+		    padding: 2px 6px;
+		    background: $cp-white-color;
+		    color: $cp-primary-color;
+		    top: -9px;
+		    right: 0px;
+		    font-style: normal;
+		    border-radius: 50%;
+		    width: 20px;
+		    height: 20px;
+		    font-size: 13px;
+		}
+	}
+}
