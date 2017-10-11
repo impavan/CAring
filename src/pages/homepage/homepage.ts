@@ -35,6 +35,7 @@ export class HomepagePage {
     this.slides.loop = true;
     this.slides.speed = 1000;
     this.slides.autoplay = 3000;
+    this.slides.paginationType = 'bullets';
   }
 
 

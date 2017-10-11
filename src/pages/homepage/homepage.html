@@ -3,13 +3,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <div class="customHeader">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="text-center">
+              <ion-title>
+                <div class="logo">
+                    <img src="assets/img/caring_logo_white.png" />
+                  </div>
+              </ion-title>
+          </ion-col>
+          <ion-col col-2 class="text-center">
+            <div class="notification">
+              <i class="count">2</i>
+              <img src="assets/img/chat.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </ion-navbar>
 </ion-header>
 
 
 
-  <ion-content>
+<ion-content>
 
 <ion-slides zoom="true">
   <ion-slide>
@@ -29,42 +47,38 @@
   </ion-slide>
 </ion-slides>
 
-
-<ion-grid>
-  <ion-row>
-    <ion-col col-6 clickable (click)="goto('PromotionsPage')">
-  <ion-card>
-    <img src="assets/img/promotion.jpg"/>
-    <div class="card-title">Promotion</div>
-
-  </ion-card>
-  </ion-col>
-   <ion-col col-6>
-  <ion-card>
-    <img src="assets/img/member.jpg"/>
-    <div class="card-title">Member</div>
-  </ion-card>
-   </ion-col>
-  </ion-row>
-
-<ion-row>
-  <ion-col col-6 clickable (click)="goto('HappeningsPage')">
-  <ion-card>
-    <img src="assets/img/happenings.jpg"/>
-    <div class="card-title">Happenings</div>
-
-  </ion-card>
-  </ion-col>
- <ion-col col-6>
-  <ion-card>
-    <img src="assets/img/health.jpg" (click)="goto('HealthInfoPage')"/>
-    <div class="card-title">Health info</div>
-
-  </ion-card>
-  </ion-col>
-</ion-row>
-</ion-grid>
-
+<div class="homeContainer">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 clickable (click)="goto('PromotionsPage')">
+    <ion-card>
+      <img src="assets/img/megaphone-2.svg"/>
+      <div class="card-title">Promotion</div>
+    </ion-card>
+    </ion-col>
+     <ion-col col-6>
+    <ion-card>
+      <img src="assets/img/member.svg"/>
+      <div class="card-title">Member</div>
+    </ion-card>
+     </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 clickable (click)="goto('HappeningsPage')">
+      <ion-card>
+        <img src="assets/img/happenings.svg"/>
+        <div class="card-title">Happenings</div>
+      </ion-card>
+      </ion-col>
+     <ion-col col-6>
+      <ion-card>
+        <img src="assets/img/health_info.svg" (click)="goto('HealthInfoPage')"/>
+        <div class="card-title">Health info</div>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
 </ion-content>
 
 <ion-footer>
