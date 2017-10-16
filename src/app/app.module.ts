@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 
+// import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -41,6 +42,9 @@ import { LoaderProvider } from '../providers/loader/loader';
     ConfigProvider,
     StoreLocatorProvider,
     LoaderProvider,
+
+    // Geolocation
+
   ]
 })
 export class AppModule {}
