@@ -1,3 +1,40 @@
 page-instoredetails {
-
+	.inStoreDetailsContainer{
+		figure{
+			margin:0;
+			max-height: 200px;
+    		overflow: hidden;
+		}
+		.content{
+			padding:15px;
+			h6{
+				margin:0 0 10px 0;
+				color:$cp-extra-darker-grey;
+				text-align:center;
+			}
+			p{
+				color:$cp-extra-darker-grey;
+				margin:0 0 20px 0;
+				font-size:13px;
+				text-align:center;
+			}
+			.subHeader{
+				text-align:left;
+			}
+			.location, .date{
+				text-align:left;
+				font-size:14px;	
+				color:$cp-extra-darker-grey;
+				margin:0;
+			}
+			.location{
+				margin: 0 5px 0 0
+			}
+			.termsConditions{
+				color:$cp-medium-blue-color-x;
+				display:block;
+				margin: 20px 0 0 0
+			}
+		}
+	}
 }
