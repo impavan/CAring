@@ -5,33 +5,60 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>promotions</ion-title>
+    <div class="customHeader">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="text-center">
+              <ion-title>
+                <div class="logo">
+                    <img src="assets/img/caring_logo_white.png" />
+                  </div>
+              </ion-title>
+          </ion-col>
+          <ion-col col-2 class="text-center">
+            <div class="notification">
+              <i class="count">2</i>
+              <img src="assets/img/chat.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content>
-
-  <ion-grid>
-  <ion-row>
-  <ion-col col-6 *ngFor="let promotion of _promotionList" clickable (click)="goto(promotion)">
-  <ion-card>
-    <img src="{{promotion?.thumbnailimage}}"/>
-    <div class="card-title">{{promotion?.title}}</div>
-    <p>{{promotion?.shortdescription}}</p>
-    <button ion-button>{{promotion?.buttontext}}</button>
-  </ion-card> 
-    </ion-col>
-  </ion-row>
-  </ion-grid>
-
-
+  <div class="promotionsContainer">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <h3>Promotions</h3>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button class="btn2">Promotion Brochure</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 *ngFor="let promotion of _promotionList" clickable (click)="goto(promotion)">
+          <ion-card>
+            <figure>
+              <img src="{{promotion?.thumbnailimage}}"/>  
+            </figure>
+            <ion-card-content>
+              <div class="card-title">{{promotion?.title}}</div>
+              <p>{{promotion?.shortdescription}}</p>
+              <button ion-button>{{promotion?.buttontext}}</button>
+            </ion-card-content>
+          </ion-card> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
 
 

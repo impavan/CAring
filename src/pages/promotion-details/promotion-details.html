@@ -5,23 +5,64 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>promotionDetails</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <div class="customHeader">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="text-center">
+              <ion-title>
+                <div class="logo">
+                    <img src="assets/img/caring_logo_white.png" />
+                  </div>
+              </ion-title>
+          </ion-col>
+          <ion-col col-2 class="text-center">
+            <div class="notification">
+              <i class="count">2</i>
+              <img src="assets/img/chat.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <ion-card>
+  <!-- <ion-card>
     <div>
        <img src="{{_promotionDetails?.bannerimage}}"/>
     </div>
     <h5>{{_promotionDetails?.title}}</h5>
     <p [innerHTML]="_promotionDetails?.longdescription"></p>
     <button ion-button><a href="{{_promotionDetails?.buttoncalltoaction}}"> {{_promotionDetails?.buttontext}} </a></button>
-  </ion-card>
+  </ion-card> -->
+  <div class="promotionDetails">
+    <figure>
+      <img src="assets/img/health.jpg" />
+    </figure>
+    <div class="content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+              <button ion-button class="btn3">Join Now</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <h4>Mechanic:</h4>
+      <p>Happy birthday Mr. Tan Ah Kow. A small gratitude from CARiNG Pharmacy. You can use this voucher with the following conditions:</p>
+      <ol>
+        <li>Voucher can be redeemed with purchase of RM50 in single receipt
+        <li>This voucher can only be used ONCE.</li>
+        <li>This voucher cannot be combined</li>
+      </ol>
+    </div>
+  </div>
+  
 
 </ion-content>

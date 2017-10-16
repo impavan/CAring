@@ -5,19 +5,105 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>rewards</ion-title>
+    <div class="customHeader">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="text-center">
+              <ion-title>
+                <div class="logo">
+                    <img src="assets/img/caring_logo_white.png" />
+                  </div>
+              </ion-title>
+          </ion-col>
+          <ion-col col-2 class="text-center">
+            <div class="notification">
+              <i class="count">2</i>
+              <img src="assets/img/chat.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <div class="rewardsContainer">
+    <div class="rewardsCards">
+      <ion-card (click)="navToDesc()">
+        <figure>
+          <img src="assets/img/h2.jpg" />
+        </figure>
+        <div class="content">
+          <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                    <h6>Voucher</h6>
+                    <ul class="voucherPrice">
+                      <li><span>RM10</span></li>
+                      <li><span>$800</span></li>
+                    </ul>
+                </ion-col>
+                <ion-col col-6>
+                  <button ion-button class="btn2">Redeem</button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+    </div>
+    <div class="rewardsCards">
+      <ion-card (click)="navToDesc()">
+        <figure>
+          <img src="assets/img/h1.jpg" />
+        </figure>
+        <div class="content">
+          <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                    <h6>Voucher</h6>
+                    <ul class="voucherPrice">
+                      <li><span>RM10</span></li>
+                      <li><span>$800</span></li>
+                    </ul>
+                </ion-col>
+                <ion-col col-6>
+                  <button ion-button class="btn2">Redeem</button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+    </div>
+    <div class="rewardsCards">
+      <ion-card (click)="navToDesc()">
+        <figure>
+          <img src="assets/img/h3.jpg" />
+        </figure>
+        <div class="content">
+          <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                    <h6>Voucher</h6>
+                    <ul class="voucherPrice">
+                      <li><span>RM10</span></li>
+                      <li><span>$800</span></li>
+                    </ul>
+                </ion-col>
+                <ion-col col-6>
+                  <button ion-button class="btn2">Redeem</button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer>

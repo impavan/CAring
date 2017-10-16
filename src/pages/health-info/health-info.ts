@@ -31,6 +31,14 @@ export class HealthInfoPage {
     console.log('ionViewDidLoad HealthInfoPage');
   }
 
+  navToHealthDetails(){
+    this.navCtrl.push("HealthDetailsPage");
+  }
+  navToHealthSubscribe(){
+    this.navCtrl.push("HealthSubscribePage");
+  }
+
+
   getHealthInfo(){
 
         this.hapenningsProvider.getHealthInfo()

@@ -19,7 +19,7 @@ page-homepage {
         background:url('../assets/img/hand_bg.png') no-repeat;
         background-position: 10px 0px;
         margin:30px 0 0 0;
-        .card-md{
+        .card-md, .card-ios{
             background: $cp-medium-green-color;
             height:90px;
             padding: 10px;
@@ -38,6 +38,5 @@ page-homepage {
                 font-size: 16px;
             }
         }
-
     }
 }

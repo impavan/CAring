@@ -1,0 +1,35 @@
+page-purchase-rewards {
+	.purchaseRewardsContainer{
+		padding:0;
+		h5{
+			margin:0 0 5px 0;
+		}
+		.successVoc{
+			margin:0 0 30px 0;
+		}
+		.card-md, .card-ios{
+		    margin: 0;
+		    width: calc(100% - 0px);
+    	}
+		.grid{
+			padding:0;
+		}
+		[col-9], [col-3]{
+			padding:0;
+		}
+		.redemptionPoints{
+			color:$cp-extra-darker-grey-x;
+			font-weight:600;
+			font-size: 16px;
+			margin: 0 0 20px 0;
+		}
+		.wallet{
+			display:block;
+			color:$cp-primary-color;
+			font-size:16px;
+			text-align:center;
+			margin:30px 0;
+			text-decoration:none;
+		}
+	}
+}

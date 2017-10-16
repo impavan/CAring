@@ -1,8 +1,41 @@
 page-store-locator {
-
-    #map {
-         height: 100%;
-         width: 100%;
+	.searchOut{
+    	position:absolute;
+    	top:0;
+    	width:100%;
+    	z-index:99;
+    	padding:0;
+    	border:1px solid $cp-primary-color;
+    	.text-input-md, .text-input-ios{
+    		margin: 5px 20px;
+    	}
+    	.item-input ion-input:before, .ion-ios-close:before{
+		    content: "\f375";
+		    position: absolute;
+		    top: 0px;
+		    z-index: 9999;
+		    padding: 10px;
+		    font-family: "Ionicons";
+		    left: 0;
+		    font-size: 20px;
+		    color:$cp-extra-darker-grey-x;
+    	}
+    	.item-input ion-input:after, .ion-ios-close:before{
+    		content: "\f2c0";
+    		position: absolute;
+		    top: 0px;
+		    z-index: 9999;
+		    padding: 10px;
+		    font-family: "Ionicons";
+		    right: 0;
+		    font-size: 20px;
+		    color:$cp-extra-darker-grey-x;
+		    cursor:pointer;
+    	}
     }
-
+    #map {
+        height: 70%;
+        width: 100%;
+        position:relative;
+    }
 }

@@ -21,5 +21,7 @@ export class RewardsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RewardsPage');
   }
-
+  navToDesc(){
+  	this.navCtrl.push("RewardsDetailsPage");
+  }
 }
