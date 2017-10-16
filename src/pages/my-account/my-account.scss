@@ -1,0 +1,57 @@
+page-my-account {
+	.myAccountContainer{
+		.profileOut{
+			margin: 20px 0 0 0;
+			i{
+				width:80px;
+				height:80px;
+				margin:0 auto;
+				display:block;
+				border-radius:50%;
+				overflow:hidden;
+				img{
+					width:100%;
+					max-width:100%;
+				}
+			}
+			p{
+				text-align:center;
+				margin: 10px 0 5px 0;
+			}
+			.status{
+				margin:0;
+				font-size:13px;
+				span{
+					color:$cp-medium-green-color-x;
+					font-size:14px;
+				}
+			}
+		}
+		.settings{
+			margin:20px 0 0 0;
+			padding:0;
+			li{
+				border-top:1px solid $cp-double-extra-lighter-grey-xx;
+				list-style:none;
+				padding: 15px;
+				a{
+					display:block;
+					text-decoration:none;
+					float: left;
+    				clear: both;
+					i{
+						padding:1px 0 0 0;
+						margin:0;
+						float: left;
+					}
+					span{
+						color:$cp-extra-darker-grey;
+						font-size:13px;
+						float: left;
+						padding: 5px 0 0 20px;
+					}
+				}
+			}
+		}
+	}
+}

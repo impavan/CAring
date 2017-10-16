@@ -5,22 +5,165 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>member</ion-title>
+    <div class="customHeader">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="text-center">
+              <ion-title>
+                <div class="logo">
+                    <img src="assets/img/caring_logo_white.png" />
+                  </div>
+              </ion-title>
+          </ion-col>
+          <ion-col col-2 class="text-center">
+            <div class="notification">
+              <i class="count">2</i>
+              <img src="assets/img/chat.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+	<div class="memberContainer">
+		<div class="profileOut">
+			<i><img src="assets/img/bobby.jpg"></i>
+			<p>Bobby Clark</p>
+		</div>
+		<div class="barCode">
+			<i><img src="assets/img/barcode.png" /></i>
+		</div>
+		<ion-toolbar>
+			<ion-segment [(ngModel)]="member" color="secondary">
+				<ion-segment-button value="My Points">
+					My Points
+				</ion-segment-button>
+				<ion-segment-button value="My Wallet">
+					My Wallet
+				</ion-segment-button>
+				<ion-segment-button value="My Profile">
+					My Profile
+				</ion-segment-button>
+			</ion-segment>
+		</ion-toolbar>
+		<div [ngSwitch]="member">
+			<!-- Section for My Points -->
+			<ion-list *ngSwitchCase="'My Points'">
+				<div class="myPointsContainer">
+					<p class="urPoints">Your Points: <strong>97361</strong></p>
+				</div>
+			</ion-list>
+			<!-- Startssssssssssssssssssssssssssssssssssss -->
+			<ion-list *ngSwitchCase="'My Wallet'">
+				<div class="subSegmentOut">
+					<ion-toolbar>
+						<ion-segment [(ngModel)]="memberDetails" color="secondary">
+							<ion-segment-button value="New">New</ion-segment-button>
+							<ion-segment-button value="Used">Used</ion-segment-button>
+							<ion-segment-button value="Expired">Expired</ion-segment-button>
+						</ion-segment>
+					</ion-toolbar>
+				</div>
+				<div [ngSwitch]="memberDetails">
+					<!-- New section starts. -->
+					<ion-list *ngSwitchCase="'New'">
+						<div class="newContainer">
+							<ion-card>
+								<ion-grid>
+									<div class="content">
+								        <ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="assets/img/h2.jpg" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">RM10 Voucher</p>
+												<p class="alert subContent">Exchange Point: 1500</p>
+											</ion-col>
+								        </ion-row>
+							    	</div>
+							    	<div class="content">
+								        <ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="assets/img/h2.jpg" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">RM10 Voucher</p>
+												<p class="alert subContent">Exchange Point: 1500</p>
+											</ion-col>
+								        </ion-row>
+							    	</div>
+							    	<div class="content">
+								        <ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="assets/img/h2.jpg" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">RM10 Voucher</p>
+												<p class="alert subContent">Exchange Point: 1500</p>
+											</ion-col>
+								        </ion-row>
+							    	</div>
+							    </ion-grid>
+							</ion-card>
+						</div>
+					</ion-list>
+					<!-- Used section starts. -->
+					<ion-list *ngSwitchCase="'Used'">
+						<div class="usedContainer">
+							used
+						</div>
+					</ion-list>
+					<!-- Expired section starts. -->
+					<ion-list *ngSwitchCase="'Expired'">
+						<div class="expiredContainer">
+							Expired
+						</div>
+					</ion-list>
+				</div>
+			</ion-list>
+			<!-- Endssssssssssssssssssssssssssssssss -->
+			<ion-list *ngSwitchCase="'My Profile'">
+				<div class="myProfileContainer">
+					<div class="container">
+						<div class="content">
+							<ion-list>
+								<ion-item>
+									<ion-label fixed>Name</ion-label>
+									<ion-input type="text" value="" placeholder="Bobby Clark"></ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-label fixed>E-mail</ion-label>
+									<ion-input type="text" placeholder="bobby.clark@gmail.com"></ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-label fixed>Mobile Number</ion-label>
+									<ion-input type="text" placeholder="77890 09876"></ion-input>
+								</ion-item>
+								<ion-item>
+								    <ion-label>Sausage</ion-label>
+								    <ion-toggle [(ngModel)]="sausage"></ion-toggle>
+								</ion-item>
+							</ion-list>
+						</div>
+						<div class="mt20">
+							<button ion-button class="btn4">Update</button>
+						</div>
+					</div>
+				</div>
+			</ion-list>
+		</div>
+	</div>
 </ion-content>
-<ion-footer>
-   <ion-toolbar>
-    <page-tabs></page-tabs>
-  </ion-toolbar>
-</ion-footer>

@@ -14,7 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'member.html',
 })
 export class MemberPage {
-
+	public member: any="My Points";
+	public memberDetails: any= "New";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

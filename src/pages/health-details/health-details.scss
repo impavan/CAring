@@ -1,0 +1,21 @@
+page-health-details {
+	.healthDetailsContainer{
+		margin:0;
+		padding:0;
+		figure{
+			margin:0;
+			padding:0;
+			max-height:150px;
+			overflow:hidden;
+		}
+		.content{
+			padding:15px;
+			h4{
+				margin:0 0 15px 0;
+			}
+			p{
+				color:$cp-extra-darker-grey;
+			}
+		}
+	}
+}

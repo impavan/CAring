@@ -14,7 +14,7 @@ import { StoreLocatorProvider } from '../../providers/store-locator/store-locato
  */
 
 
-
+ declare var google;
 @IonicPage()
 @Component({
   selector: 'page-store-locator',
