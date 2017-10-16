@@ -16,6 +16,29 @@
 // automatically applied to the <body> element in the app.
 
 /*
+============== Color Theme =================*/
+$cp-primary-color:#007066;
+$cp-medium-green-color:#16AB9E;
+$cp-white-color:#fff;
+$cp-black-color:#000;
+$cp-lighter-grey:#f1f1f1;
+$cp-extra-lighter-grey:#f5f5f5;
+$cp-extra-lighter-grey-x:#bbb;
+$cp-extra-lighter-grey-xx:#ebebeb;
+$cp-extra-lighter-grey-xxx:#9b9b9b;
+$cp-extra-lighter-grey-xxxx:#c7c7c7;
+$cp-extra-lighter-grey-xxxxx:#c4c4c4;
+$cp-extra-lighter-grey-xxxxxx:#999;
+$cp-extra-lighter-grey-xxxxxxx:#d4d4d4;
+$cp-double-extra-lighter-grey-x:#bfbfbf;
+$cp-double-extra-lighter-grey-xx:#dcdcdc;
+$cp-extra-darker-grey:#4a4a4a;
+$cp-extra-darker-grey-x:#434343;
+$cp-extra-darker-grey-x:#626262;
+$cp-red-color:#e7162f;
+$cp-medium-green-color-x:#7ed321;
+
+/*
 ============== Gloabal Font =================*/
 @font-face {
 	font-family: 'Roboto';
@@ -31,20 +54,16 @@
 
 body{
 	font-family: 'Roboto', sans-serif;
+	
 }
 
 
 /*
-============== Color Theme =================*/
-$cp-primary-color:#007066;
-$cp-medium-green-color:#16AB9E;
-$cp-white-color:#fff;
-$cp-black-color:#000;
-$cp-lighter-grey:#f1f1f1;
-
-
-/*
 ============== Custom Ionic Style =================*/
+.fixed-content{
+	background:$cp-extra-lighter-grey;
+}
+
 .header-md::after{
 	background-image:none;
 	height: 0;
@@ -59,14 +78,15 @@ ion-header{
 	    border-color: $cp-primary-color;
 	    background: $cp-primary-color;
 	}
-
+	.toolbar-background-ios {
+	    background: $cp-primary-color;
+	}
 }
 
 
-
 ion-footer{
-	box-shadow: 0px -2px 10px #bfbfbf;
-	.toolbar-background-md {
+	box-shadow: 0px -2px 15px #bfbfbf;
+	.toolbar-background-md, .toolbar-background-ios {
 	    border-color: $cp-lighter-grey;
 	    background: $cp-lighter-grey;
 	}
@@ -77,13 +97,36 @@ ion-footer{
 		margin: 0;
     	padding: 0;
 	}
+	.button-ios{
+		background-color:transparent;
+		box-shadow: none;
+		margin: 0;
+    	padding: 0;
+	}
 }
 
 .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
 	color: $cp-white-color;
 }
-
-
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default {
+    color: $cp-white-color;
+    background-color: transparent;
+}
+.toolbar-ios ion-title{
+	padding:0;
+}
+.list-md .item-input.item-input-has-focus:last-child, .list-md .item-input.input-has-focus:last-child {
+    border-bottom-color: transparent;
+    box-shadow: inset 0 -1px 0 0 transparent;
+}
+.item-md.item-input.item-input-has-focus .item-inner,
+.item-md.item-input.input-has-focus .item-inner {
+  border-bottom-color: $cp-extra-lighter-grey-xxxx;
+  box-shadow: inset 0 0px 0 0 $cp-extra-lighter-grey-xxxx;;
+}
+.toolbar-title-md, .toolbar-title-ios{
+	color:$cp-white-color;
+}
 
 
 /*
@@ -94,8 +137,24 @@ ion-footer{
 .text-center{
 	text-align:center;
 }
-
-
+.alert{
+	color:$cp-red-color !important;
+}
+.primary{
+	color:$cp-primary-color;
+}
+.mt30{
+	margin-top:30px;
+}
+.mt20{
+	margin-top:20px;
+}
+.mb30{
+	margin-bottom:30px;
+}
+.clear{
+	clear:both;
+}
 .customHeader{
 	.logo{
 		margin:0px 0 0 0;
@@ -117,4 +176,50 @@ ion-footer{
 		    font-size: 13px;
 		}
 	}
+}
+
+.btn2{
+	background-color: $cp-primary-color;
+	height:auto;
+	padding:10px 5px;
+	margin:0;
+	text-transform:capitalize;
+	width:100%;
+	font-size:13px;
+	font-weight:normal;
+	box-shadow:none;
+	border-radius: 5px;
+}
+.btn2.wp{
+	white-space: pre-wrap;
+}
+
+.btn3{
+    background-color: $cp-primary-color;
+    height: auto;
+    margin: 0;
+    width: 100%;
+    font-size: 14px;
+    padding: 5px 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    border-radius: 5px;
+}
+.btn4{
+    background-color: $cp-primary-color;
+    height: auto;
+    margin: 0;
+    width: 100%;
+    font-size: 14px;
+    padding: 17px 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-transform: capitalize;
+    font-weight: normal;
+    border-radius: 5px;
+}
+.btn4.borderBottomRadius{
+	border-radius:0 0 7px 7px;
 }

@@ -5,40 +5,62 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>happenings</ion-title>
+    <div class="customHeader">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="text-center">
+              <ion-title>
+                <div class="logo">
+                    <img src="assets/img/caring_logo_white.png" />
+                  </div>
+              </ion-title>
+          </ion-col>
+          <ion-col col-2 class="text-center">
+            <div class="notification">
+              <i class="count">2</i>
+              <img src="assets/img/chat.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-<ion-row>
-  <ion-col col-6>
-  <h4>Happenings</h4>
-  </ion-col>
-  <ion-col col-6>
-    <button ion-button (click)="goto('InStorePage')">In Store Activities</button>
-  </ion-col>
-</ion-row>
-
-  <ion-grid>
-  <ion-row>
-  <ion-col col-6 *ngFor="let hpn of happenList" clickable (click)="gotoHappenDetail(hpn)">
-  <ion-card>
-    <img src="{{hpn?.eventbanner}}"/>
-    <div class="card-title">{{hpn?.title}}</div>
-    <p>{{hpn?.eventdate}}</p>
-  </ion-card>
-    </ion-col>
-  </ion-row>
-  </ion-grid>
-
+<ion-content>
+  <div class="happeningsContainer">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <h3>Happenings</h3>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button class="btn2" (click)="goto('InStorePage')">In Store Activities</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 *ngFor="let hpn of happenList" clickable (click)="gotoHappenDetail(hpn)">
+          <ion-card>
+            <figure>
+              <img src="{{hpn?.eventbanner}}"/>
+            </figure>
+            <ion-card-content>
+              <div class="card-title">{{hpn?.title}}</div>
+              <p>{{hpn?.eventdate}}</p>
+              <button ion-button class="btn3">Register</button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </div>
 </ion-content>
+
+
 <ion-footer>
    <ion-toolbar>
     <page-tabs></page-tabs>
