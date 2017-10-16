@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 
+// import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -14,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
 import { ConfigProvider } from '../providers/config/config';
 import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
+import { LoaderProvider } from '../providers/loader/loader';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,10 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
     HapenningsProvider,
     ConfigProvider,
     StoreLocatorProvider,
+    LoaderProvider,
+
+    // Geolocation
+
   ]
 })
 export class AppModule {}
