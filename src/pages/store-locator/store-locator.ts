@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // import { Geolocation } from '@ionic-native/geolocation';
 
 //All providers goes here
@@ -26,6 +26,7 @@ export class StoreLocatorPage {
 
   map: any;
   locationList: any = [];
+  updatedLocationList:any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public storeLocatorProvider: StoreLocatorProvider
@@ -66,56 +67,6 @@ export class StoreLocatorPage {
 
 
   loadMap() {
-    // this.mapElement = document.getElementById('map');
-
-    // let mapOptions: GoogleMapOptions = {
-    //   camera: {
-    //     target: {
-    //       lat: 43.0741904,
-    //       lng: -89.3809802
-    //     },
-    //     zoom: 18,
-    //     tilt: 30
-    //   }
-    // };
-
-    // this.map = this.googleMaps.create(this.mapElement, mapOptions);
-
-    // // Wait the MAP_READY before using any methods.
-    // this.map.one(GoogleMapsEvent.MAP_READY)
-    //   .then(() => {
-    //     console.log('Map is ready!');
-
-    //     // Now you can use all methods safely.
-    //     this.map.addMarker({
-    //         title: 'Ionic',
-    //         icon: 'blue',
-    //         animation: 'DROP',
-    //         position: {
-    //           lat: 43.0741904,
-    //           lng: -89.3809802
-    //         }
-    //       })
-    //       .then(marker => {
-    //         marker.on(GoogleMapsEvent.MARKER_CLICK)
-    //           .subscribe(() => {
-    //             alert('clicked');
-    //           });
-    //       });
-
-    //   });
-
-
-    //  let marker = new google.maps.Marker();
-    //         marker.setPosition(latLng);
-    //         marker.setTitle("current Position");
-    //         marker.setMap(this.map);
-
-
-
-
-
-
 
     navigator.geolocation.getCurrentPosition((position) => {
 
@@ -133,9 +84,6 @@ export class StoreLocatorPage {
       };
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-
-
-
     })
 
 
@@ -148,59 +96,64 @@ export class StoreLocatorPage {
 
     for (let i in locationList) {
       let marker = new google.maps.Marker();
-      let latLng = new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y);
+      var latLng = new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y);
       marker.setPosition(latLng);
       marker.setTitle(locationList[i].storename);
       marker.setMap(map);
 
    
     }
-      let latA = new google.maps.LatLng(12.914142,74.855957);
-       let latB = new google.maps.LatLng(12.971599, 77.594563);
-       let km = this.distance(latA, latB);
-      console.log("kilometer is:", km);
+      // let latA = new google.maps.LatLng(12.914142,74.855957);
+      //  let latB = new google.maps.LatLng(12.971599, 77.594563);
+       let  curentLatLng = new google.maps.LatLng(3.1655016, 101.65281950000008)
+      this.getDistance(curentLatLng,locationList);
+   
+   
 
   }
 
 
-  distance(latLngA, latLngB) {
+  // distanceValue(){
+  //  let  curentLatLng = new google.map.LatLng(this.locationList[0].location.x, this.locationList[0].location.y)
+  //      for(let i in this.locationList){
+  //             let km = this.getDistance(curentLatLng, new google.maps.LatLng(this.locationList[i].location.x, this.locationList[i].location.y));
+  //             console.log("kilometer is:", km);
+  //     }
 
-    // var radlat1 = Math.PI * lat1 / 180
-    // var radlat2 = Math.PI * lat2 / 180
-    // var theta = lon1 - lon2
-    // var radtheta = Math.PI * theta / 180
-    // var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    // dist = Math.acos(dist)
-    // dist = dist * 180 / Math.PI
-    // dist = dist * 60 * 1.1515
-    // if (unit == "K") { dist = dist * 1.609344 }
-    // if (unit == "N") { dist = dist * 0.8684 }
-    // return dist
-  //   var R = 6371; // Radius of the earth in km
-  // var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
-  // var dLon = this.deg2rad(lon2-lon1); 
-  // var a = 
-  //   Math.sin(dLat/2) * Math.sin(dLat/2) +
-  //   Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-  //   Math.sin(dLon/2) * Math.sin(dLon/2)
-  //   ; 
-  // var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  // var d = R * c; // Distance in km
-  // return d;
- let km =  google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
-         let service =  new google.maps.DistanceMatrixService();
+  // }
+
+
+  getDistance(currentlatLngA, locationList) {
+    // let km =  google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
+    this.updatedLocationList = [];
+    let that = this;
+    let service =  new google.maps.DistanceMatrixService();
           console.log(service);
-         service.getDistanceMatrix({
-           origins: ["bangalore"],
-            destinations: ["mangalore"],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.IMPERIAL,
-            avoidHighways: false,
-            avoidTolls: false
+           for(let i in locationList){
+              service.getDistanceMatrix({
+                origins: [currentlatLngA],
+                  destinations: [new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y)],
+                  travelMode: google.maps.TravelMode.DRIVING,
+                  unitSystem: google.maps.UnitSystem.METRIC,
+                  avoidHighways: false,
+                  avoidTolls: false
 
-         }, this.successCallBack);
+              }, function(res){
+                  locationList[i].km = res.rows[0].elements[0].distance.value /1000;
+                  that.updatedLocationList.push(locationList[i])
+                  if(locationList.length  == that.updatedLocationList.length){
+                    that.sortBy(that.updatedLocationList,"km");
+                    setTimeout(()=>{
+                          console.log( that.updatedLocationList);
+                    }, 6000);
+                  
+                  }
+              });
+               
+           }
+      
         
- console.log("km is:", km);
+//  console.log("km is:", km);
 }
 
 deg2rad(deg) {
@@ -209,6 +162,23 @@ deg2rad(deg) {
 
 successCallBack(res){
   console.log(res);
+  console.log("distance from current location is",res.rows[0].elements[0].distance.value /1000,"km");
+
+
+}
+
+sortBy(array , key){
+  console.log("In sort");
+ for(let i in array){
+    for(let j in array){
+      if(array[i].km < array[j].km){
+        let temp = array[i];
+        array[j] = array[i];
+        array[i] = temp;
+        break;
+      }
+    }
+ }
 
 }
 
