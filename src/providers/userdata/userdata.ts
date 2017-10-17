@@ -22,9 +22,9 @@ export class UserdataProvider {
     userData.append('BrandURLID', this.apiProvider.BRANDID);
     userData.append('external_id', phoneNum);
     userData.append('lang_code', 'en');
-    userData.append('device_id', localStorage.getItem('push_token'));
-    userData.append('device_type', localStorage.getItem('model'));
-    userData.append('device_version', localStorage.getItem('version'));
+    // userData.append('device_id', localStorage.getItem('push_token'));
+    // userData.append('device_type', localStorage.getItem('model'));
+    // userData.append('device_version', localStorage.getItem('version'));
     let body = userData;
     return this.http
       .post(this.apiProvider.BASEURL + LOGIN, body, { headers: this.auth.getHeader() })

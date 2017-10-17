@@ -1,11 +1,3 @@
-<!--
-  Generated template for the OtpPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-
-
 <ion-content padding>
 	<div class="otpContainer">
 		<i class="logo text-center"><img src="assets/img/caring_logo.png" /></i>
@@ -14,15 +6,15 @@
 		<div class="content">
 			<ion-list>
 				<ion-item>
-					<ion-label fixed>Username</ion-label>
-					<ion-input type="text" value="" placeholder="77890 09876"></ion-input>
+					<ion-label >Mobile Number</ion-label>
+					<ion-input type="number" readonly [(ngModel)]="phoneNum" placeholder="77890 09876"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label fixed>OTP</ion-label>
-					<ion-input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"></ion-input>
+					<ion-label >OTP</ion-label>
+					<ion-input type="password"  [(ngModel)]="otp" placeholder="&#9679;&#9679;&#9679;&#9679;"></ion-input>
 				</ion-item>
 			</ion-list>
-			<button ion-button class="btn4 borderBottomRadius">Log In</button>
+			<button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
 		</div>
 		<div class="caringWaterMark">
 			<img src="assets/img/hand_bg.png" />

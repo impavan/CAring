@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { HomepagePage } from './homepage';
+import { HomePage } from './homepage';
 import { SharedModule } from '../../app/shared.module';
 
 @NgModule({
   declarations: [
-    HomepagePage,
+    HomePage,
     
   ],
   imports: [
-    IonicPageModule.forChild(HomepagePage),
+    IonicPageModule.forChild(HomePage),
     SharedModule
   ],
 })
-export class HomepagePageModule {}
+export class HomePageModule {}
