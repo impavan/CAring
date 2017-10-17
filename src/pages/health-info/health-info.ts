@@ -52,4 +52,12 @@ export class HealthInfoPage {
 
   }
 
-}
+
+
+
+  }
+
+
+
+
+

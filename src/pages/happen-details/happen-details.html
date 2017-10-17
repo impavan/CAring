@@ -45,15 +45,15 @@
   <div class="happenDetailsContainer">
     <div class="container">
       <h6>Take control of Diabetes</h6>
-      <p><span>Date:</span><label> 28th October 2017 , Saturday</label></p>
+      <p><span>Date:</span><label> {{_happenList?.eventdate}}</label></p>
       <p><span>Time:</span><label> 10:00AM to 6:00PM</label></p>
       <p><span>Venue:</span><label> Caring HQ , Petaling Jaya</label></p>
     </div>
     <ion-card>
-      <img src="assets/img/catalogue.jpg" />
+      <img src="{{_happenList?.eventbanner}}" />
     </ion-card>
     <div class="container">
-      <a href="" ion-button class="btn4">Register Now</a>
+      <a href="http://caring2u.com/events-healthtalk-info.php?health_event_id=23" ion-button class="btn4">Register Now</a>
       <p class="subscription">You will be redirected to our website to complete your subscription</p>
     </div>
   </div>

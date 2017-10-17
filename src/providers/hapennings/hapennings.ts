@@ -72,6 +72,19 @@ export class HapenningsProvider {
 
   }
 
+  public getPromotionsBrochureLink(){
+
+          return this.http.get(this.configProvider.sttarterBaseUrl + 'links?lang=' + this.lang, this.contentType)
+
+        .map((res:Response) => res)
+
+        .do((res:Response)=> res.json())
+
+        .map((res:Response) => res.json())
+
+
+  }
+
 
 
 //Get all health info

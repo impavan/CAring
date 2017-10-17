@@ -18,6 +18,8 @@ export class PromotionsPage {
 
 
 _promotionList:any = [];
+_brochureLinks:any;
+CATELOGLINK:string =  'promotionscatalogurl';
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public hapenningsProvider:HapenningsProvider) {
 
@@ -27,10 +29,12 @@ _promotionList:any = [];
   ionViewDidEnter(){
 
      this.getPromotions();
+       this.getPromotionsBrochureLink();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PromotionsPage');
+  
   }
 
   getPromotions(){
@@ -43,6 +47,24 @@ _promotionList:any = [];
 
           })
       
+
+  }
+
+
+  getPromotionsBrochureLink(){
+
+      this.hapenningsProvider.getPromotionsBrochureLink()
+
+            .subscribe(res => {
+
+                console.log(res);
+                for(let i in  res.data ){
+                    if(res.data[i].key == this.CATELOGLINK)
+                      this._brochureLinks = res.data[i].value;
+                      break;
+                }
+
+            });
 
   }
 

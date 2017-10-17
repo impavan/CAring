@@ -74,6 +74,8 @@ export class StoreLocatorPage {
 
       let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
 
+      console.log("***************************");
+
       let mapOptions = {
 
         center: latLng,

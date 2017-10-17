@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -14,14 +14,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'rewards.html',
 })
 export class RewardsPage {
+  @ViewChild('reward') rewardModal;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RewardsPage');
+ 
   }
   navToDesc(){
   	this.navCtrl.push("RewardsDetailsPage");
+  }
+
+  ionViewDidEnter(){
+       this.rewardModal.open();
   }
 }

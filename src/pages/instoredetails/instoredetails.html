@@ -38,11 +38,11 @@
 <ion-content>
   <div class="inStoreDetailsContainer">
     <figure>
-      <img src="assets/img/h1.jpg" />
+      <img src="{{storeDetail?.bannerimage}}" />
     </figure>
     <div class="content">
-      <h6>Get your FREE health check</h6>
-      <p>Come visit at these locations</p>
+      <h6>{{storeDetail?.title}}</h6>
+      <p>{{storeDetail?.subtitle}}</p>
       <ion-grid>
         <ion-row>
           <ion-col col-6>
