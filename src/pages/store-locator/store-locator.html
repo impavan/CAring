@@ -34,13 +34,82 @@
 
 <ion-content>
   <div class="searchOut">
-        <ion-item>
-          <ion-input placeholder="Find"></ion-input>
-        </ion-item>
-      </div>
-    <div #myMap id="map" class="mapContainer">
-      
+    <ion-item>
+      <ion-input placeholder="Find"></ion-input>
+    </ion-item>
+  </div>
+  <div #myMap id="map" class="mapContainer"></div>
+
+  <div class="storeLocatorContainer">
+    <ion-segment [(ngModel)]="locations">
+      <ion-segment-button value="near_you">
+        Near You
+      </ion-segment-button>
+      <ion-segment-button value="favourite">
+        Favourite
+      </ion-segment-button>
+    </ion-segment>
+    <div [ngSwitch]="locations">
+      <ion-list *ngSwitchCase="'near_you'">
+        <div class="locationContainer">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-11>
+                  <h4>1 Utama Shopping  Centre</h4>
+                </ion-col>
+                <ion-col col-1>
+                  <ion-icon name="heart-outline" class="favIcon"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-1>
+                  <ion-icon name="pin" class="alert"></ion-icon>
+                </ion-col>
+                <ion-col col-11>
+                  <span>14.09 Km away</span>
+                  <p>
+                    B6 & B6A, Basement1, One Utama Shopping Centre<br/>
+                    Lebuh Bandar Utama 47800 Petaling Jaya<br/>
+                    Ph: 03-7728 1928<br/>
+                    Hours: Sun-Thu 10:00AM - 10:00PM<br/>
+                    Fri-Sat 10:00AM - 10:30PM
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+        </div>
+      </ion-list>
+      <ion-list *ngSwitchCase="'favourite'">
+        <div class="locationContainer">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-11>
+                  <h4>1 Utama Shopping  Centre</h4>
+                </ion-col>
+                <ion-col col-1>
+                  <ion-icon name="heart-outline" class="alert favIcon"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-1>
+                  <ion-icon name="pin" class="alert"></ion-icon>
+                </ion-col>
+                <ion-col col-11>
+                  <span>14.09 Km away</span>
+                  <p>
+                    B6 & B6A, Basement1, One Utama Shopping Centre<br/>
+                    Lebuh Bandar Utama 47800 Petaling Jaya<br/>
+                    Ph: 03-7728 1928<br/>
+                    Hours: Sun-Thu 10:00AM - 10:00PM<br/>
+                    Fri-Sat 10:00AM - 10:30PM
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+        </div>
+      </ion-list>
     </div>
+  </div>
 </ion-content>
 
 
