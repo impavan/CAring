@@ -105,6 +105,15 @@ ion-footer{
 		margin: 0;
     	padding: 0;
 	}
+	.button-md.activated, .button-ios.activated {
+	    background-color: transparent;
+	    box-shadow: none;
+	}
+}
+
+.button-md.activated, .button-ios.activated {
+    background-color: $cp-primary-color;
+    box-shadow: none;
 }
 
 .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
