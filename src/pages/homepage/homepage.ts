@@ -1,29 +1,16 @@
 import { Component, ViewChild} from '@angular/core';
 import { NavController, Slides, IonicPage } from 'ionic-angular';
 
-
-/**
- * Generated class for the HomepagePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-homepage',
   templateUrl: 'homepage.html',
 })
-export class HomepagePage {
+export class HomePage {
 
   @ViewChild(Slides) slides: Slides;
-
-
+  
   constructor(public navCtrl: NavController) {
-
-    
-    
-
   }
 
   // ionViewDidLoad(){

@@ -1,9 +1,3 @@
-<!--
-  Generated template for the RewardsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -35,29 +29,43 @@
 <ion-content>
   <div class="rewardsContainer">
     <div class="rewardsCards">
-      <ion-card (click)="navToDesc()">
-        <figure>
-          <img src="assets/img/h2.jpg" />
-        </figure>
-        <div class="content">
-          <ion-grid>
-              <ion-row>
-                <ion-col col-6>
-                    <h6>Voucher</h6>
-                    <ul class="voucherPrice">
-                      <li><span>RM10</span></li>
-                      <li><span>$800</span></li>
-                    </ul>
-                </ion-col>
-                <ion-col col-6>
-                  <button ion-button class="btn2">Redeem</button>
-                </ion-col>
-              </ion-row>
-          </ion-grid>
-        </div>
-      </ion-card>
+      <div *ngIf="offerdata.length >= 1">
+          <ion-card  *ngFor="let offer of offerdata" (click)="navToDesc()">
+              <figure>
+                <img src="assets/img/h2.jpg" />
+              </figure>
+              <div class="content">
+                <ion-grid>
+                    <ion-row>
+                      <ion-col col-6>
+                          <h6>Voucher</h6>
+                          <ul class="voucherPrice">
+                            <li><span>RM10</span></li>
+                            <li><span>$800</span></li>
+                          </ul>
+                      </ion-col>
+                      <ion-col col-6>
+                        <button ion-button class="btn2">Redeem</button>
+                      </ion-col>
+                    </ion-row>
+                </ion-grid>
+              </div>
+            </ion-card>
+      </div>
+
+      <section *ngIf="offerdata.length <= 0">
+          <div class="beforeLogin">
+            <i class="imgOut"><img src="assets/img/my_rewards.png" /></i>
+            <p>Stay Tuned! <br/>Exciting offers coming soon!</p>
+          </div>
+        </section>
+      
     </div>
-    <div class="rewardsCards">
+
+
+
+
+    <!-- <div class="rewardsCards">
       <ion-card (click)="navToDesc()">
         <figure>
           <img src="assets/img/h1.jpg" />
@@ -102,7 +110,7 @@
           </ion-grid>
         </div>
       </ion-card>
-    </div>
+    </div> -->
   </div>
 </ion-content>
 
@@ -113,8 +121,15 @@
 </ion-footer>
 
 <mymodal #reward>
-  <div>
-    <h2>This is heading</h2>
-    <p>Body</p>
-  </div>
-</mymodal>
+  <p>Do you want to Redeem points for RM10 Voucher?</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button class="btn2" (click)="redeemOffer()">Ok</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </mymodal>
