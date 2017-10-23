@@ -3,25 +3,24 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-
-
+// Import Providers.
+import { AuthProvider } from '../providers/auth/auth';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
-  rootPage: any = 'HomepagePage';
-
+  _auth = localStorage.getItem("auth_token");
+  rootPage: any = this._auth ? "HomePage" : "LoginPage";
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private authProvider: AuthProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomepagePage' },
+      { title: 'Home', component: 'HomePage' },
       { title: 'Member', component: 'MemberPage' },
       { title: 'Rewards', component: 'RewardsPage' },
       { title: 'Promotions', component: 'PromotionsPage' },
@@ -36,6 +35,10 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      if (this._auth) {
+        let userdata = localStorage.getItem('userdetails');
+        this.authProvider.setUser(JSON.parse(userdata));
+      }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

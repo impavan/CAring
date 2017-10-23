@@ -1,5 +1,8 @@
 page-otp {
 	.otpContainer{
+		.text-input-md {
+			text-align: right !important;
+		}
 		.logo{
 			display:block;
 			width:100%;
@@ -17,7 +20,14 @@ page-otp {
 		.content {
 		    padding:0;
 		    box-shadow:0px 2px 10px $cp-extra-lighter-grey-xxxx;
-		    border-radius: 7px;
+			border-radius: 7px;
+			ion-list{
+				ion-item{
+					ion-label{
+						width: 130px;
+					}
+				}
+			}
 		    .item-md, .item-ios{
 		    	padding-left: 0;
 		    	border-radius: 7px 7px 0 0;
@@ -26,12 +36,12 @@ page-otp {
 			    margin: 0;
 			}
 	    }
-	    input::-moz-placeholder {
+	    input:-moz-placeholder {
 		    color: red;
 		    text-align:right;
 		    color:$cp-extra-lighter-grey-xxx;
 		 }
-		input::-webkit-input-placeholder {
+		input:-webkit-input-placeholder {
 		    color: red;
 		    text-align:right;
 		    color:$cp-extra-lighter-grey-xxx;

@@ -1,5 +1,8 @@
 page-login {
 	.loginContainer{
+		.text-input-md {
+			text-align: right !important;
+		}
 		.logo{
 			display:block;
 			width:100%;
@@ -33,12 +36,12 @@ page-login {
 			    margin: 0;
 			}
 	    }
-	    input::-moz-placeholder {
+	    input:-moz-placeholder {
 		    color: red;
 		    text-align:right;
 		    color:$cp-extra-lighter-grey-xxx;
 		 }
-		input::-webkit-input-placeholder {
+		input:-webkit-input-placeholder {
 		    color: red;
 		    text-align:right;
 		    color:$cp-extra-lighter-grey-xxx;
@@ -52,6 +55,7 @@ page-login {
 			color:$cp-extra-darker-grey;
 			padding: 0 0 0 16px;
 		}
+		
 		.caringWaterMark{
 			margin:20px 0 0 0;
 		}
