@@ -1,6 +1,8 @@
 <ion-content padding>
 	<div class="loginContainer">
-		<i class="logo text-center"><img src="assets/img/caring_logo.png" /></i>
+		<i class="logo text-center">
+			<img src="assets/img/caring_logo.png" />
+		</i>
 		<h6>Welcome to</h6>
 		<h5>Caring Pharmacy</h5>
 		<div class="content">
@@ -15,14 +17,15 @@
 		<div class="caringWaterMark">
 			<img src="assets/img/hand_bg.png" />
 		</div>
-		<p>Forgot your Regular Card Number? Walk in any <span class="primary">Caring Pharmacy</span> for enquiry</p>
+		<p>Forgot your Regular Card Number? Walk in any
+			<span class="primary">Caring Pharmacy</span> for enquiry</p>
 	</div>
 </ion-content>
 
 <!-- Modal tobe displayed when there is no internet on the device -->
 <mymodal #connection title="No Connection">
-		<div>
-			<p>We cannot detect Internet connection. Please connect to Internet</p>
-		</div>
-		<button ion-button (click)="closeConnectionModal()">OK</button>
-	</mymodal>
+	<div>
+		<p>We cannot detect Internet connection. Please connect to Internet</p>
+	</div>
+	<button ion-button (click)="closeConnectionModal()">OK</button>
+</mymodal>

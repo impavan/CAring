@@ -17,6 +17,7 @@ export class LoginPage {
   @ViewChild('connection') connectionModal;
   phoneNum: string;
   navigation: string;
+  mobilevalidated: any;
 
   constructor(private exceptionProvider: ExceptionHandlerProvider,
     private userProvider: UserdataProvider,
@@ -26,7 +27,7 @@ export class LoginPage {
     private menu: MenuController,
     private navCtrl: NavController,
     private events: Events) {
-
+      this.mobilevalidated = false;
       this.phoneNum = '';
       this.events.subscribe('noconnection', (value) => {
         if (value)
@@ -61,12 +62,19 @@ export class LoginPage {
       this.userProvider.userLogin(this.phoneNum)
         .subscribe(data => {
           if (data[0].code == 200) {
-            this.navCtrl.push("OtpPage", { from: 'login', phone: this.phoneNum });
-          } else if (data[0].code == 202) {
-            this.navCtrl.push("OtpPage", { from: 'registration', phone: this.phoneNum });
-          } else {
-            this.alertProvider.presentToast("Something went wrong. Please try after some time.");
+            if(!this.mobilevalidated){
+              this.navCtrl.push("OtpPage", { from: 'login', phone: this.phoneNum });
+            }else {
+              this.navCtrl.push("RegistrationPage", { from: 'registration', phone: this.phoneNum });
+            }
           }
+          // if (data[0].code == 200) {
+          //   this.navCtrl.push("OtpPage", { from: 'login', phone: this.phoneNum });
+          // } else if (data[0].code == 202) {
+          //   this.navCtrl.push("OtpPage", { from: 'registration', phone: this.phoneNum });
+          // } else {
+          //   this.alertProvider.presentToast("Something went wrong. Please try after some time.");
+          // }
         }, err => {
           this.loaderProvider.dismissLoader();
           this.exceptionProvider.excpHandler(err);

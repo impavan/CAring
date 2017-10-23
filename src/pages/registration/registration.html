@@ -1,30 +1,34 @@
 <ion-content>
 	<div class="newAccountContainer">
-		<i class="logo text-center"><img src="assets/img/caring_logo.png" /></i>
+		<i class="logo text-center">
+			<img src="assets/img/caring_logo.png" />
+		</i>
 		<h6>Create New Account</h6>
 		<div class="profileOut">
-			<i><img src="assets/img/no_photo.jpg"></i>
+			<i (click)="uploadProfilePic()">
+				<img src="assets/img/no_photo.jpg">
+			</i>
 			<p>Profile Photo</p>
 		</div>
-		<div class="contentOut" >
+		<div class="contentOut">
 			<div class="container">
 				<div class="content">
 					<ion-list>
 						<ion-item>
 							<ion-label fixed>Name</ion-label>
-							<ion-input type="text" value="" placeholder="Bobby Clark"></ion-input>
+							<ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Bobby Clark"></ion-input>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>E-mail</ion-label>
-							<ion-input type="text" placeholder="bobby.clark@gmail.com"></ion-input>
+							<ion-input type="text" [(ngModel)]="registerData.email" placeholder="bobby.clark@gmail.com"></ion-input>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>Mobile Number</ion-label>
-							<ion-input type="text" readonly placeholder="77890 09876"></ion-input>
+							<ion-input type="text" [(ngModel)]="registerData.mobile" readonly placeholder="77890 09876"></ion-input>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>OTP</ion-label>
-							<ion-input type="text" readonly placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"></ion-input>
+							<ion-input type="text" [(ngModel)]="otp" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"></ion-input>
 						</ion-item>
 					</ion-list>
 				</div>
@@ -38,7 +42,7 @@
 					</ion-list>
 				</div>
 				<div class="mt20">
-					<button ion-button class="btn4">Create Account</button>
+					<button ion-button class="btn4" (click)="otpCheck()">Create Account</button>
 				</div>
 			</div>
 		</div>

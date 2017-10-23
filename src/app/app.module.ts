@@ -29,6 +29,7 @@ import { StoresProvider } from '../providers/stores/stores';
 import { AlertProvider } from '../providers/alert/alert';
 import { AuthProvider } from '../providers/auth/auth';
 import { ApiProvider } from '../providers/api/api';
+import { ProfileProvider } from '../providers/profile/profile';
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
 import { ConfigProvider } from '../providers/config/config';
 import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
@@ -61,7 +62,7 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
     AlertProvider,
     LoaderProvider, AlertProvider, 
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
-    Camera, EarnPointsProvider, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, StoresProvider, ApiProvider, DeviceProvider
+    Camera, EarnPointsProvider, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, StoresProvider, ApiProvider, DeviceProvider, ProfileProvider
     // Geolocation
 
   ]

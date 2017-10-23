@@ -37,6 +37,7 @@ export class ApiProvider {
           this.isLive = false;
         }
         this.events.publish('config', true);
+        console.log("=============================Inside ApiProvider==================================");
       });
   }
 

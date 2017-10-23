@@ -78,36 +78,35 @@ export class OtpPage {
       } else {
         this.type = '0';
       }
-      this.userProvider.userOTP(otp, this.phoneNum, this.type)
-        .subscribe(data => {
-          this.loaderProvider.dismissLoader();
-          if (data[0].code == 200) {
-            if (this.from == "registration") {
-              this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp });
-            } else {
-              this.loginOTPSucess(data);
-              // let custom = data[0].customerdata.customer[0].custom_fields;
-              // for (let i = 0; i < custom.field.length; i++) {
-              //   if (custom.field[i].name == 'wifiid') {
-              //     if (custom.field[i].value == "" || custom.field[i].value == null)
-              //       this.navCtrl.push("FreewifiPage");
-              //     else
-                    this.navCtrl.setRoot("HomePage");
-              //   }
-              // }
-            }
-          } else if (data[0].code == 201) {
-            this.clearOTPBox();
-            this.alertProvider.presentToast(data[0].message);
-          } else if (data[0].code == 202) {
-            this.clearOTPBox();
-            this.alertProvider.presentToast(data[0].message);
+      this.userProvider.userOTP(otp, this.phoneNum, this.type).subscribe(data => {
+        this.loaderProvider.dismissLoader();
+        if (data[0].code == 200) {
+          if (this.from == "registration") {
+            this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp });
           } else {
+            this.loginOTPSucess(data);
+            // let custom = data[0].customerdata.customer[0].custom_fields;
+            // for (let i = 0; i < custom.field.length; i++) {
+            //   if (custom.field[i].name == 'wifiid') {
+            //     if (custom.field[i].value == "" || custom.field[i].value == null)
+            //       this.navCtrl.push("FreewifiPage");
+            //     else
+            this.navCtrl.setRoot("HomePage");
+            //   }
+            // }
           }
-        }, err => {
-          this.loaderProvider.dismissLoader();
-          this.exceptionProvider.excpHandler(err);
-        });
+        } else if (data[0].code == 201) {
+          this.clearOTPBox();
+          this.alertProvider.presentToast(data[0].message);
+        } else if (data[0].code == 202) {
+          this.clearOTPBox();
+          this.alertProvider.presentToast(data[0].message);
+        } else {
+        }
+      }, err => {
+        this.loaderProvider.dismissLoader();
+        this.exceptionProvider.excpHandler(err);
+      });
     }
   }
 
