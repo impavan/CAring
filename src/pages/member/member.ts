@@ -8,6 +8,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ApiProvider } from '../../providers/api/api';
 
+
 @IonicPage()
 @Component({
   selector: 'page-member',

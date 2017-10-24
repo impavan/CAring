@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import moment from 'moment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import { BASE_URL } from '../../config';
 
 // Import Providers.
 import { ApiProvider } from '../api/api';
@@ -26,7 +27,7 @@ export class ProfileProvider {
     getMyProfile() {
         const PROFILE = "/mobile/myprofile?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + this.apiProvider.BRANDID;
         console.log( this.authProvider.getHeader());
-        return this.http.get(this.apiProvider.BASEURL + PROFILE, { headers: this.authProvider.getHeader() })
+        return this.http.get(BASE_URL + PROFILE, { headers: this.authProvider.getHeader() })
             .do((res: Response) => res)
             .map((res: Response) => res.json());
     }
