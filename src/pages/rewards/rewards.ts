@@ -23,39 +23,38 @@ export class RewardsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RewardsPage');
- 
+
   }
-  navToDesc(){
-  	this.navCtrl.push("RewardsDetailsPage");
+  navToDesc() {
+    this.navCtrl.push("RewardsDetailsPage");
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.fetchAllExperiences();
-      //  this.rewardModal.open();
+    //  this.rewardModal.open();
   }
 
-    //List all the experiences / offers
-    fetchAllExperiences() {
-      this.offerdata = [];
-      this.loaderProvider.presentLoadingCustom();
-      this.rewardsProvider.fetchAllExperiences()
-        .subscribe(data => {
-          this.loaderProvider.dismissLoader();
-          for (let res of data[0].response) {
-            if (res.is_digital == 0)
-              this.offerdata.push(res);
-          }
-        }, err => {
-          this.loaderProvider.dismissLoader();
-          this.exceptionProvider.excpHandler(err);
-        });
-    }
+  //List all the experiences / offers
+  fetchAllExperiences() {
+    this.offerdata = [];
+    this.loaderProvider.presentLoadingCustom();
+    this.rewardsProvider.fetchAllExperiences().subscribe(data => {
+      this.loaderProvider.dismissLoader();
+      for (let res of data[0].response) {
+        if (res.is_digital == 0)
+          this.offerdata.push(res);
+      }
+    }, err => {
+      this.loaderProvider.dismissLoader();
+      this.exceptionProvider.excpHandler(err);
+    });
+  }
 
-  redeemOffer(){
+  redeemOffer() {
     this.rewardModal.close();
   }
 
-  cancelRedeem(){
+  cancelRedeem() {
     this.rewardModal.close();
   }
 }

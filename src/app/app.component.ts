@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ApiProvider } from '../providers/api/api';
 
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
@@ -14,14 +13,13 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
   rootPage: any = this._auth ? "HomePage" : "LoginPage";
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(private platform: Platform, private statusBar: StatusBar, 
-              private splashScreen: SplashScreen, 
-              private authProvider: AuthProvider,
-              private apiProvider:ApiProvider) {
+  constructor(private platform: Platform, private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private authProvider: AuthProvider) {
+
     this.initializeApp();
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: 'HomePage' },
@@ -34,7 +32,6 @@ export class MyApp {
       { title: 'Feedback', component: 'FeedbackPage' },
       { title: 'About', component: 'AboutPage' },
     ];
-
   }
 
   initializeApp() {

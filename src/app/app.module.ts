@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule,  } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule,  } from 'ionic-angular';
+import { ErrorHandler, NgModule, } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule, } from 'ionic-angular';
 // import { GoogleMaps } from '@ionic-native/google-maps';
 // import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -28,7 +28,6 @@ import { LoaderProvider } from '../providers/loader/loader';
 import { StoresProvider } from '../providers/stores/stores';
 import { AlertProvider } from '../providers/alert/alert';
 import { AuthProvider } from '../providers/auth/auth';
-import { ApiProvider } from '../providers/api/api';
 import { ProfileProvider } from '../providers/profile/profile';
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
 import { ConfigProvider } from '../providers/config/config';
@@ -37,8 +36,6 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
 @NgModule({
   declarations: [
     MyApp,
-   
- 
   ],
   imports: [
     BrowserModule,
@@ -48,23 +45,20 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    
- 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     HapenningsProvider,
     ConfigProvider,
     StoreLocatorProvider,
     LoaderProvider,
     AlertProvider,
-    LoaderProvider, AlertProvider, 
+    LoaderProvider, AlertProvider,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
-    Camera, EarnPointsProvider, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, StoresProvider, ApiProvider, DeviceProvider, ProfileProvider
+    Camera, EarnPointsProvider, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, StoresProvider, DeviceProvider, ProfileProvider
     // Geolocation
-
   ]
 })
-export class AppModule {}
+export class AppModule { }
