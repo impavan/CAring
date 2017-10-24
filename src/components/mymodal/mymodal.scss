@@ -18,6 +18,12 @@ mymodal {
             top: 35%;
             border-radius: 8px;
             background: $cp-white-color url('../assets/img/modal_bg.svg') no-repeat center top ;
+            h2 {
+                text-align: center;
+                font-size: 18px;
+                margin: 0;
+                text-transform: capitalize;
+              }
             p{
                 color:$cp-black-color;
                 text-align:center;

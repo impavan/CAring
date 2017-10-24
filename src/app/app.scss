@@ -20,6 +20,7 @@ $cp-extra-darker-grey:#4a4a4a;
 $cp-extra-darker-grey-x:#434343;
 $cp-extra-darker-grey-x:#626262;
 $cp-red-color:#e7162f;
+$bt-maroon-color:#d0021b;
 $cp-medium-green-color-x:#7ed321;
 $cp-medium-blue-color-x:#3a7dcc;
 
@@ -49,7 +50,9 @@ body {
   background-image: none;
   height: 0;
 }
-
+.errorInfo {
+  color: $bt-maroon-color;
+}
 ion-header {
   /*.toolbar-content-md{
 		flex: none;

@@ -7,11 +7,11 @@
       <ion-grid>
         <ion-row>
           <ion-col col-10 class="text-center">
-              <ion-title>
-                <div class="logo">
-                    <img src="assets/img/caring_logo_white.png" />
-                  </div>
-              </ion-title>
+            <ion-title>
+              <div class="logo">
+                <img src="assets/img/caring_logo_white.png" />
+              </div>
+            </ion-title>
           </ion-col>
           <ion-col col-2 class="text-center">
             <div class="notification">
@@ -29,107 +29,68 @@
 <ion-content>
   <div class="rewardsContainer">
     <div class="rewardsCards">
+      <!-- Section to be displayed when there is data. -->
       <div *ngIf="offerdata.length >= 1">
-          <ion-card  *ngFor="let offer of offerdata" (click)="navToDesc()">
-              <figure>
-                <img src="assets/img/h2.jpg" />
-              </figure>
-              <div class="content">
-                <ion-grid>
-                    <ion-row>
-                      <ion-col col-6>
-                          <h6>Voucher</h6>
-                          <ul class="voucherPrice">
-                            <li><span>RM10</span></li>
-                            <li><span>$800</span></li>
-                          </ul>
-                      </ion-col>
-                      <ion-col col-6>
-                        <button ion-button class="btn2">Redeem</button>
-                      </ion-col>
-                    </ion-row>
-                </ion-grid>
-              </div>
-            </ion-card>
-      </div>
-
-      <section *ngIf="offerdata.length <= 0">
-          <div class="beforeLogin">
-            <i class="imgOut"><img src="assets/img/my_rewards.png" /></i>
-            <p>Stay Tuned! <br/>Exciting offers coming soon!</p>
+        <ion-card *ngFor="let offer of offerdata" (click)="navToRedeem(offer)">
+          <figure *ngIf="offer?.Images[0]">
+            <img src="{{IMG_URL}}/{{offer?.Images[0]}}" />
+          </figure>
+          <figure *ngIf="!offer?.Images[0]">
+            <img src="assets/img/h2.jpg" />
+          </figure>
+          <div class="content">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                  <h6>Voucher</h6>
+                  <ul class="voucherPrice">
+                    <li>
+                      <span>{{offer?.Title}}</span>
+                    </li>
+                    <li>
+                      <span>${{offer?.BrandPointRedeemValue}}</span>
+                    </li>
+                  </ul>
+                </ion-col>
+                <ion-col col-6>
+                  <button ion-button class="btn2">Redeem</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </div>
-        </section>
-      
-    </div>
-
-
-
-
-    <!-- <div class="rewardsCards">
-      <ion-card (click)="navToDesc()">
-        <figure>
-          <img src="assets/img/h1.jpg" />
-        </figure>
-        <div class="content">
-          <ion-grid>
-              <ion-row>
-                <ion-col col-6>
-                    <h6>Voucher</h6>
-                    <ul class="voucherPrice">
-                      <li><span>RM10</span></li>
-                      <li><span>$800</span></li>
-                    </ul>
-                </ion-col>
-                <ion-col col-6>
-                  <button ion-button class="btn2">Redeem</button>
-                </ion-col>
-              </ion-row>
-          </ion-grid>
+        </ion-card>
+      </div>
+      <!-- Section to be displayed when there is no data to display. -->
+      <section *ngIf="offerdata.length <= 0">
+        <div class="beforeLogin">
+          <i class="imgOut">
+            <img src="assets/img/my_rewards.png" />
+          </i>
+          <p>Stay Tuned!
+            <br/>Exciting offers coming soon!</p>
         </div>
-      </ion-card>
+      </section>
     </div>
-    <div class="rewardsCards">
-      <ion-card (click)="navToDesc()">
-        <figure>
-          <img src="assets/img/h3.jpg" />
-        </figure>
-        <div class="content">
-          <ion-grid>
-              <ion-row>
-                <ion-col col-6>
-                    <h6>Voucher</h6>
-                    <ul class="voucherPrice">
-                      <li><span>RM10</span></li>
-                      <li><span>$800</span></li>
-                    </ul>
-                </ion-col>
-                <ion-col col-6>
-                  <button ion-button class="btn2">Redeem</button>
-                </ion-col>
-              </ion-row>
-          </ion-grid>
-        </div>
-      </ion-card>
-    </div> -->
   </div>
 </ion-content>
 
 <ion-footer>
-   <ion-toolbar>
+  <ion-toolbar>
     <page-tabs></page-tabs>
   </ion-toolbar>
 </ion-footer>
 
-<mymodal #reward>
-  <p>Do you want to Redeem points for RM10 Voucher?</p>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button class="btn2" (click)="redeemOffer()">Ok</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  </mymodal>
+<mymodal #login>
+    <h2 class="errorInfo">Sorry</h2>
+		<p>Please Login/Register to continue</p>
+		<ion-grid>
+			<ion-row>
+				<ion-col col-6>
+					<button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
+				</ion-col>
+				<ion-col col-6>
+					<button ion-button class="btn2" (click)="navToLogin()">Login/Register</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		</mymodal>

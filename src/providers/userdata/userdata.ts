@@ -50,14 +50,14 @@ export class UserdataProvider {
     let userData = new FormData();
     userData.append('first_name', userdata.fname);
     userData.append('last_name', userdata.lname);
-    // userData.append('gender', userdata.gender);
+    userData.append('gender', userdata.gender);
     userData.append('email', userdata.email);
     userData.append('mobile', userdata.mobile);
     userData.append('BrandURLID', BRAND_ID);
-    // userData.append('dob', userdata.dob);
-    // userData.append('device_id', localStorage.getItem('push_token'));
-    // userData.append('device_type', localStorage.getItem('model'));
-    // userData.append('device_version', localStorage.getItem('version'));
+    userData.append('dob', userdata.dob);
+    userData.append('device_id', localStorage.getItem('push_token'));
+    userData.append('device_type', localStorage.getItem('model'));
+    userData.append('device_version', localStorage.getItem('version'));
     
     if (userdata.profilePic.length > 0)
       userData.append('profile_image', JSON.stringify(userdata.profilePic));

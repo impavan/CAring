@@ -48,10 +48,12 @@ export class LoginPage {
     } else if (this.phoneNum.trim() == EMPTY) {
       this.alertProvider.presentToast('Please enter valid 8 digit mobile number');
       return;
-    } else if (this.phoneNum.length != MOBILE_NO_LIMIT) {
-      this.alertProvider.presentToast('Mobile number should be 8 digits');
-      return;
-    } else if (this.phoneNum.match(NO_CHAR)) {
+    } 
+    // else if (this.phoneNum.length != MOBILE_NO_LIMIT) {
+    //   this.alertProvider.presentToast('Mobile number should be 8 digits');
+    //   return;
+    // } 
+    else if (this.phoneNum.match(NO_CHAR)) {
       this.alertProvider.presentToast('Mobile number cannot contain characters');
       return;
     } else if (!SPECIAL_CHAR.test(this.phoneNum)) {

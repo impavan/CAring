@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IMAGE_BASE_URL } from '../../config';
+import { IMAGE_URL } from '../../config';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 // Import Providers.
@@ -14,7 +14,7 @@ import { AlertProvider } from '../../providers/alert/alert';
   templateUrl: 'member.html',
 })
 export class MemberPage {
-  IMG_URL = IMAGE_BASE_URL;
+  IMG_URL = IMAGE_URL;
 
   public member: any = "My Points";
   public memberDetails: any = "New";
