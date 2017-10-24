@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>About Us</ion-title>
@@ -8,13 +8,21 @@
 </ion-header>
 
 <ion-content padding>
-  <p>
-    {{about}}
-  </p>
+  <section>
+    <div class="feedBackContainer">
+      <ion-card>
+        <ion-card-content>
+          <div class="formGroup">
+            <p>{{about}}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
 </ion-content>
 
 <ion-footer>
-   <ion-toolbar>
+  <ion-toolbar>
     <page-tabs></page-tabs>
   </ion-toolbar>
 </ion-footer>
