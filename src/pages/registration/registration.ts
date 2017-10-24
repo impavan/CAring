@@ -108,6 +108,7 @@ export class RegistrationPage {
     this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
       this.loaderProvider.dismissLoader();
       if (data[0].code == 200) {
+        console.log(this.registerData,'==================register data==================')
         this.userProvider.userRegistration(this.registerData).subscribe(data => {
           this.loaderProvider.dismissLoader();
           if (data[0].code == 200) {

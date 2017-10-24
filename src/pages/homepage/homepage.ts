@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides, IonicPage } from 'ionic-angular';
 
 @IonicPage()
@@ -9,7 +9,7 @@ import { NavController, Slides, IonicPage } from 'ionic-angular';
 export class HomePage {
 
   @ViewChild(Slides) slides: Slides;
-  
+
   constructor(public navCtrl: NavController) {
   }
 
@@ -32,8 +32,7 @@ export class HomePage {
   //  this.slides.slideTo(currentIndex, 500);
   // }
 
-    goto(page:string){
-      this.navCtrl.setRoot(page);
-    }
-
+  goto(page: string) {
+    this.navCtrl.setRoot(page);
+  }
 }

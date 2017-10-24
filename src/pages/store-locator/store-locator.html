@@ -41,7 +41,7 @@
   <div #myMap id="map" class="mapContainer"></div>
 
   <div class="storeLocatorContainer">
-    <ion-segment [(ngModel)]="locations">
+    <ion-segment [(ngModel)]="locationState">
       <ion-segment-button value="near_you">
         Near You
       </ion-segment-button>
@@ -49,16 +49,17 @@
         Favourite
       </ion-segment-button>
     </ion-segment>
-    <div [ngSwitch]="locations">
+    <div [ngSwitch]="locationState">
       <ion-list *ngSwitchCase="'near_you'">
         <div class="locationContainer">
-            <ion-grid>
+            <ion-grid *ngFor="let location of updatedLocationList">
               <ion-row>
                 <ion-col col-11>
-                  <h4>1 Utama Shopping  Centre</h4>
+                  <h4>{{location?.storename}}</h4>
                 </ion-col>
                 <ion-col col-1>
-                  <ion-icon name="heart-outline" class="favIcon"></ion-icon>
+                  <ion-icon *ngIf="!location?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
+                   <ion-icon *ngIf="location?.favourite" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -66,13 +67,12 @@
                   <ion-icon name="pin" class="alert"></ion-icon>
                 </ion-col>
                 <ion-col col-11>
-                  <span>14.09 Km away</span>
+                  <span>{{location?.km | number : '1.2-2'}} Km away</span>
                   <p>
-                    B6 & B6A, Basement1, One Utama Shopping Centre<br/>
-                    Lebuh Bandar Utama 47800 Petaling Jaya<br/>
-                    Ph: 03-7728 1928<br/>
-                    Hours: Sun-Thu 10:00AM - 10:00PM<br/>
-                    Fri-Sat 10:00AM - 10:30PM
+                   {{location?.fulladdress}}<br/>
+                    Ph: {{location?.telephone}}<br/>
+                    {{location?.storehours}}<br/>
+                    <!--Fri-Sat 10:00AM - 10:30PM-->
                   </p>
                 </ion-col>
               </ion-row>
@@ -81,13 +81,14 @@
       </ion-list>
       <ion-list *ngSwitchCase="'favourite'">
         <div class="locationContainer">
-            <ion-grid>
+            <ion-grid *ngFor="let fav of favouriteList">
               <ion-row>
                 <ion-col col-11>
-                  <h4>1 Utama Shopping  Centre</h4>
+                  <h4>{{fav?.storename}}</h4>
                 </ion-col>
                 <ion-col col-1>
-                  <ion-icon name="heart-outline" class="alert favIcon"></ion-icon>
+                  <!--<ion-icon *ngIf="!fav?.favourite" name="heart-outline" class="alert favIcon"></ion-icon>-->
+                   <ion-icon *ngIf="fav?.favourite" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(fav)"></ion-icon>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -95,13 +96,12 @@
                   <ion-icon name="pin" class="alert"></ion-icon>
                 </ion-col>
                 <ion-col col-11>
-                  <span>14.09 Km away</span>
+                  <span>{{ fav?.km | number : '1.2-2'}} Km away</span>
                   <p>
-                    B6 & B6A, Basement1, One Utama Shopping Centre<br/>
-                    Lebuh Bandar Utama 47800 Petaling Jaya<br/>
-                    Ph: 03-7728 1928<br/>
-                    Hours: Sun-Thu 10:00AM - 10:00PM<br/>
-                    Fri-Sat 10:00AM - 10:30PM
+                    {{fav?.fulladdress}}<br/>
+                    Ph: {{fav?.telephone}}<br/>
+                  {{fav?.storehours}}<br/>
+                    
                   </p>
                 </ion-col>
               </ion-row>

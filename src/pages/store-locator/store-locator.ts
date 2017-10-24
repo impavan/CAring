@@ -6,114 +6,82 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
 // import { GoogleMaps,GoogleMap,GoogleMapsEvent,GoogleMapOptions,CameraPosition,MarkerOptions,Marker } from '@ionic-native/google-maps';
 
-/**
- * Generated class for the StoreLocatorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-
- declare var google;
+declare var google;
 @IonicPage()
 @Component({
   selector: 'page-store-locator',
   templateUrl: 'store-locator.html',
 })
+
 export class StoreLocatorPage {
-
   @ViewChild('myMap') mapElement;
-
   map: any;
   locationList: any = [];
-  updatedLocationList:any = [];
+  updatedLocationList: any = [];
+  favouriteList: any = [];
+  _favIdList: any = [];
+  locationState = 'near_you';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public storeLocatorProvider: StoreLocatorProvider
-  ) {
+    public storeLocatorProvider: StoreLocatorProvider) {
   }
 
 
   ionViewWillEnter() {
-
     this.getStores();
-
+    this._favIdList = this.getFavList();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StoreLocatorPage');
-
-
   }
 
   ngAfterViewInit() {
     this.loadMap();
   }
 
-
   getStores() {
-
-    this.storeLocatorProvider.getStores()
-
-      .subscribe(res => {
-
-        console.log(res);
-        this.locationList = res.data;
-        this.addMarkers(this.map, this.locationList);
-
-      })
-
+    this.storeLocatorProvider.getStores().subscribe(res => {
+      console.log(res);
+      this.locationList = res.data;
+      this.addMarkers(this.map, this.locationList);
+      this.loadFavList(this.locationList);
+    });
   }
 
-
   loadMap() {
+    // navigator.geolocation.getCurrentPosition((position) => {
+    // console.log(position);
+    let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
+    console.log("***************************");
+    let mapOptions = {
+      center: latLng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    // })
+  }
 
-    navigator.geolocation.getCurrentPosition((position) => {
-
-      console.log(position);
-
-      let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
-
-      console.log("***************************");
-
-      let mapOptions = {
-
-        center: latLng,
-        zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-
-
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-    })
-
-
-
-
-
+  loadFavList(locationList) {
+    for (let i in locationList) {
+      locationList[i].favourite = this._favIdList.includes(locationList[i]._id);
+    }
   }
 
   addMarkers(map, locationList) {
-
     for (let i in locationList) {
       let marker = new google.maps.Marker();
       var latLng = new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y);
       marker.setPosition(latLng);
       marker.setTitle(locationList[i].storename);
       marker.setMap(map);
-
-   
     }
-      // let latA = new google.maps.LatLng(12.914142,74.855957);
-      //  let latB = new google.maps.LatLng(12.971599, 77.594563);
-       let  curentLatLng = new google.maps.LatLng(3.1655016, 101.65281950000008)
-      this.getDistance(curentLatLng,locationList);
-   
-   
-
+    // let latA = new google.maps.LatLng(12.914142,74.855957);
+    //  let latB = new google.maps.LatLng(12.971599, 77.594563);
+    let curentLatLng = new google.maps.LatLng(3.1655016, 101.65281950000008)
+    this.getDistance(curentLatLng, locationList);
   }
-
 
   // distanceValue(){
   //  let  curentLatLng = new google.map.LatLng(this.locationList[0].location.x, this.locationList[0].location.y)
@@ -121,70 +89,86 @@ export class StoreLocatorPage {
   //             let km = this.getDistance(curentLatLng, new google.maps.LatLng(this.locationList[i].location.x, this.locationList[i].location.y));
   //             console.log("kilometer is:", km);
   //     }
-
   // }
-
 
   getDistance(currentlatLngA, locationList) {
     // let km =  google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
     this.updatedLocationList = [];
     let that = this;
-    let service =  new google.maps.DistanceMatrixService();
-          console.log(service);
-           for(let i in locationList){
-              service.getDistanceMatrix({
-                origins: [currentlatLngA],
-                  destinations: [new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y)],
-                  travelMode: google.maps.TravelMode.DRIVING,
-                  unitSystem: google.maps.UnitSystem.METRIC,
-                  avoidHighways: false,
-                  avoidTolls: false
-
-              }, function(res){
-                  locationList[i].km = res.rows[0].elements[0].distance.value /1000;
-                  that.updatedLocationList.push(locationList[i])
-                  if(locationList.length  == that.updatedLocationList.length){
-                    that.sortBy(that.updatedLocationList,"km");
-                    setTimeout(()=>{
-                          console.log( that.updatedLocationList);
-                    }, 6000);
-                  
-                  }
-              });
-               
-           }
-      
-        
-//  console.log("km is:", km);
-}
-
-deg2rad(deg) {
-  return deg * (Math.PI/180)
-}
-
-successCallBack(res){
-  console.log(res);
-  console.log("distance from current location is",res.rows[0].elements[0].distance.value /1000,"km");
-
-
-}
-
-sortBy(array , key){
-  console.log("In sort");
- for(let i in array){
-    for(let j in array){
-      if(array[i].km < array[j].km){
-        let temp = array[i];
-        array[j] = array[i];
-        array[i] = temp;
-        break;
-      }
+    let service = new google.maps.DistanceMatrixService();
+    console.log(service);
+    for (let i in locationList) {
+      service.getDistanceMatrix({
+        origins: [currentlatLngA],
+        destinations: [new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y)],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+      }, function (res) {
+        locationList[i].km = res.rows[0].elements[0].distance.value / 1000;
+        that.updatedLocationList.push(locationList[i])
+        if (locationList.length == that.updatedLocationList.length) {
+          that.locationState = 'near_you';
+          that.favouriteList = that.updatedLocationList.filter(fav => fav.favourite == true);
+          that.updatedLocationList.sort((a, b) => {
+            return parseFloat(a.km) - (b.km);
+          });
+          that.favouriteList.sort((a, b) => {
+            return parseFloat(a.km) - (b.km);
+          });
+          // that.updatedLocationList.sort(this.sortBy);
+        }
+      });
     }
- }
+    //  console.log("km is:", km);
+  }
 
+  deg2rad(deg) {
+    return deg * (Math.PI / 180)
+  }
+
+  successCallBack(res) {
+    console.log(res);
+    console.log("distance from current location is", res.rows[0].elements[0].distance.value / 1000, "km");
+  }
+
+  // sortBy(a,b){
+  //       return parseFloat(a.km) - (b.km);
+  //  }
+
+  setFav(location) {
+    location.favourite = true;
+    this.favouriteList.push(location);
+    this.addFavList(location._id);
+  }
+
+  removeFav(location) {
+    location.favourite = false;
+    let index = this.favouriteList.findIndex(loc => loc._id == location._id);
+    this.favouriteList.splice(index, 1);
+    this.removeFavList(location._id);
+  }
+
+  getFavList() {
+    let list: any = localStorage.getItem('favList');
+    let list2: any = list == null ? [] : JSON.parse(list);
+    return (list2);
+  }
+
+  addFavList(id) {
+    console.log(id);
+    this._favIdList = this.getFavList();
+    console.log(this._favIdList);
+    this._favIdList.push(id);
+    localStorage.setItem('favList', JSON.stringify(this._favIdList));
+  }
+
+  removeFavList(id) {
+    this._favIdList = this.getFavList();
+    let index = this._favIdList.findIndex(fav => fav._id == id);
+    this._favIdList.splice(index, 1);
+    localStorage.setItem('favList', JSON.stringify(this._favIdList));
+  }
+  //1.6092 exact value for converting miles to kilometeres
 }
-
-//1.6092 exact value for converting miles to kilometeres
-}
-
-

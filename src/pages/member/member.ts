@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IMAGE_BASE_URL } from '../../config';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 // Import Providers.
@@ -6,7 +7,6 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
-import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -14,45 +14,43 @@ import { ApiProvider } from '../../providers/api/api';
   templateUrl: 'member.html',
 })
 export class MemberPage {
-  IMG_URL = this.apiProvider.IMAGEURL;
-	public member: any="My Points";
-  public memberDetails: any= "New";
+  IMG_URL = IMAGE_BASE_URL;
+
+  public member: any = "My Points";
+  public memberDetails: any = "New";
   public _auth: any;
   public _userName: any;
   public _emailId: any;
   public _mobileNum: any;
   public _profilePic: any;
+  _totalAvailablePoints: number;
+  _totalRedeemedPoints: number;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider, private apiProvider: ApiProvider,
+  constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
     private profileProvider: ProfileProvider,
     private alertProvider: AlertProvider) {
     this._auth = localStorage.getItem('auth_token');
     this.loadMyProfile();
+    this.loadMyPoints();
+    console.log('image--- url', this.IMG_URL);
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MemberPage');
   }
 
+
   loadMyProfile() {
     if (this._auth) {
-      // this.profileProvider.getMyProfile().subscribe(res => {
-      //   if (res[0].code == 200) {
-      //     localStorage.setItem('userdetails', JSON.stringify(res[0].customerdata));
-      //     this.authProvider.setUser(res[0].customerdata);
-      //     localStorage.setItem('phone', res[0].customerdata.customer[0].mobile);
-      //     this.authProvider.setHeader();
-      //     this.alertProvider.presentToast("User Profile successfully updated");
-      //     this.events.publish('user:login', true);
-      //     this.getMyProfileDetails();
-      //   } else {
-      //     this.alertProvider.presentToast(res[0].message);
-      //   }
-      // }, error => {
-      //   this.exceptionProvider.excpHandler(error);
-      // });
       this.getMyProfileDetails();
+    }
+  }
+
+  loadMyPoints() {
+    if (this._auth) {
+      this.getMyPoints();
     }
   }
 
@@ -63,19 +61,29 @@ export class MemberPage {
   //gets user profile details
   getMyProfileDetails() {
     this._userName = this.authProvider.getUserFirstName();
-    // this._userLastName = this.authProvider.getUserLastName();
     this._emailId = this.authProvider.getUserEmailId();
-    // this._gender = this.authProvider.getUserGender();
-    // this._oldemail = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
-    // this._IUNumber = this.authProvider.getUserIUNo();
-    // this._dob = this.authProvider.getUserDob();
-    // this._wifiId = this.authProvider.getUserWifiID();
     this._profilePic = this.authProvider.getUserProfilePic();
-    console.log(this._userName, "=======================username====================");
-    console.log(this._emailId, "=======================username====================");
-    console.log(this._mobileNum, "=======================username====================");
-    console.log(this._profilePic, "=======================username====================");
+    console.log(this._userName);
+    console.log(this._emailId);
+    console.log(this._mobileNum);
+    console.log(this._profilePic);
+  }
+
+  getMyPoints() {
+    this.profileProvider.getMyProfile().subscribe(data => {
+      if (data[0].code == 200) {
+        this.authProvider.setUser(data[0].customerdata);
+        localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+        this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
+        this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
+        console.log("totttttttttttttttttttttttt poiiiiiiiiiintttttttsssssssssss");
+        console.log(this._totalAvailablePoints);
+        console.log(this._totalRedeemedPoints);
+      }
+    }, err => {
+      this.exceptionProvider.excpHandler(err);
+    });
   }
 
   updateData() {
