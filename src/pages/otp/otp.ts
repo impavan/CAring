@@ -42,7 +42,7 @@ export class OtpPage {
     this.from = navParams.get('from');
     this.zone.run(() => {
       this.phoneNum = navParams.get('phone');
-      console.log(this.phoneNum, "=====================Phnum==========================");
+      // console.log(this.phoneNum, "=====================Phnum==========================");
       this.regData = navParams.get('data');
     });
     this.events.subscribe('noconnection', (value) => {
@@ -52,12 +52,12 @@ export class OtpPage {
   }
 
   ionViewDidLoad() {
-    this.loaderProvider.presentBackOptions();
+    this.loaderProvider.dismissLoader();
   }
 
   ionViewDidEnter() {
     this.menu.swipeEnable(false, "leftMenu");
-    this.loaderProvider.presentBackOptions();
+    
   }
 
   userOTP() {

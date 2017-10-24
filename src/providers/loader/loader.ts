@@ -17,7 +17,7 @@ export class LoaderProvider {
   //loader
   presentLoadingCustom() {
     this.loading = this.loadingCtrl.create({
-      spinner: 'dots',
+      spinner: 'circles',
       content: `<div class="custom-spinner-container">
         <div class="custom-spinner-box"></div>
       </div>`,
