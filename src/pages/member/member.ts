@@ -26,13 +26,18 @@ export class MemberPage {
   public _profilePic: any;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
+  loadedWallet:boolean = false;
+  loadedProfile:boolean = false;
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
     private profileProvider: ProfileProvider,
     private alertProvider: AlertProvider) {
     this._auth = localStorage.getItem('auth_token');
-    this.loadMyProfile();
+    if(this._auth){
+      this.authProvider.setHeader();
+    }
+   
     this.loadMyPoints();
     console.log('image--- url', this.IMG_URL);
 
@@ -44,7 +49,7 @@ export class MemberPage {
 
 
   loadMyProfile() {
-    if (this._auth) {
+    if (this._auth && !this.loadedProfile) {
       this.getMyProfileDetails();
     }
   }
@@ -53,6 +58,13 @@ export class MemberPage {
     if (this._auth) {
       this.getMyPoints();
     }
+  }
+
+  loadMyWallet(){
+    if(this._auth && !this.loadedWallet)
+
+        this.getRedeemedVouchers();
+
   }
 
   navToRedeemVoucher(voucher) {
@@ -81,10 +93,24 @@ export class MemberPage {
         console.log("totttttttttttttttttttttttt poiiiiiiiiiintttttttsssssssssss");
         console.log(this._totalAvailablePoints);
         console.log(this._totalRedeemedPoints);
+         this.loadMyProfile();
       }
     }, err => {
       this.exceptionProvider.excpHandler(err);
     });
+  }
+
+
+  getRedeemedVouchers(){
+
+        this.profileProvider.getAllRedeemedVouchers()
+
+              .subscribe(res => {
+
+                  console.log(res);
+
+              })
+
   }
 
   updateData() {

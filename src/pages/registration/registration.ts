@@ -84,7 +84,7 @@ export class RegistrationPage {
       this.alertProvider.presentToast("Email Id must contain @ symbol");
       return;
     } else if (this.registerData.mobile.length != MOBILE_NO_LIMIT) {
-      this.alertProvider.presentToast('Mobile number should be 8 digits');
+      this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT + 'digits');
       return;
     } else if (this.registerData.mobile.match(NO_CHAR)) {
       this.alertProvider.presentToast('Mobile number cannot contain characters');
