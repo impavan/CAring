@@ -1,12 +1,20 @@
-export let BASE_URL = `http://52.89.20.38/v2/`;
-// image url
-export let IMAGE_BASE_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
+
+
+
+
+//  Test Base URL.
+export const BASE_URL = `http://52.89.20.38/v2/`;
+export const IMAGE_BASE_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
+
 
 // Image URL for displaying Store's images
-export let STORES_IMG_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
+export const STORES_IMG_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
 
 //dev brand Id
-export let BRAND_ID = `breadtalkdemo`;
+export const BRAND_ID = `caringdemo`;
+
+//  For Live
+// export const BRAND_ID = `caringdemo`;
 
 //  Content System API.
 export const CONTENT_ID = `http://app.sttarter.com:9000/contentsystem/e4e009abf54577f493010e8274557e52`;

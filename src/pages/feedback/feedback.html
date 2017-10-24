@@ -1,26 +1,51 @@
-<!--
-  Generated template for the FeedbackPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>feedback</ion-title>
+    <ion-title>Feedback</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <!-- <section>
+    <section class="feedbackSec">
+      <section class="textbottom">
+        <ion-input placeholder="Name" [(ngModel)]="userData.userName"></ion-input>
+        <br>
+        <ion-input placeholder="Mobile number" [(ngModel)]="userData.mobileNo"></ion-input>
+      </section>
+      <section class="cmtField">
+        <ion-textarea placeholder="Message" cols="80" rows="5" [(ngModel)]="userData.message"></ion-textarea>
+      </section>
+    </section>
+    <section class="buttonStatic">
+      <button ion-button class="ripple" (click)="sendFeedBack()">Send</button>
+    </section> -->
+<section>
+  <div class="feedBackContainer">
+      <ion-card>
+            <ion-card-content>
+                <div class="formGroup">
+                    <ion-input placeholder="Name" [(ngModel)]="userData.userName"></ion-input>
+                  </div>
+                  <div class="formGroup">
+                    <ion-input placeholder="Mobile number" [(ngModel)]="userData.mobileNo"></ion-input>
+                    </div>
+                    <div class="formGroup">
+                    <ion-textarea placeholder="Message" cols="80" rows="5" [(ngModel)]="userData.message"></ion-textarea>
+                    </div>
+            </ion-card-content>
+          </ion-card>
+          <div class="mt20">
+          <button ion-button class="btn4" (click)="sendFeedBack()">Send</button>
+        </div>
+        </div>
+      </section>
+  </ion-content>
 
-</ion-content>
 <ion-footer>
-   <ion-toolbar>
+  <ion-toolbar>
     <page-tabs></page-tabs>
   </ion-toolbar>
 </ion-footer>

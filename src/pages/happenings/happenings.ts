@@ -24,9 +24,9 @@ export class HappeningsPage {
 
   getHappenings() {
     this.hapenningsProvider.getHappenings().subscribe(res => {
-        this.happenList = res.data;
-        console.log(this.happenList);
-      });
+      this.happenList = res.data;
+      console.log(this.happenList);
+    });
   }
 
   goto(page) {
