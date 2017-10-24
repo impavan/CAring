@@ -1,4 +1,4 @@
-export let BASE_URL = `http://52.89.20.38/breadtalkapi`;
+export let BASE_URL = `http://52.89.20.38/caringdemo`;
 // image url
 export let IMAGE_BASE_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
 

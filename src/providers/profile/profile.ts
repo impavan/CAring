@@ -13,6 +13,7 @@ import { ApiProvider } from '../api/api';
 @Injectable()
 export class ProfileProvider {
     profileSegment: any;
+    
 
     constructor(private authProvider: AuthProvider,
         private apiProvider: ApiProvider,
@@ -24,6 +25,7 @@ export class ProfileProvider {
     // get a user details
     getMyProfile() {
         const PROFILE = "/mobile/myprofile?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + this.apiProvider.BRANDID;
+        console.log( this.authProvider.getHeader());
         return this.http.get(this.apiProvider.BASEURL + PROFILE, { headers: this.authProvider.getHeader() })
             .do((res: Response) => res)
             .map((res: Response) => res.json());

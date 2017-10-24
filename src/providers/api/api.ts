@@ -9,7 +9,7 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class ApiProvider {
   public BASEURL: any;
-  public BRANDID: any;
+  public BRANDID: any = 'breadtalkdemo';
   public IMAGEURL: any;
   public isLive: boolean;
   // make enviroment true for live build and false for dev build

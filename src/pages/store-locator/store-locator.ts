@@ -27,6 +27,9 @@ export class StoreLocatorPage {
   map: any;
   locationList: any = [];
   updatedLocationList:any = [];
+  favouriteList:any = [];
+  _favIdList:any = [];
+  locationState = 'near_you';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public storeLocatorProvider: StoreLocatorProvider
@@ -37,6 +40,7 @@ export class StoreLocatorPage {
   ionViewWillEnter() {
 
     this.getStores();
+    this._favIdList = this.getFavList();
 
   }
 
@@ -60,6 +64,7 @@ export class StoreLocatorPage {
         console.log(res);
         this.locationList = res.data;
         this.addMarkers(this.map, this.locationList);
+        this.loadFavList(this.locationList);
 
       })
 
@@ -68,9 +73,9 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-    navigator.geolocation.getCurrentPosition((position) => {
+    // navigator.geolocation.getCurrentPosition((position) => {
 
-      console.log(position);
+      // console.log(position);
 
       let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
 
@@ -86,15 +91,21 @@ export class StoreLocatorPage {
       };
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    })
+    // })
 
+  }
 
+  loadFavList(locationList){
 
-
+    for(let i in locationList){
+      locationList[i].favourite = this._favIdList.includes(locationList[i]._id);
+    }
 
   }
 
   addMarkers(map, locationList) {
+
+    
 
     for (let i in locationList) {
       let marker = new google.maps.Marker();
@@ -144,11 +155,18 @@ export class StoreLocatorPage {
                   locationList[i].km = res.rows[0].elements[0].distance.value /1000;
                   that.updatedLocationList.push(locationList[i])
                   if(locationList.length  == that.updatedLocationList.length){
-                    that.sortBy(that.updatedLocationList,"km");
-                    setTimeout(()=>{
-                          console.log( that.updatedLocationList);
-                    }, 6000);
-                  
+                    that.locationState = 'near_you';
+                    that.favouriteList = that.updatedLocationList.filter(fav => fav.favourite == true);
+                    that.updatedLocationList.sort((a, b)=>{
+                      return parseFloat(a.km) - (b.km);
+                    });
+
+                     that.favouriteList.sort((a, b)=>{
+                      return parseFloat(a.km) - (b.km);
+                    });
+
+                    // that.updatedLocationList.sort(this.sortBy);
+
                   }
               });
                
@@ -169,18 +187,58 @@ successCallBack(res){
 
 }
 
-sortBy(array , key){
-  console.log("In sort");
- for(let i in array){
-    for(let j in array){
-      if(array[i].km < array[j].km){
-        let temp = array[i];
-        array[j] = array[i];
-        array[i] = temp;
-        break;
-      }
-    }
- }
+// sortBy(a,b){
+
+//       return parseFloat(a.km) - (b.km);
+
+//  }
+
+
+
+setFav(location){
+
+      location.favourite = true;
+      this.favouriteList.push(location);
+      this.addFavList(location._id);
+
+
+
+}
+
+removeFav(location){
+
+      location.favourite = false;
+      let index = this.favouriteList.findIndex(loc=> loc._id == location._id);
+      this.favouriteList.splice(index, 1);
+      this.removeFavList(location._id);
+
+}
+
+
+getFavList(){
+  
+    let list:any  = localStorage.getItem('favList');
+
+    let list2:any = list==null?[]:JSON.parse(list);
+
+    return (list2);
+}
+
+addFavList(id){
+console.log(id);
+  this._favIdList = this.getFavList();
+  console.log(this._favIdList);
+  this._favIdList.push(id);
+  localStorage.setItem('favList',JSON.stringify(this._favIdList));
+
+}
+
+removeFavList(id){
+
+     this._favIdList = this.getFavList();
+     let index = this._favIdList.findIndex(fav => fav._id == id);
+     this._favIdList.splice(index, 1);
+     localStorage.setItem('favList',JSON.stringify(this._favIdList));
 
 }
 
