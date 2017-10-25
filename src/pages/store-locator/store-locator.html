@@ -34,13 +34,19 @@
 
 <ion-content>
   <div class="searchOut">
-    <ion-item>
-      <ion-input placeholder="Find"></ion-input>
-    </ion-item>
+    <!--<ion-item>-->
+      <!--<ion-input placeholder="Find"></ion-input>-->
+      <ion-searchbar
+          [(ngModel)]="_searchKey"
+          placeholder="Find"
+          (ionInput)="onInput($event)"
+          (ionClear)="onCancel($event)">
+      </ion-searchbar>
+    <!--</ion-item>-->
   </div>
   <div #myMap id="map" class="mapContainer"></div>
 
-  <div class="storeLocatorContainer">
+  <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
     <ion-segment [(ngModel)]="locationState">
       <ion-segment-button value="near_you">
         Near You
@@ -109,6 +115,37 @@
         </div>
       </ion-list>
     </div>
+  </div>
+  <div *ngIf="_searchKey!=''">
+      <div class="locationContainer">
+    <ion-grid *ngFor="let filter of _newFilteredList">
+            <ion-card (click)="setMarker(filter)">
+              <ion-row>
+                <ion-col col-11>
+                  <h4>{{filter?.storename}}</h4>
+                </ion-col>
+                <ion-col col-1>
+                  <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
+                   <ion-icon *ngIf="filter?.favourite" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-1>
+                  <ion-icon name="pin" class="alert"></ion-icon>
+                </ion-col>
+                <ion-col col-11>
+                  <span>{{filter?.km | number : '1.2-2'}} Km away</span>
+                  <p>
+                   {{filter?.fulladdress}}<br/>
+                    Ph: {{filter?.telephone}}<br/>
+                    {{filter?.storehours}}<br/>
+                    <!--Fri-Sat 10:00AM - 10:30PM-->
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+            </ion-grid>
+      </div>
   </div>
 </ion-content>
 

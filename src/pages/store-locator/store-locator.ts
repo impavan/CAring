@@ -20,7 +20,14 @@ export class StoreLocatorPage {
   updatedLocationList: any = [];
   favouriteList: any = [];
   _favIdList: any = [];
+  _filterList:any = [];
+  _newFilteredList:any = [];
   locationState = 'near_you';
+  _searchKey:any = '';
+  _creteria:any = {
+    "storename": '',
+  };
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public storeLocatorProvider: StoreLocatorProvider) {
@@ -60,6 +67,7 @@ export class StoreLocatorPage {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
     // })
   }
 
@@ -91,6 +99,8 @@ export class StoreLocatorPage {
   //     }
   // }
 
+
+
   getDistance(currentlatLngA, locationList) {
     // let km =  google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
     this.updatedLocationList = [];
@@ -110,6 +120,7 @@ export class StoreLocatorPage {
         that.updatedLocationList.push(locationList[i])
         if (locationList.length == that.updatedLocationList.length) {
           that.locationState = 'near_you';
+          that._filterList = that.updatedLocationList;
           that.favouriteList = that.updatedLocationList.filter(fav => fav.favourite == true);
           that.updatedLocationList.sort((a, b) => {
             return parseFloat(a.km) - (b.km);
@@ -170,5 +181,54 @@ export class StoreLocatorPage {
     this._favIdList.splice(index, 1);
     localStorage.setItem('favList', JSON.stringify(this._favIdList));
   }
+
+
+  onInput(event){
+    let val = event.target.value;
+    console.log("_____________________________________________________");
+    console.log(event.target.value);
+    console.log("_____________________________________________________");
+    console.log(event);
+   if(this._searchKey){
+     console.log("Inside IF-Else Condition");
+      this._newFilteredList = this._filterList.filter(item => (item.storename.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.fulladdress.toLowerCase().indexOf(val.toLowerCase()) > -1) );
+   }
+   
+    else if(!this._searchKey){
+      this.onClear();
+      console.log("Inside Else Condition");
+    }
+    
+    
+  }
+
+  onCancel(event){
+
+    console.log(event);
+     let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
+     this.map.panTo(latLng,30);
+     this.map.setZoom(12);
+
+  }
+
+  onClear(){
+    console.log("hhheeeerrrreee");
+     let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
+     this.map.panTo(latLng,30);
+     this.map.setZoom(12);
+  }
+
+    setMarker(data){
+
+   
+     let marker = new google.maps.Marker();
+      var latLng = new google.maps.LatLng(data.location.x, data.location.y);
+        this.map.panTo(latLng,30);
+        this.map.setZoom(14);
+  }
   //1.6092 exact value for converting miles to kilometeres
+
+  mapSlowPanAnimation(){
+    
+  }
 }

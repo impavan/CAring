@@ -8,6 +8,7 @@ import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 
+
 @IonicPage()
 @Component({
   selector: 'page-member',
@@ -25,13 +26,19 @@ export class MemberPage {
    _profilePic: any;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
+  loadedWallet:boolean = false;
+  loadedProfile:boolean = false;
+  redeemdRewards:any = [];
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
     private profileProvider: ProfileProvider,
     private alertProvider: AlertProvider) {
     this._auth = localStorage.getItem('auth_token');
-    this.loadMyProfile();
+    if(this._auth){
+      this.authProvider.setHeader();
+    }
+   
     this.loadMyPoints();
     console.log('image--- url', this.IMG_URL);
     this.from = navParams.get('from');
@@ -46,7 +53,7 @@ export class MemberPage {
 
 
   loadMyProfile() {
-    if (this._auth) {
+    if (this._auth && this.loadedProfile) {
       this.getMyProfileDetails();
     }
   }
@@ -55,6 +62,13 @@ export class MemberPage {
     if (this._auth) {
       this.getMyPoints();
     }
+  }
+
+  loadMyWallet(){
+    if(this._auth && !this.loadedWallet)
+
+        this.getRedeemedVouchers();
+
   }
 
   navToRedeemVoucher(voucher) {
@@ -80,13 +94,35 @@ export class MemberPage {
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
+        this.loadedProfile = true;
         console.log("totttttttttttttttttttttttt poiiiiiiiiiintttttttsssssssssss");
         console.log(this._totalAvailablePoints);
         console.log(this._totalRedeemedPoints);
+         this.loadMyProfile();
       }
     }, err => {
       this.exceptionProvider.excpHandler(err);
     });
+  }
+
+
+  getRedeemedVouchers(){
+
+        this.profileProvider.getAllRedeemedVouchers()
+
+              .subscribe(res => {
+
+                  console.log(res);
+                  this.redeemdRewards = res[0].customer_vouchers;
+                  this.loadedWallet = true;
+
+              },
+
+               err => {
+
+                this.exceptionProvider.excpHandler(err);
+             });
+
   }
 
   updateData() {

@@ -47,21 +47,37 @@ export class UserdataProvider {
   //Register user
   userRegistration(userdata) {
     console.log(userdata,'===================userdata=========================')
-    let userData = new FormData();
-    userData.append('first_name', userdata.fname);
-    userData.append('last_name', userdata.lname);
-    userData.append('gender', userdata.gender);
-    userData.append('email', userdata.email);
-    userData.append('mobile', userdata.mobile);
-    userData.append('BrandURLID', BRAND_ID);
-    userData.append('dob', userdata.dob);
-    userData.append('device_id', localStorage.getItem('push_token'));
-    userData.append('device_type', localStorage.getItem('model'));
-    userData.append('device_version', localStorage.getItem('version'));
+
+    let data = {
+      first_name:userdata.fname,
+      email:userdata.email,
+      mobile:userdata.mobile,
+      BrandURLID:BRAND_ID,
+      externalId:userdata.externalId,
+      custom_field:[]
+    }
+
+    if(userdata.profilePic){
+      data.custom_field.push({ profile_image:userdata.profilePic})
+    }
+    // let userData = new FormData();
+    // userData.append('first_name', userdata.fname);
+    // userData.append('last_name', userdata.lname);
+    // // userData.append('gender', userdata.gender);
+    // userData.append('email', userdata.email);
+    // userData.append('mobile', userdata.mobile);
+    // userData.append('BrandURLID', BRAND_ID);
+    // userData.append('dob', userdata.dob);
+    // userData.append('device_id', localStorage.getItem('push_token'));
+    // userData.append('device_type', localStorage.getItem('model'));
+    // userData.append('device_version', localStorage.getItem('version'));
+
+   
+
     
-    if (userdata.profilePic.length > 0)
-      userData.append('profile_image', JSON.stringify(userdata.profilePic));
-    let body = userData;
+    // if (userdata.profilePic.length > 0)
+    //   userData.append('profile_image', JSON.stringify(userdata.profilePic));
+    let body = data;
     return this.http
       .post(BASE_URL + REGISTRATION, body, { headers: this.auth.getHeader() })
       .do((res: Response) => res)

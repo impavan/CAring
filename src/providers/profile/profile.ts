@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
+
 @Injectable()
 export class ProfileProvider {
     profileSegment: any;
@@ -52,6 +53,13 @@ export class ProfileProvider {
         this.events.publish('user:login', );
     }
 
+    getAllRedeemedVouchers() {
+    const VOUCHERS = "/mobile/customervouchers?mobile=" + this.authProvider.getUserMobileNo() + "&lang_code=" + "en";
+    return this.http.get(BASE_URL + VOUCHERS, { headers: this.authProvider.getHeader() })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json());
+  }
+
     //App rating 
     // RateMyApp() {
     //     this.appRate.preferences.storeAppURL = {
@@ -61,11 +69,5 @@ export class ProfileProvider {
     //     this.appRate.navigateToAppStore();
     // }
 
-    enrollToWifi() {
-        let WIFI = "/mobile/enrollWifi?email=" + this.authProvider.getUserWifiID();
-        return this.http.get(BASE_URL + WIFI, { headers: this.authProvider.getHeader() })
-            .do((res: Response) => res)
-            .map((res: Response) => {
-            });
-    }
+    
 }
