@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 //All providers goes here
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 export class AboutPage {
   about: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private hapenningsProvider: HapenningsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private hapenningsProvider: HapenningsProvider, private loaderProvider: LoaderProvider) {
     this.getData();
   }
 
@@ -21,7 +22,9 @@ export class AboutPage {
   }
 
   getData() {
+    this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getAboutUsData().subscribe(res => {
+      this.loaderProvider.dismissLoader();
       console.log(res, 'res from about us page');
       for (let i = 0; i < res.data.length; i++) {
         if (res.data[i].aboutus) {

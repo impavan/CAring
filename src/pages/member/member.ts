@@ -15,14 +15,14 @@ import { AlertProvider } from '../../providers/alert/alert';
 })
 export class MemberPage {
   IMG_URL = IMAGE_URL;
-
-  public member: any = "My Points";
-  public memberDetails: any = "New";
-  public _auth: any;
-  public _userName: any;
-  public _emailId: any;
-  public _mobileNum: any;
-  public _profilePic: any;
+  from: any;
+   member: any = "My Points";
+   memberDetails: any = "New";
+   _auth: any;
+   _userName: any;
+   _emailId: any;
+   _mobileNum: any;
+   _profilePic: any;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
 
@@ -34,7 +34,10 @@ export class MemberPage {
     this.loadMyProfile();
     this.loadMyPoints();
     console.log('image--- url', this.IMG_URL);
-
+    this.from = navParams.get('from');
+    if(this.from == 'purchase'){
+      this.member = 'My Wallet';
+    }
   }
 
   ionViewDidLoad() {

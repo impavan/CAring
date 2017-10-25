@@ -7,12 +7,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'purchase-rewards.html',
 })
 export class PurchaseRewardsPage {
+  offerData: any;
+  currentPoints: any;
+  remainder: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.offerData = navParams.get('offerData');
+    this.currentPoints = navParams.get('currentpoints');
+    this.remainder = navParams.get('remainder');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PurchaseRewardsPage');
   }
 
+  navToOffers(){
+    this.navCtrl.setRoot("RewardsPage");
+  }
+
+  navToWallet(){
+    this.navCtrl.setRoot("MemberPage", {'from': 'purchase'});
+  }
 }

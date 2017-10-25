@@ -38,10 +38,12 @@ export class FeedbackPage {
     } else if (this.userData.userName.match(NO_NUMBERS)) {
       this.alertProvider.presentToast("Name cannot contain numbers");
       return;
-    } else if (this.userData.mobileNo.length != MOBILE_NO_LIMIT) {
-      this.alertProvider.presentToast('Mobile number should be 8 digits');
-      return;
-    } else if (this.userData.mobileNo.match(NO_CHAR)) {
+    }
+    //  else if (this.userData.mobileNo.length != MOBILE_NO_LIMIT) {
+    //   this.alertProvider.presentToast('Mobile number should be 8 digits');
+    //   return;
+    // }
+    else if (this.userData.mobileNo.match(NO_CHAR)) {
       this.alertProvider.presentToast('Mobile number cannot contain characters');
       return;
     } else if (!SPECIAL_CHARACTER.test(this.userData.mobileNo)) {
@@ -57,8 +59,13 @@ export class FeedbackPage {
       };
       var that = this;
       this.userProvider.sendMail(userdata).subscribe(result => {
-        this.loaderCtrl.dismissLoader();
-        that.alertProvider.presentToast(result[0].message);
+        if (result[0].code == 200) {
+          this.userData.userName = '';
+          this.userData.mobileNo = '';
+          this.userData.message = '';
+          this.loaderCtrl.dismissLoader();
+          that.alertProvider.presentToast(result[0].message);
+        }
       });
     }
   }
