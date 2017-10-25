@@ -47,6 +47,7 @@ export class UserdataProvider {
   //Register user
   userRegistration(userdata) {
     console.log(userdata,'===================userdata=========================')
+
     let data = {
       first_name:userdata.fname,
       email:userdata.email,
@@ -70,6 +71,9 @@ export class UserdataProvider {
     // userData.append('device_id', localStorage.getItem('push_token'));
     // userData.append('device_type', localStorage.getItem('model'));
     // userData.append('device_version', localStorage.getItem('version'));
+
+   
+
     
     // if (userdata.profilePic.length > 0)
     //   userData.append('profile_image', JSON.stringify(userdata.profilePic));

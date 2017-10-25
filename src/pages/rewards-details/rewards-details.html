@@ -1,9 +1,3 @@
-<!--
-  Generated template for the RewardsDetailsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -35,17 +29,18 @@
 <ion-content>
 	<div class="rewardsDetailsContainer">
 		<figure>
-			<img src="assets/img/h2.jpg" />
+			<img src="{{IMG_URL}}/{{offerdata?.Images[0]}}" />
 		</figure>
 		<div class="content">
-			<h5>Voucher<small>Expired date: 23 Oct 2017  </small></h5>
-			<ol>
+			<!-- <h5>Voucher<small>Expired date: 23 Oct 2017  </small></h5> -->
+			<p>{{offerdata?.Description}}</p>
+			<!-- <ol>
 				<li>Voucher can be redeemed with purchase of RM50 in single receipt</li>
 				<li>This voucher can only be used ONCE.</li>
 				<li>This voucher cannot be combined</li>
-			</ol>
+			</ol> -->
 			<hr/>
-			<p class="text-center redemptionPoints">Redemption Points: 800</p>
+			<p class="text-center redemptionPoints">Redemption Points: {{offerdata?.BrandPointRedeemValue}}</p>
 			<div class="redeemPoints">
 				<ion-grid>
 			        <ion-row>
@@ -53,7 +48,7 @@
 			        		<p>Current Points:</p>
 			        	</ion-col>
 			        	<ion-col col-3 class="text-right">
-			        		<p>9800</p>
+			        		<p>{{_currentPoint}}</p>
 			        	</ion-col>
 			        </ion-row>
 			        <ion-row>
@@ -61,12 +56,13 @@
 			        		<p class="alert">Point Balance after Redemption:</p>
 			        	</ion-col>
 			        	<ion-col col-3 class="text-right">
-			        		<p class="alert">9000</p>
+									<p class="alert" *ngIf="remainder >= 0">{{remainder}}</p>
+									<p class="alert" *ngIf="remainder < 0">0</p>
 			        	</ion-col>
 			        </ion-row>
 			    </ion-grid>
 			</div>
-			<button ion-button class="btn4" (click)="navToPurchaseRewards()">Register Now</button>
+			<button ion-button class="btn4" (click)="navToPurchaseRewards()" [disabled]="!flag">Redeem Now</button>
 		</div>
 	</div>
 </ion-content>
@@ -75,3 +71,18 @@
     <page-tabs></page-tabs>
   </ion-toolbar>
 </ion-footer>
+
+
+<!-- Modal tobe displayed when the user wants to redeem the offer. It's a Confirmation Alert. -->
+<mymodal #redeemPointsWarning title="Confirm Points Redemption">
+		<div>
+			<p>Your {{this.offerdata.BrandPointRedeemValue}} points will be deducted for the purchase of the voucher.</p>
+			<p>Are you sure you want to continue?</p>
+		</div>
+		<ion-grid>
+			<ion-row>
+				<ion-col col-6><button ion-button (click)="closeRedeemPointsModal()">Cancel</button></ion-col>
+				<ion-col col-6><button ion-button (click)="confirmRedeemVoucher()">Ok</button></ion-col>
+			</ion-row>
+		</ion-grid>
+	</mymodal>

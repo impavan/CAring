@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BASE_URL, BRAND_ID, IMAGE_URL } from '../../config';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -13,9 +14,10 @@ import { LoaderProvider } from '../../providers/loader/loader';
 })
 
 export class RewardsPage {
-  @ViewChild('reward') rewardModal;
-  // IMG_URL = this.apiProvider.IMAGEURL;
+  @ViewChild('login') rewardModal;
+  IMG_URL = IMAGE_URL;
   title: string;
+  auth: any;
   offerdata: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loaderProvider: LoaderProvider, private rewardsProvider: RewardsProvider, private exceptionProvider: ExceptionHandlerProvider) {
@@ -25,13 +27,10 @@ export class RewardsPage {
     console.log('ionViewDidLoad RewardsPage');
 
   }
-  navToDesc() {
-    this.navCtrl.push("RewardsDetailsPage");
-  }
 
   ionViewDidEnter() {
     this.fetchAllExperiences();
-    //  this.rewardModal.open();
+    this.auth = localStorage.getItem('auth_token')
   }
 
   //List all the experiences / offers
@@ -50,11 +49,20 @@ export class RewardsPage {
     });
   }
 
-  redeemOffer() {
+  navToLogin() {
     this.rewardModal.close();
+    this.navCtrl.setRoot("LoginPage");
   }
 
   cancelRedeem() {
     this.rewardModal.close();
+  }
+
+  navToRedeem(offerData) {
+    if (this.auth) {
+      this.navCtrl.push("RewardsDetailsPage", { data: offerData });
+    } else {
+      this.rewardModal.open();
+    }
   }
 }
