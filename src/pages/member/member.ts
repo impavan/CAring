@@ -28,6 +28,7 @@ export class MemberPage {
   _totalRedeemedPoints: number;
   loadedWallet:boolean = false;
   loadedProfile:boolean = false;
+  redeemdRewards:any = [];
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
@@ -49,7 +50,7 @@ export class MemberPage {
 
 
   loadMyProfile() {
-    if (this._auth && !this.loadedProfile) {
+    if (this._auth && this.loadedProfile) {
       this.getMyProfileDetails();
     }
   }
@@ -90,6 +91,7 @@ export class MemberPage {
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
+        this.loadedProfile = true;
         console.log("totttttttttttttttttttttttt poiiiiiiiiiintttttttsssssssssss");
         console.log(this._totalAvailablePoints);
         console.log(this._totalRedeemedPoints);
@@ -108,8 +110,15 @@ export class MemberPage {
               .subscribe(res => {
 
                   console.log(res);
+                  this.redeemdRewards = res[0].customer_vouchers;
+                  this.loadedWallet = true;
 
-              })
+              },
+
+               err => {
+
+                this.exceptionProvider.excpHandler(err);
+             });
 
   }
 

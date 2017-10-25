@@ -38,11 +38,9 @@ export class RegistrationPage {
     this.otp = navParams.get('otp');
     this.registerData = {
       fname: '',
-      lname: '',
       email: '',
-      gender: 'Male',
       mobile: this.phoneNum,
-      dob: '',
+      externalId:'',
       profilePic: ''
     }
     this.profileImage = [];
@@ -50,6 +48,7 @@ export class RegistrationPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewAccountPage');
+    this.loaderProvider.dismissLoader();
   }
 
   ionViewDidEnter() {
@@ -74,12 +73,10 @@ export class RegistrationPage {
     } else if (this.registerData.fname != EMPTY && !SPECIAL_CHARACTER.test(this.registerData.fname)) {
       this.alertProvider.presentToast("First name cannot contain special characters");
       return;
-    } else if (this.registerData.fname.match(NO_NUMBERS) || this.registerData.lname.match(NO_NUMBERS)) {
+    } else if (this.registerData.fname.match(NO_NUMBERS)) {
       this.alertProvider.presentToast("Name cannot contain numbers");
       return;
-    } else if (this.registerData.lname != EMPTY && !SPECIAL_CHARACTER.test(this.registerData.lname)) {
-      this.alertProvider.presentToast("Last name cannot contain special characters");
-      return;
+    
     } else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
       this.alertProvider.presentToast("Email Id must contain @ symbol");
       return;
@@ -100,11 +97,11 @@ export class RegistrationPage {
 
   registerOTPSucess(data) {
     this.loaderProvider.presentLoadingCustom();
-    if (this.from == "registration") {
-      this.type = '1';
-    } else {
-      this.type = '0';
-    }
+    // if (this.from == "registration") {
+    //   this.type = '1';
+    // } else {
+    //   this.type = '0';
+    // }
     this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
       this.loaderProvider.dismissLoader();
       if (data[0].code == 200) {

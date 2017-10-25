@@ -8,7 +8,7 @@
 
  export const OTP = `mobile/otpcheck`;
 
- export const REGISTRATION = `mobile/customerregistration_v2`;
+ export const REGISTRATION = `mobile/customerregistration_v3`;
 
  export const CUSTOM_FIELD = `mobile/updatecustomfields`;
 

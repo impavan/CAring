@@ -36,6 +36,7 @@
 		<div class="barCode">
 			<i>
 				<img src="assets/img/barcode.png" />
+				<label style="text-align:center">{{_mobileNum}}</label>
 			</i>
 		</div>
 		<ion-toolbar>
@@ -76,12 +77,12 @@
 					<ion-list *ngSwitchCase="'New'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid>
-									<div class="content">
+								<ion-grid *ngFor="let reward of redeemdRewards">
+									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate <= currentDate">
 										<ion-row class="customRow">
 											<ion-col col-7>
 												<figure>
-													<img src="assets/img/h2.jpg" />
+													<img src="{{reward.MasterCreativePath}}" />
 												</figure>
 											</ion-col>
 											<ion-col col-5>
@@ -122,14 +123,46 @@
 					</ion-list>
 					<!-- Used section starts. -->
 					<ion-list *ngSwitchCase="'Used'">
-						<div class="usedContainer">
-							used
+						<div class="newContainer">
+							<ion-card>
+								<ion-grid *ngFor="let reward of redeemdRewards">
+									<div class="content" *ngIf="reward.ActivateStatus == 1">
+										<ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="assets/img/h2.jpg" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">RM10 Voucher</p>
+												<p class="alert subContent">Exchange Point: 1500</p>
+											</ion-col>
+										</ion-row>
+									</div>
+								</ion-grid>
+							</ion-card>
 						</div>
 					</ion-list>
 					<!-- Expired section starts. -->
 					<ion-list *ngSwitchCase="'Expired'">
-						<div class="expiredContainer">
-							Expired
+						<div class="newContainer">
+							<ion-card>
+								<ion-grid *ngFor="let reward of redeemdRewards">
+									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate > currentDate">
+										<ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="assets/img/h2.jpg" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">RM10 Voucher</p>
+												<p class="alert subContent">Exchange Point: 1500</p>
+											</ion-col>
+										</ion-row>
+									</div>
+								</ion-grid>
+							</ion-card>
 						</div>
 					</ion-list>
 				</div>
