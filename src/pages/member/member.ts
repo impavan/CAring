@@ -7,6 +7,7 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 
 @IonicPage()
@@ -32,7 +33,7 @@ export class MemberPage {
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
-    private profileProvider: ProfileProvider,
+    private profileProvider: ProfileProvider,private loaderProvider:LoaderProvider,
     private alertProvider: AlertProvider) {
     this._auth = localStorage.getItem('auth_token');
     if(this._auth){
@@ -51,6 +52,10 @@ export class MemberPage {
     console.log('ionViewDidLoad MemberPage');
   }
 
+  ionViewWillEnter(){
+      this.loaderProvider.presentLoadingCustom();
+  }
+
 
   loadMyProfile() {
     if (this._auth && this.loadedProfile) {
@@ -61,6 +66,8 @@ export class MemberPage {
   loadMyPoints() {
     if (this._auth) {
       this.getMyPoints();
+    }else{
+      this.loaderProvider.dismissLoader();
     }
   }
 
@@ -92,6 +99,7 @@ export class MemberPage {
       if (data[0].code == 200) {
         this.authProvider.setUser(data[0].customerdata);
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+          this.loaderProvider.dismissLoader();
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
         this.loadedProfile = true;

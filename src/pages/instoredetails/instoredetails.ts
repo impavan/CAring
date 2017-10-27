@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 @IonicPage()
 @Component({

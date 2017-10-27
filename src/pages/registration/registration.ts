@@ -22,6 +22,7 @@ export class RegistrationPage {
   public phoneNum: any;
   public otp: any;
   public from: any;
+  _existingCustomerData:any = [];
   type: string;
 
   constructor(private exceptionProvider: ExceptionHandlerProvider,
@@ -35,12 +36,14 @@ export class RegistrationPage {
     private events: Events) {
     this.from = navParams.get('from');
     this.phoneNum = navParams.get('phone');
+    this._existingCustomerData = navParams.get('custExistingData');
     this.otp = navParams.get('otp');
+
     this.registerData = {
-      fname: '',
-      email: '',
+      fname: this._existingCustomerData.customer[0].firstname,
+      email: this._existingCustomerData.customer[0].email,
       mobile: this.phoneNum,
-      externalId:'',
+      externalId:this._existingCustomerData.customer[0].external_id,
       profilePic: ''
     }
     this.profileImage = [];
@@ -97,11 +100,11 @@ export class RegistrationPage {
 
   registerOTPSucess(data) {
     this.loaderProvider.presentLoadingCustom();
-    // if (this.from == "registration") {
-    //   this.type = '1';
-    // } else {
-    //   this.type = '0';
-    // }
+    if (this.from == "registration") {
+      this.type = '1';
+    } else {
+      this.type = '0';
+    }
     this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
       this.loaderProvider.dismissLoader();
       if (data[0].code == 200) {

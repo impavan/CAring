@@ -64,6 +64,8 @@ page-store-locator {
 		}
 		.locationContainer{
 			padding:15px;
+			max-height: 300px;
+			overflow: auto;
 			.grid{
 				padding:0;
 			}
@@ -86,4 +88,15 @@ page-store-locator {
 			}
 		}
     }
+	.locationContainerTwo{
+		max-height: 300px;
+		overflow: auto;
+	}
+	.searchbar-md{
+		padding: 0 !important;
+	}
+	.searchCard{
+		width:100% !important;
+		margin:0 !important;
+	}
 }

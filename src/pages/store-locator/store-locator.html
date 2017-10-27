@@ -44,7 +44,7 @@
       </ion-searchbar>
     <!--</ion-item>-->
   </div>
-  <div #myMap id="map" class="mapContainer"></div>
+  <div #myMap id="map" class="mapContainer" style="transition:all 2.0s"></div>
 
   <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
     <ion-segment [(ngModel)]="locationState">
@@ -117,9 +117,9 @@
     </div>
   </div>
   <div *ngIf="_searchKey!=''">
-      <div class="locationContainer">
+      <div class="locationContainerTwo">
     <ion-grid *ngFor="let filter of _newFilteredList">
-            <ion-card (click)="setMarker(filter)">
+            <ion-card (click)="setMarker(filter)" class="searchCard">
               <ion-row>
                 <ion-col col-11>
                   <h4>{{filter?.storename}}</h4>

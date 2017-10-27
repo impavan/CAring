@@ -34,12 +34,11 @@
 <ion-content>
 	<div class="healthDetailsContainer">
 		<figure>
-			<img src="assets/img/h2.jpg">
+			<img src="{{healthData?.imagebanner}}">
 		</figure>
 		<div class="content">
-			<h4>Understanding HBA1C</h4>
-			<p>You’ve heard about a diabetes test called a hemoglobin A1C. It’s sometimes shortened to HgbA1c or HbA1c or just A1C. Hopefully, you know what yours is. But do you know what it means and what to do with the information?</p>
-			<p>Hemoglobin is what makes red blood cells red. It consists of several proteins wrapped around an iron-based molecule called heme. Heme attaches to oxygen and carries it to the cells. That’s why iron is important in our diets. We need iron to make heme to carry oxygen, so our cells can breathe.</p>
+			<h4>{{healthData?.title}}</h4>
+      <p>{{healthData?.description}}</p>
 		</div>
 	</div>
 </ion-content>

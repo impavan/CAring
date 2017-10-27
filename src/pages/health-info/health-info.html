@@ -43,41 +43,14 @@
           <button ion-button class="btn2 wp" (click)="navToHealthSubscribe()">Caring News Subscribe now</button>
         </ion-col>
       </ion-row>
-      <!-- <ion-row>
-        <ion-col col-6 *ngFor="let health of _healthInfoList" clickable (click)="goto(health)">
-          <ion-card>
+         <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
+        <ion-card>
+          <figure>
             <img src="{{health?.thumbnailimage}}"/>
-            <div class="card-title">{{health?.title}}</div>
-            <p>{{health?.authorinfo}}</p>
-            <p>{{health?.displaydate}}</p>
-          </ion-card> 
-        </ion-col>
-      </ion-row> -->
-      <div class="healthInfoCards" (click)="navToHealthDetails()">
-        <ion-card>
-          <figure>
-            <img src="assets/img/h1.jpg" />
           </figure>
         </ion-card>
-        <p class="healthInfo">Are you at a risk of Gastritis?</p>
+        <p class="healthInfo">{{health?.title}}</p>
       </div>
-      <div class="healthInfoCards" (click)="navToHealthDetails()">
-        <ion-card>
-          <figure>
-            <img src="assets/img/h2.jpg" />
-          </figure>
-        </ion-card>
-        <p class="healthInfo">Get a relief from joint pains</p>
-      </div>
-      <div class="healthInfoCards" (click)="navToHealthDetails()">
-        <ion-card>
-          <figure>
-            <img src="assets/img/h3.jpg" />
-          </figure>
-        </ion-card>
-        <p class="healthInfo">Understanding HBA1C</p>
-      </div>
-
     </ion-grid>
   </div>
 </ion-content>

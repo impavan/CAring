@@ -8,7 +8,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HealthDetailsPage {
 
+  healthData:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.healthData = navParams.get('data');
+    console.log(this.healthData);
   }
 
   ionViewDidLoad() {

@@ -82,7 +82,7 @@ export class OtpPage {
         this.loaderProvider.dismissLoader();
         if (data[0].code == 200) {
           if (this.from == "registration") {
-            this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp });
+            this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from});
           } else {
             this.loginOTPSucess(data);
             // let custom = data[0].customerdata.customer[0].custom_fields;

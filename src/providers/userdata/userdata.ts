@@ -17,7 +17,9 @@ export class UserdataProvider {
   userLogin(phoneNum: string) {
     let userData = new FormData();
     userData.append('BrandURLID', BRAND_ID);
-    userData.append('external_id', phoneNum);
+    userData.append('IdetentifierKey', 'mobile');
+    userData.append('IdetentifierValue', phoneNum);
+    userData.append('NotificationType', 'mobile');
     userData.append('lang_code', 'en');
     // userData.append('device_id', localStorage.getItem('push_token'));
     // userData.append('device_type', localStorage.getItem('model'));
@@ -33,7 +35,8 @@ export class UserdataProvider {
   userOTP(otp: string, phoneNum: any, isRegistration: string) {
     let userData = new FormData();
     userData.append('BrandURLID', BRAND_ID);
-    userData.append('external_id', phoneNum);
+    userData.append('IdetentifierKey', 'mobile');
+    userData.append('IdetentifierValue', phoneNum);
     userData.append('is_social', '0');
     userData.append('otp', otp);
     userData.append('is_registration', isRegistration);

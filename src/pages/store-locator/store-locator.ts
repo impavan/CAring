@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
 // import { GoogleMaps,GoogleMap,GoogleMapsEvent,GoogleMapOptions,CameraPosition,MarkerOptions,Marker } from '@ionic-native/google-maps';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 declare var google;
 @IonicPage()
@@ -30,11 +31,12 @@ export class StoreLocatorPage {
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public storeLocatorProvider: StoreLocatorProvider) {
+    public storeLocatorProvider: StoreLocatorProvider, private loaderProvider:LoaderProvider) {
   }
 
 
   ionViewWillEnter() {
+    this.loaderProvider.presentLoadingCustom();
     this.getStores();
     this._favIdList = this.getFavList();
   }
@@ -129,6 +131,7 @@ export class StoreLocatorPage {
             return parseFloat(a.km) - (b.km);
           });
           // that.updatedLocationList.sort(this.sortBy);
+          that.loaderProvider.dismissLoader();
         }
       });
     }

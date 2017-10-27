@@ -18,6 +18,9 @@ export class LoginPage {
   phoneNum: string;
   navigation: string;
   mobilevalidated: any;
+  MOBILE_VALIDATED = "mobile_validated";
+  YES="Yes";
+  NO="No";
 
   constructor(private exceptionProvider: ExceptionHandlerProvider,
     private userProvider: UserdataProvider,
@@ -65,8 +68,15 @@ export class LoginPage {
       this.loaderProvider.presentLoadingCustom();
       this.userProvider.userLogin(this.phoneNum)
         .subscribe(data => {
-          if (data[0].code == 200) {
+          if (data[0].code == 200 ) {
+
+            let custom_data = data[0].customerdata.customer[0].custom_fields.field;
+            let mobile_validated  = custom_data.filter(res=> res.name === this.MOBILE_VALIDATED);
+            console.log(mobile_validated,"-----------------------");
+            if(mobile_validated[0] && mobile_validated[0].value == this.YES)
             this.navCtrl.push("OtpPage", { from: 'login', phone: this.phoneNum });
+            else
+            this.navCtrl.push("RegistrationPage", { from: 'registration', phone: this.phoneNum, "custExistingData":data[0].customerdata});
           } else if (data[0].code == 202) {
             this.navCtrl.push("RegistrationPage", { from: 'registration', phone: this.phoneNum });
           } else {

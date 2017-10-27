@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 @IonicPage()
 @Component({
@@ -14,10 +15,11 @@ export class PromotionsPage {
   _brochureLinks: any;
   CATELOGLINK: string = 'promotionscatalogurl';
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public hapenningsProvider: HapenningsProvider) {
+    public hapenningsProvider: HapenningsProvider, private loaderProvider:LoaderProvider) {
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
+    this.loaderProvider.presentLoadingCustom();
     this.getPromotions();
     this.getPromotionsBrochureLink();
   }
@@ -29,6 +31,7 @@ export class PromotionsPage {
   getPromotions() {
     this.hapenningsProvider.getPromotions().subscribe(res => {
       this._promotionList = res.data;
+      this.loaderProvider.dismissLoader();
     });
   }
 

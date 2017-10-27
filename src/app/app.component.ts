@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
+import { AlertProvider } from '../providers/alert/alert';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,12 +13,14 @@ import { AuthProvider } from '../providers/auth/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
-  rootPage: any = this._auth ? "HomePage" : "LoginPage";
+  rootPage: any =  "HomePage";
   pages: Array<{ title: string, component: any }>;
 
-  constructor(private platform: Platform, private statusBar: StatusBar,
+  constructor(private platform: Platform, 
+    private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private authProvider: AuthProvider) {
+    private authProvider: AuthProvider,
+    private alertProvider:AlertProvider) {
 
     this.initializeApp();
     // used for an example of ngFor and navigation
@@ -51,5 +54,11 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout(){
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('phoneNum');
+    this.alertProvider.presentToast("You have been logged out..!")
   }
 }

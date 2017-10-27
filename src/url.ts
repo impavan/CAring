@@ -4,9 +4,9 @@
 
  export let instoreactivities =  'instoreactivities?lang=';
 
- export const LOGIN = `mobile/login`;
+ export const LOGIN = `mobile/login_v2`;
 
- export const OTP = `mobile/otpcheck`;
+ export const OTP = `mobile/otpcheck_v2`;
 
  export const REGISTRATION = `mobile/customerregistration_v3`;
 
