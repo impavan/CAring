@@ -27,13 +27,13 @@
 
 <ion-content>
 	<div class="memberContainer">
-		<div class="profileOut">
-			<i>
+		<!-- <div class="profileOut">
+			<i> -->
 				<!-- <img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">   //profile photo section removed //
 				<img *ngIf="_profilePic" src="{{IMG_URL}}/{{_profilePic}}"> -->
-			</i>
+			<!-- </i>
 			<p>{{_userName}}</p>
-		</div>
+		</div> -->
 		<div class="barCode">
 			<i>
 				<img src="assets/img/barcode.png" />
@@ -57,15 +57,21 @@
 		<div [ngSwitch]="member">
 			<!-- Section for My Points -->
 			<ion-list *ngSwitchCase="'My Points'">
-				<div class="myPointsContainer">
+				<div *ngIf="_auth" class="myPointsContainer">
 					<p class="urPoints">Your Points:
 						<strong>{{_totalAvailablePoints}}</strong>
 					</p>
 				</div>
+				<ion-card *ngIf="!_auth" class="myPointsContainer sec">
+					<p class="urPoints">You have no points yet</p>
+					<button ion-button value="Earn Points">Earn Points</button>	
+				
+				</ion-card>
+
 			</ion-list>
 			<!-- Startssssssssssssssssssssssssssssssssssss -->
 			<ion-list *ngSwitchCase="'My Wallet'">
-				<div class="subSegmentOut">
+				<div *ngIf="_auth" class="subSegmentOut">
 					<ion-toolbar>
 						<ion-segment [(ngModel)]="memberDetails" color="secondary">
 							<ion-segment-button value="New">New</ion-segment-button>
@@ -74,6 +80,11 @@
 						</ion-segment>
 					</ion-toolbar>
 				</div>
+					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
+						<p class="urPoints">Your wallet is empty</p>
+						<button ion-button value="Redeem Vouchers">Redeem Vouchers</button>		
+					</ion-card>
+				
 				<div [ngSwitch]="memberDetails">
 					<!-- New section starts. -->
 					<ion-list *ngSwitchCase="'New'">
@@ -172,7 +183,7 @@
 			<!-- Endssssssssssssssssssssssssssssssss -->
 			<ion-list *ngSwitchCase="'My Profile'">
 				<div class="myProfileContainer">
-					<div class="container">
+					<div  *ngIf="_auth"  class="container">
 						<div class="content">
 							<ion-list>
 								<ion-item>
@@ -181,7 +192,7 @@
 								</ion-item>
 								<ion-item>
 									<ion-label fixed>E-mail</ion-label>
-									<ion-input type="email"   [(ngModel)] = "_emailId" placeholder="Enter E-mail"></ion-input>
+									<ion-input type="text"   [(ngModel)] = "_emailId" placeholder="Enter E-mail"></ion-input>
 								</ion-item>
 								<ion-item>
 									<ion-label fixed>Mobile Number</ion-label>
@@ -197,6 +208,11 @@
 							<button ion-button class="btn4" (click)=" updateData()">Update</button>
 						</div>
 					</div>
+					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
+						<p class="urPoints">Login to view your profile</p>
+						<button ion-button>Login</button>
+
+					</ion-card>
 				</div>
 			</ion-list>
 		</div>
