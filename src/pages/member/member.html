@@ -29,15 +29,16 @@
 	<div class="memberContainer">
 		<div class="profileOut">
 			<i>
-				<img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">
-				<img *ngIf="_profilePic" src="{{IMG_URL}}/{{_profilePic}}">
+				<!-- <img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">   //profile photo section removed //
+				<img *ngIf="_profilePic" src="{{IMG_URL}}/{{_profilePic}}"> -->
 			</i>
 			<p>{{_userName}}</p>
 		</div>
 		<div class="barCode">
 			<i>
 				<img src="assets/img/barcode.png" />
-				<label style="text-align:center">{{_mobileNum}}</label>
+				<label>{{_mobileNum}}</label>
+				<!-- <label>9611045617</label> -->
 			</i>
 		</div>
 		<ion-toolbar>
@@ -176,20 +177,20 @@
 							<ion-list>
 								<ion-item>
 									<ion-label fixed>Name</ion-label>
-									<ion-input type="text"  [(ngModel)] = "_userName" readonly placeholder="Bobby Clark"></ion-input>
+									<ion-input type="text"  [(ngModel)] = "_userName" readonly placeholder="Enter Name"></ion-input>
 								</ion-item>
 								<ion-item>
 									<ion-label fixed>E-mail</ion-label>
-									<ion-input type="text" readonly  [(ngModel)] = "_emailId" placeholder="bobby.clark@gmail.com"></ion-input>
+									<ion-input type="text" readonly  [(ngModel)] = "_emailId" placeholder="Enter E-mail"></ion-input>
 								</ion-item>
 								<ion-item>
 									<ion-label fixed>Mobile Number</ion-label>
-									<ion-input type="text" readonly  [(ngModel)] = "_mobileNum" placeholder="77890 09876"></ion-input>
+									<ion-input type="text" readonly  [(ngModel)] = "_mobileNum"></ion-input>
 								</ion-item>
-								<ion-item>
-									<ion-label>Notifications</ion-label>
+								<!-- <ion-item>
+									<ion-label>Notifications</ion-label> //-notification bar disabled //
 									<ion-toggle [(ngModel)]="sausage"></ion-toggle>
-								</ion-item>
+								</ion-item> -->
 							</ion-list>
 						</div>
 						<div class="mt20">
