@@ -6,7 +6,8 @@
 		<h6>Create New Account</h6>
 		<div class="profileOut">
 			<i (click)="uploadProfilePic()">
-				<img src="assets/img/no_photo.jpg">
+				<img *ngIf="!registerData.profilePic" src="assets/img/no_photo.jpg">
+				<img *ngIf="registerData.profilePic" src="{{profileImage}}">
 			</i>
 			<p>Profile Photo</p>
 		</div>

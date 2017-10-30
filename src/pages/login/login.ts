@@ -69,7 +69,7 @@ export class LoginPage {
       this.userProvider.userLogin(this.phoneNum)
         .subscribe(data => {
           if (data[0].code == 200 ) {
-
+            
             let custom_data = data[0].customerdata.customer[0].custom_fields.field;
             let mobile_validated  = custom_data.filter(res=> res.name === this.MOBILE_VALIDATED);
             console.log(mobile_validated,"-----------------------");

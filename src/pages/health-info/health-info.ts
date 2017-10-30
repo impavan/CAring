@@ -20,8 +20,10 @@ export class HealthInfoPage {
   }
 
   ionViewWillEnter(){
+    if(this._healthInfoList.length <=0){
     this.loaderProvider.presentLoadingCustom();
      this.getHealthInfo();
+    }
   }
 
   ionViewDidLoad() {

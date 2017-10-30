@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
@@ -20,7 +21,8 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private authProvider: AuthProvider,
-    private alertProvider:AlertProvider) {
+    private alertProvider:AlertProvider,
+    private screenOrientation: ScreenOrientation) {
 
     this.initializeApp();
     // used for an example of ngFor and navigation
@@ -39,6 +41,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       if (this._auth) {
         let userdata = localStorage.getItem('userdetails');
         this.authProvider.setUser(JSON.parse(userdata));

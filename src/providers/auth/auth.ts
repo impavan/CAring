@@ -10,7 +10,7 @@ import { AlertProvider } from '../alert/alert';
 
 @Injectable()
 export class AuthProvider {
-  PROFILE_IMG = 'profileimage';
+  PROFILE_IMG = 'profile_picture';
   userLoggedIn: boolean = false;
   PARKING_ID = 'parkingid';
   userObj: any;

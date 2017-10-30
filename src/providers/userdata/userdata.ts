@@ -57,11 +57,11 @@ export class UserdataProvider {
       mobile:userdata.mobile,
       BrandURLID:BRAND_ID,
       externalId:userdata.externalId,
-      custom_field:[]
+      custom_fields:[]
     }
-
+     data.custom_fields.push({mobile_validated:'Yes'});
     if(userdata.profilePic){
-      data.custom_field.push({ profile_image:userdata.profilePic})
+      data.custom_fields.push({ profile_picture:userdata.profilePic})
     }
     // let userData = new FormData();
     // userData.append('first_name', userdata.fname);

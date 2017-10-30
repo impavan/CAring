@@ -38,14 +38,23 @@ export class RegistrationPage {
     this.phoneNum = navParams.get('phone');
     this._existingCustomerData = navParams.get('custExistingData');
     this.otp = navParams.get('otp');
-
+if(this._existingCustomerData){
     this.registerData = {
-      fname: this._existingCustomerData.customer[0].firstname,
-      email: this._existingCustomerData.customer[0].email,
+      fname: this._existingCustomerData.customer[0].firstname || '',
+      email: this._existingCustomerData.customer[0].email || '',
       mobile: this.phoneNum,
-      externalId:this._existingCustomerData.customer[0].external_id,
+      externalId:this._existingCustomerData.customer[0].external_id || '',
       profilePic: ''
     }
+}else{
+   this.registerData = {
+      fname:'',
+      email:'',
+      mobile: this.phoneNum,
+      externalId:'',
+      profilePic:''
+    }
+}
     this.profileImage = [];
   }
 
@@ -62,6 +71,8 @@ export class RegistrationPage {
   uploadProfilePic() {
     this.authProvider.uploadProfile().then(data => {
       this.profileImage = data;
+       console.log(data);
+      console.log(this.profileImage);
       this.registerData.profilePic = this.profileImage;
     });
   }
@@ -100,11 +111,7 @@ export class RegistrationPage {
 
   registerOTPSucess(data) {
     this.loaderProvider.presentLoadingCustom();
-    if (this.from == "registration") {
-      this.type = '1';
-    } else {
-      this.type = '0';
-    }
+    this.type = '1';
     this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
       this.loaderProvider.dismissLoader();
       if (data[0].code == 200) {

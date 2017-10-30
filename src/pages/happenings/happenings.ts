@@ -24,13 +24,14 @@ export class HappeningsPage {
   }
 
   ionViewWillEnter(){
+    if(this.happenList.length <=0)
     this.loaderProvider.presentLoadingCustom();
   }
 
   getHappenings() {
     this.hapenningsProvider.getHappenings().subscribe(res => {
-      this.happenList = res.data;
       this.loaderProvider.dismissLoader();
+      this.happenList = res.data;
       console.log(this.happenList);
     });
   }

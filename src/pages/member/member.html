@@ -29,7 +29,8 @@
 	<div class="memberContainer">
 		<div class="profileOut">
 			<i>
-				<img src="{{IMG_URL}}/{{_profilePic}}">
+				<img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">
+				<img *ngIf="_profilePic" src="{{IMG_URL}}/{{_profilePic}}">
 			</i>
 			<p>{{_userName}}</p>
 		</div>

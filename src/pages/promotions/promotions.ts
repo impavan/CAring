@@ -19,9 +19,11 @@ export class PromotionsPage {
   }
 
   ionViewWillEnter() {
+    if(this._promotionList.length <=0){
     this.loaderProvider.presentLoadingCustom();
     this.getPromotions();
     this.getPromotionsBrochureLink();
+    }
   }
 
   ionViewDidLoad() {

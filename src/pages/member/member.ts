@@ -53,7 +53,9 @@ export class MemberPage {
   }
 
   ionViewWillEnter(){
+      if (this._auth) {
       this.loaderProvider.presentLoadingCustom();
+      }
   }
 
 
@@ -103,7 +105,6 @@ export class MemberPage {
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
         this.loadedProfile = true;
-        console.log("totttttttttttttttttttttttt poiiiiiiiiiintttttttsssssssssss");
         console.log(this._totalAvailablePoints);
         console.log(this._totalRedeemedPoints);
          this.loadMyProfile();
