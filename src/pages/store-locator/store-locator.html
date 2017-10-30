@@ -44,7 +44,7 @@
       </ion-searchbar>
     <!--</ion-item>-->
   </div>
-  <div #myMap id="map" class="mapContainer" style="transition:all 2.0s"></div>
+  <div #myMap id="map" class="mapContainer"></div>
 
   <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
     <ion-segment [(ngModel)]="locationState">
@@ -59,6 +59,7 @@
       <ion-list *ngSwitchCase="'near_you'">
         <div class="locationContainer">
             <ion-grid *ngFor="let location of updatedLocationList">
+              <article clickable (click)="setMarker(location)">
               <ion-row>
                 <ion-col col-11>
                   <h4>{{location?.storename}}</h4>
@@ -82,12 +83,14 @@
                   </p>
                 </ion-col>
               </ion-row>
+              </article>
             </ion-grid>
         </div>
       </ion-list>
       <ion-list *ngSwitchCase="'favourite'">
         <div class="locationContainer">
             <ion-grid *ngFor="let fav of favouriteList">
+              <article  clickable (click)="setMarker(fav)">
               <ion-row>
                 <ion-col col-11>
                   <h4>{{fav?.storename}}</h4>
@@ -111,6 +114,7 @@
                   </p>
                 </ion-col>
               </ion-row>
+              </article>
             </ion-grid>
         </div>
       </ion-list>
@@ -119,7 +123,7 @@
   <div *ngIf="_searchKey!=''">
       <div class="locationContainerTwo">
     <ion-grid *ngFor="let filter of _newFilteredList">
-            <ion-card (click)="setMarker(filter)" class="searchCard">
+            <article (click)="setMarker(filter)" class="searchCard">
               <ion-row>
                 <ion-col col-11>
                   <h4>{{filter?.storename}}</h4>
@@ -143,7 +147,7 @@
                   </p>
                 </ion-col>
               </ion-row>
-            </ion-card>
+            </article>
             </ion-grid>
       </div>
   </div>

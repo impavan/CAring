@@ -18,6 +18,16 @@ export class HapenningsProvider {
     this.contentType.set('Content-Type', 'application/json');
   }
 
+
+//get home page banner image
+getHomeBanner(){
+
+    return this.http.get(this.configProvider.sttarterBaseUrl + 'homebanners?lang=' + this.lang, this.contentType)
+      .map((res: Response) => res)
+      .do((res: Response) => res.json())
+      .map((res: Response) => res.json())
+
+}
   //Get all the happenings
   getHappenings() {
     return this.http.get(this.configProvider.sttarterBaseUrl + happenings + this.lang, this.contentType)

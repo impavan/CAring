@@ -43,41 +43,33 @@
     <div class="content">
       <h6>{{storeDetail?.title}}</h6>
       <p>{{storeDetail?.subtitle}}</p>
+      <p [innerHTML]="storeDetail?.description"></p>
       <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-              <h6 class="subHeader">Date / Time</h6>
+        <ion-row *ngIf="_locationList.length >= 1">
+          <ion-col col-4>
+              <h6 class="subHeader">Date</h6>
           </ion-col>
-          <ion-col col-6>
+          <ion-col col-4>
+              <h6 class="subHeader">Time</h6>
+          </ion-col>
+          <ion-col col-4>
               <h6 class="subHeader">Location</h6>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-6>
-              <p class="date">15th Oct 2017</p>
+        <ion-row *ngFor="let loc of _locationList">
+          <ion-col col-4>
+              <p class="date">{{loc?.date | date:'dd MMM yyyy'}}</p>
           </ion-col>
-          <ion-col col-6>
-              <span class="location">Sri Petaling</span><ion-icon name="pin" class="alert"></ion-icon>
+          <ion-col col-4>
+              <p class="date">{{loc?.time}}</p>
           </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-              <p class="date">15th Oct 2017</p>
+          <ion-col col-4>
+              <span class="location" clickable (click)="gotoEventLocation(loc)">{{loc?.storename}}</span><ion-icon name="pin" class="alert"></ion-icon>
+            <ion-icon *ngIf="loc?.phone" name="call" class="phoneIco"><a href="tel:{{loc?.phone}}"></a></ion-icon>
           </ion-col>
-          <ion-col col-6>
-              <span class="location">Sri Petaling</span><ion-icon name="pin" class="alert"></ion-icon>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-              <p class="date">15th Oct 2017</p>
-          </ion-col>
-          <ion-col col-6>
-              <span class="location">Berjaya Times Square</span><ion-icon name="pin" class="alert"></ion-icon>
-          </ion-col>
+          
         </ion-row>
       </ion-grid>
-      <a href="" class="termsConditions">Terms and Conditions</a>
     </div>
   </div>
 </ion-content>

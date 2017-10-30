@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 // import { GoogleMaps } from '@ionic-native/google-maps';
 // import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -57,7 +58,7 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
     AlertProvider,
     LoaderProvider, AlertProvider,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
-    Camera, EarnPointsProvider, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, StoresProvider, DeviceProvider, ProfileProvider
+    Camera, EarnPointsProvider, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, StoresProvider, DeviceProvider, ProfileProvider, InAppBrowser
     // Geolocation
   ]
 })
