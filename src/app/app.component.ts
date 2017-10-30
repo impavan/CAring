@@ -60,6 +60,12 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  gotoLogin()
+  {
+    this.nav.setRoot("LoginPage");
+    
+  }
+
   logout(){
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');

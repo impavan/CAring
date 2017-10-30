@@ -34,6 +34,10 @@ page-member {
 					width:100%;
 					max-width:100%;
 				}
+				label{
+					text-align: center;
+					display: block;
+				}
 			}
 		}
 		.toolbar-md, .toolbar-ios{
@@ -265,5 +269,23 @@ page-member {
 	    		text-align: left;
 			}
 	    }
+	}
+	.myPointsContainer.sec{
+		text-align: center;
+		height: 46vh;
+		p{
+			position: relative;
+			top: 25%;
+			color: #aaa;
+		}
+		button{
+			width: 100%;
+			background: #007068;
+			/* padding: 20px; */
+			height: 45px;
+			border-radius: 10px;
+			position: relative;
+			margin-top: 55%;
+		}
 	}
 }
