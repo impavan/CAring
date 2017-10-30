@@ -4,32 +4,32 @@
 			<img src="assets/img/caring_logo.png" />
 		</i>
 		<h6>Create New Account</h6>
-		<div class="profileOut">
-			<i (click)="uploadProfilePic()">
+		<!-- <div class="profileOut">
+			<!-- <i (click)="uploadProfilePic()">
 				<img *ngIf="!registerData.profilePic" src="assets/img/no_photo.jpg">
 				<img *ngIf="registerData.profilePic" src="{{profileImage}}">
-			</i>
-			<p>Profile Photo</p>
-		</div>
+			</i> -->
+			<!-- <p>Profile Photo</p>
+		</div> -->
 		<div class="contentOut">
 			<div class="container">
 				<div class="content">
 					<ion-list>
 						<ion-item>
 							<ion-label fixed>Name</ion-label>
-							<ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Bobby Clark"></ion-input>
+							<ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Enter Name"></ion-input>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>E-mail</ion-label>
-							<ion-input type="text" [(ngModel)]="registerData.email" placeholder="bobby.clark@gmail.com"></ion-input>
+							<ion-input type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>Mobile Number</ion-label>
-							<ion-input type="text" [(ngModel)]="registerData.mobile" readonly placeholder="77890 09876"></ion-input>
+							<ion-input type="text" [(ngModel)]="registerData.mobile" readonly></ion-input>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>OTP</ion-label>
-							<ion-input type="text" [(ngModel)]="otp" placeholder="&#9679;&#9679;&#9679;&#9679;"></ion-input>
+							<ion-input type="text" [(ngModel)]="otp" placeholder="Enter OTP"></ion-input>
 						</ion-item>
 					</ion-list>
 				</div>
@@ -38,7 +38,7 @@
 					<ion-list>
 						<ion-item>
 							<ion-label fixed>Account Number</ion-label>
-							<ion-input type="text" value="" placeholder="&#9679;&#9679;&#9679;&#9679;" [(ngModel)]="registerData.externalId"></ion-input>
+							<ion-input type="text" value="" placeholder="Enter Account Number" [(ngModel)]="registerData.externalId"></ion-input>
 						</ion-item>
 					</ion-list>
 				</div>
