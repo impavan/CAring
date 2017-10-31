@@ -82,7 +82,7 @@
 				</div>
 					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
 						<p class="urPoints">Your wallet is empty</p>
-						<button ion-button value="Redeem Vouchers">Redeem Vouchers</button>		
+						<button ion-button value="Redeem Vouchers" (click)="emptywallet()">Redeem Vouchers</button>		
 					</ion-card>
 				
 				<div [ngSwitch]="memberDetails">
@@ -210,7 +210,7 @@
 					</div>
 					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
 						<p class="urPoints">Login to view your profile</p>
-						<button ion-button>Login</button>
+						<button ion-button (click)="backtologin()">Login</button>
 
 					</ion-card>
 				</div>
