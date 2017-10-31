@@ -44,7 +44,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6 *ngFor="let promotion of _promotionList" clickable (click)="goto(promotion)">
+        <ion-col col-6 *ngFor="let promotion of _promotionList" clickable (click)="gotoPromotionDetails(promotion)">
           <ion-card>
             <figure>
               <img src="{{promotion?.thumbnailimage}}"/>  

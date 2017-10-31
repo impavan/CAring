@@ -48,7 +48,7 @@ export class PromotionsPage {
     });
   }
 
-  goto(value) {
+  gotoPromotionDetails(value) {
     this.navCtrl.push('PromotionDetailsPage', { promodetails: value });
   }
 }

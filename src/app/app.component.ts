@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Events } from 'ionic-angular';
 
 
 // Import Providers.
@@ -16,6 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
   rootPage: any =  "HomePage";
+  isUserLoggedIn:any =false;
   pages: Array<{ title: string, component: any }>;
 
   constructor(private platform: Platform, 
@@ -23,7 +25,8 @@ export class MyApp {
     private splashScreen: SplashScreen,
     private authProvider: AuthProvider,
     private alertProvider:AlertProvider,
-    private screenOrientation: ScreenOrientation,) {
+    private screenOrientation: ScreenOrientation,
+    public events:Events) {
 
     this.initializeApp();
     // used for an example of ngFor and navigation
@@ -38,7 +41,19 @@ export class MyApp {
       { title: 'Feedback', component: 'FeedbackPage' },
       { title: 'About', component: 'AboutPage' },
     ];
-  }
+
+
+
+        this.events.subscribe('user:login', (user) => {
+      if (user) {
+        this.isUserLoggedIn = true;
+      
+        }
+   
+      })
+    }
+      
+  
 
   initializeApp() {
     this.platform.ready().then(() => {
