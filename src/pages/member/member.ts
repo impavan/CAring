@@ -137,4 +137,10 @@ export class MemberPage {
   updateData() {
     this.navCtrl.push("MyAccountPage");
   }
+  emptywallet(){
+    this.navCtrl.setRoot("RewardsPage");
+  }
+  backtologin(){
+    this.navCtrl.setRoot("LoginPage");
+  }
 }
