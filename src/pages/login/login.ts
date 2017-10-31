@@ -49,11 +49,11 @@ export class LoginPage {
       this.alertProvider.presentToast('Please enter valid 8 digit mobile number');
       return;
     } else if (this.phoneNum.trim() == EMPTY) {
-      this.alertProvider.presentToast('Please enter valid 8 digit mobile number');
+      this.alertProvider.presentToast('Please enter valid' + MOBILE_NO_LIMIT+ ' digit mobile number');
       return;
 
     } else if (this.phoneNum.length != MOBILE_NO_LIMIT) {
-      this.alertProvider.presentToast('Mobile number should be ' + MOBILE_NO_LIMIT + 'digits');
+      this.alertProvider.presentToast('Mobile number should be ' + MOBILE_NO_LIMIT + ' digits');
       return;
     } else if (this.phoneNum.match(NO_CHAR)) {
 
