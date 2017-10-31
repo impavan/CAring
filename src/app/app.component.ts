@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
+
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';
@@ -22,7 +23,7 @@ export class MyApp {
     private splashScreen: SplashScreen,
     private authProvider: AuthProvider,
     private alertProvider:AlertProvider,
-    private screenOrientation: ScreenOrientation) {
+    private screenOrientation: ScreenOrientation,) {
 
     this.initializeApp();
     // used for an example of ngFor and navigation

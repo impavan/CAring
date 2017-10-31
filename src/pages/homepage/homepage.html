@@ -29,13 +29,15 @@
 
 <ion-content>
 
-<ion-slides zoom="true">
-  <ion-slide>
-    <div class="swiper-zoom-container">
-      <img src="assets/img/health1.jpg">
+<ion-slides *ngIf="bannerData && bannerData.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
+  
+  <ion-slide *ngFor="let banner of bannerData">
+    <div class="swiper-zoom-container" (click)="gotoLink(banner)">
+      <img src="{{banner?.bannerimage}}">
     </div>
   </ion-slide>
-  <ion-slide>
+ 
+  <!--<ion-slide>
     <div class="swiper-zoom-container">
       <img src="assets/img/health2.jpg">
     </div>
@@ -44,7 +46,7 @@
     <div class="swiper-zoom-container">
       <img src="assets/img/health3.jpg">
     </div>
-  </ion-slide>
+  </ion-slide>-->
 </ion-slides>
 
 <div class="homeContainer">

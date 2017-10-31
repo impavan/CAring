@@ -38,8 +38,6 @@ page-store-locator {
         height: 60%;
         width: 100%;
         position:relative;
-         width: 100%;
-		transition: all 2.0s !important;
 
     }
     .storeLocatorContainer{
@@ -91,6 +89,23 @@ page-store-locator {
 	.locationContainerTwo{
 		max-height: 300px;
 		overflow: auto;
+		h4{
+			margin:0;
+			font-size: 17px;
+		}
+		span{
+			color:$cp-extra-lighter-grey-xxx;
+			font-size:13px;
+		}
+		p{
+			margin:5px 0 10px 0;
+			color:$cp-extra-darker-grey;
+			font-size:13px;
+		}
+		.favIcon{
+			font-size: 21px;
+			padding: 2px 0 0 0;
+		}
 	}
 	.searchbar-md{
 		padding: 0 !important;

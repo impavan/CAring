@@ -13,10 +13,15 @@ import { LoaderProvider } from '../../providers/loader/loader';
 
 export class HappeningsPage {
   happenList: any = [];
+  routeLink:any = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private hapenningsProvider: HapenningsProvider, private loaderProvider:LoaderProvider) {
     this.getHappenings();
+    this.routeLink = navParams.get('routeData');
+    if(this.routeLink){
+      console.log(this.routeLink);
+    }
   }
 
   ionViewDidLoad() {

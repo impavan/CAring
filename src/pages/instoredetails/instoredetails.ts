@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoaderProvider } from '../../providers/loader/loader';
 
+
+
 @IonicPage()
 @Component({
   selector: 'page-instoredetails',
@@ -10,13 +12,19 @@ import { LoaderProvider } from '../../providers/loader/loader';
 
 export class InstoredetailsPage {
   storeDetail: any = [];
+  _locationList:any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.storeDetail = navParams.get('instoredata');
     console.log(this.storeDetail);
+    this._locationList  = this.storeDetail.storeeventtimings?this.storeDetail.storeeventtimings:[];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InstoredetailsPage');
+  }
+
+  gotoEventLocation(loc){
+    this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng:loc.storelocation.y});
   }
 }

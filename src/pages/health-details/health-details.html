@@ -32,7 +32,7 @@
 		</figure>
 		<div class="content">
 			<h4>{{healthData?.title}}</h4>
-      <p>{{healthData?.description}}</p>
+      <p [innerHTML]="healthData?.detaileddescription"></p>
 		</div>
 	</div>
 </ion-content>
