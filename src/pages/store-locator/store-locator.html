@@ -66,7 +66,7 @@
                 </ion-col>
                 <ion-col col-1>
                   <ion-icon *ngIf="!location?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
-                   <ion-icon *ngIf="location?.favourite" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
+                   <ion-icon *ngIf="location?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -97,7 +97,7 @@
                 </ion-col>
                 <ion-col col-1>
                   <!--<ion-icon *ngIf="!fav?.favourite" name="heart-outline" class="alert favIcon"></ion-icon>-->
-                   <ion-icon *ngIf="fav?.favourite" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(fav)"></ion-icon>
+                   <ion-icon *ngIf="fav?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(fav)"></ion-icon>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -129,8 +129,8 @@
                   <h4>{{filter?.storename}}</h4>
                 </ion-col>
                 <ion-col col-1>
-                  <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
-                   <ion-icon *ngIf="filter?.favourite" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
+                  <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(filter)"></ion-icon>
+                   <ion-icon *ngIf="filter?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(filter)"></ion-icon>
                 </ion-col>
               </ion-row>
               <ion-row>
