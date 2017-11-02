@@ -32,7 +32,8 @@ export class HealthSubscribePage {
     this.slides.speed = 1000;
     this.slides.autoplay = 3000;
     this.slides.paginationType = 'bullets';
-    this.slides.effect = "coverflow";
+    // this.slides.effect = "coverflow";
+    // this.slides.slidesPerView=2;
   }
 
   getPromotionsBrochureLink() {

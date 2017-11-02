@@ -22,8 +22,10 @@ export class TabsPage {
     console.log('ionViewDidLoad TabsPage');
   }
 
-  goto(page) {
+  goto(page,event:any) {
     this.navCtrl.setRoot(page);
+    console.log(page);
+    console.log(event);
   }
 
   gotoEcart(){

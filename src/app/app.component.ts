@@ -17,7 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
   rootPage: any =  "HomePage";
-  isUserLoggedIn:any =false;
+  isUserLoggedIn:any =this._auth?true:false;
   pages: Array<{ title: string, component: any }>;
 
   constructor(private platform: Platform, 

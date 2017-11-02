@@ -54,10 +54,7 @@ export class HomePage {
 
 
 
-  // slideChanged() {
-  //   let currentIndex = this.slides.getActiveIndex();
-  //  this.slides.slideTo(currentIndex, 500);
-  // }
+ 
 
   goto(page: string) {
     this.navCtrl.setRoot(page);
