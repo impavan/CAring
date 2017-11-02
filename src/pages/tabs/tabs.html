@@ -1,12 +1,12 @@
 <ion-row>
   <ion-col col-3 class="text-center">
-    <button ion-button (click)="goto('StoreLocatorPage')" class="placeholderIcon"></button>
+    <button ion-button (click)="goto('StoreLocatorPage')" [ngClass]="{'placeholderIcon':!isClicked,'placeholderIconChanged':isClicked}"></button>
   </ion-col>
     <ion-col col-3 class="text-center">
-    <button ion-button class="giftIcon" (click)="goto('RewardsPage')"></button>
+    <button ion-button [ngClass]="{'giftIcon':!isClicked,'giftIconChanged':isClicked}" (click)="goto('RewardsPage')"></button>
   </ion-col>
     <ion-col col-3 class="text-center">
-    <button ion-button class="idCardIcon" (click)="goto('MemberPage')"></button>
+    <button ion-button [ngClass]="{'idCardIcon':!isClicked,'idCardIconChanged':isClicked}" (click)="goto('MemberPage')"></button>
   </ion-col>
     <ion-col col-3 class="text-center">
     <button ion-button class="cartIcon" (click)="gotoEcart()"></button>

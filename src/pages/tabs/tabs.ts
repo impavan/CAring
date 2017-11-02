@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
@@ -10,11 +10,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class TabsPage {
 
 
-  tab1Root = "PromotionsPage";
-  tab2Root = "PromotionsPage";
-  tab3Root = "PromotionsPage";
+  isClicked:boolean=false;
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
+
               private inAppBrowser:InAppBrowser) {
   }
 
@@ -24,10 +22,11 @@ export class TabsPage {
 
   goto(page) {
     this.navCtrl.setRoot(page);
+    this.isClicked = true;
   }
 
   gotoEcart(){
-
+    
       this.inAppBrowser.create('http://estore.caring2u.com/');
 
   }
