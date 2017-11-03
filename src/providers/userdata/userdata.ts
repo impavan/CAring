@@ -59,10 +59,10 @@ export class UserdataProvider {
       externalId:userdata.externalId,
       custom_fields:[]
     }
-     data.custom_fields.push({mobile_validated:'Yes'});
-    if(userdata.profilePic){
-      data.custom_fields.push({ profile_picture:userdata.profilePic})
-    }
+     data.custom_fields.push({name:"mobile_validated", value:"Yes", type:"string"});
+    // if(userdata.profilePic){
+    //   data.custom_fields.push({ profile_picture:userdata.profilePic})
+    // }
     // let userData = new FormData();
     // userData.append('first_name', userdata.fname);
     // userData.append('last_name', userdata.lname);

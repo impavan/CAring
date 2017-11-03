@@ -17,7 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
   rootPage: any =  "HomePage";
-  isUserLoggedIn:any =this._auth?true:false;
+  // isUserLoggedIn:any =this._auth?true:false;
   pages: Array<{ title: string, component: any }>;
 
   constructor(private platform: Platform, 
@@ -46,8 +46,10 @@ export class MyApp {
 
         this.events.subscribe('user:login', (user) => {
       if (user) {
-        this.isUserLoggedIn = true;
+         this._auth = localStorage.getItem("auth_token");
       
+        }else{
+           this._auth = '';
         }
    
       })
@@ -84,6 +86,7 @@ export class MyApp {
   logout(){
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
+    this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
   }
 }

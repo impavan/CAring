@@ -32,11 +32,9 @@
       <!-- Section to be displayed when there is data. -->
       <div *ngIf="offerdata.length >= 1">
         <ion-card *ngFor="let offer of offerdata" (click)="navToRedeem(offer)">
-          <figure *ngIf="offer?.Images[0]">
-            <img src="{{IMG_URL}}/{{offer?.Images[0]}}" />
-          </figure>
-          <figure *ngIf="!offer?.Images[0]">
-            <img src="assets/img/h2.jpg" />
+          <figure>
+            <img *ngIf="offer?.Images[0]" src="{{offer?.Images[0]}}" />
+              <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" />
           </figure>
           <div class="content">
             <ion-grid>

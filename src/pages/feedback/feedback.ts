@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT, NO_NUMBERS } from '../../validator';
+import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1,MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
 import { IonicPage, NavController, NavParams, Platform, App } from 'ionic-angular';
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { BRAND_ID } from '../../config';
@@ -39,10 +39,10 @@ export class FeedbackPage {
       this.alertProvider.presentToast("Name cannot contain numbers");
       return;
     }
-    //  else if (this.userData.mobileNo.length != MOBILE_NO_LIMIT) {
-    //   this.alertProvider.presentToast('Mobile number should be 8 digits');
-    //   return;
-    // }
+     else if (this.userData.mobileNo.length < MOBILE_NO_LIMIT_1 || this.userData.mobileNo.length > MOBILE_NO_LIMIT_2) {
+      this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT_1 + ' or' +  MOBILE_NO_LIMIT_2 + ' digits');
+      return;
+    }
     else if (this.userData.mobileNo.match(NO_CHAR)) {
       this.alertProvider.presentToast('Mobile number cannot contain characters');
       return;

@@ -47,8 +47,8 @@
               <img src="{{activity?.bannerimage}}"/>
             </figure>
             <ion-card-content>
-              <div class="card-title">{{activity?.title}}</div>
-              <p>{{activity?.subtitle}}</p> 
+              <div class="card-title">{{activity?.title | truncate:12 }}</div>
+              <p>{{activity?.subtitle | truncate:15 }}</p> 
             </ion-card-content>
           </ion-card> 
         </ion-col>

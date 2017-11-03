@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT, NO_NUMBERS } from '../../validator';
+import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
 import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -94,8 +94,8 @@ if(this._existingCustomerData){
     } else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
       this.alertProvider.presentToast("Email Id must contain @ symbol");
       return;
-    } else if (this.registerData.mobile.length != MOBILE_NO_LIMIT) {
-      this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT + 'digits');
+    } else if (this.registerData.mobile.length < MOBILE_NO_LIMIT_1 || this.registerData.mobile.length > MOBILE_NO_LIMIT_2) {
+      this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT_1 + ' or' + MOBILE_NO_LIMIT_2 + 'digits');
       return;
     } else if (this.registerData.mobile.match(NO_CHAR)) {
       this.alertProvider.presentToast('Mobile number cannot contain characters');

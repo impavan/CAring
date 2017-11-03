@@ -45,13 +45,16 @@
   <div class="happenDetailsContainer">
     <div class="container">
       <h6>Take control of Diabetes</h6>
-      <p><span>Date:</span><label> {{_happenList?.eventdate}}</label></p>
-      <p><span>Time:</span><label> 10:00AM to 6:00PM</label></p>
+      <p><span>Date:</span><label> {{_happenList?.eventdate | date:'dd-MM-yyyy'}}</label></p>
+      <p *ngIf="_happenList?.eventtime?.from"><span>Time:</span><label > {{_happenList?.eventtime?.from}} to {{_happenList?.eventtime?.to}}</label></p>
       <p><span>Venue:</span><label> Caring HQ , Petaling Jaya</label></p>
     </div>
     <ion-card>
       <img src="{{_happenList?.eventbanner}}" />
     </ion-card>
+    <div>
+      <p [innerHTML]="_happenList.description" padding></p>
+    </div>
     <div class="container">
       <a href="{{_happenList?.registrationurl}}" ion-button class="btn4">Register Now</a>
       <p class="subscription">You will be redirected to our website to complete your subscription</p>

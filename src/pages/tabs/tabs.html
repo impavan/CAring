@@ -1,6 +1,7 @@
 <ion-row>
   <ion-col col-3 class="text-center">
-    <button ion-button (click)="goto('StoreLocatorPage')" [ngClass]="{'placeholderIcon':!isClicked,'placeholderIconChanged':isClicked}"></button>
+    <button *ngIf="!isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIcon"></button>
+    <button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>
   </ion-col>
     <ion-col col-3 class="text-center">
     <button ion-button [ngClass]="{'giftIcon':!isClicked,'giftIconChanged':isClicked}" (click)="goto('RewardsPage')"></button>

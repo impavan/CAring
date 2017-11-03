@@ -20,7 +20,7 @@ export class RewardsDetailsPage {
   @ViewChild('reward') rewardModal;
   @ViewChild('redeemPointsWarning') redeemPointsModal;
   @ViewChild('noPointsWarning') noPointsModal;
-  IMG_URL: any;
+  IMG_URL: any = IMAGE_URL;
   offerdata: any;
   _auth: any;
   _currentPoint: any;
@@ -33,7 +33,6 @@ export class RewardsDetailsPage {
     private loaderProvider: LoaderProvider,
     private alertProvider: AlertProvider,
     private rewardsProvider: RewardsProvider) {
-    this.IMG_URL = IMAGE_URL;
     this.offerdata = this.navParams.get('data');
     console.log(this.offerdata, '==================offerdata===================')
     this._auth = localStorage.getItem('auth_token');

@@ -1,4 +1,4 @@
-import { EMPTY, SPECIAL_CHAR, NO_CHAR, MOBILE_NO_LIMIT } from '../../validator';
+import { EMPTY, SPECIAL_CHAR, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2 } from '../../validator';
 import { IonicPage, NavController, NavParams, Platform, App, MenuController, Events } from 'ionic-angular';
 import { Component, ViewChild, NgZone } from '@angular/core';
 
@@ -49,11 +49,11 @@ export class LoginPage {
       this.alertProvider.presentToast('Please enter valid 8 digit mobile number');
       return;
     } else if (this.phoneNum.trim() == EMPTY) {
-      this.alertProvider.presentToast('Please enter valid' + MOBILE_NO_LIMIT+ ' digit mobile number');
+      this.alertProvider.presentToast('Please enter valid mobile number');
       return;
 
-    } else if (this.phoneNum.length != MOBILE_NO_LIMIT) {
-      this.alertProvider.presentToast('Mobile number should be ' + MOBILE_NO_LIMIT + ' digits');
+    } else if (this.phoneNum.length < MOBILE_NO_LIMIT_1 || this.phoneNum.length > MOBILE_NO_LIMIT_2) {
+      this.alertProvider.presentToast('Mobile number should be ' + MOBILE_NO_LIMIT_1 + ' or' + MOBILE_NO_LIMIT_2 +  ' digits');
       return;
     } else if (this.phoneNum.match(NO_CHAR)) {
 
