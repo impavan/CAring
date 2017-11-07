@@ -1,4 +1,8 @@
 <ion-row>
+  <ion-col col-3 class="text-center" clickable (click)="goto('HomePage')">
+    <ion-icon name="home"></ion-icon>
+    <button ion-button></button>
+  </ion-col>
   <ion-col col-3 class="text-center">
     <button *ngIf="!isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIcon"></button>
     <button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>
