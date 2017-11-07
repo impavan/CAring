@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EventLocationPage } from './event-location';
+import { SharedModule } from '../../app/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -8,6 +10,7 @@ import { EventLocationPage } from './event-location';
   ],
   imports: [
     IonicPageModule.forChild(EventLocationPage),
+    SharedModule
   ],
 })
 export class EventLocationPageModule {}

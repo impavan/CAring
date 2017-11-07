@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ECartPage } from './e-cart';
+import { SharedModule } from '../../app/shared.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { ECartPage } from './e-cart';
   ],
   imports: [
     IonicPageModule.forChild(ECartPage),
+    SharedModule
   ],
 })
 export class ECartPageModule {}

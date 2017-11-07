@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
 	<ion-navbar>
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
@@ -23,8 +23,11 @@
 			</ion-grid>
 		</div>
 	</ion-navbar>
-</ion-header>
-<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
+</ion-header>-->
+<div>
+  <header></header>
+</div>
+
 
 <ion-content>
 	<div class="memberContainer">
@@ -131,7 +134,7 @@
 											</ion-col>
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
-												<p class="alert subContent">{{reward.Description}}</p>
+												<!--<p class="alert subContent" [innerHTML]="reward.Description"></p>-->
 											</ion-col>
 										</ion-row>
 									<!--</div>-->
