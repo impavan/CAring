@@ -12,7 +12,7 @@ import { TruncatePipe } from '../pipes/truncate/truncate';
     IonicPageModule.forChild(FilterPipe),
     IonicPageModule.forChild(TruncatePipe)
   ],
-  declarations: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe],
+  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe],
   exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe]
 })
 

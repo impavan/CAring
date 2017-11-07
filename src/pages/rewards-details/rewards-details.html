@@ -30,7 +30,7 @@
 	<div class="rewardsDetailsContainer">
 		<figure>
 			<!--{{IMG_URL}}/-->
-			<img src="{{offerdata?.Images[0]}}" />
+			<img src="{{offerdata?.Images[0]}}" style="width:100%" />
 		</figure>
 		<div class="content">
 			<!-- <h5>Voucher<small>Expired date: 23 Oct 2017  </small></h5> -->
@@ -63,15 +63,18 @@
 					</ion-row>
 				</ion-grid>
 			</div>
-			<button ion-button class="btn4" (click)="navToPurchaseRewards()" [disabled]="!flag">Redeem Now</button>
+			<button ion-button class="btn4" (click)="navToPurchaseRewards()" [disabled]="!flag">Purchase Now</button>
 		</div>
 	</div>
 </ion-content>
+
+
 <ion-footer>
-	<ion-toolbar>
-		<page-tabs></page-tabs>
-	</ion-toolbar>
+<ion-toolbar>
+<page-tabs></page-tabs>
+</ion-toolbar>
 </ion-footer>
+
 
 
 <!-- Modal tobe displayed when the user wants to redeem the offer. It's a Confirmation Alert. -->

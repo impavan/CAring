@@ -12,7 +12,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class HomePage {
 
   @ViewChild(Slides) slides: Slides;
-
+  pages: Array<{ title: string, component: any }>;
   isSlidesLoaded:boolean = false;
   bannerData:any = [];
   INAPPLINK = 'InAppLink';
@@ -22,6 +22,7 @@ export class HomePage {
               private hapenningsProvider:HapenningsProvider,
               private loaderProvider:LoaderProvider, 
               private inAppBrowser:InAppBrowser) {
+                
   }
 
   // ionViewDidLoad(){

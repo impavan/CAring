@@ -8,6 +8,7 @@ import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { LoaderProvider } from '../../providers/loader/loader';
+import { UserdataProvider } from '../../providers/userdata/userdata';
 
 
 @IonicPage()
@@ -25,6 +26,7 @@ export class MemberPage {
    _emailId: any;
    _mobileNum: any;
    _profilePic: any;
+   _pointOpen:boolean = false;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
   loadedWallet:boolean = false;
@@ -33,7 +35,7 @@ export class MemberPage {
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
-    private profileProvider: ProfileProvider,private loaderProvider:LoaderProvider,
+    private profileProvider: ProfileProvider,private loaderProvider:LoaderProvider,private userProvider:UserdataProvider,
     private alertProvider: AlertProvider) {
     this._auth = localStorage.getItem('auth_token');
     if(this._auth){
@@ -97,7 +99,7 @@ export class MemberPage {
   }
 
   getMyPoints() {
-    this.profileProvider.getMyProfile().subscribe(data => {
+    this.userProvider.getMyProfile().subscribe(data => {
       if (data[0].code == 200) {
         this.authProvider.setUser(data[0].customerdata);
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
@@ -142,5 +144,11 @@ export class MemberPage {
   }
   backtologin(){
     this.navCtrl.setRoot("LoginPage");
+  }
+
+  togglePoint(){
+
+    this._pointOpen = this._pointOpen?false:true;
+
   }
 }

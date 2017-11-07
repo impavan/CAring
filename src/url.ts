@@ -34,4 +34,4 @@
 
  export const POINTS = `earnpoints`;
  
- export const UPDATE_PROFILE = `mobile/customerprofileupdate_v2`;
+export const UPDATE_PROFILE = `mobile/customerprofileupdate_v3`;

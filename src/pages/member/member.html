@@ -24,6 +24,7 @@
 		</div>
 	</ion-navbar>
 </ion-header>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
 
 <ion-content>
 	<div class="memberContainer">
@@ -60,7 +61,35 @@
 				<div *ngIf="_auth" class="myPointsContainer">
 					<p class="urPoints">Your Points:
 						<strong>{{_totalAvailablePoints}}</strong>
+						
 					</p>
+					<section>
+						<ion-card clickable (click)="togglePoint()">
+							 <ion-card-header>
+   								<strong>Point History</strong>
+								<ion-icon *ngIf="!_pointOpen" name="arrow-dropdown"></ion-icon>
+								<ion-icon *ngIf="_pointOpen" name="arrow-dropup"></ion-icon>
+ 							 </ion-card-header>
+							  <ion-card-content *ngIf="_pointOpen">
+								  <ion-item>
+									  <p>
+									  <span>Point Balance :</span>
+									  <span>9361</span>
+									  </p>
+									  <p>
+									  <span>Expired Points within one month:</span>
+									  <span>400</span>
+									  </p>
+								  </ion-item>
+								  <ion-item>
+									 <p>Reciept No</p> 
+									 <p>Date</p>
+									 <p>Receipt Amount</p>
+									 <p><span>+200 Points</span></p>
+								  </ion-item>
+							</ion-card-content>
+						</ion-card>
+					</section>
 				</div>
 				<ion-card *ngIf="!_auth" class="myPointsContainer sec">
 					<p class="urPoints">You have no points yet</p>
@@ -99,34 +128,8 @@
 												</figure>
 											</ion-col>
 											<ion-col col-5>
-												<p class="voucher">RM10 Voucher</p>
-												<p class="alert subContent">Exchange Point: 1500</p>
-											</ion-col>
-										</ion-row>
-									</div>
-									<div class="content">
-										<ion-row class="customRow">
-											<ion-col col-7>
-												<figure>
-													<img src="assets/img/h2.jpg" />
-												</figure>
-											</ion-col>
-											<ion-col col-5>
-												<p class="voucher">RM10 Voucher</p>
-												<p class="alert subContent">Exchange Point: 1500</p>
-											</ion-col>
-										</ion-row>
-									</div>
-									<div class="content">
-										<ion-row class="customRow">
-											<ion-col col-7>
-												<figure>
-													<img src="assets/img/h2.jpg" />
-												</figure>
-											</ion-col>
-											<ion-col col-5>
-												<p class="voucher">RM10 Voucher</p>
-												<p class="alert subContent">Exchange Point: 1500</p>
+												<p class="voucher">{{reward.Title}}</p>
+												<p class="alert subContent">Exchange Point: {{reward.VoucherCost}}</p>
 											</ion-col>
 										</ion-row>
 									</div>
@@ -147,8 +150,8 @@
 												</figure>
 											</ion-col>
 											<ion-col col-5>
-												<p class="voucher">RM10 Voucher</p>
-												<p class="alert subContent">Exchange Point: 1500</p>
+												<p class="voucher">{{reward.Title}}</p>
+												<p class="alert subContent">Exchange Point: {{reward.VoucherCost}}</p>
 											</ion-col>
 										</ion-row>
 									</div>
@@ -169,8 +172,8 @@
 												</figure>
 											</ion-col>
 											<ion-col col-5>
-												<p class="voucher">RM10 Voucher</p>
-												<p class="alert subContent">Exchange Point: 1500</p>
+												<p class="voucher">{{reward.Title}}</p>
+												<p class="alert subContent">Exchange Point: {{reward.VoucherCost}}</p>
 											</ion-col>
 										</ion-row>
 									</div>
@@ -220,7 +223,7 @@
 </ion-content>
 
 <ion-footer>
-   <ion-toolbar>
-    <page-tabs></page-tabs>
-  </ion-toolbar>
+<ion-toolbar>
+<page-tabs></page-tabs>
+</ion-toolbar>
 </ion-footer>

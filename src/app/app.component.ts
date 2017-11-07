@@ -18,7 +18,7 @@ export class MyApp {
   _auth = localStorage.getItem("auth_token");
   rootPage: any =  "HomePage";
   // isUserLoggedIn:any =this._auth?true:false;
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{ title: string, component: any, index: number }>;
 
   constructor(private platform: Platform, 
     private statusBar: StatusBar,
@@ -31,15 +31,15 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomePage' },
-      { title: 'Member', component: 'MemberPage' },
-      { title: 'Rewards', component: 'RewardsPage' },
-      { title: 'Promotions', component: 'PromotionsPage' },
-      { title: 'Happenings', component: 'HappeningsPage' },
-      { title: 'Store Locator', component: 'StoreLocatorPage' },
-      { title: 'Health Info', component: 'HealthInfoPage' },
-      { title: 'Feedback', component: 'FeedbackPage' },
-      { title: 'About', component: 'AboutPage' },
+      { title: 'Home', component: 'HomePage', index:0 },
+      { title: 'Member', component: 'MemberPage', index:3 },
+      { title: 'Rewards', component: 'RewardsPage', index:2},
+      { title: 'Promotions', component: 'PromotionsPage' , index:3},
+      { title: 'Happenings', component: 'HappeningsPage', index:4 },
+      { title: 'Store Locator', component: 'StoreLocatorPage', index:1 },
+      { title: 'Health Info', component: 'HealthInfoPage', index:6 },
+      { title: 'Feedback', component: 'FeedbackPage', index:7 },
+      { title: 'About', component: 'AboutPage', index:8 },
     ];
 
 
@@ -74,7 +74,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component, {index:page.index});
   }
 
   gotoLogin()

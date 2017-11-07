@@ -38,6 +38,7 @@ export class RegistrationPage {
     this.phoneNum = navParams.get('phone');
     this._existingCustomerData = navParams.get('custExistingData');
     this.otp = navParams.get('otp');
+
 if(this._existingCustomerData){
     this.registerData = {
       fname: this._existingCustomerData.customer[0].firstname || '',
@@ -94,9 +95,9 @@ if(this._existingCustomerData){
     } else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
       this.alertProvider.presentToast("Email Id must contain @ symbol");
       return;
-    } else if (this.registerData.mobile.length < MOBILE_NO_LIMIT_1 || this.registerData.mobile.length > MOBILE_NO_LIMIT_2) {
-      this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT_1 + ' or' + MOBILE_NO_LIMIT_2 + 'digits');
-      return;
+    // } else if (this.registerData.mobile.length < MOBILE_NO_LIMIT_1 || this.registerData.mobile.length > MOBILE_NO_LIMIT_2) {
+    //   this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT_1 + ' or' + MOBILE_NO_LIMIT_2 + 'digits');
+    //   return;
     } else if (this.registerData.mobile.match(NO_CHAR)) {
       this.alertProvider.presentToast('Mobile number cannot contain characters');
       return;
@@ -111,11 +112,62 @@ if(this._existingCustomerData){
 
   registerOTPSucess(data) {
     this.loaderProvider.presentLoadingCustom();
+    if(this._existingCustomerData && this._existingCustomerData.customer[0].firstname)
+    this.type = '0';
+    else
     this.type = '1';
+   
     this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
       this.loaderProvider.dismissLoader();
       if (data[0].code == 200) {
         console.log(this.registerData,'==================register data==================')
+        if(this.type =="0"){
+            this.authProvider.setUser(data[0].customerdata);
+            this.authProvider.setAuthToken(data[0].auth_key);
+            this.authProvider.setHeader();
+            this.registerData.mobile = data[0].customerdata.customer[0].mobile;
+              this.userProvider.updateProfile(this.registerData).subscribe(data=>{
+                this.loaderProvider.presentLoadingCustom();
+                if (data[0].code == 200) {
+                  this.userProvider.getMyProfile().subscribe(data=>{
+                  if(data[0].code == 200){
+                    this.loaderProvider.dismissLoader();
+                  this.authProvider.setUser(data[0].customerdata);
+                  localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+                  localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
+                  this.authProvider.setAuthToken(data[0].auth_key);
+                  this.authProvider.setUserLoggedIn(true);
+                  this.authProvider.setHeader();
+                  this.events.publish('user:login', true);
+                  this.navCtrl.setRoot("HomePage");
+                }
+                  else if (data[0].code == 201) {
+                    this.loaderProvider.dismissLoader();
+                  this.alertProvider.presentToast(data[0].message);
+                } else if (data[0].code == 202) {
+                  this.loaderProvider.dismissLoader();
+                  this.alertProvider.presentToast(data[0].message);
+                } else {
+                }
+                },err=>{
+                  this.loaderProvider.dismissLoader();
+                this.exceptionProvider.excpHandler(err);
+                })
+                } else if (data[0].code == 201) {
+                  this.alertProvider.presentToast(data[0].message);
+                } else if (data[0].code == 202) {
+                  this.alertProvider.presentToast(data[0].message);
+                } else {
+                }
+              }, err => {
+                this.loaderProvider.dismissLoader();
+                this.exceptionProvider.excpHandler(err);
+              });
+
+              }
+
+        else{
+          this.loaderProvider.presentLoadingCustom();
         this.userProvider.userRegistration(this.registerData).subscribe(data => {
           this.loaderProvider.dismissLoader();
           if (data[0].code == 200) {
@@ -137,13 +189,15 @@ if(this._existingCustomerData){
           this.loaderProvider.dismissLoader();
           this.exceptionProvider.excpHandler(err);
         });
+        }
         // if (this.from == "registration") {
         //   this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp });
         // } else {
         //   this.loginOTPSucess(data);
         //   this.navCtrl.setRoot("HomePage");
         // }
-      } else if (data[0].code == 201) {
+    }
+       else if (data[0].code == 201) {
         this.clearOTPBox();
         this.alertProvider.presentToast(data[0].message);
       } else if (data[0].code == 202) {
@@ -151,10 +205,12 @@ if(this._existingCustomerData){
         this.alertProvider.presentToast(data[0].message);
       } else {
       }
-    }, err => {
+    }
+  , err => {
       this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
     });
+    
   }
 
   loginOTPSucess(data) {

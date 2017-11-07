@@ -41,7 +41,9 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      tabsHideOnSubPages:false,
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

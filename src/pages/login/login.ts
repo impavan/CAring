@@ -72,7 +72,6 @@ export class LoginPage {
             
             let custom_data = data[0].customerdata.customer[0].custom_fields.field;
             let mobile_validated  = custom_data.filter(res=> res.name === this.MOBILE_VALIDATED);
-            console.log(mobile_validated,"-----------------------");
             if(mobile_validated[0] && mobile_validated[0].value == this.YES)
             this.navCtrl.push("OtpPage", { from: 'login', phone: this.phoneNum });
             else

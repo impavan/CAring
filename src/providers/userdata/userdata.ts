@@ -1,4 +1,4 @@
-import { LOGIN, OTP, REGISTRATION, FEEDBACK } from '../../url';
+import { LOGIN, OTP, REGISTRATION, FEEDBACK, UPDATE_PROFILE } from '../../url';
 import { BASE_URL, BRAND_ID } from '../../config';
 import { Http, Response } from '@angular/http';
 import { AuthProvider } from '../auth/auth';
@@ -60,29 +60,39 @@ export class UserdataProvider {
       custom_fields:[]
     }
      data.custom_fields.push({name:"mobile_validated", value:"Yes", type:"string"});
-    // if(userdata.profilePic){
-    //   data.custom_fields.push({ profile_picture:userdata.profilePic})
-    // }
-    // let userData = new FormData();
-    // userData.append('first_name', userdata.fname);
-    // userData.append('last_name', userdata.lname);
-    // // userData.append('gender', userdata.gender);
-    // userData.append('email', userdata.email);
-    // userData.append('mobile', userdata.mobile);
-    // userData.append('BrandURLID', BRAND_ID);
-    // userData.append('dob', userdata.dob);
-    // userData.append('device_id', localStorage.getItem('push_token'));
-    // userData.append('device_type', localStorage.getItem('model'));
-    // userData.append('device_version', localStorage.getItem('version'));
-
-   
-
-    
-    // if (userdata.profilePic.length > 0)
-    //   userData.append('profile_image', JSON.stringify(userdata.profilePic));
     let body = data;
     return this.http
       .post(BASE_URL + REGISTRATION, body, { headers: this.auth.getHeader() })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json());
+  }
+
+
+      // get a user details
+    getMyProfile() {
+        const PROFILE = "/mobile/myprofile?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + BRAND_ID;
+        let auth_token = localStorage.getItem('auth_token');
+        return this.http.get(BASE_URL + PROFILE, { headers: this.auth.getHeader()})
+            .do((res: Response) => res)
+            .map((res: Response) => res.json());
+    }
+
+
+  // update user details
+    updateProfile(userdata) {
+    let data = {
+      first_name:userdata.fname,
+      email:userdata.email,
+      old_email:userdata.email,
+      mobile:userdata.mobile,
+      BrandURLID:BRAND_ID,
+      externalId:userdata.externalId,
+      custom_fields:[]
+    }
+     data.custom_fields.push({name:"mobile_validated", value:"Yes", type:"string"});
+    let body = data;
+    return this.http
+      .post(BASE_URL + UPDATE_PROFILE, body, { headers: this.auth.getHeader() })
       .do((res: Response) => res)
       .map((res: Response) => res.json());
   }
