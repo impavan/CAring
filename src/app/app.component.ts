@@ -18,7 +18,7 @@ export class MyApp {
   _auth = localStorage.getItem("auth_token");
   rootPage: any =  this._auth?"HomePage":"LoginPage";
   // isUserLoggedIn:any =this._auth?true:false;
-  pages: Array<{ title: string, component: any, index: number }>;
+  pages: Array<{ title: string, component: any, index: number, icon:string }>;
 
   constructor(private platform: Platform, 
     private statusBar: StatusBar,
@@ -31,15 +31,15 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomePage', index:0 },
-      { title: 'Member', component: 'MemberPage', index:3 },
-      { title: 'Rewards', component: 'RewardsPage', index:2},
-      { title: 'Promotions', component: 'PromotionsPage' , index:3},
-      { title: 'Happenings', component: 'HappeningsPage', index:4 },
-      { title: 'Store Locator', component: 'StoreLocatorPage', index:1 },
-      { title: 'Health Info', component: 'HealthInfoPage', index:6 },
-      { title: 'Feedback', component: 'FeedbackPage', index:7 },
-      { title: 'About', component: 'AboutPage', index:8 },
+      { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home" },
+      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card" },
+      { title: 'Rewards', component: 'RewardsPage', index:2,icon:"iconc-gift"},
+      { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag"},
+      { title: 'Happenings', component: 'HappeningsPage', index:4 ,icon:"iconc-megaphone"},
+      { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map"},
+      { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book"},
+      { title: 'Message', component: 'Message', index:7,icon:"iconc-chat"},
+      { title: 'About', component: 'AboutPage', index:8, icon:"iconc-ticket"},
     ];
 
 

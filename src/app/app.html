@@ -2,9 +2,9 @@
     <ion-header>
         <ion-toolbar color="menu-header">
             <div class="thumbnail">
-                <div class="img">
+                <!--<div class="img">
                     <img src="http://rootaccez.com/assets/team/ravi.jpg" alt="">
-                </div>
+                </div>-->
                 <span>Hello, Amanda Tan Yee Ting</span>
             </div>
 
@@ -14,13 +14,13 @@
     <ion-content>
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-              <ion-icon name="home"></ion-icon> <span>{{p.title}}</span>
+              <ion-icon class="{{p.icon}}"></ion-icon> <span>{{p.title}}</span>
             </button>
         </ion-list>
         <ion-footer>
             <ion-toolbar color="menu-footer">
-                <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()"><ion-icon name="add-circle"></ion-icon> <span>Logout</span> </button>
-                <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()"><ion-icon name="add-circle"></ion-icon> <span>Login</span></button>
+                <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()"><ion-icon class="iconc-log-out"></ion-icon> <span>Logout</span> </button>
+                <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()"><ion-icon class="iconc-log-in"></ion-icon> <span>Login</span></button>
             </ion-toolbar>
         </ion-footer>
     </ion-content>

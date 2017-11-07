@@ -1,5 +1,6 @@
 /*============== Color Theme =================*/
 
+@import "../assets/css/custom-icons.css";
 $cp-primary-color:#007066;
 $cp-darker-primary-color:#224946;
 $cp-medium-green-color:#16AB9E;
@@ -302,6 +303,9 @@ ion-spinner {
                     color: #fff;
                 }
             }
+            ion-toolbar {
+                height: 40px;
+            }
         }
     }
 }
@@ -332,7 +336,7 @@ ion-spinner {
         float: left;
         font-size: 14px;
         color: #fff;
-        margin-top: 20px;
+        margin-top: 2px;
         margin-left: 10px;
     }
 }
