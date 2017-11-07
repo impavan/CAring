@@ -21,7 +21,8 @@
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>E-mail</ion-label>
-							<ion-input type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
+							<ion-input *ngIf="!this._existingCustomerData?.customer[0]?.email" type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
+							<ion-label *ngIf="this._existingCustomerData?.customer[0]?.email">{{registerData.email}}</ion-label>
 						</ion-item>
 						<ion-item>
 							<ion-label fixed>Mobile Number</ion-label>
@@ -34,7 +35,7 @@
 					</ion-list>
 				</div>
 				<p class="subTitle1">If you are already a regular member, please enter your account number below.</p>
-				<div class="content">
+				<div *ngIf="this._existingCustomerData?.customer[0]?.firstname" class="content">
 					<ion-list>
 						<ion-item>
 							<ion-label fixed>Account Number</ion-label>
