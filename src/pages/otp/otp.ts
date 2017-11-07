@@ -25,6 +25,11 @@ export class OtpPage {
   otp: string;
   type: string;
   from: any;
+  _existingCustomerData:any = [];
+   MOBILE_VALIDATED = "mobile_validated";
+  YES="Yes";
+  NO="No";
+
 
   constructor(private exceptionProvider: ExceptionHandlerProvider,
     private loaderProvider: LoaderProvider,
@@ -49,6 +54,7 @@ export class OtpPage {
       if (value)
         this.openConnectionModal();
     });
+    this._existingCustomerData = navParams.get('custExistingData');
   }
 
   ionViewDidLoad() {
@@ -81,19 +87,18 @@ export class OtpPage {
       this.userProvider.userOTP(otp, this.phoneNum, this.type).subscribe(data => {
         this.loaderProvider.dismissLoader();
         if (data[0].code == 200) {
-          if (this.from == "registration") {
-            this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from});
-          } else {
-            this.loginOTPSucess(data);
-            // let custom = data[0].customerdata.customer[0].custom_fields;
-            // for (let i = 0; i < custom.field.length; i++) {
-            //   if (custom.field[i].name == 'wifiid') {
-            //     if (custom.field[i].value == "" || custom.field[i].value == null)
-            //       this.navCtrl.push("FreewifiPage");
-            //     else
-            this.navCtrl.setRoot("HomePage");
-            //   }
-            // }
+          if( data[0].customerdata){
+            let custom_data = data[0].customerdata.customer[0].custom_fields.field;
+            let mobile_validated  = custom_data.filter(res=> res.name === this.MOBILE_VALIDATED);
+            if(mobile_validated[0] && mobile_validated[0].value == this.YES){
+              this.loginOTPSucess(data);
+               this.navCtrl.setRoot("HomePage");
+            }
+            else {
+            this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from, custExistingData:this._existingCustomerData});
+          }
+          }else{
+             this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from, custExistingData:this._existingCustomerData});
           }
         } else if (data[0].code == 201) {
           this.clearOTPBox();

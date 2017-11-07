@@ -38,6 +38,7 @@ export class RegistrationPage {
     this.phoneNum = navParams.get('phone');
     this._existingCustomerData = navParams.get('custExistingData');
     this.otp = navParams.get('otp');
+    console.log(this._existingCustomerData);
 
 if(this._existingCustomerData){
     this.registerData = {
@@ -113,18 +114,18 @@ if(this._existingCustomerData){
 
   registerOTPSucess(data) {
     this.loaderProvider.presentLoadingCustom();
-    if(this._existingCustomerData && this._existingCustomerData.customer[0].firstname)
-    this.type = '0';
-    else
-    this.type = '1';
+    // if(this._existingCustomerData && this._existingCustomerData.customer[0].firstname)
+    // this.type = '0';
+    // else
+    // this.type = '1';
    
-    this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
-      this.loaderProvider.dismissLoader();
-      if (data[0].code == 200) {
+    // this.userProvider.userOTP(this.otp, this.phoneNum, this.type).subscribe(data => {
+    
+    
         console.log(this.registerData,'==================register data==================')
-        if(this.type =="0"){
-            this.authProvider.setUser(data[0].customerdata);
-            this.authProvider.setAuthToken(data[0].auth_key);
+        if(this._existingCustomerData){
+            this.authProvider.setUser(this._existingCustomerData.customerdata);
+            this.authProvider.setAuthToken(this._existingCustomerData.customer[0].auth_key);
             this.authProvider.setHeader();
             this.registerData.mobile = data[0].customerdata.customer[0].mobile;
               this.userProvider.updateProfile(this.registerData).subscribe(data=>{
@@ -197,20 +198,12 @@ if(this._existingCustomerData){
         //   this.loginOTPSucess(data);
         //   this.navCtrl.setRoot("HomePage");
         // }
-    }
-       else if (data[0].code == 201) {
-        this.clearOTPBox();
-        this.alertProvider.presentToast(data[0].message);
-      } else if (data[0].code == 202) {
-        this.clearOTPBox();
-        this.alertProvider.presentToast(data[0].message);
-      } else {
-      }
-    }
-  , err => {
-      this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err);
-    });
+  
+  //   }
+  // , err => {
+  //     this.loaderProvider.dismissLoader();
+  //     this.exceptionProvider.excpHandler(err);
+  //   });
     
   }
 
