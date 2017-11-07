@@ -16,7 +16,7 @@ import { AlertProvider } from '../providers/alert/alert';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
-  rootPage: any =  "HomePage";
+  rootPage: any =  this._auth?"HomePage":"LoginPage";
   // isUserLoggedIn:any =this._auth?true:false;
   pages: Array<{ title: string, component: any, index: number }>;
 
@@ -88,5 +88,6 @@ export class MyApp {
     localStorage.removeItem('phoneNum');
     this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
+    this.nav.setRoot("LoginPage");
   }
 }
