@@ -24,6 +24,7 @@ export class MemberPage {
    _auth: any;
    _userName: any;
    _emailId: any;
+   _oldemailId:any;
    _mobileNum: any;
    _profilePic: any;
    _pointOpen:boolean = false;
@@ -32,6 +33,7 @@ export class MemberPage {
   loadedWallet:boolean = false;
   loadedProfile:boolean = false;
   redeemdRewards:any = [];
+  userData:any = {};
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
@@ -90,6 +92,7 @@ export class MemberPage {
   getMyProfileDetails() {
     this._userName = this.authProvider.getUserFirstName();
     this._emailId = this.authProvider.getUserEmailId();
+    this._oldemailId=this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._profilePic = this.authProvider.getUserProfilePic();
     console.log(this._userName);
@@ -150,5 +153,54 @@ export class MemberPage {
 
     this._pointOpen = this._pointOpen?false:true;
 
+  }
+  
+
+  updateProfile(){
+    console.log("");
+    this.userData =
+    {
+      fname:this._userName,
+      email:this._emailId,
+      old_email:this._oldemailId,
+      mobile:this._mobileNum,
+      externalId:''
+    }
+    this.userProvider.updateProfile(this.userData).subscribe(data=>{
+      this.loaderProvider.presentLoadingCustom();
+      if (data[0].code == 200) {
+        this.userProvider.getMyProfile().subscribe(data=>{
+        if(data[0].code == 200){
+          this.loaderProvider.dismissLoader();
+          this._userName=data[0].customerdata.customer[0].firstname;
+          this._emailId=data[0].customerdata.customer[0].email;
+        this.authProvider.setUser(data[0].customerdata);
+        localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+        this.authProvider.setHeader();
+        this.events.publish('user:login', true);
+        
+      }
+        else if (data[0].code == 201) {
+          this.loaderProvider.dismissLoader();
+        this.alertProvider.presentToast(data[0].message);
+      } else if (data[0].code == 202) {
+        this.loaderProvider.dismissLoader();
+        this.alertProvider.presentToast(data[0].message);
+      } else {
+      }
+      },err=>{
+        this.loaderProvider.dismissLoader();
+      this.exceptionProvider.excpHandler(err);
+      })
+      } else if (data[0].code == 201) {
+        this.alertProvider.presentToast(data[0].message);
+      } else if (data[0].code == 202) {
+        this.alertProvider.presentToast(data[0].message);
+      } else {
+      }
+    }, err => {
+      this.loaderProvider.dismissLoader();
+      this.exceptionProvider.excpHandler(err);
+    });
   }
 }
