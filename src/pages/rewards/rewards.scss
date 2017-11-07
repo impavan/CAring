@@ -2,11 +2,57 @@ page-rewards {
   .rewardsContainer {
     .rewardsCards {
       margin: 0 0 30px 0;
-      figure {
+      .title{
+        background: #fff;
+        padding: 10px 20px 0px 20px;
+
+      }
+      .iconc-coins:before {
+        content: "\e90a";
+        font-size: 20px;
+        margin: 0 0px 0 0px;
+        position: relative;
+        top: 3px;
+        color: #999;
+    }
+    .iconc-ticket:before {
+      content: "\e90c";
+      font-size: 20px;
+      margin: 0px 0px 0 0;
+      position: relative;
+      top: 4px;
+      color: #999;
+  }
+  span{
+    color: rgb(130, 144, 200);
+    margin-right: 15px;
+    font-weight: 600;
+  }
+      h4{
+        background: #fff;
         margin: 0;
-        max-height: 110px;
-        overflow: hidden;
-        box-shadow: 0px 3px 7px $cp-extra-lighter-grey-x;
+        padding: 10px 0;
+        border-bottom: 2px solid #444;
+      }
+      article{
+        background: #fff;
+        padding: 10px 10px 0 10px;
+        .grid{
+          padding-bottom: 0;
+        }
+        ion-row.first{
+          border-bottom: 2px solid rgb(198,87,114); 
+          padding-bottom: 13px;
+        }
+      }
+      figure {
+
+          margin: 0;
+          max-height: 120px;
+          overflow: hidden;
+          -webkit-box-shadow: 0px 3px 7px #bbb;
+          box-shadow: none;
+      
       }
       h6 {
         font-weight: 600;
@@ -34,6 +80,9 @@ page-rewards {
       }
       .content {
         margin: 7px 0 0 0;
+        h6{
+          margin-top: 0;
+        }
       }
       .beforeLogin {
         padding: 0px;

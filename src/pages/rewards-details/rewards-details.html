@@ -28,25 +28,28 @@
 
 <ion-content>
 	<div class="rewardsDetailsContainer">
-		<figure>
+		<figure class="fixedImage">
 			<!--{{IMG_URL}}/-->
-			<img src="{{offerdata?.Images[0]}}" style="width:100%" />
+			<img src="{{offerdata?.MasterCreativePath}}"/>
+
 		</figure>
-		<div class="content">
+		<div class="content p0">
+			<article>
+			<h1>Voucher</h1>
 			<!-- <h5>Voucher<small>Expired date: 23 Oct 2017  </small></h5> -->
-			<p>{{offerdata?.Description}}</p>
+			<p [innerHTML]="offerdata?.Description"></p>
 			<!-- <ol>
 				<li>Voucher can be redeemed with purchase of RM50 in single receipt</li>
 				<li>This voucher can only be used ONCE.</li>
 				<li>This voucher cannot be combined</li>
 			</ol> -->
 			<hr/>
-			<p class="text-center redemptionPoints">Redemption Points: {{offerdata?.BrandPointRedeemValue}}</p>
+			<p class="text-center redemptionPoints">Redemption Points : {{offerdata?.BrandPointRedeemValue}}</p>
 			<div class="redeemPoints">
 				<ion-grid>
 					<ion-row>
 						<ion-col col-9>
-							<p>Current Points:</p>
+							<p>Current Points :</p>
 						</ion-col>
 						<ion-col col-3 class="text-right">
 							<p>{{_currentPoint}}</p>
@@ -54,7 +57,7 @@
 					</ion-row>
 					<ion-row>
 						<ion-col col-9>
-							<p class="alert">Point Balance after Redemption:</p>
+							<p class="alert">Point Balance after Redemption :</p>
 						</ion-col>
 						<ion-col col-3 class="text-right">
 							<p class="alert" *ngIf="remainder >= 0">{{remainder}}</p>
@@ -62,8 +65,10 @@
 						</ion-col>
 					</ion-row>
 				</ion-grid>
-			</div>
-			<button ion-button class="btn4" (click)="navToPurchaseRewards()" [disabled]="!flag">Purchase Now</button>
+			</div>	
+			<div class="pb15"></div>
+		</article>
+			<button ion-button class="btn4" (click)="navToPurchaseRewards()" [disabled]="!flag">redeem Now</button>
 		</div>
 	</div>
 </ion-content>
