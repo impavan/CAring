@@ -5,7 +5,8 @@
                 <!--<div class="img">
                     <img src="http://rootaccez.com/assets/team/ravi.jpg" alt="">
                 </div>-->
-                <span>Hello, Amanda Tan Yee Ting</span>
+                <span *ngIf="!_auth">Hello</span>
+                <span *ngIf="_auth">>Hello, {{userName }}</span>
             </div>
 
         </ion-toolbar>

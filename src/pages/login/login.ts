@@ -18,10 +18,7 @@ export class LoginPage {
   phoneNum: string;
   navigation: string;
   mobilevalidated: any;
-  MOBILE_VALIDATED = "mobile_validated";
-  YES="Yes";
-  NO="No";
-
+ 
   constructor(private exceptionProvider: ExceptionHandlerProvider,
     private userProvider: UserdataProvider,
     private loaderProvider: LoaderProvider,
@@ -69,17 +66,12 @@ export class LoginPage {
       this.userProvider.userLogin(this.phoneNum)
         .subscribe(data => {
           if (data[0].code == 200 ) {
-            
-            let custom_data = data[0].customerdata.customer[0].custom_fields.field;
-            let mobile_validated  = custom_data.filter(res=> res.name === this.MOBILE_VALIDATED);
-            if(mobile_validated[0] && mobile_validated[0].value == this.YES)
+            if(!data[0].customerdata)
             this.navCtrl.push("OtpPage", { from: 'login', phone: this.phoneNum });
             else
-            this.navCtrl.push("RegistrationPage", { from: 'registration', phone: this.phoneNum, "custExistingData":data[0].customerdata});
+            this.navCtrl.push("OtpPage", { from: 'registrationData', phone: this.phoneNum, "custExistingData":data[0].customerdata});
           } else if (data[0].code == 202) {
-            this.navCtrl.push("RegistrationPage", { from: 'registration', phone: this.phoneNum });
-          } else {
-            this.alertProvider.presentToast("Something went wrong. Please try after some time.");
+            this.navCtrl.push("OtpPage", { from: 'registration', phone: this.phoneNum });
           }
         }, err => {
           this.loaderProvider.dismissLoader();
@@ -90,7 +82,7 @@ export class LoginPage {
 
   //skipLogin
   skipLogin() {
-    this.navCtrl.push("TabsPage");
+    this.navCtrl.setRoot("HomePage");
   }
 
   openConnectionModal() {
