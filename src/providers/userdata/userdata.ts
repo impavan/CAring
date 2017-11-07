@@ -83,7 +83,7 @@ export class UserdataProvider {
     let data = {
       first_name:userdata.fname,
       email:userdata.email,
-      old_email:userdata.email,
+      old_email:userdata.old_email?userdata.old_email:userdata.email,
       mobile:userdata.mobile,
       BrandURLID:BRAND_ID,
       externalId:userdata.externalId,

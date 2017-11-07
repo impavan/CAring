@@ -51,6 +51,7 @@ if(this._existingCustomerData){
    this.registerData = {
       fname:'',
       email:'',
+      old_email:'',
       mobile: this.phoneNum,
       externalId:'',
       profilePic:''

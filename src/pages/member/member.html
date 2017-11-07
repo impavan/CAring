@@ -197,7 +197,7 @@
 								</ion-item>
 								<ion-item>
 									<ion-label fixed>E-mail</ion-label>
-									<ion-input type="text"   [(ngModel)] = "_emailId" placeholder="Enter E-mail"></ion-input>
+									<ion-input type="text" readonly  [(ngModel)] = "_emailId" placeholder="Enter E-mail"></ion-input>
 								</ion-item>
 								<ion-item>
 									<ion-label fixed>Mobile Number</ion-label>
@@ -210,7 +210,7 @@
 							</ion-list>
 						</div>
 						<div class="mt20">
-							<button ion-button class="btn4" (click)=" updateData()">Update</button>
+							<button ion-button class="btn4" (click)=" updateProfile()">Update</button>
 						</div>
 					</div>
 					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
