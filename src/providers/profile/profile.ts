@@ -62,5 +62,6 @@ export class ProfileProvider {
     //     this.appRate.navigateToAppStore();
     // }
 
+
     
 }
