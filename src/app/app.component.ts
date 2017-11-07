@@ -17,7 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
   rootPage: any =  this._auth?"HomePage":"LoginPage";
-  userName:any="";
+  _userName:any="";
   // isUserLoggedIn:any =this._auth?true:false;
   pages: Array<{ title: string, component: any, index: number, icon:string }>;
 
@@ -51,9 +51,7 @@ export class MyApp {
          let customerData = localStorage.getItem('userdetails');
          let data = JSON.parse(customerData);
          this.authProvider.setUser(data);
-         this.userName = this.authProvider.getUserFirstName();
-         console.log(data);
-         console.log( this.userName);
+         this.getUserDetails();
 
 
       
@@ -87,6 +85,11 @@ export class MyApp {
           if(canEnter==false)
           this.events.publish('login', false);
     })
+  }
+
+   getUserDetails() {
+    this._userName = this.authProvider.getUserFirstName();
+    
   }
 
   gotoLogin()
