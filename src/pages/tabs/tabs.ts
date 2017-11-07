@@ -1,5 +1,5 @@
-import { Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, Tabs} from 'ionic-angular';
+import { Component, ViewChild,} from '@angular/core';
+import { IonicPage, NavController, NavParams, Tabs,Events} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
@@ -9,13 +9,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class TabsPage {
 
-// @ViewChild('myTabs')tabs:Tabs;
+ @ViewChild('login')LoginModal;
   index:number;
-  tab1Root = "HomePage";
-  tab2Root = "StoreLocatorPage";
-  tab3Root = "RewardsPage";
-  tab4Root = "MemberPage";
-  tab5Root = "ECartPage";
+
    
     
 
@@ -24,12 +20,8 @@ export class TabsPage {
   isClicked:boolean=false;
   constructor(public navCtrl: NavController, 
               private navParams:NavParams,
-              private inAppBrowser:InAppBrowser) {
-
-                
-
-
-      
+              private inAppBrowser:InAppBrowser,
+              private events:Events) { 
   }
 
   ionViewDidLoad() {
@@ -52,7 +44,11 @@ export class TabsPage {
 
   goto(page,event:any) {
     this.isClicked = true;
-    this.navCtrl.setRoot(page);
+    this.navCtrl.setRoot(page).then(canEnter=>{
+      console.log(canEnter);
+      if(canEnter == false)
+      this.events.publish('login', false);
+    })
     console.log(page);
     console.log(event);
 
@@ -64,6 +60,7 @@ export class TabsPage {
     this.navCtrl.push(page.component);
   }
 
+ 
 
   gotoEcart(){
     

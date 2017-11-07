@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides, IonicPage } from 'ionic-angular';
+import { NavController, Slides, IonicPage, Events } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -10,7 +10,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   templateUrl: 'homepage.html',
 })
 export class HomePage {
-
+  @ViewChild('login')LoginModal;
   @ViewChild(Slides) slides: Slides;
   pages: Array<{ title: string, component: any }>;
   isSlidesLoaded:boolean = false;
@@ -21,7 +21,12 @@ export class HomePage {
   constructor(public navCtrl: NavController, 
               private hapenningsProvider:HapenningsProvider,
               private loaderProvider:LoaderProvider, 
-              private inAppBrowser:InAppBrowser) {
+              private inAppBrowser:InAppBrowser,
+              private events:Events ) {
+
+                this.events.subscribe('login', data=>{
+                  this.openLoginModal();
+                })
                 
   }
 
@@ -58,8 +63,22 @@ export class HomePage {
  
 
   goto(page: string) {
-    this.navCtrl.setRoot(page);
+     this.navCtrl.setRoot(page).then((canEnter)=>{
+        if(canEnter==false)
+        this.openLoginModal();
+     });
   }
+
+   openLoginModal(){
+    this.LoginModal.open();
+  }
+
+   closeLoginModal(){
+    this.LoginModal.close();
+  }
+
+
+
 
   gotoLink(bannerdata){
 

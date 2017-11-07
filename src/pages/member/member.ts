@@ -155,6 +155,14 @@ export class MemberPage {
 
   }
 
+  ionViewCanEnter(){
+   
+    if(this.authProvider.getAuthToken())
+      return true;
+      return false;
+    
+  }
+
 
 
   updateData() {
