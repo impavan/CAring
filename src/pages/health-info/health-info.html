@@ -1,57 +1,59 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <div class="customHeader">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10 class="text-center">
-              <ion-title>
-                <div class="logo">
-                    <img src="assets/img/caring_logo_white.png" />
-                  </div>
-              </ion-title>
-          </ion-col>
-          <ion-col col-2 class="text-center">
-            <div class="notification">
-              <i class="count">2</i>
-              <img src="assets/img/chat.svg" />
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-navbar>
+        <div class="customHeader">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10 class="text-center">
+                        <ion-title>
+                            <div class="logo">
+                                <img src="assets/img/caring_logo_white.png" />
+                            </div>
+                        </ion-title>
+                    </ion-col>
+                    <ion-col col-2 class="text-center">
+                        <div class="notification">
+                            <i class="count">2</i>
+                            <img src="assets/img/chat.svg" />
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content>
-  <div class="healthInfoContainer">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-7>
-          <h3>Health Information</h3>
-        </ion-col>
-        <ion-col col-5>
-          <button ion-button class="btn2 wp" (click)="navToHealthSubscribe()">Caring News Subscribe now</button>
-        </ion-col>
-      </ion-row>
-         <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
-        <ion-card>
-          <figure>
-            <img src="{{health?.thumbnailimage}}"/>
-          </figure>
-        </ion-card>
-        <p class="healthInfo">{{health?.title}}</p>
-      </div>
-    </ion-grid>
-  </div>
+    <div class="healthInfoContainer">
+        <ion-grid>
+            <ion-row>
+                <ion-col col>
+                    <h3 class="headerwithline"><label>Health Information</label>
+                        <a (click)="navToHealthSubscribe()" ion-button class="btn2"><img src="assets/img/healthinfo_brochure.png" alt=""></a>
+                    </h3>
+                </ion-col>
+                <!--<ion-col col-5>
+                    <button ion-button class="btn2 wp" (click)="navToHealthSubscribe()">Caring News Subscribe now</button>
+                </ion-col>-->
+            </ion-row>
+            <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
+                <ion-card>
+                    <figure>
+                        <img src="{{health?.thumbnailimage}}" />
+                    </figure>
+                </ion-card>
+                <p class="healthInfo">{{health?.title}}</p>
+            </div>
+        </ion-grid>
+    </div>
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
