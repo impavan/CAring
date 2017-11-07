@@ -4,45 +4,46 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <div>
   <header></header>
 </div>
 
 
+
 <ion-content padding>
-	<div class="healthSubscribeContainer">
-		<h5>CARING News: <br/>E - Newsletter Subscription </h5>
-		<p class="subTitle1">Read our latest issue of E - Newsletter , FREE for you</p>
-		<!--<p>Slider goes here...</p>-->
-<ion-slides zoom="true">
-  <ion-slide>
-    <div class="swiper-zoom-container">
-      <img src="assets/img/health1.jpg" >
+    <div class="healthSubscribeContainer">
+        <h5>CARING News <br/>E-Newsletter Subscription </h5>
+        <p class="subTitle1">Read our latest issue of E-Newsletter, <b>FREE</b> for you</p>
+        <!--<p>Slider goes here...</p>-->
+        <ion-slides zoom="true">
+            <ion-slide>
+                <div class="swiper-zoom-container">
+                    <img src="assets/img/health1.jpg">
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="swiper-zoom-container">
+                    <img src="assets/img/health2.jpg">
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="swiper-zoom-container">
+                    <img src="assets/img/health3.jpg">
+                </div>
+            </ion-slide>
+        </ion-slides>
+        <p class="subTitle1">Subscribe to our Newsletter and receive the latest edition of Caring News right into your inbox </p>
+        <a href="{{_newsSubscriptionLink}}" ion-button class="btn4">SUBSCRIBE NOW</a>
+        <p class="subTitle1">You will be redirected to our website to complete your subscription</p>
     </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="swiper-zoom-container">
-      <img src="assets/img/health2.jpg">
-    </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="swiper-zoom-container">
-      <img src="assets/img/health3.jpg">
-    </div>
-  </ion-slide>
-</ion-slides>
-		<p class="subTitle1">Subscribe to our Newsletter and receive the latest edition of Caring News right into your inbox </p>
-		<a href="{{_newsSubscriptionLink}}" ion-button class="btn4">Continue</a>
-		<p class="subTitle1">You will be redirected to our website to complete your subscription</p>
-	</div>
-	
+
 
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
-
