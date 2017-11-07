@@ -29,10 +29,13 @@ page-homepage {
         padding: 10px;
     }
     .homeContainer{
-        background:url('../assets/img/hand_bg.png') no-repeat;
-        background-position: 10px 0px;
-        margin: 10px 0 0 0;
-        padding: 18px 0 0 0;
+        
+        
+        margin: 0px 0 0 0;
+        padding: 0px 0 0 0;
+        [col-6]{
+            padding-bottom:2px; 
+        }
         .card-md, .card-ios{
             background: $cp-medium-green-color;
             height:90px;
