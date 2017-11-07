@@ -71,7 +71,8 @@
 								<ion-icon *ngIf="_pointOpen" name="arrow-dropup"></ion-icon>
  							 </ion-card-header>
 							  <ion-card-content *ngIf="_pointOpen">
-								  <ion-item>
+								  <ion-list *ngFor="let transaction of _transactionList">
+								  <ion-item *ngIf="transaction?.transaction_earning=='false'">
 									  <p>
 									  <span>Point Balance :</span>
 									  <span>9361</span>
@@ -81,12 +82,13 @@
 									  <span>400</span>
 									  </p>
 								  </ion-item>
-								  <ion-item>
+								  <ion-item *ngIf="transaction?.transaction_earning=='true'">
 									 <p>Reciept No</p> 
 									 <p>Date</p>
 									 <p>Receipt Amount</p>
 									 <p><span>+200 Points</span></p>
 								  </ion-item>
+								  </ion-list>
 							</ion-card-content>
 						</ion-card>
 					</section>
@@ -119,8 +121,8 @@
 					<ion-list *ngSwitchCase="'New'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemdRewards">
-									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate <= currentDate">
+								<ion-grid *ngFor="let reward of redeemedRewards">
+									<!--<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate < currentDate">-->
 										<ion-row class="customRow">
 											<ion-col col-7>
 												<figure>
@@ -129,10 +131,10 @@
 											</ion-col>
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
-												<p class="alert subContent">Exchange Point: {{reward.VoucherCost}}</p>
+												<p class="alert subContent">{{reward.Description}}</p>
 											</ion-col>
 										</ion-row>
-									</div>
+									<!--</div>-->
 								</ion-grid>
 							</ion-card>
 						</div>
@@ -141,17 +143,17 @@
 					<ion-list *ngSwitchCase="'Used'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemdRewards">
+								<ion-grid *ngFor="let reward of redeemedRewards">
 									<div class="content" *ngIf="reward.ActivateStatus == 1">
 										<ion-row class="customRow">
 											<ion-col col-7>
 												<figure>
-													<img src="assets/img/h2.jpg" />
+													<img src="{{reward.MasterCreativePath}}" />
 												</figure>
 											</ion-col>
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
-												<p class="alert subContent">Exchange Point: {{reward.VoucherCost}}</p>
+												<p class="alert subContent">{{reward.Description}}</p>
 											</ion-col>
 										</ion-row>
 									</div>
@@ -163,17 +165,17 @@
 					<ion-list *ngSwitchCase="'Expired'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemdRewards">
+								<ion-grid *ngFor="let reward of redeemedRewards">
 									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate > currentDate">
 										<ion-row class="customRow">
 											<ion-col col-7>
 												<figure>
-													<img src="assets/img/h2.jpg" />
+													<img src="{{reward.MasterCreativePath}}" />
 												</figure>
 											</ion-col>
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
-												<p class="alert subContent">Exchange Point: {{reward.VoucherCost}}</p>
+												<p class="alert subContent"> {{reward.Description}}</p>
 											</ion-col>
 										</ion-row>
 									</div>

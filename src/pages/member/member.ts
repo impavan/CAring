@@ -32,8 +32,12 @@ export class MemberPage {
   _totalRedeemedPoints: number;
   loadedWallet:boolean = false;
   loadedProfile:boolean = false;
+  redeemedRewards:any = [];
+  _transactionList:any = [];
+
   redeemdRewards:any = [];
   userData:any = {};
+
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
@@ -72,13 +76,14 @@ export class MemberPage {
   loadMyPoints() {
     if (this._auth) {
       this.getMyPoints();
+      this.getUserTransaction();
     }else{
       this.loaderProvider.dismissLoader();
     }
   }
 
   loadMyWallet(){
-    if(this._auth && !this.loadedWallet)
+    if(this._auth)
 
         this.getRedeemedVouchers();
 
@@ -106,7 +111,7 @@ export class MemberPage {
       if (data[0].code == 200) {
         this.authProvider.setUser(data[0].customerdata);
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-          this.loaderProvider.dismissLoader();
+        this.loaderProvider.dismissLoader();
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
         this.loadedProfile = true;
@@ -121,23 +126,36 @@ export class MemberPage {
 
 
   getRedeemedVouchers(){
-
+      this.loaderProvider.presentLoadingCustom();
         this.profileProvider.getAllRedeemedVouchers()
-
               .subscribe(res => {
-
-                  console.log(res);
-                  this.redeemdRewards = res[0].customer_vouchers;
-                  this.loadedWallet = true;
-
+                  this.redeemedRewards = res[0].customer_vouchers;
+                  console.log(this.redeemedRewards);
+                  // this.loadedWallet = true;
+                  this.loaderProvider.dismissLoader();
               },
 
                err => {
-
+                 this.loaderProvider.dismissLoader();
                 this.exceptionProvider.excpHandler(err);
              });
 
   }
+
+  getUserTransaction(){
+
+      this.profileProvider.getUserTransaction()
+            
+            .subscribe(data=>{
+
+                  this._transactionList = data[0].customer_transaction_info;
+                  console.log(this._transactionList);
+
+          })
+
+  }
+
+
 
   updateData() {
     this.navCtrl.push("MyAccountPage");
