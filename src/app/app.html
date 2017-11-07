@@ -1,6 +1,6 @@
 <ion-menu [content]="content" id="leftMenu">
     <ion-header>
-        <ion-toolbar color="cp-medium-green-color">
+        <ion-toolbar color="menu-header">
             <div class="thumbnail">
                 <div class="img">
                     <img src="http://rootaccez.com/assets/team/ravi.jpg" alt="">
@@ -18,9 +18,9 @@
             </button>
         </ion-list>
         <ion-footer>
-            <ion-toolbar color="cp-primary-color">
-                <button color="cp-primary-color" *ngIf="_auth" menuClose ion-item (click)="logout()"><ion-icon name="add-circle"></ion-icon> <span>Logout</span> </button>
-                <button *ngIf="!_auth" color="cp-primary-color" menuClose ion-item (click)="gotoLogin()"><ion-icon name="add-circle"></ion-icon> <span>Login</span></button>
+            <ion-toolbar color="menu-footer">
+                <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()"><ion-icon name="add-circle"></ion-icon> <span>Logout</span> </button>
+                <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()"><ion-icon name="add-circle"></ion-icon> <span>Login</span></button>
             </ion-toolbar>
         </ion-footer>
     </ion-content>
