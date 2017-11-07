@@ -1,21 +1,35 @@
-<ion-row>
-  <ion-col col-3 class="text-center" clickable (click)="goto('HomePage')">
-    <ion-icon name="home"></ion-icon>
-    <button ion-button></button>
-  </ion-col>
-  <ion-col col-3 class="text-center">
-    <button *ngIf="!isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIcon"></button>
-    <button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>
-  </ion-col>
-    <ion-col col-3 class="text-center">
-    <button ion-button [ngClass]="{'giftIcon':!isClicked,'giftIconChanged':isClicked}" (click)="goto('RewardsPage')"></button>
-  </ion-col>
-    <ion-col col-3 class="text-center">
-    <button ion-button [ngClass]="{'idCardIcon':!isClicked,'idCardIconChanged':isClicked}" (click)="goto('MemberPage')"></button>
-  </ion-col>
-    <ion-col col-3 class="text-center">
-    <button ion-button class="cartIcon" (click)="gotoEcart()"></button>
-  </ion-col>
+<ion-row class="tabsMenu">
+    <ion-col col class="text-center">
+        <button ion-button (click)="goto('HomePage')" class="active">
+          <ion-icon class="iconc-home"></ion-icon>
+          <label>Home</label>
+        </button>
+    </ion-col>
+    <ion-col col class="text-center">
+        <button ion-button (click)="goto('StoreLocatorPage')">
+          <ion-icon class="iconc-map"></ion-icon>
+          <label>Location</label>
+        </button>
+        <!--<button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>-->
+    </ion-col>
+    <ion-col col class="text-center">
+        <button ion-button (click)="goto('RewardsPage')">
+            <ion-icon class="iconc-gift"></ion-icon>
+            <label>Rewards</label>
+        </button>
+    </ion-col>
+    <ion-col col class="text-center">
+        <button ion-button (click)="goto('MemberPage')">
+          <ion-icon class="iconc-id-card"></ion-icon>
+          <label>Member</label>
+        </button>
+    </ion-col>
+    <ion-col col class="text-center">
+        <button ion-button (click)="gotoEcart()">
+          <ion-icon class="iconc-cart"></ion-icon>
+          <label>eStore</label>
+        </button>
+    </ion-col>
 </ion-row>
 
 
@@ -38,5 +52,3 @@
   <ion-tab [root]="tab4Root" tabTitle="Member"  tabIcon="md-home"></ion-tab>
   <ion-tab [root]="tab5Root" tabTitle="E-Cart"  tabIcon="md-home"></ion-tab>
 </ion-tabs>-->
-   
-

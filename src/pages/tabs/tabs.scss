@@ -1,42 +1,71 @@
 page-tabs {
-	.placeholderIcon{
-		background:url('../assets/img/placeholder.svg') no-repeat;
-		width: 25px;
-    	height: 25px;
-	}
-	.placeholderIconChanged{
-		background:url('../assets/img/location.png') no-repeat;
-		width: 25px;
-    	height: 25px;
-	}
-	.giftIcon{
-		background:url('../assets/img/gift.svg') no-repeat;
-		width: 25px;
-    	height: 26px;
-	}
-	.giftIconChanged{
-		background:url('../assets/img/rewards.png') no-repeat;
-		width: 25px;
-    	height: 26px;
-	}
-	.idCardIcon{
-		background:url('../assets/img/id_card.svg') no-repeat;
-		width: 28px;
-    	height: 28px;
-	}
-	.idCardIconChanged{
-		background:url('../assets/img/member.png') no-repeat;
-		width: 28px;
-    	height: 28px;
-	}
-	.cartIcon{
-		background:url('../assets/img/cart.svg') no-repeat;
-		width: 29px;
-    	height: 27px;
-	}
-	.cartIconChanged{
-		background:url('../assets/img/e-cart.png') no-repeat;
-		width: 29px;
-    	height: 27px;
-	}
+    .tabsMenu {
+        button {
+            text-align: center;
+            span {
+                display: inline-block !important;
+            }
+            ion-icon {
+                color: #333;
+                font-size: 24px;
+                display: block;
+            }
+            label {
+                display: block;
+                font-size: 12px;
+                line-height: 20px;
+                color: #333;
+                text-transform: capitalize;
+                font-weight: normal;
+            }
+            &.active {
+                ion-icon {
+                    color: #096F67;
+                }
+                label {
+                    color: #096F67;
+                }
+            }
+        }
+    }
+    .placeholderIcon {
+        background: url('../assets/img/placeholder.svg') no-repeat;
+        width: 25px;
+        height: 25px;
+    }
+    .placeholderIconChanged {
+        background: url('../assets/img/location.png') no-repeat;
+        width: 25px;
+        height: 25px;
+    }
+    .giftIcon {
+        background: url('../assets/img/gift.svg') no-repeat;
+        width: 25px;
+        height: 26px;
+    }
+    .giftIconChanged {
+        background: url('../assets/img/rewards.png') no-repeat;
+        width: 25px;
+        height: 26px;
+    }
+    .idCardIcon {
+        background: url('../assets/img/id_card.svg') no-repeat;
+        width: 28px;
+        height: 28px;
+    }
+    .idCardIconChanged {
+        background: url('../assets/img/member.png') no-repeat;
+        width: 28px;
+        height: 28px;
+    }
+    .cartIcon {
+        background: url('../assets/img/cart.svg') no-repeat;
+        width: 29px;
+        height: 27px;
+    }
+    .cartIconChanged {
+        background: url('../assets/img/e-cart.png') no-repeat;
+        width: 29px;
+        height: 27px;
+    }
 }

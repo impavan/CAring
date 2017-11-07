@@ -1,10 +1,10 @@
 /*============== Color Theme =================*/
 
 @import "../assets/css/custom-icons.css";
-$cp-primary-color:#007066;
+$cp-primary-color:#f3f3f3; //007066
 $cp-darker-primary-color:#224946;
 $cp-medium-green-color:#16AB9E;
-$cp-white-color:#fff;
+$cp-white-color:rgba(0, 0, 0, 0.50);
 $cp-black-color:#000;
 $cp-lighter-grey:#f1f1f1;
 $cp-extra-lighter-grey:#f5f5f5;
@@ -185,18 +185,21 @@ ion-footer {
     .notification {
         position: relative;
         margin: 7px 0 0 0;
-        .count {
-            position: absolute;
-            padding: 2px 6px;
-            background: $cp-white-color;
-            color: $cp-primary-color;
-            top: -9px;
-            right: 0px;
-            font-style: normal;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 13px;
+        // .count {
+        //     position: absolute;
+        //     padding: 2px 6px;
+        //     background: $cp-white-color;
+        //     color: $cp-primary-color;
+        //     top: -17px;
+        //     right: 0px;
+        //     font-style: normal;
+        //     border-radius: 50%;
+        //     width: 20px;
+        //     height: 20px;
+        //     font-size: 12px;
+        // }
+        span {
+            font-size: 20px;
         }
     }
 }
@@ -292,6 +295,8 @@ ion-spinner {
     }
     ion-content {
         ion-footer {
+            height: 40px;
+            min-height: 40px;
             button {
                 .item-inner {
                     border: none !important;
@@ -303,7 +308,12 @@ ion-spinner {
                     color: #fff;
                 }
             }
-            ion-toolbar {
+            ion-toolbar.toolbar-md {
+                height: 40px;
+                min-height: 40px;
+            }
+            ion-toolbar.toolbar-ios {
+                min-height: 40px;
                 height: 40px;
             }
         }
