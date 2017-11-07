@@ -1,12 +1,22 @@
 page-rewards-details {
 	.rewardsDetailsContainer{
+		background: #fff;
 		figure{
 			margin:0;
 			max-height: 150px;
-    		overflow: hidden;
+			overflow: hidden;
+			
 		}
 		.content{
 			padding:15px;
+			article{
+				background: #eee;
+				padding: 0px 15px 0px 15px;
+				h1{
+					padding: 15px 0 0 0;
+					margin-top: 20px;
+				}
+			}
 			h5{
 				margin:0;
 				small{
@@ -20,18 +30,43 @@ page-rewards-details {
 				padding:0;
 			}
 			.redemptionPoints{
-				color:$cp-extra-darker-grey-x;
-				font-weight:600;
+				color:#000;
+				font-weight:bold;
 				font-size: 15px;
 			}
 			.redeemPoints{
-				padding:10px;
-				margin: 0 0 30px 0;
-				background:$cp-extra-lighter-grey-xx;
+				padding:10px ;
+				//margin: 0 0 30px 0;
+				background: #ccc;;
 				p{
 					margin:0;
 				}
 			}
 		}
+	}
+	.fixedImage{
+		max-height: 180px;
+	}
+	.fixedImage img{
+		width:95%;
+		display: block;
+		margin:auto;
+		padding: 20px;
+	}
+	.p0{
+		padding:0 !important;
+	}
+	.pb15{
+		padding-bottom: 15px !important;
+	}
+	.btn4{
+		width: 80%;
+		margin: 20px auto;
+		display: block;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 18px;
+		border-radius: 0;
+		background: rgb(198,87,114); 
 	}
 }

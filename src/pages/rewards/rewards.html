@@ -6,20 +6,29 @@
 <ion-content>
   <div class="rewardsContainer">
     <div class="rewardsCards">
+      <article class="title">
+       <h4>Rewards / Voucher</h4>
+     </article>
       <!-- Section to be displayed when there is data. -->
       <div *ngIf="offerdata.length >= 1">
         <div *ngFor="let offer of offerdata">
-        <ion-card *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
+        <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
+          <ion-grid>
+            <ion-row class="first">
+              <ion-col col-5>
           <figure>
             <img *ngIf="offer?.Images[0]" src="{{offer?.Images[0]}}" />
               <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" />
           </figure>
+        </ion-col>
+        <ion-col col-7>
           <div class="content">
             <ion-grid>
               <ion-row>
-                <ion-col col-6>
+                <ion-col col-12>
                   <h6>{{offer?.Title}}</h6>
-                  <span>{{offer?.BrandPointRedeemValue}} points</span>
+                  <span class="iconc-coins"> {{offer?.BrandPointRedeemValue}} </span>
+                  <span class="iconc-ticket"> 1 </span>
                   <!--<ul class="voucherPrice">
                     <li>
                       <span></span>
@@ -35,7 +44,10 @@
               </ion-row>
             </ion-grid>
           </div>
-        </ion-card>
+          </ion-col>
+          </ion-row>
+          </ion-grid>
+        </article>
         </div>
       </div>
       <!-- Section to be displayed when there is no data to display. -->

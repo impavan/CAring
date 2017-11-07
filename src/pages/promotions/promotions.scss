@@ -1,45 +1,67 @@
 page-promotions {
-	.promotionsContainer{
-		margin: 10px 0 0 0;
-		h3{
-			margin:5px 0 0 0;
-			color:$cp-extra-darker-grey;
-			font-weight: 600;
-		}
-		.card-md, .card-ios{
-		    margin: 5px;
-		    border-radius: 5px;
-		    width: calc(100% - 15px);
-			figure{
-				margin: 0;
-			    height: 100px;
-			    overflow: hidden;
-			}
-			.card-content-md, .card-content-ios {
-    			padding: 10px;
-				.card-title{
-					font-weight: 600;
-	    			margin:0 0 5px 0;
-	    			line-height: normal;
-				}
-				p{
-					margin:0 0 8px 0;
-					line-height: normal;
-					color:$cp-extra-darker-grey;
-				}
-				.button-md, .button-ios{
-					background-color: $cp-primary-color;
-					height: auto;
-				    margin: 0;
-				    width: 100%;
-				    font-size: 14px;
-				    padding: 5px 0;
-				    box-shadow: none;
-				    text-transform: capitalize;
-				    font-weight: normal;
-				    border-radius: 5px;
-				}
-			}
-		}
-	}
+    .promotionsContainer {
+        margin: 10px 0 0 0;
+        h3 {
+            margin: 5px 0 0 0;
+            color: $cp-extra-darker-grey;
+            font-weight: 600;
+        }
+        .headerwithline {
+            border-bottom: 1px solid #666;
+            display: inline-block;
+            width: 100%;
+            label {
+                float: left;
+                line-height: 48px;
+                font-size: 18px;
+            }
+            a {
+                float: right;
+                width: 140px;
+                padding: 0;
+                margin: 0;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+        .card-md,
+        .card-ios {
+            margin: 5px;
+            border-radius: 5px;
+            width: calc(100% - 15px);
+            figure {
+                margin: 0;
+                height: 100px;
+                overflow: hidden;
+            }
+            .card-content-md,
+            .card-content-ios {
+                padding: 10px;
+                .card-title {
+                    font-weight: 600;
+                    margin: 0 0 5px 0;
+                    line-height: normal;
+                }
+                p {
+                    margin: 0 0 8px 0;
+                    line-height: normal;
+                    color: $cp-extra-darker-grey;
+                }
+                .button-md,
+                .button-ios {
+                    background-color: $cp-primary-color;
+                    height: auto;
+                    margin: 0;
+                    width: 100%;
+                    font-size: 14px;
+                    padding: 5px 0;
+                    box-shadow: none;
+                    text-transform: capitalize;
+                    font-weight: normal;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
 }

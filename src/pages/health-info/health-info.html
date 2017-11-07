@@ -1,33 +1,36 @@
+
 <div>
   <header></header>
 </div>
 
 <ion-content>
-  <div class="healthInfoContainer">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-7>
-          <h3>Health Information</h3>
-        </ion-col>
-        <ion-col col-5>
-          <button ion-button class="btn2 wp" (click)="navToHealthSubscribe()">Caring News Subscribe now</button>
-        </ion-col>
-      </ion-row>
-         <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
-        <ion-card>
-          <figure>
-            <img src="{{health?.thumbnailimage}}"/>
-          </figure>
-        </ion-card>
-        <p class="healthInfo">{{health?.title}}</p>
-      </div>
-    </ion-grid>
-  </div>
+    <div class="healthInfoContainer">
+        <ion-grid>
+            <ion-row>
+                <ion-col col>
+                    <h3 class="headerwithline"><label>Health Information</label>
+                        <a (click)="navToHealthSubscribe()" ion-button class="btn2"><img src="assets/img/healthinfo_brochure.png" alt=""></a>
+                    </h3>
+                </ion-col>
+                <!--<ion-col col-5>
+                    <button ion-button class="btn2 wp" (click)="navToHealthSubscribe()">Caring News Subscribe now</button>
+                </ion-col>-->
+            </ion-row>
+            <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
+                <ion-card>
+                    <figure>
+                        <img src="{{health?.thumbnailimage}}" />
+                    </figure>
+                </ion-card>
+                <p class="healthInfo">{{health?.title}}</p>
+            </div>
+        </ion-grid>
+    </div>
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
