@@ -1,16 +1,16 @@
 <ion-row class="tabsMenu">
-    <ion-col col class="text-center">
-        <button ion-button (click)="goto('HomePage')">
-          <ion-icon  class="iconc-home"></ion-icon>
-          <label>Home</label>
+    <ion-col col class="text-center" *ngFor="let tab of myTabs">
+        <button ion-button  [class.active]="checkActive(tab)" (click)="goto(tab)">
+          <ion-icon  class="{{tab.icon}}"></ion-icon>
+          <label>{{tab.label}}</label>
         </button>
     </ion-col>
-    <ion-col col class="text-center">
-        <button ion-button (click)="goto('StoreLocatorPage')" [class.active]="activetab">
+    <!--<ion-col col class="text-center">
+        <button ion-button (click)="goto('StoreLocatorPage')">
           <ion-icon  class="iconc-map"></ion-icon>
           <label>Location</label>
         </button>
-        <!--<button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>-->
+        <button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>
     </ion-col>
     <ion-col col class="text-center">
         <button ion-button (click)="goto('RewardsPage')">
@@ -25,11 +25,11 @@
         </button>
     </ion-col>
     <ion-col col class="text-center">
-        <button ion-button (click)="gotoEcart()">
+        <button ion-button (click)="gotoEcart('ECartPage')">
           <ion-icon class="iconc-cart"></ion-icon>
           <label>eStore</label>
         </button>
-    </ion-col>
+    </ion-col>-->
 </ion-row>
 
 

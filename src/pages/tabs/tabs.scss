@@ -27,7 +27,17 @@ page-tabs {
                 }
             }
         }
+       
     }
+
+     .active {
+                ion-icon {
+                    color: #096F67;
+                }
+                label {
+                    color: #096F67;
+                }
+            }
     // .placeholderIcon {
     //     background: url('../assets/img/placeholder.svg') no-repeat;
     //     width: 25px;

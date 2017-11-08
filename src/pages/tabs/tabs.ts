@@ -11,8 +11,9 @@ export class TabsPage {
 
  @ViewChild('login')LoginModal;
   index:number;
-  activetab:any = false;
+isActivePage:any;
 
+myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
    
     
 
@@ -23,6 +24,18 @@ export class TabsPage {
               private navParams:NavParams,
               private inAppBrowser:InAppBrowser,
               private events:Events) { 
+
+
+                this.myTabs = [
+                  {label:'Home',icon:'iconc-home',component:"HomePage", active:false},
+                  {label:'Location',icon:'iconc-map',component:"StoreLocatorPage", active:false},
+                  {label:'Rewards',icon:'iconc-gift',component:"RewardsPage", active:false},
+                  {label:'Member',icon:'iconc-id-card',component:"MemberPage",active:false},
+                  {label:'eStore',icon:'iconc-cart',component:"ECartPage", active:false}
+
+                  ]
+
+                 this.isActivePage = this.myTabs[0];
   }
 
   ionViewDidLoad() {
@@ -44,14 +57,12 @@ export class TabsPage {
   }
 
   goto(page,event:any) {
-    this.activetab = true;
-    this.navCtrl.setRoot(page).then(canEnter=>{
-      console.log(canEnter);
+   this.isActivePage=page;
+    this.navCtrl.setRoot(page.component).then(canEnter=>{
       if(canEnter == false)
       this.events.publish('login', false);
     })
-    console.log(page);
-    console.log(event);
+    
 
 
   }
@@ -67,5 +78,9 @@ export class TabsPage {
     
       this.inAppBrowser.create('http://estore.caring2u.com/');
 
+  }
+
+  checkActive(page) {
+   return page == this.isActivePage;
   }
 }

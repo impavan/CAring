@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild,ElementRef} from '@angular/core';
 import { IMAGE_URL } from '../../config';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import moment from 'moment';
+import JsBarcode from 'jsbarcode';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -18,6 +19,9 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
   templateUrl: 'member.html',
 })
 export class MemberPage {
+
+   @ViewChild('barcode') barcode: ElementRef;
+ 
   IMG_URL = IMAGE_URL;
   from: any;
    member: any = "My Points";
@@ -38,6 +42,9 @@ export class MemberPage {
 _newRedeemedList:any =[];
   redeemdRewards:any = [];
   userData:any = {};
+  currentDate:any = moment().format('YYYY-MM-DD');
+  isWalletLoaded:boolean = false;
+  isProfileLoaded:boolean = false;
 
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
@@ -57,25 +64,28 @@ _newRedeemedList:any =[];
     }
   }
 
+     ngAfterViewInit() {
+      
+    }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MemberPage');
   }
 
   ionViewWillEnter(){
-      if (this._auth) {
-      this.loaderProvider.presentLoadingCustom();
-      }
+     
   }
 
 
   loadMyProfile() {
-    if (this._auth && this.loadedProfile) {
+    if (this._auth) {
       this.getMyProfileDetails();
     }
   }
 
   loadMyPoints() {
-    if (this._auth) {
+    if (this._auth && !this.loadedProfile) {
+      this.loaderProvider.presentLoadingCustom();
       this.getMyPoints();
       this.getUserTransaction();
     }else{
@@ -84,7 +94,7 @@ _newRedeemedList:any =[];
   }
 
   loadMyWallet(){
-    if(this._auth)
+    if(this._auth && !this.isWalletLoaded)
 
         this.getRedeemedVouchers();
 
@@ -101,10 +111,7 @@ _newRedeemedList:any =[];
     this._oldemailId=this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._profilePic = this.authProvider.getUserProfilePic();
-    console.log(this._userName);
-    console.log(this._emailId);
-    console.log(this._mobileNum);
-    console.log(this._profilePic);
+     JsBarcode(this.barcode.nativeElement, this._mobileNum);
   }
 
   getMyPoints() {
@@ -134,7 +141,7 @@ _newRedeemedList:any =[];
                   console.log(this.redeemedRewards);
                   // this.loadedWallet = true;
                   this.loaderProvider.dismissLoader();
-
+                  this.isWalletLoaded =true;
                   if (this.redeemedRewards.length > 0) {
               // this._hasRewards = true;
               this._newRedeemedList = [];
@@ -256,12 +263,13 @@ _newRedeemedList:any =[];
   }
 
   getRedeemed(exp){
-    console.log("****************************");
-    console.log(exp);
-   
-
+  
          return this._newRedeemedList[exp]['Vouchers'].filter(e=> e.ActivateStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
 
-    
+  }
+
+  goto(page, exp){
+
+    this.navCtrl.push(page,{redeemData:this._newRedeemedList[exp]});
   }
 }
