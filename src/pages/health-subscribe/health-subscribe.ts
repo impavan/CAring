@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 
 @IonicPage()
@@ -9,11 +9,11 @@ import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 })
 
 export class HealthSubscribePage {
-  @ViewChild(Slides) slides: Slides;
+  //@ViewChild(Slides) slides: Slides;
   _newsSubscriptionLink: any;
   NEWSSUBLINK: string = 'newsletterurl';
 
-  constructor(private navCtrl: NavController, private navParams: NavParams,
+  constructor( private navParams: NavParams,
     private hapenningsProvider: HapenningsProvider) {
   }
 
@@ -27,13 +27,7 @@ export class HealthSubscribePage {
 
 
   ngAfterViewInit() {
-    // this.slides.freeMode = true;
-    // this.slides.loop = true;
-    // this.slides.speed = 1000;
-    // this.slides.autoplay = 3000;
-    // this.slides.paginationType = 'bullets';
-    // // this.slides.effect = "coverflow";
-    // this.slides.slidesPerView=2;
+
   }
 
   getPromotionsBrochureLink() {
