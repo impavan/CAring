@@ -7,13 +7,105 @@
 	<div class="redeemContainer">
 		<div class="redeemVoucher">
 			<figure><img src="{{redeemList[0]?.images[0]}}" /></figure>
-			<h6>{{redeemList[0]?.Title}} <small class="alert"></small></h6>
+			<h5>{{redeemList[0]?.Title}} <small class="alert"></small></h5>
+			<span>{{redeemList[0]?.Terms}} <small class="alert"></small></span>
 		</div>
-		<div class="barCode">
+		<!--<div class="barCode">
 			<i><img src="assets/img/barcode.png" /></i>
-		</div>
+		</div>-->
 		<p class="subTitle1" [innerHTML]="redeemList[0]?.Description"></p>
 	</div>
+	
+	<div class="subSegmentOut">
+			<ion-toolbar>
+			<ion-segment [(ngModel)]="selectedTab">
+			<ion-segment-button value="New">
+				New
+			</ion-segment-button>
+			<ion-segment-button value="Used">
+				Used
+			</ion-segment-button>
+				<ion-segment-button value="Expired">
+				Expired
+			</ion-segment-button>
+     	</ion-segment>
+		</ion-toolbar>
+	</div>
+
+	<div [ngSwitch]="selectedTab">
+          <!-- New section starts. -->
+          <ion-list *ngSwitchCase="'New'">
+            <div class="newContainer">
+              
+                <ion-item *ngFor="let reward of redeemList">
+                  <ion-card class="content" *ngIf="reward?.ActivateStatus == 0 && reward.ExpiryDate >= currentDate">
+
+                    <ion-row class="customRow">
+                      <ion-col col-7>
+                        <figure>
+                          <img src="{{reward.MasterCreativePath}}" />
+                        </figure>
+                      </ion-col>
+                      <ion-col col-5>
+                        <p class="voucher">{{reward.Title}}</p>
+                        <!--<p class="alert subContent" [innerHTML]="reward.Description"></p>-->
+                          <p>{{reward?.ExpiryDate}}</p>
+						   <button>Redeem</button>
+                       
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-item>
+            </div>
+          </ion-list>
+          <!-- Used section starts. -->
+          <ion-list *ngSwitchCase="'Used'">
+            <div class="newContainer">
+              
+                <ion-grid *ngFor="let reward of redeemList" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                  <ion-card class="content" *ngIf="reward?.ActivateStatus == 1">
+                    <ion-row class="customRow">
+                      <ion-col col-7>
+                        <figure>
+                          <img src="{{reward?.MasterCreativePath}}" />
+                        </figure>
+                      </ion-col>
+                      <ion-col col-5>
+                        <p class="voucher">{{reward.Title}}</p>
+                        <div>
+                          <p>{{reward?.ExpiryDate}}</p>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+				   </ion-card>
+                </ion-grid>
+             
+            </div>
+          </ion-list>
+          <!-- Expired section starts. -->
+          <ion-list *ngSwitchCase="'Expired'">
+            <div class="newContainer">
+              
+                <ion-grid *ngFor="let reward of redeemList" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                  <ion-card class="content" *ngIf="reward?.ActivateStatus == 0 && reward?.ExpiryDate <= currentDate">
+                    <ion-row class="customRow">
+                      <ion-col col-7>
+                        <figure>
+                          <img src="{{reward.MasterCreativePath}}" />
+                        </figure>
+                      </ion-col>
+                      <ion-col col-5>
+                        <p class="voucher">{{reward.Title}}</p>
+                        <div>
+                          <p color="danger">Expired</p>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-grid>
+            </div>
+          </ion-list>
+        </div>
 </ion-content>
 
 
