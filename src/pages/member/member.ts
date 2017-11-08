@@ -229,4 +229,8 @@ export class MemberPage {
       this.exceptionProvider.excpHandler(err);
     });
   }
+
+  goTo(page){
+    this.navCtrl.push(page);
+  }
 }

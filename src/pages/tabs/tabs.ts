@@ -67,4 +67,9 @@ export class TabsPage {
       this.inAppBrowser.create('http://estore.caring2u.com/');
 
   }
+
+  visible = false;
+  toggle() {
+   this.visible = !this.visible;
+  }
 }

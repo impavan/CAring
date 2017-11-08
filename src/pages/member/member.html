@@ -124,7 +124,7 @@
 					<ion-list *ngSwitchCase="'New'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemedRewards">
+								<ion-grid *ngFor="let reward of redeemedRewards" (click)="goTo('RedeemPage')">
 									<!--<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate < currentDate">-->
 										<ion-row class="customRow">
 											<ion-col col-7>
