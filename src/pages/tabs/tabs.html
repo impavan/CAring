@@ -1,13 +1,13 @@
 <ion-row class="tabsMenu">
     <ion-col col class="text-center">
-        <button ion-button (click)="goto('HomePage')" class="active">
-          <ion-icon [isActive]="false" class="iconc-home"></ion-icon>
+        <button ion-button (click)="goto('HomePage')">
+          <ion-icon  class="iconc-home"></ion-icon>
           <label>Home</label>
         </button>
     </ion-col>
     <ion-col col class="text-center">
-        <button ion-button (click)="goto('StoreLocatorPage')">
-          <ion-icon [isActive]="true" class="iconc-map"></ion-icon>
+        <button ion-button (click)="goto('StoreLocatorPage')" [class.active]="activetab">
+          <ion-icon  class="iconc-map"></ion-icon>
           <label>Location</label>
         </button>
         <!--<button *ngIf="isClicked" ion-button (click)="goto('StoreLocatorPage')" class="placeholderIconChanged"></button>-->

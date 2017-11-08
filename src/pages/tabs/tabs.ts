@@ -11,6 +11,7 @@ export class TabsPage {
 
  @ViewChild('login')LoginModal;
   index:number;
+  activetab:any = false;
 
    
     
@@ -43,7 +44,7 @@ export class TabsPage {
   }
 
   goto(page,event:any) {
-    this.isClicked = true;
+    this.activetab = true;
     this.navCtrl.setRoot(page).then(canEnter=>{
       console.log(canEnter);
       if(canEnter == false)

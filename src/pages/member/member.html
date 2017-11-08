@@ -74,22 +74,35 @@
 								<ion-icon *ngIf="_pointOpen" name="arrow-dropup"></ion-icon>
  							 </ion-card-header>
 							  <ion-card-content *ngIf="_pointOpen">
-								  <ion-list *ngFor="let transaction of _transactionList">
-								  <ion-item *ngIf="transaction?.transaction_earning=='false'">
+								  <!-- <ion-list *ngFor="let transaction of _transactionList"> -->
+								  <!-- <ion-item *ngIf="transaction?.transaction_earning=='true'"> -->
+									  <ion-list>
+									  <ion-item>
 									  <p>
 									  <span>Point Balance :</span>
 									  <span>9361</span>
 									  </p>
 									  <p>
-									  <span>Expired Points within one month:</span>
+									  <span>Expired Points within 1 month:</span>
 									  <span>400</span>
 									  </p>
 								  </ion-item>
-								  <ion-item *ngIf="transaction?.transaction_earning=='true'">
-									 <p>Reciept No</p> 
-									 <p>Date</p>
+								  <ion-item>
+								  <!-- <ion-item *ngIf="transaction?.transaction_earning=='true'"> -->
+									 <p>Reciept No :</p> 
+									 <p>Date:</p>
 									 <p>Receipt Amount</p>
 									 <p><span>+200 Points</span></p>
+									 <p>Reciept No :</p>
+									 <p>Date:</p>
+									 <p>Receipt Amount</p>
+									 <p><span>+300 Points</span></p>
+									 <p>Voucher No :</p>
+									 <p>Date :</p>
+									 <p class="alert">Voucher Amount:</p>
+									 <p class="doublealert">Date :</p>
+									 <p class="textalert">Voucher Amount :</p>
+									 <span></span>
 								  </ion-item>
 								  </ion-list>
 							</ion-card-content>
