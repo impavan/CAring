@@ -25,21 +25,21 @@
 	</ion-navbar>
 </ion-header>-->
 <div>
-    <header></header>
+  <header></header>
 </div>
 
 
-<ion-content class="mainCont">
-    <div class="memberContainer">
-        <!-- <div class="profileOut">
+<ion-content>
+	<div class="memberContainer">
+		<!-- <div class="profileOut">
 			<i> -->
-        <!-- <img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">   //profile photo section removed //
+				<!-- <img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">   //profile photo section removed //
 				<img *ngIf="_profilePic" src="{{IMG_URL}}/{{_profilePic}}"> -->
-        <!-- </i>
+			<!-- </i>
 			<p>{{_userName}}</p>
 		</div> -->
-        <div class="barCode">
-            <i>
+		<div class="barCode">
+			<i>
 				<img src="assets/img/barcode.png" />
 				<label>{{_mobileNum}}</label>
 				<!-- <label>9611045617</label> -->
@@ -66,7 +66,7 @@
 						<strong>{{_totalAvailablePoints}}</strong>
 						
 					</p>
-					<section>
+					<section class="pointscard">
 						<ion-card clickable (click)="togglePoint()">
 							 <ion-card-header>
    								<strong>Point History</strong>
@@ -74,36 +74,73 @@
 								<ion-icon *ngIf="_pointOpen" name="arrow-dropup"></ion-icon>
  							 </ion-card-header>
 							  <ion-card-content *ngIf="_pointOpen">
-								  <!-- <ion-list *ngFor="let transaction of _transactionList"> -->
+								<ion-list>
+								  <ion-item class="listdisp">
+								  <!-- <ion-list *ngFor="let transaction of _transactionList">
+								  <ion-item *ngIf="transaction?.transaction_earning=='false'"> -->
+									<ion-grid>
+										<ion-row>
+											<ion-col>
+													Point Balance :
+											</ion-col>
+											<ion-col>
+													9361
+											</ion-col>
+										</ion-row>
+										<ion-row>
+												<ion-col>
+														Expired Points within 1 month:
+												</ion-col>
+												<ion-col>
+														400
+												</ion-col>
+											</ion-row>
+									</ion-grid>	
+									<!-- <ion-grid>
+										<ion-row>
+											<ion-col>
+												Receipt No :
+											</ion-col>
+											<ion-col>
+												Date :
+											</ion-col>
+											<ion-col>
+												Receipt Amount :
+											</ion-col>
+										</ion-row>
+										</ion-grid>					 -->
+								  </ion-item>
+									<ion-item>
 								  <!-- <ion-item *ngIf="transaction?.transaction_earning=='true'"> -->
-									  <ion-list>
-									  <ion-item>
-									  <p>
-									  <span>Point Balance :</span>
-									  <span>9361</span>
-									  </p>
-									  <p>
-									  <span>Expired Points within 1 month:</span>
-									  <span>400</span>
-									  </p>
+									 <p>Reciept No : 1231276</p> 
+									 <p>Date :25/9/2017 , 6.30 PM</p>
+									 <p>Receipt Amount : 550</p>
+									 <p style="float: right;
+									 position: relative;
+									 bottom: 40px;"><span>+200 Points</span></p>
+									 
 								  </ion-item>
 								  <ion-item>
-								  <!-- <ion-item *ngIf="transaction?.transaction_earning=='true'"> -->
-									 <p>Reciept No :</p> 
-									 <p>Date:</p>
-									 <p>Receipt Amount</p>
-									 <p><span>+200 Points</span></p>
-									 <p>Reciept No :</p>
-									 <p>Date:</p>
-									 <p>Receipt Amount</p>
-									 <p><span>+300 Points</span></p>
-									 <p>Voucher No :</p>
-									 <p>Date :</p>
-									 <p class="alert">Voucher Amount:</p>
-									 <p class="doublealert">Date :</p>
-									 <p class="textalert">Voucher Amount :</p>
-									 <span></span>
-								  </ion-item>
+										<!-- <ion-item *ngIf="transaction?.transaction_earning=='true'"> -->
+										   <p>Reciept No : 1231276</p> 
+										   <p>Date :25/9/2017 , 6.30 PM</p>
+										   <p>Receipt Amount : 550</p>
+										   <p style="float: right;
+										   position: relative;
+										   bottom: 40px;"><span>+200 Points</span></p>
+										   
+										</ion-item>
+										<ion-item>
+												<!-- <ion-item *ngIf="transaction?.transaction_earning=='true'"> -->
+												   <p>Reciept No : 1231276</p> 
+												   <p>Date :25/9/2017 , 6.30 PM</p>
+												   <p>Receipt Amount : 550</p>
+												   <p style="float: right;
+												   position: relative;
+												   bottom: 40px;"><span>+200 Points</span></p>
+												   
+												</ion-item>
+												
 								  </ion-list>
 							</ion-card-content>
 						</ion-card>
@@ -114,194 +151,137 @@
 					<button ion-button value="Earn Points">Earn Points</button>	
 				
 				</ion-card>
-        </div>
-        <ion-toolbar>
-            <ion-segment [(ngModel)]="member" color="secondary">
-                <ion-segment-button value="My Points">
-                    My Points
-                </ion-segment-button>
-                <ion-segment-button value="My Wallet" (click)="loadMyWallet()">
-                    My Wallet
-                </ion-segment-button>
-                <ion-segment-button value="My Profile">
-                    My Profile
-                </ion-segment-button>
-            </ion-segment>
-        </ion-toolbar>
-        <div [ngSwitch]="member">
-            <!-- Section for My Points -->
-            <ion-list *ngSwitchCase="'My Points'">
-                <div *ngIf="_auth" class="myPointsContainer">
-                    <p class="urPoints">Your Points:
-                        <strong>{{_totalAvailablePoints}}</strong>
 
-                    </p>
-                    <section>
-                        <ion-card clickable (click)="togglePoint()">
-                            <ion-card-header>
-                                <strong>Point History</strong>
-                                <ion-icon *ngIf="!_pointOpen" name="arrow-dropdown"></ion-icon>
-                                <ion-icon *ngIf="_pointOpen" name="arrow-dropup"></ion-icon>
-                            </ion-card-header>
-                            <ion-card-content *ngIf="_pointOpen">
-                                <ion-list *ngFor="let transaction of _transactionList">
-                                    <ion-item *ngIf="transaction?.transaction_earning=='false'">
-                                        <p>
-                                            <span>Point Balance :</span>
-                                            <span>9361</span>
-                                        </p>
-                                        <p>
-                                            <span>Expired Points within one month:</span>
-                                            <span>400</span>
-                                        </p>
-                                    </ion-item>
-                                    <ion-item *ngIf="transaction?.transaction_earning=='true'">
-                                        <p>Reciept No</p>
-                                        <p>Date</p>
-                                        <p>Receipt Amount</p>
-                                        <p><span>+200 Points</span></p>
-                                    </ion-item>
-                                </ion-list>
-                            </ion-card-content>
-                        </ion-card>
-                    </section>
-                </div>
-                <ion-card *ngIf="!_auth" class="myPointsContainer sec">
-                    <p class="urPoints">You have no points yet</p>
-                    <button ion-button value="Earn Points">Earn Points</button>
-
-                </ion-card>
-
-            </ion-list>
-            <!-- Startssssssssssssssssssssssssssssssssssss -->
-            <ion-list *ngSwitchCase="'My Wallet'">
-                <div *ngIf="_auth" class="subSegmentOut">
-                    <ion-toolbar>
-                        <ion-segment [(ngModel)]="memberDetails" color="secondary">
-                            <ion-segment-button value="New">New</ion-segment-button>
-                            <ion-segment-button value="Used">Used</ion-segment-button>
-                            <ion-segment-button value="Expired">Expired</ion-segment-button>
-                        </ion-segment>
-                    </ion-toolbar>
-                </div>
-                <ion-card *ngIf="!_auth" class="myPointsContainer sec">
-                    <p class="urPoints">Your wallet is empty</p>
-                    <button ion-button value="Redeem Vouchers" (click)="emptywallet()">Redeem Vouchers</button>
-                </ion-card>
-
-                <div [ngSwitch]="memberDetails">
-                    <!-- New section starts. -->
-                    <ion-list *ngSwitchCase="'New'">
-                        <div class="newContainer">
-                            <ion-card>
-                                <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'">
-                                    <!--<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate < currentDate">-->
-                                    <ion-row class="customRow">
-                                        <ion-col col-7>
-                                            <figure>
-                                                <img src="{{reward.MasterCreativePath}}" />
-                                            </figure>
-                                        </ion-col>
-                                        <ion-col col-5>
-                                            <p class="voucher">{{reward.Title}}</p>
-                                            <!--<p class="alert subContent" [innerHTML]="reward.Description"></p>-->
-                                            <div>
-                                                <p>{{getRedeemed(reward?.ExperienceId)}}</p>
-                                            </div>
-                                        </ion-col>
-                                    </ion-row>
-                                    <!--</div>-->
-                                </ion-grid>
-                            </ion-card>
-                        </div>
-                    </ion-list>
-                    <!-- Used section starts. -->
-                    <ion-list *ngSwitchCase="'Used'">
-                        <div class="newContainer">
-                            <ion-card>
-                                <ion-grid *ngFor="let reward of redeemedRewards">
-                                    <div class="content" *ngIf="reward.ActivateStatus == 1">
-                                        <ion-row class="customRow">
-                                            <ion-col col-7>
-                                                <figure>
-                                                    <img src="{{reward.MasterCreativePath}}" />
-                                                </figure>
-                                            </ion-col>
-                                            <ion-col col-5>
-                                                <p class="voucher">{{reward.Title}}</p>
-                                                <p class="alert subContent">{{reward.Description}}</p>
-                                            </ion-col>
-                                        </ion-row>
-                                    </div>
-                                </ion-grid>
-                            </ion-card>
-                        </div>
-                    </ion-list>
-                    <!-- Expired section starts. -->
-                    <ion-list *ngSwitchCase="'Expired'">
-                        <div class="newContainer">
-                            <ion-card>
-                                <ion-grid *ngFor="let reward of redeemedRewards">
-                                    <div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate > currentDate">
-                                        <ion-row class="customRow">
-                                            <ion-col col-7>
-                                                <figure>
-                                                    <img src="{{reward.MasterCreativePath}}" />
-                                                </figure>
-                                            </ion-col>
-                                            <ion-col col-5>
-                                                <p class="voucher">{{reward.Title}}</p>
-                                                <p class="alert subContent"> {{reward.Description}}</p>
-                                            </ion-col>
-                                        </ion-row>
-                                    </div>
-                                </ion-grid>
-                            </ion-card>
-                        </div>
-                    </ion-list>
-                </div>
-            </ion-list>
-            <!-- Endssssssssssssssssssssssssssssssss -->
-            <ion-list *ngSwitchCase="'My Profile'">
-                <div class="myProfileContainer">
-                    <div *ngIf="_auth" class="container">
-                        <div class="content">
-                            <ion-list>
-                                <ion-item>
-                                    <ion-label fixed>Name</ion-label>
-                                    <ion-input type="text" [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
-                                </ion-item>
-                                <ion-item>
-                                    <ion-label fixed>E-mail</ion-label>
-                                    <ion-input type="text" readonly [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
-                                </ion-item>
-                                <ion-item>
-                                    <ion-label fixed>Mobile Number</ion-label>
-                                    <ion-input type="text" readonly [(ngModel)]="_mobileNum"></ion-input>
-                                </ion-item>
-                                <!-- <ion-item>
+			</ion-list>
+			<!-- Startssssssssssssssssssssssssssssssssssss -->
+			<ion-list *ngSwitchCase="'My Wallet'">
+				<div *ngIf="_auth" class="subSegmentOut">
+					<ion-toolbar>
+						<ion-segment [(ngModel)]="memberDetails" color="secondary">
+							<ion-segment-button value="New">New</ion-segment-button>
+							<ion-segment-button value="Used">Used</ion-segment-button>
+							<ion-segment-button value="Expired">Expired</ion-segment-button>
+						</ion-segment>
+					</ion-toolbar>
+				</div>
+					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
+						<p class="urPoints">Your wallet is empty</p>
+						<button ion-button value="Redeem Vouchers" (click)="emptywallet()">Redeem Vouchers</button>		
+					</ion-card>
+				
+				<div [ngSwitch]="memberDetails">
+					<!-- New section starts. -->
+					<ion-list *ngSwitchCase="'New'">
+						<div class="newContainer">
+							<ion-card>
+								<ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'">
+									<!--<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate < currentDate">-->
+										<ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="{{reward.MasterCreativePath}}" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">{{reward.Title}}</p>
+												<!--<p class="alert subContent" [innerHTML]="reward.Description"></p>-->
+												<div>
+													<p>{{getRedeemed(reward?.ExperienceId)}}</p>
+												</div>
+											</ion-col>
+										</ion-row>
+									<!--</div>-->
+								</ion-grid>
+							</ion-card>
+						</div>
+					</ion-list>
+					<!-- Used section starts. -->
+					<ion-list *ngSwitchCase="'Used'">
+						<div class="newContainer">
+							<ion-card>
+								<ion-grid *ngFor="let reward of redeemedRewards">
+									<div class="content" *ngIf="reward.ActivateStatus == 1">
+										<ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="{{reward.MasterCreativePath}}" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">{{reward.Title}}</p>
+												<p class="alert subContent">{{reward.Description}}</p>
+											</ion-col>
+										</ion-row>
+									</div>
+								</ion-grid>
+							</ion-card>
+						</div>
+					</ion-list>
+					<!-- Expired section starts. -->
+					<ion-list *ngSwitchCase="'Expired'">
+						<div class="newContainer">
+							<ion-card>
+								<ion-grid *ngFor="let reward of redeemedRewards">
+									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate > currentDate">
+										<ion-row class="customRow">
+											<ion-col col-7>
+												<figure>
+													<img src="{{reward.MasterCreativePath}}" />
+												</figure>
+											</ion-col>
+											<ion-col col-5>
+												<p class="voucher">{{reward.Title}}</p>
+												<p class="alert subContent"> {{reward.Description}}</p>
+											</ion-col>
+										</ion-row>
+									</div>
+								</ion-grid>
+							</ion-card>
+						</div>
+					</ion-list>
+				</div>
+			</ion-list>
+			<!-- Endssssssssssssssssssssssssssssssss -->
+			<ion-list *ngSwitchCase="'My Profile'">
+				<div class="myProfileContainer">
+					<div  *ngIf="_auth"  class="container">
+						<div class="content">
+							<ion-list>
+								<ion-item>
+									<ion-label fixed>Name</ion-label>
+									<ion-input type="text"  [(ngModel)] = "_userName"  placeholder="Enter Name"></ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-label fixed>E-mail</ion-label>
+									<ion-input type="text" readonly  [(ngModel)] = "_emailId" placeholder="Enter E-mail"></ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-label fixed>Mobile Number</ion-label>
+									<ion-input type="text" readonly  [(ngModel)] = "_mobileNum"></ion-input>
+								</ion-item>
+								<!-- <ion-item>
 									<ion-label>Notifications</ion-label> //-notification bar disabled //
 									<ion-toggle [(ngModel)]="sausage"></ion-toggle>
 								</ion-item> -->
-                            </ion-list>
-                        </div>
-                        <div class="mt20">
-                            <button ion-button class="btn4" (click)=" updateProfile()">Update</button>
-                        </div>
-                    </div>
-                    <ion-card *ngIf="!_auth" class="myPointsContainer sec">
-                        <p class="urPoints">Login to view your profile</p>
-                        <button ion-button (click)="backtologin()">Login</button>
+							</ion-list>
+						</div>
+						<div class="mt20">
+							<button ion-button class="btn4" (click)=" updateProfile()">Update</button>
+						</div>
+					</div>
+					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
+						<p class="urPoints">Login to view your profile</p>
+						<button ion-button (click)="backtologin()">Login</button>
 
-                    </ion-card>
-                </div>
-            </ion-list>
-        </div>
-    </div>
+					</ion-card>
+				</div>
+			</ion-list>
+		</div>
+	</div>
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-        <page-tabs></page-tabs>
-    </ion-toolbar>
+<ion-toolbar>
+<page-tabs></page-tabs>
+</ion-toolbar>
 </ion-footer>
