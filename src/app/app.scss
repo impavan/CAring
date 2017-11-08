@@ -3,6 +3,7 @@
 @import "../assets/css/custom-icons.css";
 $cp-primary-color:#f3f3f3; //007066
 $cp-darker-primary-color:#224946;
+$btn-default:#096F67;
 $cp-medium-green-color:#16AB9E;
 $cp-white-color:rgba(0, 0, 0, 0.50);
 $cp-black-color:#000;
@@ -222,7 +223,7 @@ ion-footer {
 }
 
 .btn3 {
-    background-color: $cp-primary-color;
+    background-color: $btn-default;
     height: auto;
     margin: 0;
     width: 100%;
@@ -233,10 +234,16 @@ ion-footer {
     text-transform: capitalize;
     font-weight: normal;
     border-radius: 5px;
+    &:active,
+    &:visited,
+    &:focus {
+        background-color: $btn-default;
+        outline: none;
+    }
 }
 
 .btn4 {
-    background-color: $cp-primary-color;
+    background-color: $btn-default;
     height: auto;
     margin: 0;
     width: 100%;
@@ -247,6 +254,13 @@ ion-footer {
     text-transform: capitalize;
     font-weight: normal;
     border-radius: 5px;
+    &:active,
+    &:visited,
+    &:focus,
+    &:link {
+        background-color: $btn-default;
+        outline: none;
+    }
 }
 
 .btn4.borderBottomRadius {
