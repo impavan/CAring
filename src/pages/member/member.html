@@ -124,7 +124,7 @@
 					<ion-list *ngSwitchCase="'New'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemedRewards" (click)="goTo('RedeemPage')">
+								<ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'">
 									<!--<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate < currentDate">-->
 										<ion-row class="customRow">
 											<ion-col col-7>
@@ -135,6 +135,9 @@
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
 												<!--<p class="alert subContent" [innerHTML]="reward.Description"></p>-->
+												<div>
+													<p>{{getRedeemed(reward?.ExperienceId)}}</p>
+												</div>
 											</ion-col>
 										</ion-row>
 									<!--</div>-->

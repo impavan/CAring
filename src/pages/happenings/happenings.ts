@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //All providers goes here
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
+import moment from 'moment';
 
 @IonicPage()
 @Component({
