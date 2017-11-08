@@ -8,7 +8,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RedeemPage {
 
+  redeemList:any = [];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let data = navParams.get('redeemData');
+    if(data){
+      this.redeemList = data.Vouchers;
+     console.log(this.redeemList);
+    }
+    
   }
 
   ionViewDidLoad() {

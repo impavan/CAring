@@ -39,12 +39,9 @@
 			<p>{{_userName}}</p>
 		</div> -->
 		<div class="barCode">
-			<i>
-				<img src="assets/img/barcode.png" />
-				<label>{{_mobileNum}}</label>
-				<!-- <label>9611045617</label> -->
-			</i>
+			<svg #barcode id="barcode"></svg>
 		</div>
+		
 		<ion-toolbar>
 			<ion-segment [(ngModel)]="member" color="secondary">
 				<ion-segment-button value="My Points">
@@ -124,8 +121,9 @@
 					<ion-list *ngSwitchCase="'New'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'">
-									<!--<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate < currentDate">-->
+								<ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate >= currentDate">
+										
 										<ion-row class="customRow">
 											<ion-col col-7>
 												<figure>
@@ -140,7 +138,8 @@
 												</div>
 											</ion-col>
 										</ion-row>
-									<!--</div>-->
+										
+									</div>
 								</ion-grid>
 							</ion-card>
 						</div>
@@ -149,7 +148,7 @@
 					<ion-list *ngSwitchCase="'Used'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemedRewards">
+								<ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
 									<div class="content" *ngIf="reward.ActivateStatus == 1">
 										<ion-row class="customRow">
 											<ion-col col-7>
@@ -159,7 +158,9 @@
 											</ion-col>
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
-												<p class="alert subContent">{{reward.Description}}</p>
+												<div>
+													<p>{{getRedeemed(reward?.ExperienceId)}}</p>
+												</div>
 											</ion-col>
 										</ion-row>
 									</div>
@@ -171,8 +172,8 @@
 					<ion-list *ngSwitchCase="'Expired'">
 						<div class="newContainer">
 							<ion-card>
-								<ion-grid *ngFor="let reward of redeemedRewards">
-									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate > currentDate">
+								<ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+									<div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate <= currentDate">
 										<ion-row class="customRow">
 											<ion-col col-7>
 												<figure>
@@ -181,7 +182,9 @@
 											</ion-col>
 											<ion-col col-5>
 												<p class="voucher">{{reward.Title}}</p>
-												<p class="alert subContent"> {{reward.Description}}</p>
+												<div>
+													<p color="danger">Expired</p>
+												</div>
 											</ion-col>
 										</ion-row>
 									</div>

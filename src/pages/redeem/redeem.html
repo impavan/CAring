@@ -6,13 +6,13 @@
 <ion-content padding>
 	<div class="redeemContainer">
 		<div class="redeemVoucher">
-			<figure><img src="assets/img/h1.jpg" /></figure>
-			<h6>RM10 Voucher <small class="alert">Expiry Date : 24th Oct 2017</small></h6>
+			<figure><img src="{{redeemList[0]?.images[0]}}" /></figure>
+			<h6>{{redeemList[0]?.Title}} <small class="alert"></small></h6>
 		</div>
 		<div class="barCode">
 			<i><img src="assets/img/barcode.png" /></i>
 		</div>
-		<p class="subTitle1">Present the voucher to the cashier for your purchase</p>
+		<p class="subTitle1" [innerHTML]="redeemList[0]?.Description"></p>
 	</div>
 </ion-content>
 

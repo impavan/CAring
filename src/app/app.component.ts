@@ -16,6 +16,7 @@ import { AlertProvider } from '../providers/alert/alert';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   _auth = localStorage.getItem("auth_token");
+  
   rootPage: any =  this._auth?"HomePage":"LoginPage";
   _userName:any="";
   // isUserLoggedIn:any =this._auth?true:false;
@@ -43,6 +44,14 @@ export class MyApp {
       { title: 'About', component: 'AboutPage', index:8, icon:"iconc-ticket"},
     ];
 
+      if(this._auth)
+      {
+        this._auth = localStorage.getItem("auth_token");
+         let customerData = localStorage.getItem('userdetails');
+         let data = JSON.parse(customerData);
+         this.authProvider.setUser(data);
+         this.getUserDetails();
+      }
 
 
         this.events.subscribe('user:login', (user) => {

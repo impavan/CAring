@@ -188,12 +188,7 @@ export class StoreLocatorPage {
 
   onInput(event){
     let val = event.target.value;
-    console.log("_____________________________________________________");
-    console.log(event.target.value);
-    console.log("_____________________________________________________");
-    console.log(event);
    if(this._searchKey){
-     console.log("Inside IF-Else Condition");
       this._newFilteredList = this._filterList.filter(item => (item.storename.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.fulladdress.toLowerCase().indexOf(val.toLowerCase()) > -1) );
    }
    
