@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IMAGE_URL } from '../../config';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import moment from 'moment';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -252,5 +253,15 @@ _newRedeemedList:any =[];
       this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
     });
+  }
+
+  getRedeemed(exp){
+    console.log("****************************");
+    console.log(exp);
+   
+
+         return this._newRedeemedList[exp]['Vouchers'].filter(e=> e.ActivateStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
+
+    
   }
 }
