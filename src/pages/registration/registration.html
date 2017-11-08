@@ -1,54 +1,46 @@
 <ion-content>
-	<div class="newAccountContainer">
-		<i class="logo text-center">
-			<img src="assets/img/caring_logo.png" />
+    <div class="newAccountContainer">
+        <i class="logo text-center">
+			<img src="assets/img/logo_large.png" />
 		</i>
-		<h6>Create New Account</h6>
-		<!-- <div class="profileOut">
-			<!-- <i (click)="uploadProfilePic()">
-				<img *ngIf="!registerData.profilePic" src="assets/img/no_photo.jpg">
-				<img *ngIf="registerData.profilePic" src="{{profileImage}}">
-			</i> -->
-			<!-- <p>Profile Photo</p>
-		</div> -->
-		<div class="contentOut">
-			<div class="container">
-				<div class="content">
-					<ion-list>
-						<ion-item>
-							<ion-label fixed>Mobile Number</ion-label>
-							<!--<ion-input type="text" [(ngModel)]="registerData.mobile" readonly></ion-input>-->
-							<ion-label fixed>{{registerData.mobile}}</ion-label>
-						</ion-item>
-						<ion-item>
-							<ion-label fixed>Name</ion-label>
-							<ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Enter Name"></ion-input>
-						</ion-item>
-						<ion-item>
-							<ion-label fixed>E-mail</ion-label>
-							<ion-input *ngIf="!this._existingCustomerData?.customer[0]?.email" type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
-							<ion-label *ngIf="this._existingCustomerData?.customer[0]?.email">{{registerData.email}}</ion-label>
-						</ion-item>
-						
-						<!--<ion-item>
+        <h6>Create New Account</h6>
+        <div class="contentOut">
+            <div class="container">
+                <div class="content">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label fixed>Mobile Number</ion-label>
+                            <ion-input type="text" readonly placeholder="{{registerData.mobile}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label fixed>Name</ion-label>
+                            <ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Enter Name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label fixed>E-mail</ion-label>
+                            <ion-input *ngIf="!this._existingCustomerData?.customer[0]?.email" type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
+                            <ion-label *ngIf="this._existingCustomerData?.customer[0]?.email">{{registerData.email}}</ion-label>
+                        </ion-item>
+
+                        <!--<ion-item>
 							<ion-label fixed>OTP</ion-label>
 							<ion-input type="text" [(ngModel)]="otp" placeholder="Enter OTP"></ion-input>
 						</ion-item>-->
-					</ion-list>
-				</div>
-				<p *ngIf="_existingCustomerData?.customer[0]?.external_id" class="subTitle1">Great! Welcome back. We have found your existing regular ID along with your point history.</p>
-				<div *ngIf="_existingCustomerData?.customer[0]?.external_id" class="content">
-					<ion-list>
-						<ion-item>
-							<ion-label fixed>Regular ID</ion-label>
-							<ion-label fixed>{{_existingCustomerData?.customer[0]?.external_id}}</ion-label>
-						</ion-item>
-					</ion-list>
-				</div>
-				<div class="mt20">
-					<button ion-button class="btn4" (click)="otpCheck()">Create Account</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </ion-list>
+                </div>
+                <p *ngIf="_existingCustomerData?.customer[0]?.external_id" class="subTitle1">Great! Welcome back. We have found your existing regular ID along with your point history.</p>
+                <div *ngIf="_existingCustomerData?.customer[0]?.external_id" class="content">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label fixed>Regular ID</ion-label>
+                            <ion-label fixed>{{_existingCustomerData?.customer[0]?.external_id}}</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </div>
+                <div class="mt20">
+                    <button ion-button class="btn4" (click)="otpCheck()">Create Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>

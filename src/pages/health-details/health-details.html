@@ -1,23 +1,22 @@
 <div>
-  <header></header>
+    <header></header>
 </div>
 
-<ion-content>
-	<div class="healthDetailsContainer">
-		<figure>
-			<img src="{{healthData?.imagebanner}}">
-		</figure>
-		<div class="content">
-			<h4>{{healthData?.title}}</h4>
-      <p [innerHTML]="healthData?.detaileddescription"></p>
-		</div>
-	</div>
+<ion-content class="mainCont">
+    <div class="healthDetailsContainer">
+        <figure>
+            <img src="{{healthData?.imagebanner}}">
+        </figure>
+        <div class="content">
+            <h4>{{healthData?.title}}</h4>
+            <p [innerHTML]="healthData?.detaileddescription"></p>
+        </div>
+    </div>
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
-

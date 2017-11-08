@@ -1,49 +1,52 @@
 <div>
-  <header></header>
+    <header></header>
 </div>
 
-<ion-content>
-  <div class="inStoreDetailsContainer">
-    <figure>
-      <img src="{{storeDetail?.bannerimage}}" />
-    </figure>
-    <div class="content">
-      <h6>{{storeDetail?.title}}</h6>
-      <p>{{storeDetail?.subtitle}}</p>
-      <p [innerHTML]="storeDetail?.description"></p>
-      <ion-grid>
-        <ion-row *ngIf="_locationList.length >= 1">
-          <ion-col col-4>
-              <h6 class="subHeader">Date</h6>
-          </ion-col>
-          <ion-col col-4>
-              <h6 class="subHeader">Time</h6>
-          </ion-col>
-          <ion-col col-4>
-              <h6 class="subHeader">Location</h6>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngFor="let loc of _locationList">
-          <ion-col col-4>
-              <p class="date">{{loc?.date | date:'dd MMM yyyy'}}</p>
-          </ion-col>
-          <ion-col col-4>
-              <p class="date">{{loc?.time}}</p>
-          </ion-col>
-          <ion-col col-4>
-              <span class="location" clickable (click)="gotoEventLocation(loc)">{{loc?.storename}}</span><ion-icon name="pin" class="alert"></ion-icon>
-            <ion-icon *ngIf="loc?.phone" name="call" class="phoneIco"><a href="tel:{{loc?.phone}}"></a></ion-icon>
-          </ion-col>
-          
-        </ion-row>
-      </ion-grid>
+<ion-content class="mainCont">
+    <div class="inStoreDetailsContainer">
+        <figure>
+            <img src="{{storeDetail?.bannerimage}}" />
+        </figure>
+        <div class="content">
+            <h6>{{storeDetail?.title}}</h6>
+            <p>{{storeDetail?.subtitle}}</p>
+            <p [innerHTML]="storeDetail?.description"></p>
+            <ion-grid>
+                <ion-row *ngIf="_locationList.length >= 1">
+                    <ion-col col-4>
+                        <h6 class="subHeader">Date</h6>
+                    </ion-col>
+                    <ion-col col-4>
+                        <h6 class="subHeader">Time</h6>
+                    </ion-col>
+                    <ion-col col-4>
+                        <h6 class="subHeader">Location</h6>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngFor="let loc of _locationList">
+                    <ion-col col-4>
+                        <p class="date">{{loc?.date | date:'dd MMM yyyy'}}</p>
+                    </ion-col>
+                    <ion-col col-4>
+                        <p class="date">{{loc?.time}}</p>
+                    </ion-col>
+                    <ion-col col-4>
+                        <span class="location" clickable (click)="gotoEventLocation(loc)">{{loc?.storename}}</span>
+                        <ion-icon name="pin" class="alert"></ion-icon>
+                        <ion-icon *ngIf="loc?.phone" name="call" class="phoneIco">
+                            <a href="tel:{{loc?.phone}}"></a>
+                        </ion-icon>
+                    </ion-col>
+
+                </ion-row>
+            </ion-grid>
+        </div>
     </div>
-  </div>
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
