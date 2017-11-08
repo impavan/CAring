@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'franklingothicnewheavyregular';
+    src: url('../fonts/franklingothicnewheavy_regular-aller.eot');
+    src: url('../fonts/franklingothicnewheavy_regular-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/franklingothicnewheavy_regular-aller.woff2') format('woff2'), url('../fonts/franklingothicnewheavy_regular-aller.woff') format('woff'), url('../fonts/franklingothicnewheavy_regular-aller.ttf') format('truetype'), url('../fonts/franklingothicnewheavy_regular-aller.svg#franklingothicnewheavyregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'allerbold';
+    src: url('../fonts/aller_bd-aller.eot');
+    src: url('../fonts/aller_bd-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/aller_bd-aller.woff2') format('woff2'), url('../fonts/aller_bd-aller.woff') format('woff'), url('../fonts/aller_bd-aller.ttf') format('truetype'), url('../fonts/aller_bd-aller.svg#allerbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'allerbold_italic';
+    src: url('../fonts/aller_bdit-aller.eot');
+    src: url('../fonts/aller_bdit-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/aller_bdit-aller.woff2') format('woff2'), url('../fonts/aller_bdit-aller.woff') format('woff'), url('../fonts/aller_bdit-aller.ttf') format('truetype'), url('../fonts/aller_bdit-aller.svg#allerbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'alleritalic';
+    src: url('../fonts/aller_it-aller.eot');
+    src: url('../fonts/aller_it-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/aller_it-aller.woff2') format('woff2'), url('../fonts/aller_it-aller.woff') format('woff'), url('../fonts/aller_it-aller.ttf') format('truetype'), url('../fonts/aller_it-aller.svg#alleritalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'aller_lightregular';
+    src: url('../fonts/aller_lt-aller.eot');
+    src: url('../fonts/aller_lt-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/aller_lt-aller.woff2') format('woff2'), url('../fonts/aller_lt-aller.woff') format('woff'), url('../fonts/aller_lt-aller.ttf') format('truetype'), url('../fonts/aller_lt-aller.svg#aller_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'aller_lightitalic';
+    src: url('../fonts/aller_ltit-aller.eot');
+    src: url('../fonts/aller_ltit-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/aller_ltit-aller.woff2') format('woff2'), url('../fonts/aller_ltit-aller.woff') format('woff'), url('../fonts/aller_ltit-aller.ttf') format('truetype'), url('../fonts/aller_ltit-aller.svg#aller_lightitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'allerregular';
+    src: url('../fonts/aller_rg-aller.eot');
+    src: url('../fonts/aller_rg-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/aller_rg-aller.woff2') format('woff2'), url('../fonts/aller_rg-aller.woff') format('woff'), url('../fonts/aller_rg-aller.ttf') format('truetype'), url('../fonts/aller_rg-aller.svg#allerregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'aller_displayregular';
+    src: url('../fonts/allerdisplay-aller.eot');
+    src: url('../fonts/allerdisplay-aller.eot?#iefix') format('embedded-opentype'), url('../fonts/allerdisplay-aller.woff2') format('woff2'), url('../fonts/allerdisplay-aller.woff') format('woff'), url('../fonts/allerdisplay-aller.ttf') format('truetype'), url('../fonts/allerdisplay-aller.svg#aller_displayregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,6 +1,7 @@
 /*============== Color Theme =================*/
 
 @import "../assets/css/custom-icons.css";
+@import "../assets/css/fonts.css";
 $cp-primary-color:#f3f3f3; //007066
 $cp-darker-primary-color:#224946;
 $btn-default:#096F67;
@@ -28,16 +29,50 @@ $cp-medium-blue-color-x:#3a7dcc;
 
 /*============== Gloabal Font =================*/
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Regular.eot');
-    src: url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto-Regular.woff2') format('woff2'), url('../fonts/Roboto-Regular.woff') format('woff'), url('../fonts/Roboto-Regular.ttf') format('truetype'), url('../fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+// @font-face {
+//     font-family: 'Roboto';
+//     src: url('../fonts/Roboto-Regular.eot');
+//     src: url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto-Regular.woff2') format('woff2'), url('../fonts/Roboto-Regular.woff') format('woff'), url('../fonts/Roboto-Regular.ttf') format('truetype'), url('../fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+body {
+    // font-family: 'Roboto', sans-serif;
+    font-family: 'allerregular';
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'franklingothicnewheavyregular';
+    color: rgba(0, 0, 0, 0.6);
+}
+
+h6 {
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h1 {
+    font-size: 24px;
 }
 
 .mainCont {
@@ -220,7 +255,7 @@ ion-footer {
 }
 
 .btn2 {
-    background-color: $cp-primary-color;
+    background-color: $btn-default;
     height: auto;
     padding: 10px 5px;
     margin: 0;
