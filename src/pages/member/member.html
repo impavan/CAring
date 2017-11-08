@@ -1,43 +1,11 @@
-<!--<ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
-		</button>
-		<div class="customHeader">
-			<ion-grid>
-				<ion-row>
-					<ion-col col-10 class="text-center">
-						<ion-title>
-							<div class="logo">
-								<img src="assets/img/caring_logo_white.png" />
-							</div>
-						</ion-title>
-					</ion-col>
-					<ion-col col-2 class="text-center">
-						<div class="notification">
-							<i class="count">2</i>
-							<img src="assets/img/chat.svg" />
-						</div>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-		</div>
-	</ion-navbar>
-</ion-header>-->
+
 <div>
-  <header></header>
+    <header></header>
 </div>
 
 
-<ion-content>
-	<div class="memberContainer">
-		<!-- <div class="profileOut">
-			<i> -->
-				<!-- <img *ngIf="!_profilePic" src="assets/img/no_photo.jpg">   //profile photo section removed //
-				<img *ngIf="_profilePic" src="{{IMG_URL}}/{{_profilePic}}"> -->
-			<!-- </i>
-			<p>{{_userName}}</p>
-		</div> -->
+<ion-content class="mainCont">
+    <div class="memberContainer">
 		<div class="barCode">
 			<svg #barcode id="barcode"></svg>
 		</div>
@@ -212,29 +180,18 @@
 									<ion-label fixed>Mobile Number</ion-label>
 									<ion-input type="text" readonly  [(ngModel)] = "_mobileNum"></ion-input>
 								</ion-item>
-								<!-- <ion-item>
-									<ion-label>Notifications</ion-label> //-notification bar disabled //
-									<ion-toggle [(ngModel)]="sausage"></ion-toggle>
-								</ion-item> -->
-							</ion-list>
-						</div>
-						<div class="mt20">
-							<button ion-button class="btn4" (click)=" updateProfile()">Update</button>
-						</div>
-					</div>
-					<ion-card *ngIf="!_auth" class="myPointsContainer sec">
-						<p class="urPoints">Login to view your profile</p>
-						<button ion-button (click)="backtologin()">Login</button>
-
-					</ion-card>
-				</div>
-			</ion-list>
-		</div>
+			
+            </ion-list>
+        </div>
+    </div>
 	</div>
+</ion-list>
+		</div>
+    </div>
 </ion-content>
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>

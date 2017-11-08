@@ -1,23 +1,22 @@
 <ion-content padding>
-	<div class="otpContainer">
-		<i class="logo text-center"><img src="assets/img/caring_logo.png" /></i>
-		<h6>otp</h6>
-		<p>Your one time password has been sent to your provided mobile number</p>
-		<div class="content">
-			<ion-list>
-				<ion-item>
-					<ion-label >Mobile Number</ion-label>
-					<ion-input type="number" readonly [(ngModel)]="phoneNum" placeholder="77890 09876"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-label >OTP</ion-label>
-					<ion-input type="password"  [(ngModel)]="otp" placeholder="&#9679;&#9679;&#9679;&#9679;"></ion-input>
-				</ion-item>
-			</ion-list>
-			<button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
-		</div>
-		<!-- <div class="caringWaterMark">
+    <div class="otpContainer">
+        <i class="logo text-center"><img src="assets/img/logo_large.png" /></i>
+        <div text-center class="info">Please enter the <b>OTP</b> (One Time Password) <br>sent your mobile number!</div>
+        <div class="content">
+            <ion-list>
+                <ion-item>
+                    <ion-label>Mobile Number</ion-label>
+                    <ion-input type="number" readonly [(ngModel)]="phoneNum" placeholder="77890 09876"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>OTP</ion-label>
+                    <ion-input type="password" [(ngModel)]="otp" placeholder="&#9679;&#9679;&#9679;&#9679;"></ion-input>
+                </ion-item>
+            </ion-list>
+            <button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
+        </div>
+        <!-- <div class="caringWaterMark">
 			<img src="assets/img/hand_bg.png" />
 		</div> -->
-	</div>
+    </div>
 </ion-content>
