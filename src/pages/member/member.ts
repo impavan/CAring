@@ -34,7 +34,7 @@ export class MemberPage {
   loadedProfile:boolean = false;
   redeemedRewards:any = [];
   _transactionList:any = [];
-
+_newRedeemedList:any =[];
   redeemdRewards:any = [];
   userData:any = {};
 
@@ -133,6 +133,30 @@ export class MemberPage {
                   console.log(this.redeemedRewards);
                   // this.loadedWallet = true;
                   this.loaderProvider.dismissLoader();
+
+                  if (this.redeemedRewards.length > 0) {
+              // this._hasRewards = true;
+              this._newRedeemedList = [];
+            //  let data = this._redeemedVouchers.filter(e=> e.ExperienceId);
+            //  console.log(data,"----------group---------");
+            for(let i=0;i<this.redeemedRewards.length;i++){
+             let exp =  this.redeemedRewards[i].ExperienceId;
+                
+                if(this._newRedeemedList[exp]){ 
+                  this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
+                }
+                else{
+                   this._newRedeemedList[exp] = {};
+                   this._newRedeemedList[exp]['Vouchers'] = [];
+                   this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
+                }
+
+            }
+                
+                   console.log(this._newRedeemedList);
+                  //  console.log(this._newRedeemedList["219"]);
+
+            }
               },
 
                err => {
