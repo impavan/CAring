@@ -1,36 +1,34 @@
 <div>
-  <header></header>
+    <header></header>
 </div>
 
 
-<ion-content>
+<ion-content class="mainCont">
 
 
-  <div class="promotionDetails">
-    <figure>
-      <img src="{{_promotionDetails?.bannerimage}}" />
-    </figure>
-    <div class="content">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <a href="{{_promotionDetails?.buttoncalltoaction}}" ion-button class="btn3">{{_promotionDetails?.buttontext}}</a>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <h4>{{_promotionDetails?.title}}</h4>
-      <p [innerHTML]="_promotionDetails?.longdescription"></p>
+    <div class="promotionDetails">
+        <figure>
+            <img src="{{_promotionDetails?.bannerimage}}" />
+        </figure>
+        <div class="content">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <a href="{{_promotionDetails?.buttoncalltoaction}}" ion-button class="btn3">{{_promotionDetails?.buttontext}}</a>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <h4>{{_promotionDetails?.title}}</h4>
+            <p [innerHTML]="_promotionDetails?.longdescription"></p>
+        </div>
     </div>
-  </div>
-  
+
 
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
-
-

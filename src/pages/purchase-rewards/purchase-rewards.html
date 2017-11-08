@@ -1,47 +1,47 @@
 <div>
-  <header></header>
+    <header></header>
 </div>
 
 
-<ion-content padding>
-	<div class="purchaseRewardsContainer">
-		<h5>Congratulations!</h5>
-		<p class="successVoc">You have successfully redeemed the Voucher
-			<strong>{{offerData?.Title}}</strong>
-		</p>
-		<ion-card>
-			<ion-card-content>
-				<p class="redemptionPoints">Redemption Points: {{offerData?.BrandPointRedeemValue}}</p>
-				<ion-grid>
-					<ion-row>
-						<ion-col col-9>
-							<p>Current Points:</p>
-						</ion-col>
-						<ion-col col-3 class="text-right">
-							<p>{{currentPoints}}</p>
-						</ion-col>
-					</ion-row>
-					<ion-row>
-						<ion-col col-9>
-							<p class="alert">Point Balance after Redemption:</p>
-						</ion-col>
-						<ion-col col-3 class="text-right">
-							<p class="alert">{{remainder}}</p>
-						</ion-col>
-					</ion-row>
-				</ion-grid>
-				<div class="mt30">
-					<button ion-button class="btn4" (click)="navToOffers()">Continue Shoppping</button>
-				</div>
-			</ion-card-content>
-		</ion-card>
-		<a  class="wallet" (click)="navToWallet()">Go to My Wallet</a>
-	</div>
+<ion-content padding class="mainCont">
+    <div class="purchaseRewardsContainer">
+        <h5>Congratulations!</h5>
+        <p class="successVoc">You have successfully redeemed the Voucher
+            <strong>{{offerData?.Title}}</strong>
+        </p>
+        <ion-card>
+            <ion-card-content>
+                <p class="redemptionPoints">Redemption Points: {{offerData?.BrandPointRedeemValue}}</p>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-9>
+                            <p>Current Points:</p>
+                        </ion-col>
+                        <ion-col col-3 class="text-right">
+                            <p>{{currentPoints}}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-9>
+                            <p class="alert">Point Balance after Redemption:</p>
+                        </ion-col>
+                        <ion-col col-3 class="text-right">
+                            <p class="alert">{{remainder}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <div class="mt30">
+                    <button ion-button class="btn4" (click)="navToOffers()">Continue Shoppping</button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+        <a class="wallet" (click)="navToWallet()">Go to My Wallet</a>
+    </div>
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>

@@ -1,133 +1,125 @@
 <div>
-  <header></header>
+    <header></header>
 </div>
 
 
-<ion-content>
-  <div class="searchOut">
-    <!--<ion-item>-->
-      <!--<ion-input placeholder="Find"></ion-input>-->
-      <ion-searchbar
-          [(ngModel)]="_searchKey"
-          placeholder="Find"
-          (ionInput)="onInput($event)"
-          (ionClear)="onCancel($event)">
-      </ion-searchbar>
-    <!--</ion-item>-->
-  </div>
-  <div #myMap id="map" class="mapContainer"></div>
-
-  <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
-    <ion-segment [(ngModel)]="locationState">
-      <ion-segment-button value="near_you">
-        Near You
-      </ion-segment-button>
-      <ion-segment-button value="favourite">
-        Favourite
-      </ion-segment-button>
-    </ion-segment>
-    <div [ngSwitch]="locationState">
-      <ion-list *ngSwitchCase="'near_you'">
-        <div class="locationContainer">
-            <ion-grid *ngFor="let location of updatedLocationList">
-              <article clickable (click)="setMarker(location)">
-              <ion-row>
-                <ion-col col-11>
-                  <h4>{{location?.storename}}</h4>
-                </ion-col>
-                <ion-col col-1>
-                  <ion-icon *ngIf="!location?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
-                   <ion-icon *ngIf="location?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-1>
-                  <ion-icon name="pin" class="alert"></ion-icon>
-                </ion-col>
-                <ion-col col-11>
-                  <span>{{location?.km | number : '1.2-2'}} Km away</span>
-                  <p>
-                   {{location?.fulladdress}}<br/>
-                    Ph: {{location?.telephone}}<br/>
-                    {{location?.storehours}}<br/>
-                    <!--Fri-Sat 10:00AM - 10:30PM-->
-                  </p>
-                </ion-col>
-              </ion-row>
-              </article>
-            </ion-grid>
-        </div>
-      </ion-list>
-      <ion-list *ngSwitchCase="'favourite'">
-        <div class="locationContainer">
-            <ion-grid *ngFor="let fav of favouriteList">
-              <article  clickable (click)="setMarker(fav)">
-              <ion-row>
-                <ion-col col-11>
-                  <h4>{{fav?.storename}}</h4>
-                </ion-col>
-                <ion-col col-1>
-                  <!--<ion-icon *ngIf="!fav?.favourite" name="heart-outline" class="alert favIcon"></ion-icon>-->
-                   <ion-icon *ngIf="fav?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(fav)"></ion-icon>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-1>
-                  <ion-icon name="pin" class="alert"></ion-icon>
-                </ion-col>
-                <ion-col col-11>
-                  <span>{{ fav?.km | number : '1.2-2'}} Km away</span>
-                  <p>
-                    {{fav?.fulladdress}}<br/>
-                    Ph: {{fav?.telephone}}<br/>
-                  {{fav?.storehours}}<br/>
-                    
-                  </p>
-                </ion-col>
-              </ion-row>
-              </article>
-            </ion-grid>
-        </div>
-      </ion-list>
+<ion-content class="mainCont">
+    <div class="searchOut">
+        <!--<ion-item>-->
+        <!--<ion-input placeholder="Find"></ion-input>-->
+        <ion-searchbar [(ngModel)]="_searchKey" placeholder="Find" (ionInput)="onInput($event)" (ionClear)="onCancel($event)">
+        </ion-searchbar>
+        <!--</ion-item>-->
     </div>
-  </div>
-  <div *ngIf="_searchKey!=''">
-      <div class="locationContainerTwo">
-    <ion-grid *ngFor="let filter of _newFilteredList">
-            <article (click)="setMarker(filter)" class="searchCard">
-              <ion-row>
-                <ion-col col-11>
-                  <h4>{{filter?.storename}}</h4>
-                </ion-col>
-                <ion-col col-1>
-                  <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(filter)"></ion-icon>
-                   <ion-icon *ngIf="filter?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(filter)"></ion-icon>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-1>
-                  <ion-icon name="pin" class="alert"></ion-icon>
-                </ion-col>
-                <ion-col col-11>
-                  <span>{{filter?.km | number : '1.2-2'}} Km away</span>
-                  <p>
-                   {{filter?.fulladdress}}<br/>
-                    Ph: {{filter?.telephone}}<br/>
-                    {{filter?.storehours}}<br/>
-                    <!--Fri-Sat 10:00AM - 10:30PM-->
-                  </p>
-                </ion-col>
-              </ion-row>
-            </article>
+    <div #myMap id="map" class="mapContainer"></div>
+
+    <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
+        <ion-segment [(ngModel)]="locationState">
+            <ion-segment-button value="near_you">
+                Near You
+            </ion-segment-button>
+            <ion-segment-button value="favourite">
+                Favourite
+            </ion-segment-button>
+        </ion-segment>
+        <div [ngSwitch]="locationState">
+            <ion-list *ngSwitchCase="'near_you'">
+                <div class="locationContainer">
+                    <ion-grid *ngFor="let location of updatedLocationList">
+                        <article clickable (click)="setMarker(location)">
+                            <ion-row>
+                                <ion-col col-11>
+                                    <h4>{{location?.storename}}</h4>
+                                </ion-col>
+                                <ion-col col-1>
+                                    <ion-icon *ngIf="!location?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
+                                    <ion-icon *ngIf="location?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-1>
+                                    <ion-icon name="pin" class="alert"></ion-icon>
+                                </ion-col>
+                                <ion-col col-11>
+                                    <span>{{location?.km | number : '1.2-2'}} Km away</span>
+                                    <p>
+                                        {{location?.fulladdress}}<br/> Ph: {{location?.telephone}}<br/> {{location?.storehours}}
+                                        <br/>
+                                        <!--Fri-Sat 10:00AM - 10:30PM-->
+                                    </p>
+                                </ion-col>
+                            </ion-row>
+                        </article>
+                    </ion-grid>
+                </div>
+            </ion-list>
+            <ion-list *ngSwitchCase="'favourite'">
+                <div class="locationContainer">
+                    <ion-grid *ngFor="let fav of favouriteList">
+                        <article clickable (click)="setMarker(fav)">
+                            <ion-row>
+                                <ion-col col-11>
+                                    <h4>{{fav?.storename}}</h4>
+                                </ion-col>
+                                <ion-col col-1>
+                                    <!--<ion-icon *ngIf="!fav?.favourite" name="heart-outline" class="alert favIcon"></ion-icon>-->
+                                    <ion-icon *ngIf="fav?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(fav)"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-1>
+                                    <ion-icon name="pin" class="alert"></ion-icon>
+                                </ion-col>
+                                <ion-col col-11>
+                                    <span>{{ fav?.km | number : '1.2-2'}} Km away</span>
+                                    <p>
+                                        {{fav?.fulladdress}}<br/> Ph: {{fav?.telephone}}<br/> {{fav?.storehours}}
+                                        <br/>
+
+                                    </p>
+                                </ion-col>
+                            </ion-row>
+                        </article>
+                    </ion-grid>
+                </div>
+            </ion-list>
+        </div>
+    </div>
+    <div *ngIf="_searchKey!=''">
+        <div class="locationContainerTwo">
+            <ion-grid *ngFor="let filter of _newFilteredList">
+                <article (click)="setMarker(filter)" class="searchCard">
+                    <ion-row>
+                        <ion-col col-11>
+                            <h4>{{filter?.storename}}</h4>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(filter)"></ion-icon>
+                            <ion-icon *ngIf="filter?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(filter)"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-1>
+                            <ion-icon name="pin" class="alert"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>
+                            <span>{{filter?.km | number : '1.2-2'}} Km away</span>
+                            <p>
+                                {{filter?.fulladdress}}<br/> Ph: {{filter?.telephone}}<br/> {{filter?.storehours}}
+                                <br/>
+                                <!--Fri-Sat 10:00AM - 10:30PM-->
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                </article>
             </ion-grid>
-      </div>
-  </div>
+        </div>
+    </div>
 </ion-content>
 
 
 <ion-footer>
-<ion-toolbar>
-<page-tabs></page-tabs>
-</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>
-
