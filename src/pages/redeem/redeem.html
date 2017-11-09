@@ -11,7 +11,7 @@
         </figure>
         <div class="content p0">
             <article>
-                <h1>Voucher</h1>
+                <h1>{{redeemList[0].Title}}</h1>
                 <p [innerHTML]="redeemList[0]?.Description"></p>
                 <hr/>
             </article>
@@ -35,7 +35,7 @@
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
             <li *ngIf="reward?.ActivateStatus == 0 && reward?.ExpiryDate <= currentDate">
                 <label>{{reward.VoucherCode}}</label>
-                <span class="danger">Expired</span>
+                <span class="danger">{{reward?.ExpiryDate}}</span>
             </li>
         </ul>
     </div>
