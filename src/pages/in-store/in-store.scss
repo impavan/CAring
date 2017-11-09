@@ -1,45 +1,53 @@
 page-in-store {
-	.inStoreContainer{
-		margin: 0 0 0 0;
-		h3{
-			margin:5px 0 0 0;
-			color:$cp-extra-darker-grey;
-			font-weight: 600;
-		}
-		.card-md{
-		    margin: 5px;
-		    border-radius: 5px;
-		    width: calc(100% - 15px);
-			figure{
-				margin: 0;
-			    height: 100px;
-			    overflow: hidden;
-			}
-			.card-content-md {
-    			padding: 10px;
-				.card-title{
-					font-weight: 600;
-	    			margin:0 0 5px 0;
-	    			line-height: normal;
-				}
-				p{
-					margin:0 0 0 0;
-					line-height: normal;
-					color:$cp-extra-darker-grey;
-				}
-				.button-md{
-					background-color: $cp-primary-color;
-					height: auto;
-				    margin: 0;
-				    width: 100%;
-				    font-size: 14px;
-				    padding: 5px 0;
-				    box-shadow: none;
-				    text-transform: capitalize;
-				    font-weight: normal;
-				    border-radius: 5px;
-				}
-			}
-		}
-	}
+    .inStoreContainer {
+        margin: 0 0 0 0;
+        h3 {
+            margin: 5px 0 0 0;
+            color: $cp-extra-darker-grey;
+            font-weight: 600;
+        }
+        .btn {
+            background: #F29827;
+            padding: 0px 5px;
+            margin: 0;
+            font-size: 10px;
+            border-radius: 0px;
+            height: 21px;
+        }
+        .card-md {
+            margin: 5px;
+            border-radius: 5px;
+            width: calc(100% - 15px);
+            figure {
+                margin: 0;
+                height: 100px;
+                overflow: hidden;
+            }
+            .card-content-md {
+                padding: 10px;
+                .card-title {
+                    font-weight: 600;
+                    margin: 0 0 5px 0;
+                    line-height: normal;
+                }
+                p {
+                    margin: 0 0 0 0;
+                    line-height: normal;
+                    color: $cp-extra-darker-grey;
+                }
+                .button-md {
+                    background-color: $cp-primary-color;
+                    height: auto;
+                    margin: 0;
+                    width: 100%;
+                    font-size: 14px;
+                    padding: 5px 0;
+                    box-shadow: none;
+                    text-transform: capitalize;
+                    font-weight: normal;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
 }
