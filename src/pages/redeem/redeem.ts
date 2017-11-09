@@ -43,7 +43,6 @@ export class RedeemPage {
                       this.redeemList.sort(this.sortByExpiryDate);
                       this.experienceId = this.redeemList[0].ExperienceId;
 
-                      console.log(this.redeemList);
                 }
     
             }
@@ -68,14 +67,26 @@ export class RedeemPage {
 
             this.loaderProvider.presentLoadingCustom();
 
+            this.voucherModal.close();
+
             this.profileProvider.getAllRedeemedVouchers()
 
                   .subscribe(res =>{
 
-                            this.newRedeemList = res[0].data;
+                            if(res[0].code == 200){
+
+                            
+                            this.newRedeemList = res[0].customer_vouchers;
                             let myList =  this.newRedeemList.filter(data=>data.ExperienceId == this.experienceId )
                             this.redeemList = myList;
                             this.loaderProvider.dismissLoader();
+
+                            }else{
+
+                              this.loaderProvider.dismissLoader();
+                              this.alertProvider.presentToast(res[0].message);
+
+                            }
 
                   })
 

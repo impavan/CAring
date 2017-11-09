@@ -20,7 +20,7 @@
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
             <li *ngIf="reward?.ActivateStatus == 0 && reward.ExpiryDate >= currentDate">
                 <label>{{reward.VoucherCode}}</label>
-                <span>{{reward?.ExpiryDate}}</span>
+                <span>{{reward?.ExpiryDate }}</span>
             </li>
         </ul>
 
