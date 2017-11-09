@@ -37,6 +37,10 @@ $cp-medium-blue-color-x:#3a7dcc;
 //     font-weight: normal;
 //     font-style: normal;
 // }
+ion-app.ios {
+    font-family: 'allerbold';
+}
+
 body {
     // font-family: 'Roboto', sans-serif;
     font-family: 'allerregular';
@@ -48,7 +52,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'franklingothicnewheavyregular';
+    font-family: 'allerbold';
     color: rgba(0, 0, 0, 0.6);
 }
 
