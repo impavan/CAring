@@ -22,7 +22,7 @@
 
  export const FEEDBACK = `/mobile/customerfeedback`;
 
- export const REDEEM_VOUCHERS = `/mobile/purchaseexperience`;
+ export const REDEEM_VOUCHERS = `mobile/purchaseexperience`;
 
  export const STORES = `mobile/stores`;
 
