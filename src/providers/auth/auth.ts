@@ -51,7 +51,7 @@ export class AuthProvider {
 
   // sets the header with access-token
   setHeader() {
-    this.contentHeaders.set('Authorization', localStorage.getItem('auth_token'));
+    this.contentHeaders.set('Authorization', this.getAuthToken());
   }
 
   //sets the auth- token
@@ -63,6 +63,7 @@ export class AuthProvider {
   getAuthToken() {
     return localStorage.getItem('auth_token');
   }
+
 
   //set true if user logged In
   setUserLoggedIn(userLoggedIn) {
@@ -78,6 +79,12 @@ export class AuthProvider {
   getUserFirstName() {
     return this.userObj.customer[0].firstname;
   }
+
+    // returns externalId
+  getExternalId(){
+    return this.userObj.customer[0].external_id;
+  }
+
 
   //returns user gender
   getUserGender() {

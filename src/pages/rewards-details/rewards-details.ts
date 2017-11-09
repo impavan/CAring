@@ -42,6 +42,7 @@ export class RewardsDetailsPage {
     if (this._auth) {
       this._currentPoint = this.authProvider.getMyCurrentPoints();
       this.remainder = this._currentPoint - this.offerdata.BrandPointRedeemValue;
+      this.authProvider.setHeader();
       // this.remainder = 0;
       if (this.remainder >= 0) {
         this.flag = true;
@@ -59,9 +60,10 @@ export class RewardsDetailsPage {
       points: this.offerdata.BrandPointRedeemValue,
       experience_id: this.offerdata.ExperienceID,
     }
+    this.closeRedeemPointsModal();
     this.rewardsProvider.redeemVoucher(redeemData).subscribe(data => {
       this.loaderProvider.dismissLoader();
-      this.closeRedeemPointsModal();
+      
       if (data[0].code == 200) {
         this.alertProvider.presentToast(data[0].message);
         this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata, 'currentpoints': this._currentPoint, 'remainder': this.remainder });

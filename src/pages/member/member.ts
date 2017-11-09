@@ -35,6 +35,7 @@ export class MemberPage {
   _pointOpen: boolean = false;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
+  _externalId:any;
   loadedWallet: boolean = false;
   loadedProfile: boolean = false;
   redeemedRewards: any = [];
@@ -108,6 +109,7 @@ export class MemberPage {
     this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._profilePic = this.authProvider.getUserProfilePic();
+    this._externalId = this.authProvider.getExternalId();
     JsBarcode(this.barcode.nativeElement, this._mobileNum);
 
   }
@@ -243,14 +245,17 @@ export class MemberPage {
         email: this._emailId,
         old_email: this._oldemailId,
         mobile: this._mobileNum,
-        externalId: ''
+        externalId: this._externalId || ''
       }
+
+       this.loaderProvider.presentLoadingCustom();
 
      this.userProvider.updateProfile(this.userData).subscribe(data => {
 
-      this.loaderProvider.presentLoadingCustom();
-
+    
       if (data[0].code == 200) {
+
+        this.alertProvider.presentToast('Profile updated successfully');
 
         this.userProvider.getMyProfile().subscribe(data => {
 
@@ -285,11 +290,11 @@ export class MemberPage {
 
         })
       } else if (data[0].code == 201) {
-
+        this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast(data[0].message);
 
       } else if (data[0].code == 202) {
-
+        this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast(data[0].message);
 
       } else {
@@ -301,7 +306,7 @@ export class MemberPage {
       this.exceptionProvider.excpHandler(err);
     });
   }
-  
+
 
   getRedeemed(exp) {
 

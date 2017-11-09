@@ -54,7 +54,7 @@
                             <li *ngIf="!transaction?.transaction_earning">
                                 <label for="">Points Redeemed</label>
                                 <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
-                                <b class="amount_display"> + {{transaction?.points_issued | round }}</b>
+                                <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
                             </li>
                         </ul>
                     </section>
@@ -236,6 +236,9 @@
                                 </ion-item>
 
                             </ion-list>
+                            <div class="mt20">
+                                <button ion-button class="btn4" (click)="updateProfile()">Update</button>
+                          </div>
                         </div>
                     </div>
                 </div>
