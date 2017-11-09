@@ -76,6 +76,12 @@ h1 {
     font-size: 24px;
 }
 
+#leftMenu {
+    .scroll-content {
+        bottom: 0px;
+    }
+}
+
 .scroll-content {
     bottom: 65px;
 }
