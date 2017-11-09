@@ -33,9 +33,7 @@
                     <ion-col col-4>
                         <span class="location" clickable (click)="gotoEventLocation(loc)">{{loc?.storename}}</span>
                         <ion-icon name="pin" class="alert"></ion-icon>
-                        <ion-icon *ngIf="loc?.phone" name="call" class="phoneIco">
-                            <a href="tel:{{loc?.phone}}"></a>
-                        </ion-icon>
+                            <a  *ngIf="loc?.phone" href="tel:{{loc?.phone}}"><ion-icon color="secondary" name="call" class="phoneIco"></ion-icon></a>
                     </ion-col>
 
                 </ion-row>

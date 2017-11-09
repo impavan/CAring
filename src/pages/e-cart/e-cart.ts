@@ -25,8 +25,12 @@ export class ECartPage {
   }
 
   ionViewWillEnter(){
-    console.log("hryyyyy");
-    this.inAppBrowser.create('http://estore.caring2u.com/');
+
+    let browser = this.inAppBrowser.create('http://estore.caring2u.com/');
+    browser.on('exit').subscribe(()=>{
+      this.navCtrl.setRoot('HomePage');
+
+    })
     
   }
 

@@ -6,6 +6,7 @@ import { RewardsProvider } from '../../providers/rewards/rewards';
 import JsBarcode from 'jsbarcode';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+import { ProfileProvider } from '../../providers/profile/profile';
 
 @IonicPage()
 @Component({
@@ -17,8 +18,10 @@ export class RedeemPage {
   @ViewChild('ActiveVoucher')voucherModal;
   @ViewChild('barcode') barcode: ElementRef;
   redeemList:any = [];
+  newRedeemList:any = [];
   selectedTab:any ='New';
   currentDate:any = moment().format('YYYY-MM-DD');
+  experienceId:any;
 
  
   
@@ -27,6 +30,7 @@ export class RedeemPage {
               public loaderProvider:LoaderProvider,
               public rewardsProvider:RewardsProvider,
               public alertProvider:AlertProvider,
+              public profileProvider:ProfileProvider,
               public expnHandler:ExceptionHandlerProvider) {
 
                     let data = navParams.get('redeemData');
@@ -35,7 +39,9 @@ export class RedeemPage {
 
                       this.redeemList = data.Vouchers;
 
+
                       this.redeemList.sort(this.sortByExpiryDate);
+                      this.experienceId = this.redeemList[0].ExperienceId;
 
                       console.log(this.redeemList);
                 }
@@ -46,38 +52,41 @@ export class RedeemPage {
 
   redeemMyReward(){
 
-    this.cancelRedeem()
-    this.loaderProvider.presentLoadingCustom();
-     let voucher = this.redeemList.filter(data =>data.ActivateStatus == 0).shift();
-     this.rewardsProvider.claimMyVoucher(voucher.VoucherId).subscribe(res=>{
-      this.loaderProvider.dismissLoader();
+          this.cancelRedeem();
 
-       if(res[0].code == 200){
-         
-       console.log(res);
-       JsBarcode(this.barcode.nativeElement, res[0].data[0].VoucherId);
-       this.voucherModal.open()
+          this.loaderProvider.presentLoadingCustom();
+
+          let voucher = this.redeemList.filter(data =>data.ActivateStatus == 0).shift();
+          
+                this.loaderProvider.dismissLoader();
+                JsBarcode(this.barcode.nativeElement, voucher.VoucherId);
+                this.voucherModal.open();
        
       }
-      else{
 
-        this.alertProvider.presentToast(res[0].message);
+      getMyLatestRewards(){
+
+            this.loaderProvider.presentLoadingCustom();
+
+            this.profileProvider.getAllRedeemedVouchers()
+
+                  .subscribe(res =>{
+
+                            this.newRedeemList = res[0].data;
+                            let myList =  this.newRedeemList.filter(data=>data.ExperienceId == this.experienceId )
+                            this.redeemList = myList;
+                            this.loaderProvider.dismissLoader();
+
+                  })
 
       }
+     
 
-
-     },error=>{
-
-          this.loaderProvider.dismissLoader();
-
-          this.expnHandler.excpHandler(error);
-
-
-     })
+    
     
 
 
-  }
+  
 
 
   cancelRedeem(){
