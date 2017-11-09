@@ -21,10 +21,6 @@ export class InStorePage {
     this.getInStoreActivities();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InStorePage');
-  }
-
   getInStoreActivities() {
     this.hapenningsProvider.getInStoreActivities().subscribe(res => {
       this.storeActivityList = res.data;

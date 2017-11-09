@@ -12,10 +12,10 @@ export class HappenDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this._happenList = navParams.get('happendata');
-    console.log(this._happenList);
+    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HappenDetailsPage');
+    
   }
 }

@@ -38,9 +38,6 @@ myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
                  this.isActivePage = this.myTabs[0];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TabsPage');
-  }
   ionViewDidEnter(){
     
       // this.index = this.navParams.get('index');

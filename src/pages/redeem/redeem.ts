@@ -14,13 +14,9 @@ export class RedeemPage {
     let data = navParams.get('redeemData');
     if(data){
       this.redeemList = data.Vouchers;
-     console.log(this.redeemList);
     }
     
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RedeemPage');
-  }
 
 }

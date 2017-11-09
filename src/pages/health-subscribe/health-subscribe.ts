@@ -17,10 +17,6 @@ export class HealthSubscribePage {
     private hapenningsProvider: HapenningsProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HealthSubscribePage');
-  }
-
   ionViewWillEnter() {
     this.getPromotionsBrochureLink()
   }
@@ -32,12 +28,9 @@ export class HealthSubscribePage {
 
   getPromotionsBrochureLink() {
     this.hapenningsProvider.getPromotionsBrochureLink().subscribe(res => {
-      console.log(res);
       for (let i in res.data) {
         if (res.data[i].key == this.NEWSSUBLINK)
-          console.log(res.data[i].value);
         this._newsSubscriptionLink = res.data[i].value;
-        console.log(this._newsSubscriptionLink);
         break;
       }
     });

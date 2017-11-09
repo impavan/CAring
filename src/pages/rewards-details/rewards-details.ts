@@ -39,15 +39,12 @@ export class RewardsDetailsPage {
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidLoad RewardsDetailsPage');
     if (this._auth) {
       this._currentPoint = this.authProvider.getMyCurrentPoints();
-      console.log(this._currentPoint, '=================current points===================');
       this.remainder = this._currentPoint - this.offerdata.BrandPointRedeemValue;
       // this.remainder = 0;
       if (this.remainder >= 0) {
         this.flag = true;
-        console.log(this.flag);
       }
     }
   }

@@ -57,7 +57,6 @@ _newRedeemedList:any =[];
     }
    
     this.loadMyPoints();
-    console.log('image--- url', this.IMG_URL);
     this.from = navParams.get('from');
     if(this.from == 'purchase'){
       this.member = 'My Wallet';
@@ -68,9 +67,6 @@ _newRedeemedList:any =[];
       
     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MemberPage');
-  }
 
   ionViewWillEnter(){
      
@@ -123,8 +119,6 @@ _newRedeemedList:any =[];
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
         this.loadedProfile = true;
-        console.log(this._totalAvailablePoints);
-        console.log(this._totalRedeemedPoints);
          this.loadMyProfile();
       }
     }, err => {
@@ -138,7 +132,6 @@ _newRedeemedList:any =[];
         this.profileProvider.getAllRedeemedVouchers()
               .subscribe(res => {
                   this.redeemedRewards = res[0].customer_vouchers;
-                  console.log(this.redeemedRewards);
                   // this.loadedWallet = true;
                   this.loaderProvider.dismissLoader();
                   this.isWalletLoaded =true;
@@ -161,7 +154,7 @@ _newRedeemedList:any =[];
 
             }
                 
-                   console.log(this._newRedeemedList);
+                   
                   //  console.log(this._newRedeemedList["219"]);
 
             }
@@ -181,7 +174,6 @@ _newRedeemedList:any =[];
             .subscribe(data=>{
 
                   this._transactionList = data[0].customer_transaction_info;
-                  console.log(this._transactionList);
 
           })
 
@@ -215,7 +207,6 @@ _newRedeemedList:any =[];
   
 
   updateProfile(){
-    console.log("");
     this.userData =
     {
       fname:this._userName,

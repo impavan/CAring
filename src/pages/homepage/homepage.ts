@@ -91,7 +91,7 @@ export class HomePage {
         this.inAppBrowser.create(bannerdata.destination);
 
     }else{
-        console.log("In else");
+        
     }
     
 
@@ -100,7 +100,6 @@ export class HomePage {
 
   route(data){
     let page = data.split(":");
-    console.log(page);
     if(page){
     let event = page[1].split("/");
     }

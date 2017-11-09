@@ -26,10 +26,6 @@ export class HealthInfoPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HealthInfoPage');
-  }
-
   navToHealthDetails(health) {
     this.navCtrl.push("HealthDetailsPage", {data:health});
   }
@@ -42,7 +38,6 @@ export class HealthInfoPage {
     this.hapenningsProvider.getHealthInfo().subscribe(res => {
       this._healthInfoList = res.data;
       this.loaderProvider.dismissLoader();
-      console.log(this._healthInfoList);
     });
   }
 }

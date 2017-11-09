@@ -41,9 +41,6 @@ export class StoreLocatorPage {
     this._favIdList = this.getFavList();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StoreLocatorPage');
-  }
 
   ngAfterViewInit() {
     this.loadMap();
@@ -51,7 +48,6 @@ export class StoreLocatorPage {
 
   getStores() {
     this.storeLocatorProvider.getStores().subscribe(res => {
-      console.log(res);
       this.locationList = res.data;
       this.addMarkers(this.map, this.locationList);
       this.loadFavList(this.locationList);
@@ -62,7 +58,6 @@ export class StoreLocatorPage {
     // navigator.geolocation.getCurrentPosition((position) => {
     // console.log(position);
     let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
-    console.log("***************************");
     let mapOptions = {
       center: latLng,
       zoom: 12,
@@ -108,7 +103,6 @@ export class StoreLocatorPage {
     this.updatedLocationList = [];
     let that = this;
     let service = new google.maps.DistanceMatrixService();
-    console.log(service);
     for (let i in locationList) {
       service.getDistanceMatrix({
         origins: [currentlatLngA],
@@ -142,10 +136,6 @@ export class StoreLocatorPage {
     return deg * (Math.PI / 180)
   }
 
-  successCallBack(res) {
-    console.log(res);
-    console.log("distance from current location is", res.rows[0].elements[0].distance.value / 1000, "km");
-  }
 
   // sortBy(a,b){
   //       return parseFloat(a.km) - (b.km);
@@ -171,9 +161,7 @@ export class StoreLocatorPage {
   }
 
   addFavList(id) {
-    console.log(id);
     this._favIdList = this.getFavList();
-    console.log(this._favIdList);
     this._favIdList.push(id);
     localStorage.setItem('favList', JSON.stringify(this._favIdList));
   }
@@ -194,7 +182,6 @@ export class StoreLocatorPage {
    
     else if(!this._searchKey){
       this.onClear();
-      console.log("Inside Else Condition");
     }
     
     
@@ -202,7 +189,7 @@ export class StoreLocatorPage {
 
   onCancel(event){
 
-    console.log(event);
+    
      let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
      this.map.panTo(latLng,30);
      this.map.setZoom(12);
@@ -210,7 +197,7 @@ export class StoreLocatorPage {
   }
 
   onClear(){
-    console.log("hhheeeerrrreee");
+    
      let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
      this.map.panTo(latLng,30);
      this.map.setZoom(12);

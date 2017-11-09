@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NavController} from 'ionic-angular';
 
 /**
  * Generated class for the HeaderComponent component.
@@ -14,9 +15,12 @@ export class HeaderComponent {
 
   text: string;
 
-  constructor() {
-    console.log('Hello HeaderComponent Component');
+  constructor(public navCtrl:NavController) {
     this.text = 'Hello World';
+  }
+
+  goTo(page){
+    this.navCtrl.push(page);
   }
 
 }
