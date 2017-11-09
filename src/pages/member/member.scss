@@ -1,311 +1,329 @@
 page-member {
-	.memberContainer{
-		.text-input-md {
-			text-align: right !important;
-		}
-		margin:50px 0 0 0;
-		padding:0;
-		.profileOut{
-			margin: 20px 0 0 0;
-			i{
-				width:80px;
-				height:80px;
-				margin:0 auto;
-				display:block;
-				border-radius:50%;
-				overflow:hidden;
-				img{
-					width:100%;
-					max-width:100%;
-				}
-			}
-			p{
-				text-align:center;
-				margin: 5px 0 20px 0;
-			}
-		}
-		.barCode{
-			margin:0 0 20px 0;
-			text-align:center;
-			i{
-				width:150px;
-				margin:0 auto;
-				display:block;
-				img{
-					width:100%;
-					max-width:100%;
-				}
-				label{
-					text-align: center;
-					display: block;
-				}
-			}
-		}
-		.toolbar-md, .toolbar-ios{
-			box-shadow:0px 2px 7px $cp-extra-lighter-grey-xxxxxx;
-		}
-		.toolbar-background-md, .toolbar-background-ios {
-		    border-color: $cp-primary-color;
-		    background: $cp-primary-color;
-		    box-shadow:0px 2px 10px $cp-extra-lighter-grey-xxxx;;
-		}
-		.segment-md-secondary .segment-button.activated, .segment-md-secondary .segment-button.segment-activated {
-		    border-color: transparent;
-		    color: $cp-white-color;
-		    opacity: 1;
-		}
-		.segment-ios-secondary .segment-button{
-			border-color:transparent;
-    		color: $cp-white-color;
-    		opacity: 0.4;
-		}
-		.segment-ios-secondary .segment-button.segment-activated{
-			border-color: transparent;
-		    color: $cp-white-color;
-		    opacity: 1;
-		    background:transparent;
-		}
-		.segment-md-secondary .segment-button {
-		    color: $cp-white-color;
-		    opacity: 0.4;
-		    text-transform: capitalize;
-		    font-size:14px;
-		}
-		.segment-md .segment-button{
-			border-bottom-width: 0;
-		    border-bottom-style: none;
-		    border-bottom-color: transparent;
-		    height: auto;
-		    line-height:25px;
-		}
-		.subSegmentOut{
-			ion-segment, .toolbar-ios .segment-ios{
-				display:inline-block !important;
-				width: 100%;
-				margin: 10px 0 0 10px;
-			}
-			.toolbar-md, .toolbar-ios{
-				box-shadow:none;
-			}
-			.toolbar-background-md, .toolbar-background-ios {
-			    border-color:transparent;
-			    background: transparent;
-			}
-			.segment-md-secondary .segment-button.activated, .segment-md-secondary .segment-button.segment-activated {
-			    border-color: $cp-primary-color;
-			    color: $cp-primary-color;
-			    opacity: 1;
-			}
-			.segment-md-secondary .segment-button {
-			    color: $cp-extra-lighter-grey-xxxxx;
-			    opacity: 1;
-			    font-weight: normal;
-			    border: 1px solid $cp-extra-lighter-grey-xxxxx;
-    			border-radius: 5px;
-    			text-transform: capitalize;
-    			font-size:14px;
-			}
-			.segment-md .segment-button, .segment-ios-secondary .segment-button{
-				border-bottom-width: 0;
-			    border-bottom-style: none;
-			    border-bottom-color: transparent;
-			    height: auto;
-			    width: 28%;
-			    display: inline-block;
-			    padding: 3px;
-			    float: left;
-			    margin: 5px;
-			}
-			.segment-ios-secondary .segment-button{
-				color:$cp-extra-darker-grey;
-				border: 1px solid $cp-extra-darker-grey;
-				border-radius: 5px;
-			}
-			.segment-ios-secondary .segment-button.segment-activated{
-				border-color: $cp-primary-color;
-			    color: $cp-primary-color;
-			    opacity: 1;
-			}
-			.toolbar-ios{
-				min-height: 50px;
-			}
-		}
-		.myPointsContainer{
-			padding:15px;
-			.urPoints{
-				font-weight:normal;
-				font-size:18px;
-				text-align:center;
-				color:$cp-extra-darker-grey;
-				margin: 10px 0;
-				strong{
-					font-weight:600;
-					color:$cp-extra-darker-grey-x;
-					font-size:20px;
-				}
-			}
-		}
-		.newContainer{
-			.card-md, .card-ios{
-				border-radius: 7px;
-			}
-			.grid{
-				padding:0;
-			}
-			.content{
-				padding: 0 15px;
-				.customRow{
-					border-bottom:1px solid $cp-extra-lighter-grey-xxxxxxx;
-					padding: 10px 0 10px 0;
-				}
-				figure{
-					margin: 0;
-				    height: 80px;
-				    overflow: hidden;
-				    box-shadow: 0px 2px 5px #838383;
-				}
-				.voucher{
-					color:$cp-extra-darker-grey;
-					margin:0 0 5px 0;
-					font-size:17px;
-					font-weight:600;
-				}
-				.subContent{
-					font-size:13px;
-					margin:0;
-				}
-				&:first-child{
-					padding: 0px 15px 15px 15px;
-				}
-			}
-		}
-		.usedContainer{
-			padding:15px;
-		}
-		.expiredContainer{
-			padding:15px;
-		}
-		.myProfileContainer{
-			margin: 10px 0 0 0;
-			.container{
-				padding:15px;
-				.content {
-				    padding:0;
-				    box-shadow:0px 2px 10px $cp-extra-lighter-grey-xxxx;
-				    border-radius: 7px;
-				    .item-md, .item-ios{
-				    	padding-left: 0;
-				    	border-radius: 7px;
-				    }
-				    .list-md, .list-ios {
-					    margin: 0;
-					}
-			    }
-		    }
-		    .container{
-				padding:15px;
-				.content {
-				    padding:0;
-				    box-shadow:0px 2px 10px $cp-extra-lighter-grey-xxxx;
-				    border-radius: 7px;
-				    .item-md, .item-ios{
-				    	padding-left: 0;
-				    	border-radius: 7px;
-				    }
-				    .list-md, .list-ios {
-					    margin: 0;
-					}
-			    }
-		    }
-		    input::-moz-placeholder {
-			    color: red;
-			    text-align:right;
-			    color:$cp-extra-lighter-grey-xxx;
-			 }
-			input::-webkit-input-placeholder {
-			    color: red;
-			    text-align:right;
-			    color:$cp-extra-lighter-grey-xxx;
-			}
-			input:-ms-input-placeholder {
-			    color: red;
-			    text-align:right;
-			    color:$cp-extra-lighter-grey-xxx;
-			}
-			.item-input .label-md, .item-select .label-md, .item-datetime .label-md, .label-ios{
-				color:$cp-extra-darker-grey;
-				padding: 0 0 0 16px;
-			}
-			.caringWaterMark{
-				margin:20px 0 0 0;
-			}
-			ion-label[fixed]{
-				width: 135px;
-	    		min-width: 135px;
-			}
-			.list-ios > .item-block:first-child{
-				border-top: none;
-			}
-			.item-md.item-toggle ion-label {
-			    margin-left: 16px;
-			    color:$cp-extra-darker-grey;
-			}
-			.profileOut{
-				margin: 20px 0 0 0;
-				i{
-					width:80px;
-					height:80px;
-					margin:0 auto;
-					display:block;
-					border-radius:50%;
-					overflow:hidden;
-					img{
-						width:100%;
-						max-width:100%;
-					}
-				}
-			}
-			.subTitle1{
-				margin: 20px 0 10px 0;
-	    		text-align: left;
-			}
-	    }
-	}
-	.myPointsContainer.sec{
-		text-align: center;
-		height: 46vh;
-		p{
-			position: relative;
-			top: 25%;
-			color: #aaa;
-		}
-		button{
-			width: 100%;
-			background: #007068;
-			/* padding: 20px; */
-			height: 45px;
-			border-radius: 10px;
-			position: relative;
-			margin-top: 55%;
-		}
-	}
-	.pointscard {
-		.card-content-md{
-			padding: 7px 6px;
-		}
-		.card-md {
-			margin: 0 !important;
-			width: 100% !important;
-			border-radius: 8px;
-		}
-		ion-list {
-			.listdisp{
-				padding: 0;
-				background: #f5f5f5;
-			}
-			ion-item{
-				background: #FFFF;
-			}
-		}
-	}
+    .scroll-content {
+        background: #fff;
+    }
+    .memberContainer {
+        .text-input-md {
+            text-align: right !important;
+        }
+        margin:10px 0 0 0;
+        padding:0;
+        .profileOut {
+            margin: 20px 0 0 0;
+            i {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                display: block;
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+            p {
+                text-align: center;
+                margin: 5px 0 20px 0;
+            }
+        }
+        .barCode {
+            i {
+                width: 150px;
+                margin: 0 auto;
+                display: block;
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+                label {
+                    text-align: center;
+                    display: block;
+                }
+            }
+        }
+        .toolbar-md,
+        .toolbar-ios {
+            box-shadow: 0px 2px 7px $cp-extra-lighter-grey-xxxxxx;
+        }
+        .toolbar-background-md,
+        .toolbar-background-ios {
+            border-color: $cp-primary-color;
+            background: $cp-primary-color;
+            box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
+            ;
+        }
+        .segment-md-secondary .segment-button.activated,
+        .segment-md-secondary .segment-button.segment-activated {
+            border-color: transparent;
+            color: $cp-white-color;
+            opacity: 1;
+        }
+        .segment-ios-secondary .segment-button {
+            border-color: transparent;
+            color: $cp-white-color;
+            opacity: 0.4;
+        }
+        .segment-ios-secondary .segment-button.segment-activated {
+            border-color: transparent;
+            color: $cp-white-color;
+            opacity: 1;
+            background: transparent;
+        }
+        .segment-md-secondary .segment-button {
+            color: $cp-white-color;
+            opacity: 0.4;
+            text-transform: capitalize;
+            font-size: 14px;
+        }
+        .segment-md .segment-button {
+            border-bottom-width: 0;
+            border-bottom-style: none;
+            border-bottom-color: transparent;
+            height: auto;
+            line-height: 25px;
+        }
+        .subSegmentOut {
+            ion-segment,
+            .toolbar-ios .segment-ios {
+                display: inline-block !important;
+                width: 100%;
+                margin: 10px 0 0 10px;
+            }
+            .toolbar-md,
+            .toolbar-ios {
+                box-shadow: none;
+            }
+            .toolbar-background-md,
+            .toolbar-background-ios {
+                border-color: transparent;
+                background: transparent;
+            }
+            .segment-md-secondary .segment-button.activated,
+            .segment-md-secondary .segment-button.segment-activated {
+                border-color: $cp-primary-color;
+                color: $cp-primary-color;
+                opacity: 1;
+            }
+            .segment-md-secondary .segment-button {
+                color: $cp-extra-lighter-grey-xxxxx;
+                opacity: 1;
+                font-weight: normal;
+                border: 1px solid $cp-extra-lighter-grey-xxxxx;
+                border-radius: 5px;
+                text-transform: capitalize;
+                font-size: 14px;
+            }
+            .segment-md .segment-button,
+            .segment-ios-secondary .segment-button {
+                border-bottom-width: 0;
+                border-bottom-style: none;
+                border-bottom-color: transparent;
+                height: auto;
+                width: 28%;
+                display: inline-block;
+                padding: 3px;
+                float: left;
+                margin: 5px;
+            }
+            .segment-ios-secondary .segment-button {
+                color: $cp-extra-darker-grey;
+                border: 1px solid $cp-extra-darker-grey;
+                border-radius: 5px;
+            }
+            .segment-ios-secondary .segment-button.segment-activated {
+                border-color: $cp-primary-color;
+                color: $cp-primary-color;
+                opacity: 1;
+            }
+            .toolbar-ios {
+                min-height: 50px;
+            }
+        }
+        .myPointsContainer {
+            padding: 15px;
+            .urPoints {
+                font-weight: normal;
+                font-size: 18px;
+                text-align: center;
+                color: $cp-extra-darker-grey;
+                margin: 10px 0;
+                strong {
+                    font-weight: 600;
+                    color: $cp-extra-darker-grey-x;
+                    font-size: 20px;
+                }
+            }
+        }
+        .newContainer {
+            .card-md,
+            .card-ios {
+                border-radius: 7px;
+            }
+            .grid {
+                padding: 0;
+            }
+            .content {
+                padding: 0 15px;
+                .customRow {
+                    border-bottom: 1px solid $cp-extra-lighter-grey-xxxxxxx;
+                    padding: 10px 0 10px 0;
+                }
+                figure {
+                    margin: 0;
+                    height: 80px;
+                    overflow: hidden;
+                    box-shadow: 0px 2px 5px #838383;
+                }
+                .voucher {
+                    color: $cp-extra-darker-grey;
+                    margin: 0 0 5px 0;
+                    font-size: 17px;
+                    font-weight: 600;
+                }
+                .subContent {
+                    font-size: 13px;
+                    margin: 0;
+                }
+                &:first-child {
+                    padding: 0px 15px 15px 15px;
+                }
+            }
+        }
+        .usedContainer {
+            padding: 15px;
+        }
+        .expiredContainer {
+            padding: 15px;
+        }
+        .myProfileContainer {
+            margin: 10px 0 0 0;
+            .container {
+                padding: 15px;
+                .content {
+                    padding: 0;
+                    box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
+                    border-radius: 7px;
+                    .item-md,
+                    .item-ios {
+                        padding-left: 0;
+                        border-radius: 7px;
+                    }
+                    .list-md,
+                    .list-ios {
+                        margin: 0;
+                    }
+                }
+            }
+            .container {
+                padding: 15px;
+                .content {
+                    padding: 0;
+                    box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
+                    border-radius: 7px;
+                    .item-md,
+                    .item-ios {
+                        padding-left: 0;
+                        border-radius: 7px;
+                    }
+                    .list-md,
+                    .list-ios {
+                        margin: 0;
+                    }
+                }
+            }
+            input::-moz-placeholder {
+                color: red;
+                text-align: right;
+                color: $cp-extra-lighter-grey-xxx;
+            }
+            input::-webkit-input-placeholder {
+                color: red;
+                text-align: right;
+                color: $cp-extra-lighter-grey-xxx;
+            }
+            input:-ms-input-placeholder {
+                color: red;
+                text-align: right;
+                color: $cp-extra-lighter-grey-xxx;
+            }
+            .item-input .label-md,
+            .item-select .label-md,
+            .item-datetime .label-md,
+            .label-ios {
+                color: $cp-extra-darker-grey;
+                padding: 0 0 0 16px;
+            }
+            .caringWaterMark {
+                margin: 20px 0 0 0;
+            }
+            ion-label[fixed] {
+                width: 135px;
+                min-width: 135px;
+            }
+            .list-ios>.item-block:first-child {
+                border-top: none;
+            }
+            .item-md.item-toggle ion-label {
+                margin-left: 16px;
+                color: $cp-extra-darker-grey;
+            }
+            .profileOut {
+                margin: 20px 0 0 0;
+                i {
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 auto;
+                    display: block;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+            }
+            .subTitle1 {
+                margin: 20px 0 10px 0;
+                text-align: left;
+            }
+        }
+    }
+    .myPointsContainer.sec {
+        text-align: center;
+        height: 46vh;
+        p {
+            position: relative;
+            top: 25%;
+            color: #aaa;
+        }
+        button {
+            width: 100%;
+            background: #007068;
+            /* padding: 20px; */
+            height: 45px;
+            border-radius: 10px;
+            position: relative;
+            margin-top: 55%;
+        }
+    }
+    .pointscard {
+        .card-content-md {
+            padding: 7px 6px;
+        }
+        .card-md {
+            margin: 0 !important;
+            width: 100% !important;
+            border-radius: 8px;
+        }
+        ion-list {
+            .listdisp {
+                padding: 0;
+                background: #f5f5f5;
+            }
+            ion-item {
+                background: #FFFF;
+            }
+        }
+    }
 }
