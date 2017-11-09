@@ -24,13 +24,13 @@ export class EventLocationPage {
 
     this.lat = navParams.get('lat');
     this.lng = navParams.get('lng');
-    console.log(this.lat, this.lng);
+   
    
     
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventLocationPage');
+   
     this.loadMap();
   }
 
@@ -43,7 +43,7 @@ export class EventLocationPage {
     // navigator.geolocation.getCurrentPosition((position) => {
     // console.log(position);
     let latLng = new google.maps.LatLng(this.lat, this.lng);
-    console.log("***************************");
+   
     let mapOptions = {
       center: latLng,
       zoom: 14,
@@ -53,7 +53,7 @@ export class EventLocationPage {
  
     // })
 
-    console.log(this.map);
+   
 
     let locationDetails = {
           x:this.lat,

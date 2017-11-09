@@ -66,7 +66,9 @@ export class MemberPage {
           this.member = 'My Wallet';
     }
 
+
   }
+
 
  
 
@@ -122,8 +124,6 @@ export class MemberPage {
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
         this.loadedProfile = true;
-        console.log(this._totalAvailablePoints);
-        console.log(this._totalRedeemedPoints);
         this.loadMyProfile();
 
       }
@@ -133,6 +133,7 @@ export class MemberPage {
 
     });
   }
+
 
 
   getRedeemedVouchers() {
@@ -172,8 +173,6 @@ export class MemberPage {
 
                 }
 
-
-
           }
       },
 
@@ -191,11 +190,12 @@ export class MemberPage {
 
     this.profileProvider.getUserTransaction()
 
+
       .subscribe(data => {
 
-        this._transactionList = data[0].customer_transaction_info;
+                  this._transactionList = data[0].customer_transaction_info;
 
-        console.log(this._transactionList);
+                  console.log(this._transactionList);
 
       })
 
@@ -235,8 +235,8 @@ export class MemberPage {
   }
 
 
-  updateProfile() {
- 
+  updateProfile(){
+
     this.userData =
       {
         fname: this._userName,
@@ -301,6 +301,7 @@ export class MemberPage {
       this.exceptionProvider.excpHandler(err);
     });
   }
+  
 
   getRedeemed(exp) {
 

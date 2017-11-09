@@ -21,12 +21,8 @@ export class HappeningsPage {
     this.getHappenings();
     this.routeLink = navParams.get('routeData');
     if(this.routeLink){
-      console.log(this.routeLink);
+     
     }
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HappeningsPage');
   }
 
   ionViewWillEnter(){
@@ -38,7 +34,6 @@ export class HappeningsPage {
     this.hapenningsProvider.getHappenings().subscribe(res => {
       this.loaderProvider.dismissLoader();
       this.happenList = res.data;
-      console.log(this.happenList);
     });
   }
 

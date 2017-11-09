@@ -51,14 +51,18 @@ export class RedeemPage {
      let voucher = this.redeemList.filter(data =>data.ActivateStatus == 0).shift();
      this.rewardsProvider.claimMyVoucher(voucher.VoucherId).subscribe(res=>{
       this.loaderProvider.dismissLoader();
+
        if(res[0].code == 200){
+         
        console.log(res);
        JsBarcode(this.barcode.nativeElement, res[0].data[0].VoucherId);
        this.voucherModal.open()
        
       }
       else{
+
         this.alertProvider.presentToast(res[0].message);
+
       }
 
 

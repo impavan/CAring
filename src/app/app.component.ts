@@ -40,7 +40,7 @@ export class MyApp {
       { title: 'Happenings', component: 'HappeningsPage', index:4 ,icon:"iconc-megaphone"},
       { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map"},
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book"},
-      { title: 'Message', component: 'Message', index:7,icon:"iconc-chat"},
+      { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat"},
       { title: 'About', component: 'AboutPage', index:8, icon:"iconc-ticket"},
     ];
 

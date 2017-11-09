@@ -11,10 +11,6 @@ export class PromotionDetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this._promotionDetails = navParams.get('promodetails');
-    console.log(this._promotionDetails);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PromotionDetailsPage');
-  }
 }

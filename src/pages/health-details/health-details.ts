@@ -12,10 +12,6 @@ export class HealthDetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.healthData = navParams.get('data');
-    console.log(this.healthData);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HealthDetailsPage');
-  }
+  
 }

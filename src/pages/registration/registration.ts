@@ -62,7 +62,6 @@ if(this._existingCustomerData){
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewAccountPage');
     this.loaderProvider.dismissLoader();
   }
 
@@ -74,8 +73,6 @@ if(this._existingCustomerData){
   uploadProfilePic() {
     this.authProvider.uploadProfile().then(data => {
       this.profileImage = data;
-       console.log(data);
-      console.log(this.profileImage);
       this.registerData.profilePic = this.profileImage;
     });
   }

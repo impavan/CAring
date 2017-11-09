@@ -16,12 +16,7 @@ export class InstoredetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.storeDetail = navParams.get('instoredata');
-    console.log(this.storeDetail);
     this._locationList  = this.storeDetail.storeeventtimings?this.storeDetail.storeeventtimings:[];
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InstoredetailsPage');
   }
 
   gotoEventLocation(loc){

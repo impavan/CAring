@@ -17,9 +17,6 @@ export class PurchaseRewardsPage {
     this.remainder = navParams.get('remainder');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PurchaseRewardsPage');
-  }
 
   navToOffers(){
     this.navCtrl.setRoot("RewardsPage");

@@ -17,15 +17,13 @@ export class AboutPage {
     this.getData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutPage');
-  }
+ 
 
   getData() {
     this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getAboutUsData().subscribe(res => {
       this.loaderProvider.dismissLoader();
-      console.log(res, 'res from about us page');
+      
       for (let i = 0; i < res.data.length; i++) {
         if (res.data[i].aboutus) {
           this.about = res.data[i].aboutus;

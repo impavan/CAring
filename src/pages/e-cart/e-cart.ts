@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the ECartPage page.
@@ -15,11 +16,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ECartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private inAppBrowser:InAppBrowser) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ECartPage');
+  }
+
+  ionViewWillEnter(){
+    console.log("hryyyyy");
+    this.inAppBrowser.create('http://estore.caring2u.com/');
+    
   }
 
 }
