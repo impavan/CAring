@@ -1,4 +1,20 @@
 page-redeem {
+     .barCode {
+            text-align: center;
+            i {
+                width: 150px;
+                margin: 0 auto;
+                display: block;
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+                label {
+                    text-align: center;
+                    display: block;
+                }
+            }
+        }
     .redeemContainer {
         margin: 50px 0 0 0;
         .redeemVoucher {
@@ -19,20 +35,7 @@ page-redeem {
                 }
             }
         }
-        .barCode {
-            margin: 0 0 20px 0;
-            i {
-                width: 270px;
-                margin: 0 auto;
-                display: block;
-                height: 100px;
-                overflow: hidden;
-                img {
-                    width: 100%;
-                    max-width: 100%;
-                }
-            }
-        }
+       
         .subTitle1 {
             color: $cp-double-extra-lighter-grey-x;
             text-align: center;

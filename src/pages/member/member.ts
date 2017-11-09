@@ -52,13 +52,7 @@ export class MemberPage {
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
     private profileProvider: ProfileProvider, private loaderProvider: LoaderProvider, private userProvider: UserdataProvider,
     private alertProvider: AlertProvider) {
-    this._auth = localStorage.getItem('auth_token');
-    if (this._auth) {
-
-          this.authProvider.setHeader();
-    }
-
-    this.loadMyPoints();
+   
 
     this.from = navParams.get('from');
 
@@ -68,6 +62,17 @@ export class MemberPage {
     }
 
 
+  }
+
+  ionViewWillEnter(){
+     this._auth = localStorage.getItem('auth_token');
+    if (this._auth) {
+
+          this.authProvider.setHeader();
+          this.loadMyPoints();
+    }
+
+    
   }
 
 
@@ -81,7 +86,7 @@ export class MemberPage {
   }
 
   loadMyPoints() {
-    if (this._auth && !this.loadedProfile) {
+    if (this._auth) {
       this.loaderProvider.presentLoadingCustom();
       this.getMyPoints();
       this.getUserTransaction();
@@ -91,7 +96,7 @@ export class MemberPage {
   }
 
   loadMyWallet() {
-    if (this._auth && !this.isWalletLoaded)
+    if (this._auth)
 
       this.getRedeemedVouchers();
 
