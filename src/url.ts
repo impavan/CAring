@@ -30,6 +30,8 @@
 
  export const ACTIVATE_VOUCHER = `mobile/activatevoucher`;
 
+ export const ACTIVATE_VOUCHERS = `mobile/activatevoucher_v2`;
+
  export const EARN = `stores`;
 
  export const POINTS = `earnpoints`;

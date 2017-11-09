@@ -1,4 +1,4 @@
-import { Component,ViewChild,ElementRef} from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IMAGE_URL } from '../../config';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import moment from 'moment';
@@ -20,61 +20,55 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 })
 export class MemberPage {
 
-   @ViewChild('barcode') barcode: ElementRef;
- 
+  @ViewChild('barcode') barcode: ElementRef;
+
   IMG_URL = IMAGE_URL;
   from: any;
-   member: any = "My Points";
-   memberDetails: any = "New";
-   _auth: any;
-   _userName: any;
-   _emailId: any;
-   _oldemailId:any;
-   _mobileNum: any;
-   _profilePic: any;
-   _pointOpen:boolean = false;
+  member: any = "My Points";
+  memberDetails: any = "New";
+  _auth: any;
+  _userName: any;
+  _emailId: any;
+  _oldemailId: any;
+  _mobileNum: any;
+  _profilePic: any;
+  _pointOpen: boolean = false;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
-  loadedWallet:boolean = false;
-  loadedProfile:boolean = false;
-  redeemedRewards:any = [];
-  _transactionList:any = [];
-_newRedeemedList:any =[];
-  redeemdRewards:any = [];
-  userData:any = {};
-  currentDate:any = moment().format('YYYY-MM-DD');
-  isWalletLoaded:boolean = false;
-  isProfileLoaded:boolean = false;
+  loadedWallet: boolean = false;
+  loadedProfile: boolean = false;
+  redeemedRewards: any = [];
+  _transactionList: any = [];
+  _newRedeemedList: any = [];
+  redeemdRewards: any = [];
+  userData: any = {};
+  currentDate: any = moment().format('YYYY-MM-DD');
+  isWalletLoaded: boolean = false;
+  isProfileLoaded: boolean = false;
 
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
     private exceptionProvider: ExceptionHandlerProvider, private events: Events,
-    private profileProvider: ProfileProvider,private loaderProvider:LoaderProvider,private userProvider:UserdataProvider,
+    private profileProvider: ProfileProvider, private loaderProvider: LoaderProvider, private userProvider: UserdataProvider,
     private alertProvider: AlertProvider) {
     this._auth = localStorage.getItem('auth_token');
-    if(this._auth){
-      this.authProvider.setHeader();
+    if (this._auth) {
+
+          this.authProvider.setHeader();
     }
-   
+
     this.loadMyPoints();
-    console.log('image--- url', this.IMG_URL);
+
     this.from = navParams.get('from');
-    if(this.from == 'purchase'){
-      this.member = 'My Wallet';
-    }
-  }
 
-     ngAfterViewInit() {
-      
+    if (this.from == 'purchase') {
+
+          this.member = 'My Wallet';
     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MemberPage');
   }
 
-  ionViewWillEnter(){
-     
-  }
+ 
 
 
   loadMyProfile() {
@@ -88,15 +82,15 @@ _newRedeemedList:any =[];
       this.loaderProvider.presentLoadingCustom();
       this.getMyPoints();
       this.getUserTransaction();
-    }else{
+    } else {
       this.loaderProvider.dismissLoader();
     }
   }
 
-  loadMyWallet(){
-    if(this._auth && !this.isWalletLoaded)
+  loadMyWallet() {
+    if (this._auth && !this.isWalletLoaded)
 
-        this.getRedeemedVouchers();
+      this.getRedeemedVouchers();
 
   }
 
@@ -106,17 +100,22 @@ _newRedeemedList:any =[];
 
   //gets user profile details
   getMyProfileDetails() {
+
     this._userName = this.authProvider.getUserFirstName();
     this._emailId = this.authProvider.getUserEmailId();
-    this._oldemailId=this.authProvider.getUserEmailId();
+    this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._profilePic = this.authProvider.getUserProfilePic();
-     JsBarcode(this.barcode.nativeElement, this._mobileNum);
+    JsBarcode(this.barcode.nativeElement, this._mobileNum);
+
   }
 
   getMyPoints() {
+
     this.userProvider.getMyProfile().subscribe(data => {
+
       if (data[0].code == 200) {
+
         this.authProvider.setUser(data[0].customerdata);
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
         this.loaderProvider.dismissLoader();
@@ -125,151 +124,192 @@ _newRedeemedList:any =[];
         this.loadedProfile = true;
         console.log(this._totalAvailablePoints);
         console.log(this._totalRedeemedPoints);
-         this.loadMyProfile();
+        this.loadMyProfile();
+
       }
     }, err => {
+
       this.exceptionProvider.excpHandler(err);
+
     });
   }
 
 
-  getRedeemedVouchers(){
-      this.loaderProvider.presentLoadingCustom();
-        this.profileProvider.getAllRedeemedVouchers()
-              .subscribe(res => {
-                  this.redeemedRewards = res[0].customer_vouchers;
-                  console.log(this.redeemedRewards);
-                  // this.loadedWallet = true;
-                  this.loaderProvider.dismissLoader();
-                  this.isWalletLoaded =true;
-                  if (this.redeemedRewards.length > 0) {
-              // this._hasRewards = true;
-              this._newRedeemedList = [];
-            //  let data = this._redeemedVouchers.filter(e=> e.ExperienceId);
-            //  console.log(data,"----------group---------");
-            for(let i=0;i<this.redeemedRewards.length;i++){
-             let exp =  this.redeemedRewards[i].ExperienceId;
-                
-                if(this._newRedeemedList[exp]){ 
-                  this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
-                }
-                else{
-                   this._newRedeemedList[exp] = {};
-                   this._newRedeemedList[exp]['Vouchers'] = [];
-                   this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
-                }
-
-            }
-                
-                   console.log(this._newRedeemedList);
-                  //  console.log(this._newRedeemedList["219"]);
-
-            }
-              },
-
-               err => {
-                 this.loaderProvider.dismissLoader();
-                this.exceptionProvider.excpHandler(err);
-             });
-
-  }
-
-  getUserTransaction(){
-
-      this.profileProvider.getUserTransaction()
-            
-            .subscribe(data=>{
-
-                  this._transactionList = data[0].customer_transaction_info;
-                  console.log(this._transactionList);
-
-          })
-
-  }
-
-  ionViewCanEnter(){
-   
-    if(this.authProvider.getAuthToken())
-      return true;
-      return false;
+  getRedeemedVouchers() {
     
+    this.loaderProvider.presentLoadingCustom();
+
+    this.profileProvider.getAllRedeemedVouchers()
+
+      .subscribe(res => {
+
+        this.redeemedRewards = res[0].customer_vouchers;
+
+        this.loaderProvider.dismissLoader();
+
+        this.isWalletLoaded = true;
+
+        if (this.redeemedRewards.length > 0) {
+
+                this._newRedeemedList = [];
+
+                for (let i = 0; i < this.redeemedRewards.length; i++) {
+
+                        let exp = this.redeemedRewards[i].ExperienceId;
+
+                        if (this._newRedeemedList[exp]) {
+
+                            this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
+                        }
+                        else {
+
+                            this._newRedeemedList[exp] = {};
+
+                            this._newRedeemedList[exp]['Vouchers'] = [];
+
+                            this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
+                        }
+
+                }
+
+
+
+          }
+      },
+
+      err => {
+
+            this.loaderProvider.dismissLoader();
+
+            this.exceptionProvider.excpHandler(err);
+
+          });
+
+  }
+
+  getUserTransaction() {
+
+    this.profileProvider.getUserTransaction()
+
+      .subscribe(data => {
+
+        this._transactionList = data[0].customer_transaction_info;
+
+        console.log(this._transactionList);
+
+      })
+
+  }
+
+  ionViewCanEnter() {
+
+    if (this.authProvider.getAuthToken())
+
+        return true;
+
+    return false;
+
   }
 
 
 
   updateData() {
+
     this.navCtrl.push("MyAccountPage");
+
   }
-  emptywallet(){
+  emptywallet() {
+
     this.navCtrl.setRoot("RewardsPage");
+
   }
-  backtologin(){
+  backtologin() {
+
     this.navCtrl.setRoot("LoginPage");
   }
 
-  togglePoint(){
+  togglePoint() {
 
-    this._pointOpen = this._pointOpen?false:true;
+    this._pointOpen = this._pointOpen ? false : true;
 
   }
-  
 
-  updateProfile(){
-    console.log("");
+
+  updateProfile() {
+ 
     this.userData =
-    {
-      fname:this._userName,
-      email:this._emailId,
-      old_email:this._oldemailId,
-      mobile:this._mobileNum,
-      externalId:''
-    }
-    this.userProvider.updateProfile(this.userData).subscribe(data=>{
+      {
+        fname: this._userName,
+        email: this._emailId,
+        old_email: this._oldemailId,
+        mobile: this._mobileNum,
+        externalId: ''
+      }
+
+     this.userProvider.updateProfile(this.userData).subscribe(data => {
+
       this.loaderProvider.presentLoadingCustom();
+
       if (data[0].code == 200) {
-        this.userProvider.getMyProfile().subscribe(data=>{
-        if(data[0].code == 200){
+
+        this.userProvider.getMyProfile().subscribe(data => {
+
+          if (data[0].code == 200) {
+
+            this.loaderProvider.dismissLoader();
+            this._userName = data[0].customerdata.customer[0].firstname;
+            this._emailId = data[0].customerdata.customer[0].email;
+            this.authProvider.setUser(data[0].customerdata);
+            localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+            this.authProvider.setHeader();
+            this.events.publish('user:login', true);
+
+          }
+          else if (data[0].code == 201) {
+
+            this.loaderProvider.dismissLoader();
+            this.alertProvider.presentToast(data[0].message);
+
+          } else if (data[0].code == 202) {
+
+            this.loaderProvider.dismissLoader();
+            this.alertProvider.presentToast(data[0].message);
+
+          } else {
+          }
+
+        }, err => {
+
           this.loaderProvider.dismissLoader();
-          this._userName=data[0].customerdata.customer[0].firstname;
-          this._emailId=data[0].customerdata.customer[0].email;
-        this.authProvider.setUser(data[0].customerdata);
-        localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-        this.authProvider.setHeader();
-        this.events.publish('user:login', true);
-        
-      }
-        else if (data[0].code == 201) {
-          this.loaderProvider.dismissLoader();
-        this.alertProvider.presentToast(data[0].message);
-      } else if (data[0].code == 202) {
-        this.loaderProvider.dismissLoader();
-        this.alertProvider.presentToast(data[0].message);
-      } else {
-      }
-      },err=>{
-        this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err);
-      })
+          this.exceptionProvider.excpHandler(err);
+
+        })
       } else if (data[0].code == 201) {
+
         this.alertProvider.presentToast(data[0].message);
+
       } else if (data[0].code == 202) {
+
         this.alertProvider.presentToast(data[0].message);
+
       } else {
       }
+
     }, err => {
+
       this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
     });
   }
 
-  getRedeemed(exp){
-  
-         return this._newRedeemedList[exp]['Vouchers'].filter(e=> e.ActivateStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
+  getRedeemed(exp) {
+
+    return this._newRedeemedList[exp]['Vouchers'].filter(e => e.ActivateStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
 
   }
 
-  goto(page, exp){
+  goto(page, exp) {
 
-    this.navCtrl.push(page,{redeemData:this._newRedeemedList[exp]});
+    this.navCtrl.push(page, { redeemData: this._newRedeemedList[exp] });
   }
 }

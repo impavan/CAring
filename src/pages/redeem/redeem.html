@@ -50,8 +50,7 @@
                         <p class="voucher">{{reward.Title}}</p>
                         <!--<p class="alert subContent" [innerHTML]="reward.Description"></p>-->
                           <p>{{reward?.ExpiryDate}}</p>
-						   <button>Redeem</button>
-                       
+						             <button (click)="openModel()">Redeem</button>
                       </ion-col>
                     </ion-row>
                   </ion-card>
@@ -62,7 +61,7 @@
           <ion-list *ngSwitchCase="'Used'">
             <div class="newContainer">
               
-                <ion-grid *ngFor="let reward of redeemList" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                <ion-grid *ngFor="let reward of redeemList">
                   <ion-card class="content" *ngIf="reward?.ActivateStatus == 1">
                     <ion-row class="customRow">
                       <ion-col col-7>
@@ -86,7 +85,7 @@
           <ion-list *ngSwitchCase="'Expired'">
             <div class="newContainer">
               
-                <ion-grid *ngFor="let reward of redeemList" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                <ion-grid *ngFor="let reward of redeemList">
                   <ion-card class="content" *ngIf="reward?.ActivateStatus == 0 && reward?.ExpiryDate <= currentDate">
                     <ion-row class="customRow">
                       <ion-col col-7>
@@ -109,8 +108,44 @@
 </ion-content>
 
 
+
+
 <ion-footer>
     <ion-toolbar>
         <page-tabs></page-tabs>
     </ion-toolbar>
 </ion-footer>
+
+<mymodal #redeem>
+    <!--<h2 class="errorInfo"></h2>-->
+    <p>Are you sure you want redeem {{ redeemList[0]?.Title}} ?</p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button class="btn2" (click)="redeemMyReward()">Continue</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>
+
+<mymodal #ActiveVoucher>
+    <!--<h2 class="errorInfo"></h2>-->
+    <p>Here is your barcode to scan</p>
+    <div class="barCode">
+      <svg #barcode id="barcode"></svg>
+    </div>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button class="btn2" (click)="redeemMyReward()">Continue</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>

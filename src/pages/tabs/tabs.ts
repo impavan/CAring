@@ -11,15 +11,11 @@ export class TabsPage {
 
  @ViewChild('login')LoginModal;
   index:number;
-isActivePage:any;
+  isActivePage:any;
 
-myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
-   
-    
-
-
-
+  myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
   isClicked:boolean=false;
+
   constructor(public navCtrl: NavController, 
               private navParams:NavParams,
               private inAppBrowser:InAppBrowser,
@@ -57,11 +53,13 @@ myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
   }
 
   goto(page,event:any) {
-   this.isActivePage=page;
+  
     this.navCtrl.setRoot(page.component).then(canEnter=>{
+      this.isActivePage=page;
       if(canEnter == false)
       this.events.publish('login', false);
     })
+     
     
 
 

@@ -1,4 +1,4 @@
-import { EXPERIENCES, REDEEM_VOUCHERS } from '../../url';
+import { EXPERIENCES, REDEEM_VOUCHERS, ACTIVATE_VOUCHER } from '../../url';
 import { BASE_URL, BRAND_ID } from '../../config';
 import { Http, Response } from '@angular/http';
 import { AuthProvider } from '../auth/auth';
@@ -41,4 +41,18 @@ export class RewardsProvider {
       .do((res: Response) => res)
       .map((res: Response) => res.json());
   }
+
+
+    claimMyVoucher(voucher_code) {
+        let userData = {
+            BrandURLID:BRAND_ID,
+            mobile:localStorage.getItem('phone'),
+            email:this.authProvider.getUserEmailId(),
+            vouchers_id:voucher_code
+        }
+     
+        return this.http.post(BASE_URL + ACTIVATE_VOUCHER, userData, { headers: this.authProvider.getHeader()})
+            .do((res: Response) => res)
+            .map((res: Response) => res.json());
+    }
 }
