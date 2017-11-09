@@ -54,6 +54,7 @@ export class RewardsDetailsPage {
   }
 
   confirmRedeemVoucher() {
+    this.loaderProvider.presentLoadingCustom();
     let redeemData = {
       points: this.offerdata.BrandPointRedeemValue,
       experience_id: this.offerdata.ExperienceID,
@@ -64,7 +65,7 @@ export class RewardsDetailsPage {
       if (data[0].code == 200) {
         this.alertProvider.presentToast(data[0].message);
         this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata, 'currentpoints': this._currentPoint, 'remainder': this.remainder });
-      } else if (data[0].code == 202) {
+      } else {
         this.alertProvider.presentToast(data[0].message);
       }
     }, err => {

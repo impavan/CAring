@@ -32,10 +32,12 @@ page-member {
             }
         }
         .barCode {
+             text-align: center;
             i {
                 width: 150px;
                 margin: 0 auto;
                 display: block;
+               
                 img {
                     width: 100%;
                     max-width: 100%;
@@ -174,7 +176,7 @@ page-member {
                 }
                 figure {
                     margin: 0;
-                    height: 80px;
+                    height: 100%;
                     overflow: hidden;
                     box-shadow: 0px 2px 5px #838383;
                 }
@@ -325,7 +327,7 @@ page-member {
                 background: #f5f5f5;
             }
             ion-item {
-                background: #FFFF;
+                background: #fff;
             }
         }
     }

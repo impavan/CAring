@@ -43,50 +43,20 @@
               </ion-card-header>
               <ion-card-content *ngIf="_pointOpen">
                 <ion-list *ngFor="let transaction of _transactionList">
-                  <ion-item>
-                    <p>
-                      <span>Point Balance :</span>
-                      <span>{{_totalAvailablePoints}}</span>
-                    </p>
-                    <p>
-                      <span>Expired Points within one month:</span>
-                      <span>400</span>
-                    </p>
-                  </ion-item>
-                  <ion-item >
-                    <p>Reciept No</p>
-                    <p>Date</p>
-                    <p>Receipt Amount</p>
-                    <p><span>+200 Points</span></p>
-                  </ion-item>
-                  
-                    <ion-item>
-                      <p>Reciept No : 1231276</p>
-                      <p>Date :25/9/2017 , 6.30 PM</p>
-                      <p>Receipt Amount : 550</p>
+                    <ion-item *ngIf="transaction?.transaction_earning">
+                      <p>Points Earned</p>
+                      <p>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</p>
+                      <p>{{transaction?.store_name}}</p>
+                      <p>Receipt Amount   : {{transaction?.amount }}</p>
                       <p style="float: right;position: relative;bottom: 40px;">
-                        <span>+200 Points</span>
+                        <span> + {{transaction?.points_issued | round }} Points</span>
                       </p>
-
                     </ion-item>
-              
-                 
-                    <ion-item>
-                      <p>Reciept No : 1231276</p>
-                      <p>Date :25/9/2017 , 6.30 PM</p>
-                      <p>Receipt Amount : 550</p>
+                    <ion-item *ngIf="!transaction?.transaction_earning">
+                      <p>Points Redeemed</p>
+                      <p>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</p>
                       <p style="float: right;position: relative;bottom: 40px;">
-                        <span>+200 Points</span>
-                      </p>
-
-                    </ion-item>
-            
-                    <ion-item>
-                      <p>Reciept No : 1231276</p>
-                      <p>Date :25/9/2017 , 6.30 PM</p>
-                      <p>Receipt Amount : 550</p>
-                      <p style="float: right;position: relative;bottom: 40px;">
-                        <span>+200 Points</span>
+                        <span> - {{transaction?.points_redeemed | round }} Points</span>
                       </p>
                     </ion-item>
                 </ion-list>
@@ -128,11 +98,11 @@
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                     <div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate >= currentDate">
-
+                                      
                                         <ion-row class="customRow">
                                             <ion-col col-7>
                                                 <figure>
-                                                    <img src="{{reward.MasterCreativePath}}" />
+                                                    <img src="{{reward?.images[0]}}" />
                                                 </figure>
                                             </ion-col>
                                             <ion-col col-5>
@@ -160,7 +130,7 @@
                                         <ion-row class="customRow">
                                             <ion-col col-7>
                                                 <figure>
-                                                    <img src="{{reward.MasterCreativePath}}" />
+                                                    <img src="{{reward?.images[0]}}" />
                                                 </figure>
                                             </ion-col>
                                             <ion-col col-5>
@@ -185,7 +155,7 @@
                                         <ion-row class="customRow">
                                             <ion-col col-7>
                                                 <figure>
-                                                    <img src="{{reward.MasterCreativePath}}" />
+                                                    <img src="{{reward?.images[0]}}" />
                                                 </figure>
                                             </ion-col>
                                             <ion-col col-5>

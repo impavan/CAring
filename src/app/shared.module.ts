@@ -5,6 +5,7 @@ import { MymodalComponent } from '../components/mymodal/mymodal';
 import { FilterPipe } from '../pipes/filter/filter';
 import { TruncatePipe } from '../pipes/truncate/truncate';
 import { HeaderComponent } from '../components/header/header';
+import { RoundPipe } from '../pipes/round/round';
 
 @NgModule({
   imports: [
@@ -13,9 +14,10 @@ import { HeaderComponent } from '../components/header/header';
     IonicPageModule.forChild(FilterPipe),
     IonicPageModule.forChild(TruncatePipe),
     IonicPageModule.forChild(HeaderComponent),
+    IonicPageModule.forChild(RoundPipe)
   ],
-  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent],
-  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent]
+  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe],
+  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe]
 })
 
 export class SharedModule { } 
