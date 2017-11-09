@@ -46,7 +46,7 @@
                   <ion-item>
                     <p>
                       <span>Point Balance :</span>
-                      <span>9361</span>
+                      <span>{{_totalAvailablePoints}}</span>
                     </p>
                     <p>
                       <span>Expired Points within one month:</span>
@@ -137,7 +137,6 @@
                                             </ion-col>
                                             <ion-col col-5>
                                                 <p class="voucher">{{reward.Title}}</p>
-                                                <p class="alert subContent" [innerHTML]="reward.Description"></p>
                                                   <div>
                                                     <p>{{getRedeemed(reward?.ExperienceId)}}</p>
                                                 </div>
@@ -166,9 +165,6 @@
                                             </ion-col>
                                             <ion-col col-5>
                                                 <p class="voucher">{{reward.Title}}</p>
-                                                <div>
-                                                    <p>{{getRedeemed(reward?.ExperienceId)}}</p>
-                                                </div>
                                             </ion-col>
                                         </ion-row>
                                     </div>
