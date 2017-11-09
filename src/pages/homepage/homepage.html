@@ -1,11 +1,10 @@
-
 <div>
     <header></header>
 </div>
 
 
 
-<ion-content class="mainCont">
+<ion-content class="mainCont" *ngIf="bannerData">
 
     <ion-slides *ngIf="bannerData && bannerData.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
 
