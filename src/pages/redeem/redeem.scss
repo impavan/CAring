@@ -138,6 +138,9 @@ page-redeem {
         margin: auto;
         padding: 20px;
     }
+    .danger {
+        color: #f00;
+    }
     .listMyPoints {
         margin: 0 16px;
         padding: 0;
@@ -145,12 +148,12 @@ page-redeem {
             margin: 0 0 0px 0;
             padding: 10px 0;
             list-style-type: none;
-            border-bottom: 1px solid #ccc;
             label {
-                display: block;
+                float: left;
                 color: $btn-default;
             }
             span {
+                float: right;
                 font-size: 11px;
             }
         }
