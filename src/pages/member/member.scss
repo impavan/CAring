@@ -1,6 +1,10 @@
 page-member {
     .scroll-content {
         background: #fff;
+        .alert {
+            text-align: center;
+            margin-top: 20%;
+        }
     }
     .memberContainer {
         .text-input-md {
@@ -48,47 +52,44 @@ page-member {
         }
         .toolbar-background-md,
         .toolbar-background-ios {
-            border-color: $cp-primary-color;
-            background: $cp-primary-color;
-            box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
-            ;
+            // border-color: $cp-primary-color;
+            // background: $cp-primary-color;
+            // box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
         }
         .segment-md-secondary .segment-button.activated,
         .segment-md-secondary .segment-button.segment-activated {
-            border-color: transparent;
-            color: $cp-white-color;
+            // border-color: transparent;
+            color: #096F67;
             opacity: 1;
         }
         .segment-ios-secondary .segment-button {
-            border-color: transparent;
-            color: $cp-white-color;
-            opacity: 0.4;
+            // border-color: transparent;
+            color: #111;
+            opacity: 0.8;
         }
         .segment-ios-secondary .segment-button.segment-activated {
-            border-color: transparent;
-            color: $cp-white-color;
+            // border-color: transparent;
+            color: #096F67;
             opacity: 1;
             background: transparent;
         }
         .segment-md-secondary .segment-button {
-            color: $cp-white-color;
+            color: #000;
             opacity: 0.4;
             text-transform: capitalize;
             font-size: 14px;
         }
         .segment-md .segment-button {
-            border-bottom-width: 0;
-            border-bottom-style: none;
-            border-bottom-color: transparent;
+            // border-bottom-width: 0;
+            // border-bottom-style: none;
+            // border-bottom-color: transparent;
             height: auto;
             line-height: 25px;
         }
         .subSegmentOut {
             ion-segment,
             .toolbar-ios .segment-ios {
-                display: inline-block !important;
-                width: 100%;
-                margin: 10px 0 0 10px;
+                margin: 0px auto;
             }
             .toolbar-md,
             .toolbar-ios {
@@ -101,39 +102,39 @@ page-member {
             }
             .segment-md-secondary .segment-button.activated,
             .segment-md-secondary .segment-button.segment-activated {
-                border-color: $cp-primary-color;
-                color: $cp-primary-color;
+                // border-color: $cp-extra-darker-grey;
+                color: #096F67;
                 opacity: 1;
             }
             .segment-md-secondary .segment-button {
-                color: $cp-extra-lighter-grey-xxxxx;
+                color: #555;
                 opacity: 1;
                 font-weight: normal;
-                border: 1px solid $cp-extra-lighter-grey-xxxxx;
-                border-radius: 5px;
+                // border: 1px solid $cp-extra-lighter-grey-xxxxx;
+                // border-radius: 5px;
                 text-transform: capitalize;
                 font-size: 14px;
             }
             .segment-md .segment-button,
             .segment-ios-secondary .segment-button {
-                border-bottom-width: 0;
-                border-bottom-style: none;
-                border-bottom-color: transparent;
+                // border-bottom-width: 0;
+                // border-bottom-style: none;
+                // border-bottom-color: transparent;
                 height: auto;
-                width: 28%;
+                width: 33%;
                 display: inline-block;
                 padding: 3px;
                 float: left;
-                margin: 5px;
+                margin: 5px 0;
             }
             .segment-ios-secondary .segment-button {
                 color: $cp-extra-darker-grey;
-                border: 1px solid $cp-extra-darker-grey;
-                border-radius: 5px;
+                // border: 1px solid $cp-extra-darker-grey;
+                // border-radius: 5px;
             }
             .segment-ios-secondary .segment-button.segment-activated {
-                border-color: $cp-primary-color;
-                color: $cp-primary-color;
+                // border-color: $cp-primary-color;
+                color: #096F67;
                 opacity: 1;
             }
             .toolbar-ios {

@@ -167,8 +167,12 @@
 
                 <div [ngSwitch]="memberDetails">
                     <!-- New section starts. -->
+
                     <ion-list *ngSwitchCase="'New'">
-                        <div class="newContainer">
+                        <div class="alert" *ngIf="redeemedRewards.length <= 0">
+                            No New Vouchers available!
+                        </div>
+                        <div class="newContainer" *ngIf="redeemedRewards">
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                     <div class="content" *ngIf="reward.ActivateStatus == 0 && reward.ExpiryDate >= currentDate">
@@ -195,6 +199,9 @@
                     </ion-list>
                     <!-- Used section starts. -->
                     <ion-list *ngSwitchCase="'Used'">
+                        <div class="alert" *ngIf="redeemedRewards.length <= 0">
+                            No Used Vouchers to display
+                        </div>
                         <div class="newContainer">
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
@@ -219,6 +226,9 @@
                     </ion-list>
                     <!-- Expired section starts. -->
                     <ion-list *ngSwitchCase="'Expired'">
+                        <div class="alert" *ngIf="redeemedRewards.length <= 0">
+                            No Expired Vouchers to display
+                        </div>
                         <div class="newContainer">
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
