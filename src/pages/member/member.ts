@@ -71,6 +71,7 @@ export class MemberPage {
           this.authProvider.setHeader();
           this.loadMyPoints();
     }
+    this.events.publish('changeIcon',"MemberPage");
 
     
   }

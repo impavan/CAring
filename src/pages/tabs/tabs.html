@@ -1,6 +1,6 @@
 <ion-row class="tabsMenu">
     <ion-col col class="text-center" *ngFor="let tab of myTabs">
-        <button ion-button  [class.active]="checkActive(tab)" (click)="goto(tab)">
+        <button ion-button  [class.active]="tab.active" (click)="goto(tab)">
           <ion-icon  class="{{tab.icon}}"></ion-icon>
           <label>{{tab.label}}</label>
         </button>

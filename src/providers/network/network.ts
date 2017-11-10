@@ -17,7 +17,7 @@ export class NetworkProvider {
   noConnection() {
     let checkNetworkConnection;
     //on disconnect
-    this.network.onDisconnect().subscribe(data => {
+      this.disconnectSubscription =  this.network.onDisconnect().subscribe(data => {
       checkNetworkConnection = data.type;
       if (checkNetworkConnection == 'offline') {
         this.events.publish('noconnection', true);
