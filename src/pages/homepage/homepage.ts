@@ -28,9 +28,7 @@ export class HomePage {
                 
   }
 
-  // ionViewDidLoad(){
-  //   this.slides.startAutoplay();
-  // }
+  
 
   ionViewWillEnter(){
     if(!this.isSlidesLoaded){
@@ -38,7 +36,6 @@ export class HomePage {
       this.hapenningsProvider.getHomeBanner()
             .subscribe(res => {
 
-                // console.log(res.data);
                 this.bannerData = res.data;
                this.loaderProvider.dismissLoader();
                this.isSlidesLoaded = true;

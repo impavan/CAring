@@ -1,5 +1,5 @@
 import { EMPTY, SPECIAL_CHAR, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2 } from '../../validator';
-import { IonicPage, NavController, NavParams, Platform, App, MenuController, Events } from 'ionic-angular';
+import { IonicPage, NavController, Platform, App, MenuController, Events } from 'ionic-angular';
 import { Component, ViewChild, NgZone } from '@angular/core';
 
 // Import Providers.
@@ -23,7 +23,6 @@ export class LoginPage {
     private userProvider: UserdataProvider,
     private loaderProvider: LoaderProvider,
     private alertProvider: AlertProvider,
-    private navParams: NavParams,
     private menu: MenuController,
     private navCtrl: NavController,
     private events: Events) {

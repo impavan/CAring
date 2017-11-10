@@ -1,5 +1,5 @@
 import { Component,ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import moment from 'moment';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { RewardsProvider } from '../../providers/rewards/rewards';
@@ -25,8 +25,7 @@ export class RedeemPage {
 
  
   
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
+  constructor(public navParams: NavParams,
               public loaderProvider:LoaderProvider,
               public rewardsProvider:RewardsProvider,
               public alertProvider:AlertProvider,

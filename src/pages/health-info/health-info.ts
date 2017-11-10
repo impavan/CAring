@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
 
@@ -11,12 +11,8 @@ import { LoaderProvider } from '../../providers/loader/loader';
 export class HealthInfoPage {
   _healthInfoList: any = [];
 
-  constructor(private navCtrl: NavController, private navParams: NavParams,
+  constructor(private navCtrl: NavController,
     private hapenningsProvider: HapenningsProvider, private loaderProvider:LoaderProvider) {
-  }
-
-  ionViewDidEnter() {
-   
   }
 
   ionViewWillEnter(){

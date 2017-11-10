@@ -22,9 +22,7 @@ export class ECartPage {
               private events:Events) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ECartPage');
-  }
+
 
   ionViewWillEnter(){
 
