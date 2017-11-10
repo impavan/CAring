@@ -1,7 +1,6 @@
 import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { CONTENT_ID } from '../../config';
 import { ABOUT_US } from '../../url';
 
@@ -40,8 +39,7 @@ export class OtpPage {
     private menu: MenuController,
     private navCtrl: NavController,
     private events: Events,
-    private zone: NgZone,
-    private http: Http) {
+    private zone: NgZone) {
 
     this.otp = '';
     this.from = navParams.get('from');

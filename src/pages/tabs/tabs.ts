@@ -1,5 +1,5 @@
 import { Component, ViewChild,} from '@angular/core';
-import { IonicPage, NavController, NavParams, Tabs,Events} from 'ionic-angular';
+import { IonicPage, NavController, Events} from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
@@ -16,8 +16,7 @@ export class TabsPage {
   myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
  
 
-  constructor(public navCtrl: NavController, 
-              private navParams:NavParams,
+  constructor(public navCtrl: NavController,
               private inAppBrowser:InAppBrowser,
               private events:Events) { 
 

@@ -1,15 +1,13 @@
 import { Device } from '@ionic-native/device';
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DeviceProvider {
 
   constructor(private platform: Platform,
-    private device: Device,
-    private http: Http) {
+    private device: Device) {
     this.initializeDevice();
   }
 

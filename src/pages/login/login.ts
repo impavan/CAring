@@ -1,6 +1,6 @@
 import { EMPTY, SPECIAL_CHAR, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2 } from '../../validator';
-import { IonicPage, NavController, Platform, App, MenuController, Events } from 'ionic-angular';
-import { Component, ViewChild, NgZone } from '@angular/core';
+import { IonicPage, NavController, MenuController, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';

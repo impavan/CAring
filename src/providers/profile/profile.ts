@@ -1,10 +1,9 @@
-import { ACTIVATE_VOUCHER, UPDATE_PROFILE } from '../../url';
+import { ACTIVATE_VOUCHER } from '../../url';
 import { BASE_URL, BRAND_ID } from '../../config';
 import { Platform, Events } from 'ionic-angular';
 import { Http, Response } from '@angular/http';
 import { AuthProvider } from '../auth/auth';
 import { Injectable } from '@angular/core';
-import moment from 'moment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
