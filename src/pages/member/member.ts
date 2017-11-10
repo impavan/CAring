@@ -315,9 +315,16 @@ export class MemberPage {
 
   getRedeemed(exp) {
 
-    return this._newRedeemedList[exp]['Vouchers'].filter(e => e.ActivateStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
+    return this._newRedeemedList[exp]['Vouchers'].filter(e => e.RedeemStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
 
   }
+
+   getUsedVouchersCount(exp) {
+
+    return this._newRedeemedList[exp]['Vouchers'].filter(e => e.RedeemStatus == 1).length;
+
+  }
+
 
   goto(page, exp) {
 

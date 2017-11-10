@@ -33,13 +33,11 @@ export class RedeemPage {
               public profileProvider:ProfileProvider,
               public expnHandler:ExceptionHandlerProvider) {
 
-                    let data = navParams.get('redeemData');
+                  let data = navParams.get('redeemData');
 
                     if(data){
 
                       this.redeemList = data.Vouchers;
-
-
                       this.redeemList.sort(this.sortByExpiryDate);
                       this.experienceId = this.redeemList[0].ExperienceId;
 
@@ -55,10 +53,11 @@ export class RedeemPage {
 
           this.loaderProvider.presentLoadingCustom();
 
-          let voucher = this.redeemList.filter(data =>data.ActivateStatus == 0).shift();
+          let voucher = this.redeemList.filter(data =>data.RedeemStatus == 0).shift();
+                console.log(voucher);
           
                 this.loaderProvider.dismissLoader();
-                JsBarcode(this.barcode.nativeElement, voucher.VoucherId);
+                JsBarcode(this.barcode.nativeElement, voucher.VoucherCode);
                 this.voucherModal.open();
        
       }

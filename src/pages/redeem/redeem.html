@@ -18,7 +18,7 @@
         </div>
         <h6>Available <button (click)="openModel()" class="btn-redeem">Redeem</button></h6>
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
-            <li *ngIf="reward?.ActivateStatus == 0 && reward.ExpiryDate >= currentDate">
+            <li *ngIf="reward?.RedeemStatus == 0 && reward.ExpiryDate >= currentDate">
                 <label>{{reward.VoucherCode}}</label>
                 <span>{{reward?.ExpiryDate }}</span>
             </li>
@@ -26,14 +26,14 @@
 
         <h6>Used </h6>
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
-            <li *ngIf="reward?.ActivateStatus == 1">
+            <li *ngIf="reward?.RedeemStatus == 1">
                 <label>{{reward.VoucherCode}}</label>
                 <span>{{reward?.ExpiryDate}}</span>
             </li>
         </ul>
         <h6>Expired </h6>
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
-            <li *ngIf="reward?.ActivateStatus == 0 && reward?.ExpiryDate <= currentDate">
+            <li *ngIf="reward?.RedeemStatus == 0 && reward?.ExpiryDate <= currentDate">
                 <label>{{reward.VoucherCode}}</label>
                 <span class="danger">{{reward?.ExpiryDate}}</span>
             </li>
