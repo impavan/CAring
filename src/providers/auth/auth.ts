@@ -1,6 +1,6 @@
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
-import { CUSTOM_FIELDS } from '../../config';
+// import { CUSTOM_FIELDS } from '../../config';
 import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -200,23 +200,23 @@ export class AuthProvider {
   }
 
   //check wheather there is both parking Id and wifi id in custom field
-  customFieldExist() {
-    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
-      let flag = 0;
-      for (let i = 0; i < this.userObj.customer[0].custom_fields.field.length; i++) {
-        if (CUSTOM_FIELDS.hasOwnProperty(this.userObj.customer[0].custom_fields.field[i].name)) {
-          flag++;
-        }
-      }
-      if (flag == 2) {
-        return 1
-      } else {
-        return 0;
-      }
-    } else {
-      return 0;
-    }
-  }
+  // customFieldExist() {
+  //   if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+  //     let flag = 0;
+  //     for (let i = 0; i < this.userObj.customer[0].custom_fields.field.length; i++) {
+  //       if (CUSTOM_FIELDS.hasOwnProperty(this.userObj.customer[0].custom_fields.field[i].name)) {
+  //         flag++;
+  //       }
+  //     }
+  //     if (flag == 2) {
+  //       return 1
+  //     } else {
+  //       return 0;
+  //     }
+  //   } else {
+  //     return 0;
+  //   }
+  // }
 
   uploadPoints() {
     return new Promise((resolve, reject) => {
