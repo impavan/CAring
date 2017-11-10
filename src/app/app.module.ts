@@ -31,7 +31,6 @@ import { AlertProvider } from '../providers/alert/alert';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
-import { ConfigProvider } from '../providers/config/config';
 import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
 
 @NgModule({
@@ -54,7 +53,6 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HapenningsProvider,
-    ConfigProvider,
     StoreLocatorProvider,
     LoaderProvider,
     AlertProvider,
