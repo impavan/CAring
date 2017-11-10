@@ -60,11 +60,54 @@ page-health-info {
             }
         }
         .healthInfoCards {
-            margin: 10px 0 20px 0;
-            .healthInfo {
-                color: $cp-black-color;
-                font-weight: 600;
-                margin: 0 0 0 10px;
+            min-height: 141px;
+            margin-bottom: 25px;
+            .left {
+                float: left;
+                margin: 0 0px 0 0;
+                width: 50%;
+                min-height: 141px;
+                img {
+                    border: 1px solid #1bb463;
+                }
+            }
+            .right {
+                float: left;
+                width: 50%;
+                padding: 0px 10px;
+                position: relative;
+                min-height: 141px;
+                label {
+                    font-weight: bold;
+                    font-size: 14px;
+                    display: block;
+                    color: #111;
+                    margin-bottom: 10px;
+                }
+                span {
+                    font-size: 11px;
+                    display: block;
+                    margin-bottom: 10px;
+                }
+                .button-ios {
+                    border-radius: 0px;
+                }
+                button {
+                    background: #1bb463;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    padding: 5px 10px;
+                    position: absolute;
+                    bottom: 3px;
+                    line-height: 21px;
+                    height: 30px;
+                    margin: 0px;
+                    span {
+                        margin: 0px;
+                        padding: 0px;
+                        font-size: 12px;
+                    }
+                }
             }
         }
     }
