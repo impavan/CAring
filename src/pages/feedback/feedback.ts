@@ -1,6 +1,6 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1,MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
-import { IonicPage, NavController, NavParams, Platform, App } from 'ionic-angular';
-import { Component, ViewChild, NgZone } from '@angular/core';
+import { EMPTY, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1,MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
+import { IonicPage } from 'ionic-angular';
+import { Component,  } from '@angular/core';
 import { BRAND_ID } from '../../config';
 
 // Import Providers.
@@ -17,9 +17,7 @@ import { AlertProvider } from '../../providers/alert/alert';
 export class FeedbackPage {
   userData: any = {};
 
-  constructor(private navCtrl: NavController,
-    private navParams: NavParams,
-    private loaderCtrl: LoaderProvider,
+  constructor(private loaderCtrl: LoaderProvider,
     private userProvider: UserdataProvider,
     private alertProvider: AlertProvider) {
   }

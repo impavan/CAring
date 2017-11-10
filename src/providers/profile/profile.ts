@@ -1,4 +1,4 @@
-import { ACTIVATE_VOUCHER, UPDATE_PROFILE } from '../../url';
+import { ACTIVATE_VOUCHER } from '../../url';
 import { BASE_URL, BRAND_ID } from '../../config';
 import { Platform, Events } from 'ionic-angular';
 import { Http, Response } from '@angular/http';

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LoadingController, Platform, App } from 'ionic-angular';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 // Import Providers.
@@ -10,8 +9,11 @@ import { AlertProvider } from '../alert/alert';
 export class LoaderProvider {
   public loading: any;
   public backPressed: any = false;
-  constructor(private http: Http, private loadingCtrl: LoadingController, private platform: Platform, private appCtrl: App, private alertCtrl: AlertProvider) {
-    console.log('Hello LoaderProvider Provider');
+  constructor(private loadingCtrl: LoadingController, 
+    private platform: Platform, 
+    private appCtrl: App, 
+    private alertCtrl: AlertProvider) {
+    
   }
 
   //loader

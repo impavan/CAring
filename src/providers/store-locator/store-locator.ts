@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 //All providers goes here
 import { STTARTER_BASE_URL } from '../../config';
-import { stores, happenings, instoreactivities } from '../../url';
+import { stores } from '../../url';
 
 @Injectable()
 export class StoreLocatorProvider {

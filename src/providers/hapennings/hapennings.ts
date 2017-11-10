@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 //All providers goes here
 
 import { STTARTER_BASE_URL } from '../../config';
-import { stores, happenings, instoreactivities } from '../../url';
+import { happenings } from '../../url';
 
 @Injectable()
 export class HapenningsProvider {

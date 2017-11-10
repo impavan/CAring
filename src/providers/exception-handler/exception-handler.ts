@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 // Import Providers.
@@ -8,8 +7,7 @@ import { AlertProvider } from '../alert/alert';
 @Injectable()
 export class ExceptionHandlerProvider {
 
-  constructor(private alertProvider: AlertProvider,
-    private http: Http) {
+  constructor(private alertProvider: AlertProvider) {
   }
 
   SERVER_ERROR = `something went wrong`;
