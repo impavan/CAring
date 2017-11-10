@@ -71,6 +71,7 @@ export class UserdataProvider {
       // get a user details
     getMyProfile() {
         const PROFILE = "/mobile/myprofile?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + BRAND_ID;
+        // let auth_token = localStorage.getItem('auth_token');
         return this.http.get(BASE_URL + PROFILE, { headers: this.auth.getHeader()})
             .do((res: Response) => res)
             .map((res: Response) => res.json());

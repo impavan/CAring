@@ -4,6 +4,7 @@ import { Platform, Events } from 'ionic-angular';
 import { Http, Response } from '@angular/http';
 import { AuthProvider } from '../auth/auth';
 import { Injectable } from '@angular/core';
+import moment from 'moment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 

@@ -1,6 +1,7 @@
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
 import { CUSTOM_FIELDS } from '../../config';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -25,7 +26,8 @@ export class AuthProvider {
 
   constructor(private actionSheetCtrl: ActionSheetController,
     private alertProvider: AlertProvider,
-    private camera: Camera) {
+    private camera: Camera,
+    private http: Http) {
     this.userObj = "";
     this.profilePic = "";
     this.contentHeaders = new Headers();
