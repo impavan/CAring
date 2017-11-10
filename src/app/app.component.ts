@@ -18,6 +18,7 @@ import { NetworkProvider } from '../providers/network/network';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   @ViewChild('nointernet')NoInternetModal;
+  @ViewChild('login')LoginModal;
   _auth = localStorage.getItem("auth_token");
   
   rootPage: any =  this._auth?"HomePage":"LoginPage";
@@ -88,6 +89,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.noConnectionEvent();
+      this.notLoggedIn();
     });
   }
 
@@ -122,15 +125,28 @@ export class MyApp {
   noConnectionEvent(){
 
     this.events.subscribe("noconnection",data=>{
-
       if(data== true)
       this.NoInternetModal.open();
 
-    })
+    });
+  }
+
+  notLoggedIn(){
+     this.events.subscribe('login', data=>{
+                  this.openLoginModal();
+                })
   }
 
   closeNoInternetModal(){
       this.NoInternetModal.close();
    
+  }
+
+    openLoginModal(){
+    this.LoginModal.open();
+  }
+
+   closeLoginModal(){
+    this.LoginModal.close();
   }
 }

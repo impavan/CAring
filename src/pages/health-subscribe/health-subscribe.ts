@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
-import { AlertProvider } from '../../providers/alert/alert';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 
 
@@ -17,20 +16,13 @@ export class HealthSubscribePage {
   _newsSubscriptionLink: any;
   NEWSSUBLINK: string = 'newsletterurl';
 
-  constructor( private navParams: NavParams,
-               private hapenningsProvider: HapenningsProvider,
+  constructor( private hapenningsProvider: HapenningsProvider,
                private loaderProvider:LoaderProvider,
-               private alertProvider:AlertProvider,
                private expnHandler:ExceptionHandlerProvider) {
   }
 
   ionViewWillEnter() {
     this.getPromotionsBrochureLink()
-  }
-
-
-  ngAfterViewInit() {
-
   }
 
   getPromotionsBrochureLink() {

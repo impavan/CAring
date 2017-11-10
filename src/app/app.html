@@ -2,9 +2,6 @@
     <ion-header>
         <ion-toolbar color="menu-header">
             <div class="thumbnail">
-                <!--<div class="img">
-                    <img src="http://rootaccez.com/assets/team/ravi.jpg" alt="">
-                </div>-->
                 <span *ngIf="!_auth">Hello</span>
                 <span *ngIf="_auth">Hello, {{_userName }}</span>
             </div>
@@ -33,12 +30,27 @@
 
 
 <mymodal #nointernet>
-    <!--<h2 class="errorInfo"></h2>-->
     <p>No Internet Connection Detected</p>
     <ion-grid>
+        <p>We cannot detect any Internet Connection, please connect to Internet and continue  </p>
         <ion-row>
             <ion-col col-12>
-                <button ion-button class="btn4" (click)="closeNoInternetModal()">Ok</button>
+                <button ion-button class="btn4" (click)="closeNoInternetModal()">OK</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>
+
+<mymodal #login>
+    <!--<h2 class="errorInfo"></h2>-->
+    <p>Please Login/Register to continue</p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button class="btn2 cancelBtn" (click)="closeLoginModal()">Cancel</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button class="btn2" (click)="goto('LoginPage')">Login/Register</button>
             </ion-col>
         </ion-row>
     </ion-grid>

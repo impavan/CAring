@@ -11,10 +11,10 @@ export class TabsPage {
 
  @ViewChild('login')LoginModal;
   index:number;
-  isActivePage:any;
+
 
   myTabs:Array<{label:string,icon:string,component:any,active:boolean}>
-  isClicked:boolean=false;
+ 
 
   constructor(public navCtrl: NavController, 
               private navParams:NavParams,
@@ -31,28 +31,15 @@ export class TabsPage {
 
                   ]
 
-                 this.isActivePage = this.myTabs[0];
+                 this.activePage();
   }
 
-  ionViewDidEnter(){
-    
-      // this.index = this.navParams.get('index');
-      //           console.log(this.index);
-      //           if(this.index == 4){
-      //             this.navCtrl.setRoot("HappeningsPage");
-      //           }else{
-      //               this.tabs.select(this.index + 0);
-      //           }
-
-                
-               
-
-  }
+ 
+ 
 
   goto(page,event:any) {
   
     this.navCtrl.setRoot(page.component).then(canEnter=>{
-      this.isActivePage=page;
       if(canEnter == false)
       this.events.publish('login', false);
     })
@@ -75,7 +62,19 @@ export class TabsPage {
 
   }
 
-  checkActive(page) {
-   return page == this.isActivePage;
+
+
+  activePage(){
+
+        this.events.subscribe('changeIcon',component=>{
+          console.log("in side event", component)
+          this.myTabs.map(data=>{
+            if(data.component == component)
+              data.active = true;
+              else
+              data.active = false;
+          })
+        });
+
   }
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { BASE_URL, BRAND_ID, IMAGE_URL } from '../../config';
 
 // Import Providers.
@@ -20,7 +20,12 @@ export class RewardsPage {
   auth: any;
   offerdata: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loaderProvider: LoaderProvider, private rewardsProvider: RewardsProvider, private exceptionProvider: ExceptionHandlerProvider) {
+  constructor(public events:Events,
+              public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private loaderProvider: LoaderProvider, 
+              private rewardsProvider: RewardsProvider, 
+              private exceptionProvider: ExceptionHandlerProvider) {
   }
 
   ionViewDidLoad() {
@@ -31,6 +36,7 @@ export class RewardsPage {
   ionViewDidEnter() {
     this.fetchAllExperiences();
     this.auth = localStorage.getItem('auth_token')
+    this.events.publish('changeIcon',"RewardsPage");
   }
 
   //List all the experiences / offers

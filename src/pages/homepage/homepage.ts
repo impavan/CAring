@@ -18,21 +18,17 @@ export class HomePage {
   INAPPLINK = 'InAppLink';
   WEBLINK = 'WebLink';
 
-  constructor(public navCtrl: NavController, 
-              private hapenningsProvider:HapenningsProvider,
+  constructor(private events:Events,
+              public navCtrl: NavController,
+              private inAppBrowser:InAppBrowser, 
               private loaderProvider:LoaderProvider, 
-              private inAppBrowser:InAppBrowser,
-              private events:Events ) {
+              private hapenningsProvider:HapenningsProvider) {
 
-                this.events.subscribe('login', data=>{
-                  this.openLoginModal();
-                })
+               
                 
   }
 
-  // ionViewDidLoad(){
-  //   this.slides.startAutoplay();
-  // }
+  
 
   ionViewWillEnter(){
     if(!this.isSlidesLoaded){
@@ -40,7 +36,6 @@ export class HomePage {
       this.hapenningsProvider.getHomeBanner()
             .subscribe(res => {
 
-                // console.log(res.data);
                 this.bannerData = res.data;
                this.loaderProvider.dismissLoader();
                this.isSlidesLoaded = true;
@@ -48,6 +43,8 @@ export class HomePage {
             })
 
     }
+
+    this.events.publish('changeIcon',"HomePage");
   }
 
   ngAfterViewInit() {
@@ -65,17 +62,11 @@ export class HomePage {
   goto(page: string) {
      this.navCtrl.setRoot(page).then((canEnter)=>{
         if(canEnter==false)
-        this.openLoginModal();
+         this.events.publish('login', false);
      });
   }
 
-   openLoginModal(){
-    this.LoginModal.open();
-  }
 
-   closeLoginModal(){
-    this.LoginModal.close();
-  }
 
 
 
@@ -99,6 +90,7 @@ export class HomePage {
 
 
   route(data){
+
     let page = data.split(":");
     if(page){
     let event = page[1].split("/");

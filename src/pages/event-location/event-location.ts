@@ -68,7 +68,6 @@ export class EventLocationPage {
       let marker = new google.maps.Marker();
       var latLng = new google.maps.LatLng(locationList.x, locationList.y);
       marker.setPosition(latLng);
-      // marker.setTitle(locationList.storename);
       marker.setMap(map);
    }
 

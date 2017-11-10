@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 // import { Geolocation } from '@ionic-native/geolocation';
 
 //All providers goes here
@@ -30,8 +30,11 @@ export class StoreLocatorPage {
   };
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public storeLocatorProvider: StoreLocatorProvider, private loaderProvider:LoaderProvider) {
+  constructor(public events:Events,
+              public navCtrl: NavController, 
+              public navParams: NavParams,
+              public storeLocatorProvider: StoreLocatorProvider, 
+              private loaderProvider:LoaderProvider) {
   }
 
 
@@ -39,6 +42,7 @@ export class StoreLocatorPage {
     this.loaderProvider.presentLoadingCustom();
     this.getStores();
     this._favIdList = this.getFavList();
+    this.events.publish('changeIcon',"StoreLocatorPage");
   }
 
 

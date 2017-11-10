@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Events } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
@@ -16,13 +16,13 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class ECartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private inAppBrowser:InAppBrowser) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private inAppBrowser:InAppBrowser,
+              private events:Events) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ECartPage');
-  }
+
 
   ionViewWillEnter(){
 
@@ -31,6 +31,8 @@ export class ECartPage {
       this.navCtrl.setRoot('HomePage');
 
     })
+
+    this.events.publish('changeIcon',"ECartPage");
     
   }
 
