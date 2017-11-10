@@ -11,15 +11,11 @@
             <img src="{{_promotionDetails?.bannerimage}}" />
         </figure>
         <div class="content">
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-6>
-                        <a href="{{_promotionDetails?.buttoncalltoaction}}" ion-button class="btn3">{{_promotionDetails?.buttontext}}</a>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
             <h4>{{_promotionDetails?.title}}</h4>
             <p [innerHTML]="_promotionDetails?.longdescription"></p>
+            <div text-center>
+                <a href="{{_promotionDetails?.buttoncalltoaction}}" ion-button class="btn3">{{_promotionDetails?.buttontext}}</a>
+            </div>
         </div>
     </div>
 

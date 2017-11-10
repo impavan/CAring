@@ -66,12 +66,9 @@ export class TabsPage {
   activePage(){
 
         this.events.subscribe('changeIcon',component=>{
-          console.log("in side event", component)
-          this.myTabs.map(data=>{
-            if(data.component == component)
-              data.active = true;
-              else
-              data.active = false;
+          
+          this.myTabs.map(data=>{ data.component == component?data.active = true: data.active = false
+            
           })
         });
 
