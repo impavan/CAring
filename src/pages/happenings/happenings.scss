@@ -8,6 +8,10 @@ page-happenings {
         }
         .btn3 {
             background: #268255 !important;
+            border-radius: 0px;
+        }
+        .button-ios {
+            border-radius: 0px;
         }
         .headerwithline {
             border-bottom: 1px solid #666;
@@ -57,12 +61,11 @@ page-happenings {
                     height: auto;
                     margin: 0;
                     width: 100%;
-                    font-size: 14px;
+                    font-size: 12px;
                     padding: 5px 0;
                     box-shadow: none;
                     text-transform: capitalize;
                     font-weight: normal;
-                    border-radius: 5px;
                 }
             }
         }

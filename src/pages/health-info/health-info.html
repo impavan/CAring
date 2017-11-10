@@ -16,12 +16,14 @@
                 </ion-col>-->
             </ion-row>
             <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
-                <ion-card>
-                    <figure>
-                        <img src="{{health?.thumbnailimage}}" />
-                    </figure>
-                </ion-card>
-                <p class="healthInfo">{{health?.title}}</p>
+                <div class="left">
+                    <img src="{{health?.thumbnailimage}}" />
+                </div>
+                <div class="right">
+                    <label>{{health?.title}}</label>
+                    <span>Lorum ipsum descriptions over here..</span>
+                    <button ion-button>Quiz Rewards</button>
+                </div>
             </div>
         </ion-grid>
     </div>
