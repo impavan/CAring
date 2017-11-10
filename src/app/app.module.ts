@@ -33,6 +33,7 @@ import { ProfileProvider } from '../providers/profile/profile';
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
 import { ConfigProvider } from '../providers/config/config';
 import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
   imports: [
     BrowserModule,
     HttpModule,
+    SharedModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages:false,
     }),
