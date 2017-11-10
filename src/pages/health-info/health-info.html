@@ -21,8 +21,8 @@
                 </div>
                 <div class="right">
                     <label>{{health?.title}}</label>
-                    <span>Lorum ipsum descriptions over here..</span>
-                    <button ion-button>Quiz Rewards</button>
+                    <span [innerHTML]="health?.shortdescription"></span>
+                    <button ion-button>{{health?.buttonname}}</button>
                 </div>
             </div>
         </ion-grid>
