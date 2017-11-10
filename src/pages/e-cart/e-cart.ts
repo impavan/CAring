@@ -20,9 +20,7 @@ export class ECartPage {
     private inAppBrowser:InAppBrowser) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ECartPage');
-  }
+
 
   ionViewWillEnter(){
 
