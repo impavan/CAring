@@ -30,3 +30,16 @@
 
 <!--Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+
+<mymodal #nointernet>
+    <!--<h2 class="errorInfo"></h2>-->
+    <p>No Internet Connection Detected</p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <button ion-button class="btn4" (click)="closeNoInternetModal()">Ok</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>

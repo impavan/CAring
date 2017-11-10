@@ -6,15 +6,18 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 
+
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';
+import { NetworkProvider } from '../providers/network/network';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  @ViewChild('nointernet')NoInternetModal;
   _auth = localStorage.getItem("auth_token");
   
   rootPage: any =  this._auth?"HomePage":"LoginPage";
@@ -28,7 +31,8 @@ export class MyApp {
     private authProvider: AuthProvider,
     private alertProvider:AlertProvider,
     private screenOrientation: ScreenOrientation,
-    public events:Events) {
+    public events:Events,
+    public networkprovider: NetworkProvider) {
 
     this.initializeApp();
     // used for an example of ngFor and navigation
@@ -113,5 +117,20 @@ export class MyApp {
     this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
     this.nav.setRoot("LoginPage");
+  }
+
+  noConnectionEvent(){
+
+    this.events.subscribe("noconnection",data=>{
+
+      if(data== true)
+      this.NoInternetModal.open();
+
+    })
+  }
+
+  closeNoInternetModal(){
+      this.NoInternetModal.close();
+   
   }
 }
