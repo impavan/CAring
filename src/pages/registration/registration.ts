@@ -109,22 +109,7 @@ export class RegistrationPage {
     } else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
 
       this.alertProvider.presentToast("Email Id must contain @ symbol");
-      return;
-
-    // } else if (this.registerData.mobile.length < MOBILE_NO_LIMIT_1 || this.registerData.mobile.length > MOBILE_NO_LIMIT_2) {
-    //   this.alertProvider.presentToast('Mobile number should be' + MOBILE_NO_LIMIT_1 + ' or' + MOBILE_NO_LIMIT_2 + 'digits');
-    //   return;
-      
-    } else if (this.registerData.mobile.match(NO_CHAR)) {
-      
-      this.alertProvider.presentToast('Mobile number cannot contain characters');
-      return;
-
-    } else if (!SPECIAL_CHARACTER.test(this.registerData.mobile)) {
-
-      this.alertProvider.presentToast('Mobile number cannot contain special characters');
-      return;
-
+      return;  
     } else {
       this.registerOTPSucess(this.registerData);
     }
@@ -152,7 +137,7 @@ export class RegistrationPage {
         if (data[0].code == 200) {
 
           localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
-          
+
           this.userProvider.getMyProfile().subscribe(data => {
 
             this.loaderProvider.dismissLoader();

@@ -48,34 +48,36 @@ export class LoginPage {
   //User login function
   userLogin() {
 
-    if (this.phoneNum == EMPTY) {
+    let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
 
-      this.alertProvider.presentToast('Please enter valid 8 digit mobile number');
-      return;
-
-    } else if (this.phoneNum.trim() == EMPTY) {
+    if (phoneNo== EMPTY) {
 
       this.alertProvider.presentToast('Please enter valid mobile number');
       return;
 
-    } else if (this.phoneNum.length < MOBILE_NO_LIMIT_1 || this.phoneNum.length > MOBILE_NO_LIMIT_2) {
+    } else if (phoneNo.trim() == EMPTY) {
 
-      this.alertProvider.presentToast('Mobile number should be ' + MOBILE_NO_LIMIT_1 + ' or' + MOBILE_NO_LIMIT_2 +  ' digits');
+      this.alertProvider.presentToast('Please enter valid mobile number');
       return;
 
-    } else if (this.phoneNum.match(NO_CHAR)) {
+    } else if (phoneNo.length < MOBILE_NO_LIMIT_1 || phoneNo.length > MOBILE_NO_LIMIT_2) {
+
+      this.alertProvider.presentToast('Please enter valid mobile number');
+      return;
+
+    } else if (phoneNo.match(NO_CHAR)) {
 
       this.alertProvider.presentToast('Mobile number cannot contain characters');
       return;
 
-    } else if (!SPECIAL_CHAR.test(this.phoneNum)) {
+    } else if (!SPECIAL_CHAR.test(phoneNo)) {
 
       this.alertProvider.presentToast('Mobile number cannot contain special characters');
       return;
 
     } else {
 
-      let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
+      
 
       this.loaderProvider.presentLoadingCustom();
       this.userProvider.userLogin(phoneNo)

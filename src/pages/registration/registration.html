@@ -18,18 +18,13 @@
                         </ion-item>
                         <ion-item>
                             <ion-label fixed>E-mail</ion-label>
-                            <ion-input *ngIf="!this._existingCustomerData[0]?.customerdata?.customer[0]?.email" type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
-                            <ion-label *ngIf="this._existingCustomerData[0]?.customerdata?.customer[0]?.email">{{registerData.email}}</ion-label>
+                            <ion-input *ngIf="!_existingCustomerData || !_existingCustomerData[0]?.customerdata?.customer[0]?.email " type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
+                            <ion-label *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.email">{{registerData.email}}</ion-label>
                         </ion-item>
-
-                        <!--<ion-item>
-							<ion-label fixed>OTP</ion-label>
-							<ion-input type="text" [(ngModel)]="otp" placeholder="Enter OTP"></ion-input>
-						</ion-item>-->
                     </ion-list>
                 </div>
-                <p *ngIf="_existingCustomerData[0]?.customerdata?.customer[0]?.external_id" class="subTitle1">Great! Welcome back. We have found your existing regular ID along with your point history.</p>
-                <div *ngIf="_existingCustomerData[0]?.customerdata?.customer[0]?.external_id" class="content">
+                <p *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.external_id" class="subTitle1">Great! Welcome back. We have found your existing regular ID along with your point history.</p>
+                <div *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.external_id" class="content">
                     <ion-list>
                         <ion-item>
                             <ion-label fixed>Regular ID</ion-label>

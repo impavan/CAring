@@ -51,6 +51,9 @@ export class RewardsPage {
       this.loaderProvider.dismissLoader();
 
       if (data[0].code == 200) {
+
+        this.isDataLoaded = true;
+        
         for (let res of data[0].response) {
 
           if (res.is_digital == 0)

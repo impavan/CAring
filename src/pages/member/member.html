@@ -185,7 +185,7 @@
                                 </ion-item>
                                 <ion-item>
                                     <ion-label fixed>E-mail</ion-label>
-                                    <ion-input type="text" readonly [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
+                                    <ion-input type="text" [readonly]="_emailId?true:false" [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
                                 </ion-item>
                                 <ion-item>
                                     <ion-label fixed>Mobile Number</ion-label>
