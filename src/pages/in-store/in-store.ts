@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 //All providers goes here
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
@@ -13,8 +13,8 @@ import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 export class InStorePage {
   storeActivityList: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private hapenningsProvider: HapenningsProvider) {
+  constructor(public navCtrl: NavController,
+              private hapenningsProvider: HapenningsProvider) {
   }
 
   ionViewWillEnter() {

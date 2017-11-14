@@ -29,7 +29,7 @@
                         <article clickable (click)="setMarker(location)">
                             <ion-row>
                                 <ion-col col-11>
-                                    <h4>{{location?.storename}}</h4>
+                                    <h4>{{location?.storeName}}</h4>
                                 </ion-col>
                                 <ion-col col-1>
                                     <ion-icon *ngIf="!location?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
@@ -41,9 +41,9 @@
                                     <ion-icon name="pin" class="alert"></ion-icon>
                                 </ion-col>
                                 <ion-col col-11>
-                                    <span>{{location?.km | number : '1.2-2'}} Km away</span>
+                                    <span>{{location?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{location?.fulladdress}}<br/> Ph: {{location?.telephone}}<br/> {{location?.storehours}}
+                                        {{location?.storeDescription}}<br/> Ph: {{location?.mobile}}<br/> {{location?.timing}}
                                         <br/>
                                         <!--Fri-Sat 10:00AM - 10:30PM-->
                                     </p>
@@ -59,7 +59,7 @@
                         <article clickable (click)="setMarker(fav)">
                             <ion-row>
                                 <ion-col col-11>
-                                    <h4>{{fav?.storename}}</h4>
+                                    <h4>{{fav?.storeName}}</h4>
                                 </ion-col>
                                 <ion-col col-1>
                                     <!--<ion-icon *ngIf="!fav?.favourite" name="heart-outline" class="alert favIcon"></ion-icon>-->
@@ -71,9 +71,9 @@
                                     <ion-icon name="pin" class="alert"></ion-icon>
                                 </ion-col>
                                 <ion-col col-11>
-                                    <span>{{ fav?.km | number : '1.2-2'}} Km away</span>
+                                    <span>{{ fav?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{fav?.fulladdress}}<br/> Ph: {{fav?.telephone}}<br/> {{fav?.storehours}}
+                                        {{fav?.storeDescription}}<br/> Ph: {{fav?.mobile}}<br/> {{fav?.timing}}
                                         <br/>
 
                                     </p>
@@ -91,7 +91,7 @@
                 <article (click)="setMarker(filter)" class="searchCard">
                     <ion-row>
                         <ion-col col-11>
-                            <h4>{{filter?.storename}}</h4>
+                            <h4>{{filter?.storeName}}</h4>
                         </ion-col>
                         <ion-col col-1>
                             <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(filter)"></ion-icon>
@@ -105,7 +105,7 @@
                         <ion-col col-11>
                             <span>{{filter?.km | number : '1.2-2'}} Km away</span>
                             <p>
-                                {{filter?.fulladdress}}<br/> Ph: {{filter?.telephone}}<br/> {{filter?.storehours}}
+                                {{filter?.storeDescription}}<br/> Ph: {{filter?.mobile}}<br/> {{filter?.timing}}
                                 <br/>
                                 <!--Fri-Sat 10:00AM - 10:30PM-->
                             </p>

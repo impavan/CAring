@@ -20,10 +20,12 @@ export class EventLocationPage {
   map:any;
   lat:any;
   lng:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+              public navCtrl: NavController,
+              public navParams: NavParams) {
 
-    this.lat = navParams.get('lat');
-    this.lng = navParams.get('lng');
+                    this.lat = navParams.get('lat');
+                    this.lng = navParams.get('lng');
    
    
     
@@ -32,6 +34,7 @@ export class EventLocationPage {
   ionViewDidLoad() {
    
     this.loadMap();
+
   }
 
   ngAfterViewInit() {
@@ -40,8 +43,7 @@ export class EventLocationPage {
 
 
  loadMap() {
-    // navigator.geolocation.getCurrentPosition((position) => {
-    // console.log(position);
+  
     let latLng = new google.maps.LatLng(this.lat, this.lng);
    
     let mapOptions = {
@@ -51,7 +53,7 @@ export class EventLocationPage {
     };
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
-    // })
+    
 
    
 
@@ -69,6 +71,7 @@ export class EventLocationPage {
       var latLng = new google.maps.LatLng(locationList.x, locationList.y);
       marker.setPosition(latLng);
       marker.setMap(map);
+     
    }
 
 }

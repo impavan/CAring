@@ -5,22 +5,23 @@
                 <span *ngIf="!_auth">Hello, Guest</span>
                 <span *ngIf="_auth">Hello, {{_userName }}</span>
             </div>
-
         </ion-toolbar>
     </ion-header>
 
     <ion-content>
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-              <ion-icon class="{{p.icon}}"></ion-icon> <span>{{p.title}}</span>
+                <ion-icon class="{{p.icon}}"></ion-icon> <span>{{p.title}}</span>
             </button>
         </ion-list>
         <ion-footer>
             <ion-toolbar color="menu-footer">
-                <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()"><ion-icon class="iconc-log-out"></ion-icon> <span>Logout</span> </button>
-                <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()"><ion-icon class="iconc-log-in"></ion-icon> <span>Login</span></button>
+                <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()">
+                    <ion-icon class="iconc-log-out"></ion-icon> <span>Logout</span> </button>
+                <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()">
+                    <ion-icon class="iconc-log-in"></ion-icon> <span>Login</span></button>
             </ion-toolbar>
-        </ion-footer>
+         </ion-footer>
     </ion-content>
 
 </ion-menu>
@@ -30,9 +31,9 @@
 
 
 <mymodal #nointernet>
-    <p>No Internet Connection Detected</p>
+  <p>No Internet Connection Detected</p>
     <ion-grid>
-        <p>We cannot detect any Internet Connection, please connect to Internet and continue  </p>
+        <p>We cannot detect any Internet Connection, please connect to Internet and continue </p>
         <ion-row>
             <ion-col col-12>
                 <button ion-button class="btn4" (click)="closeNoInternetModal()">OK</button>
@@ -42,7 +43,6 @@
 </mymodal>
 
 <mymodal #login>
-    <!--<h2 class="errorInfo"></h2>-->
     <p>Please Login/Register to continue</p>
     <ion-grid>
         <ion-row>

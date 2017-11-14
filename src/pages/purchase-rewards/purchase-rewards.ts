@@ -11,18 +11,23 @@ export class PurchaseRewardsPage {
   currentPoints: any;
   remainder: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.offerData = navParams.get('offerData');
-    this.currentPoints = navParams.get('currentpoints');
-    this.remainder = navParams.get('remainder');
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams) {
+                this.offerData = navParams.get('offerData');
+                this.currentPoints = navParams.get('currentpoints');
+                this.remainder = navParams.get('remainder');
   }
 
 
-  navToOffers(){
+  navToOffers() {
+    
     this.navCtrl.setRoot("RewardsPage");
+
   }
 
-  navToWallet(){
-    this.navCtrl.setRoot("MemberPage", {'from': 'purchase'});
+  navToWallet() {
+    
+    this.navCtrl.setRoot("MemberPage", { 'from': 'purchase' });
+    
   }
 }

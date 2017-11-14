@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
 
@@ -14,8 +14,10 @@ export class PromotionsPage {
   _promotionList: any = [];
   _brochureLinks: any;
   CATELOGLINK: string = 'promotionscatalogurl';
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public hapenningsProvider: HapenningsProvider, private loaderProvider:LoaderProvider) {
+  constructor(public navCtrl: NavController,
+              public hapenningsProvider: HapenningsProvider,
+              private loaderProvider: LoaderProvider) {
+    
   }
 
   ionViewWillEnter() {

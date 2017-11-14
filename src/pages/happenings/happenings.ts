@@ -16,32 +16,45 @@ export class HappeningsPage {
   happenList: any = [];
   routeLink:any = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private hapenningsProvider: HapenningsProvider, private loaderProvider:LoaderProvider) {
-    this.getHappenings();
-    this.routeLink = navParams.get('routeData');
-    if(this.routeLink){
-     
-    }
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private hapenningsProvider: HapenningsProvider,
+              private loaderProvider: LoaderProvider) {
+    
+                      this.getHappenings();
+                      this.routeLink = navParams.get('routeData');
+                      if(this.routeLink){
+                      
+                      }
+    
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
+    
     if(this.happenList.length <=0)
-    this.loaderProvider.presentLoadingCustom();
+        this.loaderProvider.presentLoadingCustom();
+    
   }
 
   getHappenings() {
+
     this.hapenningsProvider.getHappenings().subscribe(res => {
+
       this.loaderProvider.dismissLoader();
       this.happenList = res.data;
+
     });
   }
 
   goto(page) {
+
     this.navCtrl.push(page);
+    
   }
 
   gotoHappenDetail(value) {
+
     this.navCtrl.push('HappenDetailsPage', { happendata: value });
+
   }
 }

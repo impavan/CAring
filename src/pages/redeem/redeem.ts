@@ -53,7 +53,6 @@ export class RedeemPage {
           this.loaderProvider.presentLoadingCustom();
 
           let voucher = this.redeemList.filter(data =>data.RedeemStatus == 0).shift();
-                console.log(voucher);
           
                 this.loaderProvider.dismissLoader();
                 JsBarcode(this.barcode.nativeElement, voucher.VoucherCode);
@@ -77,7 +76,6 @@ export class RedeemPage {
                             this.newRedeemList = res[0].customer_vouchers;
                             let myList =  this.newRedeemList.filter(data=>data.ExperienceId == this.experienceId )
                             this.redeemList = myList;
-                            console.log(this.redeemList);
                             this.loaderProvider.dismissLoader();
 
                             }else{

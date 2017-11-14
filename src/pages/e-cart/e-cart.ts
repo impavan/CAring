@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Events } from 'ionic-angular';
+import { IonicPage, NavController,Events } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
@@ -16,10 +16,11 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class ECartPage {
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              private inAppBrowser:InAppBrowser,
-              private events:Events) {
+  constructor(
+              private events: Events,
+              public navCtrl: NavController, 
+              private inAppBrowser: InAppBrowser) {
+    
   }
 
 
@@ -27,7 +28,9 @@ export class ECartPage {
   ionViewWillEnter(){
 
     let browser = this.inAppBrowser.create('http://estore.caring2u.com/');
-    browser.on('exit').subscribe(()=>{
+    
+    browser.on('exit').subscribe(() => {
+      
       this.navCtrl.setRoot('HomePage');
 
     })

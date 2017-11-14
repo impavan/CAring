@@ -1,9 +1,6 @@
 <ion-content padding>
-    <!--<div style="text-align:right">
-		<span (click)="skipLogin()">Skip>></span>
-	</div>-->
-    <div class="loginContainer">
-        <i class="logo text-center">
+	<div class="loginContainer">
+		<i class="logo text-center">
 			<img src="assets/img/logo_large.png" />
 		</i>
         <div text-center class="info">Please enter your mobile number to continue. Your mobile number will only be used to validate your account and will not be shared with any third party.</div>
@@ -28,13 +25,30 @@
 		</div> -->
         <!-- <p>Forgot your Regular Card Number? Walk in any
 			<span class="primary">Caring Pharmacy</span> for enquiry</p> -->
+		<div text-center class="info">Please enter your mobile number to continue</div>
+		<div class="content">
+	  		<ion-list>
+				<ion-item>
+					<ion-label fixed>Mobile Number</ion-label>
+					<ion-label>+60</ion-label>
+		  			<ion-input type="tel" [(ngModel)]="phoneNum" placeholder="mobile number" maxlength="10" minlength="8" required></ion-input>
+				</ion-item>
+	  		</ion-list>
+	  		<button ion-button class="btn4 borderBottomRadius" (click)="userLogin()">Continue</button>
+		</div>
+		<div style="text-align: center;margin: 10px 0 10px 0;">
+	  		<span>Or</span>
+		</div>
+		<div>
+	  		<button ion-button class="btn4" (click)="skipLogin()">Login as Guest</button>
+		</div>
     </div>
 </ion-content>
 
 <!-- Modal tobe displayed when there is no internet on the device -->
 <mymodal #connection title="No Connection">
-    <div>
-        <p>We cannot detect Internet connection. Please connect to Internet</p>
-    </div>
-    <button ion-button (click)="closeConnectionModal()">OK</button>
+	<div>
+		<p>We cannot detect Internet connection. Please connect to Internet</p>
+	</div>
+	<button ion-button (click)="closeConnectionModal()">OK</button>
 </mymodal>

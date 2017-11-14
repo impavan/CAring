@@ -22,23 +22,34 @@ export class HealthSubscribePage {
   }
 
   ionViewWillEnter() {
+
     this.getPromotionsBrochureLink()
   }
 
   getPromotionsBrochureLink() {
+
     this.loaderProvider.presentLoadingCustom();
+
     this.hapenningsProvider.getPromotionsBrochureLink().subscribe(res => {
+
       let myList = res.data;
+
       for (let i in myList) {
-        if (myList[i].key == this.NEWSSUBLINK){
+
+        if (myList[i].key == this.NEWSSUBLINK) {
+          
         this._newsSubscriptionLink = myList[i].value;
         this.loaderProvider.dismissLoader();
         break;
+          
         }
       }
-    },err=>{
+    }, err => {
+      
       this.loaderProvider.dismissLoader();
       this.expnHandler.excpHandler(err);
-    });
+
+      });
+    
   }
 }

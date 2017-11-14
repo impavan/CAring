@@ -80,18 +80,22 @@ export class UserdataProvider {
 
   // update user details
     updateProfile(userdata) {
-    let data = {
+
+      let data = {
+      
       first_name:userdata.fname,
       email:userdata.email,
       old_email:userdata.old_email?userdata.old_email:userdata.email,
       mobile:userdata.mobile,
       BrandURLID:BRAND_ID,
       externalId:userdata.externalId,
-      custom_fields:[]
-    }
-     data.custom_fields.push({name:"mobile_validated", value:"Yes", type:"string"});
-    let body = data;
-    return this.http
+      custom_fields: []
+      
+      }
+      
+    data.custom_fields.push({name:"mobile_validated", value:"Yes", type:"string"});
+      let body = data;
+      return this.http
       .post(BASE_URL + UPDATE_PROFILE, body, { headers: this.auth.getHeader() })
       .do((res: Response) => res)
       .map((res: Response) => res.json());

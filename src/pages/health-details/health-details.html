@@ -9,10 +9,10 @@
         </figure>
         <div class="content">
             <h4>{{healthData?.title}}
-                <span>(10 Frequently Asked Questions)</span>
+                <span>{{healthData?.subtitle}}</span>
             </h4>
             <div class="infodate">
-                <label><i>By</i> Joshua Ng Monday,</label> <span> 25 Sept 2017 3:22pm</span>
+                <label *ngIf='healthData?.authorinfo'><i>By</i> {{healthData?.authorinfo}}</label> <span>{{healthData?.displaydate | date:'EEEE dd MMM yyyy hh:mm a'}}</span>
             </div>
             <!-- <ul class="socialList">
                 <!-- <li class="fb">
