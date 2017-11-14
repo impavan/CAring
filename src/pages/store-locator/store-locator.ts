@@ -241,7 +241,7 @@ export class StoreLocatorPage {
 
     setMarker(data){
 
-   
+      console.log(data);
      let marker = new google.maps.Marker();
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
         this.map.panTo(latLng,30);

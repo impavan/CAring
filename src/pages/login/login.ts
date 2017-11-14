@@ -75,20 +75,22 @@ export class LoginPage {
 
     } else {
 
+      let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
+
       this.loaderProvider.presentLoadingCustom();
-      this.userProvider.userLogin(this.phoneNum)
+      this.userProvider.userLogin(phoneNo)
         .subscribe(data => {
 
            this.loaderProvider.dismissLoader();
           
           if (data[0].code == 200) {
                   
-              this.navCtrl.push("OtpPage", { from: '0', phone: this.phoneNum });
+              this.navCtrl.push("OtpPage", { from: '0', phone: phoneNo});
               
             
           } else if (data[0].code == 202) 
 
-              this.navCtrl.push("OtpPage", { from: '1', phone: this.phoneNum });
+              this.navCtrl.push("OtpPage", { from: '1', phone: phoneNo });
             
            else 
             

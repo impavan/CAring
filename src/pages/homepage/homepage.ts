@@ -19,7 +19,7 @@ export class HomePage {
   WEBLINK = 'WebLink';
 
   constructor(private events:Events,
-              public navCtrl: NavController,
+              public  navCtrl: NavController,
               private inAppBrowser:InAppBrowser, 
               private loaderProvider:LoaderProvider, 
               private hapenningsProvider:HapenningsProvider) {
@@ -75,7 +75,8 @@ export class HomePage {
 
     if(bannerdata.linktype === this.INAPPLINK){
 
-      // this.route(bannerdata.destination);
+      this.route(bannerdata.destination);
+      console.log(bannerdata.destination);
 
     }else if(bannerdata.linktype === this.WEBLINK){
 
@@ -89,16 +90,12 @@ export class HomePage {
   }
 
 
-  route(data){
+  route(url){
 
-    let page = data.split(":");
-    if(page){
-    let event = page[1].split("/");
-    }
-    if(page[1] == "Store")
-    this.navCtrl.push("StoreLocatorPage");
-    if(event[0] == "Happening")
-    this.navCtrl.setRoot("HappeningsPage",{routeData:page[2]});
+    let page = url.split(":");
+    console.log(page);
+    let component = page[1];
+    this.navCtrl.setRoot(component);
 
   }
 }

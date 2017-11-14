@@ -5,12 +5,11 @@
 
 <ion-content class="mainCont">
     <div class="searchOut">
-        <!--<ion-item>-->
-        <!--<ion-input placeholder="Find"></ion-input>-->
         <ion-searchbar [(ngModel)]="_searchKey" placeholder="Find" (ionInput)="onInput($event)" (ionClear)="onCancel($event)">
         </ion-searchbar>
-        <!--</ion-item>-->
     </div>
+
+    <!--loading google map here-->
     <div #myMap id="map" class="mapContainer"></div>
 
     <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
@@ -26,7 +25,7 @@
             <ion-list *ngSwitchCase="'near_you'">
                 <div class="locationContainer">
                     <ion-grid *ngFor="let location of updatedLocationList">
-                        <article clickable (click)="setMarker(location)">
+                        <article tappable (click)="setMarker(location)">
                             <ion-row>
                                 <ion-col col-11>
                                     <h4>{{location?.storeName}}</h4>
@@ -56,7 +55,7 @@
             <ion-list *ngSwitchCase="'favourite'">
                 <div class="locationContainer">
                     <ion-grid *ngFor="let fav of favouriteList">
-                        <article clickable (click)="setMarker(fav)">
+                        <article tappable (click)="setMarker(fav)">
                             <ion-row>
                                 <ion-col col-11>
                                     <h4>{{fav?.storeName}}</h4>
@@ -75,7 +74,6 @@
                                     <p>
                                         {{fav?.storeDescription}}<br/> Ph: {{fav?.mobile}}<br/> {{fav?.timing}}
                                         <br/>
-
                                     </p>
                                 </ion-col>
                             </ion-row>
@@ -88,7 +86,7 @@
     <div *ngIf="_searchKey!=''">
         <div class="locationContainerTwo">
             <ion-grid *ngFor="let filter of _newFilteredList">
-                <article (click)="setMarker(filter)" class="searchCard">
+                <article tappable (click)="setMarker(filter)" class="searchCard">
                     <ion-row>
                         <ion-col col-11>
                             <h4>{{filter?.storeName}}</h4>

@@ -147,9 +147,12 @@ export class RegistrationPage {
       this.userProvider.updateProfile(this.registerData).subscribe(data => {
               
         this.loaderProvider.presentLoadingCustom();
+        this.authProvider.setHeader();
 
         if (data[0].code == 200) {
 
+          localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
+          
           this.userProvider.getMyProfile().subscribe(data => {
 
             this.loaderProvider.dismissLoader();
