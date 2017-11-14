@@ -1,4 +1,5 @@
 page-health-info {
+
     .healthInfoContainer {
         margin: 0 0 0 0;
         h3 {
@@ -7,17 +8,20 @@ page-health-info {
             font-weight: 600;
         }
         .headerwithline {
-            border-bottom: 1px solid #666;
+            border-bottom: 1px solid #bdbdbd;
             display: inline-block;
             width: 100%;
             label {
                 float: left;
-                line-height: 48px;
+                line-height: auto;
                 font-size: 18px;
+                color: #808080;
+                font-family: 'allerbold';
+                margin: 15px 0 0 0;
             }
             a {
                 float: right;
-                width: 140px;
+                width: 190px;
                 padding: 0;
                 margin: 0;
                 img {
@@ -44,6 +48,7 @@ page-health-info {
                     margin: 0 0 8px 0;
                     line-height: normal;
                     color: $cp-extra-darker-grey;
+                    font-family: 'allerregular';
                 }
                 .button-md {
                     background-color: $cp-primary-color;
@@ -62,6 +67,7 @@ page-health-info {
         .healthInfoCards {
             min-height: 141px;
             margin-bottom: 25px;
+            padding: 0 0 0 10px;
             .left {
                 float: left;
                 margin: 0 0px 0 0;
@@ -83,11 +89,13 @@ page-health-info {
                     display: block;
                     color: #111;
                     margin-bottom: 10px;
+                    font-family: 'allerbold';
                 }
                 span {
                     font-size: 11px;
                     display: block;
                     margin-bottom: 10px;
+                    font-family: 'allerregular';
                 }
                 .button-ios {
                     border-radius: 0px;
@@ -97,11 +105,12 @@ page-health-info {
                     text-transform: uppercase;
                     font-size: 12px;
                     padding: 5px 10px;
-                    position: absolute;
+                    position: static;
                     bottom: 3px;
                     line-height: 21px;
                     height: 30px;
                     margin: 0px;
+                    font-family:'Axis';
                     span {
                         margin: 0px;
                         padding: 0px;
@@ -110,5 +119,9 @@ page-health-info {
                 }
             }
         }
+    }
+    .pdadj{
+        padding: 0 15px 0px 10px;
+        margin-bottom: 10px;
     }
 }
