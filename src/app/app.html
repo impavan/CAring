@@ -1,3 +1,11 @@
+<style>
+    .item-md-menu-footer{
+        position: relative !important;
+        top:-10px !important;
+    }
+    </style>
+
+
 <ion-menu [content]="content" id="leftMenu">
     <ion-header>
         <ion-toolbar color="menu-header">
@@ -14,7 +22,7 @@
                 <ion-icon class="{{p.icon}}"></ion-icon> <span>{{p.title}}</span>
             </button>
         </ion-list>
-        <ion-footer>
+        <ion-footer class="footer">
             <ion-toolbar color="menu-footer">
                 <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()">
                     <ion-icon class="iconc-log-out"></ion-icon> <span>Logout</span> </button>
