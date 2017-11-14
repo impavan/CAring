@@ -31,27 +31,33 @@ export class MemberPage {
   _emailId: any;
   _oldemailId: any;
   _mobileNum: any;
-  _profilePic: any;
   _pointOpen: boolean = false;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
   _externalId:any;
-  loadedWallet: boolean = false;
   loadedProfile: boolean = false;
   redeemedRewards: any = [];
   _transactionList: any = [];
   _newRedeemedList: any = [];
-  redeemdRewards: any = [];
+  _newReward: any = [];
+  _usedReward: any = [];
+  _expiredReward: any = [];
   userData: any = {};
   currentDate: any = moment().format('YYYY-MM-DD');
   isWalletLoaded: boolean = false;
   isProfileLoaded: boolean = false;
 
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private authProvider: AuthProvider,
-    private exceptionProvider: ExceptionHandlerProvider, private events: Events,
-    private profileProvider: ProfileProvider, private loaderProvider: LoaderProvider, private userProvider: UserdataProvider,
-    private alertProvider: AlertProvider) {
+  constructor(
+              private events: Events,  
+              private navParams: NavParams,
+              private navCtrl: NavController,
+              private authProvider: AuthProvider,
+              private alertProvider: AlertProvider,
+              private loaderProvider: LoaderProvider,
+              private userProvider: UserdataProvider,
+              private profileProvider: ProfileProvider,
+              private exceptionProvider: ExceptionHandlerProvider) {
    
 
     this.from = navParams.get('from');
@@ -81,30 +87,37 @@ export class MemberPage {
 
 
   loadMyProfile() {
-    if (this._auth) {
+
+    if (this._auth) 
       this.getMyProfileDetails();
-    }
+    
   }
 
   loadMyPoints() {
+
     if (this._auth) {
+
       this.loaderProvider.presentLoadingCustom();
       this.getMyPoints();
       this.getUserTransaction();
+
     } else {
+
       this.loaderProvider.dismissLoader();
     }
   }
 
   loadMyWallet() {
-    if (this._auth)
 
+    if (this._auth)
       this.getRedeemedVouchers();
 
   }
 
   navToRedeemVoucher(voucher) {
+
     this.navCtrl.push("VoucherRedeemPage", { data: voucher });
+
   }
 
   //gets user profile details
@@ -114,7 +127,6 @@ export class MemberPage {
     this._emailId = this.authProvider.getUserEmailId();
     this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
-    this._profilePic = this.authProvider.getUserProfilePic();
     this._externalId = this.authProvider.getExternalId();
     JsBarcode(this.barcode.nativeElement, this._mobileNum);
 
@@ -160,6 +172,10 @@ export class MemberPage {
 
         if (this.redeemedRewards.length > 0) {
 
+          this.getNewRewardsList();
+          this.getUsedRewardList();
+          this.getExpiredList();
+
                 this._newRedeemedList = [];
 
                 for (let i = 0; i < this.redeemedRewards.length; i++) {
@@ -203,8 +219,6 @@ export class MemberPage {
 
                   this._transactionList = data[0].customer_transaction_info;
 
-                  console.log(this._transactionList);
-
       })
 
   }
@@ -226,11 +240,13 @@ export class MemberPage {
     this.navCtrl.push("MyAccountPage");
 
   }
+
   emptywallet() {
 
     this.navCtrl.setRoot("RewardsPage");
 
   }
+
   backtologin() {
 
     this.navCtrl.setRoot("LoginPage");
@@ -330,5 +346,24 @@ export class MemberPage {
   goto(page, exp) {
 
     this.navCtrl.push(page, { redeemData: this._newRedeemedList[exp] });
+
+  }
+
+  getNewRewardsList() {
+    
+    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && data.ExpiryDate >= this.currentDate);
+
+  }
+
+  getUsedRewardList() {
+    
+    this._usedReward = this.redeemedRewards.filter(data => data.RedeemStatus == 1);
+
+  }
+
+  getExpiredList() {
+    
+    this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && data.ExpiryDate < this.currentDate)
+
   }
 }

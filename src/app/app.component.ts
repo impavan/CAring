@@ -23,7 +23,6 @@ export class MyApp {
   
   rootPage: any =  this._auth?"HomePage":"LoginPage";
   _userName:any="";
-  // isUserLoggedIn:any =this._auth?true:false;
   pages: Array<{ title: string, component: any, index: number, icon:string }>;
 
   constructor(private platform: Platform, 
@@ -49,104 +48,117 @@ export class MyApp {
       { title: 'About', component: 'AboutPage', index:8, icon:"iconc-ticket"},
     ];
 
-      if(this._auth)
-      {
-        this._auth = localStorage.getItem("auth_token");
-         let customerData = localStorage.getItem('userdetails');
-         let data = JSON.parse(customerData);
-         this.authProvider.setUser(data);
-         this.getUserDetails();
-      }
-
-
-        this.events.subscribe('user:login', (user) => {
-      if (user) {
-         this._auth = localStorage.getItem("auth_token");
-         let customerData = localStorage.getItem('userdetails');
-         let data = JSON.parse(customerData);
-         this.authProvider.setUser(data);
-         this.getUserDetails();
-
-
-      
-        }else{
-           this._auth = '';
-        }
-   
-      })
+    if (this._auth) {
+        
+        this.getUser();
     }
+
+
+    this.events.subscribe('user:login', (user) => {
+
+      if (user) {
+        this.getUser();
+
+      } else{
+           this._auth = '';
+      }
+   
+    })
+
+  }
       
   
 
   initializeApp() {
+
     this.platform.ready().then(() => {
+
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      
       if (this._auth) {
         let userdata = localStorage.getItem('userdetails');
         this.authProvider.setUser(JSON.parse(userdata));
       }
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.noConnectionEvent();
       this.notLoggedIn();
     });
+
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component, {index:page.index}).then(canEnter=>{
+
+    this.nav.setRoot(page.component, { index: page.index }).then(canEnter => {
+      
           if(canEnter==false)
           this.events.publish('login', false);
     })
   }
 
-   getUserDetails() {
+  getUserDetails() {
+     
     this._userName = this.authProvider.getUserFirstName();
     
   }
 
-  gotoLogin()
-  {
+  getUser() {
+    
+         this._auth = localStorage.getItem("auth_token");
+         let customerData = localStorage.getItem('userdetails');
+         let data = JSON.parse(customerData);
+         this.authProvider.setUser(data);
+         this.getUserDetails();
+  }
+
+  gotoLogin() {
+    
     this.nav.setRoot("LoginPage");
     
   }
 
-  logout(){
+  logout() {
+    
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
     this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
     this.nav.setRoot("LoginPage");
+
   }
 
   noConnectionEvent(){
 
-    this.events.subscribe("noconnection",data=>{
+    this.events.subscribe("noconnection", data => {
+      
       if(data== true)
       this.NoInternetModal.open();
 
     });
+
   }
 
-  notLoggedIn(){
-     this.events.subscribe('login', data=>{
+  notLoggedIn() {
+    
+    this.events.subscribe('login', data => {
+       
                   this.openLoginModal();
-                })
+    })
+
   }
 
-  closeNoInternetModal(){
+  closeNoInternetModal() {
+
       this.NoInternetModal.close();
-   
   }
 
-    openLoginModal(){
+  openLoginModal() {
+    
     this.LoginModal.open();
   }
 
-   closeLoginModal(){
+  closeLoginModal() {
+    
     this.LoginModal.close();
   }
 }

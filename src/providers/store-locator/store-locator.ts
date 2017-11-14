@@ -36,9 +36,9 @@ export class StoreLocatorProvider {
 
 
 
-  getAllStoreLocation(lat, lng){
+  getAllStoreLocation(lat, lng,limit ){
       
-      return this.http.get(STORE_BASE_URL + 'latitude=' + lat + '&longitude=' + lng,{ headers:this.contentHeaders })
+      return this.http.get(STORE_BASE_URL + 'latitude=' + lat + '&longitude=' + lng + '&distance=500&size=' + limit,{ headers:this.contentHeaders })
             .do((res: Response) => res)
             .map((res: Response)=> res.json());
 

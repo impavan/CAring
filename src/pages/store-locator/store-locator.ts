@@ -1,16 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-// import { Geolocation } from '@ionic-native/geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
-// import { GoogleMaps,GoogleMap,GoogleMapsEvent,GoogleMapOptions,CameraPosition,MarkerOptions,Marker } from '@ionic-native/google-maps';
 import { LoaderProvider } from '../../providers/loader/loader';
-import { StoresProvider } from '../../providers/stores/stores';
+
 
 declare var google;
-declare var navigator;
 @IonicPage()
 @Component({
   selector: 'page-store-locator',
@@ -39,7 +36,6 @@ export class StoreLocatorPage {
               public navParams: NavParams,
               public storeLocatorProvider: StoreLocatorProvider, 
               private loaderProvider:LoaderProvider,
-              private storesProvider:StoresProvider,
               private geolocation: Geolocation) {
   }
 
@@ -65,36 +61,43 @@ export class StoreLocatorPage {
   // }
 
   loadMap() {
-   this.geolocation.getCurrentPosition().then((resp) => {
- // resp.coords.latitude
- // resp.coords.longitude
 
-    console.log(resp);
-    this.getAllStores(resp.coords.latitude, resp.coords.longitude);
+   this.geolocation.getCurrentPosition().then((resp) => {
+
+     this.getAllStores(resp.coords.latitude, resp.coords.longitude, 50);
+     
     this._myCurrentLocation = {
       lat:resp.coords.latitude,
       lng:resp.coords.longitude,
     }
+     
     let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+     
     let mapOptions = {
       center: latLng,
       zoom: 12,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+     
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
-    }).catch((error) => {
-  console.log('Error getting location', error);
+   }).catch((error) => {
+    
+     console.log('Error getting location', error);
+     
 });
   }
 
   loadFavList(locationList) {
+
     for (let i in locationList) {
       locationList[i].favourite = this._favIdList.includes(locationList[i]._id);
     }
+
   }
 
   addMarkers(map, locationList) {
+
     for (let i in locationList) {
       let marker = new google.maps.Marker();
       var latLng = new google.maps.LatLng(locationList[i].latitude, locationList[i].longitude);
@@ -162,45 +165,58 @@ export class StoreLocatorPage {
   //  }
 
   setFav(location) {
+
     location.favourite = true;
     this.favouriteList.push(location);
     this.addFavList(location.storeId);
+
   }
 
   removeFav(location) {
+
     location.favourite = false;
     let index = this.favouriteList.findIndex(loc => loc.storeId == location.storeId);
     this.favouriteList.splice(index, 1);
     this.removeFavList(location.storeId);
+
   }
 
   getFavList() {
+
     let list: any = localStorage.getItem('favouriteList');
     let list2: any = list == null ? [] : JSON.parse(list);
     return (list2);
+
   }
 
   addFavList(id) {
+
     this._favIdList = this.getFavList();
     this._favIdList.push(id);
     localStorage.setItem('favouriteList', JSON.stringify(this._favIdList));
+
   }
 
   removeFavList(id) {
+
     this._favIdList = this.getFavList();
     let index = this._favIdList.findIndex(fav => fav._id == id);
     this._favIdList.splice(index, 1);
     localStorage.setItem('favouriteList', JSON.stringify(this._favIdList));
+
   }
 
 
-  onInput(event){
+  onInput(event) {
+    
     let val = event.target.value;
-   if(this._searchKey){
+
+    if (this._searchKey) {
+     
       this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.storeDescription.toLowerCase().indexOf(val.toLowerCase()) > -1) );
    }
-   
-    else if(!this._searchKey){
+    else if (!this._searchKey) {
+      
       this.onClear();
     }
     
@@ -234,20 +250,18 @@ export class StoreLocatorPage {
   //1.6092 exact value for converting miles to kilometeres
 
  
-getAllStores(lat, lng){
+getAllStores(lat, lng, limit){
 
-    this.storeLocatorProvider.getAllStoreLocation(lat,lng)
+    this.storeLocatorProvider.getAllStoreLocation(lat,lng, limit)
 
         .subscribe(res=>{
 
-            console.log(res);
-            this.locationList  = res.storesWithDistance;
-            console.log( res.storesWithDistance);
-            console.log( this.locationList);
-            this.updatedLocationList = this.locationList;
-            this._filterList =this.locationList;
-             this.addMarkers(this.map, this.locationList);
-             this.loadFavList(this.locationList);
+              this.locationList  = res.storesWithDistance;
+              this.updatedLocationList = this.locationList;
+              this._filterList =this.locationList;
+              this.addMarkers(this.map, this.locationList);
+              this.loadFavList(this.locationList);
+          
         });
 
 }

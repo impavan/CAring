@@ -83,29 +83,13 @@
                 <div [ngSwitch]="memberDetails">
                     <!-- New section starts. -->
                     <ion-list *ngSwitchCase="'New'">
-                        <div class="alert" *ngIf="redeemedRewards.length <= 0">
+                        <div class="alert" *ngIf="_newReward.length <= 0">
                             No New Vouchers available!
                         </div>
-                        <div class="newContainer" *ngIf="redeemedRewards">
-
+                        <div class="newContainer" *ngIf="_newReward.length > 0">
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                     <div class="content" *ngIf="reward.RedeemStatus == 0 && reward.ExpiryDate >= currentDate">
-
-                                        <!--<ion-row class="customRow">
-                                            <ion-col col-7>
-                                                <figure>
-                                                    <img src="{{reward?.images[0]}}" />
-                                                </figure>
-                                            </ion-col>
-                                            <ion-col col-5>
-                                                <p class="voucher">{{reward.Title}}</p>
-                                                <div>
-                                                    <p>{{getRedeemed(reward?.ExperienceId)}}</p>
-                                                </div>
-                                            </ion-col>
-                                        </ion-row>-->
-
                                         <article>
                                             <ion-grid>
                                                 <ion-row class="first">
@@ -121,8 +105,6 @@
                                                 </ion-row>
                                             </ion-grid>
                                         </article>
-
-
                                     </div>
                                 </ion-grid>
                             </ion-card>
@@ -130,10 +112,10 @@
                     </ion-list>
                     <!-- Used section starts. -->
                     <ion-list *ngSwitchCase="'Used'">
-                        <div class="alert" *ngIf="redeemedRewards.length <= 0">
+                        <div class="alert" *ngIf="_usedReward.length <= 0">
                             No Used Vouchers to display
                         </div>
-                        <div class="newContainer">
+                        <div class="newContainer" *ngIf="_usedReward.length > 0">
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                     <div class="content" *ngIf="reward.RedeemStatus == 1">
@@ -161,13 +143,13 @@
                     </ion-list>
                     <!-- Expired section starts. -->
                     <ion-list *ngSwitchCase="'Expired'">
-                        <div class="alert" *ngIf="redeemedRewards.length <= 0">
+                        <div class="alert" *ngIf="_expiredReward.length <= 0">
                             No Expired Vouchers to display
                         </div>
-                        <div class="newContainer">
+                        <div class="newContainer" *ngIf="_expiredReward.length > 0">
                             <ion-card>
                                 <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
-                                    <div class="content" *ngIf="reward.RedeemStatus == 0 && reward.ExpiryDate <= currentDate">
+                                    <div class="content" *ngIf="reward.RedeemStatus == 0 && reward.ExpiryDate < currentDate">
                                         <article>
                                             <ion-grid>
                                                 <ion-row class="first">

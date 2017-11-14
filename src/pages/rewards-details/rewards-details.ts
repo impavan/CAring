@@ -27,57 +27,74 @@ export class RewardsDetailsPage {
   remainder: any;
   flag: any;
   constructor(private exceptionProvider: ExceptionHandlerProvider,
-    private navCtrl: NavController,
-    private navParams: NavParams,
-    private authProvider: AuthProvider,
-    private loaderProvider: LoaderProvider,
-    private alertProvider: AlertProvider,
-    private rewardsProvider: RewardsProvider) {
-    this.offerdata = this.navParams.get('data');
-    console.log(this.offerdata, '==================offerdata===================')
-    this._auth = localStorage.getItem('auth_token');
+              private navCtrl: NavController,
+              private navParams: NavParams,
+              private authProvider: AuthProvider,
+              private loaderProvider: LoaderProvider,
+              private alertProvider: AlertProvider,
+              private rewardsProvider: RewardsProvider) {
+    
+              this.offerdata = this.navParams.get('data');
+              this._auth = localStorage.getItem('auth_token');
   }
 
   ionViewDidEnter() {
+
     if (this._auth) {
+
       this._currentPoint = this.authProvider.getMyCurrentPoints();
       this.remainder = this._currentPoint - this.offerdata.BrandPointRedeemValue;
       this.authProvider.setHeader();
-      // this.remainder = 0;
       if (this.remainder >= 0) {
-        this.flag = true;
+           this.flag = true;
       }
+
     }
+
   }
 
   navToPurchaseRewards() {
+
     this.redeemPointsModal.open();
+
   }
 
   confirmRedeemVoucher() {
+
     this.loaderProvider.presentLoadingCustom();
     let redeemData = {
+
       points: this.offerdata.BrandPointRedeemValue,
       experience_id: this.offerdata.ExperienceID,
+
     }
+
     this.closeRedeemPointsModal();
     this.rewardsProvider.redeemVoucher(redeemData).subscribe(data => {
       this.loaderProvider.dismissLoader();
       
       if (data[0].code == 200) {
+
         this.alertProvider.presentToast(data[0].message);
         this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata, 'currentpoints': this._currentPoint, 'remainder': this.remainder });
+
       } else {
+
         this.alertProvider.presentToast(data[0].message);
+
       }
+
     }, err => {
-      this.closeRedeemPointsModal();
-      this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err)
+
+        this.closeRedeemPointsModal();
+        this.loaderProvider.dismissLoader();
+        this.exceptionProvider.excpHandler(err)
     });
   }
 
   closeRedeemPointsModal() {
+
     this.redeemPointsModal.close();
+    
   }
 }

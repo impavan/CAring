@@ -18,93 +18,98 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 
 export class OtpPage {
-  @ViewChild('connection') connectionModal;
+
   phoneNum: any;
   regData: any;
   otp: string;
   type: string;
   from: any;
   _existingCustomerData:any = [];
-   MOBILE_VALIDATED = "mobile_validated";
+  MOBILE_VALIDATED = "mobile_validated";
   YES="Yes";
   NO="No";
 
 
-  constructor(private exceptionProvider: ExceptionHandlerProvider,
-    private loaderProvider: LoaderProvider,
-    private userProvider: UserdataProvider,
-    private authProvider: AuthProvider,
-    private alertProvider: AlertProvider,
-    private navParams: NavParams,
-    private menu: MenuController,
-    private navCtrl: NavController,
-    private events: Events,
-    private zone: NgZone) {
+  constructor(
+              private exceptionProvider: ExceptionHandlerProvider,
+              private loaderProvider: LoaderProvider,
+              private userProvider: UserdataProvider,
+              private alertProvider: AlertProvider,
+              private authProvider: AuthProvider,
+              private navCtrl: NavController,
+              private navParams: NavParams,
+              private menu: MenuController,
+              private events: Events,
+              private zone: NgZone) {
 
-    this.otp = '';
-    this.from = navParams.get('from');
-    this.zone.run(() => {
-      this.phoneNum = navParams.get('phone');
-      this.regData = navParams.get('data');
-    });
-    this.events.subscribe('noconnection', (value) => {
-      if (value)
-        this.openConnectionModal();
-    });
-    this._existingCustomerData = navParams.get('custExistingData');
-  }
+              this.otp = '';
+              this.phoneNum = navParams.get('phone');
+              this.from = navParams.get('from');
 
+            }
+
+  
   ionViewDidLoad() {
+
     this.loaderProvider.dismissLoader();
   }
 
   ionViewDidEnter() {
+
     this.menu.swipeEnable(false, "leftMenu");
     
   }
 
   userOTP() {
+
     if (this.otp == EMPTY) {
+
       this.alertProvider.presentToast('OTP cannot be empty');
       return;
+
     } else if (this.otp.match(NO_CHAR)) {
+
       this.alertProvider.presentToast('OTP cannot contain characters');
       return;
+
     } else if (!SPECIAL_CHARACTER.test(this.otp)) {
+
       this.alertProvider.presentToast('OTP cannot contain special characters');
       return;
+
     } else {
+
       this.loaderProvider.presentLoadingCustom();
       let otp = this.otp;
-      if (this.from == "registration") {
-        this.type = '1';
-      } else {
-        this.type = '0';
-      }
-      this.userProvider.userOTP(otp, this.phoneNum, this.type).subscribe(data => {
+    
+      this.userProvider.userOTP(otp, this.phoneNum, this.from).subscribe(data => {
+
         this.loaderProvider.dismissLoader();
         if (data[0].code == 200) {
-          if( data[0].customerdata){
+
+          if (data[0].customerdata) {
+
+            this._existingCustomerData = data;
             let custom_data = data[0].customerdata.customer[0].custom_fields.field;
-            let mobile_validated  = custom_data.filter(res=> res.name === this.MOBILE_VALIDATED);
+            let mobile_validated = custom_data.filter(res => res.name === this.MOBILE_VALIDATED);
+            
             if(mobile_validated[0] && mobile_validated[0].value == this.YES){
-              this.loginOTPSucess(data);
-               this.navCtrl.setRoot("HomePage");
+                this.loginOTPSucess(data);
+                this.navCtrl.setRoot("HomePage");
             }
+
             else {
             this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from, custExistingData:this._existingCustomerData});
+            }
+            
+          } else {
+            
+             this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from});
           }
-          }else{
-             this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from, custExistingData:this._existingCustomerData});
-          }
-        } else if (data[0].code == 201) {
-          this.clearOTPBox();
-          this.alertProvider.presentToast(data[0].message);
-        } else if (data[0].code == 202) {
-          this.clearOTPBox();
-          this.alertProvider.presentToast(data[0].message);
         } else {
-        }
+          this.clearOTPBox();
+          this.alertProvider.presentToast(data[0].message);
+        } 
       }, err => {
         this.loaderProvider.dismissLoader();
         this.exceptionProvider.excpHandler(err);
@@ -114,6 +119,7 @@ export class OtpPage {
 
   //otp suces handler for login
   loginOTPSucess(data) {
+
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
@@ -122,6 +128,7 @@ export class OtpPage {
     this.authProvider.setHeader();
     this.clearOTPBox();
     this.events.publish('user:login', true);
+
   }
 
   //resend OTP
@@ -149,11 +156,4 @@ export class OtpPage {
     this.otp = '';
   }
 
-  openConnectionModal() {
-    this.connectionModal.open();
-  }
-
-  closeConnectionModal() {
-    this.connectionModal.close();
-  }
 }

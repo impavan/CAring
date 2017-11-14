@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -9,7 +9,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PromotionDetailsPage {
   _promotionDetails: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navParams: NavParams) {
+    
     this._promotionDetails = navParams.get('promodetails');
   }
 
