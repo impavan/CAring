@@ -1,28 +1,14 @@
 <!-- Generated template for the HeaderComponent component -->
-<ion-header>
+<ion-header class="customTopHeader">
     <ion-navbar>
         <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-        <div class="customHeader">
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-10 class="text-center">
-                        <ion-title>
-                            <div class="logo">
-                                <img src="assets/img/caring_logo.png" />
-                            </div>
-                        </ion-title>
-                    </ion-col>
-                    <ion-col col-2 class="text-center">
-                        <div class="notification" tappable (click)="goTo('MessagesPage')">
-                            <!--<i class="count">2</i>-->
-                            <!--<img src="assets/img/chat.svg" />-->
-                            <span class="iconc-chat"></span>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <div class="topHeader">
+            <img src="assets/img/caring_logo.png" class="logo" />
+            <ion-icon (click)="goTo('MessagesPage')">
+                <span class="iconc-chat"></span>
+            </ion-icon>
         </div>
     </ion-navbar>
 </ion-header>
