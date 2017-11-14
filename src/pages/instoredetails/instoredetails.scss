@@ -2,12 +2,13 @@ page-instoredetails {
     .inStoreDetailsContainer {
         figure {
             margin: 0;
-            max-height: 200px;
+            max-height: 100%;
             overflow: hidden;
         }
         .content {
             background: #fff;
             margin-top: 20px;
+            padding: 5px;
             h5 {
                 color: #111;
                 margin-bottom: 0px;
@@ -19,6 +20,7 @@ page-instoredetails {
             p.datetime {
                 color: $cp-extra-darker-grey;
                 margin: 0 0 0px 0;
+                font-family: 'allerregular';
                 label {
                     font-size: 10px;
                     color: #000;
@@ -53,5 +55,11 @@ page-instoredetails {
         font-weight: 800;
         color: #333;
         transform: rotate(-90deg);
+    }
+    ion-icon.alert{
+        margin: 0 6px 0 5px;
+    }
+    p{
+        font-family: 'allerregular';
     }
 }

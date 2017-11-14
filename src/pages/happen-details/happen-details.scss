@@ -8,6 +8,7 @@ page-happen-details {
 			}
 			p{
 				margin:0 0 5px 0;
+				font-family: 'allerregular';
 			}
 			label{
 				font-weight:600;
@@ -18,5 +19,15 @@ page-happen-details {
 				text-align:center;
 			}
 		}
+	}
+	p{
+		font-family: 'allerregular';
+	}
+	.btn4{
+		font-family: 'Axis';
+		font-weight: bold !important;
+		font-size: 18px !important;
+		border-radius: 0 !important;
+		text-transform: uppercase !important;
 	}
 }
