@@ -53,8 +53,7 @@ import { SharedModule } from './shared.module';
     StoreLocatorProvider,
     LoaderProvider,
     AlertProvider,
-    LoaderProvider, AlertProvider,
-    Geolocation,
+    LoaderProvider, AlertProvider,Geolocation,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
     Camera, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, DeviceProvider, ProfileProvider, InAppBrowser
   ]

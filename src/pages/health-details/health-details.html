@@ -14,8 +14,8 @@
             <div class="infodate">
                 <label *ngIf='healthData?.authorinfo'><i>By</i> {{healthData?.authorinfo}}</label> <span>{{healthData?.displaydate | date:'EEEE dd MMM yyyy hh:mm a'}}</span>
             </div>
-            <ul class="socialList">
-                <li class="fb">
+            <!-- <ul class="socialList">
+                <!-- <li class="fb">
                     <ion-icon class="iconc-facebook2"></ion-icon>
                 </li>
                 <li class="tw">
@@ -29,8 +29,8 @@
                 </li>
                 <li class="yt">
                     <ion-icon class="iconc-youtube2"></ion-icon>
-                </li>
-            </ul>
+                </li> -->
+            <!-- </ul>  -->
 
             <p [innerHTML]="healthData?.detaileddescription"></p>
         </div>
