@@ -41,6 +41,12 @@ ion-app.ios {
     font-family: 'allerbold';
 }
 
+ion-footer {
+    border-top: 1px solid #e0e0e0;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
 body {
     // font-family: 'Roboto', sans-serif;
     font-family: 'allerregular';
@@ -91,7 +97,7 @@ h1 {
 }
 
 .mainCont {
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 
@@ -113,25 +119,6 @@ ion-navbar.toolbar {
 
 .errorInfo {
     color: $bt-maroon-color;
-}
-
-ion-header {
-    ion-navbar.toolbar-md {
-        padding: 6px 0px;
-        min-height: 62px;
-    }
-    ion-navbar.toolbar-ios {
-        min-height: 60px;
-        margin-top: 10px;
-        border-bottom: 0px;
-    }
-    .toolbar-background-md {
-        border-color: $cp-primary-color;
-        background: $cp-primary-color;
-    }
-    .toolbar-background-ios {
-        background: $cp-primary-color;
-    }
 }
 
 ion-footer {
@@ -242,33 +229,6 @@ ion-footer {
     clear: both;
 }
 
-.customHeader {
-    .logo {
-        margin: 0px 0 0 0;
-    }
-    .notification {
-        position: relative;
-        margin: 7px 0 0 0;
-        // .count {
-        //     position: absolute;
-        //     padding: 2px 6px;
-        //     background: $cp-white-color;
-        //     color: $cp-primary-color;
-        //     top: -17px;
-        //     right: 0px;
-        //     font-style: normal;
-        //     border-radius: 50%;
-        //     width: 20px;
-        //     height: 20px;
-        //     font-size: 12px;
-        // }
-        span {
-            font-size: 24px;
-            color: rgba(0, 0, 0, 0.5);
-        }
-    }
-}
-
 .btn2 {
     background-color: $btn-default;
     height: auto;
@@ -349,6 +309,7 @@ ion-spinner {
 }
 
 #leftMenu {
+    font-family: 'allerregular';
     ion-header {
         ion-toolbar {
             padding: 14px 16px 14px 16px;
@@ -386,14 +347,14 @@ ion-spinner {
                     color: #fff;
                 }
             }
-            ion-toolbar.toolbar-md {
-                height: 40px;
-                min-height: 40px;
-            }
-            ion-toolbar.toolbar-ios {
-                min-height: 40px;
-                height: 40px;
-            }
+            // ion-toolbar.toolbar-md {
+            //     height: 40px;
+            //     min-height: 40px;
+            // }
+            // ion-toolbar.toolbar-ios {
+            //     min-height: 40px;
+            //     height: 40px;
+            // }
         }
     }
 }
