@@ -15,13 +15,13 @@
                     <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
                         <ion-grid>
                             <ion-row class="first">
-                                <ion-col col-5>
+                                <ion-col col-3>
                                     <figure>
                                         <img *ngIf="offer?.Images[0]" src="{{offer?.Images[0]}}" />
                                         <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" />
                                     </figure>
                                 </ion-col>
-                                <ion-col col-7>
+                                <ion-col col-9>
                                     <div class="content">
                                         <ion-grid>
                                             <ion-row>
