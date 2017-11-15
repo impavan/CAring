@@ -1,27 +1,28 @@
 header {
+    .toolbar-md {
+        min-height: 45px;
+    }
     .customTopHeader {
-        height: 60px;
+        height: 50px;
         background: $cp-primary-color;
     }
     .toolbar-md {
         padding: 0px;
     }
     .toolbar-ios {
-        padding: 10px 0 0 0;
-        min-height: 60px;
+        padding: 20px 0 0 0;
+        min-height: 50px;
         border-bottom: none !important;
     }
     .header-ios {
-        height: 60px;
+        height: 50px;
     }
     .topHeader {
         position: relative;
         text-align: center;
         .logo {
-            margin: 5px 55px 0 0;
-            padding: 0;
-            width: 40%;
-            max-width: 100%;
+            margin: 0px 55px 0 0;
+            padding: 2px 0 0 0;
         }
         ion-icon {
             position: absolute;
