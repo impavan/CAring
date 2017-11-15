@@ -37,7 +37,6 @@ $cp-medium-blue-color-x:#3a7dcc;
 //     font-weight: normal;
 //     font-style: normal;
 // }
-
 // @font-face {
 //     font-family: 'FranklinGothic-Heavy';
 //     src: url('../assets/fonts/FranklinGothic-Heavy.eot') format('embedded-opentype');
@@ -100,11 +99,20 @@ h1 {
 }
 
 .scroll-content {
-    bottom: 85px;
+    bottom: 0px;
+    margin-top: 45px;
 }
 
 .mainCont {
-    margin-top: 60px;
+    //margin-top: 20px;
+}
+
+.mainCont.content-ios {
+    margin-top: 60px !important;
+    .scroll-content {
+        margin-top: 0px;
+        bottom: 60px;
+    }
 }
 
 
@@ -395,8 +403,6 @@ ion-spinner {
         margin-top: 2px;
         margin-left: 10px;
     }
-
-
     // $cordovaStatusbar.styleColor('black'); $cordovaStatusbar.styleHex('#000');
 }
 

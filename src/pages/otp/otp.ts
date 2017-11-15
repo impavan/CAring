@@ -59,6 +59,7 @@ export class OtpPage {
     this.menu.swipeEnable(false, "leftMenu");
     
   }
+  
 
   userOTP() {
 
