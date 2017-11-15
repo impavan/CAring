@@ -88,8 +88,8 @@
                         </div>
                         <div class="newContainer" *ngIf="_newReward.length > 0">
                             <ion-card>
-                                <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
-                                    <div class="content" *ngIf="reward.RedeemStatus == 0 && reward.ExpiryDate >= currentDate">
+                                <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                    <div class="content" *ngIf="reward.RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
                                         <article>
                                             <ion-grid>
                                                 <ion-row class="first">
@@ -117,7 +117,7 @@
                         </div>
                         <div class="newContainer" *ngIf="_usedReward.length > 0">
                             <ion-card>
-                                <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                     <div class="content" *ngIf="reward.RedeemStatus == 1">
                                         <article>
                                             <ion-grid>
@@ -148,8 +148,8 @@
                         </div>
                         <div class="newContainer" *ngIf="_expiredReward.length > 0">
                             <ion-card>
-                                <ion-grid *ngFor="let reward of redeemedRewards | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
-                                    <div class="content" *ngIf="reward.RedeemStatus == 0 && reward.ExpiryDate < currentDate">
+                                <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                    <div class="content" *ngIf="reward.RedeemStatus == 0 && currentDate > reward.ExpiryDate">
                                         <article>
                                             <ion-grid>
                                                 <ion-row class="first">

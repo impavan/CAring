@@ -331,15 +331,19 @@ export class MemberPage {
 
 
   getRedeemed(exp) {
-
-    return this._newRedeemedList[exp]['Vouchers'].filter(e => e.RedeemStatus == 0 && e.ExpiryDate >= moment().format('YYYY-MM-DD')).length;
+   
+    return this._newReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate <= e.ExpiryDate).length;
 
   }
 
    getUsedVouchersCount(exp) {
 
-    return this._newRedeemedList[exp]['Vouchers'].filter(e => e.RedeemStatus == 1).length;
+    return this._usedReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 1).length;
 
+   }
+  
+   getExpiredVoucherCount(exp) {
+    return this._expiredReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
   }
 
 
@@ -351,7 +355,7 @@ export class MemberPage {
 
   getNewRewardsList() {
     
-    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && data.ExpiryDate >= this.currentDate);
+    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
 
   }
 
@@ -363,7 +367,7 @@ export class MemberPage {
 
   getExpiredList() {
     
-    this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && data.ExpiryDate < this.currentDate)
+    this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
 
   }
 }

@@ -52,7 +52,8 @@
         "moment": "^2.19.1",
         "rxjs": "5.4.3",
         "sw-toolbox": "3.6.0",
-        "zone.js": "0.8.18"
+        "zone.js": "0.8.18",
+        "cordova-plugin-statusbar": "https://github.com/apache/cordova-plugin-statusbar.git"
     },
     "devDependencies": {
         "@ionic/app-scripts": "3.0.0",
@@ -75,12 +76,11 @@
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-            
-        },
-
+            },
             "platforms": [
                 "ios"
-            ]
+            ],
+            "cordova-plugin-statusbar": {}
         },
         "platforms": [
             "android",
