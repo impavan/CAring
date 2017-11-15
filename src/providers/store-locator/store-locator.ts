@@ -11,7 +11,7 @@ export class StoreLocatorProvider {
   contentHeaders: any;
   lang = 'en';
 
-  authorization:any = 'eyJtb2IiOjkxODAwMDAwMDAwMCwiZGV2IjoiMTExMTExMTEiLCJvcmciOiJBUFBMRSIsImFsZyI6IkhTMjU2In0.eyJ1aWQiOiI0NDYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoidHJ1ZSIsIm9nYyI6WyIxNTA2MTV8dGVzdC5kZW1vLjEiXSwiZXhwIjoxNTEwNjczNzc3LCJpYXQiOjE1MDk5NTM3NzcsInJvbCI6IlZJRVcifQ.nFtdPHNqsMf3L-8rzmgqBIG5zmHO29rVgMxXVSa0pEo';
+  authorization: any = 'eyJtb2IiOjkxODAwMDAwMDAwMCwiZGV2IjoiMTExMTExMTEiLCJvcmciOiJBUFBMRSIsImFsZyI6IkhTMjU2In0.eyJ1aWQiOiI0NDYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoidHJ1ZSIsIm9nYyI6WyIxNTA2MTV8dGVzdC5kZW1vLjEiXSwiZXhwIjoxNTIxNTMyMjk0LCJpYXQiOjE1MTA3MzIyOTQsInJvbCI6IlZJRVcifQ.Y-lVXxZn9YzPOmhHSEt0aXxxMhn_5x5nh6rrR-o5bsA';
   deviceId:any='11111111';
   brand:any = 'APPLE';
   mobile:any = 918000000000

@@ -181,11 +181,11 @@
                             <ion-list>
                                 <ion-item>
                                     <ion-label fixed>Name</ion-label>
-                                    <ion-input type="text" [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
+                                    <ion-input type="text" readonly [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
                                 </ion-item>
                                 <ion-item>
                                     <ion-label fixed>E-mail</ion-label>
-                                    <ion-input type="text" [readonly]="_emailId?true:false" [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
+                                    <ion-input type="text" readonly [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
                                 </ion-item>
                                 <ion-item>
                                     <ion-label fixed>Mobile Number</ion-label>
@@ -194,7 +194,7 @@
 
                             </ion-list>
                             <div class="mt20">
-                                <button ion-button class="btn4" (click)="updateProfile()">Update</button>
+                                <button ion-button class="btn4" >Update Profile</button>
                           </div>
                         </div>
                     </div>
