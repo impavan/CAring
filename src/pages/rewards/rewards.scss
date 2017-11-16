@@ -109,5 +109,154 @@ page-rewards {
       }
     }
   }
+
+
+   .rewardsContainer {
+    .rewardsCards {
+      margin: 0 0 30px 0;
+      .title{
+        background: #fff;
+        padding: 10px 20px 0px 20px;
+
+      }
+      .iconc-coins:before {
+        content: "\e90a";
+        font-size: 20px;
+        margin: 0 0px 0 0px;
+        position: relative;
+        top: 3px;
+        color: #999;
+    }
+    .iconc-ticket:before {
+      content: "\e90c";
+      font-size: 20px;
+      margin: 0px 0px 0 0;
+      position: relative;
+      top: 4px;
+      color: #999; 
+  }
+  span{
+    color: rgb(130, 144, 200);
+    margin-right: 15px;
+    font-weight: 600;
+  }
+      h4{
+        background: #fff;
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #bdbdbd;
+      }
+      article{
+        background: #fff;
+        padding: 10px 10px 0 10px;
+        .grid{
+          padding-bottom: 0;
+        }
+        ion-row.first{
+          padding-bottom:0px;
+        }
+      }
+      figure {
+
+          margin: 0;
+          max-height: 120px;
+          overflow: hidden;
+          -webkit-box-shadow: 0px 3px 7px #bbb;
+          box-shadow: none;
+      
+      }
+      h6 {
+        font-weight: 600;
+        color: #000;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .voucherPrice {
+        margin: 0;
+        padding: 0;
+        li {
+          margin: 0;
+          padding: 0;
+          display: inline-block;
+          span {
+            border-right: 1px solid $cp-extra-darker-grey;
+            padding: 0 5px 0 0;
+            color: $cp-extra-darker-grey;
+            font-size: 13px;
+          }
+          &:last-child {
+            span {
+              border-right: none;
+              padding: 0 0 0 2px;
+            }
+          }
+        }
+      }
+      .content {
+        margin: 0 0 0 0;
+        ion-grid{
+          padding:0;
+        }
+        h6{
+          margin-top: 0;
+        }
+      }
+      .beforeLogin {
+        padding: 0px;
+        .imgOut {
+          display: block;
+          padding: 50px 30px 70px 30px;
+          text-align: center;
+          img {
+            margin: 0 auto;
+            width: auto;
+            max-width: 100%;
+          }
+        }
+        p {
+          color: #595758 !important;
+          margin: 0 0 50px 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+      .newContainer {
+            .card-md,
+            .card-ios {
+                border-radius: 7px;
+            }
+            .grid {
+                padding: 0;
+            }
+            .content {
+                padding: 0 15px;
+                .customRow {
+                    border-bottom: 1px solid $cp-extra-lighter-grey-xxxxxxx;
+                    padding: 10px 0 10px 0;
+                }
+                figure {
+                    margin: 0;
+                    height: 100%;
+                    overflow: hidden;
+                    box-shadow: 0px 2px 5px #838383;
+                }
+                .voucher {
+                    color: $cp-extra-darker-grey;
+                    margin: 0 0 5px 0;
+                    font-size: 17px;
+                    font-weight: 600;
+                }
+                .subContent {
+                    font-size: 13px;
+                    margin: 0;
+                }
+                &:first-child {
+                    padding: 0px 15px 15px 15px;
+                }
+            }
+        }
+       
 }
 

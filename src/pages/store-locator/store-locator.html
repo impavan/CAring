@@ -37,12 +37,12 @@
                             </ion-row>
                             <ion-row>
                                 <ion-col col-1>
-                                    <ion-icon name="pin" class="alert"></ion-icon>
+                                    <ion-icon name="pin" class="alert" tappable (click)="gotoStoreDirection(location)"></ion-icon>
                                 </ion-col>
                                 <ion-col col-11>
                                     <span>{{location?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{location?.storeDescription}}<br/> Ph: {{location?.mobile}}<br/> {{location?.timing}}
+                                        {{location?.storeDescription}}<br/> Contact: {{location?.mobile}}<br/> {{location?.timing}}
                                         <br/>
                                         <!--Fri-Sat 10:00AM - 10:30PM-->
                                     </p>
@@ -67,7 +67,7 @@
                             </ion-row>
                             <ion-row>
                                 <ion-col col-1>
-                                    <ion-icon name="pin" class="alert"></ion-icon>
+                                    <ion-icon name="pin" tappable class="alert" (click)="gotoStoreDirection(fav)"></ion-icon>
                                 </ion-col>
                                 <ion-col col-11>
                                     <span>{{ fav?.distance | number : '1.2-2'}} Km away</span>
@@ -98,7 +98,7 @@
                     </ion-row>
                     <ion-row>
                         <ion-col col-1>
-                            <ion-icon name="pin" class="alert"></ion-icon>
+                            <ion-icon name="pin" class="alert" tappable (click)="gotoStoreDirection(filter)"></ion-icon>
                         </ion-col>
                         <ion-col col-11>
                             <span>{{filter?.km | number : '1.2-2'}} Km away</span>

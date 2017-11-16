@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 
 
@@ -14,7 +15,8 @@ export class InstoredetailsPage {
   _locationList:any = [];
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              private launchNavigator: LaunchNavigator) {
     
     this.storeDetail = navParams.get('instoredata');
     this._locationList  = this.storeDetail.storeeventtimings?this.storeDetail.storeeventtimings:[];
@@ -22,7 +24,21 @@ export class InstoredetailsPage {
 
   gotoEventLocation(loc) {
     
-    this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng: loc.storelocation.y });
+    // this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng: loc.storelocation.y });
+//     let options: LaunchNavigatorOptions = {
+//   start: 'London, ON',
+//   app: LaunchNavigator.APPS.UBER
+// };
+
+this.launchNavigator.navigate([loc.storelocation.x, loc.storelocation.y])
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error)
+  );    
+
+
     
   }
+
+
 }

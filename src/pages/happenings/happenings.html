@@ -11,12 +11,12 @@
                             <h3 ><label>Happenings</label></h3>
                         </ion-col>
                         <ion-col col-7>
-                            <a (click)="goto('InStorePage')"><img src="assets/img/in_store.png" alt=""></a>
+                            <a tappable (click)="goto('InStorePage')"><img src="assets/img/in_store.png" alt=""></a>
                         </ion-col>
                     </ion-row>
                 </article>
             <ion-row>
-                <ion-col col-12 *ngFor="let hpn of happenList" clickable (click)="gotoHappenDetail(hpn)">
+                <ion-col col-12 *ngFor="let hpn of happenList" tappable (click)="gotoHappenDetail(hpn)">
                     <ion-card class="figWidget" *ngIf="hpn">
                         <figure>
                             <img src="{{hpn?.eventbanner}}" />

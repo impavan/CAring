@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule, } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -53,7 +54,7 @@ import { SharedModule } from './shared.module';
     StoreLocatorProvider,
     LoaderProvider,
     AlertProvider,
-    LoaderProvider, AlertProvider,Geolocation,
+    LoaderProvider, AlertProvider,Geolocation,LaunchNavigator,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
     Camera, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, DeviceProvider, ProfileProvider, InAppBrowser
   ]

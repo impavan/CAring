@@ -4,6 +4,19 @@
 
 
 <ion-content class="mainCont">
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="member" color="secondary">
+            <ion-segment-button value="My Rewards">
+                    Purchase rewards
+            </ion-segment-button>
+            <ion-segment-button value="My Wallet" (click)="loadMyWallet()">
+                    My Wallet
+            </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+
+    <div [ngSwitch]="member">
+    <ion-list *ngSwitchCase="'My Rewards'">   
     <div class="rewardsContainer">
         <div class="rewardsCards">
             <article class="title">
@@ -50,6 +63,118 @@
                 </div>
             </section>
         </div>
+    </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'My Wallet'">
+
+        <div *ngIf="auth" class="subSegmentOut">
+                    <ion-toolbar>
+                        <ion-segment [(ngModel)]="memberDetails" color="secondary">
+                            <ion-segment-button value="New">New</ion-segment-button>
+                            <ion-segment-button value="Used">Used</ion-segment-button>
+                            <ion-segment-button value="Expired">Expired</ion-segment-button>
+                        </ion-segment>
+                    </ion-toolbar>
+                </div>
+                <ion-card *ngIf="!auth" class="myPointsContainer sec" style="text-align:center;">
+                    <p class="urPoints">Your wallet is empty</p>
+                    <button ion-button value="Redeem Vouchers" (click)="emptywallet()">Redeem Vouchers</button>
+                </ion-card>
+
+        <div [ngSwitch]="memberDetails">
+                    <!-- New section starts. -->
+                    <ion-list *ngSwitchCase="'New'">
+                        <div class="alert" *ngIf="_newReward.length <= 0" text-center>
+                            No New Vouchers available!
+                        </div>
+                        <div class="newContainer" *ngIf="_newReward.length > 0">
+                            <ion-card>
+                                <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                    <div class="content" *ngIf="reward.RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
+                                        <article>
+                                            <ion-grid>
+                                                <ion-row class="first">
+                                                    <ion-col col-5>
+                                                        <figure>
+                                                            <img src="{{reward?.images[0]}}" />
+                                                        </figure>
+                                                    </ion-col>
+                                                    <ion-col col-7>
+                                                        <h6>{{reward.Title}}</h6>
+                                                        <span> <ion-icon class="iconc-ticket"></ion-icon> {{getRedeemed(reward?.ExperienceId)}} available </span>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-grid>
+                                        </article>
+                                    </div>
+                                </ion-grid>
+                            </ion-card>
+                        </div>
+                    </ion-list>
+                    <!-- Used section starts. -->
+                    <ion-list *ngSwitchCase="'Used'">
+                        <div class="alert" *ngIf="_usedReward.length <= 0" text-center>
+                            No Used Vouchers to display
+                        </div>
+                        <div class="newContainer" *ngIf="_usedReward.length > 0">
+                            <ion-card>
+                                <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                    <div class="content" *ngIf="reward.RedeemStatus == 1">
+                                        <article>
+                                            <ion-grid>
+                                                <ion-row class="first">
+                                                    <ion-col col-5>
+                                                        <figure>
+                                                            <img src="{{reward?.images[0]}}" />
+                                                        </figure>
+                                                    </ion-col>
+                                                    <ion-col col-7>
+                                                        <h6>{{reward.Title}}</h6>
+                                                           <span> <ion-icon class="iconc-ticket"></ion-icon> {{getUsedVouchersCount(reward?.ExperienceId)}} used </span>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-grid>
+                                        </article>
+
+                                    </div>
+                                </ion-grid>
+                            </ion-card>
+                        </div>
+
+                    </ion-list>
+                    <!-- Expired section starts. -->
+                    <ion-list *ngSwitchCase="'Expired'">
+                        <div class="alert" *ngIf="_expiredReward.length <= 0" text-center>
+                            No Expired Vouchers to display
+                        </div>
+                        <div class="newContainer" *ngIf="_expiredReward.length > 0">
+                            <ion-card>
+                                <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                    <div class="content" *ngIf="reward.RedeemStatus == 0 && currentDate > reward.ExpiryDate">
+                                        <article>
+                                            <ion-grid>
+                                                <ion-row class="first">
+                                                    <ion-col col-5>
+                                                        <figure>
+                                                            <img src="{{reward?.images[0]}}" />
+                                                        </figure>
+                                                    </ion-col>
+                                                    <ion-col col-7>
+                                                        <h6>{{reward.Title}}</h6>
+                                                        <span class="danger"> Expired - {{reward.ExpiryDate}} </span>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-grid>
+                                        </article>
+
+                                    </div>
+                                </ion-grid>
+                            </ion-card>
+                        </div>
+                    </ion-list>
+                </div>
+
+    </ion-list>
     </div>
 </ion-content>
 

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
@@ -16,11 +17,13 @@ declare var google;
 
 export class StoreLocatorPage {
   @ViewChild('myMap') mapElement;
+  @ViewChild('locBtn') locbutton;
   map: any;
   locationList: any = [];
   updatedLocationList: any = [];
   favouriteList: any = [];
   _favIdList: any = [];
+  marker: any;
   _filterList:any = [];
   _myCurrentLocation:any = {};
   _newFilteredList:any = [];
@@ -36,7 +39,10 @@ export class StoreLocatorPage {
               public navParams: NavParams,
               public storeLocatorProvider: StoreLocatorProvider, 
               private loaderProvider:LoaderProvider,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private launchNavigator: LaunchNavigator) {
+    
+            
   }
 
 
@@ -62,9 +68,13 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-   this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition().then((resp) => {
+     
+      console.log("Inside loadmap");
+       // resp.coords.latitude
+      // resp.coords.longitude
 
-     this.getAllStores(resp.coords.latitude, resp.coords.longitude, 50);
+     this.getAllStores(resp.coords.latitude,resp.coords.latitude, 50);
      
     this._myCurrentLocation = {
       lat:resp.coords.latitude,
@@ -85,7 +95,7 @@ export class StoreLocatorPage {
     
      console.log('Error getting location', error);
      
-});
+    });
   }
 
   loadFavList(locationList) {
@@ -98,13 +108,45 @@ export class StoreLocatorPage {
 
   addMarkers(map, locationList) {
 
+    // for (let i in locationList) {
+    //   console.log(locationList);
+    
+    let contents = [];
+   
+      var infowindow = new google.maps.InfoWindow();
     for (let i in locationList) {
-      let marker = new google.maps.Marker();
-      var latLng = new google.maps.LatLng(locationList[i].latitude, locationList[i].longitude);
-      marker.setPosition(latLng);
-      marker.setTitle(locationList[i].storeName);
-      marker.setMap(map);
+
+        let latLng = new google.maps.LatLng(locationList[i].latitude, locationList[i].longitude);
+        let marker = new google.maps.Marker({
+         title: locationList[i].storeName,
+         map: map,
+         animation: 'DROP',
+         position: latLng,
+         mobile: locationList[i].mobile,
+         lat:locationList[i].latitude,
+         lng:locationList[i].longitude,
+         address:locationList[i].storeDescription
+        })
+      
+        
+      
+        marker.addListener('click', () => {
+
+           let contentString = '<div id="content" style="width:150px !important;">' +
+            '<div id="siteNotice">' +
+             '<p><b>' + marker.title + '<br /></b>,' + marker.address + '&emsp<img src="assets/img/locator.png" onclick="gotoStoreDirection2(marker.lat,marker.lng)" style="height:12px; width:15px;padding-left:5px"/>' + '</p>' +
+             '<p *ngIf="marker.mobile">' + marker.mobile + '<a *ngIf="marker.mobile" href="tel:marker.mobile">' + '<img src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>' + '</p>'       
+          '</div>' + '</div>';
+          console.log(marker);
+          infowindow.setContent(contentString);
+          infowindow.open(map, marker);
+        });  
+
+     
     }
+  
+
+
     // let latA = new google.maps.LatLng(12.914142,74.855957);
     //  let latB = new google.maps.LatLng(12.971599, 77.594563);
     // let curentLatLng = new google.maps.LatLng(3.1655016, 101.65281950000008)
@@ -229,7 +271,7 @@ export class StoreLocatorPage {
      let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
      this.map.panTo(latLng,30);
      this.map.setZoom(12);
-
+    
   }
 
   onClear(){
@@ -242,7 +284,7 @@ export class StoreLocatorPage {
     setMarker(data){
 
       console.log(data);
-     let marker = new google.maps.Marker();
+      let marker = new google.maps.Marker();
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
         this.map.panTo(latLng,30);
         this.map.setZoom(14);
@@ -250,8 +292,9 @@ export class StoreLocatorPage {
   //1.6092 exact value for converting miles to kilometeres
 
  
-getAllStores(lat, lng, limit){
-
+  getAllStores(lat, lng, limit) {
+  
+    console.log("in get all stores");
     this.storeLocatorProvider.getAllStoreLocation(lat,lng, limit)
 
         .subscribe(res=>{
@@ -264,6 +307,44 @@ getAllStores(lat, lng, limit){
           
         });
 
-}
+  }
+
+ gotoStoreDirection(loc) {
+    
+    // this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng: loc.storelocation.y });
+//     let options: LaunchNavigatorOptions = {
+//   start: 'London, ON',
+//   app: LaunchNavigator.APPS.UBER
+// };
+
+this.launchNavigator.navigate([loc.latitude, loc.longitude])
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error)
+  );    
+
+
+    
+  }  
+
+
+ gotoStoreDirection2(lat, lng) {
+    
+    // this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng: loc.storelocation.y });
+//     let options: LaunchNavigatorOptions = {
+//   start: 'London, ON',
+//   app: LaunchNavigator.APPS.UBER
+// };
+  console.log(lat, lng);
+this.launchNavigator.navigate([lat, lng])
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error)
+  );    
+
+
+    
+}    
+
 
 }
