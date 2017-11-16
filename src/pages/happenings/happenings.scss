@@ -1,10 +1,11 @@
 page-happenings {
     .happeningsContainer {
-        margin: 0 0 0 0;
+        margin: -10px 0 0 0;
         h3 {
-            margin: 5px 0 0 0;
+            margin: 0px 0 0 0;
             color: $cp-extra-darker-grey;
             font-weight: 600;
+            font-size: 16px;
         }
         .btn3 {
             background: #268255 !important;
@@ -19,14 +20,13 @@ page-happenings {
             width: 100%;
             label {
                 float: left;
-                line-height: 48px;
-                font-size: 18px;
                 color: #808080;
                 font-family: 'allerbold';
+                line-height: 60px;
             }
             a {
                 float: right;
-                width: 190px;
+                width: 180px;
                 padding: 0;
                 margin: 0;
                 img {
@@ -72,31 +72,31 @@ page-happenings {
             }
         }
     }
-    .pdadj{
+    .pdadj {
         padding: 0 15px 0px 10px;
     }
     .figWidget {
         box-shadow: none;
         border-radius: 0;
-        figure{
-            height:255px !important;
-            width:100% !important;
+        figure {
+            height: 255px !important;
+            width: 100% !important;
             overflow: hidden;
         }
-        .card-title{
+        .card-title {
             font-size: 30px;
             text-align: center;
             font-family: 'franklingothicnewheavyregular';
             font-weight: bold;
         }
-        ion-card-content{
-            p{
-                font-family:'Myriad Pro';
+        ion-card-content {
+            p {
+                font-family: 'Myriad Pro';
                 text-align: center;
                 font-size: 16px;
             }
         }
-        button{
+        button {
             font-family: 'Axis';
             font-weight: bold !important;
             font-size: 18px !important;
