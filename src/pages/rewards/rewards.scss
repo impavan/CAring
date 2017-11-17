@@ -1,5 +1,6 @@
 page-rewards {
   .rewardsContainer {
+    padding: 16px;
     .rewardsCards {
       margin: 0 0 30px 0;
       .title{
@@ -56,8 +57,9 @@ page-rewards {
       h6 {
         font-weight: 600;
         color: #000;
-        text-transform: uppercase;
-        font-weight: bold;
+        text-transform: none;
+        font-size:13px;
+        margin: 0 0 10px 0;
       }
       .voucherPrice {
         margin: 0;
@@ -164,12 +166,6 @@ page-rewards {
           -webkit-box-shadow: 0px 3px 7px #bbb;
           box-shadow: none;
       
-      }
-      h6 {
-        font-weight: 600;
-        color: #000;
-        text-transform: uppercase;
-        font-weight: bold;
       }
       .voucherPrice {
         margin: 0;

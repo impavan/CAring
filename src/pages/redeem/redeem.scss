@@ -120,6 +120,9 @@ page-redeem {
                 padding: 10px;
             }
         }
+        .subTitle{
+                border-bottom: none;
+            }
         .content {
             padding: 0px;
             article {
@@ -172,6 +175,24 @@ page-redeem {
                 top: -2px;
                 margin: 4px 0 45px 0;
                         }
+        }
+    }
+    .listMyPointsOut{
+        .btnSmall{
+           padding: 10px 15px;
+            margin: 0;
+            height: auto;
+            font-size: 14px;
+            background-color:$btn-default;
+            box-shadow: none;
+            text-transform: capitalize;
+        }
+        col.colAlign{
+            padding: 0;
+        }
+        .subTxt{
+            margin: 10px 0 0 0;
+            display: block;
         }
     }
 }

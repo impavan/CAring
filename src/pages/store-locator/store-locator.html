@@ -42,7 +42,7 @@
                                 <ion-col col-11>
                                     <span>{{location?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{location?.storeDescription}}<br/> Contact: {{location?.mobile}}<br/> {{location?.timing}}
+                                        {{location?.storeDescription}}<br/><label *ngIf="location?.mobile"> Contact: {{location?.mobile}}</label><br/><label *ngIf="location?.timing">{{location?.timing}}</label>
                                         <br/>
                                         <!--Fri-Sat 10:00AM - 10:30PM-->
                                     </p>
@@ -72,7 +72,7 @@
                                 <ion-col col-11>
                                     <span>{{ fav?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{fav?.storeDescription}}<br/> Ph: {{fav?.mobile}}<br/> {{fav?.timing}}
+                                        {{fav?.storeDescription}}<br/><label *ngIf="fav?.mobile"> Contact: {{fav?.mobile}}</label><br/><label *ngIf="fav?.timing">{{fav?.timing}}</label>
                                         <br/>
                                     </p>
                                 </ion-col>
@@ -103,13 +103,13 @@
                         <ion-col col-11>
                             <span>{{filter?.km | number : '1.2-2'}} Km away</span>
                             <p>
-                                {{filter?.storeDescription}}<br/> Ph: {{filter?.mobile}}<br/> {{filter?.timing}}
+                                {{filter?.storeDescription}}<br/><label *ngIf="filter?.mobile">Contact: {{filter?.mobile}}</label><br/><label *ngIf="filter?.timing"> {{filter?.timing}}</label>
                                 <br/>
                                 <!--Fri-Sat 10:00AM - 10:30PM-->
                             </p>
                         </ion-col>
                     </ion-row>
-                </article>
+                </article><
             </ion-grid>
         </div>
     </div>

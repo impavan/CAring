@@ -24,6 +24,10 @@
             </article>-->
             <!-- Section to be displayed when there is data. -->
             <div *ngIf="offerdata.length >= 1">
+            <h6>1. Use earned points to redeem for gift vouchers</h6>
+            <h6>2. Go to Rewards page to see your gift voucher(s)</h6>
+            </div>
+            <div *ngIf="offerdata.length >= 1">
                 <div *ngFor="let offer of offerdata">
                     <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
                         <ion-grid>
@@ -84,7 +88,7 @@
         <div [ngSwitch]="memberDetails">
                     <!-- New section starts. -->
                     <ion-list *ngSwitchCase="'New'">
-                        <div class="alert" *ngIf="_newReward.length <= 0" text-center>
+                        <div class="alert mt70" *ngIf="_newReward.length <= 0" text-center>
                             No New Vouchers available!
                         </div>
                         <div class="newContainer" *ngIf="_newReward.length > 0">
@@ -113,7 +117,7 @@
                     </ion-list>
                     <!-- Used section starts. -->
                     <ion-list *ngSwitchCase="'Used'">
-                        <div class="alert" *ngIf="_usedReward.length <= 0" text-center>
+                        <div class="alert mt70" *ngIf="_usedReward.length <= 0" text-center>
                             No Used Vouchers to display
                         </div>
                         <div class="newContainer" *ngIf="_usedReward.length > 0">
@@ -144,7 +148,7 @@
                     </ion-list>
                     <!-- Expired section starts. -->
                     <ion-list *ngSwitchCase="'Expired'">
-                        <div class="alert" *ngIf="_expiredReward.length <= 0" text-center>
+                        <div class="alert mt70" *ngIf="_expiredReward.length <= 0" text-center>
                             No Expired Vouchers to display
                         </div>
                         <div class="newContainer" *ngIf="_expiredReward.length > 0">

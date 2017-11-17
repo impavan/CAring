@@ -140,16 +140,17 @@ export class StoreLocatorPage {
         
         marker.addListener('click', () => {
 
+           console.log("lat",marker.lat)
            let contentString = '<div id="content" style="width:150px !important;">' +
             '<div id="siteNotice">' +
-             '<p><b>' + marker.title + '<br /></b>,' + marker.address + '<img class="store" src="assets/img/locator.png" (click)="gotoStoreDirection2(marker.lat,marker.lng)" style="height:12px; width:15px;padding-left:5px"/>' + '</p>' +
-             '<p *ngIf="marker.mobile">' + marker.mobile + '<a *ngIf="marker.mobile" href="tel:marker.mobile">' + '<img src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>' + '</p>'       
+             '<p><b>' + marker.title + '<br /></b>,' + marker.address + '<img class="store loacator" src="assets/img/locator.png" (click)="gotoStoreDirection2('+marker.lat+','+marker.lng+')" style="height:15px; width:18px;padding-left:5px"/>' + '</p>' +
+             '<p *ngIf="' +marker.mobile + '">' + marker.mobile + '<a *ngIf="'+marker.mobile+'" href="tel:'+marker.mobile+'">' + '<img *ngIf="' +marker.mobile + '" class="phone" src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>' + '</p>'       
           '</div>' + '</div>';
           console.log(marker);
           infowindow.setContent(contentString);
           infowindow.open(map, marker);
           console.log("element",this.elRef.nativeElement.querySelector('.store'))
-          this.elRef.nativeElement.querySelector('.store').addEventListener('click', this.gotoStoreDirection2.bind(this));
+          this.elRef.nativeElement.querySelector('.store').addEventListener('click', this.gotoStoreDirection2.bind(this,marker.lat,marker.lng));
 
         });  
 
@@ -342,20 +343,13 @@ this.launchNavigator.navigate([loc.latitude, loc.longitude])
 
  gotoStoreDirection2(lat, lng) {
     
-    // this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng: loc.storelocation.y });
-//     let options: LaunchNavigatorOptions = {
-//   start: 'London, ON',
-//   app: LaunchNavigator.APPS.UBER
-// };
   console.log(lat, lng);
-this.launchNavigator.navigate([lat, lng])
+  this.launchNavigator.navigate([lat, lng])
   .then(
     success => console.log('Launched navigator'),
     error => console.log('Error launching navigator', error)
   );    
 
-
-    
 }    
 
 
