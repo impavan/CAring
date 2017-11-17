@@ -16,11 +16,12 @@
                 <hr/>
             </article>
         </div>
-        <h6>Available <button (click)="openModel()" class="btn-redeem">Redeem</button></h6>
+        <h6>Available</h6>
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
             <li *ngIf="reward?.RedeemStatus == 0 && currentDate <= reward.ExpiryDate ">
                 <label>{{reward.VoucherCode}}</label>
-                <span>{{reward?.ExpiryDate }}</span>
+                <span>{{reward?.ExpiryDate | date:'dd/MM/yyyy' }}</span>
+                <button ion-button (click)="openModel(reward)">Use</button>
             </li>
         </ul>
 
@@ -28,14 +29,14 @@
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
             <li *ngIf="reward?.RedeemStatus == 1">
                 <label>{{reward.VoucherCode}}</label>
-                <span>{{reward?.ExpiryDate}}</span>
+                <span>{{reward?.ExpiryDate | date:'dd/MM/yyyy'}}</span>
             </li>
         </ul>
         <h6>Expired </h6>
         <ul *ngFor="let reward of redeemList" class="listMyPoints">
             <li *ngIf="reward?.RedeemStatus == 0 && currentDate > reward?.ExpiryDate">
                 <label>{{reward.VoucherCode}}</label>
-                <span class="danger">{{reward?.ExpiryDate}}</span>
+                <span class="danger">{{reward?.ExpiryDate |  date:'dd/MM/yyyy'}}</span>
             </li>
         </ul>
     </div>
@@ -52,14 +53,17 @@
 
 <mymodal #redeem>
     <!--<h2 class="errorInfo"></h2>-->
-    <p>Are you sure you want redeem {{ redeemList[0]?.Title}} ?</p>
+    <p>Are you sure you want use {{ redeemList[0]?.Title}}?</p>
     <ion-grid>
+        <div style="text-align:center">
+            <h4 style="color:red">(Strictly for cashier use)</h4>
+            </div>
         <ion-row>
             <ion-col col-6>
                 <button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
             </ion-col>
             <ion-col col-6>
-                <button ion-button class="btn2" (click)="redeemMyReward()">Continue</button>
+                <button ion-button class="btn2" (click)="confirmRedeem()">Continue</button>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -68,8 +72,11 @@
 <mymodal #ActiveVoucher>
     <!--<h2 class="errorInfo"></h2>-->
     <p>Here is your barcode to scan</p>
+    <div style="text-align:center">
+      <h4 style="color:red">(Strictly for cashier use)</h4>
+    </div>
     <div class="barCode">
         <svg #barcode id="barcode"></svg>
     </div>
-  <button ion-button class="btn2" block (click)="getMyLatestRewards()">Ok</button> 
+  <button ion-button class="btn2" block (click)="getMyLatestRewards()">OK</button> 
 </mymodal>

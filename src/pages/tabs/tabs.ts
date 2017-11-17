@@ -22,7 +22,7 @@ export class TabsPage {
                 
                   {label:'Home',icon:'iconc-home',component:"HomePage", active:false},
                   {label:'Location',icon:'iconc-map',component:"StoreLocatorPage", active:false},
-                  {label:'Rewards',icon:'iconc-gift',component:"RewardsPage", active:false},
+                  {label:'Vouchers',icon:'iconc-gift',component:"RewardsPage", active:false},
                   {label:'Member',icon:'iconc-id-card',component:"MemberPage",active:false},
                   {label:'eStore',icon:'iconc-cart',component:"ECartPage", active:false}
 

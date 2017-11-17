@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
@@ -40,7 +40,7 @@ export class StoreLocatorPage {
               public storeLocatorProvider: StoreLocatorProvider, 
               private loaderProvider:LoaderProvider,
               private geolocation: Geolocation,
-              private launchNavigator: LaunchNavigator) {
+              private launchNavigator: LaunchNavigator,private elRef:ElementRef) {
     
             
   }
@@ -56,6 +56,7 @@ export class StoreLocatorPage {
 
   ngAfterViewInit() {
     this.loadMap();
+
   }
 
   // getStores() {
@@ -68,20 +69,28 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-    this.geolocation.getCurrentPosition().then((resp) => {
+    // this.geolocation.getCurrentPosition().then((resp) => {
      
       console.log("Inside loadmap");
        // resp.coords.latitude
       // resp.coords.longitude
+      let lat = "12.9716";
+      let lng = "77.5946";
 
-     this.getAllStores(resp.coords.latitude,resp.coords.latitude, 50);
+      // this.getAllStores(resp.coords.latitude, resp.coords.latitude, 50);
+    this.getAllStores(lat,lng, 50);
      
-    this._myCurrentLocation = {
-      lat:resp.coords.latitude,
-      lng:resp.coords.longitude,
+    // this._myCurrentLocation = {
+    //   lat:resp.coords.latitude,
+    //   lng:resp.coords.longitude,
+    // }
+      this._myCurrentLocation = {
+      lat:lat,
+      lng:lng,
     }
      
-    let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+    // let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+       let latLng = new google.maps.LatLng(lat, lng);
      
     let mapOptions = {
       center: latLng,
@@ -91,11 +100,11 @@ export class StoreLocatorPage {
      
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
-   }).catch((error) => {
+  //  }).catch((error) => {
     
-     console.log('Error getting location', error);
+  //    console.log('Error getting location', error);
      
-    });
+  //   });
   }
 
   loadFavList(locationList) {
@@ -129,17 +138,19 @@ export class StoreLocatorPage {
         })
       
         
-      
         marker.addListener('click', () => {
 
            let contentString = '<div id="content" style="width:150px !important;">' +
             '<div id="siteNotice">' +
-             '<p><b>' + marker.title + '<br /></b>,' + marker.address + '&emsp<img src="assets/img/locator.png" onclick="gotoStoreDirection2(marker.lat,marker.lng)" style="height:12px; width:15px;padding-left:5px"/>' + '</p>' +
+             '<p><b>' + marker.title + '<br /></b>,' + marker.address + '<img class="store" src="assets/img/locator.png" (click)="gotoStoreDirection2(marker.lat,marker.lng)" style="height:12px; width:15px;padding-left:5px"/>' + '</p>' +
              '<p *ngIf="marker.mobile">' + marker.mobile + '<a *ngIf="marker.mobile" href="tel:marker.mobile">' + '<img src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>' + '</p>'       
           '</div>' + '</div>';
           console.log(marker);
           infowindow.setContent(contentString);
           infowindow.open(map, marker);
+          console.log("element",this.elRef.nativeElement.querySelector('.store'))
+          this.elRef.nativeElement.querySelector('.store').addEventListener('click', this.gotoStoreDirection2.bind(this));
+
         });  
 
      
@@ -299,9 +310,10 @@ export class StoreLocatorPage {
 
         .subscribe(res=>{
 
+            
               this.locationList  = res.storesWithDistance;
               this.updatedLocationList = this.locationList;
-              this._filterList =this.locationList;
+              this._filterList = this.locationList;
               this.addMarkers(this.map, this.locationList);
               this.loadFavList(this.locationList);
           

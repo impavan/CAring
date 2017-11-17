@@ -19,7 +19,8 @@ export class RedeemPage {
   @ViewChild('barcode') barcode: ElementRef;
   redeemList:any = [];
   newRedeemList:any = [];
-  selectedTab:any ='New';
+  selectedTab: any = 'New';
+  myRedeemingVoucher: any;
   currentDate:any = moment().format('YYYY-MM-DD');
   experienceId:any;
 
@@ -46,21 +47,23 @@ export class RedeemPage {
 
 
 
-  redeemMyReward(){
+  redeemMyReward(Voucher){
 
           this.cancelRedeem();
 
           this.loaderProvider.presentLoadingCustom();
 
-          let voucher = this.redeemList.filter(data =>data.RedeemStatus == 0).shift();
+          // let voucher = this.redeemList.filter(data =>data.RedeemStatus == 0).shift();
           
                 this.loaderProvider.dismissLoader();
-                JsBarcode(this.barcode.nativeElement, voucher.VoucherCode);
+                JsBarcode(this.barcode.nativeElement, Voucher.VoucherCode);
                 this.voucherModal.open();
        
       }
 
-      getMyLatestRewards(){
+  getMyLatestRewards() {
+        
+    this.myRedeemingVoucher = {};
 
             this.loaderProvider.presentLoadingCustom();
 
@@ -100,13 +103,21 @@ export class RedeemPage {
   cancelRedeem(){
 
     this.redeemModal.close();
+    // this.myRedeemingVoucher = {};
 
   }
 
-  openModel(){
-
+  openModel(voucher) {
+    
+     this.myRedeemingVoucher = voucher;
     this.redeemModal.open();
+   
 
+  }
+
+  confirmRedeem() {
+ 
+    this.redeemMyReward(this.myRedeemingVoucher);
   }
 
 

@@ -39,7 +39,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home" },
       { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card" },
-      { title: 'Rewards', component: 'RewardsPage', index:2,icon:"iconc-gift"},
+      { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift"},
       { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag"},
       { title: 'Happenings', component: 'HappeningsPage', index:4 ,icon:"iconc-megaphone"},
       { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map"},
