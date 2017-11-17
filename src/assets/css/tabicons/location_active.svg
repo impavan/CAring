@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="24px" viewBox="0 0 19 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>location_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8-Copy-2" transform="translate(-103.000000, -508.000000)">
+            <g id="location_active" transform="translate(103.000000, 508.000000)">
+                <path d="M9.585,0.765 C4.87583742,1.16567385 1.14268487,4.90516451 0.75,9.615 C0.615,15.09 5.82,20.115 9.585,23.4 C9.93,23.7 14.595,18.135 15.06,17.505 C16.009395,16.1225946 16.8759181,14.6850679 17.655,13.2 C19.6272612,9.31309561 18.3296993,4.56401903 14.655,2.22 C13.1482388,1.23953944 11.3823852,0.732770804 9.585,0.765 Z" id="Shape" fill="#096F67"></path>
+                <circle id="Oval" fill="#F1F1F1" cx="9.585" cy="9.135" r="2.625"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
