@@ -20,6 +20,7 @@ export class RegistrationPage {
   public profileImage: any;
   public registerData: any;
   public phoneNum: any;
+  public alteredPhoneNum: any = '';
   public otp: any;
   public from: any;
   _existingCustomerData:any = [];
@@ -38,8 +39,8 @@ export class RegistrationPage {
     
                         this.from = navParams.get('from');
                         this.phoneNum = navParams.get('phone');
+                        this.alteredPhoneNum = '+60' + navParams.get('phone');
                         this._existingCustomerData = navParams.get('custExistingData');
-                        console.log(this._existingCustomerData);
 
                         if (this._existingCustomerData) {
                           
