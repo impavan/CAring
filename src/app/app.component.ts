@@ -23,7 +23,7 @@ export class MyApp {
   
   rootPage: any =  this._auth?"HomePage":"LoginPage";
   _userName:any="";
-  pages: Array<{ title: string, component: any, index: number, icon:string }>;
+  pages: Array<{ title: string, component: any, index: number, icon:string, ionicon:string }>;
 
   constructor(private platform: Platform, 
     private statusBar: StatusBar,
@@ -37,15 +37,15 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home" },
-      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card" },
-      { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift"},
-      { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag"},
-      { title: 'Happenings', component: 'HappeningsPage', index:4 ,icon:"iconc-megaphone"},
-      { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map"},
-      { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book"},
-      { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat"},
-      { title: 'About', component: 'AboutPage', index:8, icon:"iconc-ticket"},
+      { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
+      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
+      { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+      { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
+      { title: 'Happenings', component: 'HappeningsPage', index:4 ,icon:"iconc-megaphone",ionicon:''},
+      { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
+      { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
+      { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat",ionicon:''},
+      { title: 'Settings', component: 'MyAccountPage', index:8, icon:"",ionicon:'ios-settings-outline'},
     ];
 
     if (this._auth) {
@@ -67,8 +67,7 @@ export class MyApp {
 
   }
       
-  
-
+ 
   initializeApp() {
 
     this.platform.ready().then(() => {
