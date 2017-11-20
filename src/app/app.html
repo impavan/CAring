@@ -1,9 +1,9 @@
 <style>
-    .item-md-menu-footer{
+    .item-md-menu-footer {
         position: relative !important;
-        top:-10px !important;
+        top: -10px !important;
     }
-    </style>
+</style>
 
 
 <ion-menu [content]="content" id="leftMenu">
@@ -19,7 +19,7 @@
     <ion-content>
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-                <ion-icon class="{{p.icon}}"></ion-icon> <span>{{p.title}}</span>
+                <ion-icon class="{{p.icon}}" name="{{p.ionicon}}"></ion-icon> <span>{{p.title}}</span>
             </button>
         </ion-list>
         <ion-footer class="footer">
@@ -29,7 +29,7 @@
                 <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()">
                     <ion-icon class="iconc-log-in"></ion-icon> <span>Login</span></button>
             </ion-toolbar>
-         </ion-footer>
+        </ion-footer>
     </ion-content>
 
 </ion-menu>
@@ -39,7 +39,7 @@
 
 
 <mymodal #nointernet>
-  <p>No Internet Connection Detected</p>
+    <p>No Internet Connection Detected</p>
     <ion-grid>
         <p>We cannot detect any Internet Connection, please connect to Internet and continue </p>
         <ion-row>
