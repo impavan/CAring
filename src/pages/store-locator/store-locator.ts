@@ -69,28 +69,28 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-    // this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition().then((resp) => {
      
       console.log("Inside loadmap");
        // resp.coords.latitude
       // resp.coords.longitude
-      let lat = "12.9716";
-      let lng = "77.5946";
+      // let lat = "12.9716";
+      // let lng = "77.5946";
 
-      // this.getAllStores(resp.coords.latitude, resp.coords.latitude, 50);
-    this.getAllStores(lat,lng, 50);
+      this.getAllStores(resp.coords.latitude, resp.coords.latitude, 50);
+    // this.getAllStores(lat,lng, 50);
      
-    // this._myCurrentLocation = {
-    //   lat:resp.coords.latitude,
-    //   lng:resp.coords.longitude,
-    // }
-      this._myCurrentLocation = {
-      lat:lat,
-      lng:lng,
+    this._myCurrentLocation = {
+      lat:resp.coords.latitude,
+      lng:resp.coords.longitude,
     }
+    //   this._myCurrentLocation = {
+    //   lat:lat,
+    //   lng:lng,
+    // }
      
-    // let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-       let latLng = new google.maps.LatLng(lat, lng);
+    let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      //  let latLng = new google.maps.LatLng(lat, lng);
      
     let mapOptions = {
       center: latLng,
@@ -100,11 +100,11 @@ export class StoreLocatorPage {
      
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
-  //  }).catch((error) => {
+   }).catch((error) => {
     
-  //    console.log('Error getting location', error);
+     console.log('Error getting location', error);
      
-  //   });
+    });
   }
 
   loadFavList(locationList) {
