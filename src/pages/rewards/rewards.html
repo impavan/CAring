@@ -83,7 +83,7 @@
             </div>
             <ion-card *ngIf="!auth" padding class="myPointsContainer sec">
                 <ion-card-header>Login to view your rewards</ion-card-header>
-                <button ion-button value="Redeem Vouchers" color="secondary" (click)="goto('LoginPage')">Login to continue</button>
+                <button ion-button value="Redeem Vouchers" color="secondary" (click)="gotoLogin()">Login to continue</button>
             </ion-card>
 
             <div [ngSwitch]="memberDetails">

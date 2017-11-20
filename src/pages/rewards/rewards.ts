@@ -214,9 +214,14 @@ export class RewardsPage {
     return this._expiredReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
    }
   
-    goto(page, exp:any) {
+    goto(page, exp) {
 
     this.navCtrl.push(page, { redeemData: this._newRedeemedList[exp] });
 
+    }
+  
+    gotoLogin() {
+    
+      this.navCtrl.setRoot('LoginPage');  
   }
 }
