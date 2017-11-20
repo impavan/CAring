@@ -82,17 +82,17 @@
                 </ion-toolbar>
             </div>
             <ion-card *ngIf="!auth" padding class="myPointsContainer sec">
-                <ion-card-header>Your wallet is empty</ion-card-header>
-                <button ion-button value="Redeem Vouchers" color="secondary" (click)="emptywallet()">Login to continue</button>
+                <ion-card-header>Login to view your rewards</ion-card-header>
+                <button ion-button value="Redeem Vouchers" color="secondary" (click)="goto('LoginPage')">Login to continue</button>
             </ion-card>
 
             <div [ngSwitch]="memberDetails">
                 <!-- New section starts. -->
                 <ion-list *ngSwitchCase="'New'">
-                    <div class="alert mt70" *ngIf="_newReward.length <= 0" text-center>
+                    <div class="alert mt70" *ngIf="_newReward.length <= 0 && auth" text-center>
                         No New Vouchers available!
                     </div>
-                    <div class="newContainer" *ngIf="_newReward.length > 0">
+                    <div class="newContainer" *ngIf="_newReward.length > 0 && auth">
                         <ion-card>
                             <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                 <div class="content" *ngIf="reward.RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
@@ -118,10 +118,10 @@
                 </ion-list>
                 <!-- Used section starts. -->
                 <ion-list *ngSwitchCase="'Used'">
-                    <div class="alert mt70" *ngIf="_usedReward.length <= 0" text-center>
+                    <div class="alert mt70" *ngIf="_usedReward.length <= 0 && auth" text-center>
                         No Used Vouchers to display
                     </div>
-                    <div class="newContainer" *ngIf="_usedReward.length > 0">
+                    <div class="newContainer" *ngIf="_usedReward.length > 0 && auth">
                         <ion-card>
                             <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                 <div class="content" *ngIf="reward.RedeemStatus == 1">
@@ -149,10 +149,10 @@
                 </ion-list>
                 <!-- Expired section starts. -->
                 <ion-list *ngSwitchCase="'Expired'">
-                    <div class="alert mt70" *ngIf="_expiredReward.length <= 0" text-center>
+                    <div class="alert mt70" *ngIf="_expiredReward.length <= 0 && auth" text-center>
                         No Expired Vouchers to display
                     </div>
-                    <div class="newContainer" *ngIf="_expiredReward.length > 0">
+                    <div class="newContainer" *ngIf="_expiredReward.length > 0 && auth">
                         <ion-card>
                             <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                 <div class="content" *ngIf="reward.RedeemStatus == 0 && currentDate > reward.ExpiryDate">
