@@ -46,6 +46,9 @@ export class MemberPage {
   currentDate: any = moment().format('YYYY-MM-DD');
   isWalletLoaded: boolean = false;
   isProfileLoaded: boolean = false;
+  isEditable : boolean = true;
+  memberButton:string = 'Edit Profile';
+  isCancel: boolean = false;
 
 
   constructor(
@@ -369,5 +372,29 @@ export class MemberPage {
     
     this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
 
+  }
+
+  memberEdit(){
+  
+    if(this.memberButton == "Edit Profile"){
+      this.isEditable = false;
+      this.memberButton = "Update Profile";
+      this.isCancel = true;
+
+    }else{
+        this.alertProvider.presentToast('Thank you we have received your updated information');
+        this.isEditable = true;
+        this.memberButton = "Edit Profile";
+        this.isCancel = false;
+
+
+    }
+   
+  }
+
+  cancelEdit(){
+    this.isEditable = true;
+    this.isCancel = false;
+    this.memberButton = "Edit Profile";
   }
 }
