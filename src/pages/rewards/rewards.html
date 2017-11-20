@@ -23,10 +23,11 @@
                 <h4>Rewards / Voucher</h4>
             </article>-->
             <!-- Section to be displayed when there is data. -->
-            <div *ngIf="offerdata.length >= 1">
-            <h6>1. Use earned points to redeem for gift vouchers</h6>
-            <h6>2. Go to Rewards page to see your gift voucher(s)</h6>
+            <div style="margin-bottom: 10px;">
+            <ion-icon name="md-bulb" style="font-size:1.8em"></ion-icon>
+            <label>Use earned points to redeem for gift vouchers and go to Rewards page to see your gift voucher(s)</label>
             </div>
+            
             <div *ngIf="offerdata.length >= 1">
                 <div *ngFor="let offer of offerdata">
                     <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
