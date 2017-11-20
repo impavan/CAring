@@ -45,7 +45,6 @@ export class MyApp {
       { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
       { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat",ionicon:''},
-      { title: 'Settings', component: 'MyAccountPage', index:8, icon:"",ionicon:'ios-settings-outline'},
     ];
 
     if (this._auth) {
@@ -114,6 +113,12 @@ export class MyApp {
     
     this.nav.setRoot("LoginPage");
     
+  }
+
+  openSettings() {
+    
+    this.nav.setRoot('MyAccountPage');
+
   }
 
   logout() {

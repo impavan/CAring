@@ -19,7 +19,10 @@
     <ion-content>
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-                <ion-icon class="{{p.icon}}" name="{{p.ionicon}}"></ion-icon> <span>{{p.title}}</span>
+                <ion-icon class="{{p.icon}}"></ion-icon> <span>{{p.title}}</span>
+            </button>
+             <button menuClose ion-item  (click)="openSettings()">
+                <ion-icon name="ios-settings-outline"></ion-icon> <span>Settings</span>
             </button>
         </ion-list>
         <ion-footer class="footer">
