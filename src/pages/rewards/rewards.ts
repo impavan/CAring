@@ -218,5 +218,10 @@ export class RewardsPage {
 
     this.navCtrl.push(page, { redeemData: this._newRedeemedList[exp] });
 
+    }
+  
+    gotoLogin() {
+    
+      this.navCtrl.setRoot('LoginPage');  
   }
 }

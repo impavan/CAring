@@ -24,6 +24,7 @@ export class OtpPage {
   otp: string;
   type: string;
   from: any;
+  alteredPhoneNum: any = '';
   _existingCustomerData:any = [];
   MOBILE_VALIDATED = "mobile_validated";
   YES="Yes";
@@ -44,6 +45,8 @@ export class OtpPage {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
+              this.alteredPhoneNum = '+60' + navParams.get('phone');
+              console.log(this.alteredPhoneNum);
               this.from = navParams.get('from');
 
             }
