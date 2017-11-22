@@ -40,7 +40,7 @@ this.launchNavigator.navigate([loc.storelocation.x, loc.storelocation.y])
     
 }
 gotoLocationPage(){
-  this.navCtrl.push('EventLocationPage');
+  this.navCtrl.push('StoreLocatorPage');
 }
 
 
