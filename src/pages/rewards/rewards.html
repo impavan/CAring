@@ -99,12 +99,12 @@
                                     <article>
                                         <ion-grid>
                                             <ion-row class="first">
-                                                <ion-col col-5>
+                                                <ion-col col-3>
                                                     <figure>
                                                         <img src="{{reward?.images[0]}}" />
                                                     </figure>
                                                 </ion-col>
-                                                <ion-col col-7>
+                                                <ion-col col-9>
                                                     <h6>{{reward.Title}}</h6>
                                                     <span> <ion-icon class="iconc-ticket"></ion-icon> {{getRedeemed(reward?.ExperienceId)}} available </span>
                                                 </ion-col>
@@ -122,20 +122,20 @@
                         No Used Vouchers to display
                     </div>
                     <div class="newContainer" *ngIf="_usedReward.length > 0 && auth">
-                        <ion-card>
+                        <ion-card style="padding-top:15px;">
                             <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
                                 <div class="content" *ngIf="reward.RedeemStatus == 1">
                                     <article>
                                         <ion-grid>
                                             <ion-row class="first">
-                                                <ion-col col-5>
+                                                <ion-col col-3>
                                                     <figure>
                                                         <img src="{{reward?.images[0]}}" />
                                                     </figure>
                                                 </ion-col>
-                                                <ion-col col-7>
+                                                <ion-col col-9>
                                                     <h6>{{reward.Title}}</h6>
-                                                    <span> <ion-icon class="iconc-ticket"></ion-icon> {{getUsedVouchersCount(reward?.ExperienceId)}} used </span>
+                                                    <span> <ion-icon class="iconc-ticket ticketIco"></ion-icon> {{getUsedVouchersCount(reward?.ExperienceId)}} used </span>
                                                 </ion-col>
                                             </ion-row>
                                         </ion-grid>
@@ -159,12 +159,12 @@
                                     <article>
                                         <ion-grid>
                                             <ion-row class="first">
-                                                <ion-col col-5>
+                                                <ion-col col-3>
                                                     <figure>
                                                         <img src="{{reward?.images[0]}}" />
                                                     </figure>
                                                 </ion-col>
-                                                <ion-col col-7>
+                                                <ion-col col-9>
                                                     <h6>{{reward.Title}}</h6>
                                                     <span class="danger"> Expired - {{reward.ExpiryDate}} </span>
                                                 </ion-col>
