@@ -26,7 +26,7 @@ export class RewardsPage {
   auth: any;
   offerdata: any = [];
   isDataLoaded: boolean = false;
-  member: any = "My Rewards";
+  member: any = "My Wallet";
   memberDetails:any="New"
   redeemedRewards: any = [];
   _newRedeemedList: any = [];
@@ -51,13 +51,17 @@ export class RewardsPage {
 
 
   ionViewWillEnter() {
-    if(!this.isDataLoaded)
-    this.fetchAllExperiences();
+    // this.loadMyWallet();
+    console.log("**********");
     this.auth = localStorage.getItem('auth_token')
-    this.events.publish('changeIcon', "RewardsPage");
-    if (this.auth)
-     this.authProvider.setHeader();  
-    
+    console.log(this.auth);
+    if (this.auth) {
+  
+      this.authProvider.setHeader();
+      this.events.publish('changeIcon', "RewardsPage");
+        this.getRedeemedVouchers();
+  
+    }
   }
 
   //List all the experiences / offers
@@ -120,13 +124,17 @@ export class RewardsPage {
 
   loadMyWallet() {
 
-    if (this.auth)
+    if (this.auth) {
       this.getRedeemedVouchers();
+      console.log("**********");
+    }
+      
+    
 
   }
 
    getRedeemedVouchers() {
-    
+    console.log("**********");
     this.loaderProvider.presentLoadingCustom();
 
     this.profileProvider.getAllRedeemedVouchers()

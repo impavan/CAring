@@ -50,9 +50,9 @@ page-member {
                 }
             }
         }
-        .text-input-md {
-            text-align: right !important;
-        }
+        // .text-input-md {
+        //     text-align: right !important;
+        // }
         margin:10px 0 0 0;
         padding:0;
         .profileOut {
@@ -281,17 +281,17 @@ page-member {
             }
             input::-moz-placeholder {
                 color: red;
-                text-align: right;
+                // text-align: right;
                 color: $cp-extra-lighter-grey-xxx;
             }
             input::-webkit-input-placeholder {
                 color: red;
-                text-align: right;
+                // text-align: right;
                 color: $cp-extra-lighter-grey-xxx;
             }
             input:-ms-input-placeholder {
                 color: red;
-                text-align: right;
+                // text-align: right;
                 color: $cp-extra-lighter-grey-xxx;
             }
             .item-input .label-md,
@@ -299,7 +299,6 @@ page-member {
             .item-datetime .label-md,
             .label-ios {
                 color: $cp-extra-darker-grey;
-                padding: 0 0 0 16px;
             }
             .caringWaterMark {
                 margin: 20px 0 0 0;
@@ -373,7 +372,7 @@ page-member {
             }
         }
     }
-    .mt6{
+    .mt6 {
         margin-top: 6px;
     }
 }

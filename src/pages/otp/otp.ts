@@ -8,6 +8,7 @@ import { ABOUT_US } from '../../url';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { LoaderProvider } from '../../providers/loader/loader';
+import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -37,6 +38,7 @@ export class OtpPage {
               private userProvider: UserdataProvider,
               private alertProvider: AlertProvider,
               private authProvider: AuthProvider,
+              private pushProvider:PushProvider,
               private navCtrl: NavController,
               private navParams: NavParams,
               private menu: MenuController,
@@ -126,6 +128,8 @@ export class OtpPage {
 
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
+      // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+    // this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
     this.authProvider.setUserLoggedIn(true);

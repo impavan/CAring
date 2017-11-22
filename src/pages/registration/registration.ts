@@ -207,6 +207,8 @@ export class RegistrationPage {
     this.authProvider.setAuthToken(data[0].auth_key);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+          // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+    // this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
     this.authProvider.setUserLoggedIn(true);
     this.authProvider.setHeader();
     this.events.publish('user:login', true);

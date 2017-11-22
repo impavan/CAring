@@ -9,7 +9,7 @@
 <ion-content class="mainCont">
 
     <div class="memberContainer">
-    
+
         <div class="row">
             <div class="col">
                 <img src="assets/img/card_regular.png" alt="" class="mt30">
@@ -37,6 +37,7 @@
                 <div *ngIf="_auth" class="myPointsContainer">
                     <p class="urPoints">Your Points:
                         <strong>{{_totalAvailablePoints}}</strong>
+                        <button ion-button value="redeem" class="mt20" (click)="gotoRewards()">Redeem</button>
 
                     </p>
                     <section>
@@ -62,31 +63,32 @@
 
             </ion-list>
             <!-- Startssssssssssssssssssssssssssssssssssss -->
-           
+
             <!-- Endssssssssssssssssssssssssssssssss -->
             <ion-list *ngSwitchCase="'My Profile'">
                 <div class="myProfileContainer">
-                    <div *ngIf="_auth" class="container">
-                        <div class="content">
+                    <div *ngIf="_auth" class="">
+                        <div class="">
                             <ion-list>
                                 <ion-item>
-                                    <ion-label fixed>Name</ion-label>
-                                    <ion-input #name type="text" [readonly]="isEditable" [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
+
+                                    <ion-label stacked>Name</ion-label>
+                                    <ion-input type="text" [readonly]="isEditable" [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-label fixed>E-mail</ion-label>
+                                    <ion-label stacked>E-mail</ion-label>
                                     <ion-input type="text" [readonly]="isEditable" [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-label fixed>Mobile Number</ion-label>
+                                    <ion-label stacked>Mobile Number</ion-label>
                                     <ion-input type="text" readonly [(ngModel)]="_mobileNum"></ion-input>
                                 </ion-item>
 
                             </ion-list>
                             <div class="mt20">
                                 <button ion-button class="btn4" (click)="memberEdit()">{{memberButton}}</button>
-                                <button ion-button class="btn4 mt6" (click)="cancelEdit()" *ngIf = "isCancel">Cancel</button>
-                          </div>
+                                <button ion-button class="btn4 mt6" (click)="cancelEdit()" *ngIf="isCancel">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>

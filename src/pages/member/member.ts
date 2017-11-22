@@ -345,6 +345,7 @@ export class MemberPage {
 
   }
 
+
   getNewRewardsList() {
     
     this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
@@ -387,5 +388,9 @@ export class MemberPage {
     this.memberButton = "Edit Profile";
     this._userName = this.authProvider.getUserFirstName();
     this._emailId = this.authProvider.getUserEmailId();
+  }
+
+  gotoRewards(){
+    this.navCtrl.setRoot("RewardsPage");
   }
 }

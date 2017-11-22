@@ -10,6 +10,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';
+import { PushProvider } from '../providers/push/push';
 import { NetworkProvider } from '../providers/network/network';
 
 @Component({
@@ -31,7 +32,8 @@ export class MyApp {
     private authProvider: AuthProvider,
     private alertProvider:AlertProvider,
     private screenOrientation: ScreenOrientation,
-    public events:Events,
+    public events: Events,
+    public pushProvider:PushProvider,
     public networkprovider: NetworkProvider) {
 
     this.initializeApp();
@@ -82,6 +84,7 @@ export class MyApp {
       this.noConnectionEvent();
       this.notLoggedIn();
     });
+    this.pushProvider.pushEvent();
 
   }
 
