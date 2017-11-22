@@ -112,11 +112,11 @@ export class MyApp {
          this.getUserDetails();
   }
 
-  gotoLogin() {
+  // gotoLogin() {
     
-    this.nav.setRoot("LoginPage");
+  //   this.nav.setRoot("LoginPage");
     
-  }
+  // }
 
   openSettings() {
     
@@ -124,15 +124,15 @@ export class MyApp {
 
   }
 
-  logout() {
+  // logout() {
     
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('phoneNum');
-    this.events.publish('user:login', false);
-    this.alertProvider.presentToast("You have been logged out..!")
-    this.nav.setRoot("LoginPage");
+  //   localStorage.removeItem('auth_token');
+  //   localStorage.removeItem('phoneNum');
+  //   this.events.publish('user:login', false);
+  //   this.alertProvider.presentToast("You have been logged out..!")
+  //   this.nav.setRoot("LoginPage");
 
-  }
+  // }
 
   noConnectionEvent(){
 

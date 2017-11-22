@@ -375,4 +375,14 @@ page-member {
     .mt6 {
         margin-top: 6px;
     }
+    .reedemBtn{
+        background: transparent;
+        box-shadow: none;
+        border:1px solid #333;
+        color:red;
+        text-transform: none;
+        position: relative;
+        top: -8px;
+        left: 8px;
+    }
 }

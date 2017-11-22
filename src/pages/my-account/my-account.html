@@ -68,7 +68,7 @@
                 <div class="clear"></div>
             </li>
 
-            <!--<li (click)="logout()">
+            <li  *ngIf = "_auth" (click)="logout()">
                 <a>
                     <i>
             <img src="assets/img/logout.svg">
@@ -76,7 +76,18 @@
                     <span>Log Out</span>
                 </a>
                 <div class="clear"></div>
-            </li>-->
+            </li>
+
+
+            <li  *ngIf = "!_auth" (click)="gotoLogin()">
+                <a>
+                    <i>
+            <img src="assets/img/login.svg">
+          </i>
+                    <span>Log In</span>
+                </a>
+                <div class="clear"></div>
+            </li>
 
             
         </ul>

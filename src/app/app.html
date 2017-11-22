@@ -10,7 +10,7 @@
     <ion-header>
         <ion-toolbar color="menu-header">
             <div class="thumbnail">
-                <span *ngIf="!_auth">Hello, Guest</span>
+                <span *ngIf="!_auth">Log in/Guest</span>
                 <span *ngIf="_auth">Hello, {{_userName }}</span>
             </div>
         </ion-toolbar>
@@ -25,14 +25,14 @@
                 <ion-icon name="ios-settings-outline"></ion-icon> <span>Settings</span>
             </button>
         </ion-list>
-        <ion-footer class="footer">
+        <!-- <ion-footer class="footer">
             <ion-toolbar color="menu-footer">
                 <button color="menu-footer" *ngIf="_auth" menuClose ion-item (click)="logout()">
                     <ion-icon class="iconc-log-out"></ion-icon> <span>Logout</span> </button>
                 <button *ngIf="!_auth" color="menu-footer" menuClose ion-item (click)="gotoLogin()">
                     <ion-icon class="iconc-log-in"></ion-icon> <span>Login</span></button>
             </ion-toolbar>
-        </ion-footer>
+        </ion-footer> -->
     </ion-content>
 
 </ion-menu>
