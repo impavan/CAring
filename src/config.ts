@@ -27,5 +27,5 @@ export const EN = `en`;
 
 //Store locator base url - dev
 
-export const STORE_BASE_URL = `http://sol-nightly.capillary.in/store-locator/v1/brand/nearbystores?`;
+export const STORE_BASE_URL = `https://apac2-sloc.capillarytech.com/store-locator/v1/brand/nearbystores?`;
 

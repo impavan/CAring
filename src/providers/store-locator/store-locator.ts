@@ -11,10 +11,10 @@ export class StoreLocatorProvider {
   contentHeaders: any;
   lang = 'en';
 
-  authorization: any = 'eyJtb2IiOjkxODAwMDAwMDAwMCwiZGV2IjoiMTExMTExMTEiLCJvcmciOiJBUFBMRSIsImFsZyI6IkhTMjU2In0.eyJ1aWQiOiI0NDYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoidHJ1ZSIsIm9nYyI6WyIxNTA2MTV8dGVzdC5kZW1vLjEiXSwiZXhwIjoxNTIxNTMyMjk0LCJpYXQiOjE1MTA3MzIyOTQsInJvbCI6IlZJRVcifQ.Y-lVXxZn9YzPOmhHSEt0aXxxMhn_5x5nh6rrR-o5bsA';
+  authorization: any = 'eyJtb2IiOjkxODAwMDAwMDAwLCJkZXYiOiIxMTExMTExMSIsIm9yZyI6IkNBUklORyIsImFsZyI6IkhTMjU2In0.eyJ1aWQiOiI0NDYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoidHJ1ZSIsImlhdCI6MTUxMTI2MzIxNiwicm9sIjoiVklFVyJ9.-nJHVD4zkCMzUYAjt9bP_bgsrqdbGUBs6Uhsb2UUAXI';
   deviceId:any='11111111';
-  brand:any = 'APPLE';
-  mobile:any = 918000000000
+  brand:any = 'CARING';
+  mobile: any = 91800000000;
 
   constructor(public http: Http) {
     this.contentHeaders = new Headers();
@@ -36,9 +36,9 @@ export class StoreLocatorProvider {
 
 
 
-  getAllStoreLocation(lat, lng,limit ){
+  getAllStoreLocation(lat, lng,limit){
       
-      return this.http.get(STORE_BASE_URL + 'latitude=' + lat + '&longitude=' + lng + '&distance=500&size=' + limit,{ headers:this.contentHeaders })
+      return this.http.get(STORE_BASE_URL + 'latitude=' + lat + '&longitude=' + lng + 'distance=5000000&size=50000',{ headers:this.contentHeaders })
             .do((res: Response) => res)
             .map((res: Response)=> res.json());
 

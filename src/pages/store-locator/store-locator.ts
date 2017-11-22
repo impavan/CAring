@@ -117,10 +117,6 @@ export class StoreLocatorPage {
 
   addMarkers(map, locationList) {
 
-    // for (let i in locationList) {
-    //   console.log(locationList);
-    
-    let contents = [];
    
       var infowindow = new google.maps.InfoWindow();
     for (let i in locationList) {

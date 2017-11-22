@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -10,12 +11,15 @@ export class PurchaseRewardsPage {
   offerData: any;
   currentPoints: any;
   remainder: any;
-
+  redeemValue: any;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              private authProvider: AuthProvider) {
+    
                 this.offerData = navParams.get('offerData');
-                this.currentPoints = navParams.get('currentpoints');
-                this.remainder = navParams.get('remainder');
+                this.redeemValue = this.offerData.BrandPointRedeemValue;
+                this.currentPoints = this.authProvider.getMyCurrentPoints();
+                this.remainder = this.currentPoints - this.redeemValue;
   }
 
 

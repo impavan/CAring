@@ -7,6 +7,7 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 import { AuthProvider } from '../../providers/auth/auth';
 import { RewardsProvider } from '../../providers/rewards/rewards';
 import { ProfileProvider } from '../../providers/profile/profile';
+import { UserdataProvider } from '../../providers/userdata/userdata';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { AlertProvider } from '../../providers/alert/alert';
 
@@ -32,18 +33,18 @@ export class RewardsDetailsPage {
               private authProvider: AuthProvider,
               private loaderProvider: LoaderProvider,
               private alertProvider: AlertProvider,
-              private rewardsProvider: RewardsProvider) {
-    
+              private userdataProvider:UserdataProvider,
+              private rewardsProvider: RewardsProvider,
+              private profileProvider:ProfileProvider) {
+
               this.offerdata = this.navParams.get('data');
               this._auth = localStorage.getItem('auth_token');
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
 
     if (this._auth) {
-
-      this._currentPoint = this.authProvider.getMyCurrentPoints();
-      this.remainder = this._currentPoint - this.offerdata.BrandPointRedeemValue;
+      this.getCurrentPoints();
       this.authProvider.setHeader();
       if (this.remainder >= 0) {
            this.flag = true;
@@ -71,15 +72,27 @@ export class RewardsDetailsPage {
 
     this.closeRedeemPointsModal();
     this.rewardsProvider.redeemVoucher(redeemData).subscribe(data => {
-      this.loaderProvider.dismissLoader();
+     
       
       if (data[0].code == 200) {
 
         this.alertProvider.presentToast(data[0].message);
-        this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata, 'currentpoints': this._currentPoint, 'remainder': this.remainder });
+
+        this.userdataProvider.getMyProfile().subscribe(res => {
+
+           this.loaderProvider.dismissLoader();
+          this.authProvider.setUser(res[0].customerdata);
+            localStorage.setItem('userdetails', JSON.stringify(res[0].customerdata));
+            this.authProvider.setHeader();          
+            this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata });
+          
+        }, err => {
+           this.loaderProvider.dismissLoader();
+        });
+        
 
       } else {
-
+         this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast(data[0].message);
 
       }
@@ -96,5 +109,11 @@ export class RewardsDetailsPage {
 
     this.redeemPointsModal.close();
     
+  }
+
+  getCurrentPoints() {
+    
+      this._currentPoint = this.authProvider.getMyCurrentPoints();
+      this.remainder = this._currentPoint - this.offerdata.BrandPointRedeemValue;
   }
 }
