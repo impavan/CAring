@@ -21,6 +21,7 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 export class MemberPage {
 
   @ViewChild('barcode') barcode: ElementRef;
+  @ViewChild('name') nameTextBox;
 
   IMG_URL = IMAGE_URL;
   from: any;
@@ -280,7 +281,7 @@ export class MemberPage {
     
       if (data[0].code == 200) {
 
-        this.alertProvider.presentToast('Profile updated successfully');
+        this.alertProvider.presentToast(data[0].message);
 
         this.userProvider.getMyProfile().subscribe(data => {
 
@@ -295,17 +296,10 @@ export class MemberPage {
             this.events.publish('user:login', true);
 
           }
-          else if (data[0].code == 201) {
+         else {
 
             this.loaderProvider.dismissLoader();
             this.alertProvider.presentToast(data[0].message);
-
-          } else if (data[0].code == 202) {
-
-            this.loaderProvider.dismissLoader();
-            this.alertProvider.presentToast(data[0].message);
-
-          } else {
           }
 
         }, err => {
@@ -314,15 +308,10 @@ export class MemberPage {
           this.exceptionProvider.excpHandler(err);
 
         })
-      } else if (data[0].code == 201) {
+      }  else {
         this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast(data[0].message);
-
-      } else if (data[0].code == 202) {
-        this.loaderProvider.dismissLoader();
-        this.alertProvider.presentToast(data[0].message);
-
-      } else {
+        this.cancelEdit();
       }
 
     }, err => {
@@ -381,14 +370,14 @@ export class MemberPage {
       this.isEditable = false;
       this.memberButton = "Update Profile";
       this.isCancel = true;
+      this.nameTextBox.setFocus();
 
     }else{
-        this.alertProvider.presentToast('Thank you we have received your updated information');
+        // this.alertProvider.presentToast('Thank you we have received your information');
+        this.updateProfile();
         this.isEditable = true;
         this.memberButton = "Edit Profile";
         this.isCancel = false;
-
-
     }
    
   }
@@ -397,6 +386,8 @@ export class MemberPage {
     this.isEditable = true;
     this.isCancel = false;
     this.memberButton = "Edit Profile";
+    this._userName = this.authProvider.getUserFirstName();
+    this._emailId = this.authProvider.getUserEmailId();
   }
 
   gotoRewards(){
