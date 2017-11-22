@@ -32,7 +32,7 @@
                                 <p>{{_currentPoint}}</p>
                             </ion-col>
                         </ion-row>
-                        <ion-row>
+                        <ion-row *ngIf="offerdata?.BrandPointRedeemValue < _currentPoint">
                             <ion-col col-9>
                                 <p class="alert">Point Balance after Redemption :</p>
                             </ion-col>
@@ -40,6 +40,11 @@
                                 <p class="alert" *ngIf="remainder >= 0">{{remainder}}</p>
                                 <p class="alert" *ngIf="remainder < 0">0</p>
                                 <!-- <p class="alert" *ngIf="remainder > {{_currentPoint}}">Insufficient to redeem</p> -->
+                            </ion-col>
+                        </ion-row>
+                         <ion-row *ngIf="offerdata?.BrandPointRedeemValue > _currentPoint">
+                            <ion-col col-12>
+                                <p class="alert">Insufficient to redeem</p>
                             </ion-col>
                         </ion-row>
                     </ion-grid>

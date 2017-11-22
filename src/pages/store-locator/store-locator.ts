@@ -32,6 +32,8 @@ export class StoreLocatorPage {
   _creteria:any = {
     "storename": '',
   };
+
+  instoreData: any;
   
 
   constructor(public events:Events,
@@ -40,8 +42,11 @@ export class StoreLocatorPage {
               public storeLocatorProvider: StoreLocatorProvider, 
               private loaderProvider:LoaderProvider,
               private geolocation: Geolocation,
-              private launchNavigator: LaunchNavigator,private elRef:ElementRef) {
+              private launchNavigator: LaunchNavigator, private elRef: ElementRef) {
     
+    this.instoreData = navParams.get('instore') || '';
+    
+   
             
   }
 
@@ -273,10 +278,20 @@ export class StoreLocatorPage {
     
   }
 
+
+   onInStoreInput(loc) {
+     this._searchKey = loc;
+    let val = this._searchKey;
+      this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1));
+      if (this._newFilteredList)
+        this.setMarker(this._newFilteredList[0]);  
+    
+  }
+
   onCancel(event){
 
     
-     let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
+     let latLng = new google.maps.LatLng(this._myCurrentLocation.lat, this._myCurrentLocation.lng);
      this.map.panTo(latLng,30);
      this.map.setZoom(12);
     
@@ -284,7 +299,7 @@ export class StoreLocatorPage {
 
   onClear(){
     
-     let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
+     let latLng = new google.maps.LatLng(this._myCurrentLocation.lat, this._myCurrentLocation.lng);
      this.map.panTo(latLng,30);
      this.map.setZoom(12);
   }
@@ -314,26 +329,20 @@ export class StoreLocatorPage {
               this.addMarkers(this.map, this.locationList);
               this.loadFavList(this.locationList);
           
+              if (this.instoreData)
+                this.onInStoreInput(this.instoreData);
+          
         });
 
   }
 
  gotoStoreDirection(loc) {
     
-    // this.navCtrl.push('EventLocationPage', { lat: loc.storelocation.x, lng: loc.storelocation.y });
-//     let options: LaunchNavigatorOptions = {
-//   start: 'London, ON',
-//   app: LaunchNavigator.APPS.UBER
-// };
-
-this.launchNavigator.navigate([loc.latitude, loc.longitude])
-  .then(
-    success => console.log('Launched navigator'),
-    error => console.log('Error launching navigator', error)
-  );    
-
-
-    
+    this.launchNavigator.navigate([loc.latitude, loc.longitude])
+      .then(
+         success => console.log('Launched navigator'),
+         error => console.log('Error launching navigator', error));    
+ 
   }  
 
 
@@ -343,8 +352,7 @@ this.launchNavigator.navigate([loc.latitude, loc.longitude])
   this.launchNavigator.navigate([lat, lng])
   .then(
     success => console.log('Launched navigator'),
-    error => console.log('Error launching navigator', error)
-  );    
+    error => console.log('Error launching navigator', error));    
 
 }    
 

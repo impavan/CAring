@@ -190,36 +190,36 @@ export class RewardsPage {
   
    getNewRewardsList() {
     
-    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
+    this._newReward = this.redeemedRewards.filter(data => data.Cap_RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
 
   }
 
   getUsedRewardList() {
     
-    this._usedReward = this.redeemedRewards.filter(data => data.RedeemStatus == 1);
+    this._usedReward = this.redeemedRewards.filter(data => data.Cap_RedeemStatus == 1);
 
   }
 
   getExpiredList() {
     
-    this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
+    this._expiredReward = this.redeemedRewards.filter(data => data.Cap_RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
 
   }
 
     getRedeemed(exp) {
    
-    return this._newReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate <= e.ExpiryDate).length;
+    return this._newReward.filter(e => e.ExperienceId == exp && e.Cap_RedeemStatus == 0 && this.currentDate <= e.ExpiryDate).length;
 
   }
 
    getUsedVouchersCount(exp) {
 
-    return this._usedReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 1).length;
+    return this._usedReward.filter(e => e.ExperienceId == exp && e.Cap_RedeemStatus == 1).length;
 
    }
   
    getExpiredVoucherCount(exp) {
-    return this._expiredReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
+    return this._expiredReward.filter(e => e.ExperienceId == exp && e.Cap_RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
    }
   
     goto(page, exp) {

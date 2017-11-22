@@ -25,7 +25,7 @@
             </li>
         </ul>-->
         <div  *ngFor="let reward of redeemList" class="listMyPointsOut">
-        <ion-grid *ngIf="reward?.RedeemStatus == 0 && currentDate <= reward.ExpiryDate">
+        <ion-grid *ngIf="reward?.Cap_RedeemStatus == 0 && currentDate <= reward.ExpiryDate">
             <ion-row >
                 <ion-col class="text-center"> <span class="subTxt">{{reward.VoucherCode}}  </span></ion-col>
                 <ion-col class="text-center"><span class="subTxt">{{reward?.ExpiryDate | date:'dd/MM/yyyy' }}</span></ion-col>
@@ -36,7 +36,7 @@
         <hr/>
         <h6 class="subTitle">Used </h6>
         <div *ngFor="let reward of redeemList" class="listMyPointsOut">
-        <ion-grid *ngIf="reward?.RedeemStatus == 1">
+        <ion-grid *ngIf="reward?.Cap_RedeemStatus == 1">
            <ion-row>
                 <ion-col class="text-center"><span class="subTxt">{{reward.VoucherCode}}</span></ion-col>
                 <ion-col class="text-center"><span class="subTxt">{{reward?.ExpiryDate | date:'dd/MM/yyyy'}}</span></ion-col>
@@ -47,7 +47,7 @@
         <hr/>
         <h6 class="subTitle">Expired </h6>
         <div *ngFor="let reward of redeemList" class="listMyPointsOut">
-        <ion-grid *ngIf="reward?.RedeemStatus == 0 && currentDate > reward?.ExpiryDate">
+        <ion-grid *ngIf="reward?.Cap_RedeemStatus == 0 && currentDate > reward?.ExpiryDate">
             <ion-row>
                 <ion-col class="text-center"><span class="subTxt">{{reward.VoucherCode}}</span></ion-col>
                 <ion-col class="text-center"><span class="danger subTxt">{{reward?.ExpiryDate |  date:'dd/MM/yyyy'}}</span></ion-col>

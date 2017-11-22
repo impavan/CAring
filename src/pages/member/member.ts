@@ -364,23 +364,25 @@ export class MemberPage {
 
   }
 
-  memberEdit(){
+  memberEdit() {
   
-    if(this.memberButton == "Edit Profile"){
-      this.isEditable = false;
-      this.memberButton = "Update Profile";
-      this.isCancel = true;
-      this.nameTextBox.setFocus();
+    if (this.memberButton == "Edit Profile") {
+      // this.isEditable = false;
+      // this.memberButton = "Update Profile";
+      // this.isCancel = true;
+      // this.nameTextBox.setFocus();
+      this.navCtrl.push('EditProfilePage');
 
-    }else{
-        // this.alertProvider.presentToast('Thank you we have received your information');
-        this.updateProfile();
-        this.isEditable = true;
-        this.memberButton = "Edit Profile";
-        this.isCancel = false;
-    }
+      // }else{
+      //     // this.alertProvider.presentToast('Thank you we have received your information');
+      //     this.updateProfile();
+      //     this.isEditable = true;
+      //     this.memberButton = "Edit Profile";
+      //     this.isCancel = false;
+      // }
    
-  }
+    }
+  }  
 
   cancelEdit(){
     this.isEditable = true;
