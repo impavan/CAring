@@ -26,7 +26,7 @@ export class RewardsPage {
   auth: any;
   offerdata: any = [];
   isDataLoaded: boolean = false;
-  member: any = "My Rewards";
+  member: any = "My Wallet";
   memberDetails:any="New"
   redeemedRewards: any = [];
   _newRedeemedList: any = [];
@@ -52,6 +52,8 @@ export class RewardsPage {
 
   ionViewWillEnter() {
     if(!this.isDataLoaded)
+    this.loadMyWallet();
+    console.log("jhettttttttttttt");
     this.fetchAllExperiences();
     this.auth = localStorage.getItem('auth_token')
     this.events.publish('changeIcon', "RewardsPage");

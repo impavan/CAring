@@ -37,6 +37,7 @@
                 <div *ngIf="_auth" class="myPointsContainer">
                     <p class="urPoints">Your Points:
                         <strong>{{_totalAvailablePoints}}</strong>
+                        <button ion-button value="redeem" class="mt20" (click)="gotoRewards()">Redeem</button>
 
                     </p>
                     <section>
