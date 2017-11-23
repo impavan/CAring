@@ -263,64 +263,7 @@ export class MemberPage {
   }
 
 
-  updateProfile(){
-
-    this.userData =
-      {
-        fname: this._userName,
-        email: this._emailId,
-        old_email: this._oldemailId,
-        mobile: this._mobileNum,
-        externalId: this._externalId || ''
-      }
-
-       this.loaderProvider.presentLoadingCustom();
-
-     this.userProvider.updateProfile(this.userData).subscribe(data => {
-
-    
-      if (data[0].code == 200) {
-
-        this.alertProvider.presentToast(data[0].message);
-
-        this.userProvider.getMyProfile().subscribe(data => {
-
-          if (data[0].code == 200) {
-
-            this.loaderProvider.dismissLoader();
-            this._userName = data[0].customerdata.customer[0].firstname;
-            this._emailId = data[0].customerdata.customer[0].email;
-            this.authProvider.setUser(data[0].customerdata);
-            localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-            this.authProvider.setHeader();
-            this.events.publish('user:login', true);
-
-          }
-         else {
-
-            this.loaderProvider.dismissLoader();
-            this.alertProvider.presentToast(data[0].message);
-          }
-
-        }, err => {
-
-          this.loaderProvider.dismissLoader();
-          this.exceptionProvider.excpHandler(err);
-
-        })
-      }  else {
-        this.loaderProvider.dismissLoader();
-        this.alertProvider.presentToast(data[0].message);
-        this.cancelEdit();
-      }
-
-    }, err => {
-
-      this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err);
-    });
-  }
-
+  
 
   getRedeemed(exp) {
    
@@ -393,6 +336,6 @@ export class MemberPage {
   }
 
   gotoRewards(){
-    this.navCtrl.setRoot("RewardsPage");
+    this.navCtrl.setRoot("RewardsPage",{selectTab:'Redemption'});
   }
 }

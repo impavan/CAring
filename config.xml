@@ -97,4 +97,5 @@
     </plugin>
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.0.7" />
     <plugin name="cordova-plugin-webengage" spec="0.0.4" />
+    <engine name="android" spec="~6.2.3" />
 </widget>

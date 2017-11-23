@@ -71,6 +71,8 @@ export class AuthProvider {
     return this.userObj.customer[0].firstname;
   }
 
+
+
     // returns externalId
   getExternalId(){
     return this.userObj.customer[0].external_id;

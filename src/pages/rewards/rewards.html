@@ -6,17 +6,17 @@
 <ion-content class="mainCont">
     <ion-toolbar>
         <ion-segment [(ngModel)]="member" color="secondary">
-                <ion-segment-button value="My Wallet">
+                <ion-segment-button value="Rewards">
                         Rewards
                     </ion-segment-button>
-                <ion-segment-button value="My Rewards" (click)="fetchAllExperiences()">
+                <ion-segment-button value="Redemption" (click)="fetchAllExperiences()">
                         Redemption
                 </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 
     <div [ngSwitch]="member">
-        <ion-list *ngSwitchCase="'My Rewards'">
+        <ion-list *ngSwitchCase="'Redemption'">
             <div class="rewardsContainer">
                 <div class="rewardsCards">
                     <!--<article class="title">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </ion-list>
-        <ion-list *ngSwitchCase="'My Wallet'">
+        <ion-list *ngSwitchCase="'Rewards'">
 
             <div *ngIf="auth" class="subSegmentOut">
                 <ion-toolbar>
