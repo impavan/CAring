@@ -115,6 +115,49 @@ h1 {
     }
 }
 
+.item-radio-checked.item-md ion-label {
+    color:$cp-black-color;
+}
+.radio-md .radio-checked{
+    border-color: $btn-default;
+}
+.radio-md .radio-inner{
+    background-color: $btn-default;
+}
+.alert-md [aria-checked=true] .alert-radio-icon{
+     border-color: $btn-default;
+}
+.alert-md .alert-radio-inner{
+    background-color: $btn-default;
+}
+.alert-md [aria-checked=true] .alert-radio-label{
+    color:$btn-default;
+}
+.alert-md .alert-button{
+    color:$btn-default;
+}
+.item-input-has-focus .label-md[stacked], .input-has-focus .label-md[stacked], .item-input-has-focus .label-md[floating], .input-has-focus .label-md[floating]{
+    color: $cp-black-color;
+}
+.label-md[stacked] {
+    font-size: 1.5rem;
+}
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+    border-bottom-color: #e4e4e4;
+    box-shadow: inset 0 1px 0 0 #e4e4e4;
+}
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opt.picker-opt-selected{
+     color:$btn-default;
+}
+.picker-md .picker-button, .picker-md .picker-button.activated{
+     color:$btn-default;
+}
+
+
 
 /*
 ============== Custom Ionic Style =================*/

@@ -1,4 +1,4 @@
-import { ACTIVATE_VOUCHER } from '../../url';
+import { ACTIVATE_VOUCHER, UPDATE_PROFILE} from '../../url';
 import { BASE_URL, BRAND_ID } from '../../config';
 import { Platform, Events } from 'ionic-angular';
 import { Http, Response } from '@angular/http';
@@ -51,7 +51,29 @@ export class ProfileProvider {
     return this.http.get(BASE_URL + VOUCHERS, { headers: this.authProvider.getHeader() })
       .do((res: Response) => res)
       .map((res: Response) => res.json());
-  }
+    }
+
+updateProfile(userdata) {
+
+      let data = {
+      
+      first_name: userdata.firstname,  
+      lastname:userdata.lastname,    
+      email:userdata.email,
+      old_email:userdata.old_email?userdata.old_email:userdata.email,
+      mobile:userdata.mobile,
+      BrandURLID:BRAND_ID,
+      externalId:userdata.externalId,
+      custom_fields:[]
+      }
+      
+    data.custom_fields = userdata.customFields[0];
+    //   let body = data;
+      return this.http
+      .post(BASE_URL + UPDATE_PROFILE, data, { headers: this.authProvider.getHeader() })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json());
+  }  
 
     //App rating 
     // RateMyApp() {

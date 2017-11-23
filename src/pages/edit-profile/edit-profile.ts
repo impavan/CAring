@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
+import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -24,25 +25,30 @@ export class EditProfilePage {
   profileData: any = {
     customFields: []
   };
-  customFields: any = {};
+  customFields: any = {
+    mobile_validated:'Yes'
+  };
   userData: any = {};
   countries: any = ['Australia', 'Bhutan', 'China', 'Denmark', 'Hong Kong', 'India', 'Indonesia', 'Malaysia', 'Maldives', 'Myanmar','Namibia','Nepal','North Korea','Philippines','Singapore','Thailand','Turkey','United States of America','Others'];
   incomeslab: any = ['0-2.5K', '2.5K-5K', '5K-7.5K', '7.5K-10K', '10K and above'];
   language: any = ['Bahasa Malaysia', 'Chinese', 'English'];
   occupation: any = ['Entrepreneur / Own business', 'Homemaker', 'Permanent employment', 'Unemployed / Contract', 'Others'];
   race: any = ['Chinese', 'Malay', 'Indian', 'Others'];
-  ageGroup: any = ['Below 20', '21 - 30', '31 - 40', '41 - 50', '51 - 60', 'Above 60'];
+  ageGroup: any = ['Below 20', '21-30', '31-40', '41-50', '51-60', 'Above 60'];
   
 
 
-  constructor(public events:Events,
-              public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(public  events:Events,
+              public  navParams: NavParams,
+              public  navCtrl: NavController,
+              private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
               private loaderProvider: LoaderProvider,
-              private userProvider:UserdataProvider,
-              private authProvider: AuthProvider,
-              private exceptionProvider:ExceptionHandlerProvider) {
+              private userProvider: UserdataProvider,
+              private profileProvider:ProfileProvider,
+              private exceptionProvider: ExceptionHandlerProvider) {
+    
+            this.authProvider.setHeader();
   }
 
   ionViewDidLoad() {
@@ -54,37 +60,47 @@ export class EditProfilePage {
     
   }
 
-  upadateProfiles() {
-    
-    console.log(this.profileData);
-    console.log(this.customFields);
-
-  }
+  
 
 
   getMyBasicDetails() {
     
     this.profileData.firstname = this.authProvider.getUserFirstName();
-    this.profileData.lastname = this.authProvider.getUserLastName();
+    this.profileData.lastname = this.authProvider.getUserLastName() || '';
     this.profileData.mobile = this.authProvider.getUserMobileNo();
     this.profileData.email = this.authProvider.getUserEmailId();
+    this.profileData.externalId = this.authProvider.getExternalId() || '';
+    this.customFields.ic_number = this.authProvider.getUserNRIC();
+    this.customFields.birthday = this.authProvider.getUserBirthday();
+    this.customFields.gender = this.authProvider.getUserGender();
+    this.customFields.age_group = this.authProvider.getUserAgeGroup();
+    this.customFields.address = this.authProvider.getUserAddress();
+    this.customFields.city = this.authProvider.getUserCity();
+    this.customFields.pincode = this.authProvider.getUserPostcode();
+    this.customFields.countryof_origin = this.authProvider.getUserCountryOfOrigin();
+    this.customFields.incomeslab = this.authProvider.getUserHouseholdIncome();
+    this.customFields.race = this.authProvider.getUserRace();
+    this.customFields.working = this.authProvider.getUserWorkingStatus();
+    this.customFields.occupation = this.authProvider.getUserOccupation();
+    this.customFields.preferred_language = this.authProvider.getUserLanguage();
+    
+    
+    
+
 
   }
 
-  updateProfile(){
+  updateProfile() {
+    
+    let customfield = this.formCustomField(this.customFields);
 
-    this.userData =
-      {
-        // fname: this._userName,
-        // email: this._emailId,
-        // old_email: this._oldemailId,
-        // mobile: this._mobileNum,
-        // externalId: this._externalId || ''
-      }
+    console.log(customfield);
 
+    this.profileData.customFields.push(customfield);
+     
        this.loaderProvider.presentLoadingCustom();
 
-     this.userProvider.updateProfile(this.userData).subscribe(data => {
+     this.profileProvider.updateProfile(this.profileData).subscribe(data => {
 
     
       if (data[0].code == 200) {
@@ -96,12 +112,11 @@ export class EditProfilePage {
           if (data[0].code == 200) {
 
             this.loaderProvider.dismissLoader();
-            // this._userName = data[0].customerdata.customer[0].firstname;
-            // this._emailId = data[0].customerdata.customer[0].email;
             this.authProvider.setUser(data[0].customerdata);
             localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
             this.authProvider.setHeader();
             this.events.publish('user:login', true);
+            this.getMyBasicDetails();
 
           }
          else {
@@ -128,6 +143,20 @@ export class EditProfilePage {
       this.exceptionProvider.excpHandler(err);
     });
   }
+
+
+  formCustomField(customField) {
+   
+
+    return Object.keys(customField).map((key) => {
+      let obj = {
+        name: key,
+        value: customField[key],
+        type:'string'
+      }
+      return obj;
+    });    
+}  
 
 
 

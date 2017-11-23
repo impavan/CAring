@@ -44,7 +44,7 @@ export class StoreLocatorPage {
               private geolocation: Geolocation,
               private launchNavigator: LaunchNavigator, private elRef: ElementRef) {
     
-    this.instoreData = navParams.get('instore') || '';
+            this.instoreData = navParams.get('instore') || '';
     
    
             
@@ -265,9 +265,7 @@ export class StoreLocatorPage {
   onInput(event) {
     
     let val = event.target.value;
-
     if (this._searchKey) {
-     
       this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.storeDescription.toLowerCase().indexOf(val.toLowerCase()) > -1) );
    }
     else if (!this._searchKey) {
@@ -279,9 +277,10 @@ export class StoreLocatorPage {
   }
 
 
-   onInStoreInput(loc) {
+  onInStoreInput(loc) {
+     
      this._searchKey = loc;
-    let val = this._searchKey;
+      let val = this._searchKey;
       this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1));
       if (this._newFilteredList)
         this.setMarker(this._newFilteredList[0]);  
@@ -322,7 +321,8 @@ export class StoreLocatorPage {
 
         .subscribe(res=>{
 
-            
+          console.log(res);
+          console.log(res.storesWithDistance);
               this.locationList  = res.storesWithDistance;
               this.updatedLocationList = this.locationList;
               this._filterList = this.locationList;

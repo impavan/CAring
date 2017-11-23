@@ -134,6 +134,11 @@ export class MyApp {
 
   // }
 
+  gotoLogin() {
+    this.nav.setRoot("LoginPage");
+    this.LoginModal.close();
+    
+}  
   noConnectionEvent(){
 
     this.events.subscribe("noconnection", data => {
