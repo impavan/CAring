@@ -49,6 +49,7 @@ export class RegistrationPage {
                           this.registerData = {
                               
                               fname: this._existingCustomerData[0].customerdata.customer[0].firstname || '',
+                              lname: this._existingCustomerData[0].customerdata.customer[0].lastname || '',
                               email: this._existingCustomerData[0].customerdata.customer[0].email || '',
                               mobile: this.phoneNum,
                               externalId: this._existingCustomerData[0].customerdata.customer[0].external_id || '',
@@ -60,6 +61,7 @@ export class RegistrationPage {
                           this.registerData = {
                             
                               fname:'',
+                              lname:'',
                               email:'',
                               mobile: this.phoneNum,
                               externalId:'',

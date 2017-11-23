@@ -13,8 +13,12 @@
                             <ion-input type="text" readonly value="{{alteredPhoneNum}}"></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-label fixed>Name</ion-label>
-                            <ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Enter Name"></ion-input>
+                            <ion-label fixed>First Name</ion-label>
+                            <ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Enter First Name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label fixed>Last Name</ion-label>
+                            <ion-input type="text" [(ngModel)]="registerData.lname" placeholder="Enter Last Name"></ion-input>
                         </ion-item>
                         <ion-item>
                             <ion-label>E-mail</ion-label>
