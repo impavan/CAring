@@ -6,17 +6,17 @@
 <ion-content class="mainCont">
     <ion-toolbar>
         <ion-segment [(ngModel)]="member" color="secondary">
-                <ion-segment-button value="My Wallet">
+                <ion-segment-button value="Rewards">
                         Rewards
                     </ion-segment-button>
-                <ion-segment-button value="My Rewards" (click)="fetchAllExperiences()">
+                <ion-segment-button value="Redemption" (click)="fetchAllExperiences()">
                         Redemption
                 </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 
     <div [ngSwitch]="member">
-        <ion-list *ngSwitchCase="'My Rewards'">
+        <ion-list *ngSwitchCase="'Redemption'">
             <div class="rewardsContainer">
                 <div class="rewardsCards">
                     <!--<article class="title">
@@ -61,16 +61,16 @@
                     <section *ngIf="offerdata.length <= 0">
                         <div class="beforeLogin">
                             <i class="imgOut">
-            <img src="assets/img/my_rewards.png" />
-          </i>
+                            <img src="assets/img/my_rewards.png" />
+                            </i>
                             <p>Stay Tuned!
-                                <br/>Exciting offers coming soon!</p>
+                            <br/>Exciting offers coming soon!</p>
                         </div>
                     </section>
                 </div>
             </div>
         </ion-list>
-        <ion-list *ngSwitchCase="'My Wallet'">
+        <ion-list *ngSwitchCase="'Rewards'">
 
             <div *ngIf="auth" class="subSegmentOut">
                 <ion-toolbar>
@@ -95,7 +95,7 @@
                     <div class="newContainer" *ngIf="_newReward.length > 0 && auth">
                         <ion-card>
                             <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
-                                <div class="content" *ngIf="reward.RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
+                                <div class="content" *ngIf="reward.Cap_RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
                                     <article>
                                         <ion-grid>
                                             <ion-row class="first">
@@ -124,7 +124,7 @@
                     <div class="newContainer" *ngIf="_usedReward.length > 0 && auth">
                         <ion-card style="padding-top:15px;">
                             <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
-                                <div class="content" *ngIf="reward.RedeemStatus == 1">
+                                <div class="content" *ngIf="reward.Cap_RedeemStatus == 1">
                                     <article>
                                         <ion-grid>
                                             <ion-row class="first">
@@ -155,7 +155,7 @@
                     <div class="newContainer" *ngIf="_expiredReward.length > 0 && auth">
                         <ion-card>
                             <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
-                                <div class="content" *ngIf="reward.RedeemStatus == 0 && currentDate > reward.ExpiryDate">
+                                <div class="content" *ngIf="reward.Cap_RedeemStatus == 0 && currentDate > reward.ExpiryDate">
                                     <article>
                                         <ion-grid>
                                             <ion-row class="first">

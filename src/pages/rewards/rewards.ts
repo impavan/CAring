@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, Events } from 'ionic-angular';
+import { IonicPage, NavController, Events, NavParams } from 'ionic-angular';
 import { BASE_URL, BRAND_ID, IMAGE_URL } from '../../config';
 import JsBarcode from 'jsbarcode';
 import moment from 'moment';
@@ -24,9 +24,10 @@ export class RewardsPage {
   @ViewChild('barcode') barcode: ElementRef;
   IMG_URL = IMAGE_URL;
   auth: any;
+  selectTab: any;
   offerdata: any = [];
   isDataLoaded: boolean = false;
-  member: any = "My Wallet";
+  member: any = "Rewards";
   memberDetails:any="New"
   redeemedRewards: any = [];
   _newRedeemedList: any = [];
@@ -36,7 +37,8 @@ export class RewardsPage {
   isWalletLoaded: boolean = false;
   currentDate:any = moment().format('YYYY-MM-DD');
 
-  constructor(public events:Events,
+  constructor(public events: Events,
+              public navParams:NavParams,  
               public navCtrl: NavController,  
               private loaderProvider: LoaderProvider, 
               private rewardsProvider: RewardsProvider, 
@@ -45,6 +47,12 @@ export class RewardsPage {
               private authProvider:AuthProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
+                
+              this.selectTab = navParams.get('selectTab') || '';
+              if (this.selectTab) {
+                this.member = this.selectTab;
+                this.fetchAllExperiences();
+              }
               
   }
 
@@ -190,36 +198,36 @@ export class RewardsPage {
   
    getNewRewardsList() {
     
-    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
+    this._newReward = this.redeemedRewards.filter(data => data.Cap_RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
 
   }
 
   getUsedRewardList() {
     
-    this._usedReward = this.redeemedRewards.filter(data => data.RedeemStatus == 1);
+    this._usedReward = this.redeemedRewards.filter(data => data.Cap_RedeemStatus == 1);
 
   }
 
   getExpiredList() {
     
-    this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
+    this._expiredReward = this.redeemedRewards.filter(data => data.Cap_RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
 
   }
 
     getRedeemed(exp) {
    
-    return this._newReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate <= e.ExpiryDate).length;
+    return this._newReward.filter(e => e.ExperienceId == exp && e.Cap_RedeemStatus == 0 && this.currentDate <= e.ExpiryDate).length;
 
   }
 
    getUsedVouchersCount(exp) {
 
-    return this._usedReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 1).length;
+    return this._usedReward.filter(e => e.ExperienceId == exp && e.Cap_RedeemStatus == 1).length;
 
    }
   
    getExpiredVoucherCount(exp) {
-    return this._expiredReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
+    return this._expiredReward.filter(e => e.ExperienceId == exp && e.Cap_RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
    }
   
     goto(page, exp) {

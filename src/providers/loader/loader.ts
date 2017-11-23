@@ -39,6 +39,7 @@ export class LoaderProvider {
   presentBackOptions() {
     this.platform.registerBackButtonAction(() => {
       let nav = this.appCtrl.getActiveNav();
+      console.log(nav);
       if (nav.canGoBack()) { //Can we go back?
         nav.pop();
       } else {

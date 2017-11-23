@@ -39,8 +39,11 @@ this.launchNavigator.navigate([loc.storelocation.x, loc.storelocation.y])
 
     
 }
-gotoLocationPage(){
-  this.navCtrl.push('StoreLocatorPage');
+  gotoLocationPage(storename) {
+
+    console.log(storename);
+    this.navCtrl.push('StoreLocatorPage', { instore: storename });
+    
 }
 
 

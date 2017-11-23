@@ -8,6 +8,7 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
+import { PushProvider } from '../../providers/push/push'
 
 @IonicPage()
 @Component({
@@ -34,6 +35,7 @@ export class RegistrationPage {
               private loaderProvider: LoaderProvider,
               private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
+              private pushProvider:PushProvider,
               private userProvider: UserdataProvider,
               private events: Events) {
     
@@ -209,7 +211,7 @@ export class RegistrationPage {
     this.authProvider.setAuthToken(data[0].auth_key);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-          // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+    // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
     // this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
     this.authProvider.setUserLoggedIn(true);
     this.authProvider.setHeader();
