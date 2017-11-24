@@ -89,7 +89,7 @@ page-store-locator {
                 padding: 2px 0 0 0;
             }
             .iconsOut{
-                margin: 20px 0 0 0;
+                margin: 23px 0 0 0;
                 .phoneIcon{
                     font-size: 22px;
                     color: #000;
@@ -121,6 +121,18 @@ page-store-locator {
         .favIcon {
             font-size: 21px;
             padding: 2px 0 0 0;
+        }
+        .iconsOut{
+            margin: 23px 0 0 0;
+            .phoneIcon{
+                font-size: 22px;
+                color: #000;
+                margin: 10px 0 0 0;
+                display: block;
+            }
+            .locatorIcon{
+                font-size: 22px;
+            }
         }
     }
     .searchbar-md {
