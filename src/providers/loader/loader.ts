@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, Platform, App } from 'ionic-angular';
+import { LoadingController, Platform, AlertController,App } from 'ionic-angular';
+
 import 'rxjs/add/operator/map';
 
 // Import Providers.
@@ -12,7 +13,8 @@ export class LoaderProvider {
   constructor(private loadingCtrl: LoadingController, 
     private platform: Platform, 
     private appCtrl: App, 
-    private alertCtrl: AlertProvider) {
+    private alertCtrl: AlertProvider,
+    private alert:AlertController) {
     
   }
 
@@ -43,15 +45,40 @@ export class LoaderProvider {
       if (nav.canGoBack()) { //Can we go back?
         nav.pop();
       } else {
-        if (!this.backPressed) {
-          this.backPressed = true;
-          this.alertCtrl.presentToast('Double Tap to exit')
-          setTimeout(() => this.backPressed = false, 2000)
-          return;
-        } else {
-          this.platform.exitApp();
-        }
+
+        let exitalert  = this.alert.create({
+            title: 'Exit App?',
+            enableBackdropDismiss: false,
+            cssClass: '',
+            message: 'Are you sure you want to exit the app?',
+            buttons: [{
+              text: 'Cancel',
+              cssClass: '',
+              handler: () => {
+                // console.log("Cancel clicked");
+                exitalert.dismiss();
+              }
+            }, {
+              text: 'Ok',
+              cssClass: '',
+              handler: () => {
+                 exitalert.dismiss();
+                this.platform.exitApp();
+              }
+            }]
+          });
+          exitalert.present();
+
+        // if (!this.backPressed) {
+        //   this.backPressed = true;
+        //   this.alertCtrl.presentToast('Double Tap to exit')
+        //   setTimeout(() => this.backPressed = false, 2000)
+        //   return;
+        // } else {
+        //   this.platform.exitApp();
+        // }
       }
     });
   }
+
 }

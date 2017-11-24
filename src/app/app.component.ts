@@ -83,9 +83,8 @@ export class MyApp {
       this.splashScreen.hide();
       this.noConnectionEvent();
       this.notLoggedIn();
+      this.pushProvider.pushEvent();
     });
-    this.pushProvider.pushEvent();
-
   }
 
   openPage(page) {
