@@ -41,7 +41,8 @@ export class MyAccountPage {
     
   
     this.navCtrl.setRoot("LoginPage").then(() => {
-      
+    
+    localStorage.removeItem('favouriteList');
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
     this.pushProvider.logoutWebengage();

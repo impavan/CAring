@@ -87,8 +87,6 @@ export class EditProfilePage {
     
     
     
-
-
   }
 
   updateProfile() {
@@ -126,11 +124,7 @@ export class EditProfilePage {
     
     else {
       
-     
-    
       let customfield = this.formCustomField(this.customFields);
-
-      console.log(customfield);
 
       this.profileData.customFields.push(customfield);
      
@@ -172,7 +166,7 @@ export class EditProfilePage {
         } else {
           this.loaderProvider.dismissLoader();
           this.alertProvider.presentToast(data[0].message);
-          // this.cancelEdit();
+         
         }
 
       }, err => {
