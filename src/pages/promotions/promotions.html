@@ -18,7 +18,7 @@
                 </ion-row>
             </article>
             <ion-row>
-                <ion-col col-md-6 col-sm-12 *ngFor="let promotion of _promotionList" clickable (click)="gotoPromotionDetails(promotion)">
+                <ion-col col-sm-6 col-xs-6 *ngFor="let promotion of _promotionList" clickable (click)="gotoPromotionDetails(promotion)">
                     <ion-card class="figWidget">
                         <figure>
                             <img src="{{promotion?.thumbnailimage}}" />

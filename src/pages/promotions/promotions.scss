@@ -103,3 +103,21 @@ page-promotions {
         }
     }
 }
+
+@media (max-width: 480px){
+    .promotionsContainer {
+        .figWidget{
+            figure{
+                height: 100px !important;
+            }
+            .card-title{
+                font-size: 16px;
+            }
+            button{
+                font-size: 13px !important;
+                width: 100% !important;
+                font-weight: normal !important;
+            }
+        } 
+    }
+}

@@ -71,6 +71,7 @@ page-happenings {
                 }
             }
         }
+
     }
     .pdadj {
         padding: 0 15px 0px 10px;
@@ -106,5 +107,22 @@ page-happenings {
             display: block !important;
             padding: 10px 0 !important;
         }
+    }
+}
+@media (max-width: 480px){
+    .happeningsContainer {
+        .figWidget{
+            figure{
+                height: 100px !important;
+            }
+            .card-title{
+                font-size: 16px;
+            }
+            button{
+                font-size: 13px !important;
+                width: 100% !important;
+                font-weight: normal !important;
+            }
+        } 
     }
 }

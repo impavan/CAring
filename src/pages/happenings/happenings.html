@@ -16,7 +16,7 @@
                     </ion-row>
                 </article>
             <ion-row>
-                <ion-col col-md-6 col-sm-12 *ngFor="let hpn of happenList" tappable (click)="gotoHappenDetail(hpn)">
+                <ion-col col-sm-6 col-xs-6 *ngFor="let hpn of happenList" tappable (click)="gotoHappenDetail(hpn)">
                     <ion-card class="figWidget" *ngIf="hpn">
                         <figure>
                             <img src="{{hpn?.eventbanner}}" />

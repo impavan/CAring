@@ -47,8 +47,10 @@
                                     </p>
                                 </ion-col>
                                 <ion-col col-3>
-                                    <ion-icon name="ios-navigate" (click)="gotoStoreDirection(location)"></ion-icon><br/>
-                                     <a href="tel:0{{location?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                                    <div class="iconsOut">
+                                        <ion-icon name="ios-navigate" class="locatorIcon" (click)="gotoStoreDirection(location)"></ion-icon><br/>
+                                        <a href="tel:0{{location?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                                    </div>
                                 </ion-col>
                             </ion-row>
                         </article>
