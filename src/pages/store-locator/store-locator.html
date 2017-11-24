@@ -42,10 +42,11 @@
                                 <ion-col col-11>
                                     <span>{{location?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{location?.storeDescription}}<br/><label *ngIf="location?.mobile"> Contact: {{location?.mobile}}</label><br/><label *ngIf="location?.timing">{{location?.timing}}</label>
+                                        {{location?.storeDescription}}<br/><label *ngIf="location?.mobile"> Contact: 0{{location?.mobile}}</label><br/><label *ngIf="location?.timing">{{location?.timing}}</label>
                                         <br/>
-                                        <!--Fri-Sat 10:00AM - 10:30PM-->
                                     </p>
+                                    <ion-icon name="ios-navigate" (click)="gotoStoreDirection(location)"></ion-icon>
+                                     <a href="tel:0{{location?.mobile}}"><ion-icon name="md-call"></ion-icon></a>
                                 </ion-col>
                             </ion-row>
                         </article>
@@ -75,6 +76,8 @@
                                         {{fav?.storeDescription}}<br/><label *ngIf="fav?.mobile"> Contact: {{fav?.mobile}}</label><br/><label *ngIf="fav?.timing">{{fav?.timing}}</label>
                                         <br/>
                                     </p>
+                                    <ion-icon name="ios-navigate" (click)="gotoStoreDirection(fav)"></ion-icon>
+                                     <a href="tel:0{{fav?.mobile}}"><ion-icon name="md-call"></ion-icon></a>
                                 </ion-col>
                             </ion-row>
                         </article>
@@ -101,15 +104,17 @@
                             <ion-icon name="pin" class="alert" tappable (click)="gotoStoreDirection(filter)"></ion-icon>
                         </ion-col>
                         <ion-col col-11>
-                            <span>{{filter?.km | number : '1.2-2'}} Km away</span>
+                            <span>{{filter?.distance | number : '1.2-2'}} Km away</span>
                             <p>
                                 {{filter?.storeDescription}}<br/><label *ngIf="filter?.mobile">Contact: {{filter?.mobile}}</label><br/><label *ngIf="filter?.timing"> {{filter?.timing}}</label>
                                 <br/>
                                 <!--Fri-Sat 10:00AM - 10:30PM-->
                             </p>
+                            <ion-icon name="ios-navigate" (click)="gotoStoreDirection(filter)"></ion-icon>
+                            <a href="tel:0{{filter?.mobile}}"><ion-icon name="md-call"></ion-icon></a>
                         </ion-col>
                     </ion-row>
-                </article><
+                </article>
             </ion-grid>
         </div>
     </div>

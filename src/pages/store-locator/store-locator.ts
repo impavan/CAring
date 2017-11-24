@@ -144,8 +144,8 @@ export class StoreLocatorPage {
            console.log("lat",marker.lat)
            let contentString = '<div id="content" style="width:150px !important;">' +
             '<div id="siteNotice">' +
-             '<p><b>' + marker.title + '<br /></b>,' + marker.address + '<img class="store loacator" src="assets/img/locator.png" (click)="gotoStoreDirection2('+marker.lat+','+marker.lng+')" style="height:15px; width:18px;padding-left:5px"/>' + '</p>' +
-             '<p *ngIf="' +marker.mobile + '">' + marker.mobile + '<a *ngIf="'+marker.mobile+'" href="tel:'+marker.mobile+'">' + '<img *ngIf="' +marker.mobile + '" class="phone" src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>' + '</p>'       
+             '<p><b>' + marker.title + '<br /></b>' + marker.address  +
+             '<p *ngIf="' +marker.mobile + '">' + marker.mobile  + '</p>'       
           '</div>' + '</div>';
           console.log(marker);
           infowindow.setContent(contentString);
@@ -158,6 +158,9 @@ export class StoreLocatorPage {
      
     }
   
+  // '<img class="store loacator" src="assets/img/locator.png" (click)="gotoStoreDirection2('+marker.lat+','+marker.lng+')" style="height:15px; width:18px;padding-left:5px"/>' + '</p>'  
+
+  // '<a *ngIf="'+marker.mobile+'" href="tel:'+marker.mobile+'">' + '<img *ngIf="' +marker.mobile + '" class="phone" src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>'  
 
 
     // let latA = new google.maps.LatLng(12.914142,74.855957);
@@ -281,7 +284,7 @@ export class StoreLocatorPage {
      
      this._searchKey = loc;
       let val = this._searchKey;
-      this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1));
+      this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.storeDescription.toLowerCase().indexOf(val.toLowerCase()) > -1));
       if (this._newFilteredList)
         this.setMarker(this._newFilteredList[0]);  
     

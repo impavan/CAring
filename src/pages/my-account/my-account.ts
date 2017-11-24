@@ -39,12 +39,16 @@ export class MyAccountPage {
   }
   logout() {
     
+  
+    this.navCtrl.setRoot("LoginPage").then(() => {
+      
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
     // this.pushProvider.logoutWebengage();
     this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
-    this.navCtrl.setRoot("LoginPage");
+    })
+      
 
   }
   

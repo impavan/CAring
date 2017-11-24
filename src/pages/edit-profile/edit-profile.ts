@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { EMPTY } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -91,57 +92,85 @@ export class EditProfilePage {
   }
 
   updateProfile() {
+
+     if( this.customFields.lastname== EMPTY) {
+      this.alertProvider.presentToast('Enter Last name');
+      return;
+     }
+     else if (this.customFields.birthday == EMPTY) {
+       this.alertProvider.presentToast('Enter Date of Birth');
+       return;
+     } 
+    else if( this.customFields.gender== EMPTY) {
+      this.alertProvider.presentToast('Enter Gender');
+      return;
+    } else if (this.customFields.ic_number == EMPTY){
+      this.alertProvider.presentToast('Enter NRIC number');
+    } else if (this.customFields.city ){
+      this.alertProvider.presentToast("Enter City");
+    } else if (this.customFields.pincode){
+      this.alertProvider.presentToast("Enter Pincode");
+    }else if (this.customFields.race){
+      this.alertProvider.presentToast("Enter Race");
+    }
     
-    let customfield = this.formCustomField(this.customFields);
-
-    console.log(customfield);
-
-    this.profileData.customFields.push(customfield);
+    else {
+      
      
-       this.loaderProvider.presentLoadingCustom();
+    
+      let customfield = this.formCustomField(this.customFields);
 
-     this.profileProvider.updateProfile(this.profileData).subscribe(data => {
+      console.log(customfield);
+
+      this.profileData.customFields.push(customfield);
+     
+      this.loaderProvider.presentLoadingCustom();
+
+      this.profileProvider.updateProfile(this.profileData).subscribe(data => {
 
     
-      if (data[0].code == 200) {
+        if (data[0].code == 200) {
 
-        this.alertProvider.presentToast(data[0].message);
+          this.alertProvider.presentToast(data[0].message);
 
-        this.userProvider.getMyProfile().subscribe(data => {
+          this.userProvider.getMyProfile().subscribe(data => {
 
-          if (data[0].code == 200) {
+            if (data[0].code == 200) {
+
+              this.loaderProvider.dismissLoader();
+              this.authProvider.setUser(data[0].customerdata);
+              localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+              this.authProvider.setHeader();
+              this.events.publish('user:login', true);
+              this.getMyBasicDetails();
+              this.alertProvider.presentToast("Profile Updated successfully");
+              this.navCtrl.setRoot("MemberPage");
+
+            }
+            else {
+
+              this.loaderProvider.dismissLoader();
+              this.alertProvider.presentToast(data[0].message);
+            }
+
+          }, err => {
 
             this.loaderProvider.dismissLoader();
-            this.authProvider.setUser(data[0].customerdata);
-            localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-            this.authProvider.setHeader();
-            this.events.publish('user:login', true);
-            this.getMyBasicDetails();
+            this.exceptionProvider.excpHandler(err);
 
-          }
-         else {
-
-            this.loaderProvider.dismissLoader();
-            this.alertProvider.presentToast(data[0].message);
-          }
-
-        }, err => {
-
+          })
+        } else {
           this.loaderProvider.dismissLoader();
-          this.exceptionProvider.excpHandler(err);
+          this.alertProvider.presentToast(data[0].message);
+          // this.cancelEdit();
+        }
 
-        })
-      }  else {
+      }, err => {
+
         this.loaderProvider.dismissLoader();
-        this.alertProvider.presentToast(data[0].message);
-        // this.cancelEdit();
-      }
-
-    }, err => {
-
-      this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err);
-    });
+        this.exceptionProvider.excpHandler(err);
+      });
+    }  
   }
 
 
@@ -156,7 +185,8 @@ export class EditProfilePage {
       }
       return obj;
     });    
-}  
+  }  
+ 
 
 
 
