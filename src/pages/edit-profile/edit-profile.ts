@@ -92,8 +92,11 @@ export class EditProfilePage {
   }
 
   updateProfile() {
-
-     if( this.customFields.lastname== EMPTY) {
+    if( this.customFields.firstname == EMPTY) {
+      this.alertProvider.presentToast('Enter First name');
+      return;
+    }
+     else if( this.customFields.lastname == EMPTY) {
       this.alertProvider.presentToast('Enter Last name');
       return;
      }
@@ -104,13 +107,20 @@ export class EditProfilePage {
     else if( this.customFields.gender== EMPTY) {
       this.alertProvider.presentToast('Enter Gender');
       return;
-    } else if (this.customFields.ic_number == EMPTY){
+    } 
+    else if (this.customFields.ic_number == EMPTY){
       this.alertProvider.presentToast('Enter NRIC number');
-    } else if (this.customFields.city ){
+      return;
+    } 
+    else if (this.customFields.city == EMPTY ){
       this.alertProvider.presentToast("Enter City");
-    } else if (this.customFields.pincode){
+      return;
+    } 
+    else if (this.customFields.pincode == EMPTY){
       this.alertProvider.presentToast("Enter Pincode");
-    }else if (this.customFields.race){
+      return;
+    }
+    else if (this.customFields.race == EMPTY){
       this.alertProvider.presentToast("Enter Race");
     }
     
