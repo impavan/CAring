@@ -92,24 +92,24 @@ export class EditProfilePage {
   }
 
   updateProfile() {
-    if( this.customFields.firstname == EMPTY) {
+    if( this.profileData.firstname == EMPTY) {
       this.alertProvider.presentToast('Enter First name');
       return;
     }
-     else if( this.customFields.lastname == EMPTY) {
+     else if( this.profileData.lastname == EMPTY) {
       this.alertProvider.presentToast('Enter Last name');
       return;
      }
-     else if (this.customFields.birthday == EMPTY) {
-       this.alertProvider.presentToast('Enter Date of Birth');
+     else if (this.customFields.ic_number == EMPTY) {
+       this.alertProvider.presentToast('Enter NRIC number');
        return;
      } 
-    else if( this.customFields.gender== EMPTY) {
-      this.alertProvider.presentToast('Enter Gender');
+    else if( this.customFields.birthday== EMPTY) {
+      this.alertProvider.presentToast('Enter Date of Birth');
       return;
     } 
-    else if (this.customFields.ic_number == EMPTY){
-      this.alertProvider.presentToast('Enter NRIC number');
+    else if (this.customFields.gender == EMPTY){
+      this.alertProvider.presentToast('Enter Gender');
       return;
     } 
     else if (this.customFields.city == EMPTY ){
