@@ -41,11 +41,13 @@ export class MyAccountPage {
     
   
     this.navCtrl.setRoot("LoginPage").then(() => {
+    localStorage.removeItem('favouriteList');
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
     this.pushProvider.logoutWebengage();
     this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
+  
     })
       
   }

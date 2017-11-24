@@ -156,6 +156,7 @@ export class OtpPage {
   }
 
   //go to back page
+  
   goBack() {
     this.navCtrl.pop();
   }
