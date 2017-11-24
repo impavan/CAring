@@ -324,13 +324,11 @@ export class StoreLocatorPage {
 
         .subscribe(res=>{
 
-          console.log(res);
-          console.log(res.storesWithDistance);
               this.locationList  = res.storesWithDistance;
-              this.updatedLocationList = this.locationList;
-              this._filterList = this.locationList;
-              this.addMarkers(this.map, this.locationList);
-              this.loadFavList(this.locationList);
+              this.updatedLocationList = this.locationList.filter(data=>data.latitude!=0 && data.longitude!=0);
+              this._filterList = this.updatedLocationList;
+              this.addMarkers(this.map, this.updatedLocationList);
+              this.loadFavList(this.updatedLocationList);
           
               if (this.instoreData)
                 this.onInStoreInput(this.instoreData);

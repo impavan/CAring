@@ -41,7 +41,6 @@ export class MyAccountPage {
     
   
     this.navCtrl.setRoot("LoginPage").then(() => {
-      
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
     this.pushProvider.logoutWebengage();
@@ -49,7 +48,6 @@ export class MyAccountPage {
     this.alertProvider.presentToast("You have been logged out..!")
     })
       
-
   }
   
 

@@ -74,14 +74,18 @@
                                 <ion-col col-1>
                                     <ion-icon name="pin" tappable class="alert" (click)="gotoStoreDirection(fav)"></ion-icon>
                                 </ion-col>
-                                <ion-col col-11>
+                                <ion-col col-8>
                                     <span>{{ fav?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
                                         {{fav?.storeDescription}}<br/><label *ngIf="fav?.mobile"> Contact: {{fav?.mobile}}</label><br/><label *ngIf="fav?.timing">{{fav?.timing}}</label>
                                         <br/>
                                     </p>
-                                    <ion-icon name="ios-navigate" (click)="gotoStoreDirection(fav)"></ion-icon>
-                                     <a href="tel:0{{fav?.mobile}}"><ion-icon name="md-call"></ion-icon></a>
+                                </ion-col>
+                                  <ion-col col-3>
+                                    <div class="iconsOut">
+                                        <ion-icon name="ios-navigate" class="locatorIcon" (click)="gotoStoreDirection(fav)"></ion-icon><br/>
+                                        <a href="tel:0{{fav?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                                    </div>
                                 </ion-col>
                             </ion-row>
                         </article>
@@ -107,16 +111,20 @@
                         <ion-col col-1>
                             <ion-icon name="pin" class="alert" tappable (click)="gotoStoreDirection(filter)"></ion-icon>
                         </ion-col>
-                        <ion-col col-11>
+                        <ion-col col-8>
                             <span>{{filter?.distance | number : '1.2-2'}} Km away</span>
                             <p>
                                 {{filter?.storeDescription}}<br/><label *ngIf="filter?.mobile">Contact: {{filter?.mobile}}</label><br/><label *ngIf="filter?.timing"> {{filter?.timing}}</label>
                                 <br/>
                                 <!--Fri-Sat 10:00AM - 10:30PM-->
                             </p>
-                            <ion-icon name="ios-navigate" (click)="gotoStoreDirection(filter)"></ion-icon>
-                            <a href="tel:0{{filter?.mobile}}"><ion-icon name="md-call"></ion-icon></a>
                         </ion-col>
+                          <ion-col col-3>
+                                    <div class="iconsOut">
+                                        <ion-icon name="ios-navigate" class="locatorIcon" (click)="gotoStoreDirection(filter)"></ion-icon><br/>
+                                        <a href="tel:0{{filter?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                                    </div>
+                                </ion-col>
                     </ion-row>
                 </article>
             </ion-grid>
