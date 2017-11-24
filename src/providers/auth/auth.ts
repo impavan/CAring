@@ -79,6 +79,8 @@ export class AuthProvider {
   }
 
 
+
+
   //returns user gender
   getUserGender() {
     if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
@@ -98,6 +100,157 @@ export class AuthProvider {
     else
       return '';
   }
+
+  //returns user NRIC
+  getUserNRIC() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let nric = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'ic_number')
+      if (nric && nric.value != null)
+        return nric.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+    //returns user Birthday
+  getUserBirthday() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let birthday = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'birthday')
+      if (birthday && birthday.value != null)
+        return birthday.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+  //returns user Age Group
+  getUserAgeGroup() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let age = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'age_group')
+      if (age && age.value != null)
+        return age.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+  //returns user Address
+  getUserAddress() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let address = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'address')
+      if (address && address.value != null)
+        return address.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+  //returns user Postcode
+  getUserPostcode() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let postcode = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'pincode')
+      if (postcode && postcode.value != null)
+        return postcode.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+  //returns user City
+  getUserCity() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let city = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'city')
+      if (city && city.value != null)
+        return city.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+
+//returns user Country of Origin
+  getUserCountryOfOrigin() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let country = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'countryof_origin')
+      if (country && country.value != null)
+        return country.value;
+      else
+        return '';
+    } else
+      return '';
+  }  
+
+  //returns user Household Income
+  getUserHouseholdIncome() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let income = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'incomeslab')
+      if (income && income.value != null)
+        return income.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+  //returns Working Status
+  getUserWorkingStatus() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let status = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'working')
+      if (status && status.value != null)
+        return status.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+
+  //returns User Race
+  getUserRace() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let race = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'race')
+      if (race && race.value != null)
+        return race.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+
+  //returns User Occupation
+  getUserOccupation() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let occup = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'occupation')
+      if (occup && occup.value != null)
+        return occup.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+
+  //returns User Preferred Language
+  getUserLanguage() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let lang = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'preferred_language')
+      if (lang && lang.value != null)
+        return lang.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+  
+
+
 
   //returns user email id
   getUserId() {

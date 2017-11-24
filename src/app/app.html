@@ -10,7 +10,7 @@
     <ion-header>
         <ion-toolbar color="menu-header">
             <div class="thumbnail">
-                <span *ngIf="!_auth">Log in/ Guest</span>
+                <span tappable menuClose *ngIf="!_auth"(click)="gotoLogin()">Log in/ Guest</span>
                 <span *ngIf="_auth">Hello, {{_userName }}</span>
             </div>
         </ion-toolbar>
@@ -61,7 +61,7 @@
                 <button ion-button class="btn2 cancelBtn" (click)="closeLoginModal()">Cancel</button>
             </ion-col>
             <ion-col col-6>
-                <button ion-button class="btn2" (click)="gotoLogin('LoginPage')">Login/Register</button>
+                <button ion-button class="btn2" (click)="gotoLogin()">Login/Register</button>
             </ion-col>
         </ion-row>
     </ion-grid>
