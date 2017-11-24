@@ -44,7 +44,7 @@ export class MyAccountPage {
       
     localStorage.removeItem('auth_token');
     localStorage.removeItem('phoneNum');
-    // this.pushProvider.logoutWebengage();
+    this.pushProvider.logoutWebengage();
     this.events.publish('user:login', false);
     this.alertProvider.presentToast("You have been logged out..!")
     })
