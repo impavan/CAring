@@ -23,7 +23,7 @@ export class InStorePage {
 
   getInStoreActivities() {
     this.hapenningsProvider.getInStoreActivities().subscribe(res => {
-      this.storeActivityList = res.data;
+      this.storeActivityList = res.data.filter(store=>store.active == true);
     });
   }
 

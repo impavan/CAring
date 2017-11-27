@@ -31,7 +31,7 @@ export class PromotionsPage {
 
   getPromotions() {
     this.hapenningsProvider.getPromotions().subscribe(res => {
-      this._promotionList = res.data;
+      this._promotionList = res.data.filter(promote=>promote.active == true);
       this.loaderProvider.dismissLoader();
     });
   }
