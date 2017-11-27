@@ -36,7 +36,7 @@ export class ProfileProvider {
     }
 
     getUserTransaction() {
-        let GET_TRANSACTION = "/mobile/transactionsummary?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + BRAND_ID;
+        let GET_TRANSACTION = "mobile/transactionsummary?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + BRAND_ID;
         return this.http.get(BASE_URL + GET_TRANSACTION, { headers: this.authProvider.getHeader() })
             .do((res: Response) => res)
             .map((res: Response) => res.json());
@@ -47,7 +47,8 @@ export class ProfileProvider {
     }
 
     getAllRedeemedVouchers() {
-    const VOUCHERS = "/mobile/customervouchers?mobile=" + this.authProvider.getUserMobileNo() + "&lang_code=" + "en";
+        const VOUCHERS = "mobile/customervouchers?mobile=" + this.authProvider.getUserMobileNo() + "&BrandURLID=" + BRAND_ID +
+            "&lang_code=" + "en";
     return this.http.get(BASE_URL + VOUCHERS, { headers: this.authProvider.getHeader() })
       .do((res: Response) => res)
       .map((res: Response) => res.json());

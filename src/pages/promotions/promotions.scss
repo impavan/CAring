@@ -30,7 +30,7 @@ page-promotions {
         }
         .card-md,
         .card-ios {
-            margin: 5px;
+            margin: 8px;
             border-radius: 5px;
             width: calc(100% - 15px);
             figure {
@@ -102,6 +102,14 @@ page-promotions {
             padding: 10px 0 !important;
         }
     }
+
+    [col-sm-6] {
+    padding: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
 }
 
 @media (max-width: 480px){

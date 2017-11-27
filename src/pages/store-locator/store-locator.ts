@@ -108,6 +108,24 @@ export class StoreLocatorPage {
    }).catch((error) => {
     
      console.log('Error getting location', error);
+      let lat = "3.1390";
+      let lng = "101.6869";
+      this.getAllStores(lat, lng, 50);
+     
+      this._myCurrentLocation = {
+      lat:lat,
+      lng:lng,
+      }
+      let latLng = new google.maps.LatLng(lat, lng); 
+
+      
+    let mapOptions = {
+      center: latLng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+     
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions); 
      
     });
   }

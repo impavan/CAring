@@ -36,7 +36,7 @@ export class RewardsProvider {
 
   //get all redeemed vouchers
   getAllRedeemedVouchers() {
-    const VOUCHERS = "mobile/customervouchers?mobile=" + this.authProvider.getUserMobileNo() + "&lang_code=" + EN;
+    const VOUCHERS = "mobile/customervouchers?mobile=" + this.authProvider.getUserMobileNo() + "&BrandURLID=" + BRAND_ID + "&lang_code=" + EN;
     return this.http.get(BASE_URL + VOUCHERS, { headers: this.authProvider.getHeader() })
       .do((res: Response) => res)
       .map((res: Response) => res.json());

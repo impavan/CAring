@@ -24,8 +24,8 @@
                             <img src="{{promotion?.thumbnailimage}}" />
                         </figure>
                         <ion-card-content>
-                            <div class="card-title">{{promotion?.title}}</div>
-                            <p>{{promotion?.shortdescription}}</p>
+                            <div class="card-title">{{promotion?.title | slice:0:16}}</div>
+                            <p>{{promotion?.shortdescription }}</p>
                             <button ion-button>{{promotion?.buttontext}}</button>
                         </ion-card-content>
                     </ion-card>
