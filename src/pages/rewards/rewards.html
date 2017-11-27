@@ -166,7 +166,7 @@
                                                 </ion-col>
                                                 <ion-col col-9>
                                                     <h6>{{reward.Title}}</h6>
-                                                    <span class="danger"> Expired - {{reward.ExpiryDate}} </span>
+                                                    <span> <ion-icon class="iconc-ticket ticketIco"></ion-icon> {{getExpiredVoucherCount(reward?.ExperienceId)}} Expired </span>
                                                 </ion-col>
                                             </ion-row>
                                         </ion-grid>
