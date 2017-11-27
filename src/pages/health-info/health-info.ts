@@ -42,7 +42,7 @@ export class HealthInfoPage {
   getHealthInfo() {
 
     this.hapenningsProvider.getHealthInfo().subscribe(res => {
-      this._healthInfoList = res.data;
+      this._healthInfoList = res.data.filter(health=>health.active == true);
       this.loaderProvider.dismissLoader();
 
     });

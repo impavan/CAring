@@ -41,7 +41,9 @@ export class HappeningsPage {
     this.hapenningsProvider.getHappenings().subscribe(res => {
 
       this.loaderProvider.dismissLoader();
-      this.happenList = res.data;
+      this.happenList = res.data.filter(r=> r.active == true);
+      console.log(res.data);
+      console.log(this.happenList);
 
     });
   }
