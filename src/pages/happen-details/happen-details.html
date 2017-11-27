@@ -18,7 +18,7 @@
             <h6>{{_happenList?.title}}</h6>
             <p><span>Date:</span><label> {{_happenList?.eventdate | date:'dd-MM-yyyy'}}</label></p>
             <p *ngIf="_happenList?.eventtime?.from"><span>Time:</span><label> {{_happenList?.eventtime?.from}} to {{_happenList?.eventtime?.to}}</label></p>
-            <p><span>Venue:</span><label> Caring HQ , Petaling Jaya</label></p>
+            <p><span>Venue:</span><label>{{_happenList?.venue}}</label></p>
         </div>
         
         <div>
