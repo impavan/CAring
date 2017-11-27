@@ -108,6 +108,10 @@ page-happenings {
             padding: 10px 0 !important;
         }
     }
+
+    [col-sm-6] {
+    padding: 0px;
+}
 }
 @media (max-width: 480px){
     .happeningsContainer {
@@ -116,7 +120,7 @@ page-happenings {
                 height: 100px !important;
             }
             .card-title{
-                font-size: 16px;
+                font-size: 13px;
             }
             button{
                 font-size: 13px !important;
