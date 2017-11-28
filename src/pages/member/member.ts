@@ -63,14 +63,11 @@ export class MemberPage {
               private profileProvider: ProfileProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
    
+              this.from = navParams.get('deeplink');
+              if (this.from == 'profile')
+                this.member = 'My Profile'; 
 
-    this.from = navParams.get('from');
-
-    if (this.from == 'purchase') {
-
-          this.member = 'My Wallet';
-    }
-
+    
 
   }
 

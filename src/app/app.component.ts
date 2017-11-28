@@ -3,6 +3,7 @@ import { Nav, Platform,Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Deeplinks } from '@ionic-native/deeplinks';
 
 
 
@@ -12,6 +13,8 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';
 import { PushProvider } from '../providers/push/push';
 import { NetworkProvider } from '../providers/network/network';
+
+declare var webengage;
 
 @Component({
   templateUrl: 'app.html'
@@ -33,6 +36,7 @@ export class MyApp {
     private alertProvider:AlertProvider,
     private screenOrientation: ScreenOrientation,
     public events: Events,
+    public deeplinks:Deeplinks,
     public pushProvider:PushProvider,
     public networkprovider: NetworkProvider) {
 
@@ -66,6 +70,7 @@ export class MyApp {
    
     })
 
+        
   }
       
  
@@ -83,7 +88,29 @@ export class MyApp {
       this.splashScreen.hide();
       this.noConnectionEvent();
       this.notLoggedIn();
-      this.pushProvider.pushEvent();
+      this.pushEvent();
+      // this.deepLinkUrl();
+
+       this.deeplinks.route({
+          'profile': 'MemberPage',
+          '/newrewards': 'RewardsPage',
+          '/happenings': 'HappeningsPage',
+          '/promotions': 'PromotionsPage',
+          '/healthinfo': 'HealthInfoPage',
+          '/instoreactivity': 'InStorePage',
+          '/pointssummary': 'MemberPage',
+          '/myrewards': 'RewardsPage',
+          '/stores': 'StoreLocatorPage'
+        }).subscribe((match) => {
+        // match.$route - the route we matched, which is the matched entry from the arguments to route()
+        // match.$args - the args passed in the link
+        // match.$link - the full link data
+    console.log('Successfully matched route', match);
+  }, (nomatch) => {
+    // nomatch.$link - the full link data
+    console.error('Got a deeplink that didn\'t match', nomatch);
+  });  
+
     });
   }
 
@@ -111,11 +138,7 @@ export class MyApp {
          this.getUserDetails();
   }
 
-  // gotoLogin() {
-    
-  //   this.nav.setRoot("LoginPage");
-    
-  // }
+ 
 
   openSettings() {
     
@@ -123,15 +146,7 @@ export class MyApp {
 
   }
 
-  // logout() {
-    
-  //   localStorage.removeItem('auth_token');
-  //   localStorage.removeItem('phoneNum');
-  //   this.events.publish('user:login', false);
-  //   this.alertProvider.presentToast("You have been logged out..!")
-  //   this.nav.setRoot("LoginPage");
 
-  // }
 
   gotoLogin() {
     this.nav.setRoot("LoginPage");
@@ -158,6 +173,9 @@ export class MyApp {
 
   }
 
+
+
+
   closeNoInternetModal() {
 
       this.NoInternetModal.close();
@@ -171,5 +189,41 @@ export class MyApp {
   closeLoginModal() {
     
     this.LoginModal.close();
+  }
+
+
+  pushEvent() {
+
+    let deepRoute = [
+    
+      { route: 'profile', component: 'MemberPage' },
+      { route: 'newrewards', component: 'RewardsPage' },
+      { route: 'happenings', component: 'HappeningsPage' },
+      { route: 'promotions', component: 'PromotionsPage' },
+      { route: 'healthinfo', component: 'HealthInfoPage' },
+      { route: 'instoreactivity', component: 'InStorePage' },
+      { route: 'pointssummary', component: 'MemberPage' },
+      { route: 'myrewards', component: 'RewardsPage' },
+      { route: 'stores', component: 'StoreLocatorPage' }
+
+    ];
+
+    if (!this.platform.is('cordova')) {
+      console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
+      return;
+    }
+
+    webengage.push.onClick((deeplink, customData) => {
+      
+    console.log("push clicked");
+    console.log(deeplink);
+    console.log(customData);
+    let navdata = deepRoute.filter(data => data.route == deeplink);
+    if (navdata) {
+      this.nav.setRoot(navdata[0].component,{deeplink:navdata[0].route});
+    }  
+  });
+    webengage.engage();
+ 
   }
 }

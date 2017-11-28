@@ -17,7 +17,7 @@
         <div class="container">
             <h6>{{_happenList?.title}}</h6>
             <p><span>Date:</span><label> {{_happenList?.eventdate | date:'dd-MM-yyyy'}}</label></p>
-            <p *ngIf="_happenList?.eventtime?.from"><span>Time:</span><label> {{_happenList?.eventduration}}</label></p>
+            <p *ngIf="_happenList?.eventduration"><span>Time:</span><label> {{_happenList?.eventduration}}</label></p>
             <p><span>Venue:</span><label>{{_happenList?.venue}}</label></p>
         </div>
         

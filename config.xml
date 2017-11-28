@@ -97,5 +97,11 @@
     </plugin>
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.0.7" />
     <plugin name="cordova-plugin-webengage" spec="0.0.4" />
-    <engine name="android" spec="~6.2.3" />
+    <plugin name="ionic-plugin-deeplinks" spec="^1.0.15">
+        <variable name="URL_SCHEME" value="caringapp" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_HOST" value="caring2u.com" />
+        <variable name="ANDROID_PATH_PREFIX" value="/" />
+    </plugin>
+    <engine name="android" spec="~6.3.0" />
 </widget>

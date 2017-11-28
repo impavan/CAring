@@ -9,6 +9,7 @@ import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Deeplinks } from '@ionic-native/deeplinks';
 import { Network } from '@ionic-native/network';
 import { Device } from '@ionic-native/device';
 import { HttpModule } from '@angular/http';
@@ -57,8 +58,8 @@ import { PushProvider } from '../providers/push/push';
     AlertProvider,
     LoaderProvider, AlertProvider,Geolocation,LaunchNavigator,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
-    Camera, AppVersion, ScreenOrientation, Device, NetworkProvider, Network, DeviceProvider, ProfileProvider, InAppBrowser,
-    PushProvider
+    NetworkProvider, DeviceProvider, ProfileProvider, InAppBrowser,
+    PushProvider,Deeplinks
   ]
 })
 export class AppModule { }
