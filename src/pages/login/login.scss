@@ -70,11 +70,18 @@ page-login {
             margin: 20px 0 0 0;
         }
         ion-label[fixed] {
-            width: 135px;
-            min-width: 135px;
+            width: 0;
+            min-width: 0;
+        
         }
         .list-ios>.item-block:first-child {
             border-top: none;
         }
+    }
+    ion-label + ion-input .text-input, 
+    ion-label + ion-textarea .text-input, 
+    ion-label + .input + .cloned-input {
+        margin-left: 0px !important;
+        width: calc(100% - (0px / 2) - 16px) !important;
     }
 }
