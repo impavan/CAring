@@ -46,7 +46,9 @@ $cp-medium-blue-color-x:#3a7dcc;
 ion-app.ios {
     font-family: 'allerbold';
 }
-
+.mt10{
+    margin-top: 10px !important;
+}
 ion-footer {
     border-top: 1px solid #e0e0e0;
     box-shadow: none !important;
@@ -450,6 +452,20 @@ ion-spinner {
     }
     // $cordovaStatusbar.styleColor('black'); $cordovaStatusbar.styleHex('#000');
 }
+.alert-ios [aria-checked=true] .alert-radio-label{
+    color:$btn-default;
+}
+.alert-ios .alert-button{
+    color:$btn-default;
+}
+.alert-ios [aria-checked=true] .alert-radio-inner{
+    border-color:$btn-default;
+}
+
+.radio-ios .radio-checked .radio-inner {
+
+    border-color:$btn-default;
+}
 
 // .list-ios .item-block .item-inner {
 //     border-bottom: 0px solid #c8c7cc;
@@ -463,5 +479,16 @@ ion-spinner {
         flex: 0 0 50%;
         width: 50%;
         max-width: 50%;
+    }
+     
+    @media (max-width: 340px){
+        .headerwithline label {
+            margin-top:20px;
+        }
+        .card-content-ios {
+    padding: 13px 5px 14px;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
     }
 }
