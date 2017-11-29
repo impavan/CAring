@@ -25,7 +25,7 @@ export class PurchaseRewardsPage {
 
   navToOffers() {
     
-    this.navCtrl.setRoot("RewardsPage");
+    this.navCtrl.setRoot("RewardsPage",{deeplink:'myrewards'});
 
   }
 

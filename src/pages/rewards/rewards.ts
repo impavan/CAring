@@ -35,7 +35,8 @@ export class RewardsPage {
   _usedReward: any = [];
   _expiredReward: any = [];
   isWalletLoaded: boolean = false;
-  currentDate:any = moment().format('YYYY-MM-DD');
+  currentDate: any = moment().format('YYYY-MM-DD');
+  from: any;
 
   constructor(public events: Events,
               public navParams:NavParams,  
@@ -49,6 +50,11 @@ export class RewardsPage {
     
                 
               this.selectTab = navParams.get('selectTab') || '';
+              this.from = navParams.get('deeplink');
+              if (this.from =='newrewards' || this.from == 'myrewards') {
+                  this.member = 'Rewards';
+                  this.fetchAllExperiences();
+                }
               if (this.selectTab) {
                 this.member = this.selectTab;
                 this.fetchAllExperiences();
