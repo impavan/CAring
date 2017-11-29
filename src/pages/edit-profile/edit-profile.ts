@@ -98,29 +98,29 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Last name');
       return;
      }
-     else if (this.customFields.ic_number == EMPTY) {
-       this.alertProvider.presentToast('Enter NRIC number');
-       return;
-     } 
-    else if( this.customFields.birthday== EMPTY) {
-      this.alertProvider.presentToast('Enter Date of Birth');
-      return;
-    } 
-    else if (this.customFields.gender == EMPTY){
-      this.alertProvider.presentToast('Enter Gender');
-      return;
-    } 
-    else if (this.customFields.city == EMPTY ){
-      this.alertProvider.presentToast("Enter City");
-      return;
-    } 
-    else if (this.customFields.pincode == EMPTY){
-      this.alertProvider.presentToast("Enter Pincode");
-      return;
-    }
-    else if (this.customFields.race == EMPTY){
-      this.alertProvider.presentToast("Enter Race");
-    }
+    //  else if (this.customFields.ic_number == EMPTY) {
+    //    this.alertProvider.presentToast('Enter NRIC number');
+    //    return;
+    //  } 
+    // else if( this.customFields.birthday== EMPTY) {
+    //   this.alertProvider.presentToast('Enter Date of Birth');
+    //   return;
+    // } 
+    // else if (this.customFields.gender == EMPTY){
+    //   this.alertProvider.presentToast('Enter Gender');
+    //   return;
+    // } 
+    // else if (this.customFields.city == EMPTY ){
+    //   this.alertProvider.presentToast("Enter City");
+    //   return;
+    // } 
+    // else if (this.customFields.pincode == EMPTY){
+    //   this.alertProvider.presentToast("Enter Pincode");
+    //   return;
+    // }
+    // else if (this.customFields.race == EMPTY){
+    //   this.alertProvider.presentToast("Enter Race");
+    // }
     
     else {
       
