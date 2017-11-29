@@ -45,11 +45,15 @@ page-promotions {
                     font-weight: 600;
                     margin: 0 0 5px 0;
                     line-height: normal;
+                    height: 30px;
+                    overflow: hidden;
                 }
                 p {
                     margin: 0 0 8px 0;
                     line-height: normal;
                     color: $cp-extra-darker-grey;
+                    height:50px;
+                    overflow: hidden;
                 }
                 .button-md,
                 .button-ios {
