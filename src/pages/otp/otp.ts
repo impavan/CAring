@@ -1,7 +1,6 @@
 import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { CONTENT_ID } from '../../config';
 import { ABOUT_US } from '../../url';
 
 // Import Providers.

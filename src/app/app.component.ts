@@ -218,7 +218,7 @@ export class MyApp {
     console.log("push clicked");
     console.log(deeplink);
     console.log(customData);
-    let navdata = deepRoute.filter(data => data.route == deeplink);
+    let navdata = deepRoute.filter(data => data.route === deeplink);
     if (navdata) {
       this.nav.setRoot(navdata[0].component,{deeplink:navdata[0].route});
     }  

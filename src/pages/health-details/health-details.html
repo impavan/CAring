@@ -32,7 +32,8 @@
                 </li> -->
             <!-- </ul>  -->
 
-            <p [innerHTML]="healthData?.detaileddescription"></p>
+            <span><p [innerHTML]="healthData?.detaileddescription"></p><a href="{{healthData?.additionalinfo}}">...read more</a></span>
+            
         </div>
     </div>
 </ion-content>
