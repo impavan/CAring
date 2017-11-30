@@ -29,6 +29,7 @@ export class EditProfilePage {
   customFields: any = {
     mobile_validated:'Yes'
   };
+  socialupdate: any = 1;
   userData: any = {};
   countries: any = ['Australia', 'Bhutan', 'China', 'Denmark', 'Hong Kong', 'India', 'Indonesia', 'Malaysia', 'Maldives', 'Myanmar','Namibia','Nepal','North Korea','Philippines','Singapore','Thailand','Turkey','United States of America','Others'];
   incomeslab: any = ['0-2.5K', '2.5K-5K', '5K-7.5K', '7.5K-10K', '10K and above'];
@@ -84,6 +85,8 @@ export class EditProfilePage {
     this.customFields.working = this.authProvider.getUserWorkingStatus();
     this.customFields.occupation = this.authProvider.getUserOccupation();
     this.customFields.preferred_language = this.authProvider.getUserLanguage();
+    this.customFields.socialupdate = 1;
+    // console.log(this.socialupdate);
     
     
     
@@ -97,30 +100,26 @@ export class EditProfilePage {
      else if( this.profileData.lastname == EMPTY) {
       this.alertProvider.presentToast('Enter Last name');
       return;
-     }
-    //  else if (this.customFields.ic_number == EMPTY) {
-    //    this.alertProvider.presentToast('Enter NRIC number');
-    //    return;
-    //  } 
-    // else if( this.customFields.birthday== EMPTY) {
-    //   this.alertProvider.presentToast('Enter Date of Birth');
-    //   return;
-    // } 
-    // else if (this.customFields.gender == EMPTY){
-    //   this.alertProvider.presentToast('Enter Gender');
-    //   return;
-    // } 
-    // else if (this.customFields.city == EMPTY ){
-    //   this.alertProvider.presentToast("Enter City");
-    //   return;
-    // } 
-    // else if (this.customFields.pincode == EMPTY){
-    //   this.alertProvider.presentToast("Enter Pincode");
-    //   return;
-    // }
-    // else if (this.customFields.race == EMPTY){
-    //   this.alertProvider.presentToast("Enter Race");
-    // }
+     } 
+    else if( this.customFields.birthday== EMPTY) {
+      this.alertProvider.presentToast('Enter Date of Birth');
+      return;
+    } 
+    else if (this.customFields.gender == EMPTY){
+      this.alertProvider.presentToast('Enter Gender');
+      return;
+    } 
+    else if (this.customFields.city == EMPTY ){
+      this.alertProvider.presentToast("Enter City");
+      return;
+    } 
+    else if (this.customFields.pincode == EMPTY){
+      this.alertProvider.presentToast("Enter Pincode");
+      return;
+    }
+    else if (this.customFields.race == EMPTY){
+      this.alertProvider.presentToast("Enter Race");
+    }
     
     else {
       
@@ -129,6 +128,7 @@ export class EditProfilePage {
       this.profileData.customFields.push(customfield);
      
       this.loaderProvider.presentLoadingCustom();
+      
 
       this.profileProvider.updateProfile(this.profileData).subscribe(data => {
 
@@ -140,7 +140,8 @@ export class EditProfilePage {
           this.userProvider.getMyProfile().subscribe(data => {
 
             if (data[0].code == 200) {
-
+              // this.customFields.socialupdate = 3;
+              // console.log(this.customFields.socialupdate);
               this.loaderProvider.dismissLoader();
               this.authProvider.setUser(data[0].customerdata);
               localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
