@@ -84,4 +84,15 @@ page-login {
         margin-left: 0px !important;
         width: calc(100% - (0px / 2) - 16px) !important;
     }
+    .mcode{
+        margin-top: 12px;
+    }
+    .accessMsg{
+        color: red;
+        font-size: 14px !important;
+        line-height: 22px !important;
+        width: 75%;
+        margin: auto;
+        margin-top: 10px !important;
+    }
 }
