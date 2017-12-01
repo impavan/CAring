@@ -28,7 +28,7 @@ export class MyAccountPage {
 
 
   comingSoon() {
-    this.alertProvider.presentToast('coming soon..')
+    this.alertProvider.presentToast('Coming soon..')
     return;
   }
 
