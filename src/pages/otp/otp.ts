@@ -46,8 +46,8 @@ export class OtpPage {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
-              this.alteredPhoneNum = '+60' + navParams.get('phone');
-              console.log(this.alteredPhoneNum);
+             
+              console.log(this.phoneNum);
               this.from = navParams.get('from');
 
             }

@@ -4,11 +4,16 @@
 			<img src="assets/img/logo_large.png" />
 		</i>
         <div text-center class="info">Please enter your mobile number to continue. Your mobile number will only be used to validate your account and will not be shared with any third party.</div>
+        <div text-center class="info" style="color:red">(Only Accept Malaysia, Singapore & Indonesia Telco Number)</div>
         <div class="content">
             <ion-list>
                 <ion-item>
                     <ion-label fixed>Mobile Number</ion-label>
-                    <ion-label>+60</ion-label>
+                    <ion-select [(ngModel)]="mobileCode" [selectOptions]="selectOptions">
+                        <ion-option value="60">+60</ion-option>
+                        <ion-option value="62">+62</ion-option>
+                        <ion-option value="65">+65</ion-option>
+                    </ion-select>
                     <ion-input type="tel" [(ngModel)]="phoneNum" placeholder="mobile number" maxlength="10" minlength="8" required></ion-input>
                 </ion-item>
             </ion-list>

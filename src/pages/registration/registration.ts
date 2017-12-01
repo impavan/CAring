@@ -41,7 +41,7 @@ export class RegistrationPage {
     
                         this.from = navParams.get('from');
                         this.phoneNum = navParams.get('phone');
-                        this.alteredPhoneNum = '+60' + navParams.get('phone');
+                        console.log(this.phoneNum);
                         this._existingCustomerData = navParams.get('custExistingData');
 
                         if (this._existingCustomerData) {
