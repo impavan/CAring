@@ -35,7 +35,7 @@ export class AlertProvider {
   presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,
-      duration: 5000,
+      duration: 4000,
       position: 'bottom'
     });
     toast.onDidDismiss(() => {

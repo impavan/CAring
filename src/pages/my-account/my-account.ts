@@ -37,6 +37,7 @@ export class MyAccountPage {
     this.navCtrl.setRoot("LoginPage");
     
   }
+  
   logout() {
     
   
