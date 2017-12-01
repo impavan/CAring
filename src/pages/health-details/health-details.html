@@ -14,25 +14,8 @@
             <div class="infodate">
                 <label *ngIf='healthData?.authorinfo'><i>By</i> {{healthData?.authorinfo}}</label> <span>{{healthData?.displaydate | date:'EEEE dd MMM yyyy hh:mm a'}}</span>
             </div>
-            <!-- <ul class="socialList">
-                <!-- <li class="fb">
-                    <ion-icon class="iconc-facebook2"></ion-icon>
-                </li>
-                <li class="tw">
-                    <ion-icon class="iconc-twitter2"></ion-icon>
-                </li>
-                <li class="pn">
-                    <ion-icon class="iconc-pinterest2"></ion-icon>
-                </li>
-                <li class="in">
-                    <ion-icon class="iconc-instagram2"></ion-icon>
-                </li>
-                <li class="yt">
-                    <ion-icon class="iconc-youtube2"></ion-icon>
-                </li> -->
-            <!-- </ul>  -->
-
-            <span><p [innerHTML]="healthData?.detaileddescription"></p><a href="{{healthData?.additionalinfo}}">...read more</a></span>
+            <p><span [innerHTML]="healthData?.detaileddescription"></span>
+             <a href="{{healthData?.additionalinfo}}">...read more</a></p>
             
         </div>
     </div>

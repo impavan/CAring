@@ -50,7 +50,7 @@ export class MyApp {
       { title: 'Happenings', component: 'HappeningsPage', index:4 ,icon:"iconc-megaphone",ionicon:''},
       { title: 'Store Locator', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
-      { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat",ionicon:''},
+      // { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat",ionicon:''},
     ];
 
     if (this._auth) {
