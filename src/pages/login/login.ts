@@ -18,6 +18,11 @@ export class LoginPage {
   @ViewChild('connection') connectionModal;
   phoneNum: string;
   mobilevalidated: any;
+  mobileCode:any = '60';
+  selectOptions:any = {
+
+    title: 'Country Code'
+  }
  
   constructor(
               private events: Events,
@@ -49,6 +54,10 @@ export class LoginPage {
   userLogin() {
 
     let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
+    
+    phoneNo = this.mobileCode + phoneNo;
+
+    console.log(phoneNo)
 
     if (phoneNo== EMPTY) {
 
