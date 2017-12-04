@@ -30,6 +30,7 @@ export class MemberPage {
   _auth: any;
   _userName: any;
   _emailId: any;
+  _birthday: any;
   _oldemailId: any;
   _mobileNum: any;
   _pointOpen: boolean = false;
@@ -47,7 +48,7 @@ export class MemberPage {
   currentDate: any = moment().format('YYYY-MM-DD');
   isWalletLoaded: boolean = false;
   isProfileLoaded: boolean = false;
-  isEditable : boolean = true;
+
   memberButton:string = 'Edit Profile';
   isCancel: boolean = false;
 
@@ -126,6 +127,8 @@ export class MemberPage {
 
     this._userName = this.authProvider.getUserFirstName();
     this._emailId = this.authProvider.getUserEmailId();
+    this._birthday = this.authProvider.getUserBirthday();
+    console.log(this._birthday)
     this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._externalId = this.authProvider.getExternalId();
@@ -325,7 +328,6 @@ export class MemberPage {
   }  
 
   cancelEdit(){
-    this.isEditable = true;
     this.isCancel = false;
     this.memberButton = "Edit Profile";
     this._userName = this.authProvider.getUserFirstName();

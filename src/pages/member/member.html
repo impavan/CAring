@@ -73,15 +73,19 @@
                                 <ion-item>
 
                                     <ion-label stacked>Name</ion-label>
-                                    <ion-input type="text" [readonly]="isEditable" [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
+                                    <ion-input type="text" disabled [(ngModel)]="_userName" placeholder="Enter Name"></ion-input>
                                 </ion-item>
                                 <ion-item>
                                     <ion-label stacked>E-mail</ion-label>
-                                    <ion-input type="text" [readonly]="isEditable" [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
+                                    <ion-input type="text" disabled [(ngModel)]="_emailId" placeholder="Enter E-mail"></ion-input>
                                 </ion-item>
                                 <ion-item>
                                     <ion-label stacked>Mobile Number</ion-label>
-                                    <ion-input type="text" readonly [(ngModel)]="_mobileNum"></ion-input>
+                                    <ion-input type="text" disabled [(ngModel)]="_mobileNum"></ion-input>
+                                </ion-item>
+                                <ion-item *ngIf="_birthday">
+                                    <ion-label stacked>Birthday</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="_birthday"></ion-input>
                                 </ion-item>
 
                             </ion-list>
