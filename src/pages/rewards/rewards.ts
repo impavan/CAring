@@ -87,6 +87,7 @@ export class RewardsPage {
 
     this.rewardsProvider.fetchAllExperiences().subscribe(data => {
 
+      console.log(data);
       this.loaderProvider.dismissLoader();
 
       if (data[0].code == 200) {
@@ -101,12 +102,13 @@ export class RewardsPage {
         }
       } else {
         
+        
         this.alertProvider.presentToast(data[0].message);
 
       }  
 
     }, err => {
-
+      console.log("In error of experiences");
       this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
 
@@ -155,6 +157,7 @@ export class RewardsPage {
 
       .subscribe(res => {
 
+
         console.log(res);        
         this.redeemedRewards = res[0].customer_vouchers;
 
@@ -194,6 +197,7 @@ export class RewardsPage {
 
       err => {
 
+            console.log("In error in redeemed vouchers");
             this.loaderProvider.dismissLoader();
 
             this.exceptionProvider.excpHandler(err);
