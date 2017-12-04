@@ -29,6 +29,7 @@ export class EditProfilePage {
   customFields: any = {
     mobile_validated:'Yes'
   };
+  isDobEditable: boolean = true;
   socialupdate: any = 1;
   userData: any = {};
   countries: any = ['Australia', 'Bhutan', 'China', 'Denmark', 'Hong Kong', 'India', 'Indonesia', 'Malaysia', 'Maldives', 'Myanmar','Namibia','Nepal','North Korea','Philippines','Singapore','Thailand','Turkey','United States of America','Others'];
@@ -73,7 +74,7 @@ export class EditProfilePage {
     this.profileData.email = this.authProvider.getUserEmailId();
     this.profileData.externalId = this.authProvider.getExternalId() || '';
     this.customFields.ic_number = this.authProvider.getUserNRIC();
-    this.customFields.birthday = this.authProvider.getUserBirthday();
+    this.customFields.birthday = this.authProvider.getUserBirthday() || '';
     this.customFields.gender = this.authProvider.getUserGender();
     this.customFields.age_group = this.authProvider.getUserAgeGroup();
     this.customFields.address = this.authProvider.getUserAddress();
@@ -149,7 +150,7 @@ export class EditProfilePage {
               this.events.publish('user:login', true);
               this.getMyBasicDetails();
               this.alertProvider.presentToast("Profile Updated successfully");
-              this.navCtrl.setRoot("MemberPage");
+              this.navCtrl.setRoot("MemberPage",{deeplink:'profile'});
 
             }
             else {

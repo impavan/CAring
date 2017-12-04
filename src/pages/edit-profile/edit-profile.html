@@ -23,33 +23,34 @@
             </ion-label>
             <ion-input type="text" [(ngModel)]="profileData.lastname"></ion-input>
           </ion-item>
-          <ion-item>
+          <!--<ion-item>
             <ion-label stacked class="customMobNum">
               Mobile Number <span class="alert">*</span>
             </ion-label>
             <ion-label class="black">
               {{profileData.mobile}}
             </ion-label> 
-          </ion-item>
-        <ion-item>
+          </ion-item>-->
+        <!--<ion-item>
       <ion-label stacked class="customMobNum">
         Email Id <span class="alert">*</span>
       </ion-label>
       <ion-label class="black">
         {{profileData.email}}
       </ion-label>
-    </ion-item>
+    </ion-item>-->
         <ion-item>
       <ion-label stacked>
         NRIC
       </ion-label>
       <ion-input type="text" [(ngModel)]="customFields.ic_number"></ion-input>
     </ion-item>
-        <ion-item>
+        <ion-item *ngIf="!authProvider.getUserBirthday()">
       <ion-label stacked>
         Birthday <span class="alert">*</span>
       </ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY"  [(ngModel)]="customFields.birthday"></ion-datetime>
+      <ion-datetime  displayFormat="DD MMM YYYY"  [(ngModel)]="customFields.birthday"></ion-datetime>
+       <!--<ion-input *ngIf="customFields.birthday" type="text" readonly [(ngModel)]="customFields.birthday"></ion-input>-->
     </ion-item>
 
     <div class="customRadioOut">

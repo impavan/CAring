@@ -7,8 +7,7 @@ export const BASE_URL = `http://52.89.20.38/v2/`;
 // export const IMAGE_BASE_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
 export const IMAGE_URL = `http://52.89.20.38/platform/micrositeadmin`;
 
-// Image URL for displaying Store's images
-export const STORES_IMG_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
+
 
 //dev brand Id
 export const BRAND_ID = `caringdemo`;
