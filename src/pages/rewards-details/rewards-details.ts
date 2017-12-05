@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BASE_URL, BRAND_ID, IMAGE_URL } from '../../config';
+import { BASE_URL, BRAND_ID } from '../../config';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -21,7 +21,7 @@ export class RewardsDetailsPage {
   @ViewChild('reward') rewardModal;
   @ViewChild('redeemPointsWarning') redeemPointsModal;
   @ViewChild('noPointsWarning') noPointsModal;
-  IMG_URL: any = IMAGE_URL;
+
   offerdata: any;
   _auth: any;
   _currentPoint: any;

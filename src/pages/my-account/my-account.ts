@@ -23,7 +23,7 @@ export class MyAccountPage {
 
 
           ionViewWillEnter(){
-            this._auth = localStorage.getItem('auth_token');
+            this._auth = localStorage.getItem('auth_token') || '';
           }
 
 
@@ -32,22 +32,28 @@ export class MyAccountPage {
     return;
   }
 
-  gotoLogin() {
+  goTo(page) {
     
-    this.navCtrl.setRoot("LoginPage");
+    if(page === 'LoginPage')
+      this.navCtrl.setRoot(page);
+    else
+    this.navCtrl.push(page);
     
   }
+
+  
   
   logout() {
     
-  
+
     this.navCtrl.setRoot("LoginPage").then(() => {
-    localStorage.removeItem('favouriteList');
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('phoneNum');
-    // this.pushProvider.logoutWebengage();
-    this.events.publish('user:login', false);
-    this.alertProvider.presentToast("You have been logged out..!")
+
+        localStorage.removeItem('favouriteList');
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('phoneNum');
+        this.pushProvider.logoutWebengage();
+        this.events.publish('user:login', false);
+        this.alertProvider.presentToast("You have been logged out..!")  
   
     })
       

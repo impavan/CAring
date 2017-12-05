@@ -3,23 +3,28 @@
 
 
 //  Test Base URL.
-export const BASE_URL = `http://52.89.20.38/v2/`;
-// export const IMAGE_BASE_URL = `http://52.89.20.38/breadtalk/micrositeadmin`;
-export const IMAGE_URL = `http://52.89.20.38/platform/micrositeadmin`;
+// export const BASE_URL = `http://52.89.20.38/v2/`;
+
+
+//  Live Base URL.
+export const BASE_URL = `http://capillary.spurtreetech.com/v2/`;
+
 
 
 
 //dev brand Id
-export const BRAND_ID = `caringdemo`;
+// export const BRAND_ID = `caringdemo`;
+
 
 //  Live brand Id
-// export const BRAND_ID = `caringlive`;
+export const BRAND_ID = `caringlive`;
+
 
 //sttarter url dev
-export const STTARTER_BASE_URL  = "http://dev.sttarter.com:9000/contentsystem/61b8b3ec861330a06e92d162f507d273/";
+// export const STTARTER_BASE_URL  = "http://dev.sttarter.com:9000/contentsystem/61b8b3ec861330a06e92d162f507d273/";
 
-// //  Content System API.
-// export const CONTENT_ID = `http://app.sttarter.com:9000/contentsystem/e4e009abf54577f493010e8274557e52`;
+//sttarter url Live
+export const STTARTER_BASE_URL = `http://app.sttarter.com:9000/contentsystem/ce4517a7972cca14ab569ee1f09809ba/`;
 
 export const EN = `en`;
 

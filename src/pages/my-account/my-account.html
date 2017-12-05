@@ -15,7 +15,7 @@
                 </a>
                 <div class="clear"></div>
             </li>
-            <li (click)="comingSoon()">
+            <li (click)="goTo('PrivacyPage')">
                 <a>
                     <i>
             <img src="assets/img/key.svg">
@@ -24,14 +24,14 @@
                 </a>
                 <div class="clear"></div>
             </li>
-            <li (click)="comingSoon()">
+            <li (click)="goTo('FaqPage')">
                 <a>
                     <i> <img src="assets/img/feedback.svg"> </i>
                     <span>FAQ</span>
                 </a>
                 <div class="clear"></div>
             </li>
-            <li (click)="comingSoon()">
+            <li (click)="goTo('ConditionsPage')">
                 <a>
                     <i>
             <img src="assets/img/file.svg">
@@ -52,7 +52,7 @@
             </li>
 
 
-            <li  *ngIf = "!_auth" (click)="gotoLogin()">
+            <li  *ngIf = "!_auth" (click)="goTo('LoginPage')">
                 <a>
                     <i>
             <img src="assets/img/login.svg">
