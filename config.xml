@@ -102,7 +102,7 @@
         <variable name="DEEPLINK_HOST" value="caring2u.com" />
         <variable name="ANDROID_PATH_PREFIX" value="/" />
     </plugin>
-    <engine name="android" spec="~6.3.0" />
     <allow-navigation href="http://10.10.0.135:8100" />
     <engine name="ios" spec="~4.3.1" />
+    <engine name="android" spec="~6.3.0" />
 </widget>

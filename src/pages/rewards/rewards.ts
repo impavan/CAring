@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, Events, NavParams } from 'ionic-angular';
-import { BASE_URL, BRAND_ID, IMAGE_URL } from '../../config';
+import { BASE_URL, BRAND_ID } from '../../config';
 import JsBarcode from 'jsbarcode';
 import moment from 'moment';
 
@@ -22,7 +22,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class RewardsPage {
   @ViewChild('login') rewardModal;
   @ViewChild('barcode') barcode: ElementRef;
-  IMG_URL = IMAGE_URL;
   auth: any;
   selectTab: any;
   offerdata: any = [];

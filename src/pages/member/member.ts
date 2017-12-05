@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IMAGE_URL } from '../../config';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import moment from 'moment';
 import JsBarcode from 'jsbarcode';
@@ -23,7 +22,7 @@ export class MemberPage {
   @ViewChild('barcode') barcode: ElementRef;
   @ViewChild('name') nameTextBox;
 
-  IMG_URL = IMAGE_URL;
+ 
   from: any;
   member: any = "My Points";
   memberDetails: any = "New";

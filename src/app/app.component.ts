@@ -91,25 +91,25 @@ export class MyApp {
       this.pushEvent();
       // this.deepLinkUrl();
 
-       this.deeplinks.route({
-          'profile': 'MemberPage',
-          '/newrewards': 'RewardsPage',
-          '/happenings': 'HappeningsPage',
-          '/promotions': 'PromotionsPage',
-          '/healthinfo': 'HealthInfoPage',
-          '/instoreactivity': 'InStorePage',
-          '/pointssummary': 'MemberPage',
-          '/myrewards': 'RewardsPage',
-          '/stores': 'StoreLocatorPage'
-        }).subscribe((match) => {
-        // match.$route - the route we matched, which is the matched entry from the arguments to route()
-        // match.$args - the args passed in the link
-        // match.$link - the full link data
-    console.log('Successfully matched route', match);
-  }, (nomatch) => {
-    // nomatch.$link - the full link data
-    console.error('Got a deeplink that didn\'t match', nomatch);
-  });  
+  //      this.deeplinks.route({
+  //         'profile': 'MemberPage',
+  //         '/newrewards': 'RewardsPage',
+  //         '/happenings': 'HappeningsPage',
+  //         '/promotions': 'PromotionsPage',
+  //         '/healthinfo': 'HealthInfoPage',
+  //         '/instoreactivity': 'InStorePage',
+  //         '/pointssummary': 'MemberPage',
+  //         '/myrewards': 'RewardsPage',
+  //         '/stores': 'StoreLocatorPage'
+  //       }).subscribe((match) => {
+  //       // match.$route - the route we matched, which is the matched entry from the arguments to route()
+  //       // match.$args - the args passed in the link
+  //       // match.$link - the full link data
+  //   console.log('Successfully matched route', match);
+  // }, (nomatch) => {
+  //   // nomatch.$link - the full link data
+  //   console.error('Got a deeplink that didn\'t match', nomatch);
+  // });  
 
     });
   }

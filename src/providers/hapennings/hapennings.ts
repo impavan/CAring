@@ -75,4 +75,29 @@ getHomeBanner(){
         .do((res: Response) => res.json())
         .map((res: Response) => res.json())
     }
+
+    //Get Privacy Policy.
+    getPrivacyPolicy() {
+      return this.http.get(STTARTER_BASE_URL + 'privacypolicy?lang=' + this.lang, this.contentType)
+        .map((res: Response) => res)
+        .do((res: Response) => res.json())
+        .map((res: Response) => res.json())
+    }
+  
+    //Get Terms & Conditions.
+    getTermsandConditions() {
+      return this.http.get(STTARTER_BASE_URL + 'terms&conditions?lang=' + this.lang, this.contentType)
+        .map((res: Response) => res)
+        .do((res: Response) => res.json())
+        .map((res: Response)=> res.json())
+    }
+  
+    //Get FAQ.
+    getFAQ() {
+      return this.http.get(STTARTER_BASE_URL + 'faq?lang=' + this.lang, this.contentType)
+        .map((res: Response) => res)
+        .do((res: Response) => res.json())
+        .map((res: Response)=> res.json())
+      }
+    
 }
