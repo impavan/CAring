@@ -89,6 +89,8 @@ export class OtpPage {
     
       this.userProvider.userOTP(otp, this.phoneNum, this.from).subscribe(data => {
 
+        console.log(data);
+
         this.loaderProvider.dismissLoader();
         if (data[0].code == 200) {
 
@@ -124,11 +126,11 @@ export class OtpPage {
 
   //otp suces handler for login
   loginOTPSucess(data) {
-
+    console.log(data);
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
-    // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-    // this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+    this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
     this.authProvider.setUserLoggedIn(true);

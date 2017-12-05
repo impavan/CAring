@@ -49,7 +49,6 @@ export class UserdataProvider {
 
   //Register user
   userRegistration(userdata) {
-    console.log(userdata,'===================userdata=========================')
 
     let data = {
       first_name:userdata.fname,

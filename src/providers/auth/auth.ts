@@ -43,6 +43,7 @@ export class AuthProvider {
   // sets the header with access-token
   setHeader() {
     this.contentHeaders.set('Authorization', this.getAuthToken());
+    this.contentHeaders.set('Access-Control-Allow-Origin', '*');
   }
 
   //sets the auth- token
