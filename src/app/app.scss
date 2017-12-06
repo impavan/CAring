@@ -508,3 +508,12 @@ ion-spinner {
 .button-md:hover:not(.disable-hover) {
     background-color: $btn-default !important;
 }
+.footer{
+    .toolbar-ios{
+        padding:6px 4px;
+    }
+}
+
+ion-header, ion-footer{
+    position: fixed;
+}

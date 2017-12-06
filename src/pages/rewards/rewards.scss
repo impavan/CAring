@@ -148,12 +148,15 @@ page-rewards {
             }
             article {
                 background: #fff;
-                padding: 10px 10px 0 10px;
+                padding: 10px 0 0 0;
                 .grid {
                     padding-bottom: 0;
                 }
                 ion-row.first {
                     padding-bottom: 0px;
+                }
+                &:last-child{
+                    padding: 0;
                 }
             }
             figure {
@@ -219,10 +222,13 @@ page-rewards {
             border-radius: 7px;
         }
         .grid {
-            padding: 0;
+            padding: 5px 5px 0 5px;
+            &:last-child{
+                padding: 0 0 5px 0;
+            }
         }
         .content {
-            padding: 0 15px;
+            padding: 0 5px;
             .customRow {
                 border-bottom: 1px solid $cp-extra-lighter-grey-xxxxxxx;
                 padding: 10px 0 10px 0;
@@ -243,9 +249,14 @@ page-rewards {
                 font-size: 13px;
                 margin: 0;
             }
-            &:first-child {
-                padding: 15px 15px 15px 15px;
-            }
+        }
+        .iconc-ticket{
+            float: left;
+            padding: 1px 0 0 0;
+        }
+        strong{
+            float: left;
+            padding: 0 0 0 5px;
         }
     }
     .ticketIco{

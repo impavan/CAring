@@ -89,28 +89,7 @@ export class MyApp {
       this.noConnectionEvent();
       this.notLoggedIn();
       this.pushEvent();
-      // this.deepLinkUrl();
-
-  //      this.deeplinks.route({
-  //         'profile': 'MemberPage',
-  //         '/newrewards': 'RewardsPage',
-  //         '/happenings': 'HappeningsPage',
-  //         '/promotions': 'PromotionsPage',
-  //         '/healthinfo': 'HealthInfoPage',
-  //         '/instoreactivity': 'InStorePage',
-  //         '/pointssummary': 'MemberPage',
-  //         '/myrewards': 'RewardsPage',
-  //         '/stores': 'StoreLocatorPage'
-  //       }).subscribe((match) => {
-  //       // match.$route - the route we matched, which is the matched entry from the arguments to route()
-  //       // match.$args - the args passed in the link
-  //       // match.$link - the full link data
-  //   console.log('Successfully matched route', match);
-  // }, (nomatch) => {
-  //   // nomatch.$link - the full link data
-  //   console.error('Got a deeplink that didn\'t match', nomatch);
-  // });  
-
+ 
     });
   }
 
@@ -152,7 +131,8 @@ export class MyApp {
     this.nav.setRoot("LoginPage");
     this.LoginModal.close();
     
-}  
+  }  
+  
   noConnectionEvent(){
 
     this.events.subscribe("noconnection", data => {
@@ -219,7 +199,7 @@ export class MyApp {
     console.log(deeplink);
     console.log(customData);
     let navdata = deepRoute.filter(data => data.route === deeplink);
-    if (navdata) {
+    if (navdata.length > 0) {
       this.nav.setRoot(navdata[0].component,{deeplink:navdata[0].route});
     }  
   });

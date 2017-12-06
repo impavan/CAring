@@ -90,12 +90,27 @@ export class HomePage {
   }
 
 
-  route(url){
+  route(deeplink) {
 
-    let page = url.split(":");
-    console.log(page);
-    let component = page[1];
-    this.navCtrl.setRoot(component);
+     let deepRoute = [
+    
+      { route: '/profile', component: 'MemberPage' },
+      { route: '/newrewards', component: 'RewardsPage' },
+      { route: '/happenings', component: 'HappeningsPage' },
+      { route: '/promotions', component: 'PromotionsPage' },
+      { route: '/healthinfo', component: 'HealthInfoPage' },
+      { route: '/instoreactivity', component: 'InStorePage' },
+      { route: '/pointssummary', component: 'MemberPage' },
+      { route: '/myrewards', component: 'RewardsPage' },
+      { route: '/stores', component: 'StoreLocatorPage' }
+
+    ];
+
+
+     let navdata = deepRoute.filter(data => data.route === deeplink);
+    if (navdata.length > 0) {
+      this.navCtrl.setRoot(navdata[0].component,{deeplink:navdata[0].route});
+    }  
 
   }
 }

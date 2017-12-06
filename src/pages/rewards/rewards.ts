@@ -66,14 +66,13 @@ export class RewardsPage {
   ionViewWillEnter() {
     // this.loadMyWallet();
     console.log("**********");
+      this.events.publish('changeIcon', "RewardsPage");
     this.auth = localStorage.getItem('auth_token')
     console.log(this.auth);
     if (this.auth) {
   
       this.authProvider.setHeader();
-      this.events.publish('changeIcon', "RewardsPage");
         this.getRedeemedVouchers();
-  
     }
   }
 
