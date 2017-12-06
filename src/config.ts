@@ -3,11 +3,11 @@
 
 
 //  Test Base URL.
-// export const BASE_URL = `http://52.89.20.38/v2/`;
+export const BASE_URL = `http://52.89.20.38/v2/`;
 
 
 //  Live Base URL.
-export const BASE_URL = `http://capillary.spurtreetech.com/v2/`;
+// export const BASE_URL = `http://capillary.spurtreetech.com/v2/`;
 
 
 

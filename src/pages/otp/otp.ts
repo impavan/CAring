@@ -129,8 +129,8 @@ export class OtpPage {
     console.log(data);
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
-    this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-    this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+    // this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
     this.authProvider.setUserLoggedIn(true);

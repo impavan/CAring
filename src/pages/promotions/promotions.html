@@ -7,17 +7,17 @@
 <ion-content class="mainCont">
     <div class="promotionsContainer">
         <ion-grid>
-            <article class="pdadj">
+            <article>
                 <ion-row class="headerwithline">
                     <ion-col col-5>
-                        <h3><label>Promotions</label></h3>
+                        <h3>Promotions</h3>
                     </ion-col>
                     <ion-col col-7>
                         <a href="{{this._brochureLinks}}"><img src="assets/img/promotion.png" alt=""></a>
                     </ion-col>
                 </ion-row>
             </article>
-            <ion-row>
+            <ion-row class="mt10">
                 <ion-col col-sm-6 col-xs-6 *ngFor="let promotion of _promotionList" clickable (click)="gotoPromotionDetails(promotion)">
                     <ion-card class="figWidget">
                         <figure>
