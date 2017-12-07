@@ -388,4 +388,9 @@ page-member {
     .input-cover{
     border-bottom: 1px solid #e4e4e4;
 }
+    @media(max-width:768px){
+        .barcode svg{
+             width:100% !important;
+        }
+    }
 }

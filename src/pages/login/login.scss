@@ -102,4 +102,21 @@ page-login {
     .text-input-ios{
         text-align: right;
     }
+    
+@media(max-width:768px){
+    .scroll-content {
+            bottom: 0px;
+            margin-top: 15px !important;
+            padding: 10px !important;
+        }
+    .loginContainer {
+        text-align: center;
+        padding: 0 !important;
+    }
+    .loginContainer .info {
+        margin-top: 10px !important;
+        font-size: 12px;
+    }
+}
+    
 }

@@ -2,6 +2,9 @@ page-new-account {
     .newAccountContainer {
         text-align: center;
         padding: 80px 0 0 0;
+        .text-input{
+            direction: rtl;
+        }
         .text-input-md {
             text-align: right !important;
         }
@@ -51,17 +54,17 @@ page-new-account {
             }
         }
         input::-moz-placeholder {
-            color: red;
+            font-size: 14px;
             text-align: right;
             color: $cp-extra-lighter-grey-xxx;
         }
         input::-webkit-input-placeholder {
-            color: red;
+            font-size: 14px;
             text-align: right;
             color: $cp-extra-lighter-grey-xxx;
         }
         input:-ms-input-placeholder {
-            color: red;
+            font-size: 14px;
             text-align: right;
             color: $cp-extra-lighter-grey-xxx;
         }
@@ -70,14 +73,14 @@ page-new-account {
         .item-datetime .label-md,
         .label-ios {
             color: $cp-extra-darker-grey;
-            padding: 0 0 0 16px;
+            padding: 0 0 0 12px;
         }
         .caringWaterMark {
             margin: 20px 0 0 0;
         }
         ion-label[fixed] {
-            width: 135px;
-            min-width: 135px;
+            width: 125px;
+            min-width: 125px;
         }
         .list-ios>.item-block:first-child {
             border-top: none;
@@ -102,4 +105,19 @@ page-new-account {
             text-align: left;
         }
     }
+    @media(max-width:768px){
+    .scroll-content {
+            bottom: 0px;
+            margin-top: 15px !important;
+            padding: 10px !important;
+        }
+    .newAccountContainer {
+        text-align: center;
+        padding: 0 !important;
+    }
+    .newAccountContainer .info {
+        margin-top: 10px !important;
+        font-size: 12px;
+    }
+}
 }

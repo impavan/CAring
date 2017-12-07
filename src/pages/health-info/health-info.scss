@@ -1,15 +1,16 @@
 page-health-info {
     .healthInfoContainer {
-        margin: -10px 0 0 0;
+        margin: 0 0 0 0;
         h3 {
             margin: 0px 0 0 0;
             color: $cp-extra-darker-grey;
             font-weight: 600;
             font-size: 16px;
+            padding: 8px 0 0 0;
         }
         .headerwithline {
             border-bottom: 1px solid #bdbdbd;
-            display: inline-block;
+        
             width: 100%;
             label {
                 float: left;
@@ -18,8 +19,8 @@ page-health-info {
                 margin: 10px 0 0 0;
             }
             a {
-                float: right;
-                width: 180px;
+            
+                
                 padding: 0;
                 margin: 0;
                 img {
@@ -86,7 +87,7 @@ page-health-info {
                     font-size: 14px;
                     display: block;
                     color: #111;
-                    margin-bottom: 60px;
+                    margin-bottom: 0;
                     font-family: 'allerbold';
                 }
                 span {

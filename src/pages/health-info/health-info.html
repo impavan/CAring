@@ -5,17 +5,17 @@
 <ion-content class="mainCont">
     <div class="healthInfoContainer">
         <ion-grid>
-            <article class="pdadj">
+            <article class="">
                 <ion-row class="headerwithline">
                     <ion-col col-5>
-                        <h3><label>Health<br /> Information</label></h3>
+                        <h3>Health<br> Information</h3>
                     </ion-col>
                     <ion-col col-7>
                         <a (click)="navToHealthSubscribe()"><img src="assets/img/healthInformation.png" alt=""></a>
                     </ion-col>
                 </ion-row>
             </article>
-            <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
+            <div class="healthInfoCards" *ngFor="let health of _healthInfoList" tappable (click)="navToHealthDetails(health)">
                 <div class="left">
                     <img src="{{health?.thumbnailimage}}" />
                 </div>

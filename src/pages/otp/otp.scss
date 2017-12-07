@@ -1,4 +1,13 @@
 page-otp {
+    .mobLbl {
+    color: #333;
+    width: 100% !important;
+    padding: 0;
+    text-align:left;
+}
+.text-input-ios{
+    text-align: right;
+}
     .otpContainer {
         text-align: center;
         padding: 80px 0 0 0;
@@ -77,4 +86,19 @@ page-otp {
     .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
         text-align: right;
     }
+    @media(max-width:768px){
+    .scroll-content {
+            bottom: 0px;
+            margin-top: 15px !important;
+            padding: 10px !important;
+        }
+    .otpContainer {
+        text-align: center;
+        padding: 0 !important;
+    }
+    .otpContainer .info {
+        margin-top: 10px !important;
+        font-size: 12px;
+    }
+}
 }

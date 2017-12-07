@@ -517,3 +517,23 @@ ion-spinner {
 ion-header, ion-footer{
     position: fixed;
 }
+
+@media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .scroll-content {
+            bottom: 0px;
+            margin-top: 0px !important;
+            padding: 0 !important;
+        }
+    .loginContainer {
+        text-align: center;
+        padding: 0 !important;
+    }
+    .mainCont.content-ios{
+        margin:0 !important;
+    }
+
+    }
