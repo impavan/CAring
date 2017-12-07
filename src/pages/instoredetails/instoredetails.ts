@@ -19,7 +19,8 @@ export class InstoredetailsPage {
               private launchNavigator: LaunchNavigator) {
     
     this.storeDetail = navParams.get('instoredata');
-    this._locationList  = this.storeDetail.storeeventtimings?this.storeDetail.storeeventtimings:[];
+    this._locationList = this.storeDetail.storeeventtimings ? this.storeDetail.storeeventtimings : [];
+    console.log(this._locationList);
   }
 
   gotoEventLocation(loc) {
@@ -39,10 +40,10 @@ this.launchNavigator.navigate([loc.storelocation.x, loc.storelocation.y])
 
     
 }
-  gotoLocationPage(storename) {
-
+  gotoLocationPage(storename,storeId) {
+    console.log(storeId);
     console.log(storename);
-    this.navCtrl.push('StoreLocatorPage', { instore: storename });
+    this.navCtrl.push('StoreLocatorPage', { instore: storename,storeId: storeId});
     
 }
 

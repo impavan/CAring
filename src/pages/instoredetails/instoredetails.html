@@ -25,7 +25,7 @@
                     <p class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label> <span>{{loc?.time}}</span></p>
                 </ion-col>
                 <ion-col col-6>
-                    <a (click)="gotoLocationPage(loc?.storename)"><span class="location">{{loc?.storename}}</span></a>
+                    <a (click)="gotoLocationPage(loc?.storename, loc?.storeid)"><span class="location">{{loc?.storename}}</span></a>
                     <!--<ion-icon tappable (click)="gotoEventLocation(loc)" name="pin" class="alert"></ion-icon>-->
                     <!--<a *ngIf="loc?.phone" href="tel:{{loc?.phone}}"><ion-icon name="call" class="phoneIco"></ion-icon></a>-->
                 </ion-col>

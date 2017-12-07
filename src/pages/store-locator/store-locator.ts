@@ -36,6 +36,7 @@ export class StoreLocatorPage {
   };
 
   instoreData: any;
+  storeId: any;
   
 
   constructor(public events:Events,
@@ -49,6 +50,7 @@ export class StoreLocatorPage {
               private launchNavigator: LaunchNavigator, private elRef: ElementRef) {
     
             this.instoreData = navParams.get('instore') || '';
+            this.storeId = navParams.get('storeId');
     
    
             
@@ -183,8 +185,8 @@ export class StoreLocatorPage {
           console.log(marker);
           infowindow.setContent(contentString);
           infowindow.open(map, marker);
-          console.log("element",this.elRef.nativeElement.querySelector('.store'))
-          this.elRef.nativeElement.querySelector('.store').addEventListener('click', this.gotoStoreDirection2.bind(this,marker.lat,marker.lng));
+          // console.log("element",this.elRef.nativeElement.querySelector('.store'))
+          // this.elRef.nativeElement.querySelector('.store').addEventListener('click', this.gotoStoreDirection2.bind(this,marker.lat,marker.lng));
 
         });  
 
@@ -313,12 +315,15 @@ export class StoreLocatorPage {
   }
 
 
-  onInStoreInput(loc) {
+  onInStoreInput(loc,storeId) {
      
-     this._searchKey = loc;
-      let val = this._searchKey;
-      this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.storeDescription.toLowerCase().indexOf(val.toLowerCase()) > -1));
-      if (this._newFilteredList)
+    this._searchKey = loc;
+    let val = storeId;
+    console.log(storeId);
+    if(val)
+      this._newFilteredList = this._filterList.filter(item => item.storeId === val);
+    console.log(this._newFilteredList);
+      if (this._newFilteredList.length > 0)
         this.setMarker(this._newFilteredList[0]);  
     
   }
@@ -364,7 +369,7 @@ export class StoreLocatorPage {
               this.loadFavList(this.updatedLocationList);
           
               if (this.instoreData)
-                this.onInStoreInput(this.instoreData);
+                this.onInStoreInput(this.instoreData,this.storeId);
           
         });
 
