@@ -75,4 +75,12 @@ page-rewards-details {
 		background-color:#fff !important;
 	
 	}
+	  @media(min-width:768px){
+        .rewardsDetailsContainer{
+                margin: 75px 0 0 0;
+		}
+	 .rewardsDetailsContainer figure{
+		 max-height: 100% !important;
+	 }
+	  }
 }

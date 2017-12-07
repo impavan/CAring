@@ -1,4 +1,5 @@
 page-login {
+
     .loginContainer {
         text-align: center;
         padding: 80px 0 0 0;
@@ -102,20 +103,78 @@ page-login {
     .text-input-ios{
         text-align: right;
     }
-    
-@media(max-width:768px){
-    .scroll-content {
-            bottom: 0px;
-            margin-top: 15px !important;
-            padding: 10px !important;
-        }
-    .loginContainer {
-        text-align: center;
-        padding: 0 !important;
+// @media(max-width:480px){
+//     .scroll-content {
+//             bottom: 0px;
+//             margin-top: 45px !important;
+//             padding: 10px !important;
+//         }
+//         .loginContainer {
+//         text-align: center;
+//         padding: 80px 0 0 0 !important;
+//         .text-input-md {
+//             text-align: right !important;
+//         }
+//         .info {
+//             margin-top: 70px !important;
+//             font-size: 12px;
+//         }
+//     }
+// }
+// @media all and (min-width:480px)and(max-width:768px){
+//     .scroll-content {
+//             bottom: 0px;
+//             margin-top: 15px !important;
+//             padding: 10px !important;
+//         }
+//     .loginContainer {
+//         text-align: center;
+//         padding: 0 !important;
+//     }
+//     .loginContainer .info {
+//         margin-top: 10px !important;
+//         font-size: 12px;
+//     }
+// }
+// @media (max-width:769px) and (min-width:480px) {
+// .scroll-content {
+//             bottom: 0px;
+//             margin-top: 15px !important;
+//             padding: 10px !important;
+//         }
+//     .loginContainer {
+//         text-align: center;
+//         padding: 0 !important;
+//     }
+//     .loginContainer .info {
+//         margin-top: 10px !important;
+//         font-size: 12px;
+//     }
+// }
+// @media (min-width: 769px) {
+//   .scroll-content {
+//             bottom: 0px;
+//             margin-top: 15px !important;
+//             padding: 10px !important;
+//         }
+//     .loginContainer {
+//         text-align: center;
+//         padding: 0 !important;
+//     }
+//     .loginContainer .info {
+//         margin-top: 10px !important;
+//         font-size: 12px;
+//     }
+// }
+
+@media(min-width:768px){
+    .loginContainer{
+       width:70%;
+       margin: 30% auto;
     }
-    .loginContainer .info {
-        margin-top: 10px !important;
-        font-size: 12px;
+    .info{
+        margin: 30px auto !important;
+    width: 65%
     }
 }
     

@@ -2,10 +2,13 @@ import { Component, ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
 import { LoaderProvider } from '../../providers/loader/loader';
+import { AlertProvider } from '../../providers/alert/alert';
 
 
 declare var google;
@@ -18,6 +21,7 @@ declare var google;
 export class StoreLocatorPage {
   @ViewChild('myMap') mapElement;
   @ViewChild('locBtn') locbutton;
+  @ViewChild('permission') permissions;
   map: any;
   locationList: any = [];
   updatedLocationList: any = [];
@@ -42,6 +46,9 @@ export class StoreLocatorPage {
               public storeLocatorProvider: StoreLocatorProvider, 
               private loaderProvider:LoaderProvider,
               private geolocation: Geolocation,
+              private diagnostic: Diagnostic,
+              private alertProvider:AlertProvider,
+              private nativeSettings:OpenNativeSettings,
               private launchNavigator: LaunchNavigator, private elRef: ElementRef) {
     
             this.instoreData = navParams.get('instore') || '';
@@ -60,74 +67,106 @@ export class StoreLocatorPage {
 
 
   ngAfterViewInit() {
-    this.loadMap();
 
+    this.diagnostic.getLocationAuthorizationStatus().then(res => {
+      
+      console.log(res);
+      console.log("outside++++++++");
+
+      if (res.toLowerCase() == 'not_determined') {
+        console.log("*************");
+        this.diagnostic.requestLocationAuthorization(this.diagnostic.locationAuthorizationMode.ALWAYS).then(resp => {
+          console.log(resp)
+             console.log("inside++++++++");
+          if (resp.toLowerCase() == 'granted')
+          this.loadMap();
+          else
+            this.loadMap();
+        })
+      }else if(res.toLowerCase() == 'denied'){
+          this.permissions.open();
+      }else{
+      this.loadMap();
+      }
+    })  
   }
 
-  // getStores() {
-  //   this.storeLocatorProvider.getStores().subscribe(res => {
-  //     this.locationList = res.data;
-  //     this.addMarkers(this.map, this.locationList);
-  //     this.loadFavList(this.locationList);
-  //   });
-  // }
+
+  cancel(){
+    this.permissions.close();
+  }
+
+  navToSettings(){
+
+      this.nativeSettings.open('settings').then(res=>{
+
+        this.loadMap();
+        this.cancel();
+      })
+  }
+
+
+
+
 
   loadMap() {
 
-    this.geolocation.getCurrentPosition().then((resp) => {
+      this.geolocation.getCurrentPosition().then((resp) => {
      
-      console.log("Inside loadmap");
-       // resp.coords.latitude
-      // resp.coords.longitude
-      // let lat = "12.9716";
-      // let lng = "77.5946";
+        console.log("Inside loadmap");
+        // resp.coords.latitude
+        // resp.coords.longitude
+        // let lat = "12.9716";
+        // let lng = "77.5946";
 
-      this.getAllStores(resp.coords.latitude, resp.coords.latitude, 50);
-    // this.getAllStores(lat,lng, 50);
+        this.getAllStores(resp.coords.latitude, resp.coords.latitude, 50);
+        // this.getAllStores(lat,lng, 50);
      
-    this._myCurrentLocation = {
-      lat:resp.coords.latitude,
-      lng:resp.coords.longitude,
-    }
-    //   this._myCurrentLocation = {
-    //   lat:lat,
-    //   lng:lng,
-    // }
+        this._myCurrentLocation = {
+          lat: resp.coords.latitude,
+          lng: resp.coords.longitude,
+        }
+        //   this._myCurrentLocation = {
+        //   lat:lat,
+        //   lng:lng,
+        // }
      
-    let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-      //  let latLng = new google.maps.LatLng(lat, lng);
+        let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+        //  let latLng = new google.maps.LatLng(lat, lng);
      
-    let mapOptions = {
-      center: latLng,
-      zoom: 12,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+        let mapOptions = {
+          center: latLng,
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
      
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
-   }).catch((error) => {
+      }).catch((error) => {
     
-     console.log('Error getting location', error);
-      let lat = "3.1390";
-      let lng = "101.6869";
-      this.getAllStores(lat, lng, 50);
+      //   console.log('Error getting location', error);
+        let lat = "3.1390";
+        let lng = "101.6869";
+      //   this.getAllStores(lat, lng, 50);
      
-      this._myCurrentLocation = {
-      lat:lat,
-      lng:lng,
-      }
-      let latLng = new google.maps.LatLng(lat, lng); 
+      //   this._myCurrentLocation = {
+      //     lat: lat,
+      //     lng: lng,
+      //   }
+        let latLng = new google.maps.LatLng(lat, lng);
 
       
-    let mapOptions = {
-      center: latLng,
-      zoom: 12,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+        let mapOptions = {
+          center: latLng,
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
      
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions); 
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.alertProvider.presentToast("Error in accessing your current location. Please provide permission to access location");
      
-    });
+      });
+     
   }
 
   loadFavList(locationList) {

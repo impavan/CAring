@@ -57,4 +57,9 @@ page-health-details {
             }
         }
     }
+     @media(min-width:768px){
+        .healthDetailsContainer{
+            margin: 60px 0 0 0 !important;
+        }
+    }
 }

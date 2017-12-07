@@ -105,19 +105,14 @@ page-new-account {
             text-align: left;
         }
     }
-    @media(max-width:768px){
-    .scroll-content {
-            bottom: 0px;
-            margin-top: 15px !important;
-            padding: 10px !important;
-        }
-    .newAccountContainer {
-        text-align: center;
-        padding: 0 !important;
+    @media(min-width:768px){
+    .newAccountContainer{
+       width:70%;
+       margin: 30% auto;
     }
-    .newAccountContainer .info {
-        margin-top: 10px !important;
-        font-size: 12px;
+    .info{
+        margin: 30px auto !important;
+        width: 65%
     }
 }
 }

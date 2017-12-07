@@ -31,3 +31,8 @@ page-happen-details {
 		text-transform: uppercase !important;
 	}
 }
+ @media(min-width:768px){
+        .happenDetailsContainer{
+            margin: 70px 0 0 0 !important;
+        }
+    }

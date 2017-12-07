@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.capillarytech.caringpharma" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Caring Pharmacy</name>
+    <name>Caring</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -102,7 +102,8 @@
         <variable name="DEEPLINK_HOST" value="caring2u.com" />
         <variable name="ANDROID_PATH_PREFIX" value="/" />
     </plugin>
-    <allow-navigation href="http://10.10.0.135:8100" />
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova.plugins.diagnostic" spec="~3.7.2" />
+    <plugin name="cordova-open-native-settings" spec="~1.4.1" />
     <engine name="ios" spec="~4.3.1" />
 </widget>

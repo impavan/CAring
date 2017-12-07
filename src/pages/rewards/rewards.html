@@ -4,12 +4,12 @@
 
 
 <ion-content class="mainCont">
-    <ion-toolbar>
+    <ion-toolbar class="toolFirst">
         <ion-segment [(ngModel)]="member" color="secondary">
-                <ion-segment-button value="Rewards">
+                <ion-segment-button tappable value="Rewards">
                         Rewards
                     </ion-segment-button>
-                <ion-segment-button value="Redemption" (click)="fetchAllExperiences()">
+                <ion-segment-button value="Redemption" tappable (click)="fetchAllExperiences()">
                         Redemption
                 </ion-segment-button>
         </ion-segment>
@@ -30,7 +30,7 @@
 
                     <div *ngIf="offerdata.length >= 1">
                         <div *ngFor="let offer of offerdata">
-                            <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
+                            <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)" tappable>
                                 <ion-grid>
                                     <ion-row class="first">
                                         <ion-col col-3>
@@ -75,9 +75,9 @@
             <div *ngIf="auth" class="subSegmentOut">
                 <ion-toolbar>
                     <ion-segment [(ngModel)]="memberDetails" color="secondary">
-                        <ion-segment-button value="New">New</ion-segment-button>
-                        <ion-segment-button value="Used">Used</ion-segment-button>
-                        <ion-segment-button value="Expired">Expired</ion-segment-button>
+                        <ion-segment-button tappable value="New">New</ion-segment-button>
+                        <ion-segment-button tappable value="Used">Used</ion-segment-button>
+                        <ion-segment-button tappable value="Expired">Expired</ion-segment-button>
                     </ion-segment>
                 </ion-toolbar>
             </div>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="newContainer" *ngIf="_newReward.length > 0 && auth">
                         <ion-card>
-                            <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                            <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)" tappable>
                                 <div class="content" *ngIf="reward.Cap_RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
                                     <article>
                                         <ion-grid>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="newContainer" *ngIf="_usedReward.length > 0 && auth">
                         <ion-card style="padding-top:15px;">
-                            <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                            <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)" tappable>
                                 <div class="content" *ngIf="reward.Cap_RedeemStatus == 1">
                                     <article>
                                         <ion-grid>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="newContainer" *ngIf="_expiredReward.length > 0 && auth">
                         <ion-card>
-                            <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                            <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)" tappable>
                                 <div class="content" *ngIf="reward.Cap_RedeemStatus == 0 && currentDate > reward.ExpiryDate">
                                     <article>
                                         <ion-grid>

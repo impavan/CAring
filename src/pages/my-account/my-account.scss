@@ -54,4 +54,9 @@ page-my-account {
 			}
 		}
 	}
+	@media(min-width:768px){
+        .myAccountContainer{
+            margin-top:70px;
+        }
+    }
 }

@@ -145,4 +145,10 @@ page-store-locator {
     .loacator, .phone{
         margin: 0 0 0 10px;
     }
+
+    @media(min-width:768px){
+        .searchOut{
+            top:70px;
+        }
+    }
 }

@@ -2,6 +2,8 @@ import { EMPTY, SPECIAL_CHAR, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2 } fr
 import { IonicPage, NavController, MenuController, Events } from 'ionic-angular';
 import { Component, ViewChild } from '@angular/core';
 
+declare var $:any;
+
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import { UserdataProvider } from '../../providers/userdata/userdata';
@@ -47,6 +49,11 @@ export class LoginPage {
 
     this.menu.swipeEnable(false, "leftMenu");
     this.loaderProvider.presentBackOptions();
+
+    if( /iPad/i.test(navigator.userAgent) ) {
+      $('body').addClass('home');
+      
+    }
 
   }
 

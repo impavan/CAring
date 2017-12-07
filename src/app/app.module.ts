@@ -5,6 +5,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
@@ -56,6 +58,8 @@ import { PushProvider } from '../providers/push/push';
     StoreLocatorProvider,
     LoaderProvider,
     AlertProvider,
+    Diagnostic,
+    OpenNativeSettings,
     LoaderProvider, AlertProvider,Geolocation,LaunchNavigator,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
     NetworkProvider, DeviceProvider, ProfileProvider, InAppBrowser,

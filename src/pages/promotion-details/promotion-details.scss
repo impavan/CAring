@@ -44,4 +44,9 @@ page-promotion-details {
             }
         }
     }
+     @media(min-width:768px){
+        .promotionDetails{
+            margin: 70px 0 0 0 !important;
+        }
+    }
 }

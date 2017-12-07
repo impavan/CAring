@@ -4,5 +4,11 @@ page-privacy {
         margin-top:12px; 
         padding:20px 12px 0 12px;
     }
+    @media(min-width:768px){
+        ion-card{
+            margin-top:70px !important;
+            margin-bottom:70px !important;
+        }
+    }
 
 }

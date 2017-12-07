@@ -138,3 +138,21 @@
         <page-tabs></page-tabs>
     </ion-toolbar>
 </ion-footer>
+
+<mymodal #permission>
+    <!--<h2 class="errorInfo"></h2>-->
+    <p>Location Services Disabled!</p>
+    <ion-grid>
+        <div>
+            <p> To re-enable, please go to Settings and turn on Location Service for this app.</p>
+        </div>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button class="btn2 cancelBtn" (click)="cancel()">Cancel</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button class="btn2" (click)="navToSettings()">Settings</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>

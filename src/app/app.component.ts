@@ -8,6 +8,7 @@ import { Deeplinks } from '@ionic-native/deeplinks';
 
 
 
+
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';

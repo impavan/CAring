@@ -537,3 +537,9 @@ ion-header, ion-footer{
     }
 
     }
+
+    @media all and(min-width:768px){
+        .mainMenu{
+            margin: 58px 0 0 0 !important;
+        }
+    }

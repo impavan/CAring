@@ -62,4 +62,12 @@ page-instoredetails {
     p {
         font-family: 'allerregular';
     }
+    @media(min-width:768px){
+    .inStoreDetailsContainer{
+       margin:60px 0 0 0;
+    }
+    .content{
+        padding: 30px !important;
+    }
+    }
 }
