@@ -27,13 +27,6 @@ export class StoreLocatorProvider {
     this.contentHeaders.set('Content-Type', 'application/json'); 
   }
 
-  // getStores() {
-  //   return this.http.get(STTARTER_BASE_URL + stores + this.lang, this.contentHeaders)
-  //     .map((res: Response) => res)
-  //     .do((res: Response) => res.json())
-  //     .map((res: Response) => res.json())
-  // }
-
 
 
   getAllStoreLocation(lat, lng,limit){

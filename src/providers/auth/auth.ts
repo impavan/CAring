@@ -185,7 +185,20 @@ export class AuthProvider {
         return '';
     } else
       return '';
-  }  
+  } 
+  
+  //returns user other contact number
+  getOtherContactNo() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let otherContact = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'other_contact_number')
+      if (otherContact && otherContact.value != null)
+        return otherContact.value;
+      else
+        return '';
+    } else
+      return '';
+    
+  }
 
   //returns user Household Income
   getUserHouseholdIncome() {

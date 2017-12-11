@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EMPTY } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
@@ -8,13 +8,6 @@ import { LoaderProvider } from '../../providers/loader/loader';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 
-
-/**
- * Generated class for the EditProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -29,8 +22,6 @@ export class EditProfilePage {
   customFields: any = {
     mobile_validated:'Yes'
   };
-  isDobEditable: boolean = true;
-  socialupdate: any = 1;
   userData: any = {};
   countries: any = ['Australia', 'Bhutan', 'China', 'Denmark', 'Hong Kong', 'India', 'Indonesia', 'Malaysia', 'Maldives', 'Myanmar','Namibia','Nepal','North Korea','Philippines','Singapore','Thailand','Turkey','United States of America','Others'];
   incomeslab: any = ['0-2.5K', '2.5K-5K', '5K-7.5K', '7.5K-10K', '10K and above'];
@@ -42,7 +33,6 @@ export class EditProfilePage {
 
 
   constructor(public  events:Events,
-              public  navParams: NavParams,
               public  navCtrl: NavController,
               private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
@@ -54,9 +44,7 @@ export class EditProfilePage {
             this.authProvider.setHeader();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditProfilePage');
-  }
+ 
 
   ionViewWillEnter() {
     this.getMyBasicDetails();
@@ -80,6 +68,7 @@ export class EditProfilePage {
     this.customFields.address = this.authProvider.getUserAddress();
     this.customFields.city = this.authProvider.getUserCity();
     this.customFields.pincode = this.authProvider.getUserPostcode();
+    this.customFields.other_contact_number = this.authProvider.getOtherContactNo();
     this.customFields.countryof_origin = this.authProvider.getUserCountryOfOrigin();
     this.customFields.incomeslab = this.authProvider.getUserHouseholdIncome();
     this.customFields.race = this.authProvider.getUserRace();
@@ -87,7 +76,7 @@ export class EditProfilePage {
     this.customFields.occupation = this.authProvider.getUserOccupation();
     this.customFields.preferred_language = this.authProvider.getUserLanguage();
     this.customFields.socialupdate = 1;
-    // console.log(this.socialupdate);
+   
     
     
     
@@ -141,8 +130,6 @@ export class EditProfilePage {
           this.userProvider.getMyProfile().subscribe(data => {
 
             if (data[0].code == 200) {
-              // this.customFields.socialupdate = 3;
-              // console.log(this.customFields.socialupdate);
               this.loaderProvider.dismissLoader();
               this.authProvider.setUser(data[0].customerdata);
               localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));

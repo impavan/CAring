@@ -64,13 +64,11 @@ export class RewardsPage {
 
 
   ionViewWillEnter() {
-    // this.loadMyWallet();
-    console.log("**********");
+ 
       this.events.publish('changeIcon', "RewardsPage");
-    this.auth = localStorage.getItem('auth_token')
-    console.log(this.auth);
+      this.auth = localStorage.getItem('auth_token')
+
     if (this.auth) {
-  
       this.authProvider.setHeader();
         this.getRedeemedVouchers();
     }
@@ -140,30 +138,26 @@ export class RewardsPage {
 
     if (this.auth) {
       this.getRedeemedVouchers();
-      console.log("**********");
+
     }
-      
-    
 
   }
 
    getRedeemedVouchers() {
-    console.log("**********");
+
     this.loaderProvider.presentLoadingCustom();
 
     this.profileProvider.getAllRedeemedVouchers()
 
       .subscribe(res => {
-
-
-        console.log(res);        
+     
         this.redeemedRewards = res[0].customer_vouchers;
 
         this.loaderProvider.dismissLoader();
 
         this.isWalletLoaded = true;
 
-        if (this.redeemedRewards.length > 0) {
+        if (this.redeemedRewards && this.redeemedRewards.length > 0) {
 
           this.getNewRewardsList();
           this.getUsedRewardList();

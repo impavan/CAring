@@ -6,20 +6,13 @@
 <ion-content class="mainCont">
     <div class="rewardsDetailsContainer">
         <figure class="fixedImage">
-            <!--{{IMG_URL}}/-->
             <img src="{{offerdata?.MasterCreativePath}}" />
 
         </figure>
         <div class="content p0">
             <article>
                 <h1>Terms and Conditions</h1>
-                <!-- <h5>Voucher<small>Expired date: 23 Oct 2017  </small></h5> -->
                 <p [innerHTML]="offerdata?.Description"></p>
-                <!-- <ol>
-				<li>Voucher can be redeemed with purchase of RM50 in single receipt</li>
-				<li>This voucher can only be used ONCE.</li>
-				<li>This voucher cannot be combined</li>
-			</ol> -->
                 <hr/>
                 <p class="text-center redemptionPoints">Redemption Points : {{offerdata?.BrandPointRedeemValue}}</p>
                 <div class="redeemPoints">
@@ -39,7 +32,6 @@
                             <ion-col col-3 class="text-right">
                                 <p class="alert" *ngIf="remainder >= 0">{{remainder}}</p>
                                 <p class="alert" *ngIf="remainder < 0">0</p>
-                                <!-- <p class="alert" *ngIf="remainder > {{_currentPoint}}">Insufficient to redeem</p> -->
                             </ion-col>
                         </ion-row>
                          <ion-row *ngIf="offerdata?.BrandPointRedeemValue > _currentPoint">
@@ -65,7 +57,7 @@
 
 
 
-<!-- Modal tobe displayed when the user wants to redeem the offer. It's a Confirmation Alert. -->
+<!-- Modal to be displayed when the user wants to redeem the offer. It's a Confirmation Alert. -->
 <mymodal #redeemPointsWarning title="Confirm Points Redemption">
     <div>
         <p>Do you want to Redeem {{offerdata?.Title}}?</p>

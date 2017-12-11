@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 
 /**
@@ -18,9 +18,7 @@ export class ConditionsPage {
 
   conditions: any;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public happeningProviders : HapenningsProvider) {
+  constructor(public happeningProviders : HapenningsProvider) {
   }
 
  
@@ -33,8 +31,7 @@ export class ConditionsPage {
     this.happeningProviders.getTermsandConditions()
       .subscribe(res => {
         this.conditions = res.data[0];
-        console.log(this.conditions);
-        console.log(res);
+       
     })
   }
 

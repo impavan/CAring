@@ -1,6 +1,6 @@
 import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
-import { Component, ViewChild, NgZone } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ABOUT_US } from '../../url';
 
 // Import Providers.
@@ -20,11 +20,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class OtpPage {
 
   phoneNum: any;
-  regData: any;
   otp: string;
-  type: string;
   from: any;
-  alteredPhoneNum: any = '';
   _existingCustomerData:any = [];
   MOBILE_VALIDATED = "mobile_validated";
   YES="Yes";
@@ -41,13 +38,10 @@ export class OtpPage {
               private navCtrl: NavController,
               private navParams: NavParams,
               private menu: MenuController,
-              private events: Events,
-              private zone: NgZone) {
+              private events: Events) {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
-             
-              console.log(this.phoneNum);
               this.from = navParams.get('from');
 
             }
@@ -124,13 +118,13 @@ export class OtpPage {
     }
   }
 
-  //otp suces handler for login
+  //otp success handler for login
   loginOTPSucess(data) {
     console.log(data);
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
-    // this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-    // this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+    this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
     this.authProvider.setUserLoggedIn(true);
@@ -140,27 +134,7 @@ export class OtpPage {
 
   }
 
-  //resend OTP
-  resendOTP() {
-    this.loaderProvider.presentLoadingCustom();
-    this.userProvider.userLogin(localStorage.getItem('phonenumber'))
-      .subscribe(data => {
-        this.loaderProvider.dismissLoader();
-        if (data[0].code == 200) {
-          this.alertProvider.presentToast('OTP sent');
-        } else {
-        }
-      }, err => {
-        this.loaderProvider.dismissLoader();
-        this.exceptionProvider.excpHandler(err);
-      });
-  }
-
-  //go to back page
-  
-  goBack() {
-    this.navCtrl.pop();
-  }
+ 
 
   clearOTPBox() {
     this.otp = '';

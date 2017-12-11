@@ -22,7 +22,6 @@
                         </ion-item>
                         <ion-item>
                             <ion-label>E-mail</ion-label>
-                            <!--<ion-label *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.email">{{registerData.email}}</ion-label>-->
                             <ion-input *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.email" value="{{registerData.email}}" [readonly]="true"></ion-input>
                             <ion-input *ngIf="!_existingCustomerData || !_existingCustomerData[0]?.customerdata?.customer[0]?.email " type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
 

@@ -1,9 +1,3 @@
-<!--
-  Generated template for the EditProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <div>
     <header></header>
 </div>
@@ -13,44 +7,32 @@
   <div class="editProfileOut">
     <ion-card>
       <ion-card-content>
+
           <ion-item>
-            <ion-label stacked>First Name <span class="alert">*</span></ion-label>
+            <ion-label stacked>First Name <span class="alert">*</span>
+            </ion-label>
             <ion-input type="text" [(ngModel)]="profileData.firstname"></ion-input>
           </ion-item>
+
           <ion-item>
             <ion-label stacked>
               Last Name <span class="alert">*</span>
             </ion-label>
             <ion-input type="text" [(ngModel)]="profileData.lastname"></ion-input>
           </ion-item>
-          <!--<ion-item>
-            <ion-label stacked class="customMobNum">
-              Mobile Number <span class="alert">*</span>
-            </ion-label>
-            <ion-label class="black">
-              {{profileData.mobile}}
-            </ion-label> 
-          </ion-item>-->
-        <!--<ion-item>
-      <ion-label stacked class="customMobNum">
-        Email Id <span class="alert">*</span>
-      </ion-label>
-      <ion-label class="black">
-        {{profileData.email}}
-      </ion-label>
-    </ion-item>-->
-        <ion-item>
-      <ion-label stacked>
-        NRIC
-      </ion-label>
-      <ion-input type="text" [(ngModel)]="customFields.ic_number"></ion-input>
+          
+      <ion-item>
+        <ion-label stacked>
+          NRIC
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="customFields.ic_number"></ion-input>
     </ion-item>
-        <ion-item *ngIf="!authProvider.getUserBirthday()">
+
+    <ion-item *ngIf="!authProvider.getUserBirthday()">
       <ion-label stacked>
         Birthday <span class="alert">*</span>
       </ion-label>
       <ion-datetime  displayFormat="DD MMM YYYY"  [(ngModel)]="customFields.birthday"></ion-datetime>
-       <!--<ion-input *ngIf="customFields.birthday" type="text" readonly [(ngModel)]="customFields.birthday"></ion-input>-->
     </ion-item>
 
     <div class="customRadioOut">
@@ -77,44 +59,57 @@
         </ion-row>
       </ion-grid>
     </div>
+
       <ion-item> 
         <ion-label stacked>Age Group</ion-label>
         <ion-select [(ngModel)]="customFields.age_group">
           <ion-option *ngFor ="let age of ageGroup" value="{{age}}">{{age}}</ion-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
       <ion-label stacked>
         Address
       </ion-label>
       <ion-input type="text"  [(ngModel)]="customFields.address"></ion-input>
     </ion-item>
-        <ion-item>
-      <ion-label stacked>
-        City <span class="alert">*</span>
-      </ion-label>
-      <ion-input type="text" [(ngModel)]="customFields.city"></ion-input>
-    </ion-item>
-        <ion-item>
-      <ion-label stacked>
-        Postcode <span class="alert">*</span>
-      </ion-label>
-      <ion-input type="text" [(ngModel)]="customFields.pincode"></ion-input>
-    </ion-item>
-        <ion-item>
-        <ion-label stacked>Country of Origin</ion-label>
-        <ion-select [(ngModel)]="customFields.countryof_origin">
-          <ion-option *ngFor="let c of countries" value="{{c}}">{{c}}</ion-option>
-        </ion-select>
+
+      <ion-item>
+        <ion-label stacked>
+          City <span class="alert">*</span>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="customFields.city"></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label stacked>
+          Postcode <span class="alert">*</span>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="customFields.pincode"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>
+          Other Contact Number
+        </ion-label>
+        <ion-input type="tel" [(ngModel)]="customFields.other_contact_number"></ion-input>
+      </ion-item>
+
         <ion-item>
-      <ion-label stacked>
-        Household Income
-      </ion-label>
-        <ion-select [(ngModel)]="customFields.incomeslab">
-          <ion-option *ngFor="let income of incomeslab" value="{{income}}">{{income}}</ion-option>
-        </ion-select>
-    </ion-item>
+          <ion-label stacked>Country of Origin</ion-label>
+          <ion-select [(ngModel)]="customFields.countryof_origin">
+            <ion-option *ngFor="let c of countries" value="{{c}}">{{c}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>
+            Household Income
+          </ion-label>
+            <ion-select [(ngModel)]="customFields.incomeslab">
+              <ion-option *ngFor="let income of incomeslab" value="{{income}}">{{income}}</ion-option>
+            </ion-select>
+        </ion-item>
 
 
     <div class="customRadioOut">
@@ -138,6 +133,7 @@
         </ion-row>
       </ion-grid>
     </div>
+
       <ion-item>
         <ion-label stacked>
           Race <span class="alert">*</span>
@@ -146,18 +142,21 @@
           <ion-option *ngFor="let r of race" value="{{r}}">{{r}}</ion-option>
         </ion-select>
       </ion-item>
+
        <ion-item>
-        <ion-label stacked>Occupation</ion-label>
-        <ion-select [(ngModel)]="customFields.occupation">
-          <ion-option *ngFor="let o of occupation" value="{{o}}">{{o}}</ion-option>
-        </ion-select>
+          <ion-label stacked>Occupation</ion-label>
+          <ion-select [(ngModel)]="customFields.occupation">
+            <ion-option *ngFor="let o of occupation" value="{{o}}">{{o}}</ion-option>
+          </ion-select>
         </ion-item>
-    <ion-item class="borderBottomNone">
-        <ion-label stacked>Preferred Language</ion-label>
-        <ion-select [(ngModel)]="customFields.preferred_language">
-          <ion-option *ngFor="let lang of language" value="{{lang}}">{{lang}}</ion-option>
-        </ion-select>
+
+      <ion-item class="borderBottomNone">
+          <ion-label stacked>Preferred Language</ion-label>
+          <ion-select [(ngModel)]="customFields.preferred_language">
+            <ion-option *ngFor="let lang of language" value="{{lang}}">{{lang}}</ion-option>
+          </ion-select>
       </ion-item>
+
      </ion-card-content>
     </ion-card>
   </div>

@@ -43,12 +43,9 @@ export class MemberPage {
   _newReward: any = [];
   _usedReward: any = [];
   _expiredReward: any = [];
-  userData: any = {};
   currentDate: any = moment().format('YYYY-MM-DD');
   isWalletLoaded: boolean = false;
   isProfileLoaded: boolean = false;
-
-  memberButton:string = 'Edit Profile';
   isCancel: boolean = false;
 
 
@@ -127,7 +124,6 @@ export class MemberPage {
     this._userName = this.authProvider.getUserFirstName();
     this._emailId = this.authProvider.getUserEmailId();
     this._birthday = this.authProvider.getUserBirthday();
-    console.log(this._birthday)
     this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._externalId = this.authProvider.getExternalId();
@@ -308,30 +304,11 @@ export class MemberPage {
 
   memberEdit() {
   
-    if (this.memberButton == "Edit Profile") {
-      // this.isEditable = false;
-      // this.memberButton = "Update Profile";
-      // this.isCancel = true;
-      // this.nameTextBox.setFocus();
       this.navCtrl.push('EditProfilePage');
-
-      // }else{
-      //     // this.alertProvider.presentToast('Thank you we have received your information');
-      //     this.updateProfile();
-      //     this.isEditable = true;
-      //     this.memberButton = "Edit Profile";
-      //     this.isCancel = false;
-      // }
-   
-    }
+    
   }  
 
-  cancelEdit(){
-    this.isCancel = false;
-    this.memberButton = "Edit Profile";
-    this._userName = this.authProvider.getUserFirstName();
-    this._emailId = this.authProvider.getUserEmailId();
-  }
+
 
   gotoRewards(){
     this.navCtrl.setRoot("RewardsPage",{selectTab:'Redemption'});

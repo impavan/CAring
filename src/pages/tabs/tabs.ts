@@ -1,6 +1,6 @@
 import { Component, ViewChild,} from '@angular/core';
 import { IonicPage, NavController, Events} from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 @IonicPage()
 @Component({
@@ -14,7 +14,6 @@ export class TabsPage {
  
 
   constructor(public navCtrl: NavController,
-              private inAppBrowser:InAppBrowser,
               private events:Events) { 
 
 
@@ -47,12 +46,6 @@ export class TabsPage {
 
 
  
-
-  gotoEcart(){
-    
-      this.inAppBrowser.create('http://estore.caring2u.com/');
-
-  }
 
 
 

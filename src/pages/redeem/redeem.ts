@@ -52,9 +52,7 @@ export class RedeemPage {
           this.cancelRedeem();
 
           this.loaderProvider.presentLoadingCustom();
-
-          // let voucher = this.redeemList.filter(data =>data.RedeemStatus == 0).shift();
-          
+        
                 this.loaderProvider.dismissLoader();
                 JsBarcode(this.barcode.nativeElement, Voucher.Cap_VoucherCode);
                 this.voucherModal.open();
@@ -103,7 +101,7 @@ export class RedeemPage {
   cancelRedeem(){
 
     this.redeemModal.close();
-    // this.myRedeemingVoucher = {};
+
 
   }
 
