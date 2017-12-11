@@ -12,7 +12,7 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 })
 
 export class HealthSubscribePage {
-  //@ViewChild(Slides) slides: Slides;
+  
   _newsSubscriptionLink: any;
   NEWSSUBLINK: string = 'newsletterurl';
 

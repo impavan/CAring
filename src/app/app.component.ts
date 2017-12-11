@@ -3,7 +3,7 @@ import { Nav, Platform,Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { Deeplinks } from '@ionic-native/deeplinks';
+
 
 
 
@@ -36,7 +36,6 @@ export class MyApp {
     private alertProvider:AlertProvider,
     private screenOrientation: ScreenOrientation,
     public events: Events,
-    public deeplinks:Deeplinks,
     public pushProvider:PushProvider,
     public networkprovider: NetworkProvider) {
 
@@ -195,9 +194,6 @@ export class MyApp {
 
     webengage.push.onClick((deeplink, customData) => {
       
-    console.log("push clicked");
-    console.log(deeplink);
-    console.log(customData);
     let navdata = deepRoute.filter(data => data.route === deeplink);
     if (navdata.length > 0) {
       this.nav.setRoot(navdata[0].component,{deeplink:navdata[0].route});

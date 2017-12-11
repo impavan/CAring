@@ -59,7 +59,6 @@ export class StoreLocatorPage {
 
   ionViewWillEnter() {
     this.loaderProvider.presentLoadingCustom();
-    // this.getStores();
     this._favIdList = this.getFavList();
     this.events.publish('changeIcon',"StoreLocatorPage");
   }
@@ -68,15 +67,10 @@ export class StoreLocatorPage {
   ngAfterViewInit() {
 
     this.diagnostic.isLocationAuthorized().then(res => {
-      
-      console.log(res);
-      console.log("outside++++++++");
-
       if (!res) {
         this.diagnostic.requestLocationAuthorization('always').then(resp => {
-          console.log(resp)
-             console.log("inside++++++++");
-          if (resp == 'GRANTED')
+          this.loadMap();
+        }, err => {
           this.loadMap();
         })
       }else
@@ -97,7 +91,7 @@ export class StoreLocatorPage {
         // let lat = "12.9716";
         // let lng = "77.5946";
 
-        this.getAllStores(resp.coords.latitude, resp.coords.latitude, 50);
+        this.getAllStores(resp.coords.latitude, resp.coords.longitude, 50);
         // this.getAllStores(lat,lng, 50);
      
         this._myCurrentLocation = {
@@ -176,13 +170,11 @@ export class StoreLocatorPage {
         
         marker.addListener('click', () => {
 
-           console.log("lat",marker.lat)
            let contentString = '<div id="content" style="width:150px !important;">' +
             '<div id="siteNotice">' +
              '<p><b>' + marker.title + '<br /></b>' + marker.address  +
              '<p *ngIf="' +marker.mobile + '">' + marker.mobile  + '</p>'       
           '</div>' + '</div>';
-          console.log(marker);
           infowindow.setContent(contentString);
           infowindow.open(map, marker);
           // console.log("element",this.elRef.nativeElement.querySelector('.store'))
@@ -193,69 +185,20 @@ export class StoreLocatorPage {
      
     }
   
-  // '<img class="store loacator" src="assets/img/locator.png" (click)="gotoStoreDirection2('+marker.lat+','+marker.lng+')" style="height:15px; width:18px;padding-left:5px"/>' + '</p>'  
-
-  // '<a *ngIf="'+marker.mobile+'" href="tel:'+marker.mobile+'">' + '<img *ngIf="' +marker.mobile + '" class="phone" src= "assets/img/reciever.png" style= "height:12px; width:15px;padding-left:5px" />' + '</a>'  
-
-
-    // let latA = new google.maps.LatLng(12.914142,74.855957);
-    //  let latB = new google.maps.LatLng(12.971599, 77.594563);
-    // let curentLatLng = new google.maps.LatLng(3.1655016, 101.65281950000008)
-    // this.getDistance(curentLatLng, locationList);
   }
 
-  // distanceValue(){
-  //  let  curentLatLng = new google.map.LatLng(this.locationList[0].location.x, this.locationList[0].location.y)
-  //      for(let i in this.locationList){
-  //             let km = this.getDistance(curentLatLng, new google.maps.LatLng(this.locationList[i].location.x, this.locationList[i].location.y));
-  //             console.log("kilometer is:", km);
-  //     }
-  // }
+  
 
 
 
-  // getDistance(currentlatLngA, locationList) {
-  //   // let km =  google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
-  //   this.updatedLocationList = [];
-  //   let that = this;
-  //   let service = new google.maps.DistanceMatrixService();
-  //   for (let i in locationList) {
-  //     service.getDistanceMatrix({
-  //       origins: [currentlatLngA],
-  //       destinations: [new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y)],
-  //       travelMode: google.maps.TravelMode.DRIVING,
-  //       unitSystem: google.maps.UnitSystem.METRIC,
-  //       avoidHighways: false,
-  //       avoidTolls: false
-  //     }, function (res) {
-  //       locationList[i].km = res.rows[0].elements[0].distance.value / 1000;
-  //       that.updatedLocationList.push(locationList[i])
-  //       if (locationList.length == that.updatedLocationList.length) {
-  //         that.locationState = 'near_you';
-  //         that._filterList = that.updatedLocationList;
-  //         that.favouriteList = that.updatedLocationList.filter(fav => fav.favourite == true);
-  //         that.updatedLocationList.sort((a, b) => {
-  //           return parseFloat(a.km) - (b.km);
-  //         });
-  //         that.favouriteList.sort((a, b) => {
-  //           return parseFloat(a.km) - (b.km);
-  //         });
-  //         // that.updatedLocationList.sort(this.sortBy);
-  //         that.loaderProvider.dismissLoader();
-  //       }
-  //     });
-  //   }
-  //   //  console.log("km is:", km);
-  // }
+  
 
   deg2rad(deg) {
     return deg * (Math.PI / 180)
   }
 
 
-  // sortBy(a,b){
-  //       return parseFloat(a.km) - (b.km);
-  //  }
+  
 
   setFav(location) {
 
@@ -319,10 +262,8 @@ export class StoreLocatorPage {
      
     this._searchKey = loc;
     let val = storeId;
-    console.log(storeId);
     if(val)
       this._newFilteredList = this._filterList.filter(item => item.storeId === val);
-    console.log(this._newFilteredList);
       if (this._newFilteredList.length > 0)
         this.setMarker(this._newFilteredList[0]);  
     
@@ -346,7 +287,6 @@ export class StoreLocatorPage {
 
     setMarker(data){
 
-      console.log(data);
       let marker = new google.maps.Marker();
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
         this.map.panTo(latLng,30);
@@ -357,7 +297,6 @@ export class StoreLocatorPage {
  
   getAllStores(lat, lng, limit) {
   
-    console.log("in get all stores");
     this.storeLocatorProvider.getAllStoreLocation(lat,lng, limit)
 
         .subscribe(res=>{
@@ -387,7 +326,6 @@ export class StoreLocatorPage {
 
  gotoStoreDirection2(lat, lng) {
     
-  console.log(lat, lng);
   this.launchNavigator.navigate([lat, lng])
   .then(
     success => console.log('Launched navigator'),

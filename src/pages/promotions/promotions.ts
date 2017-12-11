@@ -39,9 +39,10 @@ export class PromotionsPage {
   getPromotionsBrochureLink() {
     this.hapenningsProvider.getPromotionsBrochureLink().subscribe(res => {
       for (let i in res.data) {
-        if (res.data[i].key == this.CATELOGLINK)
+        if (res.data[i].key == this.CATELOGLINK) {
           this._brochureLinks = res.data[i].value;
-        break;
+          break;
+        }
       }
     });
   }

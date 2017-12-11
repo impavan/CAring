@@ -11,10 +11,10 @@ export class LoaderProvider {
   public loading: any;
   public backPressed: any = false;
   constructor(private loadingCtrl: LoadingController, 
-    private platform: Platform, 
-    private appCtrl: App, 
-    private alertCtrl: AlertProvider,
-    private alert:AlertController) {
+              private platform: Platform, 
+              private appCtrl: App, 
+              private alertCtrl: AlertProvider,
+              private alert:AlertController) {
     
   }
 
@@ -41,7 +41,6 @@ export class LoaderProvider {
   presentBackOptions() {
     this.platform.registerBackButtonAction(() => {
       let nav = this.appCtrl.getActiveNav();
-      console.log(nav);
       if (nav.canGoBack()) { //Can we go back?
         nav.pop();
       } else {
@@ -55,7 +54,6 @@ export class LoaderProvider {
               text: 'Cancel',
               cssClass: '',
               handler: () => {
-                // console.log("Cancel clicked");
                 exitalert.dismiss();
               }
             }, {
@@ -68,15 +66,6 @@ export class LoaderProvider {
             }]
           });
           exitalert.present();
-
-        // if (!this.backPressed) {
-        //   this.backPressed = true;
-        //   this.alertCtrl.presentToast('Double Tap to exit')
-        //   setTimeout(() => this.backPressed = false, 2000)
-        //   return;
-        // } else {
-        //   this.platform.exitApp();
-        // }
       }
     });
   }

@@ -21,9 +21,6 @@ export class UserdataProvider {
     userData.append('IdetentifierValue', phoneNum);
     userData.append('NotificationType', 'mobile');
     userData.append('lang_code', 'en');
-    // userData.append('device_id', localStorage.getItem('push_token'));
-    // userData.append('device_type', localStorage.getItem('model'));
-    // userData.append('device_version', localStorage.getItem('version'));
     let body = userData;
     return this.http
       .post(BASE_URL + LOGIN, body, { headers: this.auth.getHeader() })
@@ -49,7 +46,6 @@ export class UserdataProvider {
 
   //Register user
   userRegistration(userdata) {
-    console.log(userdata,'===================userdata=========================')
 
     let data = {
       first_name:userdata.fname,
@@ -72,7 +68,6 @@ export class UserdataProvider {
       // get a user details
     getMyProfile() {
         const PROFILE = "/mobile/myprofile?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + BRAND_ID;
-        // let auth_token = localStorage.getItem('auth_token');
         return this.http.get(BASE_URL + PROFILE, { headers: this.auth.getHeader()})
             .do((res: Response) => res)
             .map((res: Response) => res.json());

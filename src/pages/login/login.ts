@@ -57,7 +57,6 @@ export class LoginPage {
     
     phoneNo = this.mobileCode + phoneNo;
 
-    console.log(phoneNo)
 
     if (phoneNo== EMPTY) {
 

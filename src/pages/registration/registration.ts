@@ -17,15 +17,12 @@ import { PushProvider } from '../../providers/push/push'
 })
 
 export class RegistrationPage {
-  public regData: any = {};
-  public profileImage: any;
+
   public registerData: any;
   public phoneNum: any;
-  public alteredPhoneNum: any = '';
   public otp: any;
   public from: any;
   _existingCustomerData:any = [];
-  type: string;
 
   constructor(
               private exceptionProvider: ExceptionHandlerProvider,
@@ -41,7 +38,6 @@ export class RegistrationPage {
     
                         this.from = navParams.get('from');
                         this.phoneNum = navParams.get('phone');
-                        console.log(this.phoneNum);
                         this._existingCustomerData = navParams.get('custExistingData');
 
                         if (this._existingCustomerData) {
@@ -69,9 +65,7 @@ export class RegistrationPage {
                           }
                           
                         }
-    
-                        this.profileImage = [];
-    
+        
         }
 
 

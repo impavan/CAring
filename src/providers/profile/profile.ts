@@ -76,14 +76,7 @@ updateProfile(userdata) {
       .map((res: Response) => res.json());
   }  
 
-    //App rating 
-    // RateMyApp() {
-    //     this.appRate.preferences.storeAppURL = {
-    //         ios: '3RGFD99U34.com.capillarytech.breadtalkihq',
-    //         android: 'market://details?id=com.capillarytech.breadtalkihq',
-    //     };
-    //     this.appRate.navigateToAppStore();
-    // }
+
 
 
     

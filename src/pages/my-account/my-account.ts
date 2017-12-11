@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events  } from 'ionic-angular';
+import { IonicPage, NavController, Events  } from 'ionic-angular';
 import { AlertProvider } from '../../providers/alert/alert';
 import { PushProvider } from '../../providers/push/push';
 
@@ -15,7 +15,6 @@ export class MyAccountPage {
 
   _auth:any;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               public events: Events,
               public pushProvider:PushProvider,
               public alertProvider:AlertProvider) {
@@ -51,7 +50,7 @@ export class MyAccountPage {
         localStorage.removeItem('favouriteList');
         localStorage.removeItem('auth_token');
         localStorage.removeItem('phoneNum');
-        // this.pushProvider.logoutWebengage();
+        this.pushProvider.logoutWebengage();
         this.events.publish('user:login', false);
         this.alertProvider.presentToast("You have been logged out..!")  
   

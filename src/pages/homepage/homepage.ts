@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides, IonicPage, Events } from 'ionic-angular';
+import { NavController, IonicPage, Events } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -10,8 +10,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   templateUrl: 'homepage.html',
 })
 export class HomePage {
-  @ViewChild('login')LoginModal;
-  @ViewChild(Slides) slides: Slides;
   pages: Array<{ title: string, component: any }>;
   isSlidesLoaded:boolean = false;
   bannerData:any = [];
@@ -47,13 +45,6 @@ export class HomePage {
     this.events.publish('changeIcon',"HomePage");
   }
 
-  ngAfterViewInit() {
-    // this.slides.freeMode = true;
-    // this.slides.loop = true;
-    // this.slides.speed = 300;
-    // this.slides.autoplay = 8000;
-    // this.slides.paginationType = 'bullets';
-  }
 
 
 
@@ -76,8 +67,7 @@ export class HomePage {
     if(bannerdata.linktype === this.INAPPLINK){
 
       this.route(bannerdata.destination);
-      console.log(bannerdata.destination);
-
+      
     }else if(bannerdata.linktype === this.WEBLINK){
 
         this.inAppBrowser.create(bannerdata.destination);
