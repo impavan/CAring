@@ -14,10 +14,10 @@
 
     <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
         <ion-segment [(ngModel)]="locationState">
-            <ion-segment-button value="near_you">
+            <ion-segment-button tappable value="near_you">
                 Near Me
             </ion-segment-button>
-            <ion-segment-button value="favourite">
+            <ion-segment-button tappable value="favourite">
                 Favourite
             </ion-segment-button>
         </ion-segment>

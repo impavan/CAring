@@ -86,6 +86,24 @@ page-otp {
     .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
         text-align: right;
     }
+    @media(max-width:480px){
+    .scroll-content {
+            bottom: 0px;
+            margin-top: 0px !important;
+            padding: 10px !important;
+        }
+        .otpContainer {
+        text-align: center;
+        padding: 60px 0 0 0 !important;
+        .text-input-md {
+            text-align: right !important;
+        }
+        .info {
+            margin-top: 50px !important;
+            font-size: 12px;
+        }
+    }
+}
     @media(min-width:768px){
     .otpContainer{
        width:70%;
