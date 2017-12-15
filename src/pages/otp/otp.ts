@@ -1,7 +1,6 @@
-import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Events, Platform } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild } from '@angular/core';
-import { ABOUT_US } from '../../url';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -38,6 +37,7 @@ export class OtpPage {
               private navCtrl: NavController,
               private navParams: NavParams,
               private menu: MenuController,
+              private platform:Platform,
               private events: Events) {
 
               this.otp = '';
@@ -123,8 +123,10 @@ export class OtpPage {
     console.log(data);
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
-    this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-    this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    if (this.platform.is('cordova')) {
+      this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+      this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    }  
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
     this.authProvider.setUserLoggedIn(true);

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
+import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+
 
 @IonicPage()
 @Component({
@@ -10,10 +12,15 @@ import { LoaderProvider } from '../../providers/loader/loader';
 })
 export class HealthInfoPage {
   _healthInfoList: any = [];
+  navToId: any;
 
-  constructor(private navCtrl: NavController,
+  constructor(private navParams:NavParams,
+              private navCtrl: NavController,
               private hapenningsProvider: HapenningsProvider,
-              private loaderProvider: LoaderProvider) {
+              private loaderProvider: LoaderProvider,
+              private exceptionProvider: ExceptionHandlerProvider) {
+    
+              this.navToId = navParams.get('id');
     
   }
 
@@ -44,6 +51,18 @@ export class HealthInfoPage {
     this.hapenningsProvider.getHealthInfo().subscribe(res => {
       this._healthInfoList = res.data.filter(health=>health.isactive == true);
       this.loaderProvider.dismissLoader();
+
+         if (this.navToId) {
+        let item = this._healthInfoList.find(d => d.deeplinkingidentifier == this.navToId)
+        if (item) {
+          this.navToHealthDetails(item);
+        }
+      }  
+
+    }, err => {
+      
+      this.loaderProvider.dismissLoader();
+      this.exceptionProvider.excpHandler(err);
 
     });
   }

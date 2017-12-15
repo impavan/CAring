@@ -11,13 +11,13 @@
 
 <ion-content padding>
 
-  <div  *ngFor="let f of faq" class="faqDetail">
-    
-   <p [innerHTML]="f.question"></p>
-    
-    
-   <p [innerHTML]="f.answer"></p>
-    
+
+  <div  *ngFor="let key of faqKeys">
+    <h4>{{key}}</h4>
+    <div *ngFor= "let faqCat of myCat[key].category | sort:'displayorderwithincategory'">
+            <p [innerHTML]="faqCat?.question"></p>
+            <p [innerHTML]="faqCat?.answer"></p>
+    </div>
   </div>
 
 

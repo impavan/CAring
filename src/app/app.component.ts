@@ -10,6 +10,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 // Import Providers.
+import { ApiProvider } from '../providers/api/api';
 import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';
 import { PushProvider } from '../providers/push/push';
@@ -37,7 +38,8 @@ export class MyApp {
     private alertProvider:AlertProvider,
     private screenOrientation: ScreenOrientation,
     public events: Events,
-    public pushProvider:PushProvider,
+    public pushProvider: PushProvider,
+    public apiProvider:ApiProvider,
     public networkprovider: NetworkProvider) {
 
     this.initializeApp();
@@ -77,7 +79,7 @@ export class MyApp {
   initializeApp() {
 
     this.platform.ready().then(() => {
-
+      if(this.platform.is('cordova'))
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       
       if (this._auth) {
@@ -161,11 +163,13 @@ export class MyApp {
       this.NoInternetModal.close();
   }
 
+//opens modal if user has not logged In and trying to access members page and redemption  
   openLoginModal() {
     
     this.LoginModal.open();
   }
 
+//close login modal  
   closeLoginModal() {
     
     this.LoginModal.close();
@@ -174,19 +178,19 @@ export class MyApp {
 
   pushEvent() {
 
-    let deepRoute = [
+    // let deepRoute = [
     
-      { route: 'profile', component: 'MemberPage' },
-      { route: 'newrewards', component: 'RewardsPage' },
-      { route: 'happenings', component: 'HappeningsPage' },
-      { route: 'promotions', component: 'PromotionsPage' },
-      { route: 'healthinfo', component: 'HealthInfoPage' },
-      { route: 'instoreactivity', component: 'InStorePage' },
-      { route: 'pointssummary', component: 'MemberPage' },
-      { route: 'myrewards', component: 'RewardsPage' },
-      { route: 'stores', component: 'StoreLocatorPage' }
+    //   { route: 'profile', component: 'MemberPage' },
+    //   { route: 'newrewards', component: 'RewardsPage' },
+    //   { route: 'happenings', component: 'HappeningsPage' },
+    //   { route: 'promotions', component: 'PromotionsPage' },
+    //   { route: 'healthinfo', component: 'HealthInfoPage' },
+    //   { route: 'instoreactivity', component: 'InStorePage' },
+    //   { route: 'pointssummary', component: 'MemberPage' },
+    //   { route: 'myrewards', component: 'RewardsPage' },
+    //   { route: 'stores', component: 'StoreLocatorPage' }
 
-    ];
+    // ];
 
     if (!this.platform.is('cordova')) {
       console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
@@ -194,11 +198,12 @@ export class MyApp {
     }
 
     webengage.push.onClick((deeplink, customData) => {
-      
-    let navdata = deepRoute.filter(data => data.route === deeplink);
-    if (navdata.length > 0) {
-      this.nav.setRoot(navdata[0].component,{deeplink:navdata[0].route});
-    }  
+
+      this.pushProvider.getDeepLinkPath(deeplink).then((navdata) => {
+        console.log(navdata);
+          this.nav.setRoot(navdata['page'],{deeplink:navdata['route'], id:navdata['value']});
+      })
+        
   });
     webengage.engage();
  

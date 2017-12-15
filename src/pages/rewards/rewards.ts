@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, Events, NavParams } from 'ionic-angular';
-import { BASE_URL, BRAND_ID } from '../../config';
 import JsBarcode from 'jsbarcode';
 import moment from 'moment';
 
@@ -36,6 +35,7 @@ export class RewardsPage {
   isWalletLoaded: boolean = false;
   currentDate: any = moment().format('YYYY-MM-DD');
   from: any;
+  navToId: any;
 
   constructor(public events: Events,
               public navParams:NavParams,  
@@ -50,10 +50,17 @@ export class RewardsPage {
                 
               this.selectTab = navParams.get('selectTab') || '';
               this.from = navParams.get('deeplink');
-              if (this.from =='newrewards' || this.from == 'myrewards') {
+              this.navToId = navParams.get('id');
+              if (this.from == 'myrewards') {
                   this.member = 'Rewards';
                   this.fetchAllExperiences();
-                }
+              } else if (this.from == 'newrewards') {
+                this.member = 'Redemption';
+                this.fetchAllExperiences();
+              } else {
+                console.log('coming to else');
+              }
+    
               if (this.selectTab) {
                 this.member = this.selectTab;
                 this.fetchAllExperiences();
@@ -95,6 +102,14 @@ export class RewardsPage {
           if (res.is_digital == 0)
             this.offerdata.push(res);
         
+        }
+
+        if (this.offerdata && this.navToId && this.from =='newrewards') {
+          let item = this.offerdata.find(d => d.ExperienceID == this.navToId);
+          if (item) {
+            this.navToRedeem(item);
+          }
+          
         }
       } else {
         
@@ -182,6 +197,12 @@ export class RewardsPage {
                             this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
                         }
 
+                }
+          
+                if (this._newRedeemedList && this.navToId && this.from == 'myrewards') {
+
+                  if (this._newRedeemedList[this.navToId]['Vouchers'].length > 0)
+                    this.goto('RedeemPage', this.navToId);
                 }
 
           }

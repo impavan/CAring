@@ -33,6 +33,7 @@ import { HapenningsProvider } from '../providers/hapennings/hapennings';
 import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
 import { SharedModule } from './shared.module';
 import { PushProvider } from '../providers/push/push';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { PushProvider } from '../providers/push/push';
     LoaderProvider, AlertProvider,Geolocation,LaunchNavigator,
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
     NetworkProvider, DeviceProvider, ProfileProvider, InAppBrowser,
-    PushProvider,Deeplinks
+    PushProvider,Deeplinks,
+    ApiProvider
   ]
 })
 export class AppModule { }

@@ -1,4 +1,10 @@
 import { Injectable } from '@angular/core';
+import { MESSAGE_HISTORY } from '../../url';
+import { Http, Response } from '@angular/http';
+import { ApiProvider } from '../api/api';
+import { AuthProvider } from '../auth/auth';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 
 
@@ -9,15 +15,41 @@ declare var webengage;
 @Injectable()
 export class PushProvider {
 
-  constructor() {
-  }
+  deepRoute: any;  
+
+  constructor(private http: Http,
+              private apiProvider: ApiProvider,
+              private authProvider: AuthProvider) {
+    
+  this.deepRoute = [
+    
+      { route: 'profile', component: 'MemberPage' },
+      { route: 'newrewards', component: 'RewardsPage' },
+      { route: 'happenings', component: 'HappeningsPage' },
+      { route: 'promotions', component: 'PromotionsPage' },
+      { route: 'healthinfo', component: 'HealthInfoPage' },
+      { route: 'instoreactivity', component: 'InStorePage' },
+      { route: 'pointssummary', component: 'MemberPage' },
+      { route: 'myrewards', component: 'RewardsPage' },
+      { route: 'stores', component: 'StoreLocatorPage' }
+
+    ];
+
+              }
 
 
 
+//login to webengage  
   loginToWebengage(phoneNum){
     webengage.user.login(phoneNum);
   }
 
+  //logout from webengage
+  logoutWebengage(){
+    webengage.user.logout();
+  }
+
+// save customer basic information to webengage  
   saveCustomerInfoToWebengage(data){
     
     setTimeout(() => {
@@ -32,8 +64,57 @@ export class PushProvider {
   }
 
 
-  logoutWebengage(){
-    webengage.user.logout();
+
+// get all push message
+  getAllMessages(phone: string) {
+    
+    return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + `&accountID=` + this.apiProvider.WEBENGAGE_ID +
+        `&BrandURLID=` + this.apiProvider.BRAND_ID, { headers:this.authProvider.getHeader() })
+        .do((res: Response) => res)
+        .map((res: Response) => res.json());
+    
   }
+
+
+  //returns deep link path
+
+  getDeepLinkPath(deeplink) {
+    
+    return new Promise(resolve => {
+
+      if (deeplink.includes(':')) { 
+          
+            let deepArray = deeplink.split(':');
+            let page = this.deepRoute.filter(data => data.route == deepArray[0]);
+          
+            let returndata = {
+
+                  page: page[0].component,
+                  route: page[0].route,
+                  value: deepArray[1]
+            };
+      
+            resolve(returndata);
+
+        } 
+      else {
+        
+        let page = this.deepRoute.filter(data => data.route == deeplink);
+        
+          let returndata = {
+            page: page[0].component,
+            route: page[0].route,
+            value:''
+          }
+          resolve (returndata);
+      }
+      
+    })  
+    
+  }
+
+
+
+
 
 }

@@ -1,8 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, IonicPage, Events } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { PushProvider } from '../../providers/push/push';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+
 
 @IonicPage()
 @Component({
@@ -16,11 +19,13 @@ export class HomePage {
   INAPPLINK = 'InAppLink';
   WEBLINK = 'WebLink';
 
-  constructor(private events:Events,
-              public  navCtrl: NavController,
-              private inAppBrowser:InAppBrowser, 
+  constructor(private events: Events,
+              public navCtrl: NavController,
+              private pushProvider:PushProvider,
+              private inAppBrowser: InAppBrowser, 
               private loaderProvider:LoaderProvider, 
-              private hapenningsProvider:HapenningsProvider) {
+              private hapenningsProvider: HapenningsProvider,
+              private exceptionProvider:ExceptionHandlerProvider) {
 
                
                 
@@ -34,10 +39,14 @@ export class HomePage {
       this.hapenningsProvider.getHomeBanner()
             .subscribe(res => {
 
-                this.bannerData = res.data;
+               this.bannerData = res.data;
                this.loaderProvider.dismissLoader();
                this.isSlidesLoaded = true;
 
+        }, err => {
+              
+               this.exceptionProvider.excpHandler(err);
+          
             })
 
     }
@@ -82,25 +91,34 @@ export class HomePage {
 
   route(deeplink) {
 
-     let deepRoute = [
+    //  let deepRoute = [
     
-      { route: '/profile', component: 'MemberPage' },
-      { route: '/newrewards', component: 'RewardsPage' },
-      { route: '/happenings', component: 'HappeningsPage' },
-      { route: '/promotions', component: 'PromotionsPage' },
-      { route: '/healthinfo', component: 'HealthInfoPage' },
-      { route: '/instoreactivity', component: 'InStorePage' },
-      { route: '/pointssummary', component: 'MemberPage' },
-      { route: '/myrewards', component: 'RewardsPage' },
-      { route: '/stores', component: 'StoreLocatorPage' }
+    //   { route: '/profile', component: 'MemberPage' },
+    //   { route: '/newrewards', component: 'RewardsPage' },
+    //   { route: '/happenings', component: 'HappeningsPage' },
+    //   { route: '/promotions', component: 'PromotionsPage' },
+    //   { route: '/healthinfo', component: 'HealthInfoPage' },
+    //   { route: '/instoreactivity', component: 'InStorePage' },
+    //   { route: '/pointssummary', component: 'MemberPage' },
+    //   { route: '/myrewards', component: 'RewardsPage' },
+    //   { route: '/stores', component: 'StoreLocatorPage' }
 
-    ];
+    // ];
+
+    console.log(deeplink);
 
 
-     let navdata = deepRoute.filter(data => data.route === deeplink);
-    if (navdata.length > 0) {
-      this.navCtrl.setRoot(navdata[0].component,{deeplink:navdata[0].route});
-    }  
+
+
+    //  let navdata = deepRoute.filter(data => data.route === deeplink);
+    this.pushProvider.getDeepLinkPath(deeplink.substr(1)).then((navdata) => {
+      
+      console.log(navdata);
+      this.navCtrl.setRoot(navdata['page'], { deeplink: navdata['route'], id: navdata['value'] });
+      
+    })
+    
+     
 
   }
 }

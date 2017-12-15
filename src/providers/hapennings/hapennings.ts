@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 //All providers goes here
 
 import { STTARTER_BASE_URL } from '../../config';
-import { happenings } from '../../url';
+import { HAPPENINGS, HOME_BANNER, INSTORE, PROMOTIONS, HEALTH_INFO, FAQ } from '../../url';
 
 @Injectable()
 export class HapenningsProvider {
@@ -23,7 +23,7 @@ export class HapenningsProvider {
 //get home page banner image
 getHomeBanner(){
 
-    return this.http.get( STTARTER_BASE_URL + 'homebanners?lang=' + this.lang, this.contentType)
+    return this.http.get( STTARTER_BASE_URL + HOME_BANNER + this.lang, this.contentType)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
@@ -31,7 +31,7 @@ getHomeBanner(){
 }
   //Get all the happenings
   getHappenings() {
-    return this.http.get(STTARTER_BASE_URL + happenings + this.lang, this.contentType)
+    return this.http.get(STTARTER_BASE_URL + HAPPENINGS + this.lang, this.contentType)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
@@ -39,7 +39,7 @@ getHomeBanner(){
 
   //Get all Instore Activities
   public getInStoreActivities() {
-    return this.http.get(STTARTER_BASE_URL + 'instoreactivities?lang=' + this.lang, this.contentType)
+    return this.http.get(STTARTER_BASE_URL + INSTORE + this.lang, this.contentType)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
@@ -47,54 +47,26 @@ getHomeBanner(){
 
   //Get all promotions
   public getPromotions() {
-    return this.http.get(STTARTER_BASE_URL + 'promotions?lang=' + this.lang, this.contentType)
+    return this.http.get(STTARTER_BASE_URL + PROMOTIONS + this.lang, this.contentType)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
   }
 
-  public getPromotionsBrochureLink() {
-    return this.http.get(STTARTER_BASE_URL + 'links?lang=' + this.lang, this.contentType)
-      .map((res: Response) => res)
-      .do((res: Response) => res.json())
-      .map((res: Response) => res.json())
-  }
+
 
   //Get all health info
   public getHealthInfo() {
-    return this.http.get(STTARTER_BASE_URL + 'healthinfo?lang=' + this.lang, this.contentType)
+    return this.http.get(STTARTER_BASE_URL + HEALTH_INFO + this.lang, this.contentType)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
   }
 
-    //Get the data of About Us.
-    getAboutUsData() {
-      return this.http.get(STTARTER_BASE_URL + 'aboutus?lang=' + this.lang, this.contentType)
-        .map((res: Response) => res)
-        .do((res: Response) => res.json())
-        .map((res: Response) => res.json())
-    }
 
-    //Get Privacy Policy.
-    getPrivacyPolicy() {
-      return this.http.get(STTARTER_BASE_URL + 'privacypolicy?lang=' + this.lang, this.contentType)
-        .map((res: Response) => res)
-        .do((res: Response) => res.json())
-        .map((res: Response) => res.json())
-    }
-  
-    //Get Terms & Conditions.
-    getTermsandConditions() {
-      return this.http.get(STTARTER_BASE_URL + 'terms&conditions?lang=' + this.lang, this.contentType)
-        .map((res: Response) => res)
-        .do((res: Response) => res.json())
-        .map((res: Response)=> res.json())
-    }
-  
     //Get FAQ.
     getFAQ() {
-      return this.http.get(STTARTER_BASE_URL + 'faq?lang=' + this.lang, this.contentType)
+      return this.http.get(STTARTER_BASE_URL + FAQ + this.lang, this.contentType)
         .map((res: Response) => res)
         .do((res: Response) => res.json())
         .map((res: Response)=> res.json())

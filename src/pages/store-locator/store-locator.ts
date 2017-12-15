@@ -39,6 +39,7 @@ export class StoreLocatorPage {
 
   instoreData: any;
   storeId: any;
+  navToId: any;
   
 
   constructor(public events:Events,
@@ -54,6 +55,8 @@ export class StoreLocatorPage {
     
             this.instoreData = navParams.get('instore') || '';
             this.storeId = navParams.get('storeId');
+            this.navToId = navParams.get('id') || '';
+            
     
    
             
@@ -331,8 +334,10 @@ export class StoreLocatorPage {
               this.loadFavList(this.updatedLocationList);
           
               if (this.instoreData)
-                this.onInStoreInput(this.instoreData,this.storeId);
-          
+                this.onInStoreInput(this.instoreData, this.storeId);
+              
+              if(this.navToId && this.navToId!=null && this.navToId!=undefined)
+               this.onInStoreInput('', this.navToId);
         });
 
   }
