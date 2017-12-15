@@ -2,7 +2,7 @@
 
 
 
-//  Test Base URL.
+//  dev Base URL.
 // export const BASE_URL = `http://52.89.20.38/v2/`;
 
 
