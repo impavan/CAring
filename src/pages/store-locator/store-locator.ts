@@ -52,7 +52,7 @@ export class StoreLocatorPage {
     
             this.instoreData = navParams.get('instore') || '';
             this.storeId = navParams.get('storeId');
-            this.navToId = navParams.get('id');
+            this.navToId = navParams.get('id') || '';
             
     
    
@@ -313,7 +313,7 @@ export class StoreLocatorPage {
               if (this.instoreData)
                 this.onInStoreInput(this.instoreData, this.storeId);
               
-              if(this.navToId)
+              if(this.navToId && this.navToId!=null && this.navToId!=undefined)
                this.onInStoreInput('', this.navToId);
         });
 
