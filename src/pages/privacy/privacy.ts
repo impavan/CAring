@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { ApiProvider } from '../../providers/api/api';
 
 
 
@@ -13,20 +13,16 @@ export class PrivacyPage {
 
   policy: any;
 
-  constructor(public hapenningsProvider: HapenningsProvider) {
+  constructor(private apiProvider:ApiProvider) {
   }
 
 
 
   ionViewWillEnter() {
-    this.getPrivacyPolicy();
+
+    this.policy = this.apiProvider.privacyPolicy;
   }
 
-  getPrivacyPolicy() {
-    this.hapenningsProvider.getPrivacyPolicy()
-      .subscribe(res => {
-        this.policy = res.data[0];
-    })
-  }
+  
 
 }

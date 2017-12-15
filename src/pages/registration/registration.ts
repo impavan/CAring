@@ -1,5 +1,5 @@
 import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
-import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Events,Platform } from 'ionic-angular';
 import { Component } from '@angular/core';
 
 // Import Providers.
@@ -29,6 +29,7 @@ export class RegistrationPage {
               private navCtrl: NavController,
               private navParams: NavParams,
               private menu: MenuController,
+              private platform:Platform,
               private loaderProvider: LoaderProvider,
               private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
@@ -209,8 +210,10 @@ export class RegistrationPage {
     this.authProvider.setAuthToken(data[0].auth_key);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
     localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-    this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-    this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    if (this.platform.is('cordova')) {
+      this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
+      this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+    }      
     this.authProvider.setUserLoggedIn(true);
     this.authProvider.setHeader();
     this.events.publish('user:login', true);

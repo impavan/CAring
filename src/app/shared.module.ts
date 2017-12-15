@@ -6,6 +6,9 @@ import { FilterPipe } from '../pipes/filter/filter';
 import { TruncatePipe } from '../pipes/truncate/truncate';
 import { HeaderComponent } from '../components/header/header';
 import { RoundPipe } from '../pipes/round/round';
+import { ChunkPipe } from '../pipes/chunk/chunk';
+import { SortPipe } from '../pipes/sort/sort';
+
 
 
 @NgModule({
@@ -16,10 +19,12 @@ import { RoundPipe } from '../pipes/round/round';
     IonicPageModule.forChild(TruncatePipe),
     IonicPageModule.forChild(HeaderComponent),
     IonicPageModule.forChild(RoundPipe),
+    IonicPageModule.forChild(ChunkPipe),
+    IonicPageModule.forChild(SortPipe),
    
   ],
-  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,],
-  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,]
+  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe],
+  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe]
 })
 
 export class SharedModule { } 

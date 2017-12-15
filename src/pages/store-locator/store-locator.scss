@@ -80,7 +80,7 @@ page-store-locator {
                 font-size: 13px;
             }
             p {
-                margin: 5px 0 10px 0;
+                margin: 5px 0 0 0;
                 color: $cp-extra-darker-grey;
                 font-size: 13px;
             }
@@ -101,6 +101,11 @@ page-store-locator {
                 }
             }
         }
+        .customCol{
+            [col-1] {
+                padding:0 5px;
+            }
+        }
     }
     .locationContainerTwo {
         max-height: 300px;
@@ -114,7 +119,7 @@ page-store-locator {
             font-size: 13px;
         }
         p {
-            margin: 5px 0 10px 0;
+            margin: 5px 0 0px 0;
             color: $cp-extra-darker-grey;
             font-size: 13px;
         }
@@ -134,6 +139,11 @@ page-store-locator {
                 font-size: 22px;
             }
         }
+        .customCol{
+            [col-1] {
+                padding:0 5px;
+            }
+        }
     }
     .searchbar-md {
         padding: 0 !important;
@@ -145,4 +155,7 @@ page-store-locator {
     .loacator, .phone{
         margin: 0 0 0 10px;
     }
+    .locatorIcon{font-size: 26px;}
+    .phoneIcon{color: #000;font-size: 23px;}
+    
 }

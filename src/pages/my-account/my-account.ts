@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Events  } from 'ionic-angular';
+import { IonicPage, NavController, Events, Platform  } from 'ionic-angular';
 import { AlertProvider } from '../../providers/alert/alert';
 import { PushProvider } from '../../providers/push/push';
 
@@ -17,7 +17,8 @@ export class MyAccountPage {
   constructor(public navCtrl: NavController,
               public events: Events,
               public pushProvider:PushProvider,
-              public alertProvider:AlertProvider) {
+              public alertProvider: AlertProvider,
+              public platform:Platform) {
           }
 
 
@@ -50,7 +51,10 @@ export class MyAccountPage {
         localStorage.removeItem('favouriteList');
         localStorage.removeItem('auth_token');
         localStorage.removeItem('phoneNum');
-        this.pushProvider.logoutWebengage();
+        if (this.platform.is('cordova')) {
+            this.pushProvider.logoutWebengage();
+          }
+    
         this.events.publish('user:login', false);
         this.alertProvider.presentToast("You have been logged out..!")  
   

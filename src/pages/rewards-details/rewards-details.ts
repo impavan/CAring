@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BASE_URL, BRAND_ID } from '../../config';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -80,8 +79,8 @@ export class RewardsDetailsPage {
 
         this.userdataProvider.getMyProfile().subscribe(res => {
 
-           this.loaderProvider.dismissLoader();
-          this.authProvider.setUser(res[0].customerdata);
+            this.loaderProvider.dismissLoader();
+            this.authProvider.setUser(res[0].customerdata);
             localStorage.setItem('userdetails', JSON.stringify(res[0].customerdata));
             this.authProvider.setHeader();          
             this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata });

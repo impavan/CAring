@@ -4,7 +4,28 @@
 </div>
 
 
-<ion-content padding>
+<ion-content>
+
+   <ion-card *ngIf="!_auth" padding class="myPointsContainer sec">
+    <ion-card-header>Login to view your notifications</ion-card-header>
+    <button ion-button value="Redeem Vouchers" color="secondary" (click)="gotoLogin()">Login to continue</button>
+    </ion-card>
+  
+  <div *ngIf="_auth && myMessages?.length > 0">
+      <ion-card *ngFor="let message of myMessages">
+      <ion-card-header>
+        {{message?.title}}
+      </ion-card-header>
+      <ion-card-content>
+        {{message?.text}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="alert mt70" *ngIf="_auth && myMessages?.length <= 0" text-center>
+            Notification history not available!
+      </div>
+
 
 </ion-content>
 

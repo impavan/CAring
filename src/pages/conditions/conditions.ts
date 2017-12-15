@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { ApiProvider } from '../../providers/api/api';
 
-/**
- * Generated class for the ConditionsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -18,21 +13,16 @@ export class ConditionsPage {
 
   conditions: any;
 
-  constructor(public happeningProviders : HapenningsProvider) {
+  constructor(private apiProvider:ApiProvider) {
   }
 
  
 
   ionViewWillEnter() {
-    this.getConditions();
+
+    this.conditions = this.apiProvider.termsAndConditions;
   }
 
-  getConditions() {
-    this.happeningProviders.getTermsandConditions()
-      .subscribe(res => {
-        this.conditions = res.data[0];
-       
-    })
-  }
+
 
 }

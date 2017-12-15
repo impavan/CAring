@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 //All providers goes here
 import { STORE_BASE_URL} from '../../config';
-import { stores } from '../../url';
+
 
 @Injectable()
 export class StoreLocatorProvider {
