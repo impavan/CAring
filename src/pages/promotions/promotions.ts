@@ -4,7 +4,7 @@ import { ApiProvider } from '../../providers/api/api';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
-
+import moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -39,7 +39,21 @@ export class PromotionsPage {
 
   getPromotions() {
     this.hapenningsProvider.getPromotions().subscribe(res => {
-      this._promotionList = res.data.filter(promote=>promote.isactive == true);
+      this._promotionList = res.data.filter(promote => {
+        if (promote.publishingstartdate && promote.publishingenddate) {
+          // console.log()
+          // console.log(promote.publishingstartdate,"pro")
+          // console.log(this.apiProvider.currentDate,"current date")
+          // console.log(moment(promote.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate), "publishing start date");
+          // console.log(moment(promote.publishingenddate).isSameOrAfter(this.apiProvider.currentDate), "publishing end date");
+
+          if (moment(promote.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(promote.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+            return promote;
+          }
+        } else {
+          return promote;
+        }
+      });
       this.loaderProvider.dismissLoader();
 
       if (this.navToId) {

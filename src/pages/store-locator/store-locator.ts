@@ -170,7 +170,12 @@ export class StoreLocatorPage {
   loadFavList(locationList) {
 
     for (let i in locationList) {
-      locationList[i].favourite = this._favIdList.includes(locationList[i]._id);
+
+      locationList[i].favourite = this._favIdList.includes(locationList[i].storeId);
+      if (locationList[i].favourite) {
+        this.favouriteList.push(locationList[i]);
+        console.log(this.favouriteList);
+      }
     }
 
   }
@@ -247,6 +252,8 @@ export class StoreLocatorPage {
 
     let list: any = localStorage.getItem('favouriteList');
     let list2: any = list == null ? [] : JSON.parse(list);
+    console.log("getFavList --- list2");
+    console.log(list2);
     return (list2);
 
   }
@@ -332,6 +339,7 @@ export class StoreLocatorPage {
               this._filterList = this.updatedLocationList;
               this.addMarkers(this.map, this.updatedLocationList);
               this.loadFavList(this.updatedLocationList);
+              this.loaderProvider.dismissLoader();
           
               if (this.instoreData)
                 this.onInStoreInput(this.instoreData, this.storeId);

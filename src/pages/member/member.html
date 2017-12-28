@@ -9,11 +9,11 @@
     <div class="memberContainer">
         <div class="row">
             <div class="col">
-                <img src="assets/img/card_regular.png" alt="" class="mt30">
+                <img src="assets/img/card_regular.png" alt="" />
             </div>
             <div class="col" text-center>
-                <div class="barcode">
-                    <svg #barcode id="barcode"></svg>
+                <div class="barCode">
+                    <svg #barcode id="barcode" style="width:100% !important;"></svg>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <div *ngIf="_auth" class="myPointsContainer">
                     <p class="urPoints">Your Points:
                         <strong>{{_totalAvailablePoints}}</strong>
-                        <button ion-button value="redeem" class="reedemBtn" (click)="gotoRewards()">Redeem</button>
+                        <button ion-button value="redeem" class="redeemBtn" (click)="gotoRewards()">Redeem</button>
 
                     </p>
                     <section>

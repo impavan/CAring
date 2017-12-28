@@ -14,10 +14,11 @@
   <div *ngIf="_auth && myMessages?.length > 0">
       <ion-card *ngFor="let message of myMessages">
       <ion-card-header>
-        {{message?.title}}
+        <b>{{message?.title}}</b>
       </ion-card-header>
       <ion-card-content>
-        {{message?.text}}
+        <p>{{message?.text}}</p>
+        <p style="font-size:12px">{{message?.sentTime | date:'dd-MM-yyyy'}}</p>
       </ion-card-content>
     </ion-card>
   </div>

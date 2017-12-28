@@ -5,7 +5,7 @@
 <ion-content class="mainCont">
     <div class="healthDetailsContainer">
         <figure>
-            <img src="{{healthData?.imagebanner}}">
+            <img  src="{{healthData?.bannerimage}}" (click)="zoomArea(healthData?.bannerimage)">
         </figure>
         <div class="content">
             <h4>{{healthData?.title}}
@@ -14,9 +14,7 @@
             <div class="infodate">
                 <label *ngIf='healthData?.authorinfo'><i>By</i> {{healthData?.authorinfo}}</label> <span>{{healthData?.displaydate | date:'EEEE dd MMM yyyy hh:mm a'}}</span>
             </div>
-            <p><span [innerHTML]="healthData?.detaileddescription"></span>
-             <a href="{{healthData?.additionalinfo}}">...read more</a></p>
-            
+            <p><span [innerHTML]="healthData?.detaileddescription"></span></p>  
         </div>
     </div>
 </ion-content>

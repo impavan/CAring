@@ -2,10 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, IonicPage, Events } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { PushProvider } from '../../providers/push/push';
+import { ApiProvider } from '../../providers/api/api';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
-
+import moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class HomePage {
 
   constructor(private events: Events,
               public navCtrl: NavController,
+              private apiProvider:ApiProvider,
               private pushProvider:PushProvider,
               private inAppBrowser: InAppBrowser, 
               private loaderProvider:LoaderProvider, 
@@ -39,7 +41,18 @@ export class HomePage {
       this.hapenningsProvider.getHomeBanner()
             .subscribe(res => {
 
-               this.bannerData = res.data;
+              this.bannerData = res.data.filter(d => {
+                
+        if (d.publishingstartdate && d.publishingenddate) {
+          if (moment(d.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(d.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+            return d;
+          }
+        } else {
+          return d;
+        }
+                
+
+              });
                this.loaderProvider.dismissLoader();
                this.isSlidesLoaded = true;
 

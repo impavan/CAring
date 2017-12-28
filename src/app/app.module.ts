@@ -5,6 +5,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Camera } from '@ionic-native/camera';
@@ -34,6 +35,7 @@ import { StoreLocatorProvider } from '../providers/store-locator/store-locator';
 import { SharedModule } from './shared.module';
 import { PushProvider } from '../providers/push/push';
 import { ApiProvider } from '../providers/api/api';
+import { ZoomProvider } from '../providers/zoom/zoom';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { ApiProvider } from '../providers/api/api';
     BrowserModule,
     HttpModule,
     SharedModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: false,
     }),
@@ -65,7 +68,8 @@ import { ApiProvider } from '../providers/api/api';
     Camera, AppVersion, ScreenOrientation, Device, Network, ExceptionHandlerProvider, AuthProvider, UserdataProvider, LoaderProvider, AlertProvider, RewardsProvider,
     NetworkProvider, DeviceProvider, ProfileProvider, InAppBrowser,
     PushProvider,Deeplinks,
-    ApiProvider
+    ApiProvider,
+    ZoomProvider
   ]
 })
 export class AppModule { }

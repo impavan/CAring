@@ -26,7 +26,8 @@ export class MessagesPage {
               private pushProvider: PushProvider,
               private alertProvider:AlertProvider,
               private loaderProvider: LoaderProvider,
-              private exceptionProvider:ExceptionHandlerProvider) {
+              private exceptionProvider: ExceptionHandlerProvider) {
+    
   }
 
   ionViewDidLoad() {
@@ -59,14 +60,14 @@ export class MessagesPage {
 
       } else {
         
-        this.alertProvider.presentToast(res[0].message);
+        // this.alertProvider.presentToast(res[0].message);
 
       }
 
     }, err => {
       
       this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err);
+      // this.exceptionProvider.excpHandler(err);
 
     });
 

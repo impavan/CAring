@@ -43,11 +43,21 @@
                                 <ion-col col-10>
                                     <span>{{location?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{location?.storeDescription}}<br/><label *ngIf="location?.timing">{{location?.timing}}</label>
+                                        {{location?.storeDescription}}<br/>
                                     </p>
                                 </ion-col>
                             </ion-row>
-                            <div class="customCol">
+                             <div class="customCol" *ngIf="location?.timing">
+                                <ion-row>
+                                    <ion-col col-2>
+                                        <p *ngIf="location?.timing"  class="phoneIcon"><ion-icon name="md-time" style="font-size:19px"></ion-icon></p>
+                                    </ion-col>
+                                    <ion-col col-10>
+                                        <label *ngIf="location?.timing"> {{location?.timing}}</label>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <div class="customCol" *ngIf="location?.mobile">
                                 <ion-row>
                                     <ion-col col-2>
                                         <a *ngIf="location?.mobile" href="tel:0{{location?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
@@ -82,10 +92,20 @@
                                 <ion-col col-10>
                                     <span>{{ fav?.distance | number : '1.2-2'}} Km away</span>
                                     <p>
-                                        {{fav?.storeDescription}}<br/><label *ngIf="fav?.timing">{{fav?.timing}}</label>
+                                        {{fav?.storeDescription}}<br/>
                                     </p>
                                 </ion-col>
                             </ion-row>
+                            <div class="customCol" *ngIf="fav?.timing">
+                                <ion-row>
+                                    <ion-col col-2>
+                                        <p *ngIf="fav?.timing"  class="phoneIcon"><ion-icon name="md-time" style="font-size:19px"></ion-icon></p>
+                                    </ion-col>
+                                    <ion-col col-10>
+                                        <label *ngIf="fav?.timing"> {{fav?.timing}}</label>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
                             <div class="customCol">
                                 <ion-row>
                                     <ion-col col-2>
@@ -122,10 +142,20 @@
                         <ion-col col-10>
                             <span>{{filter?.distance | number : '1.2-2'}} Km away</span>
                             <p>
-                                {{filter?.storeDescription}}<br/><label *ngIf="filter?.timing"> {{filter?.timing}}</label>
+                                {{filter?.storeDescription}}<br/>
                             </p>
                         </ion-col>
                     </ion-row>
+                    <div class="customCol" *ngIf="filter?.timing">
+                            <ion-row>
+                                <ion-col col-2>
+                                    <p *ngIf="filter?.timing"  class="phoneIcon"><ion-icon name="md-time" style="font-size:19px"></ion-icon></p>
+                                </ion-col>
+                                <ion-col col-10>
+                                <label *ngIf="filter?.timing"> {{filter?.timing}}</label>
+                            </ion-col>
+                        </ion-row>
+                    </div>
                     <div class="customCol">
                         <ion-row>
                             <ion-col col-2>

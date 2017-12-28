@@ -25,6 +25,7 @@ export class LoginPage {
 
     title: 'Country Code'
   }
+
  
   constructor(
               private events: Events,
@@ -43,6 +44,8 @@ export class LoginPage {
                       this.openConnectionModal();
                     
                   });
+                  
+                 
   }
 
   ionViewDidEnter() {
@@ -60,19 +63,22 @@ export class LoginPage {
   //User login function
   userLogin() {
 
+ 
+       
+
     let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
     
     phoneNo = this.mobileCode + phoneNo;
-
+ 
 
     if (phoneNo== EMPTY) {
 
-      this.alertProvider.presentToast('Please enter valid mobile number');
+      this.alertProvider.presentToast('Please enter mobile number');
       return;
 
     } else if (phoneNo.trim() == EMPTY) {
 
-      this.alertProvider.presentToast('Please enter valid mobile number');
+      this.alertProvider.presentToast('Please enter mobile number');
       return;
 
     } else if (phoneNo.length < MOBILE_NO_LIMIT_1 || phoneNo.length > MOBILE_NO_LIMIT_2) {
@@ -92,7 +98,7 @@ export class LoginPage {
 
     } else {
 
-      
+    
 
       this.loaderProvider.presentLoadingCustom();
       this.userProvider.userLogin(phoneNo)
@@ -122,6 +128,7 @@ export class LoginPage {
 
         });
     }
+
   }
 
   //skipLogin
@@ -142,5 +149,10 @@ export class LoginPage {
     this.connectionModal.close();
 
   }
+
+
+ 
+
+
 
 }

@@ -9,6 +9,8 @@ import 'rxjs/add/operator/do';
 import { AlertProvider } from '../alert/alert';
 import { ExceptionHandlerProvider } from '../exception-handler/exception-handler';
 
+import moment from 'moment';
+
 /*
   Generated class for the ApiProvider provider.
 
@@ -29,6 +31,9 @@ export class ApiProvider {
   public PROMOTION_URL: any;
   public privacyPolicy: any = [];
   public termsAndConditions: any = [];
+  public currentDate = moment();
+
+
 
 
   constructor(public http: Http,
@@ -59,6 +64,7 @@ export class ApiProvider {
           this.NEWS_LETTER_URL = newsurl.value;
           this.privacyPolicy = privacy.value;
           this.termsAndConditions = terms.value;
+        
 
         } else {
           

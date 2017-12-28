@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { MESSAGE_HISTORY } from '../../url';
 import { Http, Response } from '@angular/http';
 import { ApiProvider } from '../api/api';
@@ -18,6 +19,7 @@ export class PushProvider {
   deepRoute: any;  
 
   constructor(private http: Http,
+              private platform:Platform,  
               private apiProvider: ApiProvider,
               private authProvider: AuthProvider) {
     
@@ -67,9 +69,10 @@ export class PushProvider {
 
 // get all push message
   getAllMessages(phone: string) {
-    
-    return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + `&accountID=` + this.apiProvider.WEBENGAGE_ID +
-        `&BrandURLID=` + this.apiProvider.BRAND_ID, { headers:this.authProvider.getHeader() })
+    let platform = this.platform.is('android') ? 'android' : 'IOS';
+    console.log(platform);
+    return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + '&accountID=' + this.apiProvider.WEBENGAGE_ID +
+        '&BrandURLID=' + this.apiProvider.BRAND_ID + '&commChannelType='+ platform, { headers:this.authProvider.getHeader() })
         .do((res: Response) => res)
         .map((res: Response) => res.json());
     

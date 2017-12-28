@@ -72,9 +72,17 @@ page-health-info {
                 margin: 0 0px 0 0;
                 width: 50%;
                 min-height: 141px;
-                img {
-                    //border: 1px solid #1bb463;
+                figure{
+                    margin: 0;
+                    padding: 0;
+                    height: 141px;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        max-width: 100%;
+                    }
                 }
+                
             }
             .right {
                 float: left;
@@ -87,7 +95,7 @@ page-health-info {
                     font-size: 14px;
                     display: block;
                     color: #111;
-                    margin-bottom: 0;
+                    margin-bottom: 5px;
                     font-family: 'allerbold';
                 }
                 span {
@@ -105,9 +113,9 @@ page-health-info {
                     font-size: 12px;
                     padding: 5px 10px;
                     position: absolute;
-                    bottom: 3px;
+                    bottom: 0;
                     line-height: 21px;
-                    height: 30px;
+                    height: auto;
                     margin: 0px;
                     font-family: 'Axis';
                     span {

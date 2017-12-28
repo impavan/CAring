@@ -19,7 +19,8 @@ export class HeaderComponent {
     this.text = 'Hello World';
   }
 
-  goTo(page){
+  goTo(page) {
+    if(!(this.navCtrl.getActive().id == "MessagesPage"))
     this.navCtrl.push(page);
   }
 

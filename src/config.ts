@@ -13,11 +13,11 @@ export const BASE_URL = `http://52.89.20.38/v2/`;
 
 
 //dev brand Id
-export const BRAND_ID = `caringdemo`;
+// export const BRAND_ID = `caringdemo`;
 
 
 //  Live brand Id
-// export const BRAND_ID = `caringlive`;
+export const BRAND_ID = `caringlive`;
 
 
 //sttarter url dev

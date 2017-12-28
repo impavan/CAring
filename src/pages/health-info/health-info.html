@@ -15,15 +15,19 @@
                     </ion-col>
                 </ion-row>
             </article>
-            <div class="healthInfoCards" *ngFor="let health of _healthInfoList" tappable (click)="navToHealthDetails(health)">
+            <div *ngFor="let healthy of _healthInfoList | chunk:2">
+            <div class="healthInfoCards" *ngFor="let health of healthy" clickable (click)="navToHealthDetails(health)">
                 <div class="left">
-                    <img src="{{health?.thumbnailimage}}" />
+                    <figure>
+                        <img src="{{health?.thumbnailimage}}" />
+                    </figure>
                 </div>
                 <div class="right">
                     <label>{{health?.title}}</label>
-                    <!--<span [innerHTML]="health?.shortdescription"></span>-->
+                    <span [innerHTML]="health?.subtitle"></span>
                     <button ion-button>{{health?.buttonname}}</button>
                 </div>
+            </div>
             </div>
         </ion-grid>
     </div>
