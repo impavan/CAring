@@ -323,6 +323,9 @@ export class StoreLocatorPage {
               
               if(this.navToId && this.navToId!=null && this.navToId!=undefined)
                this.onInStoreInput('', this.navToId);
+      }, err => {
+        this.loaderProvider.dismissLoader();
+        
         });
 
   }

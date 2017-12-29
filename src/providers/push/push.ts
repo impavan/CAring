@@ -69,7 +69,7 @@ export class PushProvider {
 
 // get all push message
   getAllMessages(phone: string) {
-    let platform = this.platform.is('android') ? 'android' : 'IOS';
+    let platform = this.platform.is('android') ? 'android' : 'ios';
     console.log(platform);
     return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + '&accountID=' + this.apiProvider.WEBENGAGE_ID +
         '&BrandURLID=' + this.apiProvider.BRAND_ID + '&commChannelType='+ platform, { headers:this.authProvider.getHeader() })
