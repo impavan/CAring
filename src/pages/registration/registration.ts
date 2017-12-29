@@ -106,11 +106,12 @@ export class RegistrationPage {
       this.alertProvider.presentToast("Name cannot contain numbers");
       return;
       
-    }else if(this.registerData.email == EMPTY){
-        this.alertProvider.presentToast("Email Id cannot be empty");
-        return;
+    // }else if(this.registerData.email == EMPTY){
+    //     this.alertProvider.presentToast("Email Id cannot be empty");
+    //     return;
 
-      }else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
+      }
+    else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
 
       this.alertProvider.presentToast("Email Id must contain @ symbol");
       return;  

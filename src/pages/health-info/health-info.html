@@ -17,11 +17,13 @@
             </article>
             <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
                 <div class="left">
-                    <img src="{{health?.thumbnailimage}}" />
+                    <figure>
+                        <img src="{{health?.thumbnailimage}}" />
+                    </figure>
                 </div>
                 <div class="right">
                     <label>{{health?.title}}</label>
-                    <!--<span [innerHTML]="health?.shortdescription"></span>-->
+                    <span [innerHTML]="health?.subtitle"></span>
                     <button ion-button>{{health?.buttonname}}</button>
                 </div>
             </div>

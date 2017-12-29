@@ -76,6 +76,7 @@ page-member {
         }
         .barCode {
             text-align: center;
+            width: 100%;
             i {
                 width: 150px;
                 margin: 0 auto;
@@ -88,6 +89,15 @@ page-member {
                     text-align: center;
                     display: block;
                 }
+            }
+            #barcode{
+                width: 100% !important;
+            }
+            svg:not(:root){
+                width: 100% !important;
+            }
+            svg[barcode] {
+                width: 100% !important;
             }
         }
         .toolbar-md,
@@ -375,11 +385,11 @@ page-member {
     .mt6 {
         margin-top: 6px;
     }
-    .reedemBtn{
-        background: transparent;
+    .redeemBtn{
+        background: $btn-default;
         box-shadow: none;
-        border:1px solid #333;
-        color:red;
+        // border:1px solid #333;
+        color:$cp-lighter-grey;
         text-transform: none;
         position: relative;
         top: -8px;

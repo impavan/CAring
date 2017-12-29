@@ -1,0 +1,17 @@
+page-image-view {
+    .grid{
+        height: 100%;
+        padding: 0 !important;
+
+    .ch{
+        height: 100% !important;
+    }
+    }
+
+    .scroll-content{
+        background-color: black;
+    }
+    ion-scroll { 
+        white-space: nowrap; 
+        }
+}

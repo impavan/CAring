@@ -16,7 +16,7 @@
                     </ion-col>
                 </ion-row>
             </article>
-            <ion-row text-center>
+            <!--<ion-row text-center>
                 <ion-col col-12 *ngFor="let activity of storeActivityList" clickable (click)="gotoInstoredetailsPage(activity)">
                     <ion-card class="figWidget">
                         <figure>
@@ -28,6 +28,22 @@
                         </ion-card-content>
                         <button ion-button class="btn">{{activity?.buttonname}}</button>
                     </ion-card>
+                </ion-col>
+            </ion-row>-->
+            <ion-row>
+                <ion-col col-12 *ngFor="let activity of storeActivityList" clickable (click)="gotoInstoredetailsPage(activity)">
+                    <ion-row  class="figWidget">
+                        <ion-col col-6>
+                            <figure>
+                                <img src="{{activity?.thumbnailimage}}" />
+                            </figure>
+                        </ion-col>
+                        <ion-col col-6>
+                            <div class="card-title">{{activity?.title }}</div>
+                            <p>{{activity?.subtitle }}</p>
+                            <button ion-button class="btn">{{activity?.buttonname}}</button>
+                        </ion-col>
+                    </ion-row>
                 </ion-col>
             </ion-row>
         </ion-grid>

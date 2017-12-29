@@ -5,14 +5,15 @@
 <ion-content class="mainCont" padding>
     <div class="inStoreDetailsContainer">
         <figure>
-            <img src="{{storeDetail?.bannerimage}}" />
+            <img src="{{storeDetail?.bannerimage}}" (click)="zoomArea(storeDetail?.bannerimage)"/>
         </figure>
         <div class="content">
             <h5 text-center>{{storeDetail?.title}}</h5>
             <h6 text-center>{{storeDetail?.subtitle}}</h6>
             <p [innerHTML]="storeDetail?.description"></p>
 
-            <ion-row *ngIf="_locationList.length >= 1">
+            <div *ngIf="_locationList.length >= 1">
+            <ion-row>
                 <ion-col col-6>
                     <h6 class="subHeader">Date/Time</h6>
                 </ion-col>
@@ -22,7 +23,8 @@
             </ion-row>
             <ion-row *ngFor="let loc of _locationList">
                 <ion-col col-6>
-                    <p class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label> <span>{{loc?.time}}</span></p>
+                    <p class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label></p>
+                     <p class="datetime"><span>{{loc?.time}}</span></p>
                 </ion-col>
                 <ion-col col-6>
                     <a (click)="gotoLocationPage(loc?.storename, loc?.storeid)"><span class="location">{{loc?.storename}}</span></a>
@@ -30,6 +32,7 @@
                     <!--<a *ngIf="loc?.phone" href="tel:{{loc?.phone}}"><ion-icon name="call" class="phoneIco"></ion-icon></a>-->
                 </ion-col>
             </ion-row>
+            </div>
 
         </div>
     </div>

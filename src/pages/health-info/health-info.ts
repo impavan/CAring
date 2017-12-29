@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { LoaderProvider } from '../../providers/loader/loader';
+import { ApiProvider } from '../../providers/api/api';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+import moment from 'moment';
 
 
 @IonicPage()
@@ -18,6 +20,7 @@ export class HealthInfoPage {
               private navCtrl: NavController,
               private hapenningsProvider: HapenningsProvider,
               private loaderProvider: LoaderProvider,
+              private apiProvider:ApiProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
               this.navToId = navParams.get('id');
@@ -49,7 +52,17 @@ export class HealthInfoPage {
   getHealthInfo() {
 
     this.hapenningsProvider.getHealthInfo().subscribe(res => {
-      this._healthInfoList = res.data.filter(health=>health.isactive == true);
+      this._healthInfoList = res.data.filter(health => {
+
+       if (health.publishingstartdate && health.publishingenddate) {
+          if (moment(health.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(health.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+            return health;
+          }
+        } else {
+          return health;
+        }
+          
+      });
       this.loaderProvider.dismissLoader();
 
          if (this.navToId) {

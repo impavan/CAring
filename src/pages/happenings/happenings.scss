@@ -35,9 +35,10 @@ page-happenings {
             margin: 5px;
             border-radius: 5px;
             width: calc(100% - 15px);
+            height: 240px;
             figure {
                 margin: 0;
-                height: 100px;
+                height: 130px;
                 overflow: hidden;
             }
             .card-content-md,
@@ -47,8 +48,6 @@ page-happenings {
                     font-weight: 600;
                     margin: 0 0 5px 0;
                     line-height: normal;
-                    height: 30px;
-                    overflow: hidden;
                 }
                 p {
                     margin: 0 0 8px 0;
@@ -83,7 +82,6 @@ page-happenings {
             overflow: hidden;
         }
         .card-title {
-            font-size: 30px;
             text-align: center;
             font-family: 'franklingothicnewheavyregular';
             font-weight: bold;
@@ -92,7 +90,7 @@ page-happenings {
             p {
                 font-family: 'Myriad Pro';
                 text-align: center;
-                font-size: 16px;
+                font-size: 11px;
             }
         }
         button {
@@ -115,15 +113,19 @@ page-happenings {
     .happeningsContainer {
         .figWidget{
             figure{
-                height: 100px !important;
+                height: 130px !important;
             }
             .card-title{
                 font-size: 13px;
             }
             button{
-                font-size: 13px !important;
-                width: 100% !important;
+                width: 80% !important;
                 font-weight: normal !important;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 15px;
+                font-size:13px !important;
             }
         } 
     }

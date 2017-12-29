@@ -4,6 +4,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-instoredetails',
@@ -11,8 +12,10 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 })
 
 export class InstoredetailsPage {
+
   storeDetail: any = [];
-  _locationList:any = [];
+  _locationList: any = [];
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -37,7 +40,13 @@ export class InstoredetailsPage {
 
     this.navCtrl.push('StoreLocatorPage', { instore: storename,storeId: storeId});
     
-}
+  }
+
+  zoomArea(url) {
+    this.navCtrl.push('ImageViewPage', {imgsource:url})
+  }
+
+
 
 
 

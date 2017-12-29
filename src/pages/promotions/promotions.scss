@@ -29,10 +29,14 @@ page-promotions {
             margin: 8px;
             border-radius: 5px;
             width: calc(100% - 15px);
+            height: 240px;
             figure {
                 margin: 0;
-                height: 100px;
+                height: 130px !important;
                 overflow: hidden;
+                img{
+                    height:100%;
+                }
             }
             .card-content-md,
             .card-content-ios {
@@ -41,15 +45,11 @@ page-promotions {
                     font-weight: 600;
                     margin: 0 0 0 0;
                     line-height: normal;
-                    height: 30px;
-                    overflow: hidden;
                 }
                 p {
                     margin: 0 0 8px 0;
                     line-height: normal;
                     color: $cp-extra-darker-grey;
-                    height:50px;
-                    overflow: hidden;
                 }
                 .button-md,
                 .button-ios {
@@ -63,6 +63,10 @@ page-promotions {
                     text-transform: capitalize;
                     font-weight: normal;
                     border-radius: 0px;
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    bottom: 15px;
                 }
             }
         }
@@ -88,7 +92,7 @@ page-promotions {
             p {
                 font-family: 'Myriad Pro';
                 text-align: center;
-                font-size: 15px;
+                font-size: 11px;
             }
         }
         button {
@@ -123,7 +127,7 @@ page-promotions {
             }
             button{
                 font-size: 13px !important;
-                width: 100% !important;
+                width: 80% !important;
                 font-weight: normal !important;
             }
         } 

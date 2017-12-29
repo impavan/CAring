@@ -59,14 +59,14 @@ export class MessagesPage {
 
       } else {
         
-        this.alertProvider.presentToast(res[0].message);
+        // this.alertProvider.presentToast(res[0].message);
 
       }
 
     }, err => {
       
       this.loaderProvider.dismissLoader();
-      this.exceptionProvider.excpHandler(err);
+      // this.exceptionProvider.excpHandler(err);
 
     });
 

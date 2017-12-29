@@ -6,12 +6,18 @@
 <ion-content class="mainCont">
 
     <div class="promotionDetails">
-        <figure>
-            <img src="{{_promotionDetails?.bannerimage}}" />
-        </figure>
+        
+            <div>
+                <figure>
+            <img  src="{{_promotionDetails?.bannerimage}}" (click)="zoomArea(_promotionDetails?.bannerimage)"/>
+                </figure>
+            </div>
+      
         <div class="content">
             <h4>{{_promotionDetails?.title}}</h4>
+            <p>Date: {{_promotionDetails?.eventdate}}</p>
             <p [innerHTML]="_promotionDetails?.longdescription"></p>
+            
         </div>
     </div>
 
