@@ -32,7 +32,7 @@ page-promotions {
             height: 240px;
             figure {
                 margin: 0;
-                height: 130px !important;
+                height: 130px;
                 overflow: hidden;
                 img{
                     height:100%;
@@ -77,13 +77,8 @@ page-promotions {
     .figWidget {
         box-shadow: none;
         border-radius: 0;
-        figure {
-            height: 255px !important;
-            width: 100% !important;
-            overflow: hidden;
-        }
         .card-title {
-            font-size: 30px;
+            font-size: 17px;
             text-align: center;
             font-family: 'franklingothicnewheavyregular';
             font-weight: bold;
@@ -131,5 +126,7 @@ page-promotions {
                 font-weight: normal !important;
             }
         } 
+        
     }
 }
+
