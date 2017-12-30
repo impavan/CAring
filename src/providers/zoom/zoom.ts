@@ -21,7 +21,7 @@ export class ZoomProvider {
   }
 
 
-
+ 
 
 public hammerIt(elm) {
     let hammertime = new Hammer(elm, {});
