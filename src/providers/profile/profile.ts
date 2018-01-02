@@ -61,7 +61,7 @@ updateProfile(userdata) {
       let data = {
       
       first_name: userdata.firstname,  
-      lastname:userdata.lastname,    
+      last_name:userdata.lastname,    
       email:userdata.email,
       old_email:userdata.old_email?userdata.old_email:userdata.email,
       mobile:userdata.mobile,

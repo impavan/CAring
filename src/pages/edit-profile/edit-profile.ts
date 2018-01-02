@@ -58,6 +58,7 @@ export class EditProfilePage {
     
     this.profileData.firstname = this.authProvider.getUserFirstName();
     this.profileData.lastname = this.authProvider.getUserLastName() || '';
+    console.log(this.authProvider.getUserLastName());
     this.profileData.mobile = this.authProvider.getUserMobileNo();
     this.profileData.email = this.authProvider.getUserEmailId();
     this.profileData.externalId = this.authProvider.getExternalId() || '';
