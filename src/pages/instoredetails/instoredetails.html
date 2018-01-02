@@ -23,8 +23,8 @@
             </ion-row>
             <ion-row *ngFor="let loc of _locationList">
                 <ion-col col-6>
-                    <p class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label></p>
-                     <p class="datetime"><span>{{loc?.time}}</span></p>
+                    <p *ngIf="loc?.date" class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label></p>
+                     <p *ngIf="loc?.time" class="datetime"><span>{{loc?.time}}</span></p>
                 </ion-col>
                 <ion-col col-6>
                     <a (click)="gotoLocationPage(loc?.storename, loc?.storeid)"><span class="location">{{loc?.storename}}</span></a>

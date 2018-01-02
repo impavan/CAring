@@ -43,7 +43,7 @@ page-otp {
             ion-list {
                 ion-item {
                     ion-label {
-                        width: 130px;
+                        // width: 130px;
                     }
                 }
             }
@@ -78,6 +78,7 @@ page-otp {
         .label-ios {
             color: $cp-extra-darker-grey;
             padding: 0 0 0 16px;
+            font-size: 16px;
         }
         .caringWaterMark {
             margin: 20px 0 0 0;

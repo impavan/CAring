@@ -19,6 +19,8 @@ page-in-store {
             border-radius: 0px;
             height: 21px;
             font-size: 18px;
+            position: absolute;
+            bottom: 0;
         }
         .card-md {
             margin: 5px;
@@ -92,7 +94,7 @@ page-in-store {
             font-size: 14px !important;
             width: 80% !important;
             text-align: center !important;
-            margin: 0 0 20px 0 !important;
+            margin: 0 0 0 0 !important;
             display: block !important;
             padding: 15px 0 !important;
             box-shadow: none !important;

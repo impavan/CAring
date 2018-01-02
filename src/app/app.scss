@@ -516,28 +516,28 @@ ion-header, ion-footer{
     position: fixed;
 }
 
+
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+
+/* Portrait and Landscape */
 @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1) {
-        .scroll-content {
-            bottom: 0px;
-            margin-top: 0px !important;
-            padding: 0 !important;
-        }
-    .loginContainer {
-        text-align: center;
-        padding: 0 !important;
-    }
-    .mainCont.content-ios{
-        margin:0 !important;
-    }
-
-    }
-
-    @media all and(min-width:768px){
-        .mainMenu{
-            margin: 58px 0 0 0 !important;
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .promotionsContainer, .happeningsContainer{
+        .card-ios{
+            height: 360px !important;
         }
     }
+    .promotionsContainer{
+        .figWidget{
+            figure{
+                height: 255px !important;
+            }
+        }
+    }
+    
+}
+.label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
+    font-size: 15px;
+}
