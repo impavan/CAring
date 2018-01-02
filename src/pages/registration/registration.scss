@@ -3,7 +3,7 @@ page-new-account {
         text-align: center;
         padding: 80px 0 0 0;
         .text-input{
-            direction: rtl;
+            direction: ltr;
         }
         .text-input-md {
             text-align: right !important;
@@ -106,6 +106,9 @@ page-new-account {
         .subTitle1 {
             margin: 20px 0 10px 0;
             text-align: left;
+        }
+        .text-input-ios{
+            text-align: right;
         }
     }
     @media(max-width:480px){
