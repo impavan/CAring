@@ -5,7 +5,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Camera } from '@ionic-native/camera';
@@ -45,7 +44,6 @@ import { ZoomProvider } from '../providers/zoom/zoom';
     BrowserModule,
     HttpModule,
     SharedModule,
-    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: false,
     }),
