@@ -147,7 +147,7 @@ export class MemberPage {
 
       }
     }, err => {
-
+    JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
       this.exceptionProvider.excpHandler(err);
 
     });
