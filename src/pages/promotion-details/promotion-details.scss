@@ -1,5 +1,6 @@
 page-promotion-details {
     .promotionDetails {
+        margin: 12px 0 0 0;
         figure {
             margin: 0;
             max-height: auto;
@@ -46,7 +47,7 @@ page-promotion-details {
     }
      @media(min-width:768px){
         .promotionDetails{
-            margin: 70px 0 0 0 !important;
+            margin: 20px 0 0 0 !important;
         }
     }
 }

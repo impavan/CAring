@@ -536,6 +536,12 @@ ion-header, ion-footer{
             }
         }
     }
+
+    .swiper-slide{
+        img{
+            padding: 0px 10px 10px 10px
+        }
+    } 
     
 }
 .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
