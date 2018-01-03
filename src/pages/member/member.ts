@@ -28,6 +28,7 @@ export class MemberPage {
   memberDetails: any = "New";
   _auth: any;
   _userName: any;
+  _lastName: any;
   _emailId: any;
   _birthday: any;
   _oldemailId: any;
@@ -122,6 +123,7 @@ export class MemberPage {
   getMyProfileDetails() {
 
     this._userName = this.authProvider.getUserFirstName();
+    this._lastName = this.authProvider.getUserLastName();
     this._emailId = this.authProvider.getUserEmailId();
     this._birthday = this.authProvider.getUserBirthday();
     this._oldemailId = this.authProvider.getUserEmailId();
