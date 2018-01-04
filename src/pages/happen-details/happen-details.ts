@@ -21,6 +21,5 @@ export class HappenDetailsPage {
 zoomArea(url) {
     this.navCtrl.push('ImageViewPage', {imgsource:url})
   }
-
  
 }

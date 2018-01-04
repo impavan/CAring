@@ -57,7 +57,7 @@ export class ProfileProvider {
     }
 
 updateProfile(userdata) {
-
+        console.log("123",userdata.email)
       let data = {
       
       first_name: userdata.firstname,  
