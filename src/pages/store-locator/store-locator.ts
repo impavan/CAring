@@ -4,7 +4,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { Platform } from 'ionic-angular';
 
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
@@ -22,11 +21,7 @@ declare var google;
 export class StoreLocatorPage {
   @ViewChild('myMap') mapElement;
   @ViewChild('locBtn') locbutton;
-<<<<<<< HEAD
   @ViewChild('permission') permissions;
-=======
-  @ViewChild('location') locationModal;
->>>>>>> f4969bc7e991f182e137c00b9943ca2af212425d
   map: any;
   locationList: any = [];
   updatedLocationList: any = [];
@@ -47,8 +42,7 @@ export class StoreLocatorPage {
   navToId: any;
   
 
-  constructor(public events: Events,
-              public platform: Platform , 
+  constructor(public events:Events,
               public navCtrl: NavController, 
               public navParams: NavParams,
               public storeLocatorProvider: StoreLocatorProvider, 
@@ -78,7 +72,6 @@ export class StoreLocatorPage {
 
   ngAfterViewInit() {
 
-<<<<<<< HEAD
     this.diagnostic.getLocationAuthorizationStatus().then(res => {
       
 
@@ -93,21 +86,6 @@ export class StoreLocatorPage {
           this.permissions.open();
       }else{
       this.loadMap();
-=======
-    console.log("in ngafterViewinit");
-        this.locationModal.close();
-    this.diagnostic.isLocationAuthorized().then(res => {
-      if (!res) {
-        console.log("location is NOT authorised. Ask for authorization");
-        this.diagnostic.requestLocationAuthorization('always').then(resp => {
-          this.loadMap();
-        }, err => {
-          this.loadMap();
-          })
-      } else{
-        console.log("location is Authorised"); 
-        this.loadMap();  
->>>>>>> f4969bc7e991f182e137c00b9943ca2af212425d
       }
     })  
   }
@@ -132,7 +110,6 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-<<<<<<< HEAD
       this.geolocation.getCurrentPosition().then((resp) => {
      
         // resp.coords.latitude
@@ -154,72 +131,39 @@ export class StoreLocatorPage {
      
         let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
         //  let latLng = new google.maps.LatLng(lat, lng);
-=======
-    
-    console.log("going to call get current position");  
-
-    this.platform.ready().then((readySource) => {
-      this.diagnostic.isLocationEnabled().then(
-        (isAvailable) => {
-          console.log('Is available? ' + isAvailable);
-          // Display map here
-          if (isAvailable) {
-            this.geolocation.getCurrentPosition().then((resp) => {
-              console.log("Inside loadmap with current coordinates");
-              this.getAllStores(resp.coords.latitude, resp.coords.longitude, 50);
-              // this.getAllStores(lat,lng, 50);
->>>>>>> f4969bc7e991f182e137c00b9943ca2af212425d
      
-              this._myCurrentLocation = {
-                lat: resp.coords.latitude,
-                lng: resp.coords.longitude,
-              }
-              let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-        
-              let mapOptions = {
-                center: latLng,
-                zoom: 12,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-              };
+        let mapOptions = {
+          center: latLng,
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
      
-              this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
-            }).catch((error) => {
-              console.log("Error getting current location. Use dummy location");
-              // console.log('Error getting location', error);
-              let lat = "3.1390";
-              let lng = "101.6869";
-              let latLng = new google.maps.LatLng(lat, lng);
+      }).catch((error) => {
+    
+      //   console.log('Error getting location', error);
+        let lat = "3.1390";
+        let lng = "101.6869";
+      //   this.getAllStores(lat, lng, 50);
+     
+      //   this._myCurrentLocation = {
+      //     lat: lat,
+      //     lng: lng,
+      //   }
+        let latLng = new google.maps.LatLng(lat, lng);
 
       
-              let mapOptions = {
-                center: latLng,
-                zoom: 12,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-              };
+        let mapOptions = {
+          center: latLng,
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
      
-              this.getAllStores(lat, lng, 50);
-              this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-              this.alertProvider.presentToast("Error in accessing your current location. Please provide permission to access location");
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.alertProvider.presentToast("Error in accessing your current location. Please provide permission to access location");
      
-            });
-          }
-          else { 
-
-            this.locationModal.open();
-            console.log("heyyyyyyyyyyyyyyyy");
-            //alert("Please enable your location in order to view the store listing");
-          }
-    }).catch( (e) => {
-      console.log(e);
-      alert("Please enable your location in order to view the store listing");
-    });
-
-
-    });    
-
-
-      
+      });
      
   }
 
@@ -235,15 +179,7 @@ export class StoreLocatorPage {
     }
 
   }
-  closeLocationModal() { 
-    this.locationModal.close();
-  }
 
-  openLocationModel() { 
-        this.locationModal.close();
-    console.log("pelase close adn work");
-        this.ngAfterViewInit();
-  }
   addMarkers(map, locationList) {
 
    
