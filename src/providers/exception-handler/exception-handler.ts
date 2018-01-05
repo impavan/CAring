@@ -14,9 +14,10 @@ export class ExceptionHandlerProvider {
   BAD_REQUEST = `Bad Request`;
   UNAUTHORIZED = `Unauthorized`;
   FORBIDDEN = `Forbidden`;
-  NOT_FOUND = ` Not Found`;
+  NOT_FOUND = `Unable To Connect, Please Check Your Connection`;
   METHOD_NOT_ALLOWED = `Method Not Allowed`;
   REQUEST_TIME_OUT = `Request Timeout`;
+  INTERNAL_SERVER = `Internal Server Error`;
 
   excpHandler(err) {
     if (err.status == 400) {
@@ -41,6 +42,10 @@ export class ExceptionHandlerProvider {
     }
     if (err.status == 408) {
       this.alertProvider.presentToast(this.REQUEST_TIME_OUT);
+      return;
+    }
+    if (err.status == 500) {
+      this.alertProvider.presentToast(this.INTERNAL_SERVER);
       return;
     }
   }

@@ -15,6 +15,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AlertProvider } from '../providers/alert/alert';
 import { PushProvider } from '../providers/push/push';
 import { NetworkProvider } from '../providers/network/network';
+import { LoaderProvider } from '../providers/loader/loader';
 
 declare var webengage;
 
@@ -38,6 +39,7 @@ export class MyApp {
     private alertProvider:AlertProvider,
     private screenOrientation: ScreenOrientation,
     public events: Events,
+    public loaderProvider:LoaderProvider,
     public pushProvider: PushProvider,
     public apiProvider:ApiProvider,
     public networkprovider: NetworkProvider) {

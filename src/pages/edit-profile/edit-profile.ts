@@ -41,13 +41,14 @@ export class EditProfilePage {
               private profileProvider:ProfileProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
-            this.authProvider.setHeader();
+            
   }
 
  
 
   ionViewWillEnter() {
     this.getMyBasicDetails();
+    this.authProvider.setHeader();
     
   }
 
