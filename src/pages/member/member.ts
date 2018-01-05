@@ -28,6 +28,7 @@ export class MemberPage {
   memberDetails: any = "New";
   _auth: any;
   _userName: any;
+  _lastName: any;
   _emailId: any;
   _birthday: any;
   _oldemailId: any;
@@ -122,12 +123,13 @@ export class MemberPage {
   getMyProfileDetails() {
 
     this._userName = this.authProvider.getUserFirstName();
+    this._lastName = this.authProvider.getUserLastName();
     this._emailId = this.authProvider.getUserEmailId();
     this._birthday = this.authProvider.getUserBirthday();
     this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._externalId = this.authProvider.getExternalId();
-    JsBarcode(this.barcode.nativeElement, this._mobileNum);
+    JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
 
   }
 
@@ -147,7 +149,7 @@ export class MemberPage {
 
       }
     }, err => {
-
+      this.getMyProfileDetails();
       this.exceptionProvider.excpHandler(err);
 
     });

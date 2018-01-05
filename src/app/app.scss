@@ -515,3 +515,29 @@ ion-spinner {
 ion-header, ion-footer{
     position: fixed;
 }
+
+
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .promotionsContainer, .happeningsContainer{
+        .card-ios{
+            height: 360px !important;
+        }
+    }
+    .promotionsContainer{
+        .figWidget{
+            figure{
+                height: 255px !important;
+            }
+        }
+    }
+    
+}
+.label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
+    font-size: 15px;
+}

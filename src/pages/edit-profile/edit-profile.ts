@@ -15,7 +15,7 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-
+  new_email: any;
   profileData: any = {
     customFields: []
   };
@@ -41,13 +41,14 @@ export class EditProfilePage {
               private profileProvider:ProfileProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
-            this.authProvider.setHeader();
+            
   }
 
  
 
   ionViewWillEnter() {
     this.getMyBasicDetails();
+    this.authProvider.setHeader();
     
   }
 
@@ -60,6 +61,7 @@ export class EditProfilePage {
     this.profileData.lastname = this.authProvider.getUserLastName() || '';
     this.profileData.mobile = this.authProvider.getUserMobileNo();
     this.profileData.email = this.authProvider.getUserEmailId();
+    
     this.profileData.externalId = this.authProvider.getExternalId() || '';
     this.customFields.ic_number = this.authProvider.getUserNRIC();
     this.customFields.birthday = this.authProvider.getUserBirthday() || '';
@@ -83,6 +85,7 @@ export class EditProfilePage {
   }
 
   updateProfile() {
+    
     if( this.profileData.firstname == EMPTY) {
       this.alertProvider.presentToast('Enter First name');
       return;
@@ -114,11 +117,12 @@ export class EditProfilePage {
     else {
       
       let customfield = this.formCustomField(this.customFields);
-
+      this.profileData.email = this.new_email;
+      
       this.profileData.customFields.push(customfield);
      
       this.loaderProvider.presentLoadingCustom();
-      
+      console.log("this.profileData",this.profileData);
 
       this.profileProvider.updateProfile(this.profileData).subscribe(data => {
 

@@ -20,6 +20,13 @@
             </ion-label>
             <ion-input type="text" [(ngModel)]="profileData.lastname"></ion-input>
           </ion-item>
+
+          <ion-item *ngIf="profileData.email?.length == 0">
+            <ion-label stacked>
+              E-mail 
+            </ion-label>
+            <ion-input type="text"  [(ngModel)]="new_email"></ion-input>
+          </ion-item>
           
       <ion-item>
         <ion-label stacked>

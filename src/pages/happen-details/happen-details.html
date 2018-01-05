@@ -15,8 +15,8 @@
             <img src="{{_happenList?.bannerimage}}" (click)="zoomArea(_happenList?.bannerimage)" />
         </ion-card> 
         <div class="container">
-            <h6>{{_happenList?.title}}</h6>
-            <p><span>Date:</span><label> {{_happenList?.eventdatestring}}</label></p>
+            <h6 *ngIf="_happenList?.title">{{_happenList?.title}}</h6>
+            <p *ngIf="_happenList?.eventdatestring"><span>Date:</span><label> {{_happenList?.eventdatestring}}</label></p>
             <!--<p *ngIf="_happenList?.eventduration"><span>Time:</span><label> {{_happenList?.eventduration}}</label></p>
             <p><span>Venue:</span><label>{{_happenList?.venue}}</label></p>-->
         </div>

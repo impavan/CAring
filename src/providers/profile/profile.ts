@@ -56,18 +56,18 @@ export class ProfileProvider {
       .map((res: Response) => res.json());
     }
 
-updateProfile(userdata) {
-
+    updateProfile(userdata) {
+    
       let data = {
-      
       first_name: userdata.firstname,  
-      lastname:userdata.lastname,    
+      last_name:userdata.lastname,    
       email:userdata.email,
       old_email:userdata.old_email?userdata.old_email:userdata.email,
       mobile:userdata.mobile,
       BrandURLID:this.apiProvider.BRAND_ID,
       externalId:userdata.externalId,
-      custom_fields:[]
+      custom_fields: []
+      
       }
       
     data.custom_fields = userdata.customFields[0];
