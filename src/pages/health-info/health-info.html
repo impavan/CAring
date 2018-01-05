@@ -15,7 +15,8 @@
                     </ion-col>
                 </ion-row>
             </article>
-            <div class="healthInfoCards" *ngFor="let health of _healthInfoList" clickable (click)="navToHealthDetails(health)">
+            <div *ngFor="let healthy of _healthInfoList | chunk:2">
+            <div class="healthInfoCards" *ngFor="let health of healthy" clickable (click)="navToHealthDetails(health)">
                 <div class="left">
                     <figure>
                         <img src="{{health?.thumbnailimage}}" />
@@ -26,6 +27,7 @@
                     <span [innerHTML]="health?.subtitle"></span>
                     <button ion-button>{{health?.buttonname}}</button>
                 </div>
+            </div>
             </div>
         </ion-grid>
     </div>

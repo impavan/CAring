@@ -316,12 +316,16 @@ export class StoreLocatorPage {
               this._filterList = this.updatedLocationList;
               this.addMarkers(this.map, this.updatedLocationList);
               this.loadFavList(this.updatedLocationList);
+              this.loaderProvider.dismissLoader();
           
               if (this.instoreData)
                 this.onInStoreInput(this.instoreData, this.storeId);
               
               if(this.navToId && this.navToId!=null && this.navToId!=undefined)
                this.onInStoreInput('', this.navToId);
+      }, err => {
+        this.loaderProvider.dismissLoader();
+        
         });
 
   }

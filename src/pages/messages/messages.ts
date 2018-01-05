@@ -26,7 +26,8 @@ export class MessagesPage {
               private pushProvider: PushProvider,
               private alertProvider:AlertProvider,
               private loaderProvider: LoaderProvider,
-              private exceptionProvider:ExceptionHandlerProvider) {
+              private exceptionProvider: ExceptionHandlerProvider) {
+    
   }
 
   ionViewDidLoad() {
