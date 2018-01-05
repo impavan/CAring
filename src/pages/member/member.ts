@@ -129,7 +129,7 @@ export class MemberPage {
     this._oldemailId = this.authProvider.getUserEmailId();
     this._mobileNum = this.authProvider.getUserMobileNo();
     this._externalId = this.authProvider.getExternalId();
-    JsBarcode(this.barcode.nativeElement, this._mobileNum);
+    JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
 
   }
 
@@ -149,7 +149,7 @@ export class MemberPage {
 
       }
     }, err => {
-    JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
+      this.getMyProfileDetails();
       this.exceptionProvider.excpHandler(err);
 
     });

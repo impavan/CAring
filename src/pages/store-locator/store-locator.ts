@@ -72,8 +72,8 @@ export class StoreLocatorPage {
 
   ngAfterViewInit() {
 
-    console.log("in ngafterViewinit");
-        this.locationModal.close();
+    // console.log("in ngafterViewinit");
+    //     this.locationModal.close();
     this.diagnostic.isLocationAuthorized().then(res => {
       if (!res) {
         console.log("location is NOT authorised. Ask for authorization");
@@ -145,7 +145,7 @@ export class StoreLocatorPage {
           else { 
 
             this.locationModal.open();
-            console.log("heyyyyyyyyyyyyyyyy");
+          
             //alert("Please enable your location in order to view the store listing");
           }
     }).catch( (e) => {
