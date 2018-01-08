@@ -5,7 +5,7 @@
 
 <ion-content class="mainCont">
     <div class="searchOut">
-        <ion-searchbar [(ngModel)]="_searchKey" placeholder="Find" (ionInput)="onInput($event)" (ionClear)="onCancel($event)">
+        <ion-searchbar [(ngModel)]="_searchKey" placeholder="Find" (ionInput)="onInput($event)" (keydown)="hideKeyboard($event)" (ionClear)="onCancel($event)">
         </ion-searchbar>
     </div>
 

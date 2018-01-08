@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { Keyboard } from '@ionic-native/keyboard';
 import { Platform } from 'ionic-angular';
 
 //All providers goes here
@@ -50,6 +51,7 @@ export class StoreLocatorPage {
               private loaderProvider:LoaderProvider,
               private geolocation: Geolocation,
               private diagnostic: Diagnostic,
+              private keyboard:Keyboard,
               private alertProvider:AlertProvider,
               private launchNavigator: LaunchNavigator, private elRef: ElementRef) {
     
@@ -372,7 +374,16 @@ export class StoreLocatorPage {
     success => console.log('Launched navigator'),
     error => console.log('Error launching navigator', error));    
 
-}    
+ }    
+
+ hideKeyboard(ev) {
+   console.log(ev.keyCode)
+   console.log(ev)
+   if (ev.keyCode == 13)
+     this.keyboard.close();
+
+}
+  
 
 
 }
