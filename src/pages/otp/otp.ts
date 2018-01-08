@@ -93,7 +93,20 @@ export class OtpPage {
             let mobile_validated = custom_data.filter(res => res.name === this.MOBILE_VALIDATED);
             
             if(mobile_validated[0] && mobile_validated[0].value == this.YES){
-                this.loginOTPSucess(data);
+              this.loginOTPSucess(data).then(d => {
+                let registerData = {
+                            
+                              fname:data[0].customerdata.customer[0].firstname,
+                              lname:data[0].customerdata.customer[0].lastname,
+                              email:data[0].customerdata.customer[0].email,
+                              mobile:data[0].customerdata.customer[0].mobile,
+                              externalId:data[0].customerdata.customer[0].external_id,
+                              
+                          }
+                this.userProvider.updateProfile(registerData, true).subscribe(data => {
+                  console.log("updated after login");
+                })
+              })
                 this.navCtrl.setRoot("HomePage");
             }
 
@@ -118,7 +131,7 @@ export class OtpPage {
 
   //otp success handler for login
   loginOTPSucess(data) {
-
+    return new Promise((resolve) => {
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
     if (this.platform.is('cordova')) {
@@ -131,7 +144,8 @@ export class OtpPage {
     this.authProvider.setHeader();
     this.clearOTPBox();
     this.events.publish('user:login', true);
-
+    resolve(true);  
+    });
   }
 
  
