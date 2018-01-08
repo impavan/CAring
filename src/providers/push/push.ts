@@ -56,10 +56,18 @@ export class PushProvider {
     
     setTimeout(() => {
 
-       webengage.user.setAttribute('we_first_name', data.customer[0].firstname);
-       webengage.user.setAttribute('we_last_name', data.customer[0].lastName); 
-       webengage.user.setAttribute('we_email', data.customer[0].email);
-       webengage.user.setAttribute('we_phone', data.customer[0].mobile);
+       webengage.user.setAttribute('we_first_name', data.customer[0].firstname).then((data)=>{
+         console.log(data);
+       },err=> console.log(err));
+       webengage.user.setAttribute('we_last_name', data.customer[0].lastName).then((data)=>{
+         console.log(data);
+       },err=> console.log(err)); 
+       webengage.user.setAttribute('we_email', data.customer[0].email).then((data)=>{
+         console.log(data);
+       },err=> console.log(err));
+       webengage.user.setAttribute('we_phone', data.customer[0].mobile).then((data)=>{
+         console.log(data);
+       },err=> console.log(err));
       
     },2000)
      
