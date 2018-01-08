@@ -60,8 +60,9 @@ export class LoaderProvider {
               text: 'Ok',
               cssClass: '',
               handler: () => {
-                 exitalert.dismiss();
-                this.platform.exitApp();
+                exitalert.dismiss().then(() => {
+                  this.platform.exitApp();
+                });
               }
             }]
           });

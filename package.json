@@ -29,6 +29,7 @@
     "@ionic-native/diagnostic": "^4.4.2",
     "@ionic-native/geolocation": "^4.4.2",
     "@ionic-native/in-app-browser": "^4.3.2",
+    "@ionic-native/keyboard": "^4.5.2",
     "@ionic-native/launch-navigator": "^4.4.2",
     "@ionic-native/network": "^4.3.1",
     "@ionic-native/open-native-settings": "^4.4.2",
