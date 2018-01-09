@@ -14,7 +14,7 @@
             <div class="infodate">
                 <label *ngIf='healthData?.authorinfo'><i>By</i> {{healthData?.authorinfo}}</label> <span>{{healthData?.displaydate | date:'EEEE dd MMM yyyy hh:mm a'}}</span>
             </div>
-            <p><span [innerHTML]="healthData?.detaileddescription"></span></p>  
+            <div [innerHTML]="healthData?.detaileddescription | safehtml"></div>
         </div>
     </div>
 </ion-content>
