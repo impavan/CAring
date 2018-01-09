@@ -77,7 +77,7 @@ export class UserdataProvider {
 
 
   // update user details
-    updateProfile(userdata) {
+    updateProfile(userdata,isCustomUpdate) {
 
       let data = {
       
@@ -92,7 +92,9 @@ export class UserdataProvider {
       
       }
       
-    data.custom_fields.push({name:"mobile_validated", value:"Yes", type:"string"});
+      data.custom_fields.push({ name: "mobile_validated", value: "Yes", type: "string" });
+      if (isCustomUpdate)
+         data.custom_fields.push({ name: "app_login", value: "1", type: "string" });
       let body = data;
       return this.http
       .post(this.apiProvider.BASE_URL + UPDATE_PROFILE, body, { headers: this.auth.getHeader() })

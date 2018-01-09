@@ -1,13 +1,13 @@
 
- export const HAPPENINGS = 'events?lang=';
+ export const HAPPENINGS = 'events?orderby_dsc=createdAt&lang=';
 
  export const HOME_BANNER = 'homebanners?lang=';
 
- export const INSTORE = 'instoreactivities?lang=';
+ export const INSTORE = 'instoreactivities?orderby_dsc=createdAt&lang=';
 
- export const PROMOTIONS = 'promotions?lang=';
+ export const PROMOTIONS = 'promotions?orderby_dsc=createdAt&lang=';
 
- export const HEALTH_INFO = 'healthinfo?lang=';
+ export const HEALTH_INFO = 'healthinfo?orderby_dsc=createdAt&lang=';
 
  export const FAQ = 'faq?lang=';
 

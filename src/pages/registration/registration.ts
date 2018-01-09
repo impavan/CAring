@@ -134,7 +134,7 @@ export class RegistrationPage {
       
       this.registerData.mobile = this._existingCustomerData[0].customerdata.customer[0].mobile;
       
-      this.userProvider.updateProfile(this.registerData).subscribe(data => {
+      this.userProvider.updateProfile(this.registerData,true).subscribe(data => {
               
         this.loaderProvider.presentLoadingCustom();
         this.authProvider.setHeader();
@@ -187,7 +187,21 @@ export class RegistrationPage {
         
         if (data[0].code == 200) 
             
-          this.loginOTPSucess(data);
+          this.loginOTPSucess(data).then(d => {
+            let registerData = {
+                            
+              fname: data[0].customerdata.customer[0].firstname,
+              lname: data[0].customerdata.customer[0].lastname,
+              email: data[0].customerdata.customer[0].email,
+              mobile: data[0].customerdata.customer[0].mobile,
+              externalId: data[0].customerdata.customer[0].external_id,
+                              
+            }
+            this.userProvider.updateProfile(registerData, true).subscribe(data => {
+              console.log("updated profile after registration success")
+
+            });
+          });
           
          else 
           
@@ -207,6 +221,8 @@ export class RegistrationPage {
 
   loginOTPSucess(data) {
 
+    return new Promise((resolve) => {
+      
     this.authProvider.setUser(data[0].customerdata);
     this.authProvider.setAuthToken(data[0].auth_key);
     localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
@@ -220,6 +236,9 @@ export class RegistrationPage {
     this.events.publish('user:login', true);
     this.navCtrl.setRoot("HomePage");
     this.clearOTPBox();
+    resolve(true);  
+    })    
+    
 
   }
 

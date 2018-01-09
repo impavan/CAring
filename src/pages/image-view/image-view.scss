@@ -1,4 +1,9 @@
 page-image-view {
+
+
+    .fixed-content {
+    background: black;
+}
     .grid{
         height: 100%;
         padding: 0 !important;
@@ -11,7 +16,31 @@ page-image-view {
     .scroll-content{
         background-color: black;
     }
-    ion-scroll { 
-        white-space: nowrap; 
+  
+
+        ion-scroll {
+             white-space: nowrap;
+            .scroll-item {
+            display: inline-block;
+            }
         }
+        .imgageViewOut{
+            figure{
+                margin: 0;
+                padding: 0;
+            }
+            .zoomImgOut{
+                display: table;
+                .zoomIn{
+                    display:table-cell;
+                    vertical-align: middle;
+                    height: 100%;
+                }
+            }
+        }
+        .swiper-slide img {
+            padding: 0;
+        }
+       
 }
+
