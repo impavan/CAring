@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { Component, ViewChild, ElementRef , NgZone} from '@angular/core';
+import { IonicPage, NavController, NavParams, Events,  } from 'ionic-angular';
 import moment from 'moment';
 import JsBarcode from 'jsbarcode';
 
@@ -52,6 +52,7 @@ export class MemberPage {
 
   constructor(
               private events: Events,  
+              private zone: NgZone,
               private navParams: NavParams,
               private navCtrl: NavController,
               private authProvider: AuthProvider,
@@ -218,7 +219,12 @@ export class MemberPage {
 
       .subscribe(data => {
 
-                  this._transactionList = data[0].customer_transaction_info;
+        this.zone.runOutsideAngular(()=>{
+
+          this._transactionList = data[0].customer_transaction_info;
+
+        })
+                  
 
       })
 

@@ -37,20 +37,46 @@
 
                     </p>
                     <section>
-                        <div *ngFor="let transactions of _transactionList | chunk:'5'">
-                        <ul *ngFor="let transaction of transactions" class="listMyPoints">
-                            <li *ngIf="transaction?.transaction_earning">
-                                <label for="">Points Earned at <b>{{transaction?.store_name}}</b></label>
-                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}} <br> Receipt Amount : {{transaction?.amount }}</span>
+                        
+                         <ul  class="listMyPoints">
+                            <div *ngFor="let transactions of _transactionList | chunk:'5'">
+                            <li *ngFor="let transaction of transactions">
+                                <div *ngIf="transaction?.transaction_earning">
+                                <label >Points Earned at <b>{{transaction?.store_name}}</b></label>
+                                <span>{{transaction?.billing_time }} <br> Receipt Amount : {{transaction?.amount }}</span>
                                 <b class="amount_display"> + {{transaction?.points_issued | round }}</b>
-                            </li>
-                            <li *ngIf="!transaction?.transaction_earning">
-                                <label for="">Points Redeemed</label>
-                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
+                                </div>
+                            
+                            <div *ngIf="!transaction?.transaction_earning">
+                                <label >Points Redeemed</label>
+                                <span>{{transaction?.billing_time}}</span>
                                 <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
+                            </div>
                             </li>
-                        </ul>
-                        </div>
+                            </div>
+                        </ul> 
+                        <!-- <ion-grid *ngFor="let transactions of _transactionList | chunk:'5'">
+                            <ion-row *ngFor="let transaction of transactions">
+                                <div *ngIf="transaction?.transaction_earning">
+                                <ion-col col-9>
+                                <label>Points Earned at <b>{{transaction?.store_name}}</b></label>
+                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}} <br> Receipt Amount : {{transaction?.amount }}</span>
+                                </ion-col>
+                                <ion-col col-3>
+                                    <b> + {{transaction?.points_issued | round }}</b>
+                                </ion-col>
+                                </div>
+                                <div *ngIf="!transaction?.transaction_earning">
+                                <ion-col col-9>
+                                     <label >Points Redeemed</label>
+                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
+                                </ion-col>
+                                <ion-col col-3>
+                                    <b>- {{transaction?.points_spent | round }}</b>
+                                </ion-col>
+                                </div>
+                            </ion-row>
+                        </ion-grid> -->
                     </section>
                 </div>
                 <ion-card *ngIf="!_auth" class="myPointsContainer sec">
