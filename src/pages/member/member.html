@@ -43,13 +43,13 @@
                             <li *ngFor="let transaction of transactions">
                                 <div *ngIf="transaction?.transaction_earning">
                                 <label >Points Earned at <b>{{transaction?.store_name}}</b></label>
-                                <span>{{transaction?.billing_time }} <br> Receipt Amount : {{transaction?.amount }}</span>
+                                <span>{{transaction?.billing_time | dateFormat }} <br> Receipt Amount : {{transaction?.amount }}</span>
                                 <b class="amount_display"> + {{transaction?.points_issued | round }}</b>
                                 </div>
                             
                             <div *ngIf="!transaction?.transaction_earning">
                                 <label >Points Redeemed</label>
-                                <span>{{transaction?.billing_time}}</span>
+                                <span>{{transaction?.billing_time | dateFormat }}</span>
                                 <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
                             </div>
                             </li>
