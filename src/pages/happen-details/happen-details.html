@@ -22,7 +22,7 @@
         </div>
         
         <div>
-            <p [innerHTML]="_happenList.description" padding></p>
+            <p [innerHTML]="_happenList.description | safehtml" padding></p>
         </div>
         <div class="container" *ngIf="_happenList?.registrationurl">
             <a href="{{_happenList?.registrationurl}}" ion-button class="btn4">{{_happenList?.buttonname}}</a>

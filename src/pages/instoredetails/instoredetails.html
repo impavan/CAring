@@ -10,7 +10,7 @@
         <div class="content">
             <h5 text-center>{{storeDetail?.title}}</h5>
             <h6 text-center>{{storeDetail?.subtitle}}</h6>
-            <p [innerHTML]="storeDetail?.description"></p>
+            <p [innerHTML]="storeDetail?.description | safehtml"></p>
 
             <div *ngIf="_locationList.length >= 1">
             <ion-row>

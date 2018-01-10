@@ -377,8 +377,7 @@ export class StoreLocatorPage {
  }    
 
  hideKeyboard(ev) {
-   console.log(ev.keyCode)
-   console.log(ev)
+
    if (ev.keyCode == 13)
      this.keyboard.close();
 
