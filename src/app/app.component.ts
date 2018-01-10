@@ -181,19 +181,6 @@ export class MyApp {
 
   pushEvent() {
 
-    // let deepRoute = [
-    
-    //   { route: 'profile', component: 'MemberPage' },
-    //   { route: 'newrewards', component: 'RewardsPage' },
-    //   { route: 'happenings', component: 'HappeningsPage' },
-    //   { route: 'promotions', component: 'PromotionsPage' },
-    //   { route: 'healthinfo', component: 'HealthInfoPage' },
-    //   { route: 'instoreactivity', component: 'InStorePage' },
-    //   { route: 'pointssummary', component: 'MemberPage' },
-    //   { route: 'myrewards', component: 'RewardsPage' },
-    //   { route: 'stores', component: 'StoreLocatorPage' }
-
-    // ];
 
     if (!this.platform.is('cordova')) {
       console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
