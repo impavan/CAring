@@ -512,9 +512,9 @@ ion-spinner {
     }
 }
 
-ion-header, ion-footer{
-    position: fixed;
-}
+// ion-header, ion-footer{
+//     position: fixed;
+// }
 
 
 /* ----------- iPad 1, 2, Mini and Air ----------- */
@@ -546,4 +546,26 @@ ion-header, ion-footer{
 }
 .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
     font-size: 15px;
+}
+
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+    .tabsMenu{
+        button{
+            label{
+                line-height: normal !important;
+            }
+        }
+    }
+    .footer{
+       .toolbar-ios{
+           padding: 15px 4px;
+       } 
+    }
 }
