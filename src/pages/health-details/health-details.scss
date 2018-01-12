@@ -7,16 +7,21 @@ page-health-details {
             padding: 0;
             // max-height: 150px;
             overflow: hidden;
+            img{
+                width: 100%;
+            }
         }
         .content {
             padding: 15px;
             h4 {
                 margin: 0 0 15px 0;
-                color: #111;
+                color: #2f4f4f;
+                font-size: 28px;
                 span {
                     display: block;
-                    font-size: 13px;
-                    color: #333;
+                    font-size: 18px;
+                    color:#A9A9A9;
+                    margin: 5px 0 0 0;
                 }
             }
             p {
@@ -27,17 +32,18 @@ page-health-details {
             .infodate {
                 font-family: 'allerregular';
                 label {
-                    font-size: 12px;
-                    color: #222;
+                    font-size: 14px;
+                    color: #2f4f4f;
                     font-weight: bold;
                     i {
                         font-style: normal;
-                        color: #555;
+                        color: #2f4f4f;
+                        font-size: 14px;
                     }
                 }
                 span {
-                    color: #555;
-                    font-size: 11px;
+                    color: #2f4f4f;
+                    font-size: 14px;
                 }
             }
             .socialList {
@@ -55,6 +61,11 @@ page-health-details {
                     }
                 }
             }
+        }
+    }
+     @media(min-width:768px){
+        .healthDetailsContainer{
+            margin: 60px 0 0 0 !important;
         }
     }
 }

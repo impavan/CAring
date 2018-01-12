@@ -12,7 +12,7 @@
     </ion-card>
   
   <div *ngIf="_auth && myMessages?.length > 0">
-      <ion-card *ngFor="let message of myMessages">
+      <ion-card *ngFor="let message of myMessages | sortdesc :'sentTime'">
       <ion-card-header>
         <b>{{message?.title}}</b>
       </ion-card-header>
