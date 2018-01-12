@@ -5,4 +5,4 @@ export const NO_CHAR = /[a-zA-Z]+$/;
 export const NO_NUMBERS = /[0-9]+$/;
 export const EMPTY = '';
 export const MOBILE_NO_LIMIT_1 = 9;
-export const MOBILE_NO_LIMIT_2 = 12;
+export const MOBILE_NO_LIMIT_2 = 14;
