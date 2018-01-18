@@ -20,29 +20,34 @@ page-health-details {
                 span {
                     display: block;
                     font-size: 18px;
-                    color:#A9A9A9;
-                    margin: 5px 0 0 0;
+                    color:#696969;
+                    margin: 10px 0 0 0;
+                        font-family: 'allerregular';
                 }
             }
             p {
                 color: $cp-extra-darker-grey;
                 font-size: 12px;
                 font-family: 'allerregular';
+                span{
+                    line-height: 28px;
+                }
             }
             .infodate {
                 font-family: 'allerregular';
+                    margin-bottom: 20px;
                 label {
                     font-size: 14px;
-                    color: #2f4f4f;
+                    color: #000;
                     font-weight: bold;
                     i {
                         font-style: normal;
-                        color: #2f4f4f;
+                        color: #000;
                         font-size: 14px;
                     }
                 }
                 span {
-                    color: #2f4f4f;
+                    color: #000;
                     font-size: 14px;
                 }
             }

@@ -4,7 +4,7 @@
 
 <ion-content class="mainCont">
     <div class="healthDetailsContainer">
-        <figure>
+        <figure *ngIf="healthData?.bannerimage">
             <img  src="{{healthData?.bannerimage}}" (click)="zoomArea(healthData?.bannerimage)">
         </figure>
         <div class="content">
