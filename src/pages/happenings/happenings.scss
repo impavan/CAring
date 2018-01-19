@@ -35,7 +35,7 @@ page-happenings {
             margin: 5px;
             border-radius: 5px;
             width: calc(100% - 15px);
-            height: 240px;
+            height: 260px;
             figure {
                 margin: 0;
                 height: 130px;
@@ -77,9 +77,9 @@ page-happenings {
         box-shadow: none;
         border-radius: 0;
         figure {
-            height: 255px !important;
-            width: 100% !important;
-            overflow: hidden;
+            // height: 255px !important;
+            // width: 100% !important;
+            // overflow: hidden;
         }
         .card-title {
             text-align: center;
@@ -113,7 +113,7 @@ page-happenings {
     .happeningsContainer {
         .figWidget{
             figure{
-                height: 130px !important;
+                // height: 130px !important;
             }
             .card-title{
                 font-size: 13px;
