@@ -29,13 +29,13 @@ page-promotions {
             margin: 8px;
             border-radius: 5px;
             width: calc(100% - 15px);
-            height: 240px;
+            height: 265px;
             figure {
                 margin: 0;
-                height: 130px;
-                overflow: hidden;
+                // height: 130px;
+                // overflow: hidden;
                 img{
-                    height:100%;
+                    // height:100%;
                 }
             }
             .card-content-md,
@@ -43,7 +43,7 @@ page-promotions {
                 padding: 10px;
                 .card-title {
                     font-weight: 600;
-                    margin: 0 0 0 0;
+                    margin: 0 0 2px 0;
                     line-height: normal;
                 }
                 p {
@@ -115,7 +115,7 @@ page-promotions {
     .promotionsContainer {
         .figWidget{
             figure{
-                height: 100px !important;
+                // height: 100px !important;
             }
             .card-title{
                 font-size: 13px;

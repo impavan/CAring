@@ -11,6 +11,7 @@ import { SortPipe } from '../pipes/sort/sort';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
 import { DateFormatPipe } from '../pipes/date-format/date-format';
+import { SortdescPipe } from '../pipes/sortdesc/sortdesc';
 
 
 
@@ -27,11 +28,12 @@ import { DateFormatPipe } from '../pipes/date-format/date-format';
     IonicPageModule.forChild(SortPipe),
     IonicPageModule.forChild(SafehtmlPipe),
     IonicPageModule.forChild(DateFormatPipe),
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    IonicPageModule.forChild(SortdescPipe)
    
   ],
-  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,SafehtmlPipe,DateFormatPipe],
-  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,IonicImageViewerModule,SafehtmlPipe,DateFormatPipe]
+  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,SafehtmlPipe,SortdescPipe,DateFormatPipe],
+  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,IonicImageViewerModule,SafehtmlPipe,SortdescPipe,DateFormatPipe]
 })
 
 export class SharedModule { } 
