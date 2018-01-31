@@ -10,6 +10,7 @@ export class NetworkProvider {
   constructor(private network: Network,
     private events: Events) {
     this.noConnection();
+    this.gotConnection();
   }
 
   noConnection() {
@@ -17,14 +18,28 @@ export class NetworkProvider {
     //on disconnect
       this.disconnectSubscription =  this.network.onDisconnect().subscribe(data => {
       checkNetworkConnection = data.type;
-      if (checkNetworkConnection == 'offline') {
-        this.events.publish('noconnection', true);
-      }
+    
+      if (checkNetworkConnection == 'offline')  
+      this.events.publish('noconnection', true)  
     }, error => {
     });
+  }
+
+  gotConnection() {
+    let checkNetworkConnection;
+    this.network.onConnect().subscribe(data => {
+      console.log(data, "network connected");
+      checkNetworkConnection = data.type;
+       if (checkNetworkConnection == 'online') {
+        this.events.publish('noconnection', false);
+      }
+    })
+    
   }
 
   unsubscribeConnection() {
     this.disconnectSubscription.unsubscribe();
   }
+
+   
 }

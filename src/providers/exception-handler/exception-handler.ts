@@ -18,8 +18,10 @@ export class ExceptionHandlerProvider {
   METHOD_NOT_ALLOWED = `Method Not Allowed`;
   REQUEST_TIME_OUT = `Request Timeout`;
   INTERNAL_SERVER = `Internal Server Error`;
+  NOINTERNET = `Check your internet connection and try again`;
 
   excpHandler(err) {
+    console.log(err, "errrrrr handler");
     if (err.status == 400) {
       this.alertProvider.presentToast(this.BAD_REQUEST);
       return;
@@ -46,6 +48,10 @@ export class ExceptionHandlerProvider {
     }
     if (err.status == 500) {
       this.alertProvider.presentToast(this.INTERNAL_SERVER);
+      return;
+    }
+    if (err.status == 0) {
+      this.alertProvider.presentToast(this.NOINTERNET);
       return;
     }
   }

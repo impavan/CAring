@@ -45,7 +45,32 @@ export class ApiProvider {
 
      this.platform.ready().then(() => {
        
-      this.getSettings().subscribe(res => {
+       this.settingsData();
+       this.events.subscribe('noconnection', (connectiondata) => {
+         console.log("connection event", connectiondata);
+        if (connectiondata == false)
+          this.settingsData();
+      }) 
+    });
+  }
+
+
+
+
+  
+  getSettings() {
+    
+
+      return this.http.get(STTARTER_BASE_URL + SETTINGS)
+        .map((res: Response) => res)
+        .do((res: Response) => res.json())
+        .map((res: Response) => res.json());
+
+  }
+
+
+  settingsData() {
+    this.getSettings().subscribe(res => {
 
         if (res.status == 200) {
 
@@ -77,21 +102,7 @@ export class ApiProvider {
 
         this.exceptionProvider.excpHandler(err);
 
-      });
-    });
-  }
-
-
-
-
-  
-  getSettings() {
-    
-      return this.http.get(STTARTER_BASE_URL + SETTINGS)
-        .map((res: Response) => res)
-        .do((res: Response) => res.json())
-        .map((res: Response) => res.json());
-
+        });
   }
   
 
