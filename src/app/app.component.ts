@@ -54,8 +54,7 @@ export class MyApp {
       { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
       { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
-      
-      // { title: 'Message', component: 'MessagesPage', index:7,icon:"iconc-chat",ionicon:''},
+      { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
     ];
 
     if (this._auth) {
