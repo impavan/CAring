@@ -36,12 +36,12 @@ export class LoginPage {
     
                   this.mobilevalidated = false;
                   this.phoneNum = '';
-                  this.events.subscribe('noconnection', (value) => {
+                  // this.events.subscribe('noconnection', (value) => {
 
-                    if (value)
-                      this.openConnectionModal();
+                  //   if (value)
+                  //     this.openConnectionModal();
                     
-                  });
+                  // });
                   
                  
   }
@@ -116,10 +116,11 @@ export class LoginPage {
 
         }, err => {
 
+          console.log(err,"In error");
           this.loaderProvider.dismissLoader();
           this.exceptionProvider.excpHandler(err);
 
-        });
+        })
     }
 
   }

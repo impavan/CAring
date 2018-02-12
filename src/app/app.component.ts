@@ -46,6 +46,7 @@ export class MyApp {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
+    
       { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
       { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
       { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},

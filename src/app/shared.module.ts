@@ -10,6 +10,7 @@ import { ChunkPipe } from '../pipes/chunk/chunk';
 import { SortPipe } from '../pipes/sort/sort';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
+import { SortdescPipe } from '../pipes/sortdesc/sortdesc';
 
 
 
@@ -25,11 +26,12 @@ import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
     IonicPageModule.forChild(ChunkPipe),
     IonicPageModule.forChild(SortPipe),
     IonicPageModule.forChild(SafehtmlPipe),
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    IonicPageModule.forChild(SortdescPipe)
    
   ],
-  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,SafehtmlPipe],
-  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,IonicImageViewerModule,SafehtmlPipe]
+  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,SafehtmlPipe,SortdescPipe],
+  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,IonicImageViewerModule,SafehtmlPipe,SortdescPipe]
 })
 
 export class SharedModule { } 
