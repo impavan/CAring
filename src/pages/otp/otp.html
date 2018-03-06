@@ -14,6 +14,20 @@
                 </ion-item>
             </ion-list>
             <button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
+            <p text-uppercase text-center  >Did not receive OTP? <button  style="color:#096F67;text-decoration:none;" [disabled]="disabledFlag"  (click)="resendOtp()">Resend</button></p>
         </div>
     </div>
 </ion-content>
+
+<!-- Modal for Technical Issue with OTP -->
+
+<mymodal #ResendOTP>
+    <p>For any OTP related assistance please dial<a href="tel:1800816912"></a>  or email@ : delivery.sea@capillary.co.in</p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <button ion-button class="btn2 cancelBtn" (click)="closeOTPModal()">OK</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>

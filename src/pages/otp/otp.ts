@@ -1,3 +1,4 @@
+
 import { IonicPage, NavController, NavParams, MenuController, Events, Platform } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild } from '@angular/core';
@@ -9,6 +10,7 @@ import { LoaderProvider } from '../../providers/loader/loader';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
+// import { DISABLED } from '@angular/forms/src/model';
 
 @IonicPage()
 @Component({
@@ -17,7 +19,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 
 export class OtpPage {
+  @ViewChild("ResendOTP")ResendOTPModal
 
+  OTPcount : any;
   phoneNum: any;
   otp: string;
   from: any;
@@ -25,6 +29,8 @@ export class OtpPage {
   MOBILE_VALIDATED = "mobile_validated";
   YES="Yes";
   NO="No";
+  disabledFlag:boolean;
+  count:any;
 
 
   constructor(
@@ -43,6 +49,10 @@ export class OtpPage {
               this.otp = '';
               this.phoneNum = navParams.get('phone');
               this.from = navParams.get('from');
+              this.OTPcount = 0;
+              this.disabledFlag = false;
+              this.count = 30
+            
 
             }
 
@@ -154,4 +164,73 @@ export class OtpPage {
     this.otp = '';
   }
 
+  openResendOTPModal(){
+    this.ResendOTPModal.open();
+  }
+
+  closeOTPModal(){
+    this.ResendOTPModal.close();
+  }
+
+
+  // Resend OTP to User //
+
+  resendOtp(){
+    this.loaderProvider.presentLoadingCustom();
+ 
+    
+    if(this.userProvider.OTPCount < 3){
+      this.disabledFlag = true
+      this.userProvider.userLogin(this.phoneNum)
+      .subscribe(data => {
+
+         this.loaderProvider.dismissLoader();
+        if (data[0].code == 200) {
+                
+          this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
+
+          setTimeout(()=>
+          {
+            
+            this.userProvider.OTPCount +=  1
+            //---------- Enable resend button ------------ //
+            this.disabledFlag = false
+          },10000)
+          
+        } else if (data[0].code == 202) {
+          
+          this.from = 1
+          setTimeout(()=>
+          {
+            
+            this.OTPcount = this.OTPcount + 1
+            this.disabledFlag = false
+            
+            //---------- Enable resend button ------------ //
+          },10000)
+
+         }
+         else 
+          
+           this.alertProvider.presentToast(data[0].message);
+          
+
+        
+
+      }, err => {
+
+        // console.log(err,"In error");
+        this.loaderProvider.dismissLoader();
+        this.exceptionProvider.excpHandler(err);
+
+
+      }
+    )
+ }else{
+  this.loaderProvider.dismissLoader();
+  this.openResendOTPModal();
+ }
 }
+}
+
+    

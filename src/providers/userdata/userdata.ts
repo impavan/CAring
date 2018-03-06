@@ -9,6 +9,7 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class UserdataProvider {
+  public OTPCount:number = 0;
 
   constructor(private auth: AuthProvider,
               private apiProvider:ApiProvider,  
