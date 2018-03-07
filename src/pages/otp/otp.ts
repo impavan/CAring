@@ -177,7 +177,8 @@ export class OtpPage {
 
   resendOtp(){
     this.loaderProvider.presentLoadingCustom();
- 
+    
+    // this.userProvider.OTPCount = 0;
     
     if(this.userProvider.OTPCount < 3){
       this.disabledFlag = true
@@ -188,9 +189,11 @@ export class OtpPage {
         if (data[0].code == 200) {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
+          console.log("number not registered");
 
           setTimeout(()=>
           {
+            console.log("otp count starts");
             
             this.userProvider.OTPCount +=  1
             //---------- Enable resend button ------------ //
@@ -198,12 +201,14 @@ export class OtpPage {
           },10000)
           
         } else if (data[0].code == 202) {
+
+          this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
           setTimeout(()=>
           {
             
-            this.OTPcount = this.OTPcount + 1
+            this.userProvider.OTPCount +=  1
             this.disabledFlag = false
             
             //---------- Enable resend button ------------ //
@@ -214,12 +219,8 @@ export class OtpPage {
           
            this.alertProvider.presentToast(data[0].message);
           
-
-        
-
       }, err => {
 
-        // console.log(err,"In error");
         this.loaderProvider.dismissLoader();
         this.exceptionProvider.excpHandler(err);
 
