@@ -117,15 +117,17 @@ export class OtpPage {
                   console.log("updated after login");
                 })
               })
+              this.userProvider.OTPCount = 0;
                 this.navCtrl.setRoot("HomePage");
             }
 
             else {
+              this.userProvider.OTPCount = 0;
             this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from, custExistingData:this._existingCustomerData});
             }
             
           } else {
-            
+            this.userProvider.OTPCount = 0;
              this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from});
           }
         } else {
@@ -178,8 +180,6 @@ export class OtpPage {
   resendOtp(){
     this.loaderProvider.presentLoadingCustom();
     
-    // this.userProvider.OTPCount = 0;
-    
     if(this.userProvider.OTPCount < 3){
       this.disabledFlag = true
       this.userProvider.userLogin(this.phoneNum)
@@ -189,11 +189,9 @@ export class OtpPage {
         if (data[0].code == 200) {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
-          console.log("number not registered");
-
+         
           setTimeout(()=>
           {
-            console.log("otp count starts");
             
             this.userProvider.OTPCount +=  1
             //---------- Enable resend button ------------ //
