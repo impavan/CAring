@@ -196,7 +196,7 @@ export class OtpPage {
             this.userProvider.OTPCount +=  1
             //---------- Enable resend button ------------ //
             this.disabledFlag = false
-          },10000)
+          },60000)
           
         } else if (data[0].code == 202) {
 
@@ -210,7 +210,7 @@ export class OtpPage {
             this.disabledFlag = false
             
             //---------- Enable resend button ------------ //
-          },10000)
+          },60000)
 
          }
          else 
