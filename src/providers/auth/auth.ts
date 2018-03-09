@@ -237,6 +237,45 @@ export class AuthProvider {
       return '';
   }
 
+  //return User SMS Subscription //
+
+  getUserSMSSubscribtion() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let sms = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'sms')
+      if (sms && sms.value != null)
+        return sms.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+   //return User SMS Subscription //
+
+   getUserEmailSubscribtion() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let email = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'email')
+      if (email && email.value != null)
+        return email.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
+  //return User (Return Customer) Detail //
+
+  getUserReturn() {
+    if (this.userObj.customer[0].custom_fields.field != null && this.userObj.customer[0].custom_fields.field.length > 0) {
+      let return_customer = this.userObj.customer[0].custom_fields.field.find(data => data.name == 'return_customer')
+      if (return_customer && return_customer.value != null)
+        return return_customer.value;
+      else
+        return '';
+    } else
+      return '';
+  }
+
 
   //returns User Occupation
   getUserOccupation() {

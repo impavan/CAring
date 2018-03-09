@@ -1,8 +1,12 @@
 <ion-content padding>
     <div class="otpContainer">
         <i class="logo text-center"><img src="assets/img/logo_large.png" /></i>
+<<<<<<< HEAD
         <div text-center class="info">Please enter the <b>OTP</b> (One Time Password) <br>sent your mobile number!</div>
                 <ion-label fixed class="mobLbl">Mobile Number</ion-label>
+=======
+        <div text-center class="info">Please enter the <b>OTP</b> (One Time Password) <br>sent to your mobile number!</div>
+>>>>>>> 98be604260fb00f3b881ca5027592bdc80e5d9d1
         <div class="content">
             <ion-list>
                 <ion-item>
@@ -16,6 +20,20 @@
                 </ion-item>
             </ion-list>
             <button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
+            <p class="noOtp">Did not receive OTP? <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend</button></p>
         </div>
     </div>
 </ion-content>
+
+<!-- Modal for Technical Issue with OTP -->
+
+<mymodal #ResendOTP>
+    <p>For any OTP related assistance please dial <a href="tel:{{1800816912}}" data-rel="external">1800816912</a>  or email @ <a href="mailto:delivery.sea@capillary.co.in" data-rel="external">delivery.sea@capillary.co.in</a></p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <button ion-button class="btn4" (click)="closeOTPModal()">OK</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>

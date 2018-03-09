@@ -86,6 +86,16 @@ page-otp {
         .list-ios>.item-block:first-child {
             border-top: none;
         }
+        .noOtp{
+            text-transform: uppercase;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .resendBtn{
+            background: transparent;
+            color: #096F67;
+            text-transform: uppercase;  
+        }
     }
     .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
         text-align: right;

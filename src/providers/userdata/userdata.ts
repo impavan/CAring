@@ -9,6 +9,7 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class UserdataProvider {
+  public OTPCount:number = 0;
 
   constructor(private auth: AuthProvider,
               private apiProvider:ApiProvider,  
@@ -27,7 +28,7 @@ export class UserdataProvider {
     return this.http
       .post(this.apiProvider.BASE_URL + LOGIN, body, { headers: this.auth.getHeader() })
       .do((res: Response) => res)
-      .map((res: Response) => res.json());
+      .map((res: Response) => res.json())
   }
 
   //send Otp
