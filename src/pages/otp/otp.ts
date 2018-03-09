@@ -10,7 +10,7 @@ import { LoaderProvider } from '../../providers/loader/loader';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
-// import { DISABLED } from '@angular/forms/src/model';
+
 
 @IonicPage()
 @Component({
