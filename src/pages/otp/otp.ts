@@ -2,6 +2,7 @@
 import { IonicPage, NavController, NavParams, MenuController, Events, Platform } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild } from '@angular/core';
+import { SMS } from '@ionic-native/sms';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -45,7 +46,8 @@ export class OtpPage {
               private navParams: NavParams,
               private menu: MenuController,
               private platform:Platform,
-              private events: Events) {
+              private events: Events,
+              private sms: SMS) {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
@@ -173,6 +175,23 @@ export class OtpPage {
 
   closeOTPModal(){
     this.ResendOTPModal.close();
+  }
+
+  //sending OTP-SMS to User //
+  sendSMSOtp()
+  {
+    var options: {
+      replaceLineBreaks : true,
+      android : {
+        intent : 'INTENT'
+      }
+    }
+    this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
+      console.log("sms worked");
+    }).catch((err)=>{
+      alert(JSON.stringify(err))
+    });
+    
   }
 
 
