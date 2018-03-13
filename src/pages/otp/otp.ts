@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, MenuController, Events, Platform }
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild } from '@angular/core';
 import { SMS } from '@ionic-native/sms';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -40,12 +41,13 @@ export class OtpPage {
               private loaderProvider: LoaderProvider,
               private userProvider: UserdataProvider,
               private alertProvider: AlertProvider,
+              private socialSharing:SocialSharing,
               private authProvider: AuthProvider,
-              private pushProvider:PushProvider,
+              private pushProvider: PushProvider,
               private navCtrl: NavController,
               private navParams: NavParams,
               private menu: MenuController,
-              private platform:Platform,
+              private platform: Platform,
               private events: Events,
               private sms: SMS) {
 
@@ -183,7 +185,7 @@ export class OtpPage {
     var options: {
       replaceLineBreaks : true,
       android : {
-        intent : 'INTENT'
+        intent : ''
       }
     }
     this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
@@ -276,7 +278,32 @@ export class OtpPage {
   this.loaderProvider.dismissLoader();
   this.openResendOTPModal();
  }
-}
+  }
+
+  
+  shareViaSMS() {
+
+    let msg = "Plz send me otp";
+    let no = "+917406997140";
+    this.socialSharing.shareViaSMS(msg, no).then(() => {
+      console.log("shared successfully");
+
+    }, err => {
+      console.log(err, "Problem in sending sms");
+    })
+    
+  }
+
+
+  shareViaWhatsApp() {
+    let recieverNo = '+919844496336';
+    let msg = "Plz send otp for login";
+    this.socialSharing.shareViaWhatsAppToReceiver(recieverNo, msg).then(() => {
+      console.log("console whatsapp working");
+    }, err => {
+      console.log(err, "problem in sending via whatsApp");
+    })
+  }
 }
 
     

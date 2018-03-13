@@ -23,10 +23,9 @@
 
 <mymodal #ResendOTP>
 
-    <p>For any OTP related assistance please call <a href="sms:{{+60174252988}}" data-rel="external">+60174252988</a>or Whatsapp @ <a href="https://api.whatsapp.com/send?phone=60174252988">+60174252988</a></p>
-    <p (click)="sendSMSOtp()">+60174252988</p>
-
-    <!-- <p>For any OTP related assistance please sms to <a href="sms:{{+60174252988}}" data-rel="external">+60174252988</a>or Whatsapp @ <a href="https://api.whatsapp.com/send?phone=60174252988">+60174252988</a></p> -->
+    <p (click)="shareViaSMS()">For any OTP related assistance please sms to +60174252988</p><p (click)="shareViaWhatsApp()"> or Whatsapp @+60174252988</p>
+    <!-- <a href="sms://<+917406997140>">Please send OTP for login</a> -->
+    <!-- <p (click)="sendSMSOtp()">Please click on +60174252988 to get OTP for Login</p> -->
 
     <ion-grid>
         <ion-row>
