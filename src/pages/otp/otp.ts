@@ -31,6 +31,7 @@ export class OtpPage {
   NO="No";
   disabledFlag:boolean;
   count:any;
+  countDown : any;
 
 
   constructor(
@@ -190,29 +191,56 @@ export class OtpPage {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
          
-          setTimeout(()=>
-          {
-            
-            this.userProvider.OTPCount +=  1
-            //---------- Enable resend button ------------ //
-            this.disabledFlag = false
-          },10000)
+          this.countDown = 60; 
           
-        } else if (data[0].code == 202) {
+          var timer = setInterval(()=>
+          {
+            this.countDown--;
+       
+          if(this.countDown == 0){
+            this.disabledFlag = false
+            this.userProvider.OTPCount +=  1
+            clearInterval(timer);
+          }
+          
+          console.log("countdown strt")},1000); }​​
+          // setTimeout(()=>
+          // {
+            
+          //   this.userProvider.OTPCount +=  1
+          //   //---------- Enable resend button ------------ //
+          //   this.disabledFlag = false
+          // },10000)
+          
+         else if (data[0].code == 202) {
 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
-          setTimeout(()=>
+          this.countDown = 60; 
+          
+          
+          var timer = setInterval(()=>
           {
-            
-            this.userProvider.OTPCount +=  1
+            this.countDown--;
+         
+          if(this.countDown == 0){
             this.disabledFlag = false
+            this.userProvider.OTPCount +=  1
+          clearInterval(timer);
+          }
+          
+          console.log("countdown strt")},1000); }​​
+          // setTimeout(()=>
+          // {
             
-            //---------- Enable resend button ------------ //
-          },10000)
+          //   this.userProvider.OTPCount +=  1
+          //   this.disabledFlag = false
+            
+          //   //---------- Enable resend button ------------ //
+          // },10000)
 
-         }
+         
          else 
           
            this.alertProvider.presentToast(data[0].message);

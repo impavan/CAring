@@ -14,7 +14,7 @@
                 </ion-item>
             </ion-list>
             <button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
-            <p class="noOtp">Did not receive OTP? <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend</button></p>
+            <p class="noOtp">Did not receive OTP? <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend </button><span class="resendBtn" color= #096F67 *ngIf="countDown > 0">{{"00:"+countDown}}</span></p>
         </div>
     </div>
 </ion-content>
@@ -22,7 +22,11 @@
 <!-- Modal for Technical Issue with OTP -->
 
 <mymodal #ResendOTP>
+<<<<<<< HEAD
     <p>For any OTP related assistance please call <a href="tel:{{+60174252988}}" data-rel="external">60174252988</a>or Whatsapp @ <a href="https://api.whatsapp.com/send?phone=+919632592336">+60174252988</a></p>
+=======
+    <p>For any OTP related assistance please call <a href="sms:{{+60174252988}}" data-rel="external">+60174252988</a>or Whatsapp @ <a href="https://api.whatsapp.com/send?phone=60174252988">+60174252988</a></p>
+>>>>>>> 32ea8873fce9830678e15d4881add98a99d85610
     <ion-grid>
         <ion-row>
             <ion-col col-12>
