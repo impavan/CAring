@@ -284,7 +284,7 @@ export class OtpPage {
   shareViaSMS() {
 
     let msg = "Plz send me otp";
-    let no = "+917406997140";
+    let no = "+919844496336";
     this.socialSharing.shareViaSMS(msg, no).then(() => {
       console.log("shared successfully");
 
