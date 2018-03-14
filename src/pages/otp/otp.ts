@@ -283,7 +283,7 @@ export class OtpPage {
   
   shareViaSMS() {
 
-    let msg = "Plz send me otp";
+    let msg = "Please share me the OTP for Login";
     let no = "+919844496336";
     this.socialSharing.shareViaSMS(msg, no).then(() => {
       console.log("shared successfully");
@@ -297,7 +297,7 @@ export class OtpPage {
 
   shareViaWhatsApp() {
     let recieverNo = '+919844496336';
-    let msg = "Plz send otp for login";
+    let msg = "Please share me the OTP for Login";
     this.socialSharing.shareViaWhatsAppToReceiver(recieverNo, msg).then(() => {
       console.log("console whatsapp working");
     }, err => {
