@@ -212,7 +212,7 @@ export class OtpPage {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
          
-          this.countDown = 12; 
+          this.countDown = 15; 
           
           var timer = setInterval(()=>
           {
@@ -220,7 +220,8 @@ export class OtpPage {
        
           if(this.countDown == 0){
             this.disabledFlag = false
-            this.userProvider.OTPCount +=  1
+            this.userProvider.OTPCount += 1;
+            console.log(this.countDown,"dss"); 
             clearInterval(timer);
           }
           
@@ -238,7 +239,7 @@ export class OtpPage {
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
-          this.countDown = 12; 
+          this.countDown = 15; 
           
           
           var timer = setInterval(()=>
@@ -247,8 +248,9 @@ export class OtpPage {
          
           if(this.countDown == 0){
             this.disabledFlag = false
-            this.userProvider.OTPCount +=  1
-          clearInterval(timer);
+            this.userProvider.OTPCount += 1;
+            clearInterval(timer);
+            console.log(this.countDown,"sss"); 
           }
           
           console.log("countdown strt")},1000); }​​

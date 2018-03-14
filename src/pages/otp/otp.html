@@ -14,7 +14,9 @@
                 </ion-item>
             </ion-list>
             <button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
-            <p class="noOtp">Did not receive OTP? <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend </button><span class="resendBtn" color= #096F67 *ngIf="countDown > 0">{{"00:"}}</span><span class="resendBtn" color= #096F67 *ngIf="countDown < 10">{{0}}</span><span class="resendBtn" color= #096F67 >{{countDown}}</span></p>
+            <p class="noOtp">Did not receive OTP? 
+                <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend </button>
+                <span class="resendBtn" color= #096F67 *ngIf="countDown >= 1">{{"00:"}}</span><span class="resendBtn" color= #096F67 *ngIf="countDown < 10 && countDown > 0">{{0}}</span><span class="resendBtn" color= #096F67 *ngIf="countDown > 0">{{countDown}}</span></p>
         </div>
     </div>
 </ion-content>
