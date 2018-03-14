@@ -14,16 +14,18 @@
                 </ion-item>
             </ion-list>
             <button ion-button class="btn4 borderBottomRadius" (click)="userOTP()">Log In</button>
-            <p class="noOtp">Did not receive OTP? <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend </button><span class="resendBtn" color= #096F67 *ngIf="countDown > 0">{{"00:"+countDown}}</span></p>
+            <p class="noOtp">Did not receive OTP? <button class="resendBtn" [disabled]="disabledFlag"  (click)="resendOtp()">Resend </button><span class="resendBtn" color= #096F67 *ngIf="countDown > 0">{{"00:"}}</span><span class="resendBtn" color= #096F67 *ngIf="countDown < 10">{{0}}</span><span class="resendBtn" color= #096F67 >{{countDown}}</span></p>
         </div>
     </div>
 </ion-content>
 
 <!-- Modal for Technical Issue with OTP -->
 
-<mymodal #ResendOTP>
-    <p (click)="shareViaSMS()">For any OTP related assistance please   <ion-icon name="text"></ion-icon>
-        sms to +60174252988</p><p (click)="shareViaWhatsApp()"> or <ion-icon name="logo-whatsapp"></ion-icon> Whatsapp +60174252988 </p>
+<mymodal #ResendOTP class="otpModal">
+    <p (click)="shareViaSMS()">For any OTP related assistance please</p>   
+    <p><ion-icon class="smsIcon" name="text"></ion-icon> SMS to <a>+60174252988</a></p>
+    <p>or</p>
+    <p (click)="shareViaWhatsApp()"> <ion-icon class="whatsAppIcon" name="logo-whatsapp"></ion-icon> WhatsApp <a>+60174252988</a> </p>
     <ion-grid>
         <ion-row>
             <ion-col col-12>

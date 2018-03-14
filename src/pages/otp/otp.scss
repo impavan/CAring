@@ -87,8 +87,20 @@ page-otp {
             color: #096F67;
             text-transform: uppercase;  
         }
+        
     }
     .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
         text-align: right;
+    }
+    .otpModal{
+        .whatsAppIcon{
+            color: #34af23;
+        }
+        .smsIcon{
+            color: #09f;
+        }
+        p{
+            margin: 0 0 6px 0;
+        }
     }
 }

@@ -212,7 +212,7 @@ export class OtpPage {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
          
-          this.countDown = 60; 
+          this.countDown = 12; 
           
           var timer = setInterval(()=>
           {
@@ -238,7 +238,7 @@ export class OtpPage {
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
-          this.countDown = 60; 
+          this.countDown = 12; 
           
           
           var timer = setInterval(()=>
