@@ -107,6 +107,8 @@
         <variable name="ANDROID_PATH_PREFIX" value="/" />
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="^3.7.2" />
-    <engine name="android" spec="~6.3.0" />
-    <engine name="ios" spec="~4.3.1" />
+    <plugin name="cordova-sms-plugin" spec="^0.1.11" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
+    <engine name="ios" spec="^4.5.1" />
+    <engine name="android" spec="6.4.0" />
 </widget>

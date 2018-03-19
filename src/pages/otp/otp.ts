@@ -2,6 +2,8 @@
 import { IonicPage, NavController, NavParams, MenuController, Events, Platform } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild } from '@angular/core';
+import { SMS } from '@ionic-native/sms';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -10,7 +12,7 @@ import { LoaderProvider } from '../../providers/loader/loader';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
-// import { DISABLED } from '@angular/forms/src/model';
+
 
 @IonicPage()
 @Component({
@@ -31,6 +33,7 @@ export class OtpPage {
   NO="No";
   disabledFlag:boolean;
   count:any;
+  countDown : any;
 
 
   constructor(
@@ -38,13 +41,15 @@ export class OtpPage {
               private loaderProvider: LoaderProvider,
               private userProvider: UserdataProvider,
               private alertProvider: AlertProvider,
+              private socialSharing:SocialSharing,
               private authProvider: AuthProvider,
-              private pushProvider:PushProvider,
+              private pushProvider: PushProvider,
               private navCtrl: NavController,
               private navParams: NavParams,
               private menu: MenuController,
-              private platform:Platform,
-              private events: Events) {
+              private platform: Platform,
+              private events: Events,
+              private sms: SMS) {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
@@ -176,6 +181,23 @@ export class OtpPage {
     this.ResendOTPModal.close();
   }
 
+  //sending OTP-SMS to User //
+  sendSMSOtp()
+  {
+    var options: {
+      replaceLineBreaks : true,
+      android : {
+        intent : ''
+      }
+    }
+    this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
+      console.log("sms worked");
+    }).catch((err)=>{
+      alert(JSON.stringify(err))
+    });
+    
+  }
+
 
   // Resend OTP to User //
 
@@ -192,29 +214,58 @@ export class OtpPage {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
          
-          setTimeout(()=>
-          {
-            
-            this.userProvider.OTPCount +=  1
-            //---------- Enable resend button ------------ //
-            this.disabledFlag = false
-          },60000)
+          this.countDown = 60; 
           
-        } else if (data[0].code == 202) {
+          var timer = setInterval(()=>
+          {
+            this.countDown--;
+       
+          if(this.countDown == 0){
+            this.disabledFlag = false
+            this.userProvider.OTPCount += 1;
+            console.log(this.countDown,"dss"); 
+            clearInterval(timer);
+          }
+          
+          console.log("countdown strt")},1000); }​​
+          // setTimeout(()=>
+          // {
+            
+          //   this.userProvider.OTPCount +=  1
+          //   //---------- Enable resend button ------------ //
+          //   this.disabledFlag = false
+          // },10000)
+          
+         else if (data[0].code == 202) {
 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
-          setTimeout(()=>
+          this.countDown = 60; 
+          
+          
+          var timer = setInterval(()=>
           {
-            
-            this.userProvider.OTPCount +=  1
+            this.countDown--;
+         
+          if(this.countDown == 0){
             this.disabledFlag = false
+            this.userProvider.OTPCount += 1;
+            clearInterval(timer);
+            console.log(this.countDown,"sss"); 
+          }
+          
+          console.log("countdown strt")},1000); }​​
+          // setTimeout(()=>
+          // {
             
-            //---------- Enable resend button ------------ //
-          },60000)
+          //   this.userProvider.OTPCount +=  1
+          //   this.disabledFlag = false
+            
+          //   //---------- Enable resend button ------------ //
+          // },10000)
 
-         }
+         
          else 
           
            this.alertProvider.presentToast(data[0].message);
@@ -231,7 +282,32 @@ export class OtpPage {
   this.loaderProvider.dismissLoader();
   this.openResendOTPModal();
  }
-}
+  }
+
+  
+  shareViaSMS() {
+
+    let msg = "Please share me the OTP for Login";
+    let no = "+919844496336";
+    this.socialSharing.shareViaSMS(msg, no).then(() => {
+      console.log("shared successfully");
+
+    }, err => {
+      console.log(err, "Problem in sending sms");
+    })
+    
+  }
+
+
+  shareViaWhatsApp() {
+    let recieverNo = '+919844496336';
+    let msg = "Please share me the OTP for Login";
+    this.socialSharing.shareViaWhatsAppToReceiver(recieverNo, msg).then(() => {
+      console.log("console whatsapp working");
+    }, err => {
+      console.log(err, "problem in sending via whatsApp");
+    })
+  }
 }
 
     
