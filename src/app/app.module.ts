@@ -17,7 +17,6 @@ import { Network } from '@ionic-native/network';
 import { Device } from '@ionic-native/device';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
-import { SMS } from '@ionic-native/sms';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 
@@ -56,7 +55,7 @@ import { ZoomProvider } from '../providers/zoom/zoom';
     MyApp,
   ],
   providers: [
-    StatusBar,SMS,
+    StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HapenningsProvider,

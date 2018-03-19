@@ -2,7 +2,6 @@
 import { IonicPage, NavController, NavParams, MenuController, Events, Platform } from 'ionic-angular';
 import { EMPTY, SPECIAL_CHARACTER, NO_CHAR } from '../../validator';
 import { Component, ViewChild } from '@angular/core';
-import { SMS } from '@ionic-native/sms';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 // Import Providers.
