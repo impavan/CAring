@@ -47,8 +47,7 @@ export class OtpPage {
               private navParams: NavParams,
               private menu: MenuController,
               private platform: Platform,
-              private events: Events,
-              private sms: SMS) {
+              private events: Events) {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
@@ -181,21 +180,21 @@ export class OtpPage {
   }
 
   //sending OTP-SMS to User //
-  sendSMSOtp()
-  {
-    var options: {
-      replaceLineBreaks : true,
-      android : {
-        intent : ''
-      }
-    }
-    this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
-      console.log("sms worked");
-    }).catch((err)=>{
-      alert(JSON.stringify(err))
-    });
+  // sendSMSOtp()
+  // {
+  //   var options: {
+  //     replaceLineBreaks : true,
+  //     android : {
+  //       intent : ''
+  //     }
+  //   }
+  //   this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
+  //     console.log("sms worked");
+  //   }).catch((err)=>{
+  //     alert(JSON.stringify(err))
+  //   });
     
-  }
+  // }
 
 
   // Resend OTP to User //
