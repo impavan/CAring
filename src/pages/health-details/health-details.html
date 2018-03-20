@@ -18,7 +18,15 @@
         </div>
     </div>
     <!-- <button ion-button block color="dark" margin-bottom padding (click)=shareViaSocialMedia()>Share Detail</button> -->
-    <button ion-button value="redeem" class="shareBtn" (click)="shareViaSocialMedia()">Share</button>
+    <!-- <button ion-button value="redeem" class="shareBtn" (click)="shareViaSocialMedia()">SHARE DETAILS</button> -->
+    <!-- <ion-icon name="logo-facebook" (click)="shareViaFacebook()"></ion-icon> -->
+    <ul>
+        <li (click)="shareViaFacebook()"> <ion-icon class="facebookIcon" name="logo-facebook"></ion-icon></li>
+        <li (click)="shareViaWhatsApp()"> <ion-icon class="whatsAppIcon" name="logo-whatsapp"></ion-icon></li>
+        <li (click)="shareViaEmail()"> <ion-icon class="emailIcon" name="mail"></ion-icon></li>
+        <li (click)="shareViaInstgram()"> <ion-icon class="InstagramIcon" name="logo-instagram"></ion-icon></li>
+    </ul>
+  
 </ion-content>
 
 
