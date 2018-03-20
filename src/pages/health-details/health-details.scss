@@ -79,5 +79,14 @@ page-health-details {
         .healthDetailsContainer{
             margin: 60px 0 0 0 !important;
         }
+    }.shareBtn{
+        background: $btn-default;
+        box-shadow: none;
+        // border:1px solid #333;
+        color:$cp-lighter-grey;
+        text-transform: none;
+        position: relative;
+        top: -8px;
+        left: 146px;
     }
 }

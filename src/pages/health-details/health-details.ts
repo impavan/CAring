@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController} from 'ionic-angular';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
+import { UserdataProvider } from '../../providers/userdata/userdata';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 @IonicPage()
 @Component({
@@ -12,7 +15,9 @@ export class HealthDetailsPage {
     healthData: any = [];
 
 
-  constructor(public navParams: NavParams, public navCtrl:NavController) {
+  constructor(public navParams: NavParams,
+              public navCtrl: NavController,
+              private socialSharing : SocialSharing) {
 
     this.healthData = navParams.get('data');
   }
@@ -20,6 +25,21 @@ export class HealthDetailsPage {
 
    zoomArea(url) {
      this.navCtrl.push('ImageViewPage', { imgsource: url });
+   }
+  
+  
+  //function for sharing helth info details via social media //
+
+  shareViaSocialMedia() {
+    let chooserTitle = this.healthData.title ? this.healthData.title : null;
+    let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+    console.log(this.healthData.bannerimage, "webdetails");
+    console.log(this.healthData.title, "title is here");
+    this.socialSharing.share(chooserTitle,url).then(() => {
+      console.log("social media sharing");
+    }, err => {
+      console.log(err, "Something went wrong");
+    })
   }
 
   
