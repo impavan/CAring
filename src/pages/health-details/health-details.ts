@@ -30,15 +30,17 @@ export class HealthDetailsPage {
   
   //function for sharing helth info details via social media //
 
-  // shareViaSocialMedia() {
-  //   let chooserTitle = this.healthData.title ? this.healthData.title : null;
-  //   let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
-  //   this.socialSharing.share(chooserTitle,url).then(() => {
-  //     console.log("social media sharing");
-  //   }, err => {
-  //     console.log(err, "Something went wrong");
-  //   })
-  // }
+  shareViaSocialMedia() {
+    let message = this.healthData.title ? this.healthData.title : null;
+    // let subject = "";
+    // let file = "";
+    let link = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+    this.socialSharing.share(message, "","", link).then(() => {
+      console.log("social media sharing");
+    }, err => {
+      console.log(err, "Something went wrong");
+    })
+  }
 
   shareViaFacebook(){
     let message = this.healthData.title ? this.healthData.title : null;
