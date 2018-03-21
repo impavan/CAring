@@ -78,9 +78,9 @@ page-health-details {
         // border:1px solid #333;
         color:$cp-lighter-grey;
         text-transform: none;
-        position: relative;
-        top: -8px;
-        left: 146px;
+        display: block;
+        text-align: center;
+        margin: 0 auto 15px auto;
     }
     ul{
         padding: 0;
@@ -94,16 +94,5 @@ page-health-details {
             }
         }
     }
-    .facebookIcon{
-        color: #3b5998;
-    }
-    .whatsAppIcon{
-        color:#34af23;
-    }
-    .emailIcon{
-        color:#ea4c89;
-    }
-    .InstagramIcon{
-        color:#c32aa3;	
-    }
+    
 }

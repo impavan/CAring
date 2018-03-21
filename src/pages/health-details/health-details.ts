@@ -33,58 +33,58 @@ export class HealthDetailsPage {
   shareViaSocialMedia() {
     let message = this.healthData.title ? this.healthData.title : null;
     // let subject = "";
-    // let file = "";
-    let link = this.healthData.bannerimage ? this.healthData.bannerimage : null;
-    this.socialSharing.share(message, "","", link).then(() => {
+    let file = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+    let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+    this.socialSharing.share(message, "",file,url).then(() => {
       console.log("social media sharing");
     }, err => {
       console.log(err, "Something went wrong");
     })
   }
 
-  shareViaFacebook(){
-    let message = this.healthData.title ? this.healthData.title : null;
-    let image = "";
-    let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
-      this.socialSharing.shareViaFacebookWithPasteMessageHint(message,image,url).then(()=>{
-      console.log("Facebook sharing is working");
-      },err =>{
-      console.log(err,"problem in sharing Via Facebook");
-      })
-      }
+  // shareViaFacebook(){
+  //   let message = this.healthData.title ? this.healthData.title : null;
+  //   let image = "";
+  //   let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+  //     this.socialSharing.shareViaFacebookWithPasteMessageHint(message,image,url).then(()=>{
+  //     console.log("Facebook sharing is working");
+  //     },err =>{
+  //     console.log(err,"problem in sharing Via Facebook");
+  //     })
+  //     }
 
-      shareViaWhatsApp(){
-        let message = this.healthData.title ? this.healthData.title : null;
-        let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
-        this.socialSharing.shareViaWhatsApp(message,url).then(()=>{
-          console.log("Whatsapp sharing is working");
-        },err=>{
-          console.log("whatsapp sharing not working")
-        })
-      }
+  //     shareViaWhatsApp(){
+  //       let message = this.healthData.title ? this.healthData.title : null;
+  //       let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+  //       this.socialSharing.shareViaWhatsApp(message,url).then(()=>{
+  //         console.log("Whatsapp sharing is working");
+  //       },err=>{
+  //         console.log("whatsapp sharing not working")
+  //       })
+  //     }
 
-      shareViaEmail(){
-        let message = this.healthData.title ? this.healthData.title : null;
-        let subject = "";
-        let to = null;
-        let cc = null;
-        let bcc = null;
-        let file = this.healthData.bannerimage ? this.healthData.bannerimage : null;
-        this.socialSharing.shareViaEmail(message,"",to,cc,bcc,file).then(()=>{
-          console.log("email sharing is working");
-        },err=>{
-          console.log("email sharing not working");
-        })
-      }
-      shareViaInstgram(){
-        let message = this.healthData.title ? this.healthData.title : null;
-        let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
-        this.socialSharing.shareViaInstagram(message, url).then(()=>{
-          console.log("Instagram sharing working");
-        },err=>{
-          console.log("Insta not working");
-        })
-      }
+  //     shareViaEmail(){
+  //       let message = this.healthData.title ? this.healthData.title : null;
+  //       let subject = "";
+  //       let to = null;
+  //       let cc = null;
+  //       let bcc = null;
+  //       let file = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+  //       this.socialSharing.shareViaEmail(message,"",to,cc,bcc,file).then(()=>{
+  //         console.log("email sharing is working");
+  //       },err=>{
+  //         console.log("email sharing not working");
+  //       })
+  //     }
+  //     shareViaInstgram(){
+  //       let message = this.healthData.title ? this.healthData.title : null;
+  //       let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
+  //       this.socialSharing.shareViaInstagram(message, url).then(()=>{
+  //         console.log("Instagram sharing working");
+  //       },err=>{
+  //         console.log("Insta not working");
+  //       })
+  //     }
 
   
 }
