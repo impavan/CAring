@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 
 @IonicPage()
@@ -17,7 +18,8 @@ export class HealthDetailsPage {
 
   constructor(public navParams: NavParams,
               public navCtrl: NavController,
-              private socialSharing : SocialSharing) {
+              private socialSharing : SocialSharing,
+              private loaderProvider : LoaderProvider) {
 
     this.healthData = navParams.get('data');
   }
@@ -31,12 +33,15 @@ export class HealthDetailsPage {
   //function for sharing helth info details via social media //
 
   shareViaSocialMedia() {
+    this.loaderProvider.presentLoadingCustom();
     let message = this.healthData.title ? this.healthData.title : null;
     // let subject = "";
     let file = this.healthData.bannerimage ? this.healthData.bannerimage : null;
     let url = this.healthData.bannerimage ? this.healthData.bannerimage : null;
     this.socialSharing.share(message, "",file,url).then(() => {
       console.log("social media sharing");
+      this.loaderProvider.dismissLoader();
+
     }, err => {
       console.log(err, "Something went wrong");
     })
