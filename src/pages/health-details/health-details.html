@@ -18,7 +18,7 @@
         </div>
     </div>
  
-    <button ion-button value="redeem" class="shareBtn" (click)="shareViaSocialMedia()">Share Article</button>
+    <button ion-button *ngIf='healthData?.additionalinfo' value="redeem" class="shareBtn" (click)="shareViaSocialMedia()">Share Article</button>
 </ion-content>
 
 
