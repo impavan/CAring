@@ -36,48 +36,25 @@
                         <button ion-button value="redeem" class="redeemBtn" (click)="gotoRewards()">Redeem</button>
 
                     </p>
-                    <section>
-                        
-                         <ul  class="listMyPoints">
-                            <div *ngFor="let transactions of _transactionList | chunk:'5'">
-                            <li *ngFor="let transaction of transactions">
-                                <div *ngIf="transaction?.transaction_earning">
-                                <label >Points Earned at <b>{{transaction?.store_name}}</b></label>
-                                <span>{{transaction?.billing_time | dateFormat }} <br> Receipt Amount : {{transaction?.amount }}</span>
-                                <b class="amount_display"> + {{transaction?.points_issued | round }}</b>
-                                <br><span *ngIf="transaction?.points_returned > 0">Points Returned: </span> <span *ngIf="transaction?.points_returned > 0"> - {{transaction?.points_returned }}</span>
-                            </li>
-                            <li *ngIf="!transaction?.transaction_earning">
-                                <label for="">Points Redeemed</label>
-                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
-                                <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
-                                <br><span *ngIf="transaction.notes.length > 0">Notes: </span> <span *ngIf="transaction.notes.length > 0" > {{transaction?.notes }}</span>
-                            </li>
-                            </div>
-                        </ul> 
-                        <!-- <ion-grid *ngFor="let transactions of _transactionList | chunk:'5'">
-                            <ion-row *ngFor="let transaction of transactions">
-                                <div *ngIf="transaction?.transaction_earning">
-                                <ion-col col-9>
-                                <label>Points Earned at <b>{{transaction?.store_name}}</b></label>
-                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}} <br> Receipt Amount : {{transaction?.amount }}</span>
-                                </ion-col>
-                                <ion-col col-3>
-                                    <b> + {{transaction?.points_issued | round }}</b>
-                                </ion-col>
-                                </div>
-                                <div *ngIf="!transaction?.transaction_earning">
-                                <ion-col col-9>
-                                     <label >Points Redeemed</label>
-                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
-                                </ion-col>
-                                <ion-col col-3>
-                                    <b>- {{transaction?.points_spent | round }}</b>
-                                </ion-col>
-                                </div>
-                            </ion-row>
-                        </ion-grid> -->
-                    </section>
+                    
+            <section>
+                <div *ngFor="let transactions of _transactionList | chunk:'5'">
+                <ul *ngFor="let transaction of transactions" class="listMyPoints">
+                <li *ngIf="transaction?.transaction_earning">
+                <label>Points Earned at <b>{{transaction?.store_name}}</b></label>
+                <span>{{transaction?.billing_time | dateFormat }} <br> Receipt Amount : {{transaction?.amount }}</span>
+                <b class="amount_display"> + {{transaction?.points_issued | round }}</b>
+                <br><span *ngIf="transaction?.points_returned > 0">Points Returned: </span> <span *ngIf="transaction?.points_returned > 0"> - {{transaction?.points_returned }}</span>
+                </li>
+                <li *ngIf="!transaction?.transaction_earning">
+                <label>Points Redeemed</label>
+                <span>{{transaction?.billing_time | dateFormat }}</span>
+                <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
+                <br><span *ngIf="transaction.notes.length > 0">Notes: </span> <span *ngIf="transaction.notes.length > 0" > {{transaction?.notes }}</span>
+                </li>
+                </ul>
+                </div>
+                </section>
                 </div>
                 <ion-card *ngIf="!_auth" class="myPointsContainer sec">
                     <p class="urPoints">You have no points yet</p>

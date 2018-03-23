@@ -123,6 +123,10 @@ page-redeem {
                 padding: 10px;
             }
         }
+        .date{
+            font-size: 12px;
+            padding: 5px 0;
+        }
         .subTitle{
                 border-bottom: none;
             }
@@ -198,9 +202,7 @@ page-redeem {
             display: block;
         }
     }
-    .date{
-        font-size: 12px;
-    }
+    
     
      @media(min-width:768px){
         .redeemDetailsContainer{
