@@ -36,9 +36,9 @@
         <div  *ngFor="let reward of redeemList" class="listMyPointsOut">
         <ion-grid *ngIf="reward?.Cap_RedeemStatus == 0 && currentDate <= reward.ExpiryDate">
             <ion-row >
-                <ion-col class="text-center"> <span class="subTxt">{{reward.Cap_VoucherCode}}  </span></ion-col>
-                <ion-col class="text-center"><span class="subTxt">{{reward?.ExpiryDate | date:'dd/MM/yyyy' }}</span></ion-col>
-                <ion-col class="text-center colAlign"><button ion-button class="btnSmall" (click)="openModel(reward)">Use</button></ion-col>
+                <ion-col col-5 > <span class="subTxt">{{reward.Cap_VoucherCode}}  </span></ion-col>
+                <ion-col col-4 ><span class="subTxt">{{reward?.ExpiryDate | date:'dd/MM/yyyy' }}</span></ion-col>
+                <ion-col col-3 class="text-center colAlign"><button ion-button class="btnSmall" (click)="openModel(reward)">Use</button></ion-col>
             </ion-row>
         </ion-grid>
         </div>

@@ -66,12 +66,31 @@ page-health-details {
                     }
                 }
             }
-            ul{
-                li{
-                    line-height: 19px;
-                    margin: 0 0 10px 0;
-                    font-family: 'allerregular';
-                }
+        }
+    }
+     @media(min-width:768px){
+        .healthDetailsContainer{
+            margin: 60px 0 0 0 !important;
+        }
+    }.shareBtn{
+        background: $btn-default;
+        box-shadow: none;
+        // border:1px solid #333;
+        color:$cp-lighter-grey;
+        text-transform: none;
+        display: block;
+        text-align: center;
+        margin: 0 auto 15px auto;
+    }
+    ul{
+        padding: 0;
+        text-align: center;
+        li{
+            display: inline-block;
+            margin: 0 30px 0 0;
+            list-style: none;
+            ion-icon{
+                font-size: 26px;
             }
         }
     }
@@ -80,9 +99,5 @@ page-health-details {
             margin: 60px 0 0 0 !important;
         }
     }
-     @media(min-width:768px){
-        .healthDetailsContainer{
-            margin: 60px 0 0 0 !important;
-        }
-    }
+    
 }

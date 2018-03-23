@@ -77,9 +77,9 @@ export class EditProfilePage {
     this.customFields.working = this.authProvider.getUserWorkingStatus();
     this.customFields.occupation = this.authProvider.getUserOccupation();
     this.customFields.preferred_language = this.authProvider.getUserLanguage();
-    this.customFields.sms = this.authProvider.getUserSMSSubscribtion();
-    this.customFields.email = this.authProvider.getUserEmailSubscribtion();
-    this.customFields.return_customer = this.authProvider.getUserReturn();
+    // this.customFields.sms = this.authProvider.getUserSMSSubscribtion();
+    // this.customFields.email = this.authProvider.getUserEmailSubscribtion();
+    // this.customFields.return_customer = this.authProvider.getUserReturn();
     this.customFields.socialupdate = 1;
    
     
