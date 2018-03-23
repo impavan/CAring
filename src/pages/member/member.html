@@ -49,6 +49,7 @@
                                 <label for="">Points Redeemed</label>
                                 <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
                                 <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
+                                <br><span *ngIf="transaction.notes.length > 0">Notes: </span> <span *ngIf="transaction.notes.length > 0" > {{transaction?.notes }}</span>
                             </li>
                         </ul>
                         </div>
