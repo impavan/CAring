@@ -11,6 +11,7 @@ import { LoaderProvider } from '../../providers/loader/loader';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Contacts, Contact, ContactField,ContactFieldType,ContactFindOptions, ContactName } from '@ionic-native/contacts';
 
 
 @IonicPage()
@@ -20,7 +21,10 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 
 export class OtpPage {
-  @ViewChild("ResendOTP")ResendOTPModal
+  val: any;
+  search: boolean;
+  contactsfound: any=[];
+  @ViewChild("ResendOTP") ResendOTPModal
 
   OTPcount : any;
   phoneNum: any;
@@ -33,6 +37,7 @@ export class OtpPage {
   disabledFlag:boolean;
   count:any;
   countDown : any;
+  fields:any;
 
 
   constructor(
@@ -47,7 +52,8 @@ export class OtpPage {
               private navParams: NavParams,
               private menu: MenuController,
               private platform: Platform,
-              private events: Events) {
+              private events: Events,
+              private contacts: Contacts) {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
@@ -212,7 +218,7 @@ export class OtpPage {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
          
-          this.countDown = 60; 
+          this.countDown = 10; 
           
           var timer = setInterval(()=>
           {
@@ -239,7 +245,7 @@ export class OtpPage {
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
-          this.countDown = 60; 
+          this.countDown = 10; 
           
           
           var timer = setInterval(()=>
@@ -297,7 +303,9 @@ export class OtpPage {
   }
 
 
-  shareViaWhatsApp() {
+  shareViaWhatsApp(ev:any) {
+
+    if(this.platform.is('android')){
     let recieverNo = '+60174252988';
     let msg = "Please share me the OTP for Login";
     this.socialSharing.shareViaWhatsAppToReceiver(recieverNo, msg).then(() => {
@@ -305,7 +313,74 @@ export class OtpPage {
     }, err => {
       console.log(err, "problem in sending via whatsApp");
     })
+    }else if(this.platform.is('ios')){
+      console.log("platform ios");
+    //   this.fields = [new ContactField("mobile",'+60174252988')];
+    //   console.log(this.fields,"ios contact fld");
+
+
+    // this.contacts.find(this.fields.ContactField).then((response)=>{
+    //   console.log("::::::response:::",response)
+    // },err=>{
+    //   console.log("something went wrong");
+    // })
+
+        let fields:ContactFieldType[] = ['displayName'];
+        console.log(fields,"fieldsssssss")
+        this.val=ev.target.value;
+        console.log(this.val,"valllllllß")
+
+ 
+        const options = new ContactFindOptions();
+        options.filter = ev.target.value;
+        options.multiple = true;
+        options.hasPhoneNumber = true;
+        console.log(options.filter,"=filter",options.hasPhoneNumber,"=hasphonenumber")
+ 
+        this.contacts.find(['displayName'], {filter:this.val}).then((contacts) => {
+            this.contactsfound = contacts[0];
+            console.log(this.contactsfound,"contactsfound")
+             console.log(JSON.stringify(this.contactsfound),"contactsfound1")
+            console.log(this.contactsfound.displayName,"length foundddddd");
+            console.log(JSON.stringify(contacts[0]),"jsonnnnnnnn");
+        });
+        console.log(this.contactsfound.length,"length foundddddd");
+        if(this.contactsfound.displayName == null){
+          
+            this.contactsfound.push({displayName: 'No Contacts found'}); 
+            // addContact(newContact:any) {
+              console.log(this.contactsfound,"contactsfound")
+              console.log(ev,"ev")
+      var contact = this.contacts.create();
+      contact.displayName = ev.displayName;
+      contact.nickname = ev.nickName;
+       
+      var field = new ContactField();
+      field.type = ev.phoneType;
+      field.value = ev.phoneNumber;
+      field.pref = true;
+       
+      var numberSection = [];
+      numberSection.push( field );
+      contact.phoneNumbers = numberSection;
+       
+      contact.save().then((value) => {
+          console.log('saved', value);
+          this.navCtrl.pop();
+      }, (error) => {
+        console.log(error,"error");
+      })   
+ // } 
+        }
+        this.search = true;
+    
+  }else{
+    console.log('coming to else')
   }
-}
+    }
+
+  }
+
+
 
     

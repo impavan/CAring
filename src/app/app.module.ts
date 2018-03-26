@@ -37,6 +37,7 @@ import { SharedModule } from './shared.module';
 import { PushProvider } from '../providers/push/push';
 import { ApiProvider } from '../providers/api/api';
 import { ZoomProvider } from '../providers/zoom/zoom';
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { ZoomProvider } from '../providers/zoom/zoom';
     HapenningsProvider,
     StoreLocatorProvider,
     LoaderProvider,
-    AlertProvider,
+    AlertProvider,Contacts,
     Diagnostic,
     OpenNativeSettings,
     LoaderProvider, AlertProvider,Geolocation,LaunchNavigator,
