@@ -17,7 +17,7 @@
                 </article>
         <div *ngFor="let happen of happenList | chunk:2">
             <ion-row class="mt10">
-                <ion-col col-sm-6 col-xs-6 *ngFor="let hpn of happen" tappable (click)="gotoHappenDetail(hpn)">
+                <ion-col col-sm-6 col-xs-6 *ngFor="let hpn of happen" tappable (tap)="gotoHappenDetail(hpn)">
                     <ion-card class="figWidget" *ngIf="hpn">
                         <figure>
                             <img src="{{hpn?.eventbanner}}" />
