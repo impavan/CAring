@@ -7,6 +7,7 @@ import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+import moment from 'moment';
 
 
 @IonicPage()
@@ -29,6 +30,7 @@ export class EditProfilePage {
   occupation: any = ['Entrepreneur / Own business', 'Homemaker', 'Permanent employment', 'Unemployed / Contract', 'Others'];
   race: any = ['Chinese', 'Malay', 'Indian', 'Others'];
   ageGroup: any = ['Below 20', '21-30', '31-40', '41-50', '51-60', 'Above 60'];
+  currentDate: any = moment().format('YYYY-MM-DD');
   
 
 
@@ -110,9 +112,13 @@ export class EditProfilePage {
       return;
     } 
     else if (this.customFields.pincode == EMPTY){
-      this.alertProvider.presentToast("Enter Pincode");
+      this.alertProvider.presentToast("Enter Postcode");
       return;
     }
+    else if (this.customFields.pincode.trim() == EMPTY){
+      this.alertProvider.presentToast("Enter Postcode");
+      return;
+    }  
     else if (this.customFields.race == EMPTY){
       this.alertProvider.presentToast("Enter Race");
     }
