@@ -16,7 +16,7 @@ import moment from 'moment';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  new_email: any;
+  new_email: any=''
   profileData: any = {
     customFields: []
   };
@@ -62,7 +62,7 @@ export class EditProfilePage {
     this.profileData.firstname = this.authProvider.getUserFirstName();
     this.profileData.lastname = this.authProvider.getUserLastName() || '';
     this.profileData.mobile = this.authProvider.getUserMobileNo();
-    this.profileData.email = this.authProvider.getUserEmailId();
+    this.profileData.email = this.authProvider.getUserEmailId() || '';
     
     this.profileData.externalId = this.authProvider.getExternalId() || '';
     this.customFields.ic_number = this.authProvider.getUserNRIC();
@@ -101,7 +101,7 @@ export class EditProfilePage {
     //   this.alertProvider.presentToast("Enter Last name");
     //   return;
     // } 
-    else if(!this.profileData.email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
+    else if(this.profileData.email == EMPTY && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
       this.alertProvider.presentToast('Enter valid email');
       return;
       
