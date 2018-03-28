@@ -11,6 +11,7 @@ import { LoaderProvider } from '../../providers/loader/loader';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Clipboard } from '@ionic-native/clipboard';
 import { Contacts, Contact, ContactField,ContactFieldType,ContactFindOptions, ContactName } from '@ionic-native/contacts';
 
 
@@ -53,7 +54,8 @@ export class OtpPage {
               private menu: MenuController,
               private platform: Platform,
               private events: Events,
-              private contacts: Contacts) {
+              private contacts: Contacts,
+              private clipboard: Clipboard) {
 
               this.otp = '';
               this.phoneNum = navParams.get('phone');
@@ -232,13 +234,7 @@ export class OtpPage {
           }
           
           console.log("countdown strt")},1000); }​​
-          // setTimeout(()=>
-          // {
-            
-          //   this.userProvider.OTPCount +=  1
-          //   //---------- Enable resend button ------------ //
-          //   this.disabledFlag = false
-          // },10000)
+
           
          else if (data[0].code == 202) {
 
@@ -260,14 +256,6 @@ export class OtpPage {
           }
           
           console.log("countdown strt")},1000); }​​
-          // setTimeout(()=>
-          // {
-            
-          //   this.userProvider.OTPCount +=  1
-          //   this.disabledFlag = false
-            
-          //   //---------- Enable resend button ------------ //
-          // },10000)
 
          
          else 
@@ -303,7 +291,7 @@ export class OtpPage {
   }
 
 
-  shareViaWhatsApp(ev:any) {
+  shareViaWhatsApp() {
 
     if(this.platform.is('android')){
     let recieverNo = '+60174252988';
@@ -314,70 +302,20 @@ export class OtpPage {
       console.log(err, "problem in sending via whatsApp");
     })
     }else if(this.platform.is('ios')){
-      console.log("platform ios");
-    //   this.fields = [new ContactField("mobile",'+60174252988')];
-    //   console.log(this.fields,"ios contact fld");
-
-
-    // this.contacts.find(this.fields.ContactField).then((response)=>{
-    //   console.log("::::::response:::",response)
-    // },err=>{
-    //   console.log("something went wrong");
-    // })
-
-        let fields:ContactFieldType[] = ['displayName'];
-        console.log(fields,"fieldsssssss")
-        this.val=ev.target.value;
-        console.log(this.val,"valllllllß")
-
- 
-        const options = new ContactFindOptions();
-        options.filter = ev.target.value;
-        options.multiple = true;
-        options.hasPhoneNumber = true;
-        console.log(options.filter,"=filter",options.hasPhoneNumber,"=hasphonenumber")
- 
-        this.contacts.find(['displayName'], {filter:this.val}).then((contacts) => {
-            this.contactsfound = contacts[0];
-            console.log(this.contactsfound,"contactsfound")
-             console.log(JSON.stringify(this.contactsfound),"contactsfound1")
-            console.log(this.contactsfound.displayName,"length foundddddd");
-            console.log(JSON.stringify(contacts[0]),"jsonnnnnnnn");
-        });
-        console.log(this.contactsfound.length,"length foundddddd");
-        if(this.contactsfound.displayName == null){
-          
-            this.contactsfound.push({displayName: 'No Contacts found'}); 
-            // addContact(newContact:any) {
-              console.log(this.contactsfound,"contactsfound")
-              console.log(ev,"ev")
-      var contact = this.contacts.create();
-      contact.displayName = ev.displayName;
-      contact.nickname = ev.nickName;
-       
-      var field = new ContactField();
-      field.type = ev.phoneType;
-      field.value = ev.phoneNumber;
-      field.pref = true;
-       
-      var numberSection = [];
-      numberSection.push( field );
-      contact.phoneNumbers = numberSection;
-       
-      contact.save().then((value) => {
-          console.log('saved', value);
-          this.navCtrl.pop();
-      }, (error) => {
-        console.log(error,"error");
-      })   
- // } 
-        }
-        this.search = true;
-    
-  }else{
-    console.log('coming to else')
-  }
+      
+      
+        this.copyToClipboard();
     }
+  }
+copyToClipboard(){
+
+  this.clipboard.copy('+60174252988').then(()=>{
+    
+    this.alertProvider.presentToast("Number copied to Clipboard")
+  },err=>{
+    console.log("Something wrong in saving number");
+  })
+}
 
   }
 

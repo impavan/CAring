@@ -32,8 +32,8 @@
 <mymodal #ResendOTP class="otpModal">
     <p (click)="shareViaSMS()">For any OTP related assistance please
     <ion-icon class="smsIcon" name="text"></ion-icon> SMS to <a>+60174252988</a></p>
-    <p>or</p>
-    <p (click)="shareViaWhatsApp($event)"> <ion-icon class="whatsAppIcon" name="logo-whatsapp"></ion-icon> WhatsApp <a>+60174252988</a> </p>
+    <p>or  </p>
+    <p (click)="shareViaWhatsApp()"> <ion-icon class="whatsAppIcon" name="logo-whatsapp"></ion-icon> WhatsApp +60174252988 <ion-icon name="copy" class="copyicon" (click)=copyToClipboard()></ion-icon> </p>
     <ion-grid>
         <ion-row>
             <ion-col col-12>

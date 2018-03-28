@@ -18,6 +18,7 @@ import { Device } from '@ionic-native/device';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Clipboard } from '@ionic-native/clipboard';
 
 
 
@@ -59,7 +60,7 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    HapenningsProvider,
+    HapenningsProvider,Clipboard,
     StoreLocatorProvider,
     LoaderProvider,
     AlertProvider,Contacts,
