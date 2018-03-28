@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY } from '../../validator';
+import { EMPTY,EMAIL_REGEXP } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -31,7 +31,6 @@ export class EditProfilePage {
   race: any = ['Chinese', 'Malay', 'Indian', 'Others'];
   ageGroup: any = ['Below 20', '21-30', '31-40', '41-50', '51-60', 'Above 60'];
   currentDate:any = moment().format('YYYY-MM-DD');
-   EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
 
@@ -89,25 +88,23 @@ export class EditProfilePage {
 
   updateProfile() {
     
-        console.log(this.EMAIL_REGEXP.test(this.profileData.email),"email regex");
 
-    if( this.profileData.firstname == EMPTY) {
-      this.alertProvider.presentToast('Enter First name');
+    if( this.profileData.firstname.trim() == EMPTY) {
+      this.alertProvider.presentToast('Enter valid First name');
       return;
     }
-     else if( this.profileData.lastname == EMPTY) {
-      this.alertProvider.presentToast('Enter Last name');
-      console.log("heyyyyyyyyyy");
+     else if( this.profileData.lastname.trim() == EMPTY) {
+      this.alertProvider.presentToast('Enter valid Last name');
       return;
-     } 
-    else if(this.new_email != EMPTY && !this.EMAIL_REGEXP.test(this.new_email)) {
+     }
+    // else if (this.profileData.lastname. == EMPTY){
+    //   this.alertProvider.presentToast("Enter Last name");
+    //   return;
+    // } 
+    else if(!this.profileData.email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
       this.alertProvider.presentToast('Enter valid email');
       return;
       
-    }
-    else if (this.profileData.lastname.trim() == EMPTY){
-      this.alertProvider.presentToast("Enter Last name");
-      return;
     }
     else if( this.customFields.birthday== EMPTY) {
       this.alertProvider.presentToast('Enter Date of Birth');
@@ -117,18 +114,18 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Gender');
       return;
     } 
-    else if (this.customFields.city == EMPTY ){
-      this.alertProvider.presentToast("Enter City");
+    else if (this.customFields.city.trim() == EMPTY ){
+      this.alertProvider.presentToast("Enter valid City");
       return;
     } 
-    else if (this.customFields.pincode == EMPTY){
-      this.alertProvider.presentToast("Enter Postcode");
-      return;
-    }
     else if (this.customFields.pincode.trim() == EMPTY){
-      this.alertProvider.presentToast("Enter Postcode");
+      this.alertProvider.presentToast("Enter valid Postcode");
       return;
     }
+    // else if (this.customFields.pincode.trim() == EMPTY){
+    //   this.alertProvider.presentToast("Enter Postcode");
+    //   return;
+    // }
     else if (this.customFields.race == EMPTY){
       this.alertProvider.presentToast("Enter Race");
     }

@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
+import { EMPTY, PATTERN, EMAIL_REGEXP, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
 import { IonicPage, NavController, NavParams, MenuController, Events,Platform } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
-import { PushProvider } from '../../providers/push/push'
+import { PushProvider } from '../../providers/push/push';
 
 @IonicPage()
 @Component({
@@ -111,14 +111,14 @@ export class RegistrationPage {
     //     return;
 
       }
-    else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
+    // else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
 
-      this.alertProvider.presentToast("Email Id must contain @ symbol");
-      return; 
-    }
-      else if (this.registerData.email != EMPTY && !this.registerData.email.match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/')) {
+    //   this.alertProvider.presentToast("Email Id must contain @ symbol");
+    //   return; 
+    // }
+      else if (this.registerData.email != EMPTY && !EMAIL_REGEXP.test(this.registerData.email)) {
 
-      this.alertProvider.presentToast("Email Id must be valid ");
+      this.alertProvider.presentToast("Enter valid Email-Id ");
       return; 
       
     } else {
