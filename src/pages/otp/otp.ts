@@ -12,7 +12,6 @@ import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Clipboard } from '@ionic-native/clipboard';
-import { Contacts, Contact, ContactField,ContactFieldType,ContactFindOptions, ContactName } from '@ionic-native/contacts';
 
 
 @IonicPage()
@@ -54,7 +53,6 @@ export class OtpPage {
               private menu: MenuController,
               private platform: Platform,
               private events: Events,
-              private contacts: Contacts,
               private clipboard: Clipboard) {
 
               this.otp = '';
@@ -187,24 +185,6 @@ export class OtpPage {
     this.ResendOTPModal.close();
   }
 
-  //sending OTP-SMS to User //
-  // sendSMSOtp()
-  // {
-  //   var options: {
-  //     replaceLineBreaks : true,
-  //     android : {
-  //       intent : ''
-  //     }
-  //   }
-  //   this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
-  //     console.log("sms worked");
-  //   }).catch((err)=>{
-  //     alert(JSON.stringify(err))
-  //   });
-    
-  // }
-
-
   // Resend OTP to User //
 
   resendOtp(){
@@ -220,7 +200,7 @@ export class OtpPage {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
          
-          this.countDown = 10; 
+          this.countDown = 60; 
           
           var timer = setInterval(()=>
           {
@@ -241,7 +221,7 @@ export class OtpPage {
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
           
           this.from = 1
-          this.countDown = 10; 
+          this.countDown = 60; 
           
           
           var timer = setInterval(()=>

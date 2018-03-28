@@ -24,7 +24,6 @@
     "@ionic-native/app-version": "4.5.3",
     "@ionic-native/camera": "4.5.3",
     "@ionic-native/clipboard": "^4.6.0",
-    "@ionic-native/contacts": "^4.6.0",
     "@ionic-native/core": "4.5.3",
     "@ionic-native/deeplinks": "4.5.3",
     "@ionic-native/device": "4.5.3",
