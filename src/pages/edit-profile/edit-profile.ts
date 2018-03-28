@@ -31,6 +31,8 @@ export class EditProfilePage {
   race: any = ['Chinese', 'Malay', 'Indian', 'Others'];
   ageGroup: any = ['Below 20', '21-30', '31-40', '41-50', '51-60', 'Above 60'];
   currentDate:any = moment().format('YYYY-MM-DD');
+   EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
 
   constructor(public  events:Events,
@@ -87,17 +89,21 @@ export class EditProfilePage {
 
   updateProfile() {
     
+        console.log(this.EMAIL_REGEXP.test(this.profileData.email),"email regex");
+
     if( this.profileData.firstname == EMPTY) {
       this.alertProvider.presentToast('Enter First name');
       return;
     }
      else if( this.profileData.lastname == EMPTY) {
       this.alertProvider.presentToast('Enter Last name');
+      console.log("heyyyyyyyyyy");
       return;
      } 
-    else if( this.profileData.email !== EMPTY && this.profileData.email.match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/')) {
+    else if(this.new_email != EMPTY && !this.EMAIL_REGEXP.test(this.new_email)) {
       this.alertProvider.presentToast('Enter valid email');
       return;
+      
     }
     else if (this.profileData.lastname.trim() == EMPTY){
       this.alertProvider.presentToast("Enter Last name");
