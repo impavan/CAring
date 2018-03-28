@@ -95,6 +95,11 @@ export class LoginPage {
 
       this.alertProvider.presentToast('Mobile number cannot contain special characters');
       return;
+    }
+      else if (!(/^[0-9]+$/).test(phoneNo)) {
+
+      this.alertProvider.presentToast('Mobile number cannot contain special characters');
+      return;
 
     } else {
 

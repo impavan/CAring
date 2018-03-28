@@ -114,7 +114,13 @@ export class RegistrationPage {
     else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
 
       this.alertProvider.presentToast("Email Id must contain @ symbol");
-      return;  
+      return; 
+    }
+      else if (this.registerData.email != EMPTY && !this.registerData.email.match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/')) {
+
+      this.alertProvider.presentToast("Email Id must be valid ");
+      return; 
+      
     } else {
       this.registerOTPSucess(this.registerData);
     }

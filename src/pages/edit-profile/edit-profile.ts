@@ -95,6 +95,14 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Last name');
       return;
      } 
+    else if( this.profileData.email !== EMPTY && this.profileData.email.match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/')) {
+      this.alertProvider.presentToast('Enter valid email');
+      return;
+    }
+    else if (this.profileData.lastname.trim() == EMPTY){
+      this.alertProvider.presentToast("Enter Last name");
+      return;
+    }
     else if( this.customFields.birthday== EMPTY) {
       this.alertProvider.presentToast('Enter Date of Birth');
       return;
