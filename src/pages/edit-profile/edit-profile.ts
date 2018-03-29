@@ -77,9 +77,6 @@ export class EditProfilePage {
     this.customFields.working = this.authProvider.getUserWorkingStatus();
     this.customFields.occupation = this.authProvider.getUserOccupation();
     this.customFields.preferred_language = this.authProvider.getUserLanguage();
-    // this.customFields.sms = this.authProvider.getUserSMSSubscribtion();
-    // this.customFields.email = this.authProvider.getUserEmailSubscribtion();
-    // this.customFields.return_customer = this.authProvider.getUserReturn();
     this.customFields.socialupdate = 1;
    
     
@@ -89,11 +86,11 @@ export class EditProfilePage {
 
   updateProfile() {
     
-    if( this.profileData.firstname == EMPTY) {
+    if( this.profileData.firstname.trim() == EMPTY) {
       this.alertProvider.presentToast('Enter First name');
       return;
     }
-     else if( this.profileData.lastname == EMPTY) {
+     else if( this.profileData.lastname.trim() == EMPTY) {
       this.alertProvider.presentToast('Enter Last name');
       return;
      } 
@@ -105,11 +102,11 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Gender');
       return;
     } 
-    else if (this.customFields.city == EMPTY ){
+    else if (this.customFields.city.trim() == EMPTY ){
       this.alertProvider.presentToast("Enter City");
       return;
     } 
-    else if (this.customFields.pincode == EMPTY){
+    else if (this.customFields.pincode.trim() == EMPTY){
       this.alertProvider.presentToast("Enter Pincode");
       return;
     }
