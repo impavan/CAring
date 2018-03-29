@@ -32,7 +32,7 @@
             </ion-row>-->
             <div *ngFor="let activities of storeActivityList | chunk:2">
             <ion-row>
-                <ion-col col-12 *ngFor="let activity of activities" clickable (click)="gotoInstoredetailsPage(activity)">
+                <ion-col col-12 *ngFor="let activity of activities" tappable (click)="gotoInstoredetailsPage(activity)">
                     <ion-row  class="figWidget">
                         <ion-col col-6>
                             <figure>

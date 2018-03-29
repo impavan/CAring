@@ -55,10 +55,13 @@ export class PushProvider {
   saveCustomerInfoToWebengage(data){
     
     setTimeout(() => {
-
+      if(data.customer[0].firstname)
        webengage.user.setAttribute('we_first_name', data.customer[0].firstname);
-       webengage.user.setAttribute('we_last_name', data.customer[0].lastName); 
-       webengage.user.setAttribute('we_email', data.customer[0].email);
+       if(data.customer[0].lastName)
+        webengage.user.setAttribute('we_last_name', data.customer[0].lastName); 
+        if(data.customer[0].email)
+          webengage.user.setAttribute('we_email', data.customer[0].email);
+          if(data.customer[0].mobile)
        webengage.user.setAttribute('we_phone', data.customer[0].mobile);
       
     },2000)

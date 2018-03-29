@@ -19,7 +19,7 @@
             </article>
             <div *ngFor="let pro of _promotionList | chunk:2">
             <ion-row class="mt10">
-                <ion-col col-sm-6 col-xs-6 *ngFor="let promotion of pro" clickable (click)="gotoPromotionDetails(promotion)">
+                <ion-col col-sm-6 col-xs-6 *ngFor="let promotion of pro" tappable (click)="gotoPromotionDetails(promotion)">
                     <ion-card class="figWidget">
                         
                         <figure>

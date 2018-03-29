@@ -16,7 +16,7 @@
                 </ion-row>
             </article>
             <div *ngFor="let healthy of _healthInfoList | chunk:2">
-            <div class="healthInfoCards" *ngFor="let health of healthy" clickable (click)="navToHealthDetails(health)">
+            <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="navToHealthDetails(health)">
                 <div class="left">
                     <figure>
                         <img src="{{health?.thumbnailimage}}" />
