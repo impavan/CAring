@@ -108,13 +108,8 @@ export class EditProfilePage {
       this.alertProvider.presentToast("Enter City");
       return;
     } 
-<<<<<<< HEAD
-    else if (this.customFields.pincode.trim() == EMPTY){
-      this.alertProvider.presentToast("Enter Pincode");
-=======
     else if (this.customFields.pincode == EMPTY){
       this.alertProvider.presentToast("Enter Postcode");
->>>>>>> 05559849fc9d14f60767d950d78203424e4070b7
       return;
     }
     else if (this.customFields.pincode.trim() == EMPTY){
