@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY } from '../../validator';
+import { EMPTY, EMAIL_REGEXP } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -96,6 +96,10 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Last name');
       return;
      } 
+     else if( this.profileData.email== EMPTY && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
+      this.alertProvider.presentToast('Enter valid email');
+      return;
+    }
     else if( this.customFields.birthday== EMPTY) {
       this.alertProvider.presentToast('Enter Date of Birth');
       return;

@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
+import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS, EMAIL_REGEXP } from '../../validator';
 import { IonicPage, NavController, NavParams, MenuController, Events,Platform } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -106,14 +106,10 @@ export class RegistrationPage {
       this.alertProvider.presentToast("Name cannot contain numbers");
       return;
       
-    // }else if(this.registerData.email == EMPTY){
-    //     this.alertProvider.presentToast("Email Id cannot be empty");
-    //     return;
-
       }
-    else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
+    else if (this.registerData.email != EMPTY && !EMAIL_REGEXP.test(this.registerData.email))  {
 
-      this.alertProvider.presentToast("Email Id must contain @ symbol");
+      this.alertProvider.presentToast("Enter valid Email-Id");
       return;  
     } else {
       this.registerOTPSucess(this.registerData);
