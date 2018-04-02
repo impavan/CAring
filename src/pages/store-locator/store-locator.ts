@@ -1,6 +1,6 @@
 import { Component, ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation , GeolocationOptions } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 import { Diagnostic } from '@ionic-native/diagnostic';
@@ -67,16 +67,17 @@ export class StoreLocatorPage {
 
 
   ionViewWillEnter() {
-    this.loaderProvider.presentLoadingCustom();
     this._favIdList = this.getFavList();
     this.events.publish('changeIcon',"StoreLocatorPage");
   }
 
 
   ngAfterViewInit() {
+    this.loaderProvider.presentLoadingCustom();
 
     this.diagnostic.getLocationAuthorizationStatus().then(res => {
       
+    this.loaderProvider.dismissLoader();
 
       if (res.toLowerCase() == 'not_determined') {
         this.diagnostic.requestLocationAuthorization(this.diagnostic.locationAuthorizationMode.ALWAYS).then(resp => {
@@ -90,6 +91,9 @@ export class StoreLocatorPage {
       }else{
       this.loadMap();
       }
+    },err=>{
+          this.loaderProvider.dismissLoader();
+          console.log("Location authorization not provided");
     })  
   }
 
@@ -113,7 +117,11 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-      this.geolocation.getCurrentPosition().then((resp) => {
+    let geoOptions:GeolocationOptions = {
+      timeout:5000
+    }
+
+      this.geolocation.getCurrentPosition(geoOptions).then((resp) => {
      
         // resp.coords.latitude
         // resp.coords.longitude
@@ -225,11 +233,7 @@ export class StoreLocatorPage {
 
 
 
-  
 
-  deg2rad(deg) {
-    return deg * (Math.PI / 180)
-  }
 
 
   
@@ -332,10 +336,12 @@ export class StoreLocatorPage {
 
  
   getAllStores(lat, lng, limit) {
-  
+      this.loaderProvider.presentLoadingCustom();
+
     this.storeLocatorProvider.getAllStoreLocation(lat,lng, limit)
 
         .subscribe(res=>{
+            this.loaderProvider.dismissLoader();
 
               this.locationList  = res.storesWithDistance;
               this.updatedLocationList = this.locationList.filter(data=>data.latitude!=0 && data.longitude!=0);
