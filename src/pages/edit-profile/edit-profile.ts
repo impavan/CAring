@@ -101,7 +101,7 @@ export class EditProfilePage {
     //   this.alertProvider.presentToast("Enter Last name");
     //   return;
     // } 
-    else if(this.profileData.email == EMPTY && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
+    else if(this.new_email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
       this.alertProvider.presentToast('Enter valid email');
       return;
       
