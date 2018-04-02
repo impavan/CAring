@@ -1,6 +1,6 @@
 import { Component, ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation,GeolocationOptions } from '@ionic-native/geolocation';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -28,7 +28,6 @@ export class StoreLocatorPage {
   updatedLocationList: any = [];
   favouriteList: any = [];
   _favIdList: any = [];
-  marker: any;
   _filterList:any = [];
   _myCurrentLocation:any = {};
   _newFilteredList:any = [];
@@ -78,14 +77,12 @@ export class StoreLocatorPage {
     //     this.locationModal.close();
     this.diagnostic.isLocationAuthorized().then(res => {
       if (!res) {
-        console.log("location is NOT authorised. Ask for authorization");
         this.diagnostic.requestLocationAuthorization('always').then(resp => {
           this.loadMap();
         }, err => {
           this.loadMap();
           })
       } else{
-        console.log("location is Authorised"); 
         this.loadMap();  
       }
     })  
@@ -96,17 +93,16 @@ export class StoreLocatorPage {
 
   loadMap() {
 
-    
-    console.log("going to call get current position");  
 
     this.platform.ready().then((readySource) => {
       this.diagnostic.isLocationEnabled().then(
         (isAvailable) => {
-          console.log('Is available? ' + isAvailable);
+          let geoOptions:GeolocationOptions= {
+            timeout:5000
+          }
           // Display map here
           if (isAvailable) {
-            this.geolocation.getCurrentPosition().then((resp) => {
-              console.log("Inside loadmap with current coordinates");
+            this.geolocation.getCurrentPosition(geoOptions).then((resp) => {
               this.getAllStores(resp.coords.latitude, resp.coords.longitude, 50);
               // this.getAllStores(lat,lng, 50);
      
@@ -125,8 +121,6 @@ export class StoreLocatorPage {
               this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
             }).catch((error) => {
-              console.log("Error getting current location. Use dummy location");
-              // console.log('Error getting location', error);
               let lat = "3.1390";
               let lng = "101.6869";
               let latLng = new google.maps.LatLng(lat, lng);
@@ -181,7 +175,6 @@ export class StoreLocatorPage {
 
   openLocationModel() { 
         this.locationModal.close();
-    console.log("pelase close adn work");
         this.ngAfterViewInit();
   }
   addMarkers(map, locationList) {
@@ -212,9 +205,6 @@ export class StoreLocatorPage {
           '</div>' + '</div>';
           infowindow.setContent(contentString);
           infowindow.open(map, marker);
-          // console.log("element",this.elRef.nativeElement.querySelector('.store'))
-          // this.elRef.nativeElement.querySelector('.store').addEventListener('click', this.gotoStoreDirection2.bind(this,marker.lat,marker.lng));
-
         });  
 
      
@@ -223,16 +213,6 @@ export class StoreLocatorPage {
   }
 
   
-
-
-
-  
-
-  deg2rad(deg) {
-    return deg * (Math.PI / 180)
-  }
-
-
   
 
   setFav(location) {
@@ -256,8 +236,6 @@ export class StoreLocatorPage {
 
     let list: any = localStorage.getItem('favouriteList');
     let list2: any = list == null ? [] : JSON.parse(list);
-    console.log("getFavList --- list2");
-    console.log(list2);
     return (list2);
 
   }
