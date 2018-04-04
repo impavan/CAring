@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY, EMAIL_REGEXP, XSD_PATTERN } from '../../validator';
+import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -88,16 +88,15 @@ export class EditProfilePage {
 
   updateProfile() {
     
-    if( this.profileData.firstname.trim() == EMPTY) {
+    if( this.profileData.firstname.trim() == EMPTY || !NAME_REGEXP.test(this.profileData.firstname)) {
       this.alertProvider.presentToast('Enter First name');
       return;
     }
-     else if( this.profileData.lastname.trim() == EMPTY) {
+     else if(this.profileData.lastname.trim() == EMPTY || !NAME_REGEXP.test(this.profileData.lastname)) {
       this.alertProvider.presentToast('Enter Last name');
       return;
      } 
     else if (this.new_email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
-      console.log("enter email");
       this.alertProvider.presentToast('Enter valid email');
       return;
     }
@@ -110,7 +109,7 @@ export class EditProfilePage {
       return;
     } 
     else if (this.customFields.city.trim() == EMPTY  || !XSD_PATTERN.test(this.customFields.city)){
-      this.alertProvider.presentToast("Enter City");
+      this.alertProvider.presentToast("Enter valid City");
       return;
     } 
     else if (this.customFields.pincode == EMPTY){
