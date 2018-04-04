@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,INVALID_PATTERN } from '../../validator';
+import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,INVALID_PATTERN, ALPHA_NUM } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -100,6 +100,10 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter valid email');
       return;
     }
+    else if( this.customFields.ic_number && !ALPHA_NUM.test(this.customFields.ic_number)) {
+      this.alertProvider.presentToast('Enter valid NRIC');
+      return;
+    } 
     else if( this.customFields.birthday== EMPTY) {
       this.alertProvider.presentToast('Enter Date of Birth');
       return;

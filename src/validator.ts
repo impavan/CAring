@@ -10,3 +10,4 @@ export const EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)
 export const XSD_PATTERN = /[a-zA-Z 0-9_.,;:'-]+$/;
 export const NAME_REGEXP = /['A-Za-z']+$/;
 export const INVALID_PATTERN = /['&<']+$/;
+export const ALPHA_NUM = /['a-zA-Z0-9']+$/;
