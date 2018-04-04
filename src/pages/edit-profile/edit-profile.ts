@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP } from '../../validator';
+import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,INVALID_PATTERN } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -106,6 +106,10 @@ export class EditProfilePage {
     } 
     else if (this.customFields.gender == EMPTY){
       this.alertProvider.presentToast('Enter Gender');
+      return;
+    } 
+    else if (this.customFields.address && INVALID_PATTERN.test(this.customFields.address)){
+      this.alertProvider.presentToast('Enter valid address');
       return;
     } 
     else if (this.customFields.city.trim() == EMPTY  || !XSD_PATTERN.test(this.customFields.city)){
