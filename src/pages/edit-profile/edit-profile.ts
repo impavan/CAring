@@ -140,6 +140,14 @@ export class EditProfilePage {
       this.alertProvider.presentToast("Enter valid Postcode");
       return;
     }  
+    else if (this.customFields.other_contact_number.trim() == EMPTY){
+      this.alertProvider.presentToast("Enter alternate number");
+      return;
+    }
+    else if (!PINCODE_PATTERN.test(this.customFields.other_contact_number)){
+      this.alertProvider.presentToast("Enter valid alternate number");
+      return;
+    }    
     else if (this.customFields.race == EMPTY){
       this.alertProvider.presentToast("Enter Race");
     }
