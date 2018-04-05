@@ -121,8 +121,6 @@ export class EditProfilePage {
       return;
     } 
     else if (this.customFields.address && !ADDRESS_PATTERN.test(this.customFields.address)){
-      console.log(ADDRESS_PATTERN.test(this.customFields.address));
-      console.log(this.customFields.address)
       this.alertProvider.presentToast('Enter valid address');
       return;
     } 
@@ -139,7 +137,7 @@ export class EditProfilePage {
       return;
     }
     else if (!PINCODE_PATTERN.test(this.customFields.pincode)){
-      this.alertProvider.presentToast("Enter Postcode");
+      this.alertProvider.presentToast("Enter valid Postcode");
       return;
     }  
     else if (this.customFields.race == EMPTY){
