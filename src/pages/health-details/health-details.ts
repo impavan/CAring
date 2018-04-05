@@ -39,7 +39,6 @@ export class HealthDetailsPage {
     // let file = "";
     let url = this.healthData.additionalinfo ? this.healthData.additionalinfo : null;
     this.socialSharing.share(message, "","",url).then(() => {
-      console.log("social media sharing");
       this.loaderProvider.dismissLoader();
 
     }, err => {
