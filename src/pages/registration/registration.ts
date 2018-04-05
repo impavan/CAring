@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, EMAIL_REGEXP, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS } from '../../validator';
+import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS, EMAIL_REGEXP,NAME_REGEXP } from '../../validator';
 import { IonicPage, NavController, NavParams, MenuController, Events,Platform } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
-import { PushProvider } from '../../providers/push/push';
+import { PushProvider } from '../../providers/push/push'
 
 @IonicPage()
 @Component({
@@ -96,6 +96,12 @@ export class RegistrationPage {
       this.alertProvider.presentToast("First name cannot be empty");
       return;
 
+    }
+    else if (!NAME_REGEXP.test(this.registerData.fname) ){
+      
+            this.alertProvider.presentToast("Enter valid First Name");
+            return;
+      
     } else if (this.registerData.fname != EMPTY && !SPECIAL_CHARACTER.test(this.registerData.fname)) {
 
       this.alertProvider.presentToast("First name cannot contain special characters");
@@ -106,22 +112,18 @@ export class RegistrationPage {
       this.alertProvider.presentToast("Name cannot contain numbers");
       return;
       
-    // }else if(this.registerData.email == EMPTY){
-    //     this.alertProvider.presentToast("Email Id cannot be empty");
-    //     return;
-
       }
-    // else if (this.registerData.email != EMPTY && !this.registerData.email.match('@')) {
+    else if (this.registerData.email != EMPTY && !EMAIL_REGEXP.test(this.registerData.email))  {
 
-    //   this.alertProvider.presentToast("Email Id must contain @ symbol");
-    //   return; 
-    // }
-      else if (this.registerData.email != EMPTY && !EMAIL_REGEXP.test(this.registerData.email)) {
-
-      this.alertProvider.presentToast("Enter valid Email-Id ");
-      return; 
+      this.alertProvider.presentToast("Enter valid Email-Id");
+      return;  
+    } 
+    else if (this.registerData.lname && !NAME_REGEXP.test(this.registerData.lname)  ) {
       
-    } else {
+            this.alertProvider.presentToast("Enter valid Last Name");
+          return;
+            
+    }else {
       this.registerOTPSucess(this.registerData);
     }
   }

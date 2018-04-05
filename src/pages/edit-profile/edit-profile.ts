@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY,EMAIL_REGEXP,NAME_REGEXP,XSD_PATTERN} from '../../validator';
+import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,ADDRESS_PATTERN, ALPHA_NUM , PINCODE_PATTERN } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -16,7 +16,7 @@ import moment from 'moment';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  new_email: any=''
+  new_email: any;
   profileData: any = {
     customFields: []
   };
@@ -30,8 +30,8 @@ export class EditProfilePage {
   occupation: any = ['Entrepreneur / Own business', 'Homemaker', 'Permanent employment', 'Unemployed / Contract', 'Others'];
   race: any = ['Chinese', 'Malay', 'Indian', 'Others'];
   ageGroup: any = ['Below 20', '21-30', '31-40', '41-50', '51-60', 'Above 60'];
-  currentDate:any = moment().format('YYYY-MM-DD');
-
+  currentDate: any = moment().format('YYYY-MM-DD');
+  
 
 
   constructor(public  events:Events,
@@ -62,7 +62,7 @@ export class EditProfilePage {
     this.profileData.firstname = this.authProvider.getUserFirstName();
     this.profileData.lastname = this.authProvider.getUserLastName() || '';
     this.profileData.mobile = this.authProvider.getUserMobileNo();
-    this.profileData.email = this.authProvider.getUserEmailId() || '';
+    this.profileData.email = this.authProvider.getUserEmailId();
     
     this.profileData.externalId = this.authProvider.getExternalId() || '';
     this.customFields.ic_number = this.authProvider.getUserNRIC();
@@ -88,25 +88,30 @@ export class EditProfilePage {
 
   updateProfile() {
     
-
-    if( this.profileData.firstname.trim() == EMPTY || !NAME_REGEXP.test(this.profileData.firstname)) {
-      this.alertProvider.presentToast('Enter valid First name');
-      console.log(!NAME_REGEXP.test(this.profileData.firstname),'first name')
+    if( this.profileData.firstname.trim() == EMPTY ) {
+      this.alertProvider.presentToast('Enter First name');
       return;
     }
-     else if( this.profileData.lastname.trim() == EMPTY || !NAME_REGEXP.test(this.profileData.lastname)) {
-      this.alertProvider.presentToast('Enter valid Last name');
+    else if(!NAME_REGEXP.test(this.profileData.firstname)) {
+      this.alertProvider.presentToast('Enter valid First Name');
       return;
-     }
-    // else if (this.profileData.lastname. == EMPTY){
-    //   this.alertProvider.presentToast("Enter Last name");
-    //   return;
-    // } 
-    else if(this.new_email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
+     } 
+     else if(this.profileData.lastname.trim() == EMPTY ) {
+      this.alertProvider.presentToast('Enter Last name');
+      return;
+     } 
+     else if(!NAME_REGEXP.test(this.profileData.lastname)) {
+      this.alertProvider.presentToast('Enter valid Last Name');
+      return;
+     } 
+    else if (this.new_email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
       this.alertProvider.presentToast('Enter valid email');
       return;
-      
     }
+    else if( this.customFields.ic_number && !ALPHA_NUM.test(this.customFields.ic_number)) {
+      this.alertProvider.presentToast('Enter valid NRIC');
+      return;
+    } 
     else if( this.customFields.birthday== EMPTY) {
       this.alertProvider.presentToast('Enter Date of Birth');
       return;
@@ -115,18 +120,34 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Gender');
       return;
     } 
-    else if (this.customFields.city.trim() == EMPTY  || !XSD_PATTERN.test(this.customFields.city)){
-      this.alertProvider.presentToast("Enter valid City");
+    else if (this.customFields.address && !ADDRESS_PATTERN.test(this.customFields.address)){
+      this.alertProvider.presentToast('Enter valid address');
       return;
     } 
+    else if (this.customFields.city.trim() == EMPTY ){
+      this.alertProvider.presentToast("Enter City");
+      return;
+    } 
+    else if(!NAME_REGEXP.test(this.customFields.city)) {
+      this.alertProvider.presentToast('Enter valid City');
+      return;
+     } 
     else if (this.customFields.pincode.trim() == EMPTY){
-      this.alertProvider.presentToast("Enter valid Postcode");
+      this.alertProvider.presentToast("Enter Postcode");
       return;
     }
-    // else if (this.customFields.pincode.trim() == EMPTY){
-    //   this.alertProvider.presentToast("Enter Postcode");
-    //   return;
-    // }
+    else if (!PINCODE_PATTERN.test(this.customFields.pincode)){
+      this.alertProvider.presentToast("Enter valid Postcode");
+      return;
+    } 
+    else if (this.customFields.other_contact_number.trim() == EMPTY){
+      this.alertProvider.presentToast("Enter alternate number");
+      return;
+    }
+    else if (!PINCODE_PATTERN.test(this.customFields.other_contact_number)){
+      this.alertProvider.presentToast("Enter valid alternate number");
+      return;
+    }   
     else if (this.customFields.race == EMPTY){
       this.alertProvider.presentToast("Enter Race");
     }
