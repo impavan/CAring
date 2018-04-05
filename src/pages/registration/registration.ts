@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS, EMAIL_REGEXP } from '../../validator';
+import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS, EMAIL_REGEXP,NAME_REGEXP } from '../../validator';
 import { IonicPage, NavController, NavParams, MenuController, Events,Platform } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -96,6 +96,12 @@ export class RegistrationPage {
       this.alertProvider.presentToast("First name cannot be empty");
       return;
 
+    }
+    else if (!NAME_REGEXP.test(this.registerData.fname) ){
+      
+            this.alertProvider.presentToast("Enter valid First Name");
+            return;
+      
     } else if (this.registerData.fname != EMPTY && !SPECIAL_CHARACTER.test(this.registerData.fname)) {
 
       this.alertProvider.presentToast("First name cannot contain special characters");
@@ -111,7 +117,13 @@ export class RegistrationPage {
 
       this.alertProvider.presentToast("Enter valid Email-Id");
       return;  
-    } else {
+    } 
+    else if (this.registerData.lname && !NAME_REGEXP.test(this.registerData.lname)  ) {
+      
+            this.alertProvider.presentToast("Enter valid Last Name");
+          return;
+            
+    }else {
       this.registerOTPSucess(this.registerData);
     }
   }
