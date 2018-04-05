@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,INVALID_PATTERN, ALPHA_NUM } from '../../validator';
+import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,ADDRESS_PATTERN, ALPHA_NUM } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -88,12 +88,20 @@ export class EditProfilePage {
 
   updateProfile() {
     
-    if( this.profileData.firstname.trim() == EMPTY || !NAME_REGEXP.test(this.profileData.firstname)) {
+    if( this.profileData.firstname.trim() == EMPTY ) {
       this.alertProvider.presentToast('Enter First name');
       return;
     }
-     else if(this.profileData.lastname.trim() == EMPTY || !NAME_REGEXP.test(this.profileData.lastname)) {
+    else if(!NAME_REGEXP.test(this.profileData.firstname)) {
+      this.alertProvider.presentToast('Enter valid First Name');
+      return;
+     } 
+     else if(this.profileData.lastname.trim() == EMPTY ) {
       this.alertProvider.presentToast('Enter Last name');
+      return;
+     } 
+     else if(!NAME_REGEXP.test(this.profileData.lastname)) {
+      this.alertProvider.presentToast('Enter valid Last Name');
       return;
      } 
     else if (this.new_email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
@@ -112,14 +120,18 @@ export class EditProfilePage {
       this.alertProvider.presentToast('Enter Gender');
       return;
     } 
-    else if (this.customFields.address && INVALID_PATTERN.test(this.customFields.address)){
+    else if (this.customFields.address && ADDRESS_PATTERN.test(this.customFields.address)){
       this.alertProvider.presentToast('Enter valid address');
       return;
     } 
-    else if (this.customFields.city.trim() == EMPTY  || !XSD_PATTERN.test(this.customFields.city)){
-      this.alertProvider.presentToast("Enter valid City");
+    else if (this.customFields.city.trim() == EMPTY ){
+      this.alertProvider.presentToast("Enter City");
       return;
     } 
+    else if(!NAME_REGEXP.test(this.customFields.city)) {
+      this.alertProvider.presentToast('Enter valid City');
+      return;
+     } 
     else if (this.customFields.pincode == EMPTY){
       this.alertProvider.presentToast("Enter Postcode");
       return;
