@@ -226,13 +226,6 @@ export class OtpPage {
           }
           
           console.log("countdown strt")},1000); }​​
-          // setTimeout(()=>
-          // {
-            
-          //   this.userProvider.OTPCount +=  1
-          //   //---------- Enable resend button ------------ //
-          //   this.disabledFlag = false
-          // },10000)
           
          else if (data[0].code == 202) {
 
@@ -254,16 +247,7 @@ export class OtpPage {
           }
           
           console.log("countdown strt")},1000); }​​
-          // setTimeout(()=>
-          // {
-            
-          //   this.userProvider.OTPCount +=  1
-          //   this.disabledFlag = false
-            
-          //   //---------- Enable resend button ------------ //
-          // },10000)
-
-         
+           
          else 
           
            this.alertProvider.presentToast(data[0].message);
@@ -288,7 +272,6 @@ export class OtpPage {
     let msg = "Please share me the OTP for Login";
     let no = "+60174252988";
     this.socialSharing.shareViaSMS(msg, no).then(() => {
-      console.log("shared successfully");
 
     }, err => {
       console.log(err, "Problem in sending sms");
@@ -301,7 +284,6 @@ export class OtpPage {
     let recieverNo = '+60174252988';
     let msg = "Please share me the OTP for Login";
     this.socialSharing.shareViaWhatsAppToReceiver(recieverNo, msg).then(() => {
-      console.log("console whatsapp working");
     }, err => {
       console.log(err, "problem in sending via whatsApp");
     })
