@@ -54,8 +54,16 @@ export class HealthInfoPage {
     this.hapenningsProvider.getHealthInfo().subscribe(res => {
       this._healthInfoList = res.data.filter(health => {
 
+   // moment for checking the start date and end date for posting //
+       
+        let psDate = moment(health.publishingstartdate).format('YYYY-MM-DD');
+        let peDate =  moment(health.publishingenddate).format('YYYY-MM-DD');
+        let psMoment = moment(psDate);
+        let peMoment =  moment(peDate)
+        let currenMoment  =  moment().format('YYYY-MM-DD');
+
        if (health.publishingstartdate && health.publishingenddate) {
-          if (moment(health.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(health.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+          if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
             return health;
           }
         } else {

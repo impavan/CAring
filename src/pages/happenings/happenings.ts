@@ -52,9 +52,18 @@ export class HappeningsPage {
 
       this.loaderProvider.dismissLoader();
       this.happenList = res.data.filter(r => {
-   
+
+        //moment for checking start date and end date for posting article //
+
+        console.log(r.publishingstartdate,"publishing start date")
+        let psDate = moment(r.publishingstartdate).format('YYYY-MM-DD');
+        let peDate =  moment(r.publishingenddate).format('YYYY-MM-DD');
+        let psMoment = moment(psDate);
+        let peMoment =  moment(peDate)
+        let currenMoment  =  moment().format('YYYY-MM-DD');
+
         if (r.publishingstartdate && r.publishingenddate) {
-          if (moment(r.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(r.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+          if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
             return r;
           }
         } else {

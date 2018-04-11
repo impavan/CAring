@@ -31,7 +31,7 @@ export class ApiProvider {
   public PROMOTION_URL: any;
   public privacyPolicy: any = [];
   public termsAndConditions: any = [];
-  public currentDate = moment();
+  public currentDate = moment().format('YYYY-MM-DD');
 
 
 
@@ -41,7 +41,8 @@ export class ApiProvider {
               private events: Events,
               private alertProvider: AlertProvider,
               private exceptionProvider:ExceptionHandlerProvider) {
-    
+                
+                console.log(this.currentDate,"currentDate is here");
 
      this.platform.ready().then(() => {
        
