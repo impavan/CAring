@@ -56,7 +56,7 @@ export class PromotionsPage {
           console.log(moment(psDate),'moment ps date')
           console.log(moment(peDate),'moment pe date')
           console.log(moment(this.apiProvider.currentDate),'current utc date');
-
+          
           
           if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
             return promote;
