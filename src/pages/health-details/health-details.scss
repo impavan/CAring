@@ -83,12 +83,10 @@ page-health-details {
         margin: 0 auto 15px auto;
     }
     ul{
-        padding: 0;
-        text-align: center;
+        padding: 0 0 0 16px;
+
         li{
-            display: inline-block;
-            margin: 0 30px 0 0;
-            list-style: none;
+            margin: 0 0px 15px 0;
             ion-icon{
                 font-size: 26px;
             }
