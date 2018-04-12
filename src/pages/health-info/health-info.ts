@@ -55,7 +55,14 @@ export class HealthInfoPage {
       this._healthInfoList = res.data.filter(health => {
 
        if (health.publishingstartdate && health.publishingenddate) {
-          if (moment(health.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(health.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+
+        let healthstartDate = moment(health.publishingstartdate).format('YYYY-MM-DD');
+          let healthendDate = moment(health.publishingenddate).format('YYYY-MM-DD');
+          let healthstartMoment = moment(healthstartDate);
+          let healthendMoment = moment(healthendDate);
+          let currentMoment = moment().format('YYYY-MM-DD');
+
+          if (moment(healthstartMoment).isSameOrBefore(currentMoment) && moment(healthendMoment).isSameOrAfter(currentMoment)) {
             return health;
           }
         } else {

@@ -41,13 +41,19 @@ export class PromotionsPage {
     this.hapenningsProvider.getPromotions().subscribe(res => {
       this._promotionList = res.data.filter(promote => {
         if (promote.publishingstartdate && promote.publishingenddate) {
+
+          let psDate = moment(promote.publishingstartdate).format('YYYY-MM-DD');
+          let peDate = moment(promote.publishingenddate).format('YYYY-MM-DD');
+          let psMoment = moment(psDate);
+          let peMoment = moment(peDate);
+          let currentMoment = moment().format('YYYY-MM-DD');
           // console.log()
           // console.log(promote.publishingstartdate,"pro")
           // console.log(this.apiProvider.currentDate,"current date")
           // console.log(moment(promote.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate), "publishing start date");
           // console.log(moment(promote.publishingenddate).isSameOrAfter(this.apiProvider.currentDate), "publishing end date");
 
-          if (moment(promote.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(promote.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+          if (moment(psMoment).isSameOrBefore(currentMoment) && moment(peMoment).isSameOrAfter(currentMoment)) {
             return promote;
           }
         } else {

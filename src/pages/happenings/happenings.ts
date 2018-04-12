@@ -54,7 +54,14 @@ export class HappeningsPage {
       this.happenList = res.data.filter(r => {
    
         if (r.publishingstartdate && r.publishingenddate) {
-          if (moment(r.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(r.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+
+          let happenstartDate = moment(r.publishingstartdate).format('YYYY-MM-DD');
+          let happenendDate = moment(r.publishingenddate).format('YYYY-MM-DD');
+          let happenstartMoment = moment(happenstartDate);
+          let happenendMoment = moment(happenendDate);
+          let currentMoment = moment().format('YYYY-MM-DD');
+
+          if (moment(happenstartMoment).isSameOrBefore(currentMoment) && moment(happenendMoment).isSameOrAfter(currentMoment)) {
             return r;
           }
         } else {
