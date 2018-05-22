@@ -61,7 +61,7 @@ export class LoginPage {
 
     let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
     
-    phoneNo = this.mobileCode + phoneNo;
+    // phoneNo = this.mobileCode + phoneNo;
  
 
     if (phoneNo== EMPTY) {
