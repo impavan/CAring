@@ -5,9 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import { AuthProvider } from '../../providers/auth/auth';
 import { RewardsProvider } from '../../providers/rewards/rewards';
-import { ProfileProvider } from '../../providers/profile/profile';
 import { UserdataProvider } from '../../providers/userdata/userdata';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { AlertProvider } from '../../providers/alert/alert';
 
 @IonicPage()
@@ -30,11 +28,9 @@ export class RewardsDetailsPage {
               private navCtrl: NavController,
               private navParams: NavParams,
               private authProvider: AuthProvider,
-              private loaderProvider: LoaderProvider,
               private alertProvider: AlertProvider,
               private userdataProvider:UserdataProvider,
-              private rewardsProvider: RewardsProvider,
-              private profileProvider:ProfileProvider) {
+              private rewardsProvider: RewardsProvider) {
 
               this.offerdata = this.navParams.get('data');
               this._auth = localStorage.getItem('auth_token');
@@ -61,7 +57,6 @@ export class RewardsDetailsPage {
 
   confirmRedeemVoucher() {
 
-    this.loaderProvider.presentLoadingCustom();
     let redeemData = {
 
       points: this.offerdata.BrandPointRedeemValue,
@@ -79,19 +74,17 @@ export class RewardsDetailsPage {
 
         this.userdataProvider.getMyProfile().subscribe(res => {
 
-            this.loaderProvider.dismissLoader();
             this.authProvider.setUser(res[0].customerdata);
             localStorage.setItem('userdetails', JSON.stringify(res[0].customerdata));
             this.authProvider.setHeader();          
             this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata });
           
         }, err => {
-           this.loaderProvider.dismissLoader();
+          this.exceptionProvider.excpHandler(err);
         });
         
 
       } else {
-         this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast(data[0].message);
 
       }
@@ -99,7 +92,6 @@ export class RewardsDetailsPage {
     }, err => {
 
         this.closeRedeemPointsModal();
-        this.loaderProvider.dismissLoader();
         this.exceptionProvider.excpHandler(err)
     });
   }

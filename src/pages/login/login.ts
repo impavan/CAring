@@ -5,7 +5,7 @@ import { Component, ViewChild } from '@angular/core';
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import { UserdataProvider } from '../../providers/userdata/userdata';
-import { LoaderProvider } from '../../providers/loader/loader';
+ import { LoaderProvider } from '../../providers/loader/loader';
 import { AlertProvider } from '../../providers/alert/alert';
 
 @IonicPage()
@@ -61,7 +61,7 @@ export class LoginPage {
 
     let phoneNo = this.phoneNum.charAt(0) == '0' ? this.phoneNum.slice(1) : this.phoneNum;
     
-    // phoneNo = this.mobileCode + phoneNo;
+     phoneNo = this.mobileCode + phoneNo;
  
 
     if (phoneNo== EMPTY) {
@@ -93,11 +93,9 @@ export class LoginPage {
 
     
 
-      this.loaderProvider.presentLoadingCustom();
       this.userProvider.userLogin(phoneNo)
         .subscribe(data => {
 
-           this.loaderProvider.dismissLoader();
           
           if (data[0].code == 200) {
                   
@@ -117,7 +115,6 @@ export class LoginPage {
         }, err => {
 
           console.log(err,"In error");
-          this.loaderProvider.dismissLoader();
           this.exceptionProvider.excpHandler(err);
 
         })

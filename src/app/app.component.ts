@@ -65,13 +65,8 @@ export class MyApp {
 
     this.events.subscribe('user:login', (user) => {
 
-      if (user) {
-        this.getUser();
+      user?this.getUser():this._auth = ""
 
-      } else{
-           this._auth = '';
-      }
-   
     })
 
         

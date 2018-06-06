@@ -10,7 +10,7 @@
 
         <ion-slide *ngFor="let banner of bannerData | sort:'priority'">
             <div class="swiper-zoom-container" (click)="gotoLink(banner)">
-                <img src="{{banner?.bannerimage}}">
+                <img src="{{banner?.bannerimage}}" >
             </div>
         </ion-slide>
 

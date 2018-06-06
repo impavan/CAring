@@ -2,7 +2,7 @@
     <header></header>
 </div>
 
-<ion-content class="mainCont">
+<ion-content class="mainCont" #container>
     <div class="happeningsContainer">
         <ion-grid>
             <article class="">
@@ -20,7 +20,7 @@
                 <ion-col col-sm-6 col-xs-6 *ngFor="let hpn of happen" tappable (click)="gotoHappenDetail(hpn)">
                     <ion-card class="figWidget" *ngIf="hpn">
                         <figure>
-                            <img src="{{hpn?.eventbanner}}" />
+                            <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="hpn?.eventbanner" [scrollObservable]="container.ionScroll"/>
                         </figure>
                         <ion-card-content>
                             <div class="card-title">{{hpn?.title}}</div>

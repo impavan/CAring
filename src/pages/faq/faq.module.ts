@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { FaqPage } from './faq';
 import { SharedModule } from '../../app/shared.module';
 
+
 @NgModule({
   declarations: [
     FaqPage,

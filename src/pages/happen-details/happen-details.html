@@ -6,7 +6,7 @@
 <ion-content class="mainCont">
     <div class="happenDetailsContainer">
         <ion-card>
-            <img src="{{_happenList?.bannerimage}}" (click)="zoomArea(_happenList?.bannerimage)" />
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="_happenList?.bannerimage" (click)="zoomArea(_happenList?.bannerimage)" />
         </ion-card> 
         <div class="container">
             <h6 *ngIf="_happenList?.title">{{_happenList?.title}}</h6>

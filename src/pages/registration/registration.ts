@@ -76,11 +76,6 @@ export class RegistrationPage {
     this.loaderProvider.presentBackOptions();
   }
 
-  ionViewDidLoad() {
-
-    this.loaderProvider.dismissLoader();
-
-  }
 
   
 
@@ -130,7 +125,6 @@ export class RegistrationPage {
 
   registerOTPSucess(data) {
 
-    this.loaderProvider.presentLoadingCustom();
 
     if (this._existingCustomerData) {
           
@@ -144,7 +138,6 @@ export class RegistrationPage {
       
       this.userProvider.updateProfile(this.registerData,true).subscribe(data => {
               
-        this.loaderProvider.presentLoadingCustom();
         this.authProvider.setHeader();
 
         if (data[0].code == 200) {
@@ -153,7 +146,6 @@ export class RegistrationPage {
 
           this.userProvider.getMyProfile().subscribe(data => {
 
-            this.loaderProvider.dismissLoader();
             
             if (data[0].code == 200) 
               
@@ -165,20 +157,17 @@ export class RegistrationPage {
 
           }, err => {
 
-              this.loaderProvider.dismissLoader();
               this.exceptionProvider.excpHandler(err);
                 
             })
                 
         } else {
 
-              this.loaderProvider.dismissLoader();
               this.alertProvider.presentToast(data[0].message);
                 
         } 
       }, err => {
 
-          this.loaderProvider.dismissLoader();
           this.exceptionProvider.excpHandler(err);
         
       });
@@ -187,11 +176,9 @@ export class RegistrationPage {
 
     else {
       
-      this.loaderProvider.presentLoadingCustom();
       
       this.userProvider.userRegistration(this.registerData).subscribe(data => {
               
-        this.loaderProvider.dismissLoader();
         
         if (data[0].code == 200) 
             
@@ -218,7 +205,6 @@ export class RegistrationPage {
           
       }, err => {
           
-          this.loaderProvider.dismissLoader();
           this.exceptionProvider.excpHandler(err);
         
       });

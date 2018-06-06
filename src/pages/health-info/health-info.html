@@ -2,7 +2,7 @@
     <header></header>
 </div>
 
-<ion-content class="mainCont">
+<ion-content class="mainCont" #container>
     <div class="healthInfoContainer">
         <ion-grid>
             <article class="pdadj">
@@ -19,7 +19,7 @@
             <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="navToHealthDetails(health)">
                 <div class="left">
                     <figure>
-                        <img src="{{health?.thumbnailimage}}" />
+                        <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="health?.thumbnailimage" [scrollObservable]="container.ionScroll" />
                     </figure>
                 </div>
                 <div class="right">

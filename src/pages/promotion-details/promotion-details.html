@@ -9,7 +9,7 @@
         
             <div>
                 <figure>
-            <img  src="{{_promotionDetails?.bannerimage}}" (click)="zoomArea(_promotionDetails?.bannerimage)"/>
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="_promotionDetails?.bannerimage" (click)="zoomArea(_promotionDetails?.bannerimage)"/>
                 </figure>
             </div>
       

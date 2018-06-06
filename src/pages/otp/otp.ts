@@ -8,7 +8,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import { UserdataProvider } from '../../providers/userdata/userdata';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -38,7 +37,6 @@ export class OtpPage {
 
   constructor(
               private exceptionProvider: ExceptionHandlerProvider,
-              private loaderProvider: LoaderProvider,
               private userProvider: UserdataProvider,
               private alertProvider: AlertProvider,
               private socialSharing:SocialSharing,
@@ -62,10 +60,7 @@ export class OtpPage {
             }
 
   
-  ionViewDidLoad() {
 
-    this.loaderProvider.dismissLoader();
-  }
 
   ionViewDidEnter() {
 
@@ -93,12 +88,10 @@ export class OtpPage {
 
     } else {
 
-      this.loaderProvider.presentLoadingCustom();
       let otp = this.otp;
     
       this.userProvider.userOTP(otp, this.phoneNum, this.from).subscribe(data => {
 
-        this.loaderProvider.dismissLoader();
         if (data[0].code == 200) {
 
           if (data[0].customerdata) {
@@ -140,7 +133,6 @@ export class OtpPage {
           this.alertProvider.presentToast(data[0].message);
         } 
       }, err => {
-        this.loaderProvider.dismissLoader();
         this.exceptionProvider.excpHandler(err);
       });
     }
@@ -200,14 +192,12 @@ export class OtpPage {
   // Resend OTP to User //
 
   resendOtp(){
-    this.loaderProvider.presentLoadingCustom();
     
     if(this.userProvider.OTPCount < 3){
       this.disabledFlag = true
       this.userProvider.userLogin(this.phoneNum)
       .subscribe(data => {
 
-         this.loaderProvider.dismissLoader();
         if (data[0].code == 200) {
                 
           this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
@@ -254,14 +244,12 @@ export class OtpPage {
           
       }, err => {
 
-        this.loaderProvider.dismissLoader();
         this.exceptionProvider.excpHandler(err);
 
 
       }
     )
  }else{
-  this.loaderProvider.dismissLoader();
   this.openResendOTPModal();
  }
   }

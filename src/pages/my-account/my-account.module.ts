@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MyAccountPage } from './my-account';
 import { SharedModule } from '../../app/shared.module';
+import { AppVersion } from '@ionic-native/app-version';
 
 @NgModule({
   declarations: [
@@ -11,5 +12,6 @@ import { SharedModule } from '../../app/shared.module';
     IonicPageModule.forChild(MyAccountPage),
     SharedModule
   ],
+  providers:[AppVersion]
 })
 export class MyAccountPageModule {}

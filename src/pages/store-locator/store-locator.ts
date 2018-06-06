@@ -8,8 +8,9 @@ import { Platform } from 'ionic-angular';
 
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { AlertProvider } from '../../providers/alert/alert';
+import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+
 
 
 declare var google;
@@ -47,12 +48,12 @@ export class StoreLocatorPage {
               public navCtrl: NavController, 
               public navParams: NavParams,
               public storeLocatorProvider: StoreLocatorProvider, 
-              private loaderProvider:LoaderProvider,
               private geolocation: Geolocation,
               private diagnostic: Diagnostic,
               private keyboard:Keyboard,
               private alertProvider:AlertProvider,
-              private launchNavigator: LaunchNavigator, private elRef: ElementRef) {
+              private launchNavigator: LaunchNavigator, private elRef: ElementRef,
+              private exceptionProvider: ExceptionHandlerProvider) {
     
             this.instoreData = navParams.get('instore') || '';
             this.storeId = navParams.get('storeId');
@@ -65,13 +66,31 @@ export class StoreLocatorPage {
 
 
   ionViewWillEnter() {
-    this.loaderProvider.presentLoadingCustom();
     this._favIdList = this.getFavList();
     this.events.publish('changeIcon',"StoreLocatorPage");
   }
 
 
-  ngAfterViewInit() {
+  // ngAfterViewInit() {
+
+  //   // console.log("in ngafterViewinit");
+  //   //     this.locationModal.close();
+  //   this.diagnostic.isLocationAuthorized().then(res => {
+  //     if (!res) {
+  //       this.diagnostic.requestLocationAuthorization('always').then(resp => {
+  //         this.loadMap();
+  //       }, err => {
+  //         this.loadMap();
+  //         })
+  //     } else{
+  //       this.loadMap();  
+  //     }
+  //   })  
+    
+  // }
+
+
+  ionViewDidLoad() {
 
     // console.log("in ngafterViewinit");
     //     this.locationModal.close();
@@ -88,7 +107,6 @@ export class StoreLocatorPage {
     })  
     
   }
-
 
 
   loadMap() {
@@ -175,7 +193,7 @@ export class StoreLocatorPage {
 
   openLocationModel() { 
         this.locationModal.close();
-        this.ngAfterViewInit();
+        // this.ngAfterViewInit();
   }
   addMarkers(map, locationList) {
 
@@ -321,7 +339,6 @@ export class StoreLocatorPage {
               this._filterList = this.updatedLocationList;
               this.addMarkers(this.map, this.updatedLocationList);
               this.loadFavList(this.updatedLocationList);
-              this.loaderProvider.dismissLoader();
           
               if (this.instoreData)
                 this.onInStoreInput(this.instoreData, this.storeId);
@@ -329,8 +346,7 @@ export class StoreLocatorPage {
               if(this.navToId && this.navToId!=null && this.navToId!=undefined)
                this.onInStoreInput('', this.navToId);
       }, err => {
-        this.loaderProvider.dismissLoader();
-        
+        this.exceptionProvider.excpHandler(err);
         });
 
   }

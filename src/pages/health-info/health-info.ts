@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { ApiProvider } from '../../providers/api/api';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
@@ -19,7 +18,6 @@ export class HealthInfoPage {
   constructor(private navParams:NavParams,
               private navCtrl: NavController,
               private hapenningsProvider: HapenningsProvider,
-              private loaderProvider: LoaderProvider,
               private apiProvider:ApiProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
@@ -31,7 +29,6 @@ export class HealthInfoPage {
     
     if (this._healthInfoList.length <= 0) {
       
-     this.loaderProvider.presentLoadingCustom();
      this.getHealthInfo();
     }
 
@@ -71,7 +68,6 @@ export class HealthInfoPage {
         }
           
       });
-      this.loaderProvider.dismissLoader();
 
          if (this.navToId) {
         let item = this._healthInfoList.find(d => d.deeplinkingidentifier == this.navToId)
@@ -82,7 +78,6 @@ export class HealthInfoPage {
 
     }, err => {
       
-      this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
 
     });

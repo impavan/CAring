@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { PushProvider } from '../../providers/push/push';
 import { AlertProvider } from '../../providers/alert/alert';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 
 
@@ -21,18 +20,13 @@ export class MessagesPage {
   _auth: any = localStorage.getItem('auth_token');
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               private authProvider: AuthProvider,
               private pushProvider: PushProvider,
               private alertProvider:AlertProvider,
-              private loaderProvider: LoaderProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
   }
 
-  ionViewDidLoad() {
-   
-  }
 
   ionViewWillEnter() {
     if (this._auth) {
@@ -46,14 +40,11 @@ export class MessagesPage {
 
   getAllMessages() {
 
-    this.loaderProvider.presentLoadingCustom()
   
     let phone = this.authProvider.getUserMobileNo();
 
     this.pushProvider.getAllMessages(phone).subscribe(res => {
-      
-      this.loaderProvider.dismissLoader();
-      
+            
       if (res[0].code == 200) {
 
         this.myMessages = res[0].referalcodedata;
@@ -66,8 +57,7 @@ export class MessagesPage {
 
     }, err => {
       
-      this.loaderProvider.dismissLoader();
-      // this.exceptionProvider.excpHandler(err);
+       this.exceptionProvider.excpHandler(err);
 
     });
 

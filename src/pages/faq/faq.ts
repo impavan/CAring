@@ -34,7 +34,6 @@ export class FaqPage {
           this.zone.runOutsideAngular(() => {
 
             this.myCat = this.groupIntoCategories(this.faq);
-            console.log(this.myCat, "myCat--------------");
           });
         }
   

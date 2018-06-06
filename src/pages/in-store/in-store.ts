@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 //All providers goes here
-import { LoaderProvider } from '../../providers/loader/loader';
 import { ApiProvider } from '../../providers/api/api';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -23,8 +22,7 @@ export class InStorePage {
             public navCtrl: NavController,
               private apiProvider:ApiProvider,
               private hapenningsProvider: HapenningsProvider,
-              private exceptionProvider: ExceptionHandlerProvider,
-              private loaderProvider: LoaderProvider) {
+              private exceptionProvider: ExceptionHandlerProvider) {
     
     this.navId = navParams.get('id');
     
@@ -34,7 +32,6 @@ export class InStorePage {
   ionViewWillEnter() {
 
     if (this.storeActivityList.length <= 0) {
-      this.loaderProvider.presentLoadingCustom();
       this.getInStoreActivities();
     }
   }
@@ -44,14 +41,20 @@ export class InStorePage {
       this.hapenningsProvider.getInStoreActivities().subscribe(res => {
         this.storeActivityList = res.data.filter(store => {
           if (store.publishingstartdate && store.publishingenddate) {
-          if (moment(store.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(store.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
+
+            let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
+            let peDate =  moment(store.publishingenddate).format('YYYY-MM-DD');
+            let psMoment = moment(psDate);
+            let peMoment =  moment(peDate)
+            let currenMoment  =  moment().format('YYYY-MM-DD');
+
+          if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
             return store;
           }
         } else {
           return store;
         }
         });
-        this.loaderProvider.dismissLoader(); 
         if (this.navId) {
           let item = this.storeActivityList.find(d => d.deeplinkingidentifier == this.navId);
           if (item) {
@@ -61,7 +64,6 @@ export class InStorePage {
       
     }, err => {
 
-      this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
 
     });

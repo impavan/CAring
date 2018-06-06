@@ -4,8 +4,12 @@ import { MESSAGE_HISTORY } from '../../url';
 import { Http, Response } from '@angular/http';
 import { ApiProvider } from '../api/api';
 import { AuthProvider } from '../auth/auth';
+import { LoaderProvider } from '../loader/loader';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/finally';
 
 
 
@@ -21,7 +25,7 @@ export class PushProvider {
   constructor(private http: Http,
               private platform:Platform,  
               private apiProvider: ApiProvider,
-              private authProvider: AuthProvider) {
+              private authProvider: AuthProvider,private loader:LoaderProvider) {
     
   this.deepRoute = [
     
@@ -72,11 +76,13 @@ export class PushProvider {
 
 // get all push message
   getAllMessages(phone: string) {
+    this.loader.presentLoadingCustom();
     let platform = this.platform.is('android') ? 'android' : 'ios';
-    console.log(platform);
     return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + '&accountID=~99198286&BrandURLID=' + this.apiProvider.BRAND_ID + '&commChannelType='+ platform, { headers:this.authProvider.getHeader() })
         .do((res: Response) => res)
-        .map((res: Response) => res.json());
+        .map((res: Response) => res.json())
+        .catch((err: Error) => Observable.throw(err))
+        .finally(()=>this.loader.dismissLoader())
     
   }
 

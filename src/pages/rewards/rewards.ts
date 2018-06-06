@@ -7,7 +7,6 @@ import moment from 'moment';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import { AlertProvider } from '../../providers/alert/alert';
 import { RewardsProvider } from '../../providers/rewards/rewards';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -40,7 +39,6 @@ export class RewardsPage {
   constructor(public events: Events,
               public navParams:NavParams,  
               public navCtrl: NavController,  
-              private loaderProvider: LoaderProvider, 
               private rewardsProvider: RewardsProvider, 
               private alertProvider: AlertProvider,
               private profileProvider: ProfileProvider,
@@ -86,11 +84,9 @@ export class RewardsPage {
 
     this.offerdata = [];
 
-    this.loaderProvider.presentLoadingCustom();
 
     this.rewardsProvider.fetchAllExperiences().subscribe(data => {
 
-      this.loaderProvider.dismissLoader();
 
       if (data[0].code == 200) {
 
@@ -118,7 +114,6 @@ export class RewardsPage {
 
     }, err => {
 
-      this.loaderProvider.dismissLoader();
       this.exceptionProvider.excpHandler(err);
 
       });
@@ -158,7 +153,6 @@ export class RewardsPage {
 
    getRedeemedVouchers() {
 
-    this.loaderProvider.presentLoadingCustom();
 
     this.profileProvider.getAllRedeemedVouchers()
 
@@ -166,7 +160,6 @@ export class RewardsPage {
      
         this.redeemedRewards = res[0].customer_vouchers;
 
-        this.loaderProvider.dismissLoader();
 
         this.isWalletLoaded = true;
 
@@ -208,7 +201,6 @@ export class RewardsPage {
 
       err => {
 
-            this.loaderProvider.dismissLoader();
 
             this.exceptionProvider.excpHandler(err);
 

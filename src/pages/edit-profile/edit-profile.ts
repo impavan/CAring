@@ -4,7 +4,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { EMPTY, EMAIL_REGEXP, XSD_PATTERN, NAME_REGEXP,ADDRESS_PATTERN, ALPHA_NUM , PINCODE_PATTERN } from '../../validator';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ProfileProvider } from '../../providers/profile/profile';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
@@ -38,7 +37,6 @@ export class EditProfilePage {
               public  navCtrl: NavController,
               private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
-              private loaderProvider: LoaderProvider,
               private userProvider: UserdataProvider,
               private profileProvider:ProfileProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
@@ -155,7 +153,6 @@ export class EditProfilePage {
       
       this.profileData.customFields.push(customfield);
      
-      this.loaderProvider.presentLoadingCustom();
       console.log("this.profileData",this.profileData);
 
       this.profileProvider.updateProfile(this.profileData).subscribe(data => {
@@ -168,7 +165,6 @@ export class EditProfilePage {
           this.userProvider.getMyProfile().subscribe(data => {
 
             if (data[0].code == 200) {
-              this.loaderProvider.dismissLoader();
               this.authProvider.setUser(data[0].customerdata);
               localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
               this.authProvider.setHeader();
@@ -180,25 +176,20 @@ export class EditProfilePage {
             }
             else {
 
-              this.loaderProvider.dismissLoader();
               this.alertProvider.presentToast(data[0].message);
             }
 
           }, err => {
 
-            this.loaderProvider.dismissLoader();
             this.exceptionProvider.excpHandler(err);
 
           })
         } else {
-          this.loaderProvider.dismissLoader();
           this.alertProvider.presentToast(data[0].message);
          
         }
 
       }, err => {
-
-        this.loaderProvider.dismissLoader();
         this.exceptionProvider.excpHandler(err);
       });
     }  

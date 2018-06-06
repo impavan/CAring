@@ -2,15 +2,20 @@ import { IonicPageModule } from 'ionic-angular';
 import { NgModule } from '@angular/core';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MymodalComponent } from '../components/mymodal/mymodal';
-import { FilterPipe } from '../pipes/filter/filter';
-import { TruncatePipe } from '../pipes/truncate/truncate';
 import { HeaderComponent } from '../components/header/header';
-import { RoundPipe } from '../pipes/round/round';
 import { ChunkPipe } from '../pipes/chunk/chunk';
 import { SortPipe } from '../pipes/sort/sort';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
-import { SortdescPipe } from '../pipes/sortdesc/sortdesc';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+
+
+import { HapenningsProvider } from '../providers/hapennings/hapennings';
+import { ExceptionHandlerProvider } from '../providers/exception-handler/exception-handler';
+import { NetworkProvider } from '../providers/network/network';
+import { LoaderProvider } from '../providers/loader/loader';
+import { AlertProvider } from '../providers/alert/alert';
+import { PushProvider } from '../providers/push/push';
 
 
 
@@ -19,19 +24,17 @@ import { SortdescPipe } from '../pipes/sortdesc/sortdesc';
   imports: [
     IonicPageModule.forChild(TabsPage),
     IonicPageModule.forChild(MymodalComponent),
-    IonicPageModule.forChild(FilterPipe),
-    IonicPageModule.forChild(TruncatePipe),
     IonicPageModule.forChild(HeaderComponent),
-    IonicPageModule.forChild(RoundPipe),
     IonicPageModule.forChild(ChunkPipe),
     IonicPageModule.forChild(SortPipe),
     IonicPageModule.forChild(SafehtmlPipe),
     IonicImageViewerModule,
-    IonicPageModule.forChild(SortdescPipe)
+
    
   ],
-  declarations: [TabsPage,MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,SafehtmlPipe,SortdescPipe],
-  exports: [TabsPage, MymodalComponent, FilterPipe, TruncatePipe,HeaderComponent, RoundPipe,ChunkPipe,SortPipe,IonicImageViewerModule,SafehtmlPipe,SortdescPipe]
+  declarations: [TabsPage,MymodalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe],
+  exports: [TabsPage, MymodalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule],
+  providers:[HapenningsProvider,ExceptionHandlerProvider,NetworkProvider,LoaderProvider,AlertProvider,PushProvider]
 })
 
 export class SharedModule { } 

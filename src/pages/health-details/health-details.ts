@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams, NavController } from 'ionic-angular';
-import { UserdataProvider } from '../../providers/userdata/userdata';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { LoaderProvider } from '../../providers/loader/loader';
 

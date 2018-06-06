@@ -3,7 +3,7 @@
 </div>
 
 
-<ion-content class="mainCont">
+<ion-content class="mainCont" #container>
     <div class="inStoreContainer">
         <ion-grid>
             <article class="pdadj">
@@ -36,7 +36,7 @@
                     <ion-row  class="figWidget">
                         <ion-col col-6>
                             <figure>
-                                <img src="{{activity?.thumbnailimage}}" />
+                                <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="activity?.thumbnailimage" [scrollObservable]="container.ionScroll" />
                             </figure>
                         </ion-col>
                         <ion-col col-6>

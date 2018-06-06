@@ -1,7 +1,6 @@
 import { Component,ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import moment from 'moment';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { RewardsProvider } from '../../providers/rewards/rewards';
 import JsBarcode from 'jsbarcode';
 import { AlertProvider } from '../../providers/alert/alert';
@@ -27,7 +26,6 @@ export class RedeemPage {
  
   
   constructor(public navParams: NavParams,
-              public loaderProvider:LoaderProvider,
               public rewardsProvider:RewardsProvider,
               public alertProvider:AlertProvider,
               public profileProvider:ProfileProvider,
@@ -51,9 +49,7 @@ export class RedeemPage {
 
           this.cancelRedeem();
 
-          this.loaderProvider.presentLoadingCustom();
         
-                this.loaderProvider.dismissLoader();
                 JsBarcode(this.barcode.nativeElement, Voucher.Cap_VoucherCode);
                 this.voucherModal.open();
        
@@ -63,7 +59,6 @@ export class RedeemPage {
         
     this.myRedeemingVoucher = {};
 
-            this.loaderProvider.presentLoadingCustom();
 
             this.voucherModal.close();
 
@@ -77,16 +72,17 @@ export class RedeemPage {
                             this.newRedeemList = res[0].customer_vouchers;
                             let myList =  this.newRedeemList.filter(data=>data.ExperienceId == this.experienceId )
                             this.redeemList = myList;
-                            this.loaderProvider.dismissLoader();
 
                             }else{
 
-                              this.loaderProvider.dismissLoader();
                               this.alertProvider.presentToast(res[0].message);
 
                             }
 
-                  })
+              }, err => {
+                console.log(err);
+                this.expnHandler.excpHandler(err);
+            })
 
       }
      

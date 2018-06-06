@@ -3,7 +3,7 @@
 </div>
 
 
-<ion-content class="mainCont">
+<ion-content class="mainCont" #container>
     <div class="mt30">
     <ion-toolbar>
         <ion-segment [(ngModel)]="member" color="secondary">
@@ -36,8 +36,8 @@
                                     <ion-row class="first">
                                         <ion-col col-3>
                                             <figure>
-                                                <img *ngIf="offer?.Images[0]" src="{{offer?.Images[0]}}" />
-                                                <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" />
+                                                <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="offer?.Images[0]" [scrollObservable]="container.ionScroll" />
+                                                <!-- <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" /> -->
                                             </figure>
                                         </ion-col>
                                         <ion-col col-9>
@@ -102,7 +102,7 @@
                                             <ion-row class="first">
                                                 <ion-col col-3>
                                                     <figure>
-                                                        <img src="{{reward?.images[0]}}" />
+                                                        <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="reward?.images[0]" [scrollObservable]="container.ionScroll"/>
                                                     </figure>
                                                 </ion-col>
                                                 <ion-col col-9>
@@ -131,7 +131,7 @@
                                             <ion-row class="first">
                                                 <ion-col col-3>
                                                     <figure>
-                                                        <img src="{{reward?.images[0]}}" />
+                                                        <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="reward?.images[0]" [scrollObservable]="container.ionScroll" />
                                                     </figure>
                                                 </ion-col>
                                                 <ion-col col-9>
@@ -162,7 +162,7 @@
                                             <ion-row class="first">
                                                 <ion-col col-3>
                                                     <figure>
-                                                        <img src="{{reward?.images[0]}}" />
+                                                        <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="reward?.images[0]" [scrollObservable]="container.ionScroll"/>
                                                     </figure>
                                                 </ion-col>
                                                 <ion-col col-9>

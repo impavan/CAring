@@ -5,7 +5,7 @@
 <ion-content class="mainCont" padding>
     <div class="inStoreDetailsContainer">
         <figure>
-            <img src="{{storeDetail?.bannerimage}}" (click)="zoomArea(storeDetail?.bannerimage)"/>
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="storeDetail?.bannerimage" (click)="zoomArea(storeDetail?.bannerimage)"/>
         </figure>
         <div class="content">
             <h5 text-center>{{storeDetail?.title}}</h5>

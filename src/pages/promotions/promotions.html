@@ -4,7 +4,7 @@
 
 
 
-<ion-content class="mainCont">
+<ion-content class="mainCont" #container>
     <div class="promotionsContainer">
         <ion-grid>
             <article>
@@ -23,7 +23,8 @@
                     <ion-card class="figWidget">
                         
                         <figure>
-                            <img src="{{promotion?.thumbnailimage}}" />
+                            <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="promotion?.thumbnailimage" [scrollObservable]="container.ionScroll"  />
+                            <!-- <img src="{{promotion?.thumbnailimage}}"  /> -->
                         </figure>
                         <ion-card-content>
                             <div class="card-title">{{promotion?.title}}</div>

@@ -8,7 +8,6 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
-import { LoaderProvider } from '../../providers/loader/loader';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 
 
@@ -56,12 +55,11 @@ export class MemberPage {
               private navCtrl: NavController,
               private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
-              private loaderProvider: LoaderProvider,
               private userProvider: UserdataProvider,
               private profileProvider: ProfileProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
    
-              this.from = navParams.get('deeplink');
+              this.from = this.navParams.get('deeplink');
               if (this.from == 'profile')
                 this.member = 'My Profile'; 
 
@@ -96,13 +94,11 @@ export class MemberPage {
 
     if (this._auth) {
 
-      this.loaderProvider.presentLoadingCustom();
       this.getMyPoints();
       this.getUserTransaction();
 
     } else {
 
-      this.loaderProvider.dismissLoader();
     }
   }
 
@@ -141,7 +137,6 @@ export class MemberPage {
 
         this.authProvider.setUser(data[0].customerdata);
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
-        this.loaderProvider.dismissLoader();
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
         this.loadedProfile = true;
@@ -159,7 +154,6 @@ export class MemberPage {
 
   getRedeemedVouchers() {
     
-    this.loaderProvider.presentLoadingCustom();
 
     this.profileProvider.getAllRedeemedVouchers()
 
@@ -167,7 +161,6 @@ export class MemberPage {
 
         this.redeemedRewards = res[0].customer_vouchers;
 
-        this.loaderProvider.dismissLoader();
 
         this.isWalletLoaded = true;
 
@@ -203,7 +196,6 @@ export class MemberPage {
 
       err => {
 
-            this.loaderProvider.dismissLoader();
 
             this.exceptionProvider.excpHandler(err);
 
@@ -220,6 +212,8 @@ export class MemberPage {
 
                   this._transactionList = data[0].customer_transaction_info;
 
+      }, err => {
+        this.exceptionProvider.excpHandler(err);
       })
 
   }

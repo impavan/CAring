@@ -13,7 +13,25 @@ export class ECartPage {
   constructor(
               private events: Events,
               public navCtrl: NavController, 
-              private inAppBrowser: InAppBrowser) {
+    private inAppBrowser: InAppBrowser) {
+    
+      let inAppOpt:InAppBrowserOptions = {
+        clearcache: 'yes',
+        hardwareback:'yes'
+      }
+  
+      let browser = this.inAppBrowser.create('http://estore.caring2u.com/','_self',inAppOpt);
+      
+      let closebrowser = browser.on('exit').subscribe(() => {
+        
+        browser.close();
+         closebrowser.unsubscribe();
+        this.navCtrl.setRoot('HomePage');
+    
+      });
+     
+  
+      this.events.publish('changeIcon',"ECartPage");
     
   }
 
@@ -21,23 +39,7 @@ export class ECartPage {
 
   ionViewWillEnter() {
     
-    let inAppOpt:InAppBrowserOptions = {
-      clearcache: 'yes',
-      hardwareback:'yes'
-    }
 
-    let browser = this.inAppBrowser.create('http://estore.caring2u.com/','_self',inAppOpt);
-    
-    let closebrowser = browser.on('exit').subscribe(() => {
-      
-      browser.close();
-       closebrowser.unsubscribe();
-      this.navCtrl.setRoot('HomePage');
-  
-    });
-   
-
-    this.events.publish('changeIcon',"ECartPage");
     
   }
 
