@@ -31,6 +31,7 @@ export class RewardsPage {
   _newReward: any = [];
   _usedReward: any = [];
   _expiredReward: any = [];
+  _promotions: Array<any>;
   isWalletLoaded: boolean = false;
   currentDate: any = moment().format('YYYY-MM-DD');
   from: any;
@@ -251,5 +252,43 @@ export class RewardsPage {
     gotoLogin() {
     
       this.navCtrl.setRoot('LoginPage');  
+    }
+  
+  private getPromotions() {
+    this.rewardsProvider.getAllPromotions().subscribe(res => {
+      
+      this._promotions =  res.data.filter(promote => {
+
+        if (promote.publishingstartdate && promote.publishingenddate) {
+
+          // moment for checking start date and end date for posting article //
+
+          let psDate = moment(promote.publishingstartdate).format('YYYY-MM-DD');
+          let peDate =  moment(promote.publishingenddate).format('YYYY-MM-DD');
+          let psMoment = moment(psDate);
+          let peMoment =  moment(peDate)
+          let currenMoment  =  moment().format('YYYY-MM-DD');
+          if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+            return promote;
+          }
+        } else {
+          return promote;
+        }
+      });
+
+      console.log(this._promotions,"hdhdjfdfd")
+
+      if (this.navToId) {
+        let item = this._promotions.find(d => d.deeplinkingidentifier == this.navToId)
+        if (item) {
+          this.gotoPromotionVoucherDetails(item);
+        }
+      } 
+
+      })
+  }
+  
+  gotoPromotionVoucherDetails(voucher) {
+    this.navCtrl.push("PromotionVoucherDetailsPage",{ voucherdata:voucher})
   }
 }

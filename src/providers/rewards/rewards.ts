@@ -1,10 +1,11 @@
 import { EXPERIENCES, REDEEM_VOUCHERS, ACTIVATE_VOUCHER } from '../../url';
-import { BASE_URL, BRAND_ID } from '../../config';
+import { BASE_URL,STTARTER_BASE_URL, BRAND_ID } from '../../config';
 import { Http, Response } from '@angular/http';
 import { ApiProvider } from '../api/api';
 import { AuthProvider } from '../auth/auth';
 import { Injectable } from '@angular/core';
 import { EN } from '../../config';
+import { PROMOTIONAL_VOUCHERS } from '../../url';
 import { LoaderProvider } from '../loader/loader';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -74,5 +75,15 @@ export class RewardsProvider {
             .map((res: Response) => res.json())
             .catch((err: Error) => Observable.throw(err))
             .finally(()=>this.loader.dismissLoader())
-    }
+  }
+  
+  getAllPromotions() {
+    this.loader.presentLoadingCustom();
+    return this.http.get(STTARTER_BASE_URL + PROMOTIONAL_VOUCHERS + 'en')
+      .map((res: Response) => res)
+      .do((res: Response) => res.json())
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(()=>this.loader.dismissLoader())
+  }
 }

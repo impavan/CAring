@@ -10,6 +10,9 @@
                 <ion-segment-button value="Rewards">
                         Rewards
                     </ion-segment-button>
+                    <ion-segment-button value="promotions" (click)="getPromotions()">
+                        Promotions
+                    </ion-segment-button>
                 <ion-segment-button value="Redemption" (click)="fetchAllExperiences()">
                         Redemption
                 </ion-segment-button>
@@ -180,6 +183,55 @@
                 </ion-list>
             </div>
 
+        </ion-list>
+        <ion-list *ngSwitchCase="'promotions'">
+            <div class="rewardsContainer p0" no-padding>
+                <div class="rewardsCards">
+                    <!--<article class="title">
+                <h4>Rewards / Voucher</h4>
+            </article>-->
+               
+
+      
+                        <div *ngFor="let promo of _promotions">
+                            <article  (click)="gotoPromotionVoucherDetails(promo)" style="background: none;">
+                                <ion-card>
+                                    <ion-grid style="padding-bottom:5px;">
+                                        <ion-row class="first">
+                                            <ion-col col-3>
+                                                <figure>
+                                                    <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="promo?.thumbnail" [scrollObservable]="container.ionScroll" />
+                                                    <!-- <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" /> -->
+                                                </figure>
+                                            </ion-col>
+                                            <ion-col col-9>
+                                                <div class="content Promo">
+                                                    <ion-grid>
+                                                        <ion-row>
+                                                            <ion-col col-12 style="padding-top:0;position:static;">
+                                                                <ion-row>
+                                                                    <ion-col style="padding-top:0;padding-left:0;">
+                                                                        <h4>{{promo?.discountamount}}</h4>
+                                                                    </ion-col>
+                                                                    <ion-col style="padding-top:0">
+                                                                        <h6>{{promo?.title}}</h6>
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                                <p [innerHTML]="promo?.subtitle | safehtml" style="margin-top: -6px;"></p>
+                                                                <p class="date">{{ promo?.publishingstartdate | date:"dd-MM-yyyy" }} - {{ promo?.publishingenddate | date:"dd-MM-yyyy" }}</p>
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-grid>
+                                                </div>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card>
+                            </article>
+                        </div>
+       
+                </div>
+            </div>
         </ion-list>
     </div>
     </div>

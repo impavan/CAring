@@ -29,4 +29,6 @@
 
  export const SETTINGS = 'settings?lang=en';
 
- export const MESSAGE_HISTORY = `mobile/getmessagehistory?mobile=`;
+export const MESSAGE_HISTORY = `mobile/getmessagehistory?mobile=`;
+ 
+export const PROMOTIONAL_VOUCHERS = `voucherpromotions?orderby_dsc=createdAt&lang=`;

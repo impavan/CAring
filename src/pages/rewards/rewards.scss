@@ -264,4 +264,36 @@ page-rewards {
         top: 3px;
         margin: 0 4px 0 0
     }
+    .Promo{
+        h4{
+            padding: 0 !important;
+            font-size: 30px;
+            border: 0 !important;
+            color: #ed1c24;
+            margin: -6px 0 0 0 !important;
+        }
+        h6{
+            font-weight: 100;
+            color: #222 !important;
+            margin: 0 !important;
+            position: relative;
+            top: 50%;
+            transform: translateY(-60%);
+        }
+        p{
+            font-size: 10px;
+            margin: 0;
+            line-height: 13px !important;
+            color: #4a4a4a;
+            margin-bottom: 5px;
+        }
+        .date{
+            margin: 0;
+            position: absolute;
+            bottom: 3px;
+        }
+    }
+    .p0{
+        padding: 0!important;
+    }
 }
