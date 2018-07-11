@@ -210,15 +210,15 @@
                                                         <ion-row>
                                                             <ion-col col-12 style="padding-top:0;position:static;">
                                                                 <ion-row>
-                                                                    <ion-col style="padding-top:0;padding-left:0;">
+                                                                    <ion-col col-5 style="padding-top:0;padding-left:0;">
                                                                         <h4>{{promo?.discountamount}}</h4>
                                                                     </ion-col>
-                                                                    <ion-col style="padding-top:0">
+                                                                    <ion-col col-7 style="padding-top:0">
                                                                         <h6>{{promo?.title}}</h6>
                                                                     </ion-col>
                                                                 </ion-row>
                                                                 <p [innerHTML]="promo?.subtitle | safehtml" style="margin-top: -6px;"></p>
-                                                                <p class="date">{{ promo?.publishingstartdate | date:"dd-MM-yyyy" }} - {{ promo?.publishingenddate | date:"dd-MM-yyyy" }}</p>
+                                                                <p class="date">{{ promo?.publishingstartdate | date:"dd-MMMM-yy" }} - {{ promo?.publishingenddate | date:"dd-MMMM-yy" }}</p>
                                                             </ion-col>
                                                         </ion-row>
                                                     </ion-grid>

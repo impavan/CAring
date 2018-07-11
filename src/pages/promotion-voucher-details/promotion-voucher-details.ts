@@ -20,13 +20,18 @@ export class PromotionVoucherDetailsPage {
     console.log(this.voucherData,"voucherdata");
 
   }
-
-  redeemNow() {
+  ionViewDidEnter() {
 
     JsBarcode(this.barcode.nativeElement, this.voucherData.vouchercode);
-    this.barcodeModal.open();
     
   }
+
+  // redeemNow() {
+
+  //   JsBarcode(this.barcode.nativeElement, this.voucherData.vouchercode);
+  //   this.barcodeModal.open();
+    
+  // }
 
   closeModal() {
     this.barcodeModal.close();

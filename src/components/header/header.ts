@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController} from 'ionic-angular';
+import { Badge } from '@ionic-native/badge';
 
 /**
  * Generated class for the HeaderComponent component.
@@ -15,13 +16,14 @@ export class HeaderComponent {
 
   text: string;
 
-  constructor(public navCtrl:NavController) {
+  constructor(public navCtrl:NavController,public badge: Badge) {
     this.text = 'Hello World';
   }
 
   goTo(page) {
     if(!(this.navCtrl.getActive().id == "MessagesPage"))
     this.navCtrl.push(page);
+    this.badge.increase(1);
   }
 
 }
