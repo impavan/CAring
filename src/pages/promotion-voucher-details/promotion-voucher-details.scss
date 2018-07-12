@@ -72,6 +72,11 @@ page-promotion-voucher-details {
 	}
 	.fixedImage{
 		max-height: 180px;
+		img{
+			width:100%;
+			margin:0 !important;
+			padding: 0 !important;
+		}
 	}
 
     .p0{

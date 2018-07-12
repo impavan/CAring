@@ -13,11 +13,23 @@
             <article>
                 <h3><strong>{{voucherData?.discountamount}}</strong> <strong>{{voucherData?.title}}</strong></h3>
                 <span>{{voucherData?.subtitle}}</span>
+                <span class="date">{{ voucherData?.publishingstartdate | date:"dd-MMMM-yy" }} - {{ voucherData?.publishingenddate | date:"dd-MMMM-yy" }}</span>
+                  <div class="pb15"></div> 
+                <span>Here is your barcode to scan</span>
+                <div class="pb15"></div>
+                <div style="text-align:center">
+                  <h4 style="color:red">(Strictly for cashier use)</h4>
+                </div>
+                <div class="barCode">
+                    <svg #barcode id="barcode"></svg>
+                </div>
+              <!-- <button ion-button class="btn2" block (click)="closeModal()">OK</button>  -->
+
                 <h1>Terms and Conditions</h1>
                 <p [innerHTML]="voucherData?.termsconditions | safehtml"></p>
                 <hr/>
-                <div class="pb15"></div>
-                <button ion-button class="btn4" (click)="redeemNow()">redeem Now</button>
+                <!-- <div class="pb15"></div> -->
+                <!-- <button ion-button class="btn4" (click)="redeemNow()">redeem Now</button> -->
             </article>
            
         </div>

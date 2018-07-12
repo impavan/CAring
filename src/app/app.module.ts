@@ -13,6 +13,7 @@ import { Network } from '@ionic-native/network';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { Badge } from '@ionic-native/badge';
 
 
 
@@ -52,7 +53,7 @@ import { SharedModule } from './shared.module';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Diagnostic,
    ScreenOrientation, Network,
-    Deeplinks,Keyboard,AuthProvider,UserdataProvider,ApiProvider
+    Deeplinks,Keyboard,Badge,AuthProvider,UserdataProvider,ApiProvider
   ]
 })
 export class AppModule { }
