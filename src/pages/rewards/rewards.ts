@@ -276,8 +276,6 @@ export class RewardsPage {
         }
       });
 
-      console.log(this._promotions,"hdhdjfdfd")
-
       if (this.navToId) {
         let item = this._promotions.find(d => d.deeplinkingidentifier == this.navToId)
         if (item) {

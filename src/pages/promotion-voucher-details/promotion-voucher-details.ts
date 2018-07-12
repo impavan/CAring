@@ -17,7 +17,6 @@ export class PromotionVoucherDetailsPage {
   constructor(private navParams: NavParams) {
 
     this.voucherData = navParams.get('voucherdata');
-    console.log(this.voucherData,"voucherdata");
 
   }
 

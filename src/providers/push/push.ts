@@ -78,7 +78,7 @@ export class PushProvider {
   getAllMessages(phone: string) {
     this.loader.presentLoadingCustom();
     let platform = this.platform.is('android') ? 'android' : 'ios';
-    return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + '&accountID=~99198286&BrandURLID=' + this.apiProvider.BRAND_ID + '&commChannelType='+ platform, { headers:this.authProvider.getHeader() })
+    return this.http.get(this.apiProvider.BASE_URL + MESSAGE_HISTORY + phone + '&accountID=~134105201&BrandURLID=' + this.apiProvider.BRAND_ID + '&commChannelType='+ platform, { headers:this.authProvider.getHeader() })
         .do((res: Response) => res)
         .map((res: Response) => res.json())
         .catch((err: Error) => Observable.throw(err))
