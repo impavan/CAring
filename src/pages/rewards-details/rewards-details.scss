@@ -14,7 +14,7 @@ page-rewards-details {
 				padding: 0px 15px 0px 15px;
 				h1{
 					padding: 15px 0 0 0;
-					margin-top: 20px;
+					margin-top: 0px;
 				}
 			}
 			h5{
@@ -48,10 +48,10 @@ page-rewards-details {
 		max-height: 180px;
 	}
 	.fixedImage img{
-		// width:95%;
+		width:100%;
 		display: block;
-		margin:auto;
-		padding: 20px;
+		margin:0 !important;
+		padding: 0 !important;
 	}
 	.p0{
 		padding:0 !important;

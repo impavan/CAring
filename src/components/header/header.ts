@@ -24,6 +24,7 @@ export class HeaderComponent {
     if(!(this.navCtrl.getActive().id == "MessagesPage"))
     this.navCtrl.push(page);
     this.badge.increase(1);
+    console.log(this.badge,":::::::::::badgeheader::::::::::")
   }
 
 }
