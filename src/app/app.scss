@@ -37,14 +37,23 @@ $cp-medium-blue-color-x:#3a7dcc;
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Elevation-normal';
+    src:  url('../fonts/Elevation-normal.ttf.woff') format('woff'),
+    url('../fonts/Elevation-normal.ttf.svg#Elevation-normal') format('svg'),
+    url('../fonts/Elevation-normal.ttf.eot'),
+    url('../fonts/Elevation-normal.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
 // @font-face {
 //     font-family: 'FranklinGothic-Heavy';
 //     src: url('../assets/fonts/FranklinGothic-Heavy.eot') format('embedded-opentype');
 //     font-weight: normal;
 //     font-style: normal;
 //   }
-ion-app.ios {
-    font-family: 'allerbold';
+ion-app.ios, ion-app.md {
+    font-family: 'Elevation-normal';
 }
 .mt10{
     margin-top: 10px !important;
@@ -56,8 +65,7 @@ ion-footer {
 }
 
 body {
-    // font-family: 'Roboto', sans-serif;
-    font-family: 'allerregular';
+    font-family: 'Elevation-normal';
 }
 
 h1,
@@ -66,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'allerbold';
+    font-family: 'Elevation-normal';
     color: rgba(0, 0, 0, 0.6);
 }
 
@@ -382,7 +390,6 @@ ion-spinner {
 }
 
 #leftMenu {
-    font-family: 'allerregular';
     ion-header {
         ion-toolbar {
             padding: 14px 16px 14px 16px;

@@ -33,7 +33,6 @@ page-redeem {
                 margin: 20px 0 30px 0;
                 small {
                     display: block;
-                    font-weight: normal;
                     margin: 5px 0 0 0;
                 }
             }
@@ -70,7 +69,6 @@ page-redeem {
         .segment-md-secondary .segment-button {
             color: $cp-extra-lighter-grey-xxxxx;
             opacity: 1;
-            font-weight: normal;
             border: 1px solid $cp-extra-lighter-grey-xxxxx;
             border-radius: 5px;
             text-transform: capitalize;

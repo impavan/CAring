@@ -31,13 +31,7 @@ page-otp {
             margin: 10px 0 0 0;
             box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
             border-radius: 7px;
-            ion-list {
-                ion-item {
-                    ion-label {
-                        // width: 130px;
-                    }
-                }
-            }
+
             .item-md,
             .item-ios {
                 padding-left: 0;

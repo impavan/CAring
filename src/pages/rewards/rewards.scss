@@ -30,7 +30,6 @@ page-rewards {
             span {
                 color: rgb(130, 144, 200);
                 margin-right: 15px;
-                font-weight: 600;
             }
             h4 {
                 background: #fff;
@@ -56,7 +55,6 @@ page-rewards {
                 box-shadow: none;
             }
             h6 {
-                font-weight: 600;
                 color: #000;
                 text-transform: none;
                 font-size: 13px;
@@ -138,7 +136,6 @@ page-rewards {
             span {
                 color: rgb(130, 144, 200);
                 margin-right: 15px;
-                font-weight: 600;
             }
             h4 {
                 background: #fff;
@@ -243,7 +240,6 @@ page-rewards {
                 color: $cp-extra-darker-grey;
                 margin: 0 0 5px 0;
                 font-size: 17px;
-                font-weight: 600;
             }
             .subContent {
                 font-size: 13px;
@@ -257,6 +253,7 @@ page-rewards {
         strong{
             float: left;
             padding: 0 0 0 5px;
+            font-weight: normal;
         }
     }
     .ticketIco{
@@ -271,10 +268,9 @@ page-rewards {
             border: 0 !important;
             color: #ed1c24;
             margin: -6px 0 0 0 !important;
-            font-family: 'Roboto', sans-serif;
+            
         }
         h6{
-            font-weight: 100;
             color: #222 !important;
             margin: 0 !important;
             position: relative;
@@ -292,7 +288,6 @@ page-rewards {
             margin: 0;
             position: absolute;
             bottom: 3px;
-            font-weight:bold; 
         }
     }
     .p0{

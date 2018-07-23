@@ -4,7 +4,6 @@ page-happenings {
         h3 {
             margin: 0px 0 0 0;
             color: $cp-extra-darker-grey;
-            font-weight: 600;
             font-size: 16px;
         }
         .btn3 {
@@ -19,7 +18,6 @@ page-happenings {
             width: 100%;
             h3 {
                 color: #808080;
-                font-family: 'allerbold';
                 line-height: 70px;
             }
             a {
@@ -45,7 +43,6 @@ page-happenings {
             .card-content-ios {
                 padding: 10px;
                 .card-title {
-                    font-weight: 600;
                     margin: 0 0 5px 0;
                     line-height: normal;
                 }
@@ -64,7 +61,6 @@ page-happenings {
                     padding: 5px 0;
                     box-shadow: none;
                     text-transform: capitalize;
-                    font-weight: normal;
                 }
             }
         }
@@ -76,26 +72,17 @@ page-happenings {
     .figWidget {
         box-shadow: none;
         border-radius: 0;
-        figure {
-            // height: 255px !important;
-            // width: 100% !important;
-            // overflow: hidden;
-        }
+        
         .card-title {
             text-align: center;
-            font-family: 'franklingothicnewheavyregular';
-            font-weight: bold;
         }
         ion-card-content {
             p {
-                font-family: 'Myriad Pro';
                 text-align: center;
                 font-size: 11px;
             }
         }
         button {
-            font-family: 'Axis';
-            font-weight: bold !important;
             font-size: 18px !important;
             width: 80% !important;
             text-align: center !important;
@@ -112,15 +99,11 @@ page-happenings {
 @media (max-width: 480px){
     .happeningsContainer {
         .figWidget{
-            figure{
-                // height: 130px !important;
-            }
             .card-title{
                 font-size: 13px;
             }
             button{
                 width: 80% !important;
-                font-weight: normal !important;
                 position: absolute;
                 left: 0;
                 right: 0;

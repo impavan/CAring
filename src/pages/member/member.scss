@@ -104,12 +104,7 @@ page-member {
         .toolbar-ios {
             box-shadow: 0px 2px 7px $cp-extra-lighter-grey-xxxxxx;
         }
-        .toolbar-background-md,
-        .toolbar-background-ios {
-            // border-color: $cp-primary-color;
-            // background: $cp-primary-color;
-            // box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
-        }
+
         .segment-md-secondary .segment-button.activated,
         .segment-md-secondary .segment-button.segment-activated {
             // border-color: transparent;
@@ -165,7 +160,6 @@ page-member {
             .segment-md-secondary .segment-button {
                 color: #555;
                 opacity: 1;
-                font-weight: normal;
                 // border: 1px solid $cp-extra-lighter-grey-xxxxx;
                 // border-radius: 5px;
                 text-transform: capitalize;
@@ -200,13 +194,11 @@ page-member {
         .myPointsContainer {
             padding: 15px;
             .urPoints {
-                font-weight: normal;
                 font-size: 18px;
                 text-align: center;
                 color: $cp-extra-darker-grey;
                 margin: 10px 0;
                 strong {
-                    font-weight: 600;
                     color: $cp-extra-darker-grey-x;
                     font-size: 20px;
                 }
@@ -236,7 +228,6 @@ page-member {
                     color: $cp-extra-darker-grey;
                     margin: 0 0 5px 0;
                     font-size: 17px;
-                    font-weight: 600;
                 }
                 .subContent {
                     font-size: 13px;

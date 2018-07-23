@@ -51,7 +51,7 @@ export class MyApp {
     
       { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
       { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
-      { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+       { title: 'Vouch', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
       { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
       { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
