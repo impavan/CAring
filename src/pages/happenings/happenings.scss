@@ -1,6 +1,6 @@
 page-happenings {
     .happeningsContainer {
-        margin: 0;
+        margin: 10px 0 0 0;
         h3 {
             margin: 0px 0 0 0;
             color: $cp-extra-darker-grey;
@@ -16,9 +16,40 @@ page-happenings {
         .headerwithline {
             border-bottom: 1px solid #bdbdbd;
             width: 100%;
+            .headerBtns{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                li{
+                    width: 50%;
+                    float: left;
+                    list-style: none;
+                    a{
+                        display: block;
+                        text-align: center;
+                        padding: 10px;
+                    }
+                    .servicesBtn{
+                        background: #3ab54a;
+                        color: #fff;
+                    }
+                    .inStoreBtn{
+                        background: #068052;
+                        color: #fff;
+                    }
+                    .titlebreak{
+                        display: block;
+                    }
+                }
+            }
+                
+            .subTitle{
+                color: #808080;
+                line-height: 50px;
+            }
             h3 {
                 color: #808080;
-                line-height: 70px;
+                line-height: 50px;
             }
             a {
                 padding: 0;
@@ -63,6 +94,46 @@ page-happenings {
                     text-transform: capitalize;
                 }
             }
+        }
+        .segmentOut{
+            padding: 10px;
+            .list-md, .list-ios{
+                padding:10px 0;
+            }
+
+            .segment-md, .segment-ios{
+                .segment-button.activated, .segment-button.segment-activated, .segment-button.segment-activated{
+                    background: #fff;
+                    color: #666;
+                }
+            } 
+            
+
+            .segment-md, .segment-ios {
+                .segment-button{
+                    border-bottom-color:transparent;
+                    border-color:transparent;
+                    text-transform: capitalize;
+                    line-height: 1.5rem;
+                    font-size: 14px;
+                    height: 4.2rem;
+                    padding: 5px 0 0 0;
+                    span{
+                        display: block;
+                    }
+                    .happSeg{
+                        padding: 7px 0 0 0;
+                    }
+                }
+            }
+            .segment-md, .segment-ios{
+                .segment-button{
+                    color: #666;
+                    opacity: 1;
+                    background: #068052;
+                    color: #fff;
+                }
+            } 
         }
 
     }

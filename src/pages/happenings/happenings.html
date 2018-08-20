@@ -5,31 +5,61 @@
 <ion-content class="mainCont" #container>
     <div class="happeningsContainer">
         <ion-grid>
-            <article class="">
-                    <ion-row class="headerwithline">
-                        <ion-col col-5>
-                            <h3 >Happenings</h3>
-                        </ion-col>
-                        <ion-col col-7>
-                            <a tappable (click)="goto('InStorePage')"><img src="assets/img/in_store_act.png" alt=""></a>
-                        </ion-col>
-                    </ion-row>
-                </article>
-        <div *ngFor="let happen of happenList | chunk:2">
-            <ion-row class="mt10">
-                <ion-col col-sm-6 col-xs-6 *ngFor="let hpn of happen" tappable (click)="gotoHappenDetail(hpn)">
-                    <ion-card class="figWidget" *ngIf="hpn">
-                        <figure>
-                            <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="hpn?.eventbanner" [scrollObservable]="container.ionScroll"/>
-                        </figure>
-                        <ion-card-content>
-                            <div class="card-title">{{hpn?.title}}</div>
-                            <p>{{hpn?.eventdatestring}}</p>
-                            <button ion-button class="btn3">{{hpn?.buttonname}}</button>
-                        </ion-card-content>
-                    </ion-card>
+            <ion-row class="headerwithline">
+                <ion-col col-4>
+                    <h3 >Happenings</h3>
+                </ion-col>
+                <ion-col col-8>
+                    <ul class="headerBtns">
+                        <li><a class="servicesBtn"><span class="titlebreak">Pharmacist</span> Service</a></li>
+                        <li><a class="inStoreBtn" (click)="goto('InStorePage')"><span class="titlebreak">In-Store </span>Activities</a></li>
+                    </ul>
+                    <!-- <a tappable (click)="goto('InStorePage')"><img src="assets/img/in_store_act.png" alt=""></a> -->
                 </ion-col>
             </ion-row>
+            <!-- <div class="segmentOut">
+                <ion-segment [(ngModel)]="happeningsSegment">
+                    <ion-segment-button value="happenings">
+                        <span class="happSeg">Happenings</span>
+                    </ion-segment-button>
+                    <ion-segment-button value="pharmacistService">
+                        <span>Pharmacist</span> Service
+                    </ion-segment-button>
+                    <ion-segment-button value="inStoreActivities">
+                        <span>In-Store</span> Activities
+                    </ion-segment-button>
+                </ion-segment>
+                
+                <div [ngSwitch]="happeningsSegment">
+                    <ion-list *ngSwitchCase="'happenings'">
+                        Happenings
+                    </ion-list>
+                    
+                    <ion-list *ngSwitchCase="'pharmacistService'">
+                        Pharmacist Service
+                    </ion-list>
+
+                    <ion-list *ngSwitchCase="'inStoreActivities'">
+                        In-Store Activities
+                    </ion-list>
+                </div>
+            </div> -->
+
+            <div *ngFor="let happen of happenList | chunk:2">
+                <ion-row class="mt10">
+                    <ion-col col-sm-6 col-xs-6 *ngFor="let hpn of happen" tappable (click)="gotoHappenDetail(hpn)">
+                        <ion-card class="figWidget" *ngIf="hpn">
+                            <figure>
+                                <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="hpn?.eventbanner" [scrollObservable]="container.ionScroll"/>
+                            </figure>
+                            <ion-card-content>
+                                <div class="card-title">{{hpn?.title}}</div>
+                                <p>{{hpn?.eventdatestring}}</p>
+                                <button ion-button class="btn3">{{hpn?.buttonname}}</button>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
             </div>
         </ion-grid>
     </div>
