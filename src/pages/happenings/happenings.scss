@@ -164,8 +164,8 @@ page-happenings {
     }
 
     [col-sm-6] {
-    padding: 0px;
-}
+        padding: 0px;
+    }
 }
 @media (max-width: 480px){
     .happeningsContainer {
@@ -182,5 +182,112 @@ page-happenings {
                 font-size:13px !important;
             }
         } 
+    }
+}
+.inStoreContainer {
+    .headerwithline {
+        border-bottom: 1px solid #bdbdbd;
+        display: inline-block;
+        width: 100%;
+        margin: 0 0 0 0;
+    }
+    h3 {
+        margin: 5px 0 0 0;
+        color: $cp-extra-darker-grey;
+    }
+    .btn {
+        background: #F29827;
+        padding: 0px 5px;
+        margin: 0;
+        font-size: 10px;
+        border-radius: 0px;
+        height: 21px;
+        font-size: 18px;
+        position: absolute;
+        bottom: 0;
+    }
+    .card-md {
+        margin: 5px;
+        border-radius: 5px;
+        width: calc(100% - 15px);
+        figure {
+            margin: 0;
+            height: 100px;
+            overflow: hidden;
+        }
+        .card-content-md {
+            padding: 10px;
+            .card-title {
+                margin: 0 0 5px 0;
+                line-height: normal;
+            }
+            p {
+                margin: 0 0 0 0;
+                line-height: normal;
+                color: $cp-extra-darker-grey;
+            }
+            .button-md {
+                background-color: $cp-primary-color;
+                height: auto;
+                margin: 0;
+                width: 100%;
+                font-size: 14px;
+                padding: 5px 0;
+                box-shadow: none;
+                text-transform: capitalize;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .figWidget {
+        box-shadow: none;
+        border-radius: 0;
+        figure{
+            height:100% !important;
+            width:100% !important;
+            overflow: hidden;
+            margin: 0;
+            img{
+                width:100%;
+            }
+        }
+        .card-title{
+            font-size: 14px;
+            text-align: left;
+            font-weight: 600;
+            
+            /* Fallback for non-webkit */
+            display: -webkit-box;
+            /* Fallback for non-webkit */
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        p{
+            // text-align: left;
+            // margin: 5px 0;
+            // font-size: 14px;
+            // height: 50px;
+            // overflow: hidden;
+
+            /* Fallback for non-webkit */
+            display: -webkit-box;
+            /* Fallback for non-webkit */
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        button{
+            font-size: 14px !important;
+            width: 80% !important;
+            text-align: center !important;
+            margin: 0 0 0 0 !important;
+            display: block !important;
+            padding: 15px 0 !important;
+            box-shadow: none !important;
+        }
     }
 }
