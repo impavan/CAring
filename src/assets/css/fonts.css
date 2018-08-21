@@ -86,7 +86,7 @@
     unicode-range: U+0020-00FD;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Elevation-normal';
     src:  url('../fonts/Elevation-normal.ttf.woff') format('woff'),
     url('../fonts/Elevation-normal.ttf.svg#Elevation-normal') format('svg'),
@@ -94,4 +94,4 @@
     url('../fonts/Elevation-normal.eot?#iefix') format('embedded-opentype'); 
     font-weight: normal;
     font-style: normal;
-}
+} */

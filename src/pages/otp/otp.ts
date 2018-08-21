@@ -204,7 +204,7 @@ export class OtpPage {
          
           this.countDown = 60; 
           
-          var timer = setInterval(()=>
+          let timer = setInterval(()=>
           {
             this.countDown--;
        
@@ -225,7 +225,7 @@ export class OtpPage {
           this.countDown = 60; 
           
           
-          var timer = setInterval(()=>
+          let timer = setInterval(()=>
           {
             this.countDown--;
          

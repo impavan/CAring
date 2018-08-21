@@ -21,10 +21,13 @@ export class HeaderComponent {
   }
 
   goTo(page) {
+    // console.log(":::::::::::::checking badge:::::::::::::")
     if(!(this.navCtrl.getActive().id == "MessagesPage"))
     this.navCtrl.push(page);
-    this.badge.increase(1);
-    console.log(this.badge,":::::::::::badgeheader::::::::::")
+    // this.badge.increase(1);
+    // console.log(this.badge,":::::::::::badgeheader::::::::::")
+    // console.log(this.badge.get(),":::::::::::badgeheader::::::::::")
+    // console.log(this.badge.get,":::::::::::badgeheader::::::::::")
   }
 
 }

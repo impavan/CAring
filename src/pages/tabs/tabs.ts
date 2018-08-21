@@ -1,8 +1,8 @@
 import { Component, ViewChild,} from '@angular/core';
-import { IonicPage, NavController, Events} from 'ionic-angular';
+import {  NavController, Events} from 'ionic-angular';
 
 
-@IonicPage()
+
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html',
@@ -21,7 +21,7 @@ export class TabsPage {
                 
                   {label:'Home',icon:'tabiconc-home',component:"HomePage", active:false},
                   {label:'Location',icon:'tabiconc-location',component:"StoreLocatorPage", active:false},
-                  {label:'Coupon',icon:'tabiconc-rewards',component:"RewardsPage", active:false},
+                  {label:'Vouchers',icon:'tabiconc-rewards',component:"RewardsPage", active:false},
                   {label:'Member',icon:'tabiconc-members',component:"MemberPage",active:false},
                   {label:'eStore',icon:'tabiconc-estore',component:"ECartPage", active:false}
 

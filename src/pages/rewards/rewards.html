@@ -11,7 +11,7 @@
                         Rewards
                     </ion-segment-button>
                     <ion-segment-button value="promotions" (click)="getPromotions()">
-                        Promotions
+                        Coupon
                     </ion-segment-button>
                 <ion-segment-button value="Redemption" (click)="fetchAllExperiences()">
                         Redemption
@@ -218,7 +218,7 @@
                                                                     </ion-col>
                                                                 </ion-row>
                                                                 <p [innerHTML]="promo?.subtitle | safehtml" style="margin-top: -6px;"></p>
-                                                                <p class="date">{{ promo?.publishingstartdate | date:"yyyy/MM/dd" }} - {{ promo?.publishingenddate | date:"yyyy/MM/dd" }}</p>
+                                                                <p class="date">{{ promo?.publishingstartdate | date:"dd-MMMM-yy" }} - {{ promo?.publishingenddate | date:"dd-MMMM-yy" }}</p>
                                                             </ion-col>
                                                         </ion-row>
                                                     </ion-grid>

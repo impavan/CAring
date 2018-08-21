@@ -31,6 +31,7 @@ export class MyApp {
   rootPage: any =  this._auth?"HomePage":"LoginPage";
   _userName:any="";
   pages: Array<{ title: string, component: any, index: number, icon:string, ionicon:string }>;
+  count: any;
 
   constructor(private platform: Platform, 
     private statusBar: StatusBar,
@@ -51,7 +52,7 @@ export class MyApp {
     
       { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
       { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
-       { title: 'Vouch', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+      { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
       { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
       { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
@@ -186,14 +187,18 @@ export class MyApp {
     webengage.push.onClick((deeplink, customData) => {
 
       this.pushProvider.getDeepLinkPath(deeplink).then((navdata) => {
-        console.log(navdata,":::::::::::::navdata::::::::::::::");
           this.nav.setRoot(navdata['page'],{deeplink:navdata['route'], id:navdata['value']});
+          this.badge.get().then(d=> {
+            this.count = d;
+          })
+          this.badge.set(this.count)
+        
       })
         
   });
     webengage.engage();
+    // this.badge.clear();
     this.badge.increase(1);
-    console.log(this.badge,":::::::::::badgeapp::::::::::")
- 
+     
   }
 }
