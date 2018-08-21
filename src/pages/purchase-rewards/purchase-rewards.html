@@ -1,72 +1,37 @@
-<!--
-  Generated template for the PurchaseRewardsPage page.
+<div>
+    <header></header>
+</div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <div class="customHeader">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10 class="text-center">
-              <ion-title>
-                <div class="logo">
-                    <img src="assets/img/caring_logo_white.png" />
-                  </div>
-              </ion-title>
-          </ion-col>
-          <ion-col col-2 class="text-center">
-            <div class="notification">
-              <i class="count">2</i>
-              <img src="assets/img/chat.svg" />
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+
+<ion-content padding class="mainCont">
+    <div class="purchaseRewardsContainer">
+        <h5>Congratulations!</h5>
+        <p class="successVoc">You have successfully redeemed the Voucher
+            <strong>{{offerData?.Title}}</strong>
+        </p>
+        <h6>Go to Rewards page to see your gift voucher(s)</h6>
+        <ion-card>
+            <ion-card-content>
+                <p class="redemptionPoints">Redemption Points: {{offerData?.BrandPointRedeemValue}}</p>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-9>
+                            <p>Current Points: <span>{{currentPoints}}</span></p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <div class="mt30">
+                    <button ion-button class="btn4" (click)="navToOffers()">Continue Shopping</button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+        <a class="wallet" (click)="navToWallet()">Go to My Wallet</a>
     </div>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content padding>
-	<div class="purchaseRewardsContainer">
-		<h5>Congratulations!</h5>
-		<p class="successVoc">You have successfully redeemed the Voucher <strong>RM10</strong></p>
-		<ion-card>
-			<ion-card-content>
-				<p class="redemptionPoints">Redemption Points: 800</p>
-				<ion-grid>
-			        <ion-row>
-			        	<ion-col col-9>
-			        		<p>Current Points:</p>
-			        	</ion-col>
-			        	<ion-col col-3 class="text-right">
-			        		<p>9800</p>
-			        	</ion-col>
-			        </ion-row>
-			        <ion-row>
-			        	<ion-col col-9>
-			        		<p class="alert">Point Balance after Redemption:</p>
-			        	</ion-col>
-			        	<ion-col col-3 class="text-right">
-			        		<p class="alert">9000</p>
-			        	</ion-col>
-			        </ion-row>
-			    </ion-grid>
-			    <div class="mt30">
-			    	<button ion-button class="btn4">Continue Shoppping</button>
-				</div>
-			</ion-card-content>
-		</ion-card>
-		<a href="" class="wallet">Go to My Wallet</a>
-	</div>
 </ion-content>
+
+
 <ion-footer>
-	<ion-toolbar>
-		<page-tabs></page-tabs>
-	</ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>

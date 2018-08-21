@@ -1,68 +1,32 @@
-<!--
-  Generated template for the PromotionDetailsPage page.
+<div>
+    <header></header>
+</div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <div class="customHeader">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10 class="text-center">
-              <ion-title>
-                <div class="logo">
-                    <img src="assets/img/caring_logo_white.png" />
-                  </div>
-              </ion-title>
-          </ion-col>
-          <ion-col col-2 class="text-center">
-            <div class="notification">
-              <i class="count">2</i>
-              <img src="assets/img/chat.svg" />
+
+<ion-content class="mainCont">
+
+    <div class="promotionDetails">
+        
+            <div>
+                <figure>
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="_promotionDetails?.bannerimage" (click)="zoomArea(_promotionDetails?.bannerimage)"/>
+                </figure>
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      
+        <div class="content">
+            <h4 *ngIf="_promotionDetails?.title">{{_promotionDetails?.title}}</h4>
+            <p *ngIf="_promotionDetails?.eventdate">Date: {{_promotionDetails?.eventdate}}</p>
+            <p [innerHTML]="_promotionDetails?.longdescription | safehtml"></p>
+            
+        </div>
     </div>
-  </ion-navbar>
-</ion-header>
 
-
-<ion-content>
-
-  <!-- <ion-card>
-    <div>
-       <img src="{{_promotionDetails?.bannerimage}}"/>
-    </div>
-    <h5>{{_promotionDetails?.title}}</h5>
-    <p [innerHTML]="_promotionDetails?.longdescription"></p>
-    <button ion-button><a href="{{_promotionDetails?.buttoncalltoaction}}"> {{_promotionDetails?.buttontext}} </a></button>
-  </ion-card> -->
-  <div class="promotionDetails">
-    <figure>
-      <img src="{{_promotionDetails?.bannerimage}}" />
-    </figure>
-    <div class="content">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <a href="{{_promotionDetails?.buttoncalltoaction}}" ion-button class="btn3">{{_promotionDetails?.buttontext}}</a>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <h4>{{_promotionDetails?.title}}</h4>
-      <p [innerHTML]="_promotionDetails?.longdescription"></p>
-      <!--<ol>
-        <li>Voucher can be redeemed with purchase of RM50 in single receipt
-        <li>This voucher can only be used ONCE.</li>
-        <li>This voucher cannot be combined</li>
-      </ol>-->
-    </div>
-  </div>
-  
 
 </ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

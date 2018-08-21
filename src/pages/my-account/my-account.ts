@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, Events, Platform  } from 'ionic-angular';
+import { AlertProvider } from '../../providers/alert/alert';
+import { PushProvider } from '../../providers/push/push';
 
-/**
- * Generated class for the MyAccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
 
 @IonicPage()
 @Component({
@@ -15,11 +13,54 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MyAccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  _auth:any;
+  constructor(public navCtrl: NavController,
+              public events: Events,
+              public pushProvider:PushProvider,
+              public alertProvider: AlertProvider,
+              public platform:Platform) {
+          }
+
+
+          ionViewWillEnter(){
+            this._auth = localStorage.getItem('auth_token') || '';
+          }
+
+
+  comingSoon() {
+    this.alertProvider.presentToast('Coming soon..')
+    return;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyAccountPage');
+  goTo(page) {
+    
+    if(page === 'LoginPage')
+      this.navCtrl.setRoot(page);
+    else
+    this.navCtrl.push(page);
+    
   }
+
+  
+  
+  logout() {
+    
+
+    this.navCtrl.setRoot("LoginPage").then(() => {
+
+        localStorage.removeItem('favouriteList');
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('phoneNum');
+        if (this.platform.is('cordova')) {
+            this.pushProvider.logoutWebengage();
+          }
+    
+        this.events.publish('user:login', false);
+        this.alertProvider.presentToast("You have been logged out..!")  
+  
+    })
+      
+  }
+  
 
 }

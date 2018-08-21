@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { HomepagePage } from './homepage';
+import { HomePage } from './homepage';
 import { SharedModule } from '../../app/shared.module';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
-    HomepagePage,
+    HomePage,
     
   ],
   imports: [
-    IonicPageModule.forChild(HomepagePage),
+    IonicPageModule.forChild(HomePage),
     SharedModule
   ],
+  providers:[InAppBrowser]
 })
-export class HomepagePageModule {}
+export class HomePageModule {}

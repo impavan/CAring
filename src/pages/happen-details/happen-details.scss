@@ -8,9 +8,7 @@ page-happen-details {
 			}
 			p{
 				margin:0 0 5px 0;
-			}
-			label{
-				font-weight:600;
+				
 			}
 			.subscription{
 				color:$cp-extra-darker-grey;
@@ -18,5 +16,13 @@ page-happen-details {
 				text-align:center;
 			}
 		}
+	}
+	p{
+		
+	}
+	.btn4{
+		font-size: 18px !important;
+		border-radius: 0 !important;
+		text-transform: uppercase !important;
 	}
 }

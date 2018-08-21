@@ -1,0 +1,19 @@
+
+<div>
+    <header></header>
+</div>
+
+
+<ion-content>
+  <ion-card *ngIf="policy">
+  <ion-card-content>
+    <p [innerHTML]="policy"></p>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

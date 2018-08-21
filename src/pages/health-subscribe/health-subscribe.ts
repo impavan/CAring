@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 
-/**
- * Generated class for the HealthSubscribePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
   selector: 'page-health-subscribe',
   templateUrl: 'health-subscribe.html',
 })
+
 export class HealthSubscribePage {
+  
+  _newsSubscriptionLink: any;
+  NEWSSUBLINK: string = 'newsletterurl';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private apiProvider:ApiProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HealthSubscribePage');
+  ionViewWillEnter() {
+
+    this._newsSubscriptionLink = this.apiProvider.NEWS_LETTER_URL;
   }
 
+  
 }

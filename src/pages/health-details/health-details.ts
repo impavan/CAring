@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { LoaderProvider } from '../../providers/loader/loader';
 
-/**
- * Generated class for the HealthDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +11,41 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HealthDetailsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    healthData: any = [];
+
+
+  constructor(public navParams: NavParams,
+              public navCtrl: NavController,
+              private socialSharing : SocialSharing,
+              private loaderProvider : LoaderProvider) {
+
+    this.healthData = navParams.get('data');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HealthDetailsPage');
+
+   zoomArea(url) {
+     this.navCtrl.push('ImageViewPage', { imgsource: url });
+   }
+  
+  
+  //function for sharing helth info details via social media //
+
+  shareViaSocialMedia() {
+    this.loaderProvider.presentLoadingCustom();
+    let message = this.healthData.title ? this.healthData.title : null;
+    // let subject = "";
+    // let file = "";
+    let url = this.healthData.additionalinfo ? this.healthData.additionalinfo : null;
+    this.socialSharing.share(message, "","",url).then(() => {
+      this.loaderProvider.dismissLoader();
+
+    }, err => {
+      console.log(err, "Something went wrong");
+    })
   }
 
+  
+
+  
 }

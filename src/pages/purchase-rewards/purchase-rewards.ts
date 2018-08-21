@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PurchaseRewardsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -14,12 +8,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'purchase-rewards.html',
 })
 export class PurchaseRewardsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  offerData: any;
+  currentPoints: any;
+  remainder: any;
+  redeemValue: any;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private authProvider: AuthProvider) {
+    
+                this.offerData = navParams.get('offerData');
+                this.redeemValue = this.offerData.BrandPointRedeemValue;
+                this.currentPoints = this.authProvider.getMyCurrentPoints();
+                this.remainder = this.currentPoints - this.redeemValue;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PurchaseRewardsPage');
+
+  navToOffers() {
+    
+    this.navCtrl.setRoot("RewardsPage",{deeplink:'myrewards'});
+
   }
 
+  navToWallet() {
+    
+    this.navCtrl.setRoot("MemberPage", { 'from': 'purchase' });
+    
+  }
 }

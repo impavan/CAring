@@ -1,88 +1,46 @@
-<!--
-  Generated template for the InstoredetailsPage page.
+<div>
+    <header></header>
+</div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <div class="customHeader">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10 class="text-center">
-              <ion-title>
-                <div class="logo">
-                    <img src="assets/img/caring_logo_white.png" />
-                  </div>
-              </ion-title>
-          </ion-col>
-          <ion-col col-2 class="text-center">
-            <div class="notification">
-              <i class="count">2</i>
-              <img src="assets/img/chat.svg" />
+<ion-content class="mainCont" padding>
+    <div class="inStoreDetailsContainer">
+        <figure>
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="storeDetail?.bannerimage" (click)="zoomArea(storeDetail?.bannerimage)"/>
+        </figure>
+        <div class="content">
+            <h5 text-center>{{storeDetail?.title}}</h5>
+            <h6 text-center>{{storeDetail?.subtitle}}</h6>
+            <p [innerHTML]="storeDetail?.description | safehtml"></p>
+
+            <div *ngIf="_locationList.length >= 1">
+            <ion-row>
+                <ion-col col-6>
+                    <h6 class="subHeader">Date/Time</h6>
+                </ion-col>
+                <ion-col col-6>
+                    <h6 class="subHeader">Location/Outlet</h6>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let loc of _locationList">
+                <ion-col col-6>
+                    <p *ngIf="loc?.date" class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label></p>
+                     <p *ngIf="loc?.time" class="datetime"><span>{{loc?.time}}</span></p>
+                </ion-col>
+                <ion-col col-6>
+                    <a (click)="gotoLocationPage(loc?.storename, loc?.storeid)"><span class="location">{{loc?.storename}}</span></a>
+                    <!--<ion-icon tappable (click)="gotoEventLocation(loc)" name="pin" class="alert"></ion-icon>-->
+                    <!--<a *ngIf="loc?.phone" href="tel:{{loc?.phone}}"><ion-icon name="call" class="phoneIco"></ion-icon></a>-->
+                </ion-col>
+            </ion-row>
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-navbar>
-</ion-header>
 
-<!-- <img src="{{storeDetail?.bannerimage}}"/> 
-<h5>{{storeDetail?.title}}</h5>
-<h6>{{storeDetail?.subtitle}}</h6>
-<p>{{storeDetail?.description}}</p>-->
-<ion-content>
-  <div class="inStoreDetailsContainer">
-    <figure>
-      <img src="assets/img/h1.jpg" />
-    </figure>
-    <div class="content">
-      <h6>Get your FREE health check</h6>
-      <p>Come visit at these locations</p>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-              <h6 class="subHeader">Date / Time</h6>
-          </ion-col>
-          <ion-col col-6>
-              <h6 class="subHeader">Location</h6>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-              <p class="date">15th Oct 2017</p>
-          </ion-col>
-          <ion-col col-6>
-              <span class="location">Sri Petaling</span><ion-icon name="pin" class="alert"></ion-icon>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-              <p class="date">15th Oct 2017</p>
-          </ion-col>
-          <ion-col col-6>
-              <span class="location">Sri Petaling</span><ion-icon name="pin" class="alert"></ion-icon>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-              <p class="date">15th Oct 2017</p>
-          </ion-col>
-          <ion-col col-6>
-              <span class="location">Berjaya Times Square</span><ion-icon name="pin" class="alert"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <a href="" class="termsConditions">Terms and Conditions</a>
+        </div>
     </div>
-  </div>
 </ion-content>
+
+
 <ion-footer>
-   <ion-toolbar>
-    <page-tabs></page-tabs>
-  </ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>

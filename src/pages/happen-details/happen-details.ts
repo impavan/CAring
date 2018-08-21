@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams,NavController } from 'ionic-angular';
 
-/**
- * Generated class for the HappenDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,16 +9,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HappenDetailsPage {
 
-  _happenList:any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ _happenList: any = [];
 
-        this._happenList = navParams.get('happendata');
-        console.log(this._happenList);
+  constructor( public navParams: NavParams,public navCtrl:NavController) {
 
+    this._happenList = navParams.get('happendata');
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HappenDetailsPage');
-  }
 
+zoomArea(url) {
+    this.navCtrl.push('ImageViewPage', {imgsource:url})
+  }
+ 
 }

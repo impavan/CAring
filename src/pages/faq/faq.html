@@ -1,0 +1,24 @@
+
+<div>
+    <header></header>
+</div>
+
+
+<ion-content padding>
+
+
+  <div  *ngFor="let key of faqKeys">
+    <h4>{{key}}</h4>
+    <div *ngFor= "let faqCat of myCat[key].category | sort:'displayorderwithincategory'">
+            <p [innerHTML]="faqCat?.question"></p>
+            <p [innerHTML]="faqCat?.answer"></p>
+    </div>
+  </div>
+
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

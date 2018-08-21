@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
-
-/**
- * Generated class for the PromotionsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+import moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -17,39 +13,65 @@ import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 export class PromotionsPage {
 
 
-_promotionList:any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              public hapenningsProvider:HapenningsProvider) {
-
-               
+  _promotionList: any = [];
+  _brochureLinks: any;
+  navToId: any;
+  constructor(private navParams:NavParams,
+              public navCtrl: NavController,
+              public apiProvider:ApiProvider,  
+              public hapenningsProvider: HapenningsProvider,
+              private exceptionProvider: ExceptionHandlerProvider) {
+    
+            this.navToId = navParams.get('id');
+    
   }
 
-  ionViewDidEnter(){
-
-     this.getPromotions();
+  ionViewWillEnter() {
+    if(this._promotionList.length <=0){
+    this.getPromotions();
+    }
+    this._brochureLinks = this.apiProvider.PROMOTION_URL;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PromotionsPage');
-  }
 
-  getPromotions(){
+  getPromotions() {
+    this.hapenningsProvider.getPromotions().subscribe(res => {
+      this._promotionList = res.data.filter(promote => {
 
-      this.hapenningsProvider.getPromotions()
+        if (promote.publishingstartdate && promote.publishingenddate) {
 
-          .subscribe(res => {
+          // moment for checking start date and end date for posting article //
 
-              this._promotionList = res.data;
+          let psDate = moment(promote.publishingstartdate).format('YYYY-MM-DD');
+          let peDate =  moment(promote.publishingenddate).format('YYYY-MM-DD');
+          let psMoment = moment(psDate);
+          let peMoment =  moment(peDate)
+          let currenMoment  =  moment().format('YYYY-MM-DD');
+          if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+            return promote;
+          }
+        } else {
+          return promote;
+        }
+      });
 
-          })
+      if (this.navToId) {
+        let item = this._promotionList.find(d => d.deeplinkingidentifier == this.navToId)
+        if (item) {
+          this.gotoPromotionDetails(item);
+        }
+      }  
+
+    }, err => {
       
+      this.exceptionProvider.excpHandler(err);
 
+    });
   }
 
 
-  goto(value){
 
-    this.navCtrl.push('PromotionDetailsPage', { promodetails:value });
+  gotoPromotionDetails(value) {
+    this.navCtrl.push('PromotionDetailsPage', { promodetails: value });
   }
-
 }

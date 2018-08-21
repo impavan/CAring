@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SharedModule } from '../../app/shared.module';
 import { RewardsDetailsPage } from './rewards-details';
+import { RewardsProvider } from '../../providers/rewards/rewards';
+
+
 
 @NgModule({
   declarations: [
@@ -11,5 +14,6 @@ import { RewardsDetailsPage } from './rewards-details';
     IonicPageModule.forChild(RewardsDetailsPage),
     SharedModule
   ],
+  providers:[RewardsProvider]
 })
 export class RewardsDetailsPageModule {}

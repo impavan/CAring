@@ -1,16 +1,18 @@
-<ion-row>
-  <ion-col col-3 class="text-center">
-    <button ion-button (click)="goto('StoreLocatorPage')" class="placeholderIcon"></button>
-  </ion-col>
-    <ion-col col-3 class="text-center">
-    <button ion-button class="giftIcon"></button>
-  </ion-col>
-    <ion-col col-3 class="text-center">
-    <button ion-button class="idCardIcon"></button>
-  </ion-col>
-    <ion-col col-3 class="text-center">
-    <button ion-button class="cartIcon"></button>
-  </ion-col>
+<ion-row class="tabsMenu">
+    <ion-col col class="text-center" *ngFor="let tab of myTabs">
+        <button ion-button  [class.active]="tab.active" (click)="goto(tab)">
+          <ion-icon  class="{{tab.icon}}"></ion-icon>
+          <label style="text-transform: none">{{tab.label}}</label>
+        </button>
+    </ion-col>
 </ion-row>
-   
+
+
+
+
+
+
+
+
+
 

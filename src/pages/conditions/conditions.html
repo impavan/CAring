@@ -1,0 +1,18 @@
+<div>
+    <header></header>
+</div>
+
+
+<ion-content>
+  <ion-card *ngIf="conditions">
+  <ion-card-content>
+    <p [innerHTML]="conditions"></p>
+  </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

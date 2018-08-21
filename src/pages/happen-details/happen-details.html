@@ -1,68 +1,33 @@
-<!--
-  Generated template for the HappenDetailsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <div class="customHeader">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10 class="text-center">
-              <ion-title>
-                <div class="logo">
-                    <img src="assets/img/caring_logo_white.png" />
-                  </div>
-              </ion-title>
-          </ion-col>
-          <ion-col col-2 class="text-center">
-            <div class="notification">
-              <i class="count">2</i>
-              <img src="assets/img/chat.svg" />
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ion-navbar>
-</ion-header>
+<div>
+    <header></header>
+</div>
 
 
-<ion-content>
-    <!-- <ion-card>
-    <div>
-       <img src="{{_happenList?.eventbanner}}"/>
+<ion-content class="mainCont">
+    <div class="happenDetailsContainer">
+        <ion-card>
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="_happenList?.bannerimage" (click)="zoomArea(_happenList?.bannerimage)" />
+        </ion-card> 
+        <div class="container">
+            <h6 *ngIf="_happenList?.title">{{_happenList?.title}}</h6>
+            <p *ngIf="_happenList?.eventdatestring"><span>Date:</span><label> {{_happenList?.eventdatestring}}</label></p>
+            <!--<p *ngIf="_happenList?.eventduration"><span>Time:</span><label> {{_happenList?.eventduration}}</label></p>
+            <p><span>Venue:</span><label>{{_happenList?.venue}}</label></p>-->
+        </div>
+        
+        <div>
+            <p [innerHTML]="_happenList.description | safehtml" padding></p>
+        </div>
+        <div class="container" *ngIf="_happenList?.registrationurl">
+            <a href="{{_happenList?.registrationurl}}" ion-button class="btn4">{{_happenList?.buttonname}}</a>
+            <p class="subscription">You will be redirected to our website.</p>
+        </div>
     </div>
-    <h5>{{_happenList?.title}}</h5>
-    <h6>{{_happenList?.eventdate}}</h6>
-    <p>{{_happenList?.description}}</p>
-    <button ion-button><a href="http://caring2u.com/events-healthtalk-info.php?health_event_id=23"> Register </a></button>
-  </ion-card> -->
-  <div class="happenDetailsContainer">
-    <div class="container">
-      <h6>Take control of Diabetes</h6>
-      <p><span>Date:</span><label> 28th October 2017 , Saturday</label></p>
-      <p><span>Time:</span><label> 10:00AM to 6:00PM</label></p>
-      <p><span>Venue:</span><label> Caring HQ , Petaling Jaya</label></p>
-    </div>
-    <ion-card>
-      <img src="assets/img/catalogue.jpg" />
-    </ion-card>
-    <div class="container">
-      <a href="" ion-button class="btn4">Register Now</a>
-      <p class="subscription">You will be redirected to our website to complete your subscription</p>
-    </div>
-  </div>
 </ion-content>
 
 
-
 <ion-footer>
-   <ion-toolbar>
-    <page-tabs></page-tabs>
-  </ion-toolbar>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
 </ion-footer>

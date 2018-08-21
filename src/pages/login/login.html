@@ -1,26 +1,37 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-content padding>
 	<div class="loginContainer">
-		<i class="logo text-center"><img src="assets/img/caring_logo.png" /></i>
-		<h6>Welcome to</h6>
-		<h5>Caring Pharmacy</h5>
-		<div class="content">
-			<ion-list>
-				<ion-item>
-					<ion-label fixed>Mobile Number</ion-label>
-					<ion-input type="text" value=""></ion-input>
-				</ion-item>
-			</ion-list>
-			<button ion-button class="btn4 borderBottomRadius">Continue</button>
-		</div>
-		<div class="caringWaterMark">
-			<img src="assets/img/hand_bg.png" />
-		</div>
-		<p>Forgot your Regular Card Number? Walk in any <span class="primary">Caring Pharmacy</span> for enquiry</p>
+		<i class="logo text-center">
+			<img src="assets/img/logo_large.png" />
+		</i>
+        <div text-center class="info">Please enter your mobile number to continue. Your mobile number will only be used to validate your account and will not be shared with any third party.</div>
+        <div text-center class="info mcode accessMsg">(Only Accept Malaysia, Singapore & Indonesia Telco Number)</div>
+        <ion-label fixed class="mobLbl">Mobile Number</ion-label>
+        <div class="content">
+            <ion-list>
+                <ion-item>
+                    <ion-select style="z-index:99999" [(ngModel)]="mobileCode" [selectOptions]="selectOptions">
+                        <ion-option value="60">+60</ion-option>
+                        <ion-option value="62">+62</ion-option>
+                        <ion-option value="65">+65</ion-option>
+                    </ion-select>
+                    <ion-input type="tel" [(ngModel)]="phoneNum" placeholder="mobile number" maxlength="14" minlength="9"></ion-input>
+                </ion-item>
+            </ion-list>
+            <button ion-button class="btn4 borderBottomRadius" (click)="userLogin()">Continue</button>
+        </div>
+        <div style="text-align: center;margin: 10px 0 10px 0;">
+            <span>Or</span>
+        </div>
+        <div>
+            <button ion-button class="btn4" (click)="skipLogin()">Login as Guest</button>
+        </div>
 	</div>
 </ion-content>
+
+<!-- Modal tobe displayed when there is no internet on the device -->
+<!--<mymodal #connection title="No Connection">
+	<div>
+		<p>We cannot detect Internet connection. Please connect to Internet</p>
+	</div>
+	<button ion-button (click)="closeConnectionModal()">OK</button>
+</mymodal>-->

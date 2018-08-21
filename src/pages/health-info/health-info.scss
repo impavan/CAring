@@ -1,51 +1,192 @@
 page-health-info {
-	.healthInfoContainer{
-		margin: 0 0 0 0;
-		h3{
-			margin:5px 0 0 0;
-			color:$cp-extra-darker-grey;
-			font-weight: 600;
-		}
-		.card-md, .card-ios{
-		    border-radius: 5px;
-			figure{
-				margin: 0;
-			    height: 100px;
-			    overflow: hidden;
-			}
-			.card-content-md {
-    			padding: 10px;
-				.card-title{
-					font-weight: 600;
-	    			margin:0 0 5px 0;
-	    			line-height: normal;
-				}
-				p{
-					margin:0 0 8px 0;
-					line-height: normal;
-					color:$cp-extra-darker-grey;
-				}
-				.button-md{
-					background-color: $cp-primary-color;
-					height: auto;
-				    margin: 0;
-				    width: 100%;
-				    font-size: 14px;
-				    padding: 5px 0;
-				    box-shadow: none;
-				    text-transform: capitalize;
-				    font-weight: normal;
-				    border-radius: 5px;
-				}
-			}
-		}
-		.healthInfoCards{
-			margin: 10px 0 20px 0;
-			.healthInfo{
-				color:$cp-black-color;
-				font-weight:600;
-				margin: 0 0 0 10px;
-			}
-		}
-	}
+    .healthInfoContainer {
+        margin: -10px 0 0 0;
+        padding: 10px;
+        h3 {
+            margin: 0px 0 0 0;
+            color: $cp-extra-darker-grey;
+            font-size: 16px;
+        }
+        .headerwithline {
+            border-bottom: 1px solid #bdbdbd;
+            display: inline-block;
+            width: 100%;
+            margin: 0 0 20px 0;
+            label {
+                float: left;
+                color: #808080;
+                margin: 10px 0 0 0;
+            }
+            a {
+                float: right;
+                width: 180px;
+                padding: 0;
+                margin: 0;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+        .card-md,
+        .card-ios {
+            border-radius: 5px;
+            figure {
+                margin: 0;
+                height: 200px;
+                overflow: hidden;
+            }
+            .card-content-md {
+                padding: 10px;
+                .card-title {
+                    margin: 0 0 5px 0;
+                    line-height: normal;
+                }
+                p {
+                    margin: 0 0 8px 0;
+                    line-height: normal;
+                    color: $cp-extra-darker-grey;
+                }
+                .button-md {
+                    background-color: $cp-primary-color;
+                    height: auto;
+                    margin: 0;
+                    width: 100%;
+                    font-size: 14px;
+                    padding: 5px 0;
+                    box-shadow: none;
+                    text-transform: capitalize;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .healthInfoCards {
+            margin-bottom: 15px;
+            padding: 10px;
+            box-shadow: 0 2px 6px 0 rgba(74, 74, 74, 0.5);
+            background: #fff;
+            border-radius:5px; 
+            position: relative;
+            [col-8], [col-4]{
+                padding: 0;
+            }
+            h5{
+                font-size: 20px;
+                color: #1d2d5d;
+                margin: 0;
+                padding: 0 15px 0 0;
+
+                /* Fallback for non-webkit */
+                display: -webkit-box;
+                /* Fallback for non-webkit */
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            p{
+                font-size: 12px;
+                margin:10px 0 0 0;
+                color:#00645b;
+                padding: 0 20px 0 0;
+                font-weight: 600;
+            }
+            .readMoreLink{
+                color: #00645b;
+                font-size: 12px;
+                position: absolute;
+                bottom: 0;
+                font-weight: 600;
+            }
+            figure{
+                margin: 0;
+                padding: 0;
+                height: 120px;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+            .left {
+                float: left;
+                margin: 0 0px 0 0;
+                width: 50%;
+                min-height: 141px;
+                
+                
+            }
+            .right {
+                float: left;
+                width: 50%;
+                padding: 0px;
+                position: relative;
+                min-height: 141px;
+                figure{
+                    margin: 0;
+                    padding: 0;
+                    height: 141px;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+                label {
+                    font-size: 14px;
+                    display: block;
+                    color: #111;
+                    margin-bottom: 5px;
+                }
+                span {
+                    font-size: 11px;
+                    display: block;
+                    margin-bottom: 10px;
+                }
+                .button-ios {
+                    border-radius: 0px;
+                }
+                button {
+                    background: #1bb463;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    padding: 5px 10px;
+                    position: absolute;
+                    bottom: 0;
+                    line-height: 21px;
+                    height: auto;
+                    margin: 0px;
+                    span {
+                        margin: 0px;
+                        padding: 0px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+    .pdadj {
+        padding: 0 15px 0px 10px;
+        margin-bottom: 10px;
+    }
+
+    /* ----------- iPad 1, 2, Mini and Air ----------- */
+
+    /* Portrait and Landscape */
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .healthInfoCards {
+            height: 300px;
+            .left{
+                height: 300px;
+                figure{
+                    height: 300px !important;
+                }
+            }
+            .right{
+                height: 300px;  
+            }
+        }
+    }
 }

@@ -1,30 +1,53 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
-/**
- * Generated class for the InstoredetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
 
 @IonicPage()
 @Component({
   selector: 'page-instoredetails',
   templateUrl: 'instoredetails.html',
 })
+
 export class InstoredetailsPage {
 
-  storeDetail:any = [];
+  storeDetail: any = [];
+  _locationList: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-      this.storeDetail = navParams.get('instoredata');
-      console.log(this.storeDetail);
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private launchNavigator: LaunchNavigator) {
+    
+    this.storeDetail = navParams.get('instoredata');
+    this._locationList = this.storeDetail.storeeventtimings ? this.storeDetail.storeeventtimings : [];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InstoredetailsPage');
+  gotoEventLocation(loc) {
+
+
+    this.launchNavigator.navigate([loc.storelocation.x, loc.storelocation.y])
+      .then(
+          success => console.log('Launched navigator'),
+          error => console.log('Error launching navigator', error)
+        );       
   }
+
+
+  gotoLocationPage(storename,storeId) {
+
+    this.navCtrl.push('StoreLocatorPage', { instore: storename,storeId: storeId});
+    
+  }
+
+  zoomArea(url) {
+    this.navCtrl.push('ImageViewPage', {imgsource:url})
+  }
+
+
+
+
 
 }

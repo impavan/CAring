@@ -1,48 +1,202 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform,Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Badge } from '@ionic-native/badge';
 
+<<<<<<< HEAD
+=======
+
+
+
+
+// Import Providers.
+import { ApiProvider } from '../providers/api/api';
+import { AuthProvider } from '../providers/auth/auth';
+import { AlertProvider } from '../providers/alert/alert';
+import { PushProvider } from '../providers/push/push';
+import { NetworkProvider } from '../providers/network/network';
+import { LoaderProvider } from '../providers/loader/loader';
+
+declare var webengage;
+
+>>>>>>> 8fd5db071b4c084bbe49021a667ae905c66b5d0c
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  @ViewChild('nointernet')NoInternetModal;
+  @ViewChild('login')LoginModal;
+  _auth = localStorage.getItem("auth_token");
+  
+  rootPage: any =  this._auth?"HomePage":"LoginPage";
+  _userName:any="";
+  pages: Array<{ title: string, component: any, index: number, icon:string, ionicon:string }>;
 
-  rootPage: any = 'HomepagePage';
+  constructor(private platform: Platform, 
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private authProvider: AuthProvider,
+    private alertProvider:AlertProvider,
+    private screenOrientation: ScreenOrientation,
+    public events: Events,
+    public loaderProvider:LoaderProvider,
+    public pushProvider: PushProvider,
+    public apiProvider:ApiProvider,
+    public networkprovider: NetworkProvider,
+    public badge: Badge) {
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomepagePage' },
-      { title: 'Member', component: 'MemberPage' },
-      { title: 'Rewards', component: 'RewardsPage' },
-      { title: 'Promotions', component: 'PromotionsPage' },
-      { title: 'Happenings', component: 'HappeningsPage' },
-      { title: 'Store Locator', component: 'StoreLocatorPage' },
-      { title: 'Health Info', component: 'HealthInfoPage' },
-      { title: 'Feedback', component: 'FeedbackPage' },
-      { title: 'About', component: 'AboutPage' },
+    
+      { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
+      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
+       { title: 'Vouch', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+      { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
+      { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
+      { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
+      { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
+      { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
     ];
 
-  }
+    if (this._auth) {
+        
+        this.getUser();
+    }
 
+
+    this.events.subscribe('user:login', (user) => {
+
+      user?this.getUser():this._auth = ""
+
+    })
+
+        
+  }
+      
+ 
   initializeApp() {
+
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      if(this.platform.is('cordova'))
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      
+      if (this._auth) {
+        let userdata = localStorage.getItem('userdetails');
+        this.authProvider.setUser(JSON.parse(userdata));
+      }
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.noConnectionEvent();
+      this.notLoggedIn();
+      this.pushEvent();
+ 
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+
+    this.nav.setRoot(page.component, { index: page.index }).then(canEnter => {
+      
+          if(canEnter==false)
+          this.events.publish('login', false);
+    })
+  }
+
+  getUserDetails() {
+     
+    this._userName = this.authProvider.getUserFirstName();
+    
+  }
+
+  getUser() {
+    
+         this._auth = localStorage.getItem("auth_token");
+         let customerData = localStorage.getItem('userdetails');
+         let data = JSON.parse(customerData);
+         this.authProvider.setUser(data);
+         this.getUserDetails();
+  }
+
+ 
+
+  openSettings() {
+    
+    this.nav.setRoot('MyAccountPage');
+
+  }
+
+
+
+  gotoLogin() {
+    this.nav.setRoot("LoginPage");
+    this.LoginModal.close();
+    
+  }  
+  
+  noConnectionEvent(){
+
+    this.events.subscribe("noconnection", data => {
+      
+      if(data== true)
+      this.NoInternetModal.open();
+
+    });
+
+  }
+
+  notLoggedIn() {
+    
+    this.events.subscribe('login', data => {
+       
+                  this.openLoginModal();
+    })
+
+  }
+
+
+
+
+  closeNoInternetModal() {
+
+      this.NoInternetModal.close();
+  }
+
+//opens modal if user has not logged In and trying to access members page and redemption  
+  openLoginModal() {
+    
+    this.LoginModal.open();
+  }
+
+//close login modal  
+  closeLoginModal() {
+    
+    this.LoginModal.close();
+  }
+
+
+  pushEvent() {
+
+
+    if (!this.platform.is('cordova')) {
+      console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
+      return;
+    }
+
+    webengage.push.onClick((deeplink, customData) => {
+
+      this.pushProvider.getDeepLinkPath(deeplink).then((navdata) => {
+        console.log(navdata,":::::::::::::navdata::::::::::::::");
+          this.nav.setRoot(navdata['page'],{deeplink:navdata['route'], id:navdata['value']});
+      })
+        
+  });
+    webengage.engage();
+    this.badge.increase(1);
+    console.log(this.badge,":::::::::::badgeapp::::::::::")
+ 
   }
 }

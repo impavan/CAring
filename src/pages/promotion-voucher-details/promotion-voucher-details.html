@@ -1,0 +1,55 @@
+
+<div>
+    <header></header>
+</div>
+
+
+<ion-content padding>
+    <div class="rewardsDetailsContainer">
+        <figure class="fixedImage">
+            <img src="{{voucherData?.bannerimage}}" />
+        </figure>
+        <div class="content p0">
+            <article>
+                <h3><strong>{{voucherData?.discountamount}}</strong> <strong>{{voucherData?.title}}</strong></h3>
+                <span>{{voucherData?.subtitle}}</span>
+                <span class="date">{{ voucherData?.publishingstartdate | date:"yyyy/MM/dd" }} - {{ voucherData?.publishingenddate | date:"yyyy/MM/dd" }}</span>
+                  <div class="pb15"></div> 
+                <span>Here is your barcode to scan</span>
+                <div class="pb15"></div>
+                <div style="text-align:center">
+                  <h4 style="color:red">(Strictly for cashier use)</h4>
+                </div>
+                <div class="barCode">
+                    <svg #barcode id="barcode"></svg>
+                </div>
+              <!-- <button ion-button class="btn2" block (click)="closeModal()">OK</button>  -->
+
+                <h1>Terms and Conditions</h1>
+                <p [innerHTML]="voucherData?.termsconditions | safehtml"></p>
+                <hr/>
+                <!-- <div class="pb15"></div> -->
+                <!-- <button ion-button class="btn4" (click)="redeemNow()">redeem Now</button> -->
+            </article>
+           
+        </div>
+    </div>
+
+</ion-content>
+
+<ion-footer>
+        <ion-toolbar>
+            <page-tabs></page-tabs>
+        </ion-toolbar>
+    </ion-footer>
+
+<mymodal #barcodeModal>
+    <p>Here is your barcode to scan</p>
+    <div style="text-align:center">
+      <h4 style="color:red">(Strictly for cashier use)</h4>
+    </div>
+    <div class="barCode">
+        <svg #barcode id="barcode"></svg>
+    </div>
+  <button ion-button class="btn2" block (click)="closeModal()">OK</button> 
+</mymodal>

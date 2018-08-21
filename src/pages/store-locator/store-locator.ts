@@ -1,218 +1,382 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-// import { Geolocation } from '@ionic-native/geolocation';
+import { Component, ViewChild,ElementRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { Geolocation,GeolocationOptions } from '@ionic-native/geolocation';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { Keyboard } from '@ionic-native/keyboard';
+import { Platform } from 'ionic-angular';
 
 //All providers goes here
 import { StoreLocatorProvider } from '../../providers/store-locator/store-locator';
-// import { GoogleMaps,GoogleMap,GoogleMapsEvent,GoogleMapOptions,CameraPosition,MarkerOptions,Marker } from '@ionic-native/google-maps';
-
-/**
- * Generated class for the StoreLocatorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AlertProvider } from '../../providers/alert/alert';
+import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 
 
- declare var google;
+
+declare var google;
 @IonicPage()
 @Component({
   selector: 'page-store-locator',
   templateUrl: 'store-locator.html',
 })
+
 export class StoreLocatorPage {
-
   @ViewChild('myMap') mapElement;
-
+  @ViewChild('locBtn') locbutton;
+  @ViewChild('location') locationModal;
   map: any;
   locationList: any = [];
+  updatedLocationList: any = [];
+  favouriteList: any = [];
+  _favIdList: any = [];
+  _filterList:any = [];
+  _myCurrentLocation:any = {};
+  _newFilteredList:any = [];
+  locationState = 'near_you';
+  _searchKey:any = '';
+  _creteria:any = {
+    "storename": '',
+  };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public storeLocatorProvider: StoreLocatorProvider
-  ) {
+  instoreData: any;
+  storeId: any;
+  navToId: any;
+  
+
+  constructor(public events: Events,
+              public platform: Platform , 
+              public navCtrl: NavController, 
+              public navParams: NavParams,
+              public storeLocatorProvider: StoreLocatorProvider, 
+              private geolocation: Geolocation,
+              private diagnostic: Diagnostic,
+              private keyboard:Keyboard,
+              private alertProvider:AlertProvider,
+              private launchNavigator: LaunchNavigator, private elRef: ElementRef,
+              private exceptionProvider: ExceptionHandlerProvider) {
+    
+            this.instoreData = navParams.get('instore') || '';
+            this.storeId = navParams.get('storeId');
+            this.navToId = navParams.get('id') || '';
+            
+    
+   
+            
   }
 
 
   ionViewWillEnter() {
-
-    this.getStores();
-
+    this._favIdList = this.getFavList();
+    this.events.publish('changeIcon',"StoreLocatorPage");
   }
+
+
+  // ngAfterViewInit() {
+
+  //   // console.log("in ngafterViewinit");
+  //   //     this.locationModal.close();
+  //   this.diagnostic.isLocationAuthorized().then(res => {
+  //     if (!res) {
+  //       this.diagnostic.requestLocationAuthorization('always').then(resp => {
+  //         this.loadMap();
+  //       }, err => {
+  //         this.loadMap();
+  //         })
+  //     } else{
+  //       this.loadMap();  
+  //     }
+  //   })  
+    
+  // }
+
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StoreLocatorPage');
 
-
-  }
-
-  ngAfterViewInit() {
-    this.loadMap();
-  }
-
-
-  getStores() {
-
-    this.storeLocatorProvider.getStores()
-
-      .subscribe(res => {
-
-        console.log(res);
-        this.locationList = res.data;
-        this.addMarkers(this.map, this.locationList);
-
-      })
-
+    // console.log("in ngafterViewinit");
+    //     this.locationModal.close();
+    this.diagnostic.isLocationAuthorized().then(res => {
+      if (!res) {
+        this.diagnostic.requestLocationAuthorization('always').then(resp => {
+          this.loadMap();
+        }, err => {
+          this.loadMap();
+          })
+      } else{
+        this.loadMap();  
+      }
+    })  
+    
   }
 
 
   loadMap() {
-    // this.mapElement = document.getElementById('map');
-
-    // let mapOptions: GoogleMapOptions = {
-    //   camera: {
-    //     target: {
-    //       lat: 43.0741904,
-    //       lng: -89.3809802
-    //     },
-    //     zoom: 18,
-    //     tilt: 30
-    //   }
-    // };
-
-    // this.map = this.googleMaps.create(this.mapElement, mapOptions);
-
-    // // Wait the MAP_READY before using any methods.
-    // this.map.one(GoogleMapsEvent.MAP_READY)
-    //   .then(() => {
-    //     console.log('Map is ready!');
-
-    //     // Now you can use all methods safely.
-    //     this.map.addMarker({
-    //         title: 'Ionic',
-    //         icon: 'blue',
-    //         animation: 'DROP',
-    //         position: {
-    //           lat: 43.0741904,
-    //           lng: -89.3809802
-    //         }
-    //       })
-    //       .then(marker => {
-    //         marker.on(GoogleMapsEvent.MARKER_CLICK)
-    //           .subscribe(() => {
-    //             alert('clicked');
-    //           });
-    //       });
-
-    //   });
 
 
-    //  let marker = new google.maps.Marker();
-    //         marker.setPosition(latLng);
-    //         marker.setTitle("current Position");
-    //         marker.setMap(this.map);
+    this.platform.ready().then((readySource) => {
+      this.diagnostic.isLocationEnabled().then(
+        (isAvailable) => {
+          let geoOptions:GeolocationOptions= {
+            timeout:5000
+          }
+          // Display map here
+          if (isAvailable) {
+            this.geolocation.getCurrentPosition(geoOptions).then((resp) => {
+              this.getAllStores(resp.coords.latitude, resp.coords.longitude, 50);
+              // this.getAllStores(lat,lng, 50);
+     
+              this._myCurrentLocation = {
+                lat: resp.coords.latitude,
+                lng: resp.coords.longitude,
+              }
+              let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+        
+              let mapOptions = {
+                center: latLng,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+     
+              this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
+            }).catch((error) => {
+              let lat = "3.1390";
+              let lng = "101.6869";
+              let latLng = new google.maps.LatLng(lat, lng);
+
+      
+              let mapOptions = {
+                center: latLng,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+     
+              this.getAllStores(lat, lng, 50);
+              this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+              this.alertProvider.presentToast("Error in accessing your current location. Please provide permission to access location");
+     
+            });
+          }
+          else { 
+
+            this.locationModal.open();
+          
+            //alert("Please enable your location in order to view the store listing");
+          }
+    }).catch( (e) => {
+      console.log(e);
+      alert("Please enable your location in order to view the store listing");
+    });
 
 
+    });    
 
 
-
-
-
-    navigator.geolocation.getCurrentPosition((position) => {
-
-      console.log(position);
-
-      let latLng = new google.maps.LatLng(3.1655016, 101.65281950000008);
-
-      let mapOptions = {
-
-        center: latLng,
-        zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-
-
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-
-
-
-    })
-
-
-
-
-
+      
+     
   }
 
-  addMarkers(map, locationList) {
+  loadFavList(locationList) {
 
     for (let i in locationList) {
-      let marker = new google.maps.Marker();
-      let latLng = new google.maps.LatLng(locationList[i].location.x, locationList[i].location.y);
-      marker.setPosition(latLng);
-      marker.setTitle(locationList[i].storename);
-      marker.setMap(map);
+
+      locationList[i].favourite = this._favIdList.includes(locationList[i].storeId);
+      if (locationList[i].favourite) {
+        this.favouriteList.push(locationList[i]);
+        console.log(this.favouriteList);
+      }
+    }
+
+  }
+  closeLocationModal() { 
+    this.locationModal.close();
+  }
+
+  openLocationModel() { 
+        this.locationModal.close();
+        // this.ngAfterViewInit();
+  }
+  addMarkers(map, locationList) {
 
    
+      var infowindow = new google.maps.InfoWindow();
+    for (let i in locationList) {
+
+        let latLng = new google.maps.LatLng(locationList[i].latitude, locationList[i].longitude);
+        let marker = new google.maps.Marker({
+         title: locationList[i].storeName,
+         map: map,
+         animation: 'DROP',
+         position: latLng,
+         mobile: locationList[i].mobile,
+         lat:locationList[i].latitude,
+         lng:locationList[i].longitude,
+         address:locationList[i].storeDescription
+        })
+      
+        
+        marker.addListener('click', () => {
+
+           let contentString = '<div id="content" style="width:150px !important;">' +
+            '<div id="siteNotice">' +
+             '<p><b>' + marker.title + '<br /></b>' + marker.address  +
+             '<p *ngIf="' +marker.mobile + '">' + marker.mobile  + '</p>'       
+          '</div>' + '</div>';
+          infowindow.setContent(contentString);
+          infowindow.open(map, marker);
+        });  
+
+     
     }
-      let latA = new google.maps.LatLng(12.914142,74.855957);
-       let latB = new google.maps.LatLng(12.971599, 77.594563);
-       let km = this.distance(latA, latB);
-      console.log("kilometer is:", km);
+  
+  }
+
+  
+  
+
+  setFav(location) {
+
+    location.favourite = true;
+    this.favouriteList.push(location);
+    this.addFavList(location.storeId);
+
+  }
+
+  removeFav(location) {
+
+    location.favourite = false;
+    let index = this.favouriteList.findIndex(loc => loc.storeId == location.storeId);
+    this.favouriteList.splice(index, 1);
+    this.removeFavList(location.storeId);
+
+  }
+
+  getFavList() {
+
+    let list: any = localStorage.getItem('favouriteList');
+    let list2: any = list == null ? [] : JSON.parse(list);
+    return (list2);
+
+  }
+
+  addFavList(id) {
+
+    this._favIdList = this.getFavList();
+    this._favIdList.push(id);
+    localStorage.setItem('favouriteList', JSON.stringify(this._favIdList));
+
+  }
+
+  removeFavList(id) {
+
+    this._favIdList = this.getFavList();
+    let index = this._favIdList.findIndex(fav => fav._id == id);
+    this._favIdList.splice(index, 1);
+    localStorage.setItem('favouriteList', JSON.stringify(this._favIdList));
 
   }
 
 
-  distance(latLngA, latLngB) {
+  onInput(event) {
+    
+    let val = event.target.value;
+    if (this._searchKey) {
+      this._newFilteredList = this._filterList.filter(item => (item.storeName.toLowerCase().indexOf(val.toLowerCase()) > -1) || (item.storeDescription.toLowerCase().indexOf(val.toLowerCase()) > -1) );
+   }
+    else if (!this._searchKey) {
+      
+      this.onClear();
+    }
+    
+    
+  }
 
-    // var radlat1 = Math.PI * lat1 / 180
-    // var radlat2 = Math.PI * lat2 / 180
-    // var theta = lon1 - lon2
-    // var radtheta = Math.PI * theta / 180
-    // var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    // dist = Math.acos(dist)
-    // dist = dist * 180 / Math.PI
-    // dist = dist * 60 * 1.1515
-    // if (unit == "K") { dist = dist * 1.609344 }
-    // if (unit == "N") { dist = dist * 0.8684 }
-    // return dist
-  //   var R = 6371; // Radius of the earth in km
-  // var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
-  // var dLon = this.deg2rad(lon2-lon1); 
-  // var a = 
-  //   Math.sin(dLat/2) * Math.sin(dLat/2) +
-  //   Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-  //   Math.sin(dLon/2) * Math.sin(dLon/2)
-  //   ; 
-  // var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  // var d = R * c; // Distance in km
-  // return d;
- let km =  google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
-         let service =  new google.maps.DistanceMatrixService();
-          console.log(service);
-         service.getDistanceMatrix({
-           origins: ["bangalore"],
-            destinations: ["mangalore"],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.IMPERIAL,
-            avoidHighways: false,
-            avoidTolls: false
 
-         }, this.successCallBack);
-        
- console.log("km is:", km);
+  onInStoreInput(loc,storeId) {
+     
+    this._searchKey = loc;
+    let val = storeId;
+    if(val)
+      this._newFilteredList = this._filterList.filter(item => item.storeId === val);
+      if (this._newFilteredList.length > 0)
+        this.setMarker(this._newFilteredList[0]);  
+    
+  }
+
+  onCancel(event){
+
+    
+     let latLng = new google.maps.LatLng(this._myCurrentLocation.lat, this._myCurrentLocation.lng);
+     this.map.panTo(latLng,30);
+     this.map.setZoom(12);
+    
+  }
+
+  onClear(){
+    
+     let latLng = new google.maps.LatLng(this._myCurrentLocation.lat, this._myCurrentLocation.lng);
+     this.map.panTo(latLng,30);
+     this.map.setZoom(12);
+  }
+
+    setMarker(data){
+
+      let marker = new google.maps.Marker();
+      var latLng = new google.maps.LatLng(data.latitude, data.longitude);
+        this.map.panTo(latLng,30);
+        this.map.setZoom(14);
+  }
+  //1.6092 exact value for converting miles to kilometeres
+
+ 
+  getAllStores(lat, lng, limit) {
+  
+    this.storeLocatorProvider.getAllStoreLocation(lat,lng, limit)
+
+        .subscribe(res=>{
+
+              this.locationList  = res.storesWithDistance;
+              this.updatedLocationList = this.locationList.filter(data=>data.latitude!=0 && data.longitude!=0);
+              this._filterList = this.updatedLocationList;
+              this.addMarkers(this.map, this.updatedLocationList);
+              this.loadFavList(this.updatedLocationList);
+          
+              if (this.instoreData)
+                this.onInStoreInput(this.instoreData, this.storeId);
+              
+              if(this.navToId && this.navToId!=null && this.navToId!=undefined)
+               this.onInStoreInput('', this.navToId);
+      }, err => {
+        this.exceptionProvider.excpHandler(err);
+        });
+
+  }
+
+ gotoStoreDirection(loc) {
+    
+    this.launchNavigator.navigate([loc.latitude, loc.longitude])
+      .then(
+         success => console.log('Launched navigator'),
+         error => console.log('Error launching navigator', error));    
+ 
+  }  
+
+
+ gotoStoreDirection2(lat, lng) {
+    
+  this.launchNavigator.navigate([lat, lng])
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error));    
+
+ }    
+
+ hideKeyboard(ev) {
+
+   if (ev.keyCode == 13)
+     this.keyboard.close();
+
 }
+  
 
-deg2rad(deg) {
-  return deg * (Math.PI/180)
-}
-
-successCallBack(res){
-  console.log(res);
 
 }
-
-//1.6092 exact value for converting miles to kilometeres
-}
-
-
