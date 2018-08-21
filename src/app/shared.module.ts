@@ -4,8 +4,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { MymodalComponent } from '../components/mymodal/mymodal';
 import { HeaderComponent } from '../components/header/header';
 import { ChunkPipe } from '../pipes/chunk/chunk';
-import { TruncatePipe } from '../pipes/truncate/truncate';
-import { FilterPipe } from '../pipes/filter/filter';
 import { SortPipe } from '../pipes/sort/sort';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
@@ -30,14 +28,12 @@ import { PushProvider } from '../providers/push/push';
     IonicPageModule.forChild(ChunkPipe),
     IonicPageModule.forChild(SortPipe),
     IonicPageModule.forChild(SafehtmlPipe),
-    IonicPageModule.forChild(TruncatePipe),
-    IonicPageModule.forChild(FilterPipe),
     IonicImageViewerModule,
 
    
   ],
-  declarations: [TabsPage,MymodalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe,TruncatePipe,FilterPipe],
-  exports: [TabsPage, MymodalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule,TruncatePipe,FilterPipe],
+  declarations: [TabsPage,MymodalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe],
+  exports: [TabsPage, MymodalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule],
   providers:[HapenningsProvider,ExceptionHandlerProvider,NetworkProvider,LoaderProvider,AlertProvider,PushProvider]
 })
 

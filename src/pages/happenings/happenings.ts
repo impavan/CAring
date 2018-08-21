@@ -20,6 +20,9 @@ export class HappeningsPage {
   happenList: any = [];
   routeLink: any = '';
   navToId: any;
+  happeningsSegment:any = 'happenings';
+  storeActivityList: any = [];
+ 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -30,6 +33,7 @@ export class HappeningsPage {
                       
                   this.routeLink = navParams.get('routeData');
                   this.navToId = navParams.get('id');
+                
     
     
     
@@ -40,8 +44,45 @@ export class HappeningsPage {
     if (this.happenList.length <= 0) {
       this.getHappenings();
     }
+    if (this.storeActivityList.length <= 0) {
+      this.getInStoreActivities();
+    }
     
   }
+
+  getInStoreActivities() {
+
+    this.hapenningsProvider.getInStoreActivities().subscribe(res => {
+      this.storeActivityList = res.data.filter(store => {
+        if (store.publishingstartdate && store.publishingenddate) {
+
+          let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
+          let peDate =  moment(store.publishingenddate).format('YYYY-MM-DD');
+          let psMoment = moment(psDate);
+          let peMoment =  moment(peDate)
+          let currenMoment  =  moment().format('YYYY-MM-DD');
+
+        if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+          return store;
+        }
+      } else {
+        return store;
+      }
+      // return store
+    });
+      if (this.navToId) {
+        let item = this.storeActivityList.filter(d => d.deeplinkingidentifier == this.navToId);
+        if (item.length > 0) {
+          this.gotoInstoredetailsPage(item[0]);
+        }
+      }
+    
+  }, err => {
+
+    this.exceptionProvider.excpHandler(err);
+
+  });
+}
 
   getHappenings() {
 
@@ -69,9 +110,9 @@ export class HappeningsPage {
       });
       
       if (this.navToId) {
-        let item = this.happenList.find(d => d.deeplinkingidentifier == this.navToId)
-        if (item) {
-          this.gotoHappenDetail(item);
+        let item = this.happenList.filter(d => d.deeplinkingidentifier == this.navToId)
+        if (item.length > 0) {
+          this.gotoHappenDetail(item[0]);
         }
       }
     
@@ -92,5 +133,9 @@ export class HappeningsPage {
 
     this.navCtrl.push('HappenDetailsPage', { happendata: value });
 
+  }
+
+  gotoInstoredetailsPage(data) {
+    this.navCtrl.push('InstoredetailsPage', { instoredata: data });
   }
 }

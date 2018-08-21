@@ -46,26 +46,27 @@ $cp-medium-blue-color-x:#3a7dcc;
 //     font-weight: normal;
 //     font-style: normal;
 // }
-
-@font-face {
-    font-family: 'allerbold';
-    src: url('../fonts/aller_bd-aller.eot');
-    src: url('../fonts/aller_bd-aller.eot?#iefix') format('embedded-opentype'); 
-    src: url('../fonts/aller_bd-aller.woff2') format('woff2'); 
-    src: url('../fonts/aller_bd-aller.woff') format('woff'); 
-    src: url('../fonts/aller_bd-aller.ttf') format('truetype'), 
-    url('../fonts/aller_bd-aller.svg#allerbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 // @font-face {
 //     font-family: 'FranklinGothic-Heavy';
 //     src: url('../assets/fonts/FranklinGothic-Heavy.eot') format('embedded-opentype');
 //     font-weight: normal;
 //     font-style: normal;
 //   }
+@font-face {
+    font-family: 'AvenirNextLTW01RegularRegular';
+    src: url('../assets/fonts/AvenirNextLTW01RegularRegular.eot');
+    src: url('../assets/fonts/AvenirNextLTW01RegularRegular.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/AvenirNextLTW01RegularRegular.woff2') format('woff2'),
+        url('../assets/fonts/AvenirNextLTW01RegularRegular.woff') format('woff'),
+        url('../assets/fonts/AvenirNextLTW01RegularRegular.ttf') format('truetype'),
+        url('../assets/fonts/AvenirNextLTW01RegularRegular.svg#AvenirNextLTW01RegularRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 ion-app.ios, ion-app.md {
-    font-family: 'allerbold';
+    font-family: 'AvenirNextLTW01RegularRegular';
 }
 .mt10{
     margin-top: 10px !important;
@@ -77,7 +78,7 @@ ion-footer {
 }
 
 body {
-    font-family: 'allerbold';
+    font-family: 'AvenirNextLTW01RegularRegular';
 }
 
 h1,
@@ -86,7 +87,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'allerbold';
+    font-family: 'AvenirNextLTW01RegularRegular';
     color: rgba(0, 0, 0, 0.6);
 }
 

@@ -5,29 +5,44 @@
 <ion-content class="mainCont" #container>
     <div class="healthInfoContainer">
         <ion-grid>
-            <article class="pdadj">
-                <ion-row class="headerwithline">
-                    <ion-col col-5>
-                        <h3><label>Health<br /> Information</label></h3>
-                    </ion-col>
-                    <ion-col col-7>
-                        <a (click)="navToHealthSubscribe()"><img src="assets/img/healthInformation.png" alt=""></a>
-                    </ion-col>
-                </ion-row>
-            </article>
+            
+            <ion-row class="headerwithline">
+                <ion-col col-5>
+                    <h3><label>Health<br /> Information</label></h3>
+                </ion-col>
+                <ion-col col-7>
+                    <a (click)="navToHealthSubscribe()"><img src="assets/img/healthInformation.png" alt=""></a>
+                </ion-col>
+            </ion-row>
+            
+            <!-- <div *ngFor="let healthy of _healthInfoList | chunk:2">
+                <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="navToHealthDetails(health)">
+                    <div class="left">
+                        <figure>
+                            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="health?.thumbnailimage" [scrollObservable]="container.ionScroll" />
+                        </figure>
+                    </div>
+                    <div class="right">
+                        <label>{{health?.title}}</label>
+                        <span [innerHTML]="health?.subtitle"></span>
+                        <button ion-button>{{health?.buttonname}}</button>
+                    </div>
+                </div>
+            </div> -->
             <div *ngFor="let healthy of _healthInfoList | chunk:2">
-            <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="navToHealthDetails(health)">
-                <div class="left">
-                    <figure>
-                        <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="health?.thumbnailimage" [scrollObservable]="container.ionScroll" />
-                    </figure>
+                <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="navToHealthDetails(health)">
+                    <ion-row>
+                        <ion-col col-8>
+                            <h5>{{health?.title}}</h5>
+                            <p [innerHTML]="health?.subtitle"></p>
+                        </ion-col>
+                        <ion-col col-4>
+                            <figure>
+                                <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="health?.thumbnailimage" [scrollObservable]="container.ionScroll" />
+                            </figure>
+                        </ion-col>
+                    </ion-row>
                 </div>
-                <div class="right">
-                    <label>{{health?.title}}</label>
-                    <span [innerHTML]="health?.subtitle"></span>
-                    <button ion-button>{{health?.buttonname}}</button>
-                </div>
-            </div>
             </div>
         </ion-grid>
     </div>
