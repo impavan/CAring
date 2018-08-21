@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Badge } from '@ionic-native/badge';
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -19,6 +21,7 @@ import { LoaderProvider } from '../providers/loader/loader';
 
 declare var webengage;
 
+>>>>>>> 8fd5db071b4c084bbe49021a667ae905c66b5d0c
 @Component({
   templateUrl: 'app.html'
 })
