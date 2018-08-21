@@ -5,12 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Badge } from '@ionic-native/badge';
 
-<<<<<<< HEAD
-=======
-
-
-
-
 // Import Providers.
 import { ApiProvider } from '../providers/api/api';
 import { AuthProvider } from '../providers/auth/auth';
@@ -21,7 +15,6 @@ import { LoaderProvider } from '../providers/loader/loader';
 
 declare var webengage;
 
->>>>>>> 8fd5db071b4c084bbe49021a667ae905c66b5d0c
 @Component({
   templateUrl: 'app.html'
 })
@@ -54,7 +47,7 @@ export class MyApp {
     
       { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
       { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
-       { title: 'Vouch', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+       { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
       { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
       { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
