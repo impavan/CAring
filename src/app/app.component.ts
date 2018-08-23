@@ -180,15 +180,16 @@ export class MyApp {
     }
 
     webengage.push.onClick((deeplink, customData) => {
+      this.badge.increase(1);
 
       this.pushProvider.getDeepLinkPath(deeplink).then((navdata) => {
         console.log(navdata,":::::::::::::navdata::::::::::::::");
           this.nav.setRoot(navdata['page'],{deeplink:navdata['route'], id:navdata['value']});
       })
-        
+      
   });
     webengage.engage();
-    this.badge.increase(1);
+    // this.badge.increase(1);
     console.log(this.badge,":::::::::::badgeapp::::::::::")
  
   }

@@ -135,7 +135,17 @@ page-happenings {
                 }
             } 
         }
-
+        .pharmServDetails{
+            position: relative;
+            p{
+                margin: 5px 0 7px 0;
+            }
+            .btn3{
+                position: absolute;
+                bottom: 8px;
+                padding: 8px !important;
+            }
+        }
     }
     .pdadj {
         padding: 0 15px 0px 10px;

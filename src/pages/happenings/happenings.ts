@@ -22,6 +22,8 @@ export class HappeningsPage {
   navToId: any;
   happeningsSegment:any = 'happenings';
   storeActivityList: any = [];
+  pharmacistServiceList :any =[];
+  // storeExpired: boolean = false;
  
 
   constructor(public navCtrl: NavController,
@@ -29,14 +31,12 @@ export class HappeningsPage {
               public apiProvider:ApiProvider,
               private hapenningsProvider: HapenningsProvider,
               private exceptionProvider:ExceptionHandlerProvider) {
-    
-                      
+                    
                   this.routeLink = navParams.get('routeData');
                   this.navToId = navParams.get('id');
+                  console.log(this.navToId,"navtoid")
                 
-    
-    
-    
+
   }
 
   ionViewWillEnter() {
@@ -47,12 +47,47 @@ export class HappeningsPage {
     if (this.storeActivityList.length <= 0) {
       this.getInStoreActivities();
     }
-    
+    if (this.pharmacistServiceList.length <= 0) {
+      this.getpharmacistService();
+    }
+  }
+
+  getpharmacistService(){
+    this.hapenningsProvider.getpharmacistService().subscribe(res => {
+      console.log(res,"pharmacist data")
+      this.pharmacistServiceList = res.data.filter(store => {
+        // if (store.publishingstartdate && store.publishingenddate) {
+
+        //   let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
+        //   let peDate =  moment(store.publishingenddate).format('YYYY-MM-DD');
+        //   let psMoment = moment(psDate);
+        //   let peMoment =  moment(peDate)
+        //   let currenMoment  =  moment().format('YYYY-MM-DD');
+
+        // if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+        //   console.log("after22 store")
+        //   return store;
+        // }
+      // }
+      //  else {
+        return store;
+      // }
+      });
+      if (this.navToId) {
+        let item = this.pharmacistServiceList.filter(d => d.deeplinkingidentifier == this.navToId);
+        if (item.length > 0) {
+          this.gotoPharmacistDetail(item[0]);
+        }
+      }
+    }, err => {
+      this.exceptionProvider.excpHandler(err);
+    });
   }
 
   getInStoreActivities() {
 
     this.hapenningsProvider.getInStoreActivities().subscribe(res => {
+      console.log(res,"storeee")
       this.storeActivityList = res.data.filter(store => {
         if (store.publishingstartdate && store.publishingenddate) {
 
@@ -63,12 +98,14 @@ export class HappeningsPage {
           let currenMoment  =  moment().format('YYYY-MM-DD');
 
         if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+          // this.storeExpired = false;
           return store;
         }
       } else {
         return store;
       }
-      // return store
+      // this.storeExpired = true;
+       //return store
     });
       if (this.navToId) {
         let item = this.storeActivityList.filter(d => d.deeplinkingidentifier == this.navToId);
@@ -76,11 +113,8 @@ export class HappeningsPage {
           this.gotoInstoredetailsPage(item[0]);
         }
       }
-    
   }, err => {
-
     this.exceptionProvider.excpHandler(err);
-
   });
 }
 
@@ -129,13 +163,20 @@ export class HappeningsPage {
     
   }
 
-  gotoHappenDetail(value) {
+  gotoPharmacistDetail(value){
+    console.log(value,"pharmacist")
+    this.navCtrl.push('PharmacistDetailPage', { pharmacistdata : value})
 
+  }
+
+  gotoHappenDetail(value) {
+    console.log(value,"happendata")
     this.navCtrl.push('HappenDetailsPage', { happendata: value });
 
   }
 
   gotoInstoredetailsPage(data) {
+    console.log(data,"instoredata")
     this.navCtrl.push('InstoredetailsPage', { instoredata: data });
   }
 }

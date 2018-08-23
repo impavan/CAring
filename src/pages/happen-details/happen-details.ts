@@ -14,6 +14,7 @@ export class HappenDetailsPage {
   constructor( public navParams: NavParams,public navCtrl:NavController) {
 
     this._happenList = navParams.get('happendata');
+    console.log(this._happenList,"happenList")
     
   }
 

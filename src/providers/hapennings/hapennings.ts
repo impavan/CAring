@@ -10,7 +10,7 @@ import 'rxjs/add/operator/finally';
 //All providers goes here
 
 import { STTARTER_BASE_URL } from '../../config';
-import { HAPPENINGS, HOME_BANNER, INSTORE, PROMOTIONS, HEALTH_INFO, FAQ } from '../../url';
+import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ } from '../../url';
 import { LoaderProvider } from '../loader/loader';
 
 @Injectable()
@@ -53,6 +53,16 @@ getHomeBanner(){
     this.loader.presentLoadingCustom();
     return this.http.get(STTARTER_BASE_URL + INSTORE + this.lang, this.contentType)
       .map((res: Response) => res)
+      .do((res: Response) => res.json())
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(()=>this.loader.dismissLoader())
+  }
+
+  public getpharmacistService(){
+    this.loader.presentLoadingCustom();
+    return this.http.get(STTARTER_BASE_URL + PHARMACIST + this.lang, this.contentType)
+    .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))

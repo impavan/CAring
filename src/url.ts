@@ -5,6 +5,8 @@
 
  export const INSTORE = 'instoreactivities?orderby_dsc=createdAt&lang=';
 
+ export const PHARMACIST = 'pharmacistservices?order_bydsc=createdAt&lang';
+
  export const PROMOTIONS = 'promotions?orderby_dsc=createdAt&lang=';
 
  export const HEALTH_INFO = 'healthinfo?orderby_dsc=createdAt&lang=';

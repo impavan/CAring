@@ -1,0 +1,43 @@
+<div>
+    <header></header>
+</div>
+
+<ion-content class="mainCont" padding>
+    <div class="inpharmacistListsContainer">
+        <figure>
+            <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="pharmacistList?.bannerimage" (click)="zoomArea(pharmacistList?.bannerimage)"/>
+        </figure>
+        <div class="content">
+            <h5 text-center>{{pharmacistList?.title}}</h5>
+            <h6 text-center>{{pharmacistList?.subtitle}}</h6>
+            <p [innerHTML]="pharmacistList?.description | safehtml"></p>
+
+            <div *ngIf="_locationList.length >= 1">
+            <ion-row>
+                <!-- <ion-col col-6>
+                    <h6 class="subHeader">Date/Time</h6>
+                </ion-col> -->
+                <ion-col col-6>
+                    <h6 class="subHeader">Location/Outlet</h6>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let loc of _locationList">
+                <!-- <ion-col col-6>
+                    <p *ngIf="loc?.date" class="datetime"> <label for="">{{loc?.date | date:'dd MMM yyyy'}}</label></p>
+                     <p *ngIf="loc?.time" class="datetime"><span>{{loc?.time}}</span></p>
+                </ion-col> -->
+                <ion-col col-6>
+                    <a (click)="gotoLocationPage(loc?.storename, loc?.storeid)"><span class="location">{{loc?.storename}}</span></a>
+                </ion-col>
+            </ion-row>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>
