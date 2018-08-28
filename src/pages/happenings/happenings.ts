@@ -8,6 +8,7 @@ import moment from 'moment';
 //All providers goes here
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { ApiProvider } from '../../providers/api/api';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 
 @IonicPage()
@@ -30,7 +31,8 @@ export class HappeningsPage {
               public navParams: NavParams,
               public apiProvider:ApiProvider,
               private hapenningsProvider: HapenningsProvider,
-              private exceptionProvider:ExceptionHandlerProvider) {
+              private exceptionProvider:ExceptionHandlerProvider,
+              private loader:LoaderProvider) {
                     
                   this.routeLink = navParams.get('routeData');
                   this.navToId = navParams.get('id');
@@ -39,7 +41,7 @@ export class HappeningsPage {
 
   }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     
     if (this.happenList.length <= 0) {
       this.getHappenings();
@@ -47,9 +49,11 @@ export class HappeningsPage {
     if (this.storeActivityList.length <= 0) {
       this.getInStoreActivities();
     }
-    if (this.pharmacistServiceList.length <= 0) {
-      this.getpharmacistService();
-    }
+
+      if (this.pharmacistServiceList.length <= 0) {
+        this.getpharmacistService();
+      }
+   
   }
 
   getpharmacistService(){
@@ -119,8 +123,11 @@ export class HappeningsPage {
 }
 
   getHappenings() {
-
+    
+    // this.loader.presentLoadingCustomDup();
     this.hapenningsProvider.getHappenings().subscribe(res => {
+    // this.loader.dismissLoader();
+      console.log("happenings")
 
       this.happenList = res.data.filter(r => {
 

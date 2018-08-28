@@ -50,23 +50,23 @@ getHomeBanner(){
 
   //Get all Instore Activities
   public getInStoreActivities() {
-    this.loader.presentLoadingCustom();
+    //  this.loader.presentLoadingCustom();
     return this.http.get(STTARTER_BASE_URL + INSTORE + this.lang, this.contentType)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))
-      .finally(()=>this.loader.dismissLoader())
+      // .finally(()=>this.loader.dismissLoader())
   }
 
   public getpharmacistService(){
-    this.loader.presentLoadingCustom();
+    //  this.loader.presentLoadingCustom();
     return this.http.get(STTARTER_BASE_URL + PHARMACIST + this.lang, this.contentType)
     .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))
-      .finally(()=>this.loader.dismissLoader())
+      //  .finally(()=>this.loader.dismissLoader())
   }
 
   //Get all promotions
