@@ -194,7 +194,7 @@
 
       
                         <div *ngFor="let promo of _promotions">
-                            <article  (click)="gotoPromotionVoucherDetails(promo)" style="background: none;">
+                            <article  (click)="gotoPromotionVoucherDetails(promo)" class="couponsOut" style="background: none;">
                                 <ion-card>
                                     <ion-grid style="padding-bottom:5px;">
                                         <ion-row class="first">
@@ -218,7 +218,7 @@
                                                                     </ion-col>
                                                                 </ion-row>
                                                                 <p [innerHTML]="promo?.subtitle | safehtml" style="margin-top: -6px;"></p>
-                                                                <p class="date">{{ promo?.publishingstartdate | date:"dd/MM/yyyy" }} - {{ promo?.publishingenddate | date:"dd/MM/yyyy" }}</p>
+                                                                <p class="date">Validity: {{ promo?.publishingstartdate | date:"dd/MM/yyyy" }} - {{ promo?.publishingenddate | date:"dd/MM/yyyy" }}</p>
                                                             </ion-col>
                                                         </ion-row>
                                                     </ion-grid>

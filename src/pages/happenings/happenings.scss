@@ -132,6 +132,10 @@ page-happenings {
                     opacity: 1;
                     background: #068052;
                     color: #fff;
+                    border-right: 1px solid #5e9e86;
+                    &:last-child{
+                        border-right:none;
+                    }
                 }
             } 
         }
