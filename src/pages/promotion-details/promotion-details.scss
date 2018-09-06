@@ -36,7 +36,12 @@ page-promotion-details {
                 margin: 0 0 0 12px;
                 padding: 0;
                 li {
-                    color: $cp-extra-darker-grey
+                    color: $cp-extra-darker-grey;
+                }
+            }
+            ul{
+                li{
+                    margin-bottom: 15px;
                 }
             }
         }
