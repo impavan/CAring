@@ -24,12 +24,12 @@ export class RewardsProvider {
 
   // returns list of experiences or vouchers
   fetchAllExperiences() {
-    this.loader.presentLoadingCustom();
+    //this.loader.presentLoadingCustom();
     return this.http.get(this.apiProvider.BASE_URL + EXPERIENCES + this.apiProvider.BRAND_ID, { headers: this.authProvider.getHeader() })
       .do((res: Response) => res)
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))
-      .finally(()=>this.loader.dismissLoader())
+    //  .finally(()=>this.loader.dismissLoader())
   }
 
   //redeem a voucher
@@ -59,6 +59,16 @@ export class RewardsProvider {
       .catch((err: Error) => Observable.throw(err))
       .finally(()=>this.loader.dismissLoader())
   }
+
+  fetchAllExperiencesWith() {
+    this.loader.presentLoadingCustom();
+    return this.http.get(this.apiProvider.BASE_URL + EXPERIENCES + this.apiProvider.BRAND_ID, { headers: this.authProvider.getHeader() })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(()=>this.loader.dismissLoader())
+  }
+
 
 
   claimMyVoucher(voucher_code) {

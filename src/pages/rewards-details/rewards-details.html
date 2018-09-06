@@ -26,10 +26,10 @@
                             </ion-col>
                         </ion-row>
                         <ion-row *ngIf="offerdata?.BrandPointRedeemValue < _currentPoint">
-                            <ion-col col-9>
+                            <ion-col col-10>
                                 <p class="alert">Point Balance after Redemption :</p>
                             </ion-col>
-                            <ion-col col-3 class="text-right">
+                            <ion-col col-2 class="text-right">
                                 <p class="alert" *ngIf="remainder >= 0">{{remainder}}</p>
                                 <p class="alert" *ngIf="remainder < 0">0</p>
                             </ion-col>

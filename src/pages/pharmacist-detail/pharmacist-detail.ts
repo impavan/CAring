@@ -21,6 +21,8 @@ export class PharmacistDetailPage {
 
     this.pharmacistList = navParams.get('pharmacistdata');
     console.log(this.pharmacistList,"phramacist data")
+      
+    //this._locationList = this.pharmacistList.storesassociated ? this.pharmacistList.storesassociated : [];
     this._locationList = this.pharmacistList.storeeventtimings ? this.pharmacistList.storeeventtimings : [];
   }
 
@@ -28,9 +30,9 @@ export class PharmacistDetailPage {
     console.log('ionViewDidLoad PharmacistDetailPage');
   }
 
-  gotoLocationPage(storename,storeId) {
+  gotoLocationPage(storename) {
 
-    this.navCtrl.push('StoreLocatorPage', { instore: storename,storeId: storeId});
+    this.navCtrl.push('StoreLocatorPage', { instore: storename});
     
   }
   zoomArea(url) {

@@ -3,7 +3,7 @@ import { Nav, Platform,Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { Badge } from '@ionic-native/badge';
+// import { Badge } from '@ionic-native/badge';
 
 // Import Providers.
 import { ApiProvider } from '../providers/api/api';
@@ -38,8 +38,9 @@ export class MyApp {
     public loaderProvider:LoaderProvider,
     public pushProvider: PushProvider,
     public apiProvider:ApiProvider,
-    public networkprovider: NetworkProvider,
-    public badge: Badge) {
+    public networkprovider: NetworkProvider
+    // public badge: Badge
+  ){
 
     this.initializeApp();
     // used for an example of ngFor and navigation
@@ -180,7 +181,7 @@ export class MyApp {
     }
 
     webengage.push.onClick((deeplink, customData) => {
-      this.badge.increase(1);
+      // this.badge.increase(1);
 
       this.pushProvider.getDeepLinkPath(deeplink).then((navdata) => {
         console.log(navdata,":::::::::::::navdata::::::::::::::");
@@ -190,7 +191,7 @@ export class MyApp {
   });
     webengage.engage();
     // this.badge.increase(1);
-    console.log(this.badge,":::::::::::badgeapp::::::::::")
+    // console.log(this.badge,":::::::::::badgeapp::::::::::")
  
   }
 }

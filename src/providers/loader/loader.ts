@@ -30,6 +30,17 @@ export class LoaderProvider {
     this.loading.present();
   }
 
+  presentLoadingCustomDup() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: `<div class="custom-spinner-container">
+        <div class="custom-spinner-box"></div>
+      </div>`,
+      duration: 400,
+    });
+    this.loading.present();
+  }
+
   //dismiss loader 
   dismissLoader() {
     if (this.loading) {

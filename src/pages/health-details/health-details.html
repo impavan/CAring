@@ -5,7 +5,7 @@
 <ion-content class="mainCont">
     <div class="healthDetailsContainer">
         <figure *ngIf="healthData?.bannerimage">
-            <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="healthData?.bannerimage" (click)="zoomArea(healthData?.bannerimage)">
+            <img  [src]="healthData?.bannerimage" (click)="zoomArea(healthData?.bannerimage)">
         </figure>
         <div class="content">
             <h4>{{healthData?.title}}

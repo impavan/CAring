@@ -56,7 +56,8 @@ export class StoreLocatorPage {
               private exceptionProvider: ExceptionHandlerProvider) {
     
             this.instoreData = navParams.get('instore') || '';
-            this.storeId = navParams.get('storeId');
+
+            console.log(this.instoreData,"this.instoreData");
             this.navToId = navParams.get('id') || '';
             
     
@@ -110,6 +111,7 @@ export class StoreLocatorPage {
 
 
   loadMap() {
+    console.log("loading map....")
 
 
     this.platform.ready().then((readySource) => {
@@ -291,12 +293,13 @@ export class StoreLocatorPage {
   }
 
 
-  onInStoreInput(loc,storeId) {
+  onInStoreInput(loc) {
+
      
     this._searchKey = loc;
-    let val = storeId;
+    let val = loc;
     if(val)
-      this._newFilteredList = this._filterList.filter(item => item.storeId === val);
+      this._newFilteredList = this._filterList.filter(item => item.storeName.toLowerCase() === val.toLowerCase());
       if (this._newFilteredList.length > 0)
         this.setMarker(this._newFilteredList[0]);  
     
@@ -341,10 +344,10 @@ export class StoreLocatorPage {
               this.loadFavList(this.updatedLocationList);
           
               if (this.instoreData)
-                this.onInStoreInput(this.instoreData, this.storeId);
+                this.onInStoreInput(this.instoreData);
               
-              if(this.navToId && this.navToId!=null && this.navToId!=undefined)
-               this.onInStoreInput('', this.navToId);
+               if(this.navToId && this.navToId!=null && this.navToId!=undefined)
+               this.onInStoreInput(this.navToId);
       }, err => {
         this.exceptionProvider.excpHandler(err);
         });

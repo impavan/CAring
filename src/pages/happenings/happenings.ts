@@ -109,7 +109,6 @@ export class HappeningsPage {
         return store;
       }
       // this.storeExpired = true;
-       //return store
     });
       if (this.navToId) {
         let item = this.storeActivityList.filter(d => d.deeplinkingidentifier == this.navToId);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController} from 'ionic-angular';
-import { Badge } from '@ionic-native/badge';
+// import { Badge } from '@ionic-native/badge';
 
 /**
  * Generated class for the HeaderComponent component.
@@ -16,7 +16,7 @@ export class HeaderComponent {
 
   text: string;
 
-  constructor(public navCtrl:NavController,public badge: Badge) {
+  constructor(public navCtrl:NavController) {
     this.text = 'Hello World';
   }
 

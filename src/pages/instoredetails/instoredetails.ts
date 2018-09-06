@@ -15,6 +15,8 @@ export class InstoredetailsPage {
 
   storeDetail: any = [];
   _locationList: any = [];
+  eventDate: any = [];
+  eventTime: any = [];
 
 
   constructor(public navCtrl: NavController,
@@ -22,6 +24,10 @@ export class InstoredetailsPage {
               private launchNavigator: LaunchNavigator) {
     
     this.storeDetail = navParams.get('instoredata');
+  
+    //this.eventDate =  this.storeDetail.eventdate ? this.storeDetail.eventdate : [];
+    //this.eventTime =  this.storeDetail.eventtime ? this.storeDetail.eventtime : [];
+    //this._locationList = this.storeDetail.storesassociated ? this.storeDetail.storesassociated : [];
     this._locationList = this.storeDetail.storeeventtimings ? this.storeDetail.storeeventtimings : [];
   }
 
@@ -36,9 +42,11 @@ export class InstoredetailsPage {
   }
 
 
-  gotoLocationPage(storename,storeId) {
+  gotoLocationPage(storename) {
 
-    this.navCtrl.push('StoreLocatorPage', { instore: storename,storeId: storeId});
+    console.log(storename,"storenamestorenamestorename")
+
+    this.navCtrl.push('StoreLocatorPage', { instore: storename});
     
   }
 

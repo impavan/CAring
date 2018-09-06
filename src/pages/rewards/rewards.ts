@@ -55,7 +55,7 @@ export class RewardsPage {
                   this.fetchAllExperiences();
               } else if (this.from == 'newrewards') {
                 this.member = 'Redemption';
-                this.fetchAllExperiences();
+                this.fetchAllExperiencesWith();
               } else {
                 console.log('coming to else');
               }
@@ -84,41 +84,25 @@ export class RewardsPage {
   fetchAllExperiences() {
 
     this.offerdata = [];
-
-
     this.rewardsProvider.fetchAllExperiences().subscribe(data => {
-
-
       if (data[0].code == 200) {
-
-        this.isDataLoaded = true;
-        
+        this.isDataLoaded = true; 
         for (let res of data[0].response) {
-
           if (res.is_digital == 0)
             this.offerdata.push(res);
-        
         }
-
         if (this.offerdata && this.navToId && this.from =='newrewards') {
           let item = this.offerdata.find(d => d.ExperienceID == this.navToId);
           if (item) {
             this.navToRedeem(item);
           }
-          
         }
       } else {
-        
         this.alertProvider.presentToast(data[0].message);
-
       }  
-
     }, err => {
-
       this.exceptionProvider.excpHandler(err);
-
       });
-    
   }
 
   navToLogin() {
@@ -139,6 +123,31 @@ export class RewardsPage {
     this.auth?this.navCtrl.push("RewardsDetailsPage", { data: offerData }):this.rewardModal.open();
     
   }
+
+    //List all the experiences / offers
+    fetchAllExperiencesWith() {
+
+      this.offerdata = [];
+      this.rewardsProvider.fetchAllExperiencesWith().subscribe(data => {
+        if (data[0].code == 200) {
+          this.isDataLoaded = true; 
+          for (let res of data[0].response) {
+            if (res.is_digital == 0)
+              this.offerdata.push(res);
+          }
+          if (this.offerdata && this.navToId && this.from =='newrewards') {
+            let item = this.offerdata.find(d => d.ExperienceID == this.navToId);
+            if (item) {
+              this.navToRedeem(item);
+            }
+          }
+        } else {
+          this.alertProvider.presentToast(data[0].message);
+        }  
+      }, err => {
+        this.exceptionProvider.excpHandler(err);
+        });
+    }
 
 
   //my wallet all fuction goes here
