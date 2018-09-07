@@ -7,10 +7,10 @@
     <div class="mt30">
     <ion-toolbar>
         <ion-segment [(ngModel)]="member" color="secondary">
-                <ion-segment-button value="Rewards">
+                <ion-segment-button value="Rewards" (click)="getRedeemedVouchers()">
                         Rewards
                     </ion-segment-button>
-                    <ion-segment-button value="promotions" (click)="getPromotions()">
+                    <ion-segment-button value="promotions">
                         Coupon
                     </ion-segment-button>
                 <ion-segment-button value="Redemption" (click)="fetchAllExperiencesWith()">

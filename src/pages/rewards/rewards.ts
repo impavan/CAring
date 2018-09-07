@@ -24,7 +24,8 @@ export class RewardsPage {
   selectTab: any;
   offerdata: any = [];
   isDataLoaded: boolean = false;
-  member: any = "Rewards";
+  // member: any = "Rewards";
+  member :any = "promotions";
   memberDetails:any="New"
   redeemedRewards: any = [];
   _newRedeemedList: any = [];
@@ -48,12 +49,15 @@ export class RewardsPage {
     
                 
               this.selectTab = navParams.get('selectTab') || '';
+              console.log(this.selectTab,":::::::::::::::::::selectab:::::::::::::::::")
               this.from = navParams.get('deeplink');
               this.navToId = navParams.get('id');
               if (this.from == 'myrewards') {
                   this.member = 'Rewards';
+                  console.log("form rewards");
                   this.fetchAllExperiences();
               } else if (this.from == 'newrewards') {
+                console.log("form Redemption");
                 this.member = 'Redemption';
                 this.fetchAllExperiencesWith();
               } else {
@@ -62,7 +66,8 @@ export class RewardsPage {
     
               if (this.selectTab) {
                 this.member = this.selectTab;
-                this.fetchAllExperiences();
+                console.log(this.selectTab,":::::::::::::::::::pagwe:::::::::::::::::")
+                 this.fetchAllExperiences();
               }
               
   }
@@ -76,7 +81,9 @@ export class RewardsPage {
 
     if (this.auth) {
       this.authProvider.setHeader();
-        this.getRedeemedVouchers();
+      console.log(this.selectTab,":::::::::::::::::::coupon:::::::::::::::::")
+       // this.getRedeemedVouchers();
+       this.getPromotions();
     }
   }
 
@@ -152,14 +159,12 @@ export class RewardsPage {
 
   //my wallet all fuction goes here
 
-  loadMyWallet() {
+  // loadMyWallet() {
 
-    if (this.auth) {
-      this.getRedeemedVouchers();
-
-    }
-
-  }
+  //   if (this.auth) {
+  //     this.getRedeemedVouchers();
+  //   }
+  // }
 
    getRedeemedVouchers() {
 

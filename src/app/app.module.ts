@@ -13,20 +13,13 @@ import { Network } from '@ionic-native/network';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { Badge } from '@ionic-native/badge';
-
-
-
-
 
 // Import Providers.
 import { AuthProvider } from '../providers/auth/auth';
 import { UserdataProvider } from '../providers/userdata/userdata';
 import { ApiProvider } from '../providers/api/api';
 
-
 import { SharedModule } from './shared.module';
-
 
 
 @NgModule({
@@ -53,7 +46,7 @@ import { SharedModule } from './shared.module';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Diagnostic,
    ScreenOrientation, Network,
-    Deeplinks,Keyboard,Badge,AuthProvider,UserdataProvider,ApiProvider
+    Deeplinks,Keyboard,AuthProvider,UserdataProvider,ApiProvider
   ]
 })
 export class AppModule { }
