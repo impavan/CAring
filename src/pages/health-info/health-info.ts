@@ -22,6 +22,8 @@ export class HealthInfoPage {
               private exceptionProvider: ExceptionHandlerProvider) {
     
               this.navToId = navParams.get('id');
+              console.log(this.navToId,"this.navToId")
+            
     
   }
 
@@ -36,7 +38,7 @@ export class HealthInfoPage {
 
   navToHealthDetails(health) {
 
-    this.navCtrl.push("HealthDetailsPage", { data: health });
+    this.navCtrl.push("HealthDetailsPage", { id: health.deeplinkingidentifier });
     
   }
 

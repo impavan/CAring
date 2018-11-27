@@ -8,7 +8,9 @@ import { RewardsProvider } from '../../providers/rewards/rewards';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { AlertProvider } from '../../providers/alert/alert';
 
-@IonicPage()
+@IonicPage({
+  segment: 'rewards-details:/id'
+})
 @Component({
   selector: 'page-rewards-details',
   templateUrl: 'rewards-details.html',
@@ -24,16 +26,20 @@ export class RewardsDetailsPage {
   _currentPoint: any;
   remainder: any;
   flag: any;
+  // _id: string;
+
   constructor(private exceptionProvider: ExceptionHandlerProvider,
               private navCtrl: NavController,
               private navParams: NavParams,
               private authProvider: AuthProvider,
               private alertProvider: AlertProvider,
               private userdataProvider:UserdataProvider,
-              private rewardsProvider: RewardsProvider) {
+              private rewardsProvider: RewardsProvider
+              ) {
 
               this.offerdata = this.navParams.get('data');
               this._auth = localStorage.getItem('auth_token');
+              
   }
 
   ionViewWillEnter() {

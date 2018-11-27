@@ -81,7 +81,7 @@ export class RewardsPage {
 
     if (this.auth) {
       this.authProvider.setHeader();
-      console.log(this.selectTab,":::::::::::::::::::coupon:::::::::::::::::")
+      console.log(":::::::::::::::::::coupon:::::::::::::::::")
        // this.getRedeemedVouchers();
        this.getPromotions();
     }
@@ -167,59 +167,40 @@ export class RewardsPage {
   // }
 
    getRedeemedVouchers() {
-
+     if(this.auth){
 
     this.profileProvider.getAllRedeemedVouchers()
-
       .subscribe(res => {
-     
         this.redeemedRewards = res[0].customer_vouchers;
-
-
         this.isWalletLoaded = true;
-
         if (this.redeemedRewards && this.redeemedRewards.length > 0) {
 
           this.getNewRewardsList();
           this.getUsedRewardList();
           this.getExpiredList();
-
                 this._newRedeemedList = [];
-
                 for (let i = 0; i < this.redeemedRewards.length; i++) {
-
                         let exp = this.redeemedRewards[i].ExperienceId;
-
                         if (this._newRedeemedList[exp]) {
-
                             this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
                         }
                         else {
-
                             this._newRedeemedList[exp] = {};
-
                             this._newRedeemedList[exp]['Vouchers'] = [];
-
                             this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
                         }
-
                 }
-          
                 if (this._newRedeemedList && this.navToId && this.from == 'myrewards') {
 
                   if (this._newRedeemedList[this.navToId]['Vouchers'].length > 0)
                     this.goto('RedeemPage', this.navToId);
                 }
-
           }
       },
-
       err => {
-
-
             this.exceptionProvider.excpHandler(err);
-
           });
+        }
 
    }
   
@@ -301,6 +282,6 @@ export class RewardsPage {
   }
   
   gotoPromotionVoucherDetails(voucher) {
-    this.navCtrl.push("PromotionVoucherDetailsPage",{ voucherdata:voucher})
+    this.navCtrl.push("PromotionVoucherDetailsPage",{ id:voucher.deeplinkingidentifier,voucherdata:voucher})
   }
 }

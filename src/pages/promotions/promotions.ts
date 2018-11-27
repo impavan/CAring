@@ -23,6 +23,7 @@ export class PromotionsPage {
               private exceptionProvider: ExceptionHandlerProvider) {
     
             this.navToId = navParams.get('id');
+            console.log(this.navToId,":::::::::::::navtoid::::::::::::::");
     
   }
 
@@ -72,6 +73,6 @@ export class PromotionsPage {
 
 
   gotoPromotionDetails(value) {
-    this.navCtrl.push('PromotionDetailsPage', { promodetails: value });
+    this.navCtrl.push('PromotionDetailsPage', { id: value.deeplinkingidentifier, promodetails:value});
   }
 }

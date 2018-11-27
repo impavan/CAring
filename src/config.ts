@@ -18,7 +18,7 @@ export const BASE_URL = `http://52.89.20.38/v2/`;
 
 
 //sttarter url dev
-    // export const STTARTER_BASE_URL  = "http://dev.sttarter.com:9000/contentsystem/61b8b3ec861330a06e92d162f507d273/";
+    //  export const STTARTER_BASE_URL  = "http://dev.sttarter.com:9000/contentsystem/61b8b3ec861330a06e92d162f507d273/";
 
 //sttarter url Live
     export const STTARTER_BASE_URL = `https://api.sttarter.com/contentsystem/ce4517a7972cca14ab569ee1f09809ba/`;

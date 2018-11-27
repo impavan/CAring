@@ -10,11 +10,14 @@ import { AlertProvider } from '../alert/alert';
 export class LoaderProvider {
   public loading: any;
   public backPressed: any = false;
+  public alertShown: boolean = false;
   constructor(private loadingCtrl: LoadingController, 
               private platform: Platform, 
               private appCtrl: App, 
               private alertCtrl: AlertProvider,
               private alert:AlertController) {
+
+                this.presentBackOptions();
     
   }
 
@@ -50,13 +53,21 @@ export class LoaderProvider {
   }
 
   presentBackOptions() {
-    this.platform.registerBackButtonAction(() => {
-      let nav = this.appCtrl.getActiveNav();
-      if (nav.canGoBack()) { //Can we go back?
-        nav.pop();
-      } else {
+   
+    this.platform.ready().then(() => {
 
-        let exitalert  = this.alert.create({
+       this.platform.registerBackButtonAction(() => {
+        if(this.alertShown == false){
+
+         let nav = this.appCtrl.getActiveNavs()[0];
+         let active = nav.getActive();
+         if (nav.canGoBack()) { //Can we go back?
+           nav.pop();
+         }
+         else if (active.id == 'LoginPage' || active.id == 'HomePage' || active.id == 'RegistrationPage') {
+
+          console.log(this.alertShown,"alertshown start")
+          let exitalert = this.alert.create({
             title: 'Exit App?',
             enableBackdropDismiss: false,
             cssClass: '',
@@ -66,6 +77,7 @@ export class LoaderProvider {
               cssClass: '',
               handler: () => {
                 exitalert.dismiss();
+                this.alertShown = false;
               }
             }, {
               text: 'Ok',
@@ -77,9 +89,18 @@ export class LoaderProvider {
               }
             }]
           });
-          exitalert.present();
-      }
-    });
+          exitalert.present().then(()=> {
+            this.alertShown = true;
+          }) 
+         }
+         else {
+           nav.setRoot('HomePage');
+         }
+        }
+      })
+       
+     })
+
   }
 
 }

@@ -49,7 +49,7 @@ export class LoginPage {
   ionViewDidEnter() {
 
     this.menu.swipeEnable(false, "leftMenu");
-    this.loaderProvider.presentBackOptions();
+    //this.loaderProvider.presentBackOptions();
 
   }
 

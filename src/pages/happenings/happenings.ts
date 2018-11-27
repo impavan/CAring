@@ -151,6 +151,7 @@ export class HappeningsPage {
       
       if (this.navToId) {
         let item = this.happenList.filter(d => d.deeplinkingidentifier == this.navToId)
+        console.log(item,"::::::::;;;item in happenings:::::::::")
         if (item.length > 0) {
           this.gotoHappenDetail(item[0]);
         }
@@ -171,18 +172,19 @@ export class HappeningsPage {
 
   gotoPharmacistDetail(value){
     console.log(value,"pharmacist")
-    this.navCtrl.push('PharmacistDetailPage', { pharmacistdata : value})
+    // this.navCtrl.push('PharmacistDetailPage', { id: value._id })
+    this.navCtrl.push('PharmacistDetailPage', { id: value.deeplinkingidentifier,pharmacistdata:value })
 
   }
 
   gotoHappenDetail(value) {
-    console.log(value,"happendata")
-    this.navCtrl.push('HappenDetailsPage', { happendata: value });
+    console.log(value,"happendata in happemning")
+    this.navCtrl.push('HappenDetailsPage',  { id: value.deeplinkingidentifier, happendata: value });
 
   }
 
   gotoInstoredetailsPage(data) {
     console.log(data,"instoredata")
-    this.navCtrl.push('InstoredetailsPage', { instoredata: data });
+    this.navCtrl.push('InstoredetailsPage',  { id: data.deeplinkingidentifier ,instoredata:data });
   }
 }

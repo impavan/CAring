@@ -185,7 +185,11 @@
 
         </ion-list>
         <ion-list *ngSwitchCase="'promotions'">
-            <div class="rewardsContainer p0" no-padding>
+                <ion-card *ngIf="!auth" padding class="myPointsContainer sec">
+                        <ion-card-header>Login to view your coupons</ion-card-header>
+                        <button ion-button value="Redeem Vouchers" color="secondary" (click)="gotoLogin()">Login to continue</button>
+                    </ion-card>
+            <div *ngIf="auth" class="rewardsContainer p0" no-padding>
                 <div class="rewardsCards">
                     <!--<article class="title">
                 <h4>Rewards / Voucher</h4>

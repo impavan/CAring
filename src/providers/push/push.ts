@@ -37,8 +37,13 @@ export class PushProvider {
       { route: 'instoreactivity', component: 'InStorePage' },
       { route: 'pointssummary', component: 'MemberPage' },
       { route: 'myrewards', component: 'RewardsPage' },
-      { route: 'stores', component: 'StoreLocatorPage' }
-
+      { route: 'stores', component: 'StoreLocatorPage' },
+      { route: 'promotion-details', component: 'PromotionDetailsPage'},
+      { route: 'pharmacist-details', component: 'PharmacistDetailPage'},
+      { route: 'happen-details', component: 'HappenDetailsPage' },
+      { route: 'health-details', component: 'HealthDetailsPage' },
+      { route: 'instoredetails', component: 'InstoredetailsPage' },
+      { route: 'promotion-voucher-details', component:'PromotionVoucherDetailsPage'}
     ];
 
               }
@@ -90,13 +95,16 @@ export class PushProvider {
   //returns deep link path
 
   getDeepLinkPath(deeplink) {
-    
+    console.log(deeplink,"deeplink in push")
     return new Promise(resolve => {
+     
 
       if (deeplink.includes(':')) { 
           
             let deepArray = deeplink.split(':');
+            console.log("deeparray",deepArray)
             let page = this.deepRoute.filter(data => data.route == deepArray[0]);
+            console.log("page",page)
           
             let returndata = {
 
@@ -104,13 +112,15 @@ export class PushProvider {
                   route: page[0].route,
                   value: deepArray[1]
             };
-      
+            console.log(returndata,":::::::::::::::returndata")
             resolve(returndata);
 
         } 
       else {
         
         let page = this.deepRoute.filter(data => data.route == deeplink);
+        console.log(page,"page")
+       // let returndata = page;
         
           let returndata = {
             page: page[0].component,
@@ -123,6 +133,51 @@ export class PushProvider {
     })  
     
   }
+
+  // getDeepLinkPath(deeplink) {
+  //   console.log(deeplink,"deeplink in push")
+  //   let deeplink_data = deeplink.destination.substr(1);
+  //   return new Promise(resolve => {
+     
+
+  //     if (deeplink_data.includes(':')) { 
+          
+  //           let deepArray = deeplink_data.split(':');
+  //           console.log("deeparray",deepArray)
+  //           let page = this.deepRoute.filter(data => data.route == deepArray[0]);
+  //           console.log("page",page)
+          
+  //           let returndata = {
+
+  //                 page: page[0].component,
+  //                 route: page[0].route,
+  //                 value: deepArray[1],
+  //                 id:deeplink._id
+  //           };
+  //           console.log(returndata,":::::::::::::::returndata")
+  //           resolve(returndata);
+
+  //       } 
+  //     else {
+        
+  //       let page = this.deepRoute.filter(data => data.route == deeplink_data);
+  //       console.log(page,"page")
+  //      // let returndata = page;
+        
+  //         let returndata = {
+  //           page: page[0].component,
+  //           route: page[0].route,
+  //           value:'',
+  //           id:deeplink._id
+  //         }
+  //         resolve (returndata);
+  //     }
+      
+  //   })  
+    
+  // }
+
+
 
 
 

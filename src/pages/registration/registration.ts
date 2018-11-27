@@ -73,7 +73,7 @@ export class RegistrationPage {
   ionViewDidEnter() {
 
     this.menu.swipeEnable(false, "leftMenu");
-    this.loaderProvider.presentBackOptions();
+   // this.loaderProvider.presentBackOptions();
   }
 
 

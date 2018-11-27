@@ -70,6 +70,6 @@ export class InStorePage {
   }
 
   gotoInstoredetailsPage(data) {
-    this.navCtrl.push('InstoredetailsPage', { instoredata: data });
+    this.navCtrl.push('InstoredetailsPage', { id: data.deeplinkingidentifier, instoredata:data  });
   }
 }

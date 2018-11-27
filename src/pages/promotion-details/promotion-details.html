@@ -9,7 +9,7 @@
         
             <div>
                 <figure>
-            <img   [src]="_promotionDetails?.bannerimage" (click)="zoomArea(_promotionDetails?.bannerimage)"/>
+            <img   [src]="_promotionDetails?.bannerimage? _promotionDetails?.bannerimage:[] " (click)="zoomArea(_promotionDetails?.bannerimage)"/>
                 </figure>
             </div>
       

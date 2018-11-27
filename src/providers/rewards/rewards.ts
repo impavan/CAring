@@ -8,6 +8,7 @@ import { EN } from '../../config';
 import { PROMOTIONAL_VOUCHERS } from '../../url';
 import { LoaderProvider } from '../loader/loader';
 import { Observable } from 'rxjs/Observable';
+import moment from 'moment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -88,8 +89,19 @@ export class RewardsProvider {
   }
   
   getAllPromotions() {
+    let currentDate = moment().format('YYYY-MM-DD 00:00:00');
     this.loader.presentLoadingCustom();
-    return this.http.get(STTARTER_BASE_URL + PROMOTIONAL_VOUCHERS + 'en')
+    return this.http.get(STTARTER_BASE_URL + PROMOTIONAL_VOUCHERS + '&publishingstartdate=$lte:' + currentDate +  '&publishingenddate=$gte:' + currentDate, 'en')
+      .map((res: Response) => res)
+      .do((res: Response) => res.json())
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(()=>this.loader.dismissLoader())
+  }
+
+  getAllPromotionsById(id) {
+    this.loader.presentLoadingCustom();
+    return this.http.get(STTARTER_BASE_URL + PROMOTIONAL_VOUCHERS + 'en' + '&deeplinkingidentifier=$eq:'  + id)
       .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
