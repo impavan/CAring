@@ -10,7 +10,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 
-
+import * as _ from 'lodash';
 @IonicPage()
 @Component({
   selector: 'page-member',
@@ -20,8 +20,9 @@ export class MemberPage {
 
   @ViewChild('barcode') barcode: ElementRef;
   @ViewChild('name') nameTextBox;
+  @ViewChild('expiryPoints') expiryPointsModal;
 
- 
+
   from: any;
   member: any = "My Points";
   memberDetails: any = "New";
@@ -35,7 +36,7 @@ export class MemberPage {
   _pointOpen: boolean = false;
   _totalAvailablePoints: number;
   _totalRedeemedPoints: number;
-  _externalId:any;
+  _externalId: any;
   loadedProfile: boolean = false;
   redeemedRewards: any = [];
   _transactionList: any = [];
@@ -47,47 +48,48 @@ export class MemberPage {
   isWalletLoaded: boolean = false;
   isProfileLoaded: boolean = false;
   isCancel: boolean = false;
-
+  expirySchedule: any;
+  expiryPointsLatest: any
 
   constructor(
-              private events: Events,  
-              private navParams: NavParams,
-              private navCtrl: NavController,
-              private authProvider: AuthProvider,
-              private alertProvider: AlertProvider,
-              private userProvider: UserdataProvider,
-              private profileProvider: ProfileProvider,
-              private exceptionProvider: ExceptionHandlerProvider) {
-   
-              this.from = this.navParams.get('deeplink');
-              if (this.from == 'profile')
-                this.member = 'My Profile'; 
+    private events: Events,
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private authProvider: AuthProvider,
+    private alertProvider: AlertProvider,
+    private userProvider: UserdataProvider,
+    private profileProvider: ProfileProvider,
+    private exceptionProvider: ExceptionHandlerProvider) {
 
-    
+    this.from = this.navParams.get('deeplink');
+    if (this.from == 'profile')
+      this.member = 'My Profile';
+
+
 
   }
 
-  ionViewWillEnter(){
-     this._auth = localStorage.getItem('auth_token');
+  ionViewWillEnter() {
+    this._auth = localStorage.getItem('auth_token');
     if (this._auth) {
 
-          this.authProvider.setHeader();
-          this.loadMyPoints();
+      this.authProvider.setHeader();
+      this.loadMyPoints();
     }
-    this.events.publish('changeIcon',"MemberPage");
+    this.events.publish('changeIcon', "MemberPage");
 
-    
+
   }
 
 
- 
+
 
 
   loadMyProfile() {
 
-    if (this._auth) 
+    if (this._auth)
       this.getMyProfileDetails();
-    
+
   }
 
   loadMyPoints() {
@@ -139,6 +141,11 @@ export class MemberPage {
         localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
         this._totalAvailablePoints = this.authProvider.getMyCurrentPoints();
         this._totalRedeemedPoints = this.authProvider.getTotalRedeemedPoints();
+        var schedule = this.authProvider.getexpirySchedule();
+        console.log(schedule, "expirySchedule");
+        this.expirySchedule = _.sortBy(schedule, 'expiry_date');
+        this.expiryPointsLatest = this.expirySchedule[0].points
+        console.log(this.expirySchedule, "sortdata");
         this.loadedProfile = true;
         this.loadMyProfile();
 
@@ -150,10 +157,14 @@ export class MemberPage {
     });
   }
 
+  expiryScheduleModal() {
+    this.expiryPointsModal.open();
+  }
+
 
 
   getRedeemedVouchers() {
-    
+
 
     this.profileProvider.getAllRedeemedVouchers()
 
@@ -170,36 +181,36 @@ export class MemberPage {
           this.getUsedRewardList();
           this.getExpiredList();
 
-                this._newRedeemedList = [];
+          this._newRedeemedList = [];
 
-                for (let i = 0; i < this.redeemedRewards.length; i++) {
+          for (let i = 0; i < this.redeemedRewards.length; i++) {
 
-                        let exp = this.redeemedRewards[i].ExperienceId;
+            let exp = this.redeemedRewards[i].ExperienceId;
 
-                        if (this._newRedeemedList[exp]) {
+            if (this._newRedeemedList[exp]) {
 
-                            this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
-                        }
-                        else {
+              this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
+            }
+            else {
 
-                            this._newRedeemedList[exp] = {};
+              this._newRedeemedList[exp] = {};
 
-                            this._newRedeemedList[exp]['Vouchers'] = [];
+              this._newRedeemedList[exp]['Vouchers'] = [];
 
-                            this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
-                        }
-
-                }
+              this._newRedeemedList[exp]['Vouchers'].push(this.redeemedRewards[i]);
+            }
 
           }
+
+        }
       },
 
-      err => {
+        err => {
 
 
-            this.exceptionProvider.excpHandler(err);
+          this.exceptionProvider.excpHandler(err);
 
-          });
+        });
 
   }
 
@@ -210,7 +221,7 @@ export class MemberPage {
 
       .subscribe(data => {
 
-                  this._transactionList = data[0].customer_transaction_info;
+        this._transactionList = data[0].customer_transaction_info;
 
       }, err => {
         this.exceptionProvider.excpHandler(err);
@@ -222,7 +233,7 @@ export class MemberPage {
 
     if (this.authProvider.getAuthToken())
 
-        return true;
+      return true;
 
     return false;
 
@@ -254,21 +265,21 @@ export class MemberPage {
   }
 
 
-  
+
 
   getRedeemed(exp) {
-   
+
     return this._newReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate <= e.ExpiryDate).length;
 
   }
 
-   getUsedVouchersCount(exp) {
+  getUsedVouchersCount(exp) {
 
     return this._usedReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 1).length;
 
-   }
-  
-   getExpiredVoucherCount(exp) {
+  }
+
+  getExpiredVoucherCount(exp) {
     return this._expiredReward.filter(e => e.ExperienceId == exp && e.RedeemStatus == 0 && this.currentDate > e.ExpiryDate).length;
   }
 
@@ -281,32 +292,32 @@ export class MemberPage {
 
 
   getNewRewardsList() {
-    
-    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate <= data.ExpiryDate );
+
+    this._newReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate <= data.ExpiryDate);
 
   }
 
   getUsedRewardList() {
-    
+
     this._usedReward = this.redeemedRewards.filter(data => data.RedeemStatus == 1);
 
   }
 
   getExpiredList() {
-    
+
     this._expiredReward = this.redeemedRewards.filter(data => data.RedeemStatus == 0 && this.currentDate > data.ExpiryDate)
 
   }
 
   memberEdit() {
-  
-      this.navCtrl.push('EditProfilePage');
-    
-  }  
+
+    this.navCtrl.push('EditProfilePage');
+
+  }
 
 
 
-  gotoRewards(){
-    this.navCtrl.setRoot("RewardsPage",{selectTab:'Redemption'});
+  gotoRewards() {
+    this.navCtrl.setRoot("RewardsPage", { selectTab: 'Redemption' });
   }
 }

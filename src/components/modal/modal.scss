@@ -1,0 +1,53 @@
+modal {
+        .modalWidget {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0;
+            display: block;
+            .modalContentExpiryDates {
+                position: relative;
+                margin: auto;
+                padding: 20px 20px 110px 20px;
+                width: 70%;
+                top: 25%;
+                border-radius: 8px;
+                background: #f3f3f3 url(../assets/img/modal_bottom_pattern.png) no-repeat center bottom;
+                background-size: contain;
+                height: 300px;
+                min-height: 400px;
+                max-height: 400px;
+                overflow: auto;
+
+                .expiryDatesOut{
+                    .header{
+                        border-bottom:2px solid #ccc;
+                        padding: 0;
+                        margin: 0 0 15px 0; 
+                    }
+                    h6{
+                        color: #424242;
+                        font-weight: 600;
+                        text-align: center;
+                        margin: 0;
+                    }
+                    p{
+                        margin: 0;
+                        font-size: 15px;
+                        color: #1d1d1d;
+                        text-align: center;
+                    }
+                }
+                .btn2{
+                    margin-top: 22px;
+                }
+            }
+        }
+    }
+
+

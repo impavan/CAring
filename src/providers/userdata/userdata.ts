@@ -1,5 +1,5 @@
 import { LOGIN, OTP, REGISTRATION, UPDATE_PROFILE } from '../../url';
-import { BASE_URL, BRAND_ID } from '../../config';
+import { BASE_URL,BASE_URL1, BRAND_ID } from '../../config';
 import { Http, Response } from '@angular/http';
 import { ApiProvider } from '../api/api';
 import { AuthProvider } from '../auth/auth';
@@ -90,6 +90,18 @@ export class UserdataProvider {
             .catch((err: Error) => Observable.throw(err))
             .finally(()=>this.loader.dismissLoader())
     }
+
+      //   // http://experiences.capillarytech.com/api/mobileapi/customer/get?identifier_key=mobile&brand_identifier=caringlive&identifier_value=60142289544
+      //   getMyProfileCustomer() {
+      //     this.loader.presentLoadingCustom();
+      //     const GETCUSTOMER = "mobileapi/customer/get?identifier_key=mobile&brand_identifier=" + this.apiProvider.BRAND_ID + "&identifier_value=" +  localStorage.getItem('phone') ;
+      //    console.log(BASE_URL1,"BASE_URL1")
+      //     return this.http.get(BASE_URL1 + GETCUSTOMER, { headers: this.auth.getHeader()})
+      //         .do((res: Response) => res)
+      //         .map((res: Response) => res.json())
+      //         .catch((err: Error) => Observable.throw(err))
+      //         .finally(()=>this.loader.dismissLoader())
+      // }
 
 
   // update user details

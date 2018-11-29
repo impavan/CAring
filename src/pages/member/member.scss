@@ -203,6 +203,46 @@ page-member {
                     font-size: 20px;
                 }
             }
+            .pointsOut{
+                border: 1px solid #096F67;
+                padding: 10px;
+                border-radius: 5px;
+                width: 100%;
+                float: left;
+                .content{
+                    float: left;
+                    border-right: 1px solid #096F67;
+                    width: 50%;
+                    .subContent{
+                        padding: 10px;
+                        text-align: center;
+                        h4{
+                            font-size: 25px;
+                            color: #333;
+                            margin: 0;
+                            font-weight: 600;
+                        }
+                        h6{
+                            font-size: 15px;
+                            color: #4a4a4a;
+                            margin: 5px 0;  
+                            font-weight: 600;
+                        }
+                        button{
+                            background: #096F67;
+                            color: #fff;
+                            padding: 5px 15px; 
+                            text-transform: uppercase;
+                            text-align: center;
+                            font-size: 11px;
+                        }
+                    }
+                }
+                .content:last-child{
+                    border-right: none;
+                }
+            }
+            
         }
         .newContainer {
             .card-md,

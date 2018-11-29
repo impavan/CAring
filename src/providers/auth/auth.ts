@@ -337,17 +337,30 @@ export class AuthProvider {
 
   //returns current points of a user
   getMyCurrentPoints() {
+    console.log(this.userObj,"=======daat====")
     return this.userObj.customer[0].loyalty_points;
   }
 
   //set my current point
   setMyCurrentPoints(points) {
+  
     this.userObj.customer[0].loyalty_points = points;
   }
 
   //returns lifetime points
   getMyLifeTimePoints() {
+    console.log(this.userObj,"=======daat====")
     return this.userObj.customer[0].lifetime_points;
+  }
+
+  //returns getexpirySchedule
+  getexpirySchedule(){
+    return this.userObj.customer[0].expiry_schedule.schedule;
+  }
+
+  //returns expiry points
+  getExpiryPoints(){
+    return this.userObj.customer[0].expiry_schedule.schedule[0].points;
   }
 
   //returns lifetime redeemed points of the user   

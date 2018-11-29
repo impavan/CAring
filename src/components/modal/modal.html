@@ -1,0 +1,10 @@
+<!-- Generated template for the ModalComponent component -->
+<section id="Modal" *ngIf='openModal' [class.modalWidget]='openModal'>
+	<div class='modalContentExpiryDates'>
+		<h2 class="successInfo"> {{modalTitle}} </h2>
+		<div [class.Modalbody]='openModal'>
+			<ng-content>
+			</ng-content>
+		</div>
+	</div>
+</section>

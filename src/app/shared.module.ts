@@ -2,6 +2,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { NgModule } from '@angular/core';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MymodalComponent } from '../components/mymodal/mymodal';
+import { ModalComponent } from '../components/modal/modal';
 import { HeaderComponent } from '../components/header/header';
 import { ChunkPipe } from '../pipes/chunk/chunk';
 import { SortPipe } from '../pipes/sort/sort';
@@ -24,6 +25,7 @@ import { PushProvider } from '../providers/push/push';
   imports: [
     IonicPageModule.forChild(TabsPage),
     IonicPageModule.forChild(MymodalComponent),
+    IonicPageModule.forChild(ModalComponent),
     IonicPageModule.forChild(HeaderComponent),
     IonicPageModule.forChild(ChunkPipe),
     IonicPageModule.forChild(SortPipe),
@@ -32,8 +34,8 @@ import { PushProvider } from '../providers/push/push';
 
    
   ],
-  declarations: [TabsPage,MymodalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe],
-  exports: [TabsPage, MymodalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule],
+  declarations: [TabsPage,MymodalComponent,ModalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe],
+  exports: [TabsPage, MymodalComponent,ModalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule],
   providers:[HapenningsProvider,ExceptionHandlerProvider,NetworkProvider,LoaderProvider,AlertProvider,PushProvider]
 })
 
