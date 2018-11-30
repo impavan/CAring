@@ -141,7 +141,7 @@
             </ion-row>
             <ion-row *ngFor = "let schedule of expirySchedule">
                 <ion-col col-6><p>{{schedule.expiry_date | date:'dd MMM yyyy'}}</p></ion-col>
-                <ion-col col-6><p>{{schedule.points}}</p></ion-col>
+                <ion-col col-6><p text-right>{{schedule.points}}</p></ion-col>
             </ion-row>
         </ion-grid>
     </div>
