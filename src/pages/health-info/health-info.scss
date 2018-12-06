@@ -3,13 +3,16 @@ page-health-info {
         margin: 0 0 0 0;
         h3 {
             margin: 0px 0 0 0;
-            color: $cp-extra-darker-grey;
+            color: #808080;
             font-weight: 600;
             font-size: 16px;
             padding: 8px 0 0 0;
         }
         .headerwithline {
             border-bottom: 1px solid #bdbdbd;
+                margin: 0 0 10px 0;
+                padding: 10px 0 0 0;
+
         
             width: 100%;
             label {
@@ -47,7 +50,6 @@ page-health-info {
                     margin: 0 0 8px 0;
                     line-height: normal;
                     color: $cp-extra-darker-grey;
-                    font-family: 'allerregular';
                 }
                 .button-md {
                     background-color: $cp-primary-color;
@@ -64,68 +66,107 @@ page-health-info {
             }
         }
         .healthInfoCards {
-            min-height: 141px;
-            margin-bottom: 25px;
-            padding: 5px 0 0 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            //box-shadow: 0 2px 6px 0 rgba(74, 74, 74, 0.5);
+            background: #fff;
+            border-radius:5px; 
+            position: relative;
+            [col-8], [col-4]{
+                padding: 0;
+            }
+            h5{
+            font-size: 18px;
+            color: #000;
+            margin: 0;
+            padding: 0 15px 0 0;
+
+            /* Fallback for non-webkit */
+            display: -webkit-box;
+            /* Fallback for non-webkit */
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 600;
+            }
+            p{
+            font-size: 12px;
+            margin:10px 0 0 0;
+            color:#838383;
+            padding: 0 20px 0 0;
+            //font-weight: 600;
+            }
+            .readMoreLink{
+            color: #00645b;
+            font-size: 12px;
+            position: absolute;
+            bottom: 0;
+            font-weight: 600;
+            }
+            figure{
+            margin: 0;
+            padding: 0;
+            height: 120px;
+            overflow: hidden;
+            img {
+            height:100%;
+            }
+            }
             .left {
-                float: left;
-                margin: 0 0px 0 0;
-                width: 50%;
-                min-height: 141px;
-                figure{
-                    margin: 0;
-                    padding: 0;
-                    height: 141px;
-                    overflow: hidden;
-                    img {
-                        width: 100%;
-                        max-width: 100%;
-                    }
-                }
-                
+            float: left;
+            margin: 0 0px 0 0;
+            width: 50%;
+            min-height: 141px;
             }
             .right {
-                float: left;
-                width: 50%;
-                padding: 0px 10px;
-                position: relative;
-                min-height: 141px;
-                label {
-                    font-weight: bold;
-                    font-size: 14px;
-                    display: block;
-                    color: #111;
-                    margin-bottom: 5px;
-                    font-family: 'allerbold';
-                }
-                span {
-                    font-size: 11px;
-                    display: block;
-                    margin-bottom: 10px;
-                    font-family: 'allerregular';
-                }
-                .button-ios {
-                    border-radius: 0px;
-                }
-                button {
-                    background: #1bb463;
-                    text-transform: uppercase;
-                    font-size: 12px;
-                    padding: 5px 10px;
-                    position: absolute;
-                    bottom: 0;
-                    line-height: 21px;
-                    height: auto;
-                    margin: 0px;
-                    font-family: 'Axis';
-                    span {
-                        margin: 0px;
-                        padding: 0px;
-                        font-size: 12px;
-                    }
-                }
+            float: left;
+            width: 50%;
+            padding: 0px;
+            position: relative;
+            min-height: 141px;
+            figure{
+            margin: 0;
+            padding: 0;
+            height: 141px;
+            overflow: hidden;
+            img {
+            width: 100%;
+            max-width: 100%;
             }
-        }
+            }
+            label {
+            font-size: 14px;
+            display: block;
+            color: #111;
+            margin-bottom: 5px;
+            }
+            span {
+            font-size: 11px;
+            display: block;
+            margin-bottom: 10px;
+            }
+            .button-ios {
+            border-radius: 0px;
+            }
+            button {
+            background: #1bb463;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 5px 10px;
+            position: absolute;
+            bottom: 0;
+            line-height: 21px;
+            height: auto;
+            margin: 0px;
+            span {
+            margin: 0px;
+            padding: 0px;
+            font-size: 12px;
+            }
+            }
+            }
+            }
     }
     .pdadj {
         padding: 0 15px 0px 10px;

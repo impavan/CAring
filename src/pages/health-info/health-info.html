@@ -17,7 +17,7 @@
             </article>
             <div *ngFor="let healthy of _healthInfoList | chunk:2">
             <div class="healthInfoCards" *ngFor="let health of healthy" tappable (tap)="navToHealthDetails(health)">
-                <div class="left">
+                <!-- <div class="left">
                     <figure>
                         <img src="{{health?.thumbnailimage}}" />
                     </figure>
@@ -26,7 +26,18 @@
                     <label>{{health?.title}}</label>
                     <span [innerHTML]="health?.subtitle"></span>
                     <button ion-button>{{health?.buttonname}}</button>
-                </div>
+                </div> -->
+                <ion-row>
+                    <ion-col col-8>
+                        <h5>{{health?.title}}</h5>
+                        <p [innerHTML]="health?.subtitle"></p>
+                    </ion-col>
+                    <ion-col col-4>
+                        <figure>
+                            <img  [src]="health?.thumbnailimage" />
+                        </figure>
+                    </ion-col>
+                </ion-row>
             </div>
             </div>
         </ion-grid>

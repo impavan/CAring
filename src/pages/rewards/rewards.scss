@@ -3,118 +3,126 @@ page-rewards {
         text-align: center;
         padding: 40px 0 50px 0 !important;
     }
+    // .rewardsContainer {
+    //     padding: 0;
+    //     .rewardsCards {
+    //         margin: 0 0 30px 0;
+    //         .title {
+    //             background: #fff;
+    //             padding: 10px 20px 0px 20px;
+    //         }
+    //         .iconc-coins:before {
+    //             content: "\e90a";
+    //             font-size: 20px;
+    //             margin: 0 0px 0 0px;
+    //             position: relative;
+    //             top: 3px;
+    //             color: #999;
+    //         }
+    //         .iconc-ticket:before {
+    //             content: "\e90c";
+    //             font-size: 20px;
+    //             margin: 0px 0px 0 0;
+    //             position: relative;
+    //             top: 4px;
+    //             color: #999;
+    //         }
+    //         span {
+    //             color: rgb(130, 144, 200);
+    //             margin-right: 15px;
+    //             font-weight: 600;
+    //         }
+    //         h4 {
+    //             background: #fff;
+    //             margin: 0;
+    //             padding: 10px 0;
+    //             border-bottom: 1px solid #bdbdbd;
+    //         }
+    //         article {
+    //             background: #fff;
+    //             padding: 10px 10px 0 10px;
+    //             .grid {
+    //                 padding-bottom: 0;
+    //             }
+    //             ion-row.first {
+    //                 padding-bottom: 0px;
+    //             }
+    //         }
+    //         figure {
+    //             margin: 0;
+    //             max-height: 120px;
+    //             overflow: hidden;
+    //             -webkit-box-shadow: 0px 3px 7px #bbb;
+    //             box-shadow: none;
+    //         }
+    //         h6 {
+    //             font-weight: 600;
+    //             color: #000;
+    //             text-transform: none;
+    //             font-size: 13px;
+    //             margin: 0 0 10px 0;
+    //         }
+    //         .voucherPrice {
+    //             margin: 0;
+    //             padding: 0;
+    //             li {
+    //                 margin: 0;
+    //                 padding: 0;
+    //                 display: inline-block;
+    //                 span {
+    //                     border-right: 1px solid $cp-extra-darker-grey;
+    //                     padding: 0 5px 0 0;
+    //                     color: $cp-extra-darker-grey;
+    //                     font-size: 13px;
+    //                 }
+    //                 &:last-child {
+    //                     span {
+    //                         border-right: none;
+    //                         padding: 0 0 0 2px;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         .content {
+    //             margin: 0 0 0 0;
+    //             ion-grid {
+    //                 padding: 0;
+    //             }
+    //             h6 {
+    //                 margin-top: 0;
+    //             }
+    //         }
+    //         .beforeLogin {
+    //             padding: 0px;
+    //             .imgOut {
+    //                 display: block;
+    //                 padding: 50px 30px 70px 30px;
+    //                 text-align: center;
+    //                 img {
+    //                     margin: 0 auto;
+    //                     width: auto;
+    //                     max-width: 100%;
+    //                 }
+    //             }
+    //             p {
+    //                 color: #595758 !important;
+    //                 margin: 0 0 50px 0;
+    //                 text-align: center;
+    //             }
+    //         }
+    //     }
+    // }
     .rewardsContainer {
-        padding: 16px;
-        .rewardsCards {
-            margin: 0 0 30px 0;
-            .title {
-                background: #fff;
-                padding: 10px 20px 0px 20px;
-            }
-            .iconc-coins:before {
-                content: "\e90a";
-                font-size: 20px;
-                margin: 0 0px 0 0px;
-                position: relative;
-                top: 3px;
-                color: #999;
-            }
-            .iconc-ticket:before {
-                content: "\e90c";
-                font-size: 20px;
-                margin: 0px 0px 0 0;
-                position: relative;
-                top: 4px;
-                color: #999;
-            }
-            span {
-                color: rgb(130, 144, 200);
-                margin-right: 15px;
-                font-weight: 600;
-            }
-            h4 {
-                background: #fff;
-                margin: 0;
-                padding: 10px 0;
-                border-bottom: 1px solid #bdbdbd;
-            }
-            article {
-                background: #fff;
-                padding: 10px 10px 0 10px;
-                .grid {
-                    padding-bottom: 0;
-                }
-                ion-row.first {
-                    padding-bottom: 0px;
-                }
-            }
-            figure {
-                margin: 0;
-                max-height: 120px;
-                overflow: hidden;
-                -webkit-box-shadow: 0px 3px 7px #bbb;
-                box-shadow: none;
-            }
-            h6 {
-                font-weight: 600;
-                color: #000;
-                text-transform: none;
-                font-size: 13px;
-                margin: 0 0 10px 0;
-            }
-            .voucherPrice {
-                margin: 0;
-                padding: 0;
-                li {
-                    margin: 0;
-                    padding: 0;
-                    display: inline-block;
-                    span {
-                        border-right: 1px solid $cp-extra-darker-grey;
-                        padding: 0 5px 0 0;
-                        color: $cp-extra-darker-grey;
-                        font-size: 13px;
-                    }
-                    &:last-child {
-                        span {
-                            border-right: none;
-                            padding: 0 0 0 2px;
-                        }
-                    }
-                }
-            }
-            .content {
-                margin: 0 0 0 0;
-                ion-grid {
-                    padding: 0;
-                }
-                h6 {
-                    margin-top: 0;
-                }
-            }
-            .beforeLogin {
-                padding: 0px;
-                .imgOut {
-                    display: block;
-                    padding: 50px 30px 70px 30px;
-                    text-align: center;
-                    img {
-                        margin: 0 auto;
-                        width: auto;
-                        max-width: 100%;
-                    }
-                }
-                p {
-                    color: #595758 !important;
-                    margin: 0 0 50px 0;
-                    text-align: center;
-                }
-            }
+        .card-ios, .card-md{
+            box-shadow: none;
         }
-    }
-    .rewardsContainer {
         .rewardsCards {
+            padding: 10px;
             margin: 0 0 30px 0;
+            .card-md{
+                margin: 0 0 10px 0;
+                width: calc(100%);
+            }
             .title {
                 background: #fff;
                 padding: 10px 20px 0px 20px;
@@ -141,10 +149,10 @@ page-rewards {
                 font-weight: 600;
             }
             h4 {
-                background: #fff;
                 margin: 0;
-                padding: 10px 0;
-                border-bottom: 1px solid #bdbdbd;
+                padding:0;
+                font-size: 30px;
+                color: #ed1c24;
             }
             article {
                 background: #fff;
@@ -189,11 +197,17 @@ page-rewards {
             }
             .content {
                 margin: 0 0 0 0;
+                [col-7], [col5], [col-12] {
+                    padding: 0;
+                }
                 ion-grid {
                     padding: 0;
                 }
                 h6 {
                     margin-top: 0;
+                }
+                p{
+                    font-size: 12px;
                 }
             }
             .beforeLogin {
@@ -272,4 +286,34 @@ page-rewards {
                 margin-top: 70px;
             }
     }
+    .segment-ios-secondary{
+        .segment-button{
+            border-color:transparent;
+            text-transform: uppercase;
+        }
+    } 
+    .segment-ios-secondary{
+        .segment-button.segment-activated {
+            color: #096F67;
+            background-color: transparent;
+            border-bottom: 2px solid;
+        }
+    }
+    .segment-ios{
+        .segment-button:first-of-type {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+    .segment-ios{
+        .segment-button:last-of-type {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+    .toolbar-ios{
+        .segment-button{
+            max-width: 100%;
+        }
+    } 
 }

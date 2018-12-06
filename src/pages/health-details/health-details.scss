@@ -17,37 +17,34 @@ page-health-details {
                 margin: 0 0 15px 0;
                 color: #2f4f4f;
                 font-size: 28px;
+                font-weight: 600;
                 span {
                     display: block;
                     font-size: 18px;
                     color:#696969;
                     margin: 10px 0 0 0;
-                        font-family: 'allerregular';
                 }
             }
             p {
                 color: $cp-extra-darker-grey;
                 font-size: 12px;
-                font-family: 'allerregular';
                 span{
                     line-height: 28px;
                 }
             }
             .infodate {
-                font-family: 'allerregular';
-                    margin-bottom: 20px;
+                margin-bottom: 20px;
                 label {
                     font-size: 14px;
-                    color: #000;
-                    font-weight: bold;
+                    color: #3c3c3c;
                     i {
                         font-style: normal;
-                        color: #000;
+                        color: #3c3c3c;
                         font-size: 14px;
                     }
                 }
                 span {
-                    color: #000;
+                    color: #3c3c3c;
                     font-size: 14px;
                 }
             }

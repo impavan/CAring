@@ -35,13 +35,13 @@ export class InstoredetailsPage {
         );       
   }
 
+ gotoLocationPage(storename) {
 
-  gotoLocationPage(storename,storeId) {
+    console.log(storename,"storenamestorenamestorename")
 
-    this.navCtrl.push('StoreLocatorPage', { instore: storename,storeId: storeId});
+    this.navCtrl.push('StoreLocatorPage', { instore: storename});
     
   }
-
   zoomArea(url) {
     this.navCtrl.push('ImageViewPage', {imgsource:url})
   }

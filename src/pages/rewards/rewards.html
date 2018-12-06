@@ -7,8 +7,11 @@
     <div class="mt30">
     <ion-toolbar>
         <ion-segment [(ngModel)]="member" color="secondary">
-                <ion-segment-button tappable value="Rewards">
+                <ion-segment-button tappable value="Rewards" (click)="getRedeemedVouchers()">
                         Rewards
+                    </ion-segment-button>
+                    <ion-segment-button value="promotions">
+                        Coupon
                     </ion-segment-button>
                 <ion-segment-button value="Redemption" tappable (click)="fetchAllExperiences()">
                         Redemption
@@ -183,6 +186,50 @@
                 </ion-list>
             </div>
 
+        </ion-list>
+            <ion-list *ngSwitchCase="'promotions'">
+            <div class="rewardsContainer p0" no-padding>
+                <div class="rewardsCards">
+               
+                        <div *ngFor="let promo of _promotions">
+                            <article  (click)="gotoPromotionVoucherDetails(promo)" class="couponsOut" style="background: none;">
+                                <ion-card>
+                                    <ion-grid style="padding-bottom:5px;">
+                                        <ion-row class="first">
+                                            <ion-col col-3>
+                                                <figure>
+                                                    <img [src]="promo?.thumbnail"/>
+                                                    <!-- <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" /> -->
+                                                </figure>
+                                            </ion-col>
+                                            <ion-col col-9>
+                                                <div class="content Promo">
+                                                    <ion-grid>
+                                                        <ion-row>
+                                                            <ion-col col-12>
+                                                                <ion-row>
+                                                                    <ion-col col-5>
+                                                                        <h4>{{promo?.discountamount}}</h4>
+                                                                    </ion-col>
+                                                                    <ion-col col-7>
+                                                                        <h6>{{promo?.title}}</h6>
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                                <p [innerHTML]="promo?.subtitle | safehtml" style="margin-top: -6px;"></p>
+                                                                <p class="date">Validity: {{ promo?.publishingstartdate | date:"dd/MM/yyyy" }} - {{ promo?.publishingenddate | date:"dd/MM/yyyy" }}</p>
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-grid>
+                                                </div>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card>
+                            </article>
+                        </div>
+       
+                </div>
+            </div>
         </ion-list>
     </div>
     </div>

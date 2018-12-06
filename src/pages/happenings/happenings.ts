@@ -21,6 +21,9 @@ export class HappeningsPage {
   happenList: any = [];
   routeLink: any = '';
   navToId: any;
+  happeningsSegment:any = 'happenings';
+  storeActivityList: any = [];
+  pharmacistServiceList :any =[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -43,8 +46,67 @@ export class HappeningsPage {
       this.loaderProvider.presentLoadingCustom();
       this.getHappenings();
     }
+
+    if (this.storeActivityList.length <= 0) {
+      this.getInStoreActivities();
+    }
+
+      if (this.pharmacistServiceList.length <= 0) {
+        this.getpharmacistService();
+      }
+   
     
   }
+
+  getpharmacistService(){
+    this.hapenningsProvider.getpharmacistService().subscribe(res => {
+      console.log(res,"pharmacist data")
+      this.pharmacistServiceList = res.data.filter(store => {
+        return store;
+      });
+      if (this.navToId) {
+        let item = this.pharmacistServiceList.filter(d => d.deeplinkingidentifier == this.navToId);
+        if (item.length > 0) {
+          this.gotoPharmacistDetail(item[0]);
+        }
+      }
+    }, err => {
+      this.exceptionProvider.excpHandler(err);
+    });
+  }
+
+  getInStoreActivities() {
+
+    this.hapenningsProvider.getInStoreActivities().subscribe(res => {
+      console.log(res,"storeee")
+      this.storeActivityList = res.data.filter(store => {
+        if (store.publishingstartdate && store.publishingenddate) {
+
+          let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
+          let peDate =  moment(store.publishingenddate).format('YYYY-MM-DD');
+          let psMoment = moment(psDate);
+          let peMoment =  moment(peDate)
+          let currenMoment  =  moment().format('YYYY-MM-DD');
+
+        if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+          // this.storeExpired = false;
+          return store;
+        }
+      } else {
+        return store;
+      }
+      // this.storeExpired = true;
+    });
+      if (this.navToId) {
+        let item = this.storeActivityList.filter(d => d.deeplinkingidentifier == this.navToId);
+        if (item.length > 0) {
+          this.gotoInstoredetailsPage(item[0]);
+        }
+      }
+  }, err => {
+    this.exceptionProvider.excpHandler(err);
+  });
+}
 
   getHappenings() {
 
@@ -97,5 +159,15 @@ export class HappeningsPage {
 
     this.navCtrl.push('HappenDetailsPage', { happendata: value });
 
+  }
+    gotoPharmacistDetail(value){
+    console.log(value,"pharmacist")
+    this.navCtrl.push('PharmacistDetailPage', { pharmacistdata : value})
+
+  }
+  
+  gotoInstoredetailsPage(data) {
+    console.log(data,"instoredata")
+    this.navCtrl.push('InstoredetailsPage', { instoredata: data });
   }
 }

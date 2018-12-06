@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 //All providers goes here
 
 import { STTARTER_BASE_URL } from '../../config';
-import { HAPPENINGS, HOME_BANNER, INSTORE, PROMOTIONS, HEALTH_INFO, FAQ } from '../../url';
+import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST,PROMOTIONS, HEALTH_INFO, FAQ } from '../../url';
 
 @Injectable()
 export class HapenningsProvider {
@@ -41,6 +41,13 @@ getHomeBanner(){
   public getInStoreActivities() {
     return this.http.get(STTARTER_BASE_URL + INSTORE + this.lang, this.contentType)
       .map((res: Response) => res)
+      .do((res: Response) => res.json())
+      .map((res: Response) => res.json())
+  }
+
+  public getpharmacistService(){
+    return this.http.get(STTARTER_BASE_URL + PHARMACIST + this.lang, this.contentType)
+    .map((res: Response) => res)
       .do((res: Response) => res.json())
       .map((res: Response) => res.json())
   }

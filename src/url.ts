@@ -6,6 +6,8 @@
  export const INSTORE = 'instoreactivities?orderby_dsc=createdAt&lang=';
 
  export const PROMOTIONS = 'promotions?orderby_dsc=createdAt&lang=';
+ 
+  export const PHARMACIST = 'pharmacistservices?order_bydsc=createdAt&lang';
 
  export const HEALTH_INFO = 'healthinfo?orderby_dsc=createdAt&lang=';
 
@@ -28,5 +30,7 @@
  export const UPDATE_PROFILE = `mobile/customerprofileupdate_v3`;
 
  export const SETTINGS = 'settings?lang=en';
+ 
+ export const PROMOTIONAL_VOUCHERS = `voucherpromotions?orderby_dsc=createdAt&lang=`;
 
  export const MESSAGE_HISTORY = `mobile/getmessagehistory?mobile=`;

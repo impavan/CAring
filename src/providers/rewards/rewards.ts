@@ -1,10 +1,11 @@
 import { EXPERIENCES, REDEEM_VOUCHERS, ACTIVATE_VOUCHER } from '../../url';
-import { BASE_URL, BRAND_ID } from '../../config';
+import { BASE_URL,STTARTER_BASE_URL, BRAND_ID } from '../../config';
 import { Http, Response } from '@angular/http';
 import { ApiProvider } from '../api/api';
 import { AuthProvider } from '../auth/auth';
 import { Injectable } from '@angular/core';
 import { EN } from '../../config';
+import { PROMOTIONAL_VOUCHERS } from '../../url';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
@@ -20,6 +21,13 @@ export class RewardsProvider {
   fetchAllExperiences() {
     return this.http.get(this.apiProvider.BASE_URL + EXPERIENCES + this.apiProvider.BRAND_ID, { headers: this.authProvider.getHeader() })
       .do((res: Response) => res)
+      .map((res: Response) => res.json())
+  }
+    
+    getAllPromotions() {
+    return this.http.get(STTARTER_BASE_URL + PROMOTIONAL_VOUCHERS + 'en')
+      .map((res: Response) => res)
+      .do((res: Response) => res.json())
       .map((res: Response) => res.json())
   }
 
