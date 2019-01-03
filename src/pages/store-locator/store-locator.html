@@ -1,0 +1,188 @@
+<div>
+    <header></header>
+</div>
+
+
+<ion-content class="mainCont">
+    <div class="searchOut">
+        <ion-searchbar [(ngModel)]="_searchKey" placeholder="Find" (ionInput)="onInput($event)" (keydown)="hideKeyboard($event)" (ionClear)="onCancel($event)">
+        </ion-searchbar>
+    </div>
+
+    <!--loading google map here-->
+    <div #myMap id="map" class="mapContainer"></div>
+
+    <div class="storeLocatorContainer" *ngIf="_searchKey ==''">
+        <ion-segment [(ngModel)]="locationState">
+            <ion-segment-button value="near_you">
+                Near Me
+            </ion-segment-button>
+            <ion-segment-button value="favourite">
+                Favourite
+            </ion-segment-button>
+        </ion-segment>
+        <div [ngSwitch]="locationState">
+            <ion-list *ngSwitchCase="'near_you'">
+                <div class="locationContainer">
+                    <div *ngFor="let locations of updatedLocationList | chunk:'5'">
+                    <ion-grid *ngFor="let location of locations">
+                        <article tappable (click)="setMarker(location)">
+                            <ion-row>
+                                <ion-col col-11>
+                                    <h4>{{location?.storeName}}</h4>
+                                </ion-col>
+                                <ion-col col-1>
+                                    <ion-icon *ngIf="!location?.favourite" name="heart-outline" class="favIcon" (click)="setFav(location)"></ion-icon>
+                                    <ion-icon *ngIf="location?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(location)"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-2>
+                                    <ion-icon name="pin" class="alert locatorIcon" tappable (click)="gotoStoreDirection(location)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-10>
+                                    <span>{{location?.distance | number : '1.2-2'}} Km away</span>
+                                    <p>
+                                        {{location?.storeDescription}}<br/>
+                                    </p>
+                                </ion-col>
+                            </ion-row>
+                             <div class="customCol" *ngIf="location?.timing">
+                                <ion-row>
+                                    <ion-col col-2>
+                                        <p *ngIf="location?.timing"  class="phoneIcon"><ion-icon name="md-time" style="font-size:19px"></ion-icon></p>
+                                    </ion-col>
+                                    <ion-col col-10>
+                                        <label *ngIf="location?.timing"> {{location?.timing}}</label>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <div class="customCol" *ngIf="location?.mobile">
+                                <ion-row>
+                                    <ion-col col-2>
+                                        <a *ngIf="location?.mobile" href="tel:0{{location?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                                    </ion-col>
+                                    <ion-col col-10>
+                                        <label *ngIf="location?.mobile"> 0{{location?.mobile}}</label>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                        </article>
+                    </ion-grid>
+                    </div>
+                </div>
+            </ion-list>
+            <ion-list *ngSwitchCase="'favourite'">
+                <div class="locationContainer">
+                    <ion-grid *ngFor="let fav of favouriteList">
+                        <article tappable (click)="setMarker(fav)">
+                            <ion-row>
+                                <ion-col col-11>
+                                    <h4>{{fav?.storeName}}</h4>
+                                </ion-col>
+                                <ion-col col-1>
+                                    <!--<ion-icon *ngIf="!fav?.favourite" name="heart-outline" class="alert favIcon"></ion-icon>-->
+                                    <ion-icon *ngIf="fav?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(fav)"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-2>
+                                    <ion-icon name="pin" tappable class="alert locatorIcon" (click)="gotoStoreDirection(fav)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-10>
+                                    <span>{{ fav?.distance | number : '1.2-2'}} Km away</span>
+                                    <p>
+                                        {{fav?.storeDescription}}<br/>
+                                    </p>
+                                </ion-col>
+                            </ion-row>
+                            <div class="customCol" *ngIf="fav?.timing">
+                                <ion-row>
+                                    <ion-col col-2>
+                                        <p *ngIf="fav?.timing"  class="phoneIcon"><ion-icon name="md-time" style="font-size:19px"></ion-icon></p>
+                                    </ion-col>
+                                    <ion-col col-10>
+                                        <label *ngIf="fav?.timing"> {{fav?.timing}}</label>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <div class="customCol">
+                                <ion-row>
+                                    <ion-col col-2>
+                                        <a *ngIf="fav?.mobile" href="tel:0{{fav?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                                    </ion-col>
+                                    <ion-col col-10>
+                                        <label *ngIf="fav?.mobile"> 0{{fav?.mobile}}</label>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                        </article>
+                    </ion-grid>
+                </div>
+            </ion-list>
+        </div>
+    </div>
+    <div *ngIf="_searchKey!=''">
+        <div class="locationContainerTwo">
+            <ion-grid *ngFor="let filter of _newFilteredList">
+                <article tappable (click)="setMarker(filter)" class="searchCard">
+                    <ion-row>
+                        <ion-col col-11>
+                            <h4>{{filter?.storeName}}</h4>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-icon *ngIf="!filter?.favourite" name="heart-outline" class="favIcon" (click)="setFav(filter)"></ion-icon>
+                            <ion-icon *ngIf="filter?.favourite" class="favIcon" color="danger" ios="ios-heart" md="md-heart" (click)="removeFav(filter)"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-2>
+                            <ion-icon name="pin" class="alert locatorIcon" tappable (click)="gotoStoreDirection(filter)"></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            <span>{{filter?.distance | number : '1.2-2'}} Km away</span>
+                            <p>
+                                {{filter?.storeDescription}}<br/>
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                    <div class="customCol" *ngIf="filter?.timing">
+                            <ion-row>
+                                <ion-col col-2>
+                                    <p *ngIf="filter?.timing"  class="phoneIcon"><ion-icon name="md-time" style="font-size:19px"></ion-icon></p>
+                                </ion-col>
+                                <ion-col col-10>
+                                <label *ngIf="filter?.timing"> {{filter?.timing}}</label>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="customCol">
+                        <ion-row>
+                            <ion-col col-2>
+                                <a *ngIf="filter?.mobile" href="tel:0{{filter?.mobile}}" class="phoneIcon"><ion-icon name="md-call"></ion-icon></a>
+                            </ion-col>
+                            <ion-col col-10>
+                                <label *ngIf="filter?.mobile"> 0{{filter?.mobile}}</label>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </article>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>
+
+<mymodal #location title="Location Services Disabled">
+	<div>
+		<p>To re-enable, please go to Settings and turn on Location Service for this app</p>
+	</div>
+	<button ion-button (click)="closeLocationModal()">Ok</button>
+    <!--<button ion-button (click)="openLocationModel()">OK</button>-->
+</mymodal>

@@ -1,0 +1,136 @@
+page-tabs {
+    .tabiconc-home,
+    .tabiconc-location,
+    .tabiconc-rewards,
+    .tabiconc-members,
+    .tabiconc-estore {
+        height: 25px;
+    }
+    .tabiconc-home {
+        //height: 30px;
+        width: 24px;
+        background: url(../assets/css/tabicons/home_normal.svg) no-repeat;
+    }
+    .active .tabiconc-home {
+        // height: 30px;
+        // width: 24px;
+        background: url(../assets/css/tabicons/home_active.svg) no-repeat;
+    }
+    .tabiconc-location {
+        //height: 30px;
+        width: 20px;
+        background: url(../assets/css/tabicons/location_normal.svg) no-repeat;
+    }
+    .active .tabiconc-location {
+        // height: 30px;
+        // width: 20px;
+        background: url(../assets/css/tabicons/location_active.svg) no-repeat;
+    }
+    .tabiconc-rewards {
+        //height: 30px;
+        width: 21px;
+        background: url(../assets/css/tabicons/rewards_normal.svg) no-repeat;
+    }
+    .active .tabiconc-rewards {
+        // height: 30px;
+        // width: 21px;
+        background: url(../assets/css/tabicons/rewards_active.svg) no-repeat;
+    }
+    .tabiconc-members {
+        //height: 30px;
+        width: 27px;
+        background: url(../assets/css/tabicons/members_normal.svg) no-repeat;
+    }
+    .active .tabiconc-members {
+        // height: 30px;
+        // width: 27px;
+        background: url(../assets/css/tabicons/members_active.svg) no-repeat;
+    }
+    .tabiconc-estore {
+        //height: 30px;
+        width: 26px;
+        background: url(../assets/css/tabicons/estore_normal.svg) no-repeat;
+    }
+    .active .tabiconc-estore {
+        // height: 30px;
+        // width: 26px;
+        background: url(../assets/css/tabicons/estore_active.svg) no-repeat;
+    }
+    .tabsMenu {
+        button {
+            text-align: center;
+            span {
+                display: inline-block !important;
+            }
+            // ion-icon {
+            //     color: #333;
+            //     font-size: 24px;
+            //     display: block;
+            // }
+            label {
+                display: block;
+                font-size: 12px;
+                line-height: 20px;
+                color: #333;
+                text-transform: capitalize;
+                font-weight: 600;
+            }
+            &.active {
+                ion-icon {
+                    color: #096F67;
+                }
+                label {
+                    color: #096F67;
+                }
+            }
+        }
+    }
+    .active {
+        ion-icon {
+            color: #096F67;
+        }
+        label {
+            color: #096F67;
+        }
+    }
+    // .placeholderIcon {
+    //     background: url('../assets/img/placeholder.svg') no-repeat;
+    //     width: 25px;
+    //     height: 25px;
+    // }
+    // .placeholderIconChanged {
+    //     background: url('../assets/img/location.png') no-repeat;
+    //     width: 25px;
+    //     height: 25px;
+    // }
+    // .giftIcon {
+    //     background: url('../assets/img/gift.svg') no-repeat;
+    //     width: 25px;
+    //     height: 26px;
+    // }
+    // .giftIconChanged {
+    //     background: url('../assets/img/rewards.png') no-repeat;
+    //     width: 25px;
+    //     height: 26px;
+    // }
+    // .idCardIcon {
+    //     background: url('../assets/img/id_card.svg') no-repeat;
+    //     width: 28px;
+    //     height: 28px;
+    // }
+    // .idCardIconChanged {
+    //     background: url('../assets/img/member.png') no-repeat;
+    //     width: 28px;
+    //     height: 28px;
+    // }
+    // .cartIcon {
+    //     background: url('../assets/img/cart.svg') no-repeat;
+    //     width: 29px;
+    //     height: 27px;
+    // }
+    // .cartIconChanged {
+    //     background: url('../assets/img/e-cart.png') no-repeat;
+    //     width: 29px;
+    //     height: 27px;
+    // }
+}

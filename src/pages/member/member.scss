@@ -1,0 +1,432 @@
+page-member {
+    .scroll-content {
+        background: #fff;
+        .alert {
+            text-align: center;
+            margin-top: 20%;
+        }
+    }
+    .memberContainer {
+        article {
+            .danger {
+                color: #f00;
+                font-size: 12px;
+            }
+            ion-icon:before {
+                position: relative;
+                top: 3px;
+                margin-right: 5px;
+            }
+            background: #fff;
+            padding: 10px 10px 0 10px;
+            .grid {
+                padding-bottom: 0;
+            }
+            ion-row.first {
+                border-bottom: 2px solid rgb(198, 87, 114);
+                padding-bottom: 13px;
+            }
+        }
+        .listMyPoints {
+            margin: 0;
+            padding: 0;
+            li {
+                position: relative;
+                margin: 0 0 0px 0;
+                padding: 10px 0;
+                list-style-type: none;
+                border-bottom: 1px solid #ccc;
+                label {
+                    display: block;
+                }
+                span {
+                    font-size: 12px;
+                }
+                b.amount_display {
+                    position: absolute;
+                    right: 10px;
+                    top: 20px;
+                    z-index: 100
+                }
+            }
+        }
+        // .text-input-md {
+        //     text-align: right !important;
+        // }
+        margin:10px 0 0 0;
+        padding:0;
+        .profileOut {
+            margin: 20px 0 0 0;
+            i {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                display: block;
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+            p {
+                text-align: center;
+                margin: 5px 0 20px 0;
+            }
+        }
+        .barCode {
+            text-align: center;
+            width: 100%;
+            i {
+                width: 150px;
+                margin: 0 auto;
+                display: block;
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+                label {
+                    text-align: center;
+                    display: block;
+                }
+            }
+            #barcode{
+                width: 100% !important;
+            }
+            svg:not(:root){
+                width: 100% !important;
+            }
+            svg[barcode] {
+                width: 100% !important;
+            }
+        }
+        .toolbar-md,
+        .toolbar-ios {
+            box-shadow: 0px 2px 7px $cp-extra-lighter-grey-xxxxxx;
+        }
+
+        .segment-md-secondary .segment-button.activated,
+        .segment-md-secondary .segment-button.segment-activated {
+            // border-color: transparent;
+            color: #096F67;
+            opacity: 1;
+        }
+        .segment-ios-secondary .segment-button {
+            // border-color: transparent;
+            color: #111;
+            opacity: 0.8;
+            border: none;
+        }
+        .segment-ios-secondary .segment-button.segment-activated {
+            // border-color: transparent;
+            color: #096F67;
+            opacity: 1;
+            background: transparent;
+            border-bottom: 2px solid;
+        }
+        .segment-md-secondary .segment-button {
+            color: #000;
+            opacity: 0.4;
+            text-transform: capitalize;
+            font-size: 14px;
+        }
+        .segment-md .segment-button {
+            // border-bottom-width: 0;
+            // border-bottom-style: none;
+            // border-bottom-color: transparent;
+            height: auto;
+            line-height: 25px;
+        }
+        .subSegmentOut {
+            ion-segment,
+            .toolbar-ios .segment-ios {
+                margin: 0px auto;
+            }
+            .toolbar-md,
+            .toolbar-ios {
+                box-shadow: none;
+            }
+            .toolbar-background-md,
+            .toolbar-background-ios {
+                border-color: transparent;
+                background: transparent;
+            }
+            .segment-md-secondary .segment-button.activated,
+            .segment-md-secondary .segment-button.segment-activated {
+                // border-color: $cp-extra-darker-grey;
+                color: #096F67;
+                opacity: 1;
+            }
+            .segment-md-secondary .segment-button {
+                color: #555;
+                opacity: 1;
+                // border: 1px solid $cp-extra-lighter-grey-xxxxx;
+                // border-radius: 5px;
+                text-transform: capitalize;
+                font-size: 14px;
+            }
+            .segment-md .segment-button,
+            .segment-ios-secondary .segment-button {
+                // border-bottom-width: 0;
+                // border-bottom-style: none;
+                // border-bottom-color: transparent;
+                height: auto;
+                width: 33%;
+                display: inline-block;
+                padding: 3px;
+                float: left;
+                margin: 5px 0;
+            }
+            .segment-ios-secondary .segment-button {
+                color: $cp-extra-darker-grey;
+                // border: 1px solid $cp-extra-darker-grey;
+                // border-radius: 5px;
+            }
+            .segment-ios-secondary .segment-button.segment-activated {
+                // border-color: $cp-primary-color;
+                color: #096F67;
+                opacity: 1;
+            }
+            .toolbar-ios {
+                min-height: 50px;
+            }
+        }
+        .myPointsContainer {
+            padding: 15px;
+            .urPoints {
+                font-size: 18px;
+                text-align: center;
+                color: $cp-extra-darker-grey;
+                margin: 10px 0;
+                strong {
+                    color: $cp-extra-darker-grey-x;
+                    font-size: 20px;
+                }
+            }
+            .pointsOut{
+                border: 1px solid #096F67;
+                padding: 10px;
+                border-radius: 5px;
+                width: 100%;
+                float: left;
+                .content{
+                    float: left;
+                    border-right: 1px solid #096F67;
+                    width: 50%;
+                    .subContent{
+                        padding: 10px;
+                        text-align: center;
+                        h4{
+                            font-size: 25px;
+                            color: #333;
+                            margin: 0;
+                            font-weight: 600;
+                        }
+                        h6{
+                            font-size: 15px;
+                            color: #4a4a4a;
+                            margin: 5px 0;  
+                            font-weight: 600;
+                        }
+                        button{
+                            background: #096F67;
+                            color: #fff;
+                            padding: 5px 15px; 
+                            text-transform: uppercase;
+                            text-align: center;
+                            font-size: 11px;
+                        }
+                    }
+                }
+                .content:last-child{
+                    border-right: none;
+                }
+            }
+            
+        }
+        .newContainer {
+            .card-md,
+            .card-ios {
+                border-radius: 7px;
+            }
+            .grid {
+                padding: 0;
+            }
+            .content {
+                padding: 0 15px;
+                .customRow {
+                    border-bottom: 1px solid $cp-extra-lighter-grey-xxxxxxx;
+                    padding: 10px 0 10px 0;
+                }
+                figure {
+                    margin: 0;
+                    height: 100%;
+                    overflow: hidden;
+                    box-shadow: 0px 2px 5px #838383;
+                }
+                .voucher {
+                    color: $cp-extra-darker-grey;
+                    margin: 0 0 5px 0;
+                    font-size: 17px;
+                }
+                .subContent {
+                    font-size: 13px;
+                    margin: 0;
+                }
+                &:first-child {
+                    padding: 0px 15px 15px 15px;
+                }
+            }
+        }
+        .usedContainer {
+            padding: 15px;
+        }
+        .expiredContainer {
+            padding: 15px;
+        }
+        .myProfileContainer {
+            margin: 10px 0 0 0;
+            .container {
+                padding: 15px;
+                .content {
+                    padding: 0;
+                    box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
+                    border-radius: 7px;
+                    .item-md,
+                    .item-ios {
+                        padding-left: 0;
+                        border-radius: 7px;
+                    }
+                    .list-md,
+                    .list-ios {
+                        margin: 0;
+                    }
+                }
+            }
+            .container {
+                padding: 15px;
+                .content {
+                    padding: 0;
+                    box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
+                    border-radius: 7px;
+                    .item-md,
+                    .item-ios {
+                        padding-left: 0;
+                        border-radius: 7px;
+                    }
+                    .list-md,
+                    .list-ios {
+                        margin: 0;
+                    }
+                }
+            }
+            input::-moz-placeholder {
+                color: red;
+                // text-align: right;
+                color: $cp-extra-lighter-grey-xxx;
+            }
+            input::-webkit-input-placeholder {
+                color: red;
+                // text-align: right;
+                color: $cp-extra-lighter-grey-xxx;
+            }
+            input:-ms-input-placeholder {
+                color: red;
+                // text-align: right;
+                color: $cp-extra-lighter-grey-xxx;
+            }
+            .item-input .label-md,
+            .item-select .label-md,
+            .item-datetime .label-md,
+            .label-ios {
+                color: $cp-extra-darker-grey;
+            }
+            .caringWaterMark {
+                margin: 20px 0 0 0;
+            }
+            ion-label[fixed] {
+                width: 135px;
+                min-width: 135px;
+            }
+            .list-ios>.item-block:first-child {
+                border-top: none;
+            }
+            .item-md.item-toggle ion-label {
+                margin-left: 16px;
+                color: $cp-extra-darker-grey;
+            }
+            .profileOut {
+                margin: 20px 0 0 0;
+                i {
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 auto;
+                    display: block;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+            }
+            .subTitle1 {
+                margin: 20px 0 10px 0;
+                text-align: left;
+            }
+        }
+    }
+    .myPointsContainer.sec {
+        text-align: center;
+        height: 46vh;
+        p {
+            position: relative;
+            top: 25%;
+            color: #aaa;
+        }
+        button {
+            width: 100%;
+            background: #007068;
+            /* padding: 20px; */
+            height: 45px;
+            border-radius: 10px;
+            position: relative;
+            margin-top: 55%;
+        }
+    }
+    .pointscard {
+        .card-content-md {
+            padding: 7px 6px;
+        }
+        .card-md {
+            margin: 0 !important;
+            width: 100% !important;
+            border-radius: 8px;
+        }
+        ion-list {
+            .listdisp {
+                padding: 0;
+                background: #f5f5f5;
+            }
+            ion-item {
+                background: #fff;
+            }
+        }
+    }
+    .mt6 {
+        margin-top: 6px;
+    }
+    .redeemBtn{
+        background: $btn-default;
+        box-shadow: none;
+        // border:1px solid #333;
+        color:$cp-lighter-grey;
+        text-transform: none;
+        position: relative;
+        top: -8px;
+        left: 8px;
+    }
+    .input-cover{
+    border-bottom: 1px solid #e4e4e4;
+}
+}

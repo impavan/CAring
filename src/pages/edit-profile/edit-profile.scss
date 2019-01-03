@@ -1,0 +1,55 @@
+page-edit-profile {
+    .editProfileOut{
+        .card-md {
+            margin: 0;
+            width: calc(100% - 0px);
+        }
+        .item-md{
+            // border-bottom: 1px solid #e2e2e2;
+            padding-left: 0;
+        }
+        .item-md.borderBottomNone{
+            border-bottom:none;
+        }
+        .customMobNum{
+             color:#999;
+        }
+    }
+    .customRadioOut{
+        .grid, .col {
+            padding: 0;
+        }
+        .custLabel{
+            color:#999;
+        }
+        ion-label, .input-wrapper{
+            flex: initial;
+        }
+    }
+    .input-wrapper{
+        border-bottom: 1px solid #e2e2e2;
+    }
+    .bb{
+        border-bottom: 1px solid #e2e2e2;
+        .input-wrapper{
+            border-bottom: 0;
+        }
+        .label-ios{
+            color: #212121 !important;
+        }
+    }
+    .label-ios{
+        font-size: 1.5rem !important;
+        color: #999 !important;
+    }
+    .ml15.label-ios{
+        margin-left:15px !important;
+    }
+    .black{
+        color:#000 !important;
+    }
+   .card-ios{
+           margin: 20px 0;
+    width: 100%;
+   }
+}

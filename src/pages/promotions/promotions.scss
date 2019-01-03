@@ -1,0 +1,120 @@
+page-promotions {
+    .promotionsContainer {
+        margin: 0px 0 0 0;
+        h3 {
+            margin: 0;
+            color: $cp-extra-darker-grey;
+            
+            font-size: 16px;
+        }
+        .headerwithline {
+            border-bottom: 1px solid #bdbdbd;
+            width: 100%;
+            h3 {
+                color: #808080;
+                line-height: 70px;
+            }
+            a {
+                padding: 0;
+                margin: 0;
+                img {
+                    width: 100%;
+                    margin:0;
+                }
+            }
+        }
+        .card-md,
+        .card-ios {
+            margin: 8px;
+            border-radius: 5px;
+            width: calc(100% - 15px);
+            height: 260px;
+            figure {
+                margin: 0;
+            
+            }
+            .card-content-md,
+            .card-content-ios {
+                padding: 10px;
+                .card-title {
+                    margin: 0 0 0 0;
+                    line-height: normal;
+                }
+                p {
+                    margin: 0 0 8px 0;
+                    line-height: normal;
+                    color: $cp-extra-darker-grey;
+                }
+                .button-md,
+                .button-ios {
+                    background-color: #92cb5d;
+                    height: auto;
+                    margin: 0;
+                    width: 100%;
+                    font-size: 12px;
+                    padding: 5px 0;
+                    box-shadow: none;
+                    text-transform: capitalize;
+                    
+                    border-radius: 0px;
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    bottom: 15px;
+                }
+            }
+        }
+    }
+    .pdadj {
+        padding: 0 15px 0px 10px;
+    }
+    .figWidget {
+        box-shadow: none;
+        border-radius: 0;
+        .card-title {
+            font-size: 17px;
+            text-align: center;
+            
+            
+        }
+        ion-card-content {
+            p { 
+                text-align: center;
+                font-size: 11px;
+            }
+        }
+        button {
+            font-size: 18px !important;
+            width: 80% !important;
+            text-align: center !important;
+            margin: auto !important;
+            display: block !important;
+            padding: 10px 0 !important;
+        }
+    }
+
+    [col-sm-6] {
+    padding: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+}
+
+@media (max-width: 480px){
+    .promotionsContainer {
+        .figWidget{
+
+            .card-title{
+                font-size: 13px;
+            }
+            button{
+                font-size: 13px !important;
+                width: 80% !important;
+            }
+        } 
+        
+    }
+}
+

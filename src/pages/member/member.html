@@ -1,0 +1,150 @@
+<div>
+    <header></header>
+</div>
+
+
+
+
+<ion-content class="mainCont"  >
+    <div class="memberContainer">
+        <div class="row">
+            <div class="col">
+                <img src="assets/img/card_regular.png" alt="" />
+            </div>
+            <div class="col" text-center>
+                <div class="barCode">
+                    <svg #barcode id="barcode" style="width:100% !important;"></svg>
+                </div>
+            </div>
+        </div>
+
+        <ion-toolbar>
+            <ion-segment [(ngModel)]="member" color="secondary">
+                <ion-segment-button value="My Points">
+                    My Points
+                </ion-segment-button>
+                <ion-segment-button value="My Profile">
+                    My Profile
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+        <div [ngSwitch]="member">
+            <ion-list *ngSwitchCase="'My Points'">
+                <div *ngIf="_auth" class="myPointsContainer">
+                    <div class="pointsOut">
+                        <div class="content">
+                            <div class="subContent">
+                                <h4>{{_totalAvailablePoints}}</h4>
+                                <h6>Total Points</h6>
+                                <button value="redeem" (click)="gotoRewards()">redeem</button>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="subContent" >
+                                <h4>{{expiryPointsLatest}}</h4>
+                                <h6>Points Expiring</h6>
+                                <button value="redeem" (click)="expiryScheduleModal()">view more</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <!-- <p class="urPoints">Total Points:
+                        <strong>{{_totalAvailablePoints}}</strong>
+                        <button ion-button value="redeem" class="redeemBtn" (click)="gotoRewards()">Redeem</button>
+
+                    </p>
+                    <p class="urPoints">Points Expiring:
+                        <strong>{{expiryPoints}}</strong>
+                        <button ion-button value="redeem" class="redeemBtn" (click)="expiryScheduleModal()">View More</button>
+
+                    </p> -->
+                    <section>
+                        <div *ngFor="let transactions of _transactionList | chunk:'5'">
+                        <ul *ngFor="let transaction of transactions" class="listMyPoints">
+                            <li *ngIf="transaction?.transaction_earning">
+                                <label>Points Earned at <b>{{transaction?.store_name}}</b></label>
+                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}} <br> Receipt Amount : {{transaction?.amount }}</span>
+                                <b class="amount_display"> + {{transaction?.points_issued | round }}</b>
+                                <br><span *ngIf="transaction?.points_returned > 0">Points Returned: </span> <span *ngIf="transaction?.points_returned > 0"> - {{transaction?.points_returned }}</span>
+                            </li>
+                            <li *ngIf="!transaction?.transaction_earning">
+                                <label>Points Redeemed</label>
+                                <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
+                                <b class="amount_display"> - {{transaction?.points_spent | round }}</b>
+                                <br><span *ngIf="transaction.notes.length > 0">Notes: </span> <span *ngIf="transaction.notes.length > 0" > {{transaction?.notes }}</span>
+                            </li>
+                        </ul>
+                        </div>
+                    </section>
+                </div>
+                <ion-card *ngIf="!_auth" class="myPointsContainer sec">
+                    <p class="urPoints">You have no points yet</p>
+                    <button ion-button value="Earn Points">Earn Points</button>
+                </ion-card>
+
+                
+            </ion-list>
+     
+            <ion-list *ngSwitchCase="'My Profile'">
+                <div class="myProfileContainer">
+                    <div *ngIf="_auth" class="">
+                        <div class="">
+                            <ion-list>
+                                <ion-item>
+                                    <ion-label stacked>First Name</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="_userName" placeholder="First Name"></ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label stacked>Last Name</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="_lastName" placeholder="Last Name"></ion-input>
+                                </ion-item>
+
+                                <ion-item *ngIf="_emailId">
+                                    <ion-label stacked>Email</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="_emailId"></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label stacked>Mobile Number</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="_mobileNum"></ion-input>
+                                </ion-item>
+                                <ion-item *ngIf="_birthday">
+                                    <ion-label stacked>Birthday</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="_birthday"></ion-input>
+                                </ion-item>
+                            </ion-list>
+                            <div class="mt20" padding>
+                                <button ion-button  class="btn4" (click)="memberEdit()">Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>
+
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>
+<modal #expiryPoints>
+
+    <div class="expiryDatesOut">
+        <ion-grid>
+            <ion-row class="header">
+                <ion-col col-6><h6>Date of Expiry</h6></ion-col>
+                <ion-col col-6 ><h6 text-right>Points</h6></ion-col>
+            </ion-row>
+            <ion-row *ngFor = "let schedule of expirySchedule">
+                <ion-col col-6><p>{{schedule.expiry_date | date:'dd MMM yyyy'}}</p></ion-col>
+                <ion-col col-6><p text-right>{{schedule.points}}</p></ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <button ion-button class="btn2" (click)="expiryPointsModal.close()">Ok</button>
+</modal>
+

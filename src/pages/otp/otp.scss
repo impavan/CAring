@@ -1,0 +1,100 @@
+page-otp {
+    .otpContainer {
+        text-align: center;
+        padding: 80px 0 0 0;
+        .text-input-md {
+            text-align: right !important;
+        }
+        .info {
+            margin-top: 80px;
+            font-size: 12px;
+        }
+        .logo {
+            display: block;
+            width: 100%;
+            margin: 0px 0 0 0;
+            img {
+                width:50%;
+            }
+        }
+        h6 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+        p {
+            text-align: center;
+            font-size: 13px;
+            margin: 10px 0 50px 0;
+        }
+        .content {
+            padding: 0;
+            margin: 10px 0 0 0;
+            box-shadow: 0px 2px 10px $cp-extra-lighter-grey-xxxx;
+            border-radius: 7px;
+
+            .item-md,
+            .item-ios {
+                padding-left: 0;
+                border-radius: 7px 7px 0 0;
+            }
+            .list-md,
+            .list-ios {
+                margin: 0;
+            }
+        }
+        input:-moz-placeholder {
+            color: red;
+            text-align: right;
+            color: $cp-extra-lighter-grey-xxx;
+        }
+        input:-webkit-input-placeholder {
+            color: red;
+            text-align: right;
+            color: $cp-extra-lighter-grey-xxx;
+        }
+        input:-ms-input-placeholder {
+            color: red;
+            text-align: right;
+            color: $cp-extra-lighter-grey-xxx;
+        }
+        .item-input .label-md,
+        .item-select .label-md,
+        .item-datetime .label-md,
+        .label-ios {
+            color: $cp-extra-darker-grey;
+            padding: 0 0 0 16px;
+            font-size: 16px;
+        }
+        .caringWaterMark {
+            margin: 20px 0 0 0;
+        }
+        .list-ios>.item-block:first-child {
+            border-top: none;
+        }
+        .noOtp{
+            text-transform: uppercase;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .resendBtn{
+            background: transparent;
+            color: #096F67;
+            text-transform: uppercase;  
+        }
+        
+    }
+    .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
+        text-align: right;
+    }
+    .otpModal{
+        .whatsAppIcon{
+            color: #34af23;
+        }
+        .smsIcon{
+            color: #09f;
+        }
+        p{
+            margin: 0 0 6px 0;
+        }
+    }
+}

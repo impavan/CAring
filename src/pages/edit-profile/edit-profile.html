@@ -1,0 +1,179 @@
+<div>
+    <header></header>
+</div>
+
+
+<ion-content padding>
+  <div class="editProfileOut">
+    <ion-card>
+      <ion-card-content>
+
+          <ion-item>
+            <ion-label stacked>First Name <span class="alert">*</span>
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="profileData.firstname"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label stacked>
+              Last Name <span class="alert">*</span>
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="profileData.lastname"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="profileData.email?.length == 0">
+            <ion-label stacked>
+              E-mail 
+            </ion-label>
+            <ion-input type="text"  [(ngModel)]="new_email"></ion-input>
+          </ion-item>
+          
+      <ion-item>
+        <ion-label stacked>
+          NRIC
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="customFields.ic_number"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!authProvider.getUserBirthday()">
+      <ion-label stacked>
+        Birthday <span class="alert">*</span>
+      </ion-label>
+      <ion-datetime [max]="currentDate" displayFormat="DD MMM YYYY"  [(ngModel)]="customFields.birthday"></ion-datetime>
+    </ion-item>
+
+    <div class="customRadioOut">
+      
+        <ion-label stacked class="custLabel ml15">
+          Gender <span class="alert">*</span>
+        </ion-label>
+      
+
+      <ion-grid radio-group [(ngModel)]="customFields.gender">
+        <ion-row class="bb">
+          <ion-col>
+            <ion-item>
+              <ion-label>Male</ion-label>
+              <ion-radio value="male" ></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Female</ion-label>
+              <ion-radio value="female"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+      <ion-item> 
+        <ion-label stacked>Age Group</ion-label>
+        <ion-select [(ngModel)]="customFields.age_group">
+          <ion-option *ngFor ="let age of ageGroup" value="{{age}}">{{age}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+      <ion-label stacked>
+        Address
+      </ion-label>
+      <ion-input type="text"  [(ngModel)]="customFields.address"></ion-input>
+    </ion-item>
+
+      <ion-item>
+        <ion-label stacked>
+          City <span class="alert">*</span>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="customFields.city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>
+          Postcode <span class="alert">*</span>
+        </ion-label>
+        <ion-input type="tel" [(ngModel)]="customFields.pincode"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>
+          Other Contact Number
+        </ion-label>
+        <ion-input type="tel" [(ngModel)]="customFields.other_contact_number"></ion-input>
+      </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Country of Origin</ion-label>
+          <ion-select [(ngModel)]="customFields.countryof_origin">
+            <ion-option *ngFor="let c of countries" value="{{c}}">{{c}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>
+            Household Income
+          </ion-label>
+            <ion-select [(ngModel)]="customFields.incomeslab">
+              <ion-option *ngFor="let income of incomeslab" value="{{income}}">{{income}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+
+    <div class="customRadioOut">
+        <ion-label stacked class="custLabel ml15">
+          Working Status
+       </ion-label>
+      <ion-grid radio-group [(ngModel)]="customFields.working">
+        <ion-row class="bb">
+          <ion-col>
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio value="yes" ></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio value="no"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+      <ion-item>
+        <ion-label stacked>
+          Race <span class="alert">*</span>
+          </ion-label>
+        <ion-select [(ngModel)]="customFields.race">
+          <ion-option *ngFor="let r of race" value="{{r}}">{{r}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+       <ion-item>
+          <ion-label stacked>Occupation</ion-label>
+          <ion-select [(ngModel)]="customFields.occupation">
+            <ion-option *ngFor="let o of occupation" value="{{o}}">{{o}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-item class="borderBottomNone">
+          <ion-label stacked>Preferred Language</ion-label>
+          <ion-select [(ngModel)]="customFields.preferred_language">
+            <ion-option *ngFor="let lang of language" value="{{lang}}">{{lang}}</ion-option>
+          </ion-select>
+      </ion-item>
+
+     </ion-card-content>
+    </ion-card>
+  </div>
+      <div class="mt30">
+        <button ion-button (click)="updateProfile()" class="btn4">Update profile</button>
+      </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

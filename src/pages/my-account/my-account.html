@@ -1,0 +1,77 @@
+<div>
+    <header></header>
+</div>
+
+<ion-content class="mainCont">
+    <div class="myAccountContainer">
+
+        <ul class="settings">
+            <li (click)="comingSoon()" style="border-top:0">
+                <a>
+                    <i>
+            <img src="assets/img/translation.svg">
+          </i>
+                    <span>Language</span>
+                </a>
+                <div class="clear"></div>
+            </li>
+            <li (click)="goTo('PrivacyPage')">
+                <a>
+                    <i>
+            <img src="assets/img/key.svg">
+          </i>
+                    <span>Privacy Policy</span>
+                </a>
+                <div class="clear"></div>
+            </li>
+            <li (click)="goTo('FaqPage')">
+                <a>
+                    <i> <img src="assets/img/feedback.svg"> </i>
+                    <span>FAQ</span>
+                </a>
+                <div class="clear"></div>
+            </li>
+            <li (click)="goTo('ConditionsPage')">
+                <a>
+                    <i>
+            <img src="assets/img/file.svg">
+          </i>
+                    <span>Terms and Conditions</span>
+                </a>
+                <div class="clear"></div>
+            </li>
+
+            <li  *ngIf = "_auth" (click)="logout()">
+                <a>
+                    <i>
+            <img src="assets/img/logout.svg">
+          </i>
+                    <span>Log Out</span>
+                </a>
+                <div class="clear"></div>
+            </li>
+
+
+            <li  *ngIf = "!_auth" (click)="goTo('LoginPage')">
+                <a>
+                    <i>
+            <img src="assets/img/login.svg">
+          </i>
+                    <span>Log In</span>
+                </a>
+                <div class="clear"></div>
+            </li>
+
+            
+        </ul>
+    </div>
+    
+    <p class="version">Version 1.1.1<p>
+    
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

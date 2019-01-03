@@ -1,40 +1,52 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule,  } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule,  } from 'ionic-angular';
-import { HttpModule } from '@angular/http';
-
-import { MyApp } from './app.component';
-
-
+import { ErrorHandler, NgModule, } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule, } from 'ionic-angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { HapenningsProvider } from '../providers/hapennings/hapennings';
-import { ConfigProvider } from '../providers/config/config';
+import { Deeplinks } from '@ionic-native/deeplinks';
+import { Keyboard } from '@ionic-native/keyboard';
+import { Network } from '@ionic-native/network';
+import { HttpModule } from '@angular/http';
+import { MyApp } from './app.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+
+// Import Providers.
+import { AuthProvider } from '../providers/auth/auth';
+import { UserdataProvider } from '../providers/userdata/userdata';
+import { ApiProvider } from '../providers/api/api';
+
+import { SharedModule } from './shared.module';
+
 
 @NgModule({
   declarations: [
     MyApp,
-   
- 
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    SharedModule,
+    BrowserAnimationsModule,
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: false,
+    }),
+    LazyLoadImageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    
- 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HapenningsProvider,
-    ConfigProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Diagnostic,
+   ScreenOrientation, Network,
+    Deeplinks,Keyboard,AuthProvider,UserdataProvider,ApiProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

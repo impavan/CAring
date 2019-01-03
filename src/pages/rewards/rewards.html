@@ -1,0 +1,264 @@
+<div>
+    <header></header>
+</div>
+
+
+<ion-content class="mainCont" #container>
+    <div class="mt30">
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="member" color="secondary">
+                <ion-segment-button value="Rewards" (click)="getRedeemedVouchers()">
+                        Rewards
+                    </ion-segment-button>
+                    <ion-segment-button value="promotions">
+                        Coupon
+                    </ion-segment-button>
+                <ion-segment-button value="Redemption" (click)="fetchAllExperiencesWith()">
+                        Redemption
+                </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+    <div [ngSwitch]="member">
+        <ion-list *ngSwitchCase="'Redemption'">
+            <div class="rewardsContainer">
+                <div class="rewardsCards">
+                    <!--<article class="title">
+                <h4>Rewards / Voucher</h4>
+            </article>-->
+                    <!-- Section to be displayed when there is data. -->
+                    <div style="margin-bottom: 10px;"  *ngIf="offerdata.length >= 1">
+                        <ion-icon name="md-bulb" style="font-size:1.8em"></ion-icon>
+                        <label>Use earned points to redeem for gift vouchers and go to Rewards page to see your gift voucher(s)</label>
+                    </div>
+
+                    <div *ngIf="offerdata.length >= 1">
+                        <div *ngFor="let offer of offerdata">
+                            <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
+                                <ion-grid>
+                                    <ion-row class="first">
+                                        <ion-col col-3>
+                                            <figure>
+                                                <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="offer?.Images[0]" [scrollObservable]="container.ionScroll" />
+                                                <!-- <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" /> -->
+                                            </figure>
+                                        </ion-col>
+                                        <ion-col col-9>
+                                            <div class="content">
+                                                <ion-grid>
+                                                    <ion-row>
+                                                        <ion-col col-12>
+                                                            <h6>{{offer?.Title}}</h6>
+                                                            <span> Points  {{offer?.BrandPointRedeemValue}} </span>
+                                                            <!-- <span class="iconc-ticket"> 1 </span> -->
+                                                        </ion-col>
+                                                    </ion-row>
+                                                </ion-grid>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- Section to be displayed when there is no data to display. -->
+                    <section *ngIf="offerdata.length <= 0">
+                        <div class="beforeLogin">
+                            <i class="imgOut">
+                            <img src="assets/img/my_rewards.png" />
+                            </i>
+                            <p>Stay Tuned!
+                            <br/>Exciting offers coming soon!</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </ion-list>
+        <ion-list *ngSwitchCase="'Rewards'">
+
+            <div *ngIf="auth" class="subSegmentOut">
+                <ion-toolbar>
+                    <ion-segment [(ngModel)]="memberDetails" color="secondary">
+                        <ion-segment-button value="New">New</ion-segment-button>
+                        <ion-segment-button value="Used">Used</ion-segment-button>
+                        <ion-segment-button value="Expired">Expired</ion-segment-button>
+                    </ion-segment>
+                </ion-toolbar>
+            </div>
+            <ion-card *ngIf="!auth" padding class="myPointsContainer sec">
+                <ion-card-header>Login to view your rewards</ion-card-header>
+                <button ion-button value="Redeem Vouchers" color="secondary" (click)="gotoLogin()">Login to continue</button>
+            </ion-card>
+
+            <div [ngSwitch]="memberDetails">
+                <!-- New section starts. -->
+                <ion-list *ngSwitchCase="'New'">
+                    <div class="alert mt70" *ngIf="_newReward.length <= 0 && auth" text-center>
+                        No New Vouchers available!
+                    </div>
+                    <div class="newContainer" *ngIf="_newReward.length > 0 && auth">
+                        <ion-card>
+                            <ion-grid *ngFor="let reward of _newReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                <div class="content" *ngIf="reward.Cap_RedeemStatus == 0 &&  currentDate <= reward.ExpiryDate">
+                                    <article>
+                                        <ion-grid>
+                                            <ion-row class="first">
+                                                <ion-col col-3>
+                                                    <figure>
+                                                        <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="reward?.images[0]" [scrollObservable]="container.ionScroll"/>
+                                                    </figure>
+                                                </ion-col>
+                                                <ion-col col-9>
+                                                    <h6>{{reward.Title}}</h6>
+                                                    <span> <ion-icon class="iconc-ticket"></ion-icon> <strong>{{getRedeemed(reward?.ExperienceId)}} available </strong></span>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </article>
+                                </div>
+                            </ion-grid>
+                        </ion-card>
+                    </div>
+                </ion-list>
+                <!-- Used section starts. -->
+                <ion-list *ngSwitchCase="'Used'">
+                    <div class="alert mt70" *ngIf="_usedReward.length <= 0 && auth" text-center>
+                        No Used Vouchers to display
+                    </div>
+                    <div class="newContainer" *ngIf="_usedReward.length > 0 && auth">
+                        <ion-card style="padding-top:15px;">
+                            <ion-grid *ngFor="let reward of _usedReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                <div class="content" *ngIf="reward.Cap_RedeemStatus == 1">
+                                    <article>
+                                        <ion-grid>
+                                            <ion-row class="first">
+                                                <ion-col col-3>
+                                                    <figure>
+                                                        <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="reward?.images[0]" [scrollObservable]="container.ionScroll" />
+                                                    </figure>
+                                                </ion-col>
+                                                <ion-col col-9>
+                                                    <h6>{{reward.Title}}</h6>
+                                                    <span> <ion-icon class="iconc-ticket ticketIco"></ion-icon> {{getUsedVouchersCount(reward?.ExperienceId)}} used </span>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </article>
+
+                                </div>
+                            </ion-grid>
+                        </ion-card>
+                    </div>
+
+                </ion-list>
+                <!-- Expired section starts. -->
+                <ion-list *ngSwitchCase="'Expired'">
+                    <div class="alert mt70" *ngIf="_expiredReward.length <= 0 && auth" text-center>
+                        No Expired Vouchers to display
+                    </div>
+                    <div class="newContainer" *ngIf="_expiredReward.length > 0 && auth">
+                        <ion-card>
+                            <ion-grid *ngFor="let reward of _expiredReward | unique:'ExperienceId'" (click)="goto('RedeemPage', reward?.ExperienceId)">
+                                <div class="content" *ngIf="reward.Cap_RedeemStatus == 0 && currentDate > reward.ExpiryDate">
+                                    <article>
+                                        <ion-grid>
+                                            <ion-row class="first">
+                                                <ion-col col-3>
+                                                    <figure>
+                                                        <img [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="reward?.images[0]" [scrollObservable]="container.ionScroll"/>
+                                                    </figure>
+                                                </ion-col>
+                                                <ion-col col-9>
+                                                    <h6>{{reward.Title}}</h6>
+                                                    <span> <ion-icon class="iconc-ticket ticketIco"></ion-icon> {{getExpiredVoucherCount(reward?.ExperienceId)}} Expired </span>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </article>
+
+                                </div>
+                            </ion-grid>
+                        </ion-card>
+                    </div>
+                </ion-list>
+            </div>
+
+        </ion-list>
+        <ion-list *ngSwitchCase="'promotions'">
+                <ion-card *ngIf="!auth" padding class="myPointsContainer sec">
+                        <ion-card-header>Login to view your coupons</ion-card-header>
+                        <button ion-button value="Redeem Vouchers" color="secondary" (click)="gotoLogin()">Login to continue</button>
+                    </ion-card>
+            <div *ngIf="auth" class="rewardsContainer p0" no-padding>
+                <div class="rewardsCards">
+                    <!--<article class="title">
+                <h4>Rewards / Voucher</h4>
+            </article>-->
+               
+
+      
+                        <div *ngFor="let promo of _promotions">
+                            <article  (click)="gotoPromotionVoucherDetails(promo)" class="couponsOut" style="background: none;">
+                                <ion-card>
+                                    <ion-grid style="padding-bottom:5px;">
+                                        <ion-row class="first">
+                                            <ion-col col-3>
+                                                <figure>
+                                                    <img  [defaultImage]="'assets/img/default-Img.png'" [lazyLoad]="promo?.thumbnail" [scrollObservable]="container.ionScroll" />
+                                                    <!-- <img *ngIf="!offer?.Images[0]" src="assets/img/h2.jpg" /> -->
+                                                </figure>
+                                            </ion-col>
+                                            <ion-col col-9>
+                                                <div class="content Promo">
+                                                    <ion-grid>
+                                                        <ion-row>
+                                                            <ion-col col-12 style="padding-top:0;position:static;">
+                                                                <ion-row>
+                                                                    <ion-col col-5 style="padding-top:0;padding-left:0;">
+                                                                        <h4>{{promo?.discountamount}}</h4>
+                                                                    </ion-col>
+                                                                    <ion-col col-7 style="padding-top:0">
+                                                                        <h6>{{promo?.title}}</h6>
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                                <p [innerHTML]="promo?.subtitle | safehtml" style="margin-top: -6px;"></p>
+                                                                <p class="date">Validity: {{ promo?.publishingstartdate | date:"dd/MM/yyyy" }} - {{ promo?.publishingenddate | date:"dd/MM/yyyy" }}</p>
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-grid>
+                                                </div>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card>
+                            </article>
+                        </div>
+       
+                </div>
+            </div>
+        </ion-list>
+    </div>
+    </div>
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>
+
+<mymodal #login>
+    <!--<h2 class="errorInfo"></h2>-->
+    <p>Please Login/Register to continue</p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button class="btn2 cancelBtn" (click)="cancelRedeem()">Cancel</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button class="btn2" (click)="navToLogin()">Login/Register</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>

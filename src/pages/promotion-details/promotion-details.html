@@ -1,0 +1,32 @@
+<div>
+    <header></header>
+</div>
+
+
+<ion-content class="mainCont">
+
+    <div class="promotionDetails">
+        
+            <div>
+                <figure>
+            <img   [src]="_promotionDetails?.bannerimage? _promotionDetails?.bannerimage:[] " (click)="zoomArea(_promotionDetails?.bannerimage)"/>
+                </figure>
+            </div>
+      
+        <div class="content">
+            <h4 *ngIf="_promotionDetails?.title">{{_promotionDetails?.title}}</h4>
+            <p *ngIf="_promotionDetails?.eventdate">Date: {{_promotionDetails?.eventdate}}</p>
+            <p [innerHTML]="_promotionDetails?.longdescription | safehtml"></p>
+            
+        </div>
+    </div>
+
+
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>

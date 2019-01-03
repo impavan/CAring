@@ -1,0 +1,46 @@
+<ion-content>
+    <div class="newAccountContainer">
+        <i class="logo text-center">
+			<img src="assets/img/logo_large.png" />
+		</i>
+        <h6>Create New Account</h6>
+        <div class="contentOut">
+            <div class="container">
+                <div class="content">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label fixed>Mobile Number</ion-label>
+                            <ion-input type="text" readonly value="{{phoneNum}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label fixed>First Name<span class="alert">*</span></ion-label>
+                            <ion-input type="text" [(ngModel)]="registerData.fname" placeholder="Enter First Name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label fixed>Last Name</ion-label>
+                            <ion-input type="text" [(ngModel)]="registerData.lname" placeholder="Enter Last Name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>E-mail</ion-label>
+                            <ion-input *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.email" value="{{registerData.email}}" [readonly]="true"></ion-input>
+                            <ion-input *ngIf="!_existingCustomerData || !_existingCustomerData[0]?.customerdata?.customer[0]?.email " type="text" [(ngModel)]="registerData.email" placeholder="Enter E-mail"></ion-input>
+
+                        </ion-item>
+                    </ion-list>
+                </div>
+                <p *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.external_id" class="subTitle1">Great! Welcome back. We have found your existing regular ID along with your point history.</p>
+                <div *ngIf="_existingCustomerData && _existingCustomerData[0]?.customerdata?.customer[0]?.external_id" class="content">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label fixed>Regular ID</ion-label>
+                            <ion-label fixed>{{_existingCustomerData[0]?.customerdata?.customer[0]?.external_id}}</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </div>
+                <div class="mt20">
+                    <button ion-button class="btn4" (click)="otpCheck()">Create Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

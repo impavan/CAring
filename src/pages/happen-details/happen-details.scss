@@ -1,0 +1,28 @@
+page-happen-details {
+	.happenDetailsContainer{
+		.container{
+			padding:15px;
+			h6{
+				font-size:17px;
+				margin:0 0 10px 0;
+			}
+			p{
+				margin:0 0 5px 0;
+				
+			}
+			.subscription{
+				color:$cp-extra-darker-grey;
+				margin:10px 0 20px 0;
+				text-align:center;
+			}
+		}
+	}
+	p{
+		
+	}
+	.btn4{
+		font-size: 18px !important;
+		border-radius: 0 !important;
+		text-transform: uppercase !important;
+	}
+}

@@ -1,0 +1,99 @@
+page-health-details {
+    .healthDetailsContainer {
+        margin: 0;
+        padding: 0;
+        figure {
+            margin: 0;
+            padding: 0;
+            // max-height: 150px;
+            overflow: hidden;
+            img{
+                width: 100%;
+            }
+        }
+        .content {
+            padding: 15px;
+            h4 {
+                margin: 0 0 15px 0;
+                color: #2f4f4f;
+                font-size: 28px;
+                font-weight: 600;
+                span {
+                    display: block;
+                    font-size: 18px;
+                    color:#696969;
+                    margin: 10px 0 0 0;
+                }
+            }
+            p {
+                color: $cp-extra-darker-grey;
+                font-size: 12px;
+                // span{
+                //    // line-height: 28px;
+                // }
+            }
+            .infodate {
+                    margin-bottom: 20px;
+                label {
+                    font-size: 14px;
+                    color: #3c3c3c;
+                    i {
+                        font-style: normal;
+                        color: #3c3c3c;
+                        font-size: 14px;
+                    }
+                }
+                span {
+                    color: #3c3c3c;
+                    font-size: 14px;
+                }
+            }
+            .socialList {
+                margin: 30px 0 20px 0;
+                padding: 0 0 10px 0;
+                border-bottom: 2px solid #238258;
+                text-align: center;
+                li {
+                    list-style-type: none;
+                    margin: 0 10px;
+                    padding: 0;
+                    display: inline-block;
+                    ion-icon {
+                        font-size: 1.8em;
+                    }
+                }
+            }
+        }
+    }
+     @media(min-width:768px){
+        .healthDetailsContainer{
+            margin: 60px 0 0 0 !important;
+        }
+    }.shareBtn{
+        background: $btn-default;
+        box-shadow: none;
+        // border:1px solid #333;
+        color:$cp-lighter-grey;
+        text-transform: none;
+        display: block;
+        text-align: center;
+        margin: 0 auto 15px auto;
+    }
+    ul{
+        padding: 0 0 0 16px;
+        // text-align: left;
+        li{
+            margin-bottom: 15px;
+            line-height: 20px;
+            ion-icon{
+                font-size: 26px;
+            }
+        }
+    }
+    ol{
+        li{
+            margin-bottom: 15px;
+        }
+    }
+    
+}

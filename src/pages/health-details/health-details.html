@@ -1,0 +1,29 @@
+<div>
+    <header></header>
+</div>
+
+<ion-content class="mainCont">
+    <div class="healthDetailsContainer">
+        <figure *ngIf="healthData?.bannerimage">
+            <img  [src]="healthData?.bannerimage" (click)="zoomArea(healthData?.bannerimage)">
+        </figure>
+        <div class="content">
+            <h4>{{healthData?.title}}
+                <!-- <span>{{healthData?.subtitle}}</span> -->
+            </h4>
+            <div class="infodate">
+                <label *ngIf='healthData?.authorinfo'><i>By</i> {{healthData?.authorinfo}}</label> <span>{{healthData?.displaydate | date:'EEEE dd MMM yyyy hh:mm a'}}</span>
+            </div>
+            <div [innerHTML]="healthData?.detaileddescription | safehtml"></div>
+        </div>
+    </div>
+ 
+    <button ion-button *ngIf='healthData?.additionalinfo' value="redeem" class="shareBtn" (click)="shareViaSocialMedia()">Share This Article</button>
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <page-tabs></page-tabs>
+    </ion-toolbar>
+</ion-footer>
