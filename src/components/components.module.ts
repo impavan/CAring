@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { FooterButtonComponent } from './footer-button/footer-button';
-import { ModalComponent } from './modal/modal';
+// import { ModalComponent } from './modal/modal';
 // import { MymodalComponent } from './mymodal/mymodal';
 // import { HeaderComponent } from './header/header';
 @NgModule({
 	declarations: [FooterButtonComponent,
-    ModalComponent,
+    // ModalComponent,
     // MymodalComponent,
     // HeaderComponent
 ],
 	imports: [],
 	exports: [FooterButtonComponent,
-    ModalComponent,
+    // ModalComponent,
     // MymodalComponent,
     // HeaderComponent
 ]
