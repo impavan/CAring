@@ -29,5 +29,8 @@ export class HeaderComponent {
     // console.log(this.badge.get(),":::::::::::badgeheader::::::::::")
     // console.log(this.badge.get,":::::::::::badgeheader::::::::::")
   }
+ gotoPage(page){
+   this.navCtrl.setRoot(page)
+ }
 
 }

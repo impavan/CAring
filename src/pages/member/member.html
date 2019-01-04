@@ -7,18 +7,73 @@
 
 <ion-content class="mainCont"  >
     <div class="memberContainer">
-        <div class="row">
-            <div class="col">
-                <img src="assets/img/card_regular.png" alt="" />
-            </div>
-            <div class="col" text-center>
-                <div class="barCode">
-                    <svg #barcode id="barcode" style="width:100% !important;"></svg>
+        <div class="qrScan">
+            <div class="row">
+                <div class="col">
+                    <img src="assets/img/card_regular.png" alt="" />
+                </div>
+                <div class="col" text-center>
+                    <div class="barCode">
+                        <svg #barcode id="barcode" style="width:100% !important;"></svg>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="pointsCount">
+            <div *ngIf="_auth" class="myPointsContainer">
+                <div class="pointsOut">
+                    <div class="content">
+                        <div class="subContent">
+                            <h4>{{_totalAvailablePoints}}</h4>
+                            <h6>Total Points</h6>
+                            <button value="redeem" (click)="gotoRewards()">redeem</button>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="subContent" >
+                            <h4>{{expiryPointsLatest}}</h4>
+                            <h6>Points Expiring</h6>
+                            <button value="redeem" (click)="expiryScheduleModal()">view more</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <ion-card *ngIf="!_auth" class="myPointsContainer sec">
+                <p class="urPoints">You have no points yet</p>
+                <button ion-button value="Earn Points">Earn Points</button>
+            </ion-card>
+        </div>
+        <ion-grid class="homeTabLinks profileNew">
+            <ion-row>
+                <ion-col col-4 col-md-3 text-center>
+                    <img src="assets/img/newimgs/redemption.png" />
+                    <span>My Redemption</span>
+                </ion-col>
+                <ion-col col-4 col-md-3 text-center>
+                    <img src="assets/img/newimgs/transaction.png" />
+                    <span>My Transaction</span>
+                </ion-col>  
+                <ion-col col-4 col-md-3 text-center> 
+                    <img src="assets/img/newimgs/voucher.png" />
+                    <span>My Voucher</span>
+                </ion-col>
+                <ion-col col-4 col-md-3 text-center>
+                    <img src="assets/img/newimgs/profile.png" />
+                    <span>My Profile</span>
+                </ion-col>
+                <ion-col col-4 col-md-3 text-center>
+                    <img src="assets/img/newimgs/pmr.png" />
+                    <span>My PMR</span>
+                </ion-col>
+                <ion-col col-4 col-md-3 text-center>
+                    <img src="assets/img/newimgs/event.png" />
+                    <span>My Events</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
-        <ion-toolbar>
+        <!-- <ion-toolbar>
             <ion-segment [(ngModel)]="member" color="secondary">
                 <ion-segment-button value="My Points">
                     My Points
@@ -110,18 +165,71 @@
                         </div>
                     </div>
                 </div>
-            </ion-list> -->
-        </div>
+            </ion-list>
+        </div> -->
     </div>
-</ion-content>
-
-
-
-<ion-footer>
-    <ion-toolbar>
-        <page-tabs></page-tabs>
-    </ion-toolbar>
-</ion-footer>
+    <ion-row showWhen="core">
+            <ion-col col-12 no-padding>
+                <section class="footerSec">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-md-4>
+                                <h5>corporate information</h5>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">History</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Vission & Mission</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">CSR</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">News</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Carrer</a>
+                                    </li>
+                                </ul>
+                            </ion-col>
+                            <ion-col col-md-4>
+                                <h5>promotion</h5>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">Catalogue</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Newspaper Ads</a>
+                                    </li>
+                                </ul>
+                            </ion-col>
+                            <ion-col col-md-4>
+                                <h5>customer service</h5>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">Contact Us </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Store Locator</a>
+                                    </li>
+                                </ul>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <p>Copyright © 2016 Caring Pharmacy. All rights reserved. </p>
+                </section>
+            </ion-col>
+        </ion-row>
+    </ion-content>
+    
+    
+    
+    <ion-footer  hideWhen="core">
+        <ion-toolbar>
+            <page-tabs></page-tabs>
+        </ion-toolbar>
+    </ion-footer>
 <modal #expiryPoints>
 
     <div class="expiryDatesOut">

@@ -1,5 +1,33 @@
 <!-- Generated template for the HeaderComponent component -->
-<ion-header class="customTopHeader">
+<ion-header class="headerDesk" showWhen="core">
+    <ion-row>
+        <ion-col col-3>
+            <div class="logo">
+                <img src="assets/img/caring_logo.svg" />
+            </div>
+        </ion-col>
+        <ion-col col-9 text-right>
+            <ul>
+                <li>
+                    <a href="javascript:;" (click)="gotoPage('HomePage')"> Home</a>
+                </li>
+                <li>
+                    <a href="javascript:;"> Services </a>
+                </li>
+                <li>
+                    <a href="javascript:;"> Promotions </a>
+                </li>
+                <li>
+                    <a href="javascript:;" (click)="gotoPage('MemberPage')"> Member </a>
+                </li>
+                <li>
+                    <a href="http://estore.caring2u.com/" target="_blank"> estore </a>
+                </li>
+            </ul>
+        </ion-col>
+    </ion-row>
+</ion-header>
+<ion-header hideWhen="core" class="customTopHeader">
     <ion-navbar>
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
