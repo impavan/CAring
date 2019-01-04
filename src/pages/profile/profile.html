@@ -1,0 +1,54 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list >
+        <div class="myProfileContainer">
+            <div *ngIf="_auth" class="">
+                <div class="">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label stacked>First Name</ion-label>
+                            <ion-input type="text" disabled [(ngModel)]="_userName" placeholder="First Name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label stacked>Last Name</ion-label>
+                            <ion-input type="text" disabled [(ngModel)]="_lastName" placeholder="Last Name"></ion-input>
+                        </ion-item>
+      
+                        <ion-item *ngIf="_emailId">
+                            <ion-label stacked>Email</ion-label>
+                            <ion-input type="text" disabled [(ngModel)]="_emailId"></ion-input>
+                        </ion-item>
+      
+                        <ion-item>
+                            <ion-label stacked>Mobile Number</ion-label>
+                            <ion-input type="text" disabled [(ngModel)]="_mobileNum"></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="_birthday">
+                            <ion-label stacked>Birthday</ion-label>
+                            <ion-input type="text" disabled [(ngModel)]="_birthday"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                    <div class="mt20" padding>
+                        <button ion-button  class="btn4" (click)="memberEdit()">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </ion-list>
+
+</ion-content>

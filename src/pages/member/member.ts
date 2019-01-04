@@ -147,11 +147,11 @@ export class MemberPage {
         this.expiryPointsLatest = this.expirySchedule[0].points
         console.log(this.expirySchedule, "sortdata");
         this.loadedProfile = true;
-        this.loadMyProfile();
+       // this.loadMyProfile();
 
       }
     }, err => {
-      this.getMyProfileDetails();
+     // this.getMyProfileDetails();
       this.exceptionProvider.excpHandler(err);
 
     });
@@ -319,5 +319,10 @@ export class MemberPage {
 
   gotoRewards() {
     this.navCtrl.setRoot("RewardsPage", { selectTab: 'Redemption' });
+  }
+
+  profileLink(){
+    console.log("Going to profile page")
+    this.navCtrl.push("ProfilePage");
   }
 }

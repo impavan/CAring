@@ -23,12 +23,13 @@
                 <ion-segment-button value="My Points">
                     My Points
                 </ion-segment-button>
-                <ion-segment-button value="My Profile">
+                <!-- <ion-segment-button value="My Profile">
                     My Profile
-                </ion-segment-button>
+                </ion-segment-button> -->
             </ion-segment>
         </ion-toolbar>
         <div [ngSwitch]="member">
+                <button ion-button (click) = "profileLink()">Profile</button>
             <ion-list *ngSwitchCase="'My Points'">
                 <div *ngIf="_auth" class="myPointsContainer">
                     <div class="pointsOut">
@@ -48,16 +49,6 @@
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <!-- <p class="urPoints">Total Points:
-                        <strong>{{_totalAvailablePoints}}</strong>
-                        <button ion-button value="redeem" class="redeemBtn" (click)="gotoRewards()">Redeem</button>
-
-                    </p>
-                    <p class="urPoints">Points Expiring:
-                        <strong>{{expiryPoints}}</strong>
-                        <button ion-button value="redeem" class="redeemBtn" (click)="expiryScheduleModal()">View More</button>
-
-                    </p> -->
                     <section>
                         <div *ngFor="let transactions of _transactionList | chunk:'5'">
                         <ul *ngFor="let transaction of transactions" class="listMyPoints">
@@ -85,7 +76,7 @@
                 
             </ion-list>
      
-            <ion-list *ngSwitchCase="'My Profile'">
+            <!-- <ion-list *ngSwitchCase="'My Profile'">
                 <div class="myProfileContainer">
                     <div *ngIf="_auth" class="">
                         <div class="">
@@ -119,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-            </ion-list>
+            </ion-list> -->
         </div>
     </div>
 </ion-content>
