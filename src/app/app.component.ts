@@ -46,14 +46,21 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
     
+      // { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
+      // { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
+      // { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+      // { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
+      // { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
+      // { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
+      // { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
+      // { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
       { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
-      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
-       { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+      { title: 'Service', component: 'Service', index:0, icon:"iconc-home",ionicon:'' },
       { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
-      { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
-      { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
-      { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
-      { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
+      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
+      { title: 'eStore', component: 'ECartPage', index:3, icon:"iconc-id-card",ionicon:'' },
+      
+
     ];
 
     if (this._auth) {
