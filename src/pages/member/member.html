@@ -46,7 +46,7 @@
         </div>
         <ion-grid class="homeTabLinks profileNew">
             <ion-row>
-                <ion-col col-4 col-md-3 text-center>
+                <ion-col (click) = "redemptionLink()" col-4 col-md-3 text-center>
                     <img src="assets/img/newimgs/redemption.png" />
                     <span>My Redemption</span>
                 </ion-col>
@@ -54,13 +54,13 @@
                     <img src="assets/img/newimgs/transaction.png" />
                     <span>My Transaction</span>
                 </ion-col>  
-                <ion-col col-4 col-md-3 text-center> 
+                <ion-col (click) = "voucherLink()" col-4 col-md-3 text-center> 
                     <img src="assets/img/newimgs/voucher.png" />
                     <span>My Voucher</span>
                 </ion-col>
-                <ion-col col-4 col-md-3 text-center>
+                <ion-col (click) = "profileLink()" col-4 col-md-3 text-center>
                     <img src="assets/img/newimgs/profile.png" />
-                    <span>My Profile</span>
+                    <span >My Profile</span>
                 </ion-col>
                 <ion-col col-4 col-md-3 text-center>
                     <img src="assets/img/newimgs/pmr.png" />
@@ -81,9 +81,9 @@
                 <!-- <ion-segment-button value="My Profile">
                     My Profile
                 </ion-segment-button> -->
-            </ion-segment>
-        </ion-toolbar>
-        <div [ngSwitch]="member">
+            <!-- </ion-segment> -->
+        <!-- </ion-toolbar> -->
+        <!-- <div [ngSwitch]="member">
                 <button ion-button (click) = "profileLink()">Profile</button>
             <ion-list *ngSwitchCase="'My Points'">
                 <div *ngIf="_auth" class="myPointsContainer">
@@ -129,7 +129,7 @@
                 </ion-card>
 
                 
-            </ion-list>
+            </ion-list> -->
      
             <!-- <ion-list *ngSwitchCase="'My Profile'">
                 <div class="myProfileContainer">
@@ -167,7 +167,7 @@
                 </div>
             </ion-list>
         </div> -->
-    </div>
+    <!-- </div> -->
     <ion-row showWhen="core">
             <ion-col col-12 no-padding>
                 <section class="footerSec">
@@ -221,7 +221,7 @@
                 </section>
             </ion-col>
         </ion-row>
-    </ion-content>
+    <!-- </ion-content> -->
     
     
     

@@ -62,9 +62,6 @@ export class ProfilePage {
       this.authProvider.setHeader();
       this.loadMyPoints();
     }
-  //  this.events.publish('changeIcon', "MemberPage");
-
-
   }
 
   loadMyPoints() {
@@ -114,7 +111,6 @@ export class ProfilePage {
       this._oldemailId = this.authProvider.getUserEmailId();
       this._mobileNum = this.authProvider.getUserMobileNo();
       this._externalId = this.authProvider.getExternalId();
-      console.log("getting==>",localStorage.getItem('phone'))
      // JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
   
     }

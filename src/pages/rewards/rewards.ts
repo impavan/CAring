@@ -37,6 +37,7 @@ export class RewardsPage {
   currentDate: any = moment().format('YYYY-MM-DD');
   from: any;
   navToId: any;
+  fromPage: string;
 
   constructor(public events: Events,
               public navParams:NavParams,  
@@ -51,12 +52,13 @@ export class RewardsPage {
               this.selectTab = navParams.get('selectTab') || '';
               console.log(this.selectTab,":::::::::::::::::::selectab:::::::::::::::::")
               this.from = navParams.get('deeplink');
+              this.fromPage = this.navParams.get('fromProfile')
               this.navToId = navParams.get('id');
               if (this.from == 'myrewards') {
                   this.member = 'Rewards';
                   console.log("form rewards");
                   this.fetchAllExperiences();
-              } else if (this.from == 'newrewards') {
+              } else if (this.from == 'newrewards' || this.fromPage =='profileRedemption') {
                 console.log("form Redemption");
                 this.member = 'Redemption';
                 this.fetchAllExperiencesWith();

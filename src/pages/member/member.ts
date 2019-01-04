@@ -147,6 +147,7 @@ export class MemberPage {
         this.expiryPointsLatest = this.expirySchedule[0].points
         console.log(this.expirySchedule, "sortdata");
         this.loadedProfile = true;
+        JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
        // this.loadMyProfile();
 
       }
@@ -322,7 +323,14 @@ export class MemberPage {
   }
 
   profileLink(){
-    console.log("Going to profile page")
     this.navCtrl.push("ProfilePage");
+  }
+
+  redemptionLink(){
+    this.navCtrl.push("RewardsPage", {fromProfile : 'profileRedemption' })
+  }
+
+  voucherLink(){
+    this.navCtrl.push("RewardsPage")
   }
 }
