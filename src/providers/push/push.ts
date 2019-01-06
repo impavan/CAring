@@ -43,7 +43,8 @@ export class PushProvider {
       { route: 'happen-details', component: 'HappenDetailsPage' },
       { route: 'health-details', component: 'HealthDetailsPage' },
       { route: 'instoredetails', component: 'InstoredetailsPage' },
-      { route: 'promotion-voucher-details', component:'PromotionVoucherDetailsPage'}
+      { route: 'promotion-voucher-details', component:'PromotionVoucherDetailsPage'},
+      { route: 'events-page', component: 'EventsPage' },
     ];
 
               }

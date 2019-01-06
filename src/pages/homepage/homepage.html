@@ -50,7 +50,7 @@
                     <img src="assets/img/newimgs/coupon.png" />
                     <span>Coupon</span>
                 </ion-col>
-                <ion-col clickable (click)="goto('HealthInfoPage')" text-center>
+                <ion-col clickable (click)="goto('EventsPage')" text-center>
                     <img src="assets/img/newimgs/events.png" />
                     <span>Events</span>
                 </ion-col>
@@ -108,7 +108,7 @@
                     <article class="headerBand">
                         <strong>- Health Info -</strong>
                     </article>
-                    <section class="homeFeeds">
+                    <section class="homeFeeds" clickable (click)="goto('HealthInfoPage')">
                         <ion-grid>
                             <ion-row>
                                 <ion-col col-5>
