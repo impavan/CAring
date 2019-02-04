@@ -55,6 +55,10 @@ export class AuthProvider {
     return localStorage.getItem('auth_token');
   }
 
+  //sets refreshKey
+
+  
+
 
   //set true if user logged In
   setUserLoggedIn(userLoggedIn) {

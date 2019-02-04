@@ -7,12 +7,14 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 import { UserdataProvider } from '../../providers/userdata/userdata';
  import { LoaderProvider } from '../../providers/loader/loader';
 import { AlertProvider } from '../../providers/alert/alert';
+import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
 
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
 
   @ViewChild('connection') connectionModal;
@@ -32,16 +34,12 @@ export class LoginPage {
               private alertProvider: AlertProvider,
               private userProvider: UserdataProvider,
               private loaderProvider: LoaderProvider,
+              private connectAuthProvider:ConnectAuthProvider,
               private exceptionProvider: ExceptionHandlerProvider) {
     
                   this.mobilevalidated = false;
                   this.phoneNum = '';
-                  // this.events.subscribe('noconnection', (value) => {
-
-                  //   if (value)
-                  //     this.openConnectionModal();
-                    
-                  // });
+                
                   
                  
   }
@@ -93,31 +91,44 @@ export class LoginPage {
 
     
 
-      this.userProvider.userLogin(phoneNo)
-        .subscribe(data => {
+       this.userProvider.userLogin(phoneNo)
+      //   .subscribe(data => {
 
           
-          if (data[0].code == 200) {
+      //     if (data[0].code == 200) {
                   
-              this.navCtrl.push("OtpPage", { from: '0', phone: phoneNo});
+      //         this.navCtrl.push("OtpPage", { from: '0', phone: phoneNo});
               
             
-          } else if (data[0].code == 202) 
+      //     } else if (data[0].code == 202) 
 
-              this.navCtrl.push("OtpPage", { from: '1', phone: phoneNo });
+      //         this.navCtrl.push("OtpPage", { from: '1', phone: phoneNo });
             
-           else 
+      //      else 
             
-            this.alertProvider.presentToast(data[0].message);
+      //       this.alertProvider.presentToast(data[0].message);
 
           
 
-        }, err => {
+      //   }, err => {
 
-          console.log(err,"In error");
-          this.exceptionProvider.excpHandler(err);
+      //     console.log(err,"In error");
+      //     this.exceptionProvider.excpHandler(err);
 
-        })
+      //   })
+
+      this.connectAuthProvider.loginToCaringConnect(phoneNo).subscribe((data)=>{
+        console.log(data,"subscribed data from caring connect");
+        if(data.code === 200){
+          this.navCtrl.push("OtpPage", {phone: phoneNo});
+          this.alertProvider.presentToast(data.result.message);
+        }else{
+          this.alertProvider.presentToast(data.result.message);
+        }
+
+      },error=>{
+        console.error(error,"error in login");
+      })
     }
 
   }

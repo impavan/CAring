@@ -11,6 +11,8 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 import { PushProvider } from '../../providers/push/push'
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
+
 
 
 @IonicPage()
@@ -37,6 +39,7 @@ export class OtpPage {
 
   constructor(
               private exceptionProvider: ExceptionHandlerProvider,
+              private connectAuthProvider:ConnectAuthProvider,
               private userProvider: UserdataProvider,
               private alertProvider: AlertProvider,
               private socialSharing:SocialSharing,
@@ -90,54 +93,34 @@ export class OtpPage {
 
       let otp = this.otp;
     
-      this.userProvider.userOTP(otp, this.phoneNum, this.from).subscribe(data => {
-
-        if (data[0].code == 200) {
-
-          if (data[0].customerdata) {
-
-            this._existingCustomerData = data;
-            let custom_data = data[0].customerdata.customer[0].custom_fields.field;
-            let mobile_validated = custom_data.filter(res => res.name === this.MOBILE_VALIDATED);
-            
-            if(mobile_validated[0] && mobile_validated[0].value == this.YES){
-              this.loginOTPSucess(data).then(d => {
-                let registerData = {
-                            
-                              fname:data[0].customerdata.customer[0].firstname,
-                              lname:data[0].customerdata.customer[0].lastname,
-                              email:data[0].customerdata.customer[0].email,
-                              mobile:data[0].customerdata.customer[0].mobile,
-                              externalId:data[0].customerdata.customer[0].external_id,
-                              
-                          }
-                this.userProvider.updateProfile(registerData, true).subscribe(data => {
-                  console.log("updated after login");
-                })
-              })
-              this.userProvider.OTPCount = 0;
-                this.navCtrl.setRoot("HomePage");
+      this.connectAuthProvider.OTPCheckCaringConnect(this.phoneNum,otp).subscribe(data=>{
+        console.log(data,"sucess in otp validate");
+        if(data.code === 200){
+          this.connectAuthProvider.validateToken(data.result).then(isTokenValid=>{
+            console.log(isTokenValid,"res from validateToken ")
+            if(isTokenValid){
+              this.authProvider.setAuthToken(data.result);
+              this.navCtrl.setRoot('HomePage');
+            }else{
+              this.alertProvider.presentToast("Something went wrong");
             }
+          })
+        }else if(data.code === 204){
+          this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp });
+        }else{
+          console.log("coming to else");
+        }
 
-            else {
-              this.userProvider.OTPCount = 0;
-            this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from, custExistingData:this._existingCustomerData});
-            }
-            
-          } else {
-            this.userProvider.OTPCount = 0;
-             this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp , 'from':this.from});
-          }
-        } else {
-          this.clearOTPBox();
-          this.alertProvider.presentToast(data[0].message);
-        } 
-      }, err => {
-        this.exceptionProvider.excpHandler(err);
-      });
+      },error=>{
+        console.error(error);
+        console.log("error in otp validate");
+      })
+
     }
   }
 
+
+ 
   //otp success handler for login
   loginOTPSucess(data) {
     return new Promise((resolve) => {

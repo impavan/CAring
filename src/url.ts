@@ -34,3 +34,12 @@
 export const MESSAGE_HISTORY = `mobile/getmessagehistory?mobile=`;
  
 export const PROMOTIONAL_VOUCHERS = `voucherpromotions?orderby_dsc=createdAt&lang=`;
+
+
+// =======================================CARing Connect Api's===============================================================
+
+export const SEND_OTP = `auth/sendotp`;
+
+export const VALIDATE_OTP = `auth/validateotp`;
+
+export const REFRESH_TOKEN = `crmrefresh`;

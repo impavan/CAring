@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 // import { Badge } from '@ionic-native/badge';
+import { ConnectAuthProvider } from '../providers/connect-auth/connect-auth';
 
 // Import Providers.
 import { ApiProvider } from '../providers/api/api';
@@ -38,7 +39,8 @@ export class MyApp {
     public loaderProvider:LoaderProvider,
     public pushProvider: PushProvider,
     public apiProvider:ApiProvider,
-    public networkprovider: NetworkProvider
+    public networkprovider: NetworkProvider,
+    public connectAuthProvider:ConnectAuthProvider
     // public badge: Badge
   ){
 

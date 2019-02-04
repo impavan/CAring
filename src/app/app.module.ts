@@ -20,6 +20,8 @@ import { UserdataProvider } from '../providers/userdata/userdata';
 import { ApiProvider } from '../providers/api/api';
 
 import { SharedModule } from './shared.module';
+import { ConnectAuthProvider } from '../providers/connect-auth/connect-auth';
+import { Device } from '@ionic-native/device';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { SharedModule } from './shared.module';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: false,
     }),
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +49,9 @@ import { SharedModule } from './shared.module';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Diagnostic,
    ScreenOrientation, Network,
-    Deeplinks,Keyboard,AuthProvider,UserdataProvider,ApiProvider
+    Deeplinks,Keyboard,AuthProvider,UserdataProvider,ApiProvider,
+    Device,
+    ConnectAuthProvider
   ]
 })
 export class AppModule { }
