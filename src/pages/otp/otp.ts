@@ -94,18 +94,13 @@ export class OtpPage {
       let otp = this.otp;
     
       this.connectAuthProvider.OTPCheckCaringConnect(this.phoneNum,otp).subscribe(data=>{
-        console.log(data,"sucess in otp validate");
         if(data.code === 200){
           this.connectAuthProvider.validateToken(data.result).then(isTokenValid=>{
-            console.log(isTokenValid,"res from validateToken ")
             if(isTokenValid){
               this.authProvider.setAuthToken(data.result);
 
               this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
-                console.log(customerdetails,"customerdetails");
                 if(customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer){
-                  // loginOTPSucess()
-                  // console.log(customerdetails,"customerdetails");
                   this.loginOTPSucess(customerdetails.result.response.customers).then(()=>{
                     this.navCtrl.setRoot('HomePage');
                   });

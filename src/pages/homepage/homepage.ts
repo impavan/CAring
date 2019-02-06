@@ -134,7 +134,7 @@ export class HomePage {
     this.hapenningsProvider.getHotDeals().subscribe(hotdeals =>{
       this.hotdeals = hotdeals.data;
     },err=>{
-      console.log("inside hot deals err", err);
+      console.log("inside hot deals err", err); 
     })
   }
 

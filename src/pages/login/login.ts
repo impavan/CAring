@@ -89,43 +89,13 @@ export class LoginPage {
 
     } else {
 
-    
-
-       this.userProvider.userLogin(phoneNo)
-      //   .subscribe(data => {
-
-          
-      //     if (data[0].code == 200) {
-                  
-      //         this.navCtrl.push("OtpPage", { from: '0', phone: phoneNo});
-              
-            
-      //     } else if (data[0].code == 202) 
-
-      //         this.navCtrl.push("OtpPage", { from: '1', phone: phoneNo });
-            
-      //      else 
-            
-      //       this.alertProvider.presentToast(data[0].message);
-
-          
-
-      //   }, err => {
-
-      //     console.log(err,"In error");
-      //     this.exceptionProvider.excpHandler(err);
-
-      //   })
-
       this.connectAuthProvider.loginToCaringConnect(phoneNo).subscribe((data)=>{
-        console.log(data,"subscribed data from caring connect");
         if(data.code === 200){
           this.navCtrl.push("OtpPage", {phone: phoneNo});
           this.alertProvider.presentToast(data.result.message);
         }else{
           this.alertProvider.presentToast(data.result.message);
         }
-
       },error=>{
         console.error(error,"error in login");
       })
