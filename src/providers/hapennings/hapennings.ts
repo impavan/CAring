@@ -11,7 +11,7 @@ import moment from 'moment';
 //All providers goes here
 
 import { STTARTER_BASE_URL } from '../../config';
-import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ } from '../../url';
+import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ, QUICK_ACCESS, STORE_BANNERS, HOT_DEALS } from '../../url';
 import { LoaderProvider } from '../loader/loader';
 
 @Injectable()
@@ -169,4 +169,38 @@ getHomeBanner(){
         .finally(()=>this.loader.dismissLoader())
       }
       // http://experiences.capillarytech.com/api/mobileapi/customer/get?identifier_key=mobile&brand_identifier=CARINGLIVE&identifier_value=60126183270
-}
+
+
+      getQuickAccess(){
+
+      return this.http.get(STTARTER_BASE_URL + QUICK_ACCESS, this.contentType)
+        .map((res: Response) => res)
+        .do((res: Response) => res.json())
+        .map((res: Response) => res.json())
+        .catch((err: Error) => Observable.throw(err))
+        .finally(()=>console.log("done"));
+      }
+
+
+      getStoreBanners(){
+
+        return this.http.get(STTARTER_BASE_URL + STORE_BANNERS, this.contentType)
+          .map((res: Response) => res)
+          .do((res: Response) => res.json())
+          .map((res: Response) => res.json())
+          .catch((err: Error) => Observable.throw(err))
+          .finally(()=>console.log("done"));
+        }
+
+        getHotDeals(){
+
+          return this.http.get(STTARTER_BASE_URL + HOT_DEALS, this.contentType)
+            .map((res: Response) => res)
+            .do((res: Response) => res.json())
+            .map((res: Response) => res.json())
+            .catch((err: Error) => Observable.throw(err))
+            .finally(()=>console.log("done"));
+          }
+
+      }
+

@@ -25,8 +25,9 @@ export class MyApp {
   @ViewChild('login')LoginModal;
   _auth = localStorage.getItem("auth_token");
   
-  rootPage: any =  this._auth?"HomePage":"LoginPage";
+    
   _userName:any="";
+  rootPage:any;
   pages: Array<{ title: string, component: any, index: number, icon:string, ionicon:string }>;
 
   constructor(private platform: Platform, 
@@ -40,7 +41,8 @@ export class MyApp {
     public pushProvider: PushProvider,
     public apiProvider:ApiProvider,
     public networkprovider: NetworkProvider,
-    public connectAuthProvider:ConnectAuthProvider
+    public connectAuthProvider:ConnectAuthProvider,
+   
     // public badge: Badge
   ){
 
@@ -65,6 +67,11 @@ export class MyApp {
 
     ];
 
+    this.connectAuthProvider.validateToken(this._auth).then(data=>{
+      console.log(data,"data---");
+      this.rootPage =  (data)?"HomePage":"LoginPage";
+    })
+
     if (this._auth) {
         
         this.getUser();
@@ -77,7 +84,8 @@ export class MyApp {
 
     })
 
-        
+    console.log(this.connectAuthProvider.validateToken(this._auth),"this.connectAuthProvider.validateToken(this._auth)");
+
   }
       
  

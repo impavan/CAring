@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,  } from '@angular/core';
 import { NavController, IonicPage, Events } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { PushProvider } from '../../providers/push/push';
@@ -6,6 +6,7 @@ import { ApiProvider } from '../../providers/api/api';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
+import { DomSanitizer } from '@angular/platform-browser'
 
 @IonicPage()
 @Component({
@@ -18,14 +19,25 @@ export class HomePage {
   bannerData: any = [];
   INAPPLINK = 'InAppLink';
   WEBLINK = 'WebLink';
+  showEvents:boolean = false;
+  quickAccessData:any = [];
+  storeBanners:any = [];
+  weblinkurl:any = null;
+  hotdeals:any = [];
 
   constructor(private events: Events,
     public navCtrl: NavController,
+    private domSanitizer:DomSanitizer,
     private apiProvider: ApiProvider,
     private pushProvider: PushProvider,
     private inAppBrowser: InAppBrowser,
     private hapenningsProvider: HapenningsProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
+
+      this.getQuickAccess();
+      this.getStoreBanners();
+      this.getHotDeals();
+      
   }
 
   ionViewWillEnter() {
@@ -40,7 +52,6 @@ export class HomePage {
             return d;
           }
         });
-        console.log(this.bannerData,":::::::::::;bannerdata:::::::::::::")
         this.isSlidesLoaded = true;
       }, err => {
         this.exceptionProvider.excpHandler(err);
@@ -49,21 +60,28 @@ export class HomePage {
     this.events.publish('changeIcon', "HomePage");
   }
 
-  goto(page: string) {
-    this.navCtrl.setRoot(page).then((canEnter) => {
+  goto(data: any) {
+
+    if(data.linktype === 'WebLink'){
+
+      this.showEvents = true;
+      this.weblinkurl = data.destination;
+
+
+    }else if(data.linktype === 'InAppLink'){
+     this.navCtrl.setRoot(data.destination).then((canEnter) => {
       if (canEnter == false)
-        this.events.publish('login', false);
+         this.events.publish('login', false);
     });
+    }
+    
   }
 
   gotoLink(bannerdata) {
-    console.log("bannerdata",this.bannerData)
     if (bannerdata.linktype === this.INAPPLINK) {
-      console.log("bannerdata destination",this.bannerData.destination)
        this.route(bannerdata.destination);
       //this.route(bannerdata._id);
     } else if (bannerdata.linktype === this.WEBLINK) {
-      console.log("bannerdata destination",this.bannerData.destination)
       this.inAppBrowser.create(bannerdata.destination);
     } else { }
   }
@@ -83,13 +101,47 @@ export class HomePage {
     //   { route: '/stores', component: 'StoreLocatorPage' }
   
     // ]; 
-    console.log(deeplink,"deeplink");
    // console.log(deeplink.substr(1),"deeplinksubstr(1)");
     //  let navdata = deepRoute.filter(data => data.route === deeplink);
     this.pushProvider.getDeepLinkPath(deeplink.substr(1)).then((navdata) => {
-      console.log(navdata,"navdata");
       this.navCtrl.setRoot(navdata['page'], { deeplink: navdata['route'], id: navdata['value'] });
     })
+  }
+
+  showEvent(){
+    this.showEvents = true;
+  }
+
+  getQuickAccess(){
+      this.hapenningsProvider.getQuickAccess().subscribe(quickaccessdata =>{
+        this.quickAccessData = quickaccessdata.data.filter(quick=> quick.isactive);
+      },err=>{
+        console.log("inside err", err);
+      })
+  }
+
+
+  getStoreBanners(){
+    this.hapenningsProvider.getStoreBanners().subscribe(storebannerdata =>{
+      this.storeBanners = storebannerdata.data
+    },err=>{
+      console.log("inside store banner err", err);
+    })
+  }
+
+
+  getHotDeals(){
+    this.hapenningsProvider.getHotDeals().subscribe(hotdeals =>{
+      this.hotdeals = hotdeals.data;
+    },err=>{
+      console.log("inside hot deals err", err);
+    })
+  }
+
+  gotoCart(deal){
+    this.showEvents = true;
+    this.weblinkurl = deal.productlink;
+
   }
 
 }

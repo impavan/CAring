@@ -100,7 +100,20 @@ export class OtpPage {
             console.log(isTokenValid,"res from validateToken ")
             if(isTokenValid){
               this.authProvider.setAuthToken(data.result);
-              this.navCtrl.setRoot('HomePage');
+
+              this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
+                console.log(customerdetails,"customerdetails");
+                if(customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer){
+                  // loginOTPSucess()
+                  // console.log(customerdetails,"customerdetails");
+                  this.loginOTPSucess(customerdetails.result.response.customers).then(()=>{
+                    this.navCtrl.setRoot('HomePage');
+                  });
+                }
+              },err=> {
+                console.log(err,"customerdetails err");
+              })
+              
             }else{
               this.alertProvider.presentToast("Something went wrong");
             }
@@ -124,14 +137,13 @@ export class OtpPage {
   //otp success handler for login
   loginOTPSucess(data) {
     return new Promise((resolve) => {
-    this.authProvider.setUser(data[0].customerdata);
-    this.authProvider.setAuthToken(data[0].auth_key);
+    this.authProvider.setUser(data);
     if (this.platform.is('cordova')) {
-      this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-      this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+      this.pushProvider.loginToWebengage(data.customer[0].mobile);
+      this.pushProvider.saveCustomerInfoToWebengage(data);
     }  
-    localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
-    localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+    localStorage.setItem('phone', data.customer[0].mobile);
+    localStorage.setItem('userdetails', JSON.stringify(data));
     this.authProvider.setUserLoggedIn(true);
     this.authProvider.setHeader();
     this.clearOTPBox();

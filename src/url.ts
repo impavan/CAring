@@ -43,3 +43,11 @@ export const SEND_OTP = `auth/sendotp`;
 export const VALIDATE_OTP = `auth/validateotp`;
 
 export const REFRESH_TOKEN = `crmrefresh`;
+
+export const GET_CUSTOMER = `customer`;
+
+export const QUICK_ACCESS = `quickaccess?orderby_asc=priority`;
+
+export const STORE_BANNERS = `storebanners?lang=`;
+
+export const HOT_DEALS = `hotitems?lang=`;

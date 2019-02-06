@@ -9,6 +9,7 @@ import { SortPipe } from '../pipes/sort/sort';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { SafeurlPipe } from '../pipes/safeurl/safeurl';
 
 
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
@@ -30,12 +31,13 @@ import { PushProvider } from '../providers/push/push';
     IonicPageModule.forChild(ChunkPipe),
     IonicPageModule.forChild(SortPipe),
     IonicPageModule.forChild(SafehtmlPipe),
+    IonicPageModule.forChild(SafeurlPipe),
     IonicImageViewerModule,
 
    
   ],
-  declarations: [TabsPage,MymodalComponent,ModalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe],
-  exports: [TabsPage, MymodalComponent,ModalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule],
+  declarations: [TabsPage,MymodalComponent,ModalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe,SafeurlPipe],
+  exports: [TabsPage, MymodalComponent,ModalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule,SafeurlPipe],
   providers:[HapenningsProvider,ExceptionHandlerProvider,NetworkProvider,LoaderProvider,AlertProvider,PushProvider]
 })
 

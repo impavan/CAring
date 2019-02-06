@@ -6,6 +6,7 @@
 
 <ion-content class="mainCont homePage" *ngIf="bannerData">
 
+    <div *ngIf="!showEvents">
     <ion-slides *ngIf="bannerData && bannerData.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
 
         <ion-slide *ngFor="let banner of bannerData | sort:'priority'">
@@ -13,8 +14,6 @@
                 <img src="{{banner?.bannerimage}}" >
             </div>
         </ion-slide>
-
-
     </ion-slides>
 
     <div class="homeContainer">
@@ -38,11 +37,11 @@
         </ion-grid> -->
         <ion-grid class="homeTabLinks">
             <ion-row>
-                <ion-col clickable (click)="goto('PromotionsPage')" text-center>
-                    <img src="assets/img/newimgs/bestdeal.png" />
-                    <span>Best Deal</span>
+                <ion-col *ngFor ="let access of quickAccessData" clickable (click)="goto(access)" text-center>
+                    <img src="{{access?.thumbnailimage}}" />
+                    <span>{{access?.title}}</span>
                 </ion-col>
-                <ion-col clickable (click)="goto('MemberPage')" text-center> 
+                <!-- <ion-col clickable (click)="goto('MemberPage')" text-center> 
                     <img src="assets/img/newimgs/catalogue.png" />
                     <span>Catalogue</span>
                 </ion-col>
@@ -51,11 +50,12 @@
                     <span>Coupon</span>
                 </ion-col>
                 <ion-col clickable  text-center>
-                    <a href="http://caringevents.spurtreetech.com" target="_blank">
+                    <a (click)="showEvent()">
                         <img src="assets/img/newimgs/events.png" />
+                        
                         <span>Events</span>
                     </a>
-                </ion-col>                
+                </ion-col>                 -->
             </ion-row>
         </ion-grid>
         <ion-grid no-padding>
@@ -132,9 +132,17 @@
             </ion-row>
         </ion-grid>
         <section class="advBnr">
-            <figure>
+            <!-- <figure>
                 <img src="assets/img/newimgs/happningsold.png" />
-            </figure>
+            </figure> -->
+            <ion-slides *ngIf="storeBanners && storeBanners.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
+
+                <ion-slide *ngFor="let store of storeBanners">
+                    <div class="swiper-zoom-container">
+                        <img src="{{store?.bannerimage}}" >
+                    </div>
+                </ion-slide>
+            </ion-slides>
         </section>
         <ion-grid class="homeTabLinks">
             <ion-row>
@@ -159,20 +167,20 @@
     </div>
     <section class="productSlider">
         <ul>
-            <li>
-                <img src="http://www.caring2u.com/images/estore_59926cde2f123.jpg" />
-                <h4>Item Product Name one</h4>
+            <li *ngFor="let deal of hotdeals" (click)="gotoCart(deal)">
+                <img src="{{deal?.productimage}}" />
+                <h4>{{deal?.producttitle}}</h4>
                 <ion-row>
                     <ion-col col-8>
-                        <strong>RM 89.00</strong>
-                        <span><del>RM 32.00</del> 22%</span>
+                        <strong>RM {{deal?.productdiscountedprice}}</strong>
+                        <span><del>RM {{deal?.productactualprice}}</del> {{deal?.discount}}%</span>
                     </ion-col>
                     <ion-col col-4>
                         <ion-icon class="cartIco" name="cart"></ion-icon>
                     </ion-col>
                 </ion-row>
             </li>
-            <li>
+            <!-- <li>
                 <img src="http://www.caring2u.com/images/estore_59926cde2f123.jpg" />
                 <h4>Item Product Name one</h4>
                 <ion-row>
@@ -210,7 +218,7 @@
                         <ion-icon  class="cartIco" name="cart"></ion-icon>
                     </ion-col>
                 </ion-row>
-            </li>
+            </li> -->
         </ul>
     </section>
     <ion-row showWhen="core">
@@ -266,7 +274,12 @@
             </section>
         </ion-col>
     </ion-row>
+    </div>
+    <div *ngIf="showEvents">
+        <iframe style="width:100%;height: 100vh;" [src]="weblinkurl | safeurl" ></iframe>
+    </div>
 </ion-content>
+
 
 
 

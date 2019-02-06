@@ -4,7 +4,7 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CLIENT_KEY, CARING_CONNECT_BASE_URL, PRIVATE_KEY } from '../../config';
 import { Observable } from 'rxjs/Observable';
-import { SEND_OTP, VALIDATE_OTP, REFRESH_TOKEN } from '../../url';
+import { SEND_OTP, VALIDATE_OTP, REFRESH_TOKEN, GET_CUSTOMER } from '../../url';
 import { Device } from '@ionic-native/device';
 import { LoaderProvider } from '../loader/loader';
 import { AuthProvider } from '../auth/auth';
@@ -86,7 +86,9 @@ export class ConnectAuthProvider {
 
   public async validateToken(token){
 
+    if(token){
     let parsedToken = await this.getUserParsedToken(token);
+    console.log(parsedToken,"parsedToken")
     if(parsedToken.valid){
       this.retryCount = 0;
       return true;
@@ -107,6 +109,9 @@ export class ConnectAuthProvider {
       return false;
     }
   }
+}else{
+  return false;
+}
   }
 
 
@@ -157,6 +162,21 @@ export class ConnectAuthProvider {
     let pKey = await keys.exportKey('pkcs1-private-pem');
     let parsedToken = await jwe.parse(token).verify(pKey);
     return parsedToken;
+  }
+
+
+  getCustomerDetails(){
+
+    let token = this.authProvider.getAuthToken();
+    this._headers.append('x-user-token', token);
+    this._headers.append('client_code', CLIENT_KEY);
+    const URL = `${CARING_CONNECT_BASE_URL}${GET_CUSTOMER}`;
+    return this.http.get(URL,{headers: this._headers})
+      .do((res: Response) => res)
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(()=>this.loader.dismissLoader())
+
   }
 
 
