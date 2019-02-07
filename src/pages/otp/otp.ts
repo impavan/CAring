@@ -13,8 +13,6 @@ import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
 
-
-
 @IonicPage()
 @Component({
   selector: 'page-otp',
@@ -22,231 +20,195 @@ import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
 })
 
 export class OtpPage {
-  @ViewChild("ResendOTP")ResendOTPModal
-
-  OTPcount : any;
+  @ViewChild("ResendOTP") ResendOTPModal
+  OTPcount: any;
   phoneNum: any;
   otp: string;
   from: any;
-  _existingCustomerData:any = [];
+  _existingCustomerData: any = [];
   MOBILE_VALIDATED = "mobile_validated";
-  YES="Yes";
-  NO="No";
-  disabledFlag:boolean;
-  count:any;
-  countDown : any;
+  YES = "Yes";
+  NO = "No";
+  disabledFlag: boolean;
+  count: any;
+  countDown: any;
 
+  constructor(private exceptionProvider: ExceptionHandlerProvider,
+    private connectAuthProvider: ConnectAuthProvider,
+    private userProvider: UserdataProvider,
+    private alertProvider: AlertProvider,
+    private socialSharing: SocialSharing,
+    private authProvider: AuthProvider,
+    private pushProvider: PushProvider,
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private menu: MenuController,
+    private platform: Platform,
+    private events: Events,
+    private sms: SMS) {
 
-  constructor(
-              private exceptionProvider: ExceptionHandlerProvider,
-              private connectAuthProvider:ConnectAuthProvider,
-              private userProvider: UserdataProvider,
-              private alertProvider: AlertProvider,
-              private socialSharing:SocialSharing,
-              private authProvider: AuthProvider,
-              private pushProvider: PushProvider,
-              private navCtrl: NavController,
-              private navParams: NavParams,
-              private menu: MenuController,
-              private platform: Platform,
-              private events: Events,
-              private sms: SMS) {
-
-              this.otp = '';
-              this.phoneNum = navParams.get('phone');
-              this.from = navParams.get('from');
-              this.OTPcount = 0;
-              this.disabledFlag = false;
-              this.count = 30
-            
-
-            }
-
-  
-
+    this.otp = '';
+    this.phoneNum = navParams.get('phone');
+    this.from = navParams.get('from');
+    this.OTPcount = 0;
+    this.disabledFlag = false;
+    this.count = 30
+  }
 
   ionViewDidEnter() {
-
     this.menu.swipeEnable(false, "leftMenu");
-    
   }
-  
 
   userOTP() {
-
     if (this.otp == EMPTY) {
-
       this.alertProvider.presentToast('OTP cannot be empty');
       return;
-
     } else if (this.otp.match(NO_CHAR)) {
-
       this.alertProvider.presentToast('OTP cannot contain characters');
       return;
-
     } else if (!SPECIAL_CHARACTER.test(this.otp)) {
-
       this.alertProvider.presentToast('OTP cannot contain special characters');
       return;
-
     } else {
-
       let otp = this.otp;
-    
-      this.connectAuthProvider.OTPCheckCaringConnect(this.phoneNum,otp).subscribe(data=>{
-        if(data.code === 200){
-          this.connectAuthProvider.validateToken(data.result).then(isTokenValid=>{
-            if(isTokenValid){
+      this.connectAuthProvider.OTPCheckCaringConnect(this.phoneNum, otp).subscribe(data => {
+        if (data.code === 200) {
+          this.connectAuthProvider.validateToken(data.result).then(isTokenValid => {
+            if (isTokenValid) {
               this.authProvider.setAuthToken(data.result);
-
               this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
-                if(customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer){
-                  this.loginOTPSucess(customerdetails.result.response.customers).then(()=>{
-                    this.navCtrl.setRoot('HomePage');
-                  });
+                console.log(':::::::::::::::::::::Customer Data::::::::::::::::::::::;', customerdetails)
+                if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
+                  console.log(':::::::::::::::::::::Customer Data IF::::::::::::::::::::::;')
+                  this._existingCustomerData = customerdetails.result.response.customers;
+                  let custom_data = this._existingCustomerData.customer[0].custom_fields.field;
+                  let mobile_validated = custom_data.filter(res => res.name === this.MOBILE_VALIDATED);
+                  if (mobile_validated[0] && mobile_validated[0].value == this.YES) {
+                    console.log(':::::::::::::::::::::CustomerMobile if Data::::::::::::::::::::::;')
+                    this.loginOTPSucess(data).then(d => {
+                      let registerData = {
+                        fname: data[0].this._existingCustomerData.customer[0].firstname,
+                        lname: data[0].this._existingCustomerData.customer[0].lastname,
+                        email: data[0].this._existingCustomerData.customer[0].email,
+                        mobile: data[0].this._existingCustomerData.customer[0].mobile,
+                        externalId: data[0].this._existingCustomerData.customer[0].external_id,
+                      }
+                      this.userProvider.updateProfile(registerData, true).subscribe(data => {
+                        console.log("updated after login");
+                        this.userProvider.OTPCount = 0;
+                        this.navCtrl.setRoot('HomePage');
+                      })
+                    })
+                  } else {
+                    console.log(':::::::::::::::::::::Mobile else Data::::::::::::::::::::::;')
+                    this.userProvider.OTPCount = 0;
+                    this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp, 'from': this.from, custExistingData: this._existingCustomerData });
+                  }
+                } else {
+                  console.log(':::::::::::::::::::::Customer Data Else::::::::::::::::::::::;')
+                  this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp, 'from': this.from });
+                  this.alertProvider.presentToast(customerdetails.message);
                 }
-              },err=> {
-                console.log(err,"customerdetails err");
+              }, err => {
+                console.log(err, "customerdetails err");
               })
-              
-            }else{
-              this.alertProvider.presentToast("Something went wrong");
+            } else {
+              this.alertProvider.presentToast("Invalid Auth Token");
             }
           })
-        }else if(data.code === 204){
-          this.navCtrl.push("RegistrationPage", { 'phone': this.phoneNum, 'otp': this.otp });
-        }else{
+        } else {
           console.log("coming to else");
+          this.clearOTPBox();
+          this.alertProvider.presentToast(data.message);
         }
-
-      },error=>{
+      }, error => {
         console.error(error);
         console.log("error in otp validate");
       })
-
     }
   }
 
-
- 
   //otp success handler for login
   loginOTPSucess(data) {
     return new Promise((resolve) => {
-    this.authProvider.setUser(data);
-    if (this.platform.is('cordova')) {
-      this.pushProvider.loginToWebengage(data.customer[0].mobile);
-      this.pushProvider.saveCustomerInfoToWebengage(data);
-    }  
-    localStorage.setItem('phone', data.customer[0].mobile);
-    localStorage.setItem('userdetails', JSON.stringify(data));
-    this.authProvider.setUserLoggedIn(true);
-    this.authProvider.setHeader();
-    this.clearOTPBox();
-    this.events.publish('user:login', true);
-    resolve(true);  
+      this.authProvider.setUser(data);
+      if (this.platform.is('cordova')) {
+        this.pushProvider.loginToWebengage(data.customer[0].mobile);
+        this.pushProvider.saveCustomerInfoToWebengage(data);
+      }
+      localStorage.setItem('phone', data.customer[0].mobile);
+      localStorage.setItem('userdetails', JSON.stringify(data));
+      this.authProvider.setUserLoggedIn(true);
+      this.authProvider.setHeader();
+      this.clearOTPBox();
+      this.events.publish('user:login', true);
+      resolve(true);
     });
   }
-
- 
 
   clearOTPBox() {
     this.otp = '';
   }
 
-  openResendOTPModal(){
+  openResendOTPModal() {
     this.ResendOTPModal.open();
   }
 
-  closeOTPModal(){
+  closeOTPModal() {
     this.ResendOTPModal.close();
   }
 
   //sending OTP-SMS to User //
-  sendSMSOtp()
-  {
+  sendSMSOtp() {
     var options: {
-      replaceLineBreaks : true,
-      android : {
-        intent : ''
+      replaceLineBreaks: true,
+      android: {
+        intent: ''
       }
     }
-    this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!',options).then(()=>{
+    this.sms.send('+917406997140', 'Hey Please Send me OTP for Login!', options).then(() => {
       console.log("sms worked");
-    }).catch((err)=>{
+    }).catch((err) => {
       alert(JSON.stringify(err))
     });
-    
   }
 
+  resendInterval() {
+    this.countDown = 60;
+    let timer = setInterval(() => {
+      this.countDown--;
+      if (this.countDown == 0) {
+        this.disabledFlag = false
+        this.userProvider.OTPCount += 1;
+        console.log(this.countDown, "dss");
+        clearInterval(timer);
+      }
+      console.log("countdown strt")
+    }, 1000);
+  }
 
   // Resend OTP to User //
-
-  resendOtp(){
-    
-    if(this.userProvider.OTPCount < 3){
+  resendOtp() {
+    if (this.userProvider.OTPCount < 3) {
       this.disabledFlag = true
-      this.userProvider.userLogin(this.phoneNum)
-      .subscribe(data => {
-
-        if (data[0].code == 200) {
-                
-          this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
-         
-          this.countDown = 60; 
-          
-          let timer = setInterval(()=>
-          {
-            this.countDown--;
-       
-          if(this.countDown == 0){
-            this.disabledFlag = false
-            this.userProvider.OTPCount += 1;
-            console.log(this.countDown,"dss"); 
-            clearInterval(timer);
-          }
-          
-          console.log("countdown strt")},1000); }​​
-          
-         else if (data[0].code == 202) {
-
-          this.alertProvider.presentToast("OTP sent successfully to the entered mobile number");
-          
+      this.connectAuthProvider.loginToCaringConnect(this.phoneNum).subscribe((data) => {
+        if (data.code === 200) {
+          this.alertProvider.presentToast(data.result.message);
+          this.resendInterval();
+        } else {
+          this.alertProvider.presentToast(data.result.message);
           this.from = 1
-          this.countDown = 60; 
-          
-          
-          let timer = setInterval(()=>
-          {
-            this.countDown--;
-         
-          if(this.countDown == 0){
-            this.disabledFlag = false
-            this.userProvider.OTPCount += 1;
-            clearInterval(timer);
-            console.log(this.countDown,"sss"); 
-          }
-          
-          console.log("countdown strt")},1000); }​​
-           
-         else 
-          
-           this.alertProvider.presentToast(data[0].message);
-          
+          this.resendInterval();
+        }
       }, err => {
-
         this.exceptionProvider.excpHandler(err);
-
-
-      }
-    )
- }else{
-  this.openResendOTPModal();
- }
+      })
+    } else {
+      this.openResendOTPModal();
+    }
   }
 
-  
   shareViaSMS() {
-
     let msg = "Please share me the OTP for Login";
     let no = "+60174252988";
     this.socialSharing.shareViaSMS(msg, no).then(() => {
@@ -254,9 +216,7 @@ export class OtpPage {
     }, err => {
       console.log(err, "Problem in sending sms");
     })
-    
   }
-
 
   shareViaWhatsApp() {
     let recieverNo = '+60174252988';
@@ -267,5 +227,3 @@ export class OtpPage {
     })
   }
 }
-
-    

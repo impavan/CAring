@@ -11,15 +11,8 @@ import { AuthProvider } from '../auth/auth';
 import NODERSA from 'node-rsa';
 import * as jwe from 'node-webtokens';
 
-/*
-  Generated class for the ConnectAuthProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ConnectAuthProvider {
-
   public deviceId:string = null;
   public devicePlatform:string = null;
   public _headers:Headers  =  new Headers();
@@ -45,7 +38,6 @@ export class ConnectAuthProvider {
    * @param mobile 
    * 
    */
-
   public loginToCaringConnect(mobile):Observable<any>{
     this.loader.presentLoadingCustom();
     console.log(this.deviceId,"this.deviceId");
@@ -55,18 +47,14 @@ export class ConnectAuthProvider {
       deviceId:this.deviceId,
       client_code: CLIENT_KEY
     }
-    
       return this.http.post(URL, body,{headers: this._headers})
             .do((res: Response) => res)
             .map((res: Response) => res.json())
             .catch((err: Error) => Observable.throw(err))
             .finally(()=>this.loader.dismissLoader())
-
   }
 
-
   public OTPCheckCaringConnect(mobile, otp):Observable<any>{
-
     this.loader.presentLoadingCustom();
     const URL = `${CARING_CONNECT_BASE_URL}${VALIDATE_OTP}`;
     let body = {
@@ -116,7 +104,7 @@ export class ConnectAuthProvider {
 
 
   private  async checkToken(parsedToken){
-
+    console.log('::::::::::::::::::::::::::::::',parsedToken)
     const refreshKey = parsedToken.payload.refresh_key;
     let refreshData = await this.refreshToken(refreshKey);
     return refreshData;
