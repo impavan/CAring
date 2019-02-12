@@ -42,12 +42,21 @@ export class AuthProvider {
 
   // sets the header with access-token
   setHeader() {
-    this.contentHeaders.set('Authorization', this.getAuthToken());
+    this.contentHeaders.set('Authorization', 'd3b649e6-9b02-515e-81f0-1743f1562a6d');
+    
   }
 
   //sets the auth- token
   setAuthToken(authToken) {
     localStorage.setItem('auth_token', authToken);
+  }
+
+  setSession(sessionToken) {
+    localStorage.setItem('session_token', sessionToken);
+  }
+
+  getSession() {
+    return localStorage.getItem('session_token');
   }
 
   // returns auth-Token

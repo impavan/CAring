@@ -14,7 +14,7 @@ export const BASE_URL = `http://52.89.20.38/v2/`;
  export const CLIENT_KEY = `nlbjFt1js3WU`;
 
 
- // caring connect base url
+ // Caring Connect Live Base URL.
  export const CARING_CONNECT_BASE_URL = `http://caringconnectapi.spurtreetech.com/api/v1/`;
 
 
@@ -56,7 +56,7 @@ export const BASE_URL = `http://52.89.20.38/v2/`;
 
 
 //  Live brand Id
-    export const BRAND_ID = `caringlive`;
+    export const BRAND_ID = `cpdemo`;
 
 
 //sttarter url dev

@@ -11,7 +11,7 @@ import moment from 'moment';
 //All providers goes here
 
 import { STTARTER_BASE_URL } from '../../config';
-import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ, QUICK_ACCESS, STORE_BANNERS, HOT_DEALS } from '../../url';
+import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ, QUICK_ACCESS, STORE_BANNERS, HOT_DEALS, STORE_QUICK_ACCESS } from '../../url';
 import { LoaderProvider } from '../loader/loader';
 
 @Injectable()
@@ -180,6 +180,16 @@ getHomeBanner(){
         .catch((err: Error) => Observable.throw(err))
         .finally(()=>console.log("done"));
       }
+
+      getStoreQuickAccess(){
+
+        return this.http.get(STTARTER_BASE_URL + STORE_QUICK_ACCESS, this.contentType)
+          .map((res: Response) => res)
+          .do((res: Response) => res.json())
+          .map((res: Response) => res.json())
+          .catch((err: Error) => Observable.throw(err))
+          .finally(()=>console.log("done"));
+        }
 
 
       getStoreBanners(){

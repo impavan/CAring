@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -33,27 +34,26 @@ export class RegistrationPage {
     private alertProvider: AlertProvider,
     private pushProvider: PushProvider,
     private userProvider: UserdataProvider,
+    private connectAuthProvider: ConnectAuthProvider,
     private events: Events) {
 
     this.from = navParams.get('from');
     this.phoneNum = navParams.get('phone');
     this._existingCustomerData = navParams.get('custExistingData');
-    console.log(this._existingCustomerData.customer,'::::::::::::::Existing')
+    // console.log(this._existingCustomerData.customer,'::::::::::::::Existing')
     if (this._existingCustomerData) {
       this.registerData = {
         fname: this._existingCustomerData.customer[0].firstname || '',
         lname: this._existingCustomerData.customer[0].lastname || '',
         email: this._existingCustomerData.customer[0].email || '',
-        mobile: this.phoneNum,
-        externalId: this._existingCustomerData.customer[0].external_id || '',
+        mobile: this.phoneNum
       }
     } else {
       this.registerData = {
         fname: '',
         lname: '',
         email: '',
-        mobile: this.phoneNum,
-        externalId: '',
+        mobile: this.phoneNum
       }
     }
   }
@@ -92,68 +92,86 @@ export class RegistrationPage {
 
   registerOTPSucess(data) {
     if (this._existingCustomerData) {
-      this.authProvider.setUser(this._existingCustomerData[0].customerdata);
-      this.authProvider.setAuthToken(this._existingCustomerData[0].auth_key);
-      this.authProvider.setHeader();
-      this.registerData.mobile = this._existingCustomerData[0].customerdata.customer[0].mobile;
-      this.userProvider.updateProfile(this.registerData, true).subscribe(data => {
-        this.authProvider.setHeader();
-        if (data[0].code == 200) {
-          localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
-          this.userProvider.getMyProfile().subscribe(data => {
-            if (data[0].code == 200)
-              this.loginOTPSucess(data);
-            else
-              this.alertProvider.presentToast(data[0].message);
+      this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
+        if (isTokenValid) {
+          this.authProvider.setAuthToken(this.authProvider.getAuthToken());
+          this.connectAuthProvider.updateCustomerDetails(this.registerData, true).subscribe(updateCustomerData => {
+            if (updateCustomerData.code == 200) {
+              this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
+                console.log(':::::::::::::::::::::Customer Data::::::::::::::::::::::;', customerdetails)
+                if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
+                  let customerData = customerdetails.result.response.customers;
+                  this.loginOTPSucess(customerData)
+                } else {
+                  this.alertProvider.presentToast(data.message);
+                }
+              }, err => {
+                this.exceptionProvider.excpHandler(err);
+              })
+            }
           }, err => {
             this.exceptionProvider.excpHandler(err);
           })
         } else {
-          this.alertProvider.presentToast(data[0].message);
+          this.alertProvider.presentToast("Invalid Auth Token");
         }
-      }, err => {
-        this.exceptionProvider.excpHandler(err);
       });
     } else {
-      this.userProvider.userRegistration(this.registerData).subscribe(data => {
-        if (data[0].code == 200)
-          this.loginOTPSucess(data).then(d => {
-            let registerData = {
-              fname: data[0].customerdata.customer[0].firstname,
-              lname: data[0].customerdata.customer[0].lastname,
-              email: data[0].customerdata.customer[0].email,
-              mobile: data[0].customerdata.customer[0].mobile,
-              externalId: data[0].customerdata.customer[0].external_id,
-            }
-            this.userProvider.updateProfile(registerData, true).subscribe(data => {
-              console.log("updated profile after registration success")
-            });
-          });
-        else
-          this.alertProvider.presentToast(data[0].message);
-      }, err => {
-        this.exceptionProvider.excpHandler(err);
-      });
+      this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
+      if (isTokenValid) {
+        this.authProvider.setAuthToken(this.authProvider.getAuthToken());
+        this.connectAuthProvider.registerCustomer(this.registerData).subscribe(registerData => {
+          if(registerData.code == 200){
+            let customerData = registerData.result.response.customers;
+            this.loginOTPSucess(customerData).then(d => {
+              let registerData = {
+                fname: customerData.customer[0].firstname,
+                lname: customerData.customer[0].lastname,
+                email: customerData.customer[0].email,
+                mobile: customerData.customer[0].mobile
+              }
+              this.connectAuthProvider.updateCustomerDetails(registerData, true).subscribe(data => {
+                if(data.code == 200){
+                  this.alertProvider.presentToast("Registration was successful");
+                } else {
+                  this.alertProvider.presentToast(data.message);
+                }
+                console.log("updated profile after registration success")
+              }, err => {
+                this.exceptionProvider.excpHandler(err);
+              });
+          })
+          } else {
+            this.alertProvider.presentToast(data.message)
+          }
+        }, err => {
+          this.exceptionProvider.excpHandler(err);
+        });
+      } else {
+        this.alertProvider.presentToast("Invalid Auth Token");
+      }
+    }, err => {
+      this.exceptionProvider.excpHandler(err);
+    });
     }
   }
 
   loginOTPSucess(data) {
     return new Promise((resolve) => {
-      this.authProvider.setUser(data[0].customerdata);
-      this.authProvider.setAuthToken(data[0].auth_key);
-      localStorage.setItem('phone', data[0].customerdata.customer[0].mobile);
-      localStorage.setItem('userdetails', JSON.stringify(data[0].customerdata));
+      this.authProvider.setUser(data);
       if (this.platform.is('cordova')) {
-        this.pushProvider.loginToWebengage(data[0].customerdata.customer[0].mobile);
-        this.pushProvider.saveCustomerInfoToWebengage(data[0].customerdata);
+        this.pushProvider.loginToWebengage(data.customer[0].mobile);
+        this.pushProvider.saveCustomerInfoToWebengage(data);
       }
+      localStorage.setItem('phone', data.customer[0].mobile);
+      localStorage.setItem('userdetails', JSON.stringify(data));
       this.authProvider.setUserLoggedIn(true);
       this.authProvider.setHeader();
       this.events.publish('user:login', true);
       this.navCtrl.setRoot("HomePage");
       this.clearOTPBox();
       resolve(true);
-    })
+    });
   }
 
   clearOTPBox() {

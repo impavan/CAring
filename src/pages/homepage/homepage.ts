@@ -3,10 +3,12 @@ import { NavController, IonicPage, Events } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { PushProvider } from '../../providers/push/push';
 import { ApiProvider } from '../../providers/api/api';
+import { AuthProvider } from '../../providers/auth/auth';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser'
+import { CLIENT_KEY } from '../../config';
 
 @IonicPage()
 @Component({
@@ -24,6 +26,9 @@ export class HomePage {
   storeBanners:any = [];
   weblinkurl:any = null;
   hotdeals:any = [];
+  _healthInfoList: any;
+  healthInfo: any;
+  storeQuickAccessData: any = [];
 
   constructor(private events: Events,
     public navCtrl: NavController,
@@ -31,13 +36,15 @@ export class HomePage {
     private apiProvider: ApiProvider,
     private pushProvider: PushProvider,
     private inAppBrowser: InAppBrowser,
+    private authProvider: AuthProvider,
     private hapenningsProvider: HapenningsProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
 
       this.getQuickAccess();
+      this.getStoreQuickAccess();
       this.getStoreBanners();
       this.getHotDeals();
-      
+      this.getHealthInfo();
   }
 
   ionViewWillEnter() {
@@ -60,21 +67,74 @@ export class HomePage {
     this.events.publish('changeIcon', "HomePage");
   }
 
+  iframeLoad(){
+    console.log("in loadeddddd")
+  }
+
   goto(data: any) {
-
+    console.log(data,"::::::::::::")
     if(data.linktype === 'WebLink'){
-
-      this.showEvents = true;
-      this.weblinkurl = data.destination;
-
-
+      if(data.destination == 'http://caringevents.spurtreetech.com') {
+        let link  = 'http://caringconnect.spurtreetech.com/#/confirmation?session_id=' + this.authProvider.getSession()+  '&target_client_code=ZhtsQLBxA3yy&is_staff=0&token=' + this.authProvider.getAuthToken() +'&client_code=' + CLIENT_KEY +'&redirect_url=' + data.destination;
+        console.log(link,':::::::::::::::::::::Test:::::::::::::::::')
+        this.showEvents = true;
+        this.weblinkurl = link;
+      } else {
+        this.showEvents = true;
+        this.weblinkurl = data.destination;
+      }
     }else if(data.linktype === 'InAppLink'){
-     this.navCtrl.setRoot(data.destination).then((canEnter) => {
-      if (canEnter == false)
-         this.events.publish('login', false);
-    });
+      console.log(':::::::::::::::::::::Sometinhg:::::::::::::::::')
+      if(data.destination == 'http://caringevents.spurtreetech.com') {
+        let link  = 'http://caringconnect.spurtreetech.com/#/confirmation?session_id=' + this.authProvider.getSession()+  '&target_client_code=ZhtsQLBxA3yy&is_staff=0&token=' + this.authProvider.getAuthToken() +'&client_code=' + CLIENT_KEY +'&redirect_url=' + data.destination;
+        console.log(link,':::::::::::::::::::::Test:::::::::::::::::')
+        this.navCtrl.setRoot(link).then((canEnter) => {
+          if (canEnter == false)
+             this.events.publish('login', false);
+        });
+      }else {
+        this.navCtrl.setRoot(data.destination).then((canEnter) => {
+          if (canEnter == false)
+             this.events.publish('login', false);
+        });
+      }
+    } else {
+      this.showEvents = true;
+      this.weblinkurl = data.url
     }
     
+  }
+
+  getHealthInfo() {
+
+    this.hapenningsProvider.getHealthInfo().subscribe(res => {
+      this._healthInfoList = res.data.filter(health => {
+
+   // moment for checking the start date and end date for posting //
+       
+        let psDate = moment(health.publishingstartdate).format('YYYY-MM-DD');
+        let peDate =  moment(health.publishingenddate).format('YYYY-MM-DD');
+        let psMoment = moment(psDate);
+        let peMoment =  moment(peDate)
+        let currenMoment  =  moment().format('YYYY-MM-DD');
+       if (health.publishingstartdate && health.publishingenddate) {
+          if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+            return health;
+          }
+        } else {
+          return health;
+        }  
+      });
+      console.log(this._healthInfoList,'::::::::::::::::::::::::::::::;;;')
+      this.healthInfo = {
+        title:this._healthInfoList[0].title,
+        subtitle: this._healthInfoList[0].subtitle,
+        thumbnailimage: this._healthInfoList[0].thumbnailimage
+      }
+      console.log(this.healthInfo,'::::::::::::::::healthInfo:::::::::::::::;;;')
+    }, err => {
+      this.exceptionProvider.excpHandler(err);
+    });
   }
 
   gotoLink(bannerdata) {
@@ -120,6 +180,14 @@ export class HomePage {
       })
   }
 
+  getStoreQuickAccess(){
+    this.hapenningsProvider.getStoreQuickAccess().subscribe(quickaccessdata =>{
+      this.storeQuickAccessData = quickaccessdata.data;
+    },err=>{
+      console.log("inside err", err);
+    })
+}
+
 
   getStoreBanners(){
     this.hapenningsProvider.getStoreBanners().subscribe(storebannerdata =>{
@@ -144,4 +212,7 @@ export class HomePage {
 
   }
 
+  navTo(page){
+    this.navCtrl.setRoot(page)
+  }
 }

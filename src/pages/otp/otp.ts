@@ -73,9 +73,10 @@ export class OtpPage {
       let otp = this.otp;
       this.connectAuthProvider.OTPCheckCaringConnect(this.phoneNum, otp).subscribe(data => {
         if (data.code === 200) {
-          this.connectAuthProvider.validateToken(data.result).then(isTokenValid => {
+          this.connectAuthProvider.validateToken(data.result.token).then(isTokenValid => {
             if (isTokenValid) {
-              this.authProvider.setAuthToken(data.result);
+              this.authProvider.setAuthToken(data.result.token);
+              this.authProvider.setSession(data.result.session_id);
               this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
                 console.log(':::::::::::::::::::::Customer Data::::::::::::::::::::::;', customerdetails)
                 if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
@@ -85,18 +86,22 @@ export class OtpPage {
                   let mobile_validated = custom_data.filter(res => res.name === this.MOBILE_VALIDATED);
                   if (mobile_validated[0] && mobile_validated[0].value == this.YES) {
                     console.log(':::::::::::::::::::::CustomerMobile if Data::::::::::::::::::::::;')
-                    this.loginOTPSucess(data).then(d => {
+                    this.loginOTPSucess(this._existingCustomerData).then(d => {
                       let registerData = {
-                        fname: data[0].this._existingCustomerData.customer[0].firstname,
-                        lname: data[0].this._existingCustomerData.customer[0].lastname,
-                        email: data[0].this._existingCustomerData.customer[0].email,
-                        mobile: data[0].this._existingCustomerData.customer[0].mobile,
-                        externalId: data[0].this._existingCustomerData.customer[0].external_id,
+                        fname: this._existingCustomerData.customer[0].firstname,
+                        lname: this._existingCustomerData.customer[0].lastname,
+                        email: this._existingCustomerData.customer[0].email,
+                        mobile: this._existingCustomerData.customer[0].mobile,
                       }
-                      this.userProvider.updateProfile(registerData, true).subscribe(data => {
+                      registerData['customFields'] = [];
+                      this.connectAuthProvider.updateCustomerDetails(registerData, true).subscribe(data => {
                         console.log("updated after login");
                         this.userProvider.OTPCount = 0;
-                        this.navCtrl.setRoot('HomePage');
+                        if(data.code == 200){
+                          this.navCtrl.setRoot('HomePage');
+                        } else {
+                          this.alertProvider.presentToast(data.message);
+                        }
                       })
                     })
                   } else {

@@ -3,6 +3,8 @@ import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { CookieService } from 'ngx-cookie-service';
+
 // import { Badge } from '@ionic-native/badge';
 import { ConnectAuthProvider } from '../providers/connect-auth/connect-auth';
 
@@ -39,25 +41,26 @@ export class MyApp {
     public pushProvider: PushProvider,
     public apiProvider: ApiProvider,
     public networkprovider: NetworkProvider,
+    private cookieService: CookieService,
     public connectAuthProvider: ConnectAuthProvider,
     // public badge: Badge
 ) {
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.pages = [
-      // { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
-      // { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
-      // { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
-      // { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
-      // { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
-      // { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
-      // { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
-      // { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
-      { title: 'Home', component: 'HomePage', index: 0, icon: "iconc-home", ionicon: '' },
-      { title: 'Service', component: 'Service', index: 0, icon: "iconc-home", ionicon: '' },
-      { title: 'Promotions', component: 'PromotionsPage', index: 3, icon: "iconc-bag", ionicon: '' },
-      { title: 'Member', component: 'MemberPage', index: 3, icon: "iconc-id-card", ionicon: '' },
-      { title: 'eStore', component: 'ECartPage', index: 3, icon: "iconc-id-card", ionicon: '' },
+      { title: 'Home', component: 'HomePage', index:0, icon:"iconc-home",ionicon:'' },
+      { title: 'Member', component: 'MemberPage', index:3,icon:"iconc-id-card",ionicon:'' },
+      { title: 'Vouchers', component: 'RewardsPage', index:2,icon:"iconc-gift",ionicon:''},
+      { title: 'Promotions', component: 'PromotionsPage' , index:3,icon:"iconc-bag",ionicon:''},
+      { title: 'Happenings', component: 'HappeningsPage', index: 4, icon: "iconc-megaphone", ionicon: '' },
+      { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
+      { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
+      { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
+      // { title: 'Home', component: 'HomePage', index: 0, icon: "iconc-home", ionicon: '' },
+      // { title: 'Service', component: 'Service', index: 0, icon: "iconc-home", ionicon: '' },
+      // { title: 'Promotions', component: 'PromotionsPage', index: 3, icon: "iconc-bag", ionicon: '' },
+      // { title: 'Member', component: 'MemberPage', index: 3, icon: "iconc-id-card", ionicon: '' },
+      // { title: 'eStore', component: 'ECartPage', index: 3, icon: "iconc-id-card", ionicon: '' },
     ];
     this.connectAuthProvider.validateToken(this._auth).then(data => {
       console.log(data, "data---");
@@ -85,6 +88,8 @@ export class MyApp {
       this.noConnectionEvent();
       this.notLoggedIn();
       this.pushEvent();
+      let cookieValue = this.cookieService.getAll();
+      console.log('::::::::::Cookie Value:::::::::::', cookieValue);
     });
   }
 

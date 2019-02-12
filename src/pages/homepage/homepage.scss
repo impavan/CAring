@@ -1,4 +1,13 @@
 page-homepage {
+    .max-lines {
+        font-family: 'AvenirNextLTW01RegularRegular';
+        display: block; /* or inline-block */
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 3.6em;
+        line-height: 1.2em;
+      }
     a{
         text-decoration: none;
     }

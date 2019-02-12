@@ -38,7 +38,7 @@
         <ion-grid class="homeTabLinks">
             <ion-row>
                 <ion-col *ngFor ="let access of quickAccessData" clickable (click)="goto(access)" text-center>
-                    <img src="{{access?.thumbnailimage}}" />
+                    <img src="{{access?.thumbnail}}" />
                     <span>{{access?.title}}</span>
                 </ion-col>
                 <!-- <ion-col clickable (click)="goto('MemberPage')" text-center> 
@@ -69,14 +69,14 @@
                             <ion-row>
                                 <ion-col col-5>
                                     <figure>
-                                        <img src="assets/img/newimgs/static.png" />
+                                        <img src="assets/img/quit_smoke.jpg" />
                                     </figure>
                                 </ion-col>
                                 <ion-col col-7>
-                                    <article>
-                                        <h4>Service (PMR)</h4>
-                                        <p> Some Lorem ipsum dolor dummy content will e displaying here ...</p>
-                                        <img src="assets/img/newimgs/arrow.png" />
+                                    <article (click)="navTo('HappeningsPage')">
+                                        <h4>Thinking of quitting smoking?</h4>
+                                        <p>Get your free advice from our certified smoking...</p>
+                                        <!-- <img src="assets/img/quit_smoke.png" /> -->
                                     </article>
                                 </ion-col>
                             </ion-row>
@@ -95,7 +95,7 @@
                                         <img src="assets/img/newimgs/static.png" />
                                     </figure>
                                 </ion-col>
-                                <ion-col col-7>
+                                <ion-col col-7 (click) = "navTo('MemberPage')">
                                     <article>
                                         <h4>My Member</h4>
                                         <p> Some Lorem ipsum dolor dummy content will e displaying here ...</p>
@@ -112,17 +112,17 @@
                     </article>
                     <section class="homeFeeds">
                         <ion-grid>
-                            <ion-row>
+                            <ion-row (click) = "navTo('HealthInfoPage')">
                                 <ion-col col-5>
                                     <figure>
-                                        <img src="assets/img/newimgs/static.png" />
+                                        <img src={{healthInfo?.thumbnailimage}} />
                                     </figure>
                                 </ion-col>
                                 <ion-col col-7>
                                     <article>
-                                        <h4>Living With Prisories</h4>
-                                        <p> Some Lorem ipsum dolor dummy content will e displaying here ...</p>
-                                        <img src="assets/img/newimgs/arrow.png" />
+                                        <h4 class="max-lines">{{healthInfo?.title}}</h4>
+                                        <p class="max-lines"> {{healthInfo?.subtitle}}</p>
+                                        <!-- <img src={{healthInfo?.thumbnailimage}} /> -->
                                     </article>
                                 </ion-col>
                             </ion-row>
@@ -146,21 +146,9 @@
         </section>
         <ion-grid class="homeTabLinks">
             <ion-row>
-                <ion-col text-center>
-                    <img src="assets/img/newimgs/skincare.png" />
-                    <span>Skin Care</span>
-                </ion-col>
-                <ion-col text-center> 
-                    <img src="assets/img/newimgs/food.png" />
-                    <span>Food</span>
-                </ion-col>
-                <ion-col text-center>
-                    <img src="assets/img/newimgs/personalcare.png" />
-                    <span>Personal Care</span>
-                </ion-col>
-                <ion-col text-center>
-                    <img src="assets/img/newimgs/haircare.png" />
-                    <span>Hair Care</span>
+                <ion-col *ngFor ="let access of storeQuickAccessData" clickable (click)="goto(access)" text-center>
+                    <img src="{{access?.categoryimage}}" />
+                    <span>{{access?.title}}</span>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -276,7 +264,7 @@
     </ion-row>
     </div>
     <div *ngIf="showEvents">
-        <iframe style="width:100%;height: 100vh;" [src]="weblinkurl | safeurl" ></iframe>
+        <iframe style="width:100%;height: 100vh;" [src]="weblinkurl | safeurl" (beforeunload)="iframeLoad()"></iframe>
     </div>
 </ion-content>
 

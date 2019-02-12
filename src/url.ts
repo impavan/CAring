@@ -39,14 +39,20 @@ export const PROMOTIONAL_VOUCHERS = `voucherpromotions?orderby_dsc=createdAt&lan
 // =======================================CARing Connect Api's===============================================================
 
 export const SEND_OTP = `auth/sendotp`;
-
 export const VALIDATE_OTP = `auth/validateotp`;
-
 export const REFRESH_TOKEN = `crmrefresh`;
-
 export const GET_CUSTOMER = `customer`;
-
+export const UPDATE_CUSTOMER = `customer/update`;
+export const REGISTER_CUSTOMER = `customer/register`;
+export const LOGOUT_CUSTOMER = `customer/logout`;
+export const CUSTOMER_VOUCHERS = `customer/vouchers`;
+export const CUSTOMER_TRANSACTIONS = `customer/transactions`;
+export const CUSTOMER_EXPERIENCES = `mobile/experiences/get/`;
+export const CUSTOMER_MESSAGES = `customer/messages/`;
+export const PURCHASE_EXPERIENCE = `customer/purchaseexperience`;
+export const REDEEM_EXPERIENCE = `customer/activatevoucher`;
 export const QUICK_ACCESS = `quickaccess?orderby_asc=priority`;
+export const STORE_QUICK_ACCESS = `storequickaccess?orderby_asc=priority`;
 
 export const STORE_BANNERS = `storebanners?lang=`;
 

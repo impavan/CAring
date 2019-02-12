@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Events, Platform } from 'ionic-angular';
+
+import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { PushProvider } from '../../providers/push/push';
 
@@ -14,6 +16,7 @@ export class MyAccountPage {
 
   constructor(public navCtrl: NavController,
     public events: Events,
+    private connectAuthProvider: ConnectAuthProvider,
     public pushProvider: PushProvider,
     public alertProvider: AlertProvider,
     public platform: Platform) {
@@ -37,15 +40,20 @@ export class MyAccountPage {
   }
 
   logout() {
-    this.navCtrl.setRoot("LoginPage").then(() => {
-      localStorage.removeItem('favouriteList');
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('phoneNum');
-      if (this.platform.is('cordova')) {
-        this.pushProvider.logoutWebengage();
+    this.connectAuthProvider.logoutCustomer().subscribe(logoutData => {
+      if(logoutData.code == 200) {
+        
+        this.navCtrl.setRoot("LoginPage").then(() => {
+          localStorage.clear();
+          if (this.platform.is('cordova')) {
+            this.pushProvider.logoutWebengage();
+          }
+          this.events.publish('user:login', false);
+          this.alertProvider.presentToast(logoutData.result);
+        })
+      } else {
+        this.alertProvider.presentToast(logoutData.message)
       }
-      this.events.publish('user:login', false);
-      this.alertProvider.presentToast("You have been logged out..!")
     })
   }
 }
