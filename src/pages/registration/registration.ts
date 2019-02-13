@@ -1,4 +1,4 @@
-import { EMPTY, PATTERN, SPECIAL_CHARACTER, NO_CHAR, MOBILE_NO_LIMIT_1, MOBILE_NO_LIMIT_2, NO_NUMBERS, EMAIL_REGEXP, NAME_REGEXP } from '../../validator';
+import { EMPTY, SPECIAL_CHARACTER, NO_NUMBERS, EMAIL_REGEXP, NAME_REGEXP } from '../../validator';
 import { IonicPage, NavController, NavParams, MenuController, Events, Platform } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -95,9 +95,9 @@ export class RegistrationPage {
       this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
         if (isTokenValid) {
           this.authProvider.setAuthToken(this.authProvider.getAuthToken());
-          this.connectAuthProvider.updateCustomerDetails(this.registerData, true).subscribe(updateCustomerData => {
+          this.userProvider.updateCustomerDetails(this.registerData, true).subscribe(updateCustomerData => {
             if (updateCustomerData.code == 200) {
-              this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
+              this.userProvider.getCustomerDetails().subscribe(customerdetails => {
                 console.log(':::::::::::::::::::::Customer Data::::::::::::::::::::::;', customerdetails)
                 if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
                   let customerData = customerdetails.result.response.customers;
@@ -120,7 +120,7 @@ export class RegistrationPage {
       this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
       if (isTokenValid) {
         this.authProvider.setAuthToken(this.authProvider.getAuthToken());
-        this.connectAuthProvider.registerCustomer(this.registerData).subscribe(registerData => {
+        this.userProvider.registerCustomer(this.registerData).subscribe(registerData => {
           if(registerData.code == 200){
             let customerData = registerData.result.response.customers;
             this.loginOTPSucess(customerData).then(d => {
@@ -130,7 +130,7 @@ export class RegistrationPage {
                 email: customerData.customer[0].email,
                 mobile: customerData.customer[0].mobile
               }
-              this.connectAuthProvider.updateCustomerDetails(registerData, true).subscribe(data => {
+              this.userProvider.updateCustomerDetails(registerData, true).subscribe(data => {
                 if(data.code == 200){
                   this.alertProvider.presentToast("Registration was successful");
                 } else {

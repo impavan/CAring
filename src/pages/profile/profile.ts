@@ -77,7 +77,7 @@ export class ProfilePage {
   getCustomerDetails() {
     this.connectAuthProvider.validateToken(localStorage.getItem('auth_token')).then(isTokenValid => {
       if (isTokenValid) {
-        this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
+        this.userProvider.getCustomerDetails().subscribe(customerdetails => {
           console.log(':::::::::::::::::::::Customer Details::::::::::::::::::::::;', customerdetails)
           if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
             let customerData = customerdetails.result.response;
@@ -111,5 +111,4 @@ export class ProfilePage {
   memberEdit() {
     this.navCtrl.push('EditProfilePage');
   }
-
 }

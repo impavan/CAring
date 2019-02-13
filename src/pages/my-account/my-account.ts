@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Events, Platform } from 'ionic-angular';
 
 import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
+import { UserdataProvider } from '../../providers/userdata/userdata';
 import { AlertProvider } from '../../providers/alert/alert';
 import { PushProvider } from '../../providers/push/push';
 
@@ -14,7 +15,7 @@ import { PushProvider } from '../../providers/push/push';
 export class MyAccountPage {
   _auth: any;
 
-  constructor(public navCtrl: NavController,
+  constructor(public navCtrl: NavController, private userdataProvider: UserdataProvider,
     public events: Events,
     private connectAuthProvider: ConnectAuthProvider,
     public pushProvider: PushProvider,
@@ -40,7 +41,7 @@ export class MyAccountPage {
   }
 
   logout() {
-    this.connectAuthProvider.logoutCustomer().subscribe(logoutData => {
+    this.userdataProvider.logoutCustomer().subscribe(logoutData => {
       if(logoutData.code == 200) {
         
         this.navCtrl.setRoot("LoginPage").then(() => {

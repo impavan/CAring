@@ -23,6 +23,7 @@ export class ApiProvider {
   public PROMOTION_URL: any;
   public privacyPolicy: any = [];
   public termsAndConditions: any = [];
+  public eshop_client_code: string;
   public currentDate = moment().format('YYYY-MM-DD');
 
   constructor(public http: Http,
@@ -59,6 +60,7 @@ export class ApiProvider {
         let newsurl = res.data.find(r => r.key == 'newsletterurl');
         let privacy = res.data.find(r => r.key == 'privacypolicy');
         let terms = res.data.find(r => r.key == 'termsandconditions');
+        let eshop_code = res.data.find(r => r.key == 'eshop_client_code')
         this.BASE_URL = baseUrl.value;
         this.BRAND_ID = brandId.value;
         this.WEBENGAGE_ID = webengageId.value;
@@ -66,6 +68,7 @@ export class ApiProvider {
         this.NEWS_LETTER_URL = newsurl.value;
         this.privacyPolicy = privacy.value;
         this.termsAndConditions = terms.value;
+        this.eshop_client_code = eshop_code.value;
       } else {
         this.alertProvider.presentToast('Something went wrong');
       }

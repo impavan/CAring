@@ -71,13 +71,15 @@ export class OtpPage {
       return;
     } else {
       let otp = this.otp;
-      this.connectAuthProvider.OTPCheckCaringConnect(this.phoneNum, otp).subscribe(data => {
+      this.userProvider.OTPCheckCaringConnect(this.phoneNum, otp).subscribe(data => {
+        console.log(data,'::::::::::::::::::::::Data.result:::::::::::::;;;;;')
         if (data.code === 200) {
+          console.log(data.result,'::::::::::::::::::::::Data.result:::::::::::::;;;;;')
           this.connectAuthProvider.validateToken(data.result.token).then(isTokenValid => {
             if (isTokenValid) {
               this.authProvider.setAuthToken(data.result.token);
               this.authProvider.setSession(data.result.session_id);
-              this.connectAuthProvider.getCustomerDetails().subscribe(customerdetails => {
+              this.userProvider.getCustomerDetails().subscribe(customerdetails => {
                 console.log(':::::::::::::::::::::Customer Data::::::::::::::::::::::;', customerdetails)
                 if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
                   console.log(':::::::::::::::::::::Customer Data IF::::::::::::::::::::::;')
@@ -94,7 +96,7 @@ export class OtpPage {
                         mobile: this._existingCustomerData.customer[0].mobile,
                       }
                       registerData['customFields'] = [];
-                      this.connectAuthProvider.updateCustomerDetails(registerData, true).subscribe(data => {
+                      this.userProvider.updateCustomerDetails(registerData, true).subscribe(data => {
                         console.log("updated after login");
                         this.userProvider.OTPCount = 0;
                         if(data.code == 200){
@@ -196,7 +198,7 @@ export class OtpPage {
   resendOtp() {
     if (this.userProvider.OTPCount < 3) {
       this.disabledFlag = true
-      this.connectAuthProvider.loginToCaringConnect(this.phoneNum).subscribe((data) => {
+      this.userProvider.loginToCaringConnect(this.phoneNum).subscribe((data) => {
         if (data.code === 200) {
           this.alertProvider.presentToast(data.result.message);
           this.resendInterval();

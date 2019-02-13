@@ -1,8 +1,5 @@
-import { LOGIN, OTP, REGISTRATION, UPDATE_PROFILE } from '../../url';
-import { BASE_URL, BASE_URL1, BRAND_ID } from '../../config';
-import { Http, Response } from '@angular/http';
-import { ApiProvider } from '../api/api';
-import { AuthProvider } from '../auth/auth';
+
+import { Http, Response, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { LoaderProvider } from '../loader/loader';
 import { Observable } from 'rxjs/Observable';
@@ -10,105 +7,135 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
+import { Platform } from 'ionic-angular';
+import { CLIENT_KEY, CARING_CONNECT_BASE_URL } from '../../config';
+import { SEND_OTP, VALIDATE_OTP, GET_CUSTOMER, UPDATE_CUSTOMER, LOGOUT_CUSTOMER, REGISTER_CUSTOMER } from '../../url';
+import { Device } from '@ionic-native/device';
+import { AuthProvider } from '../auth/auth';
 
 @Injectable()
 
 export class UserdataProvider {
   public OTPCount: number = 0;
-  constructor(private auth: AuthProvider,
-    private apiProvider: ApiProvider,
-    private http: Http, private loader: LoaderProvider) {
+  public deviceId: string = null;
+  public devicePlatform: string = null;
+  public _headers: Headers = new Headers();
+  public refreshKey: string = null;
+  public retryCount: number = 0;
+
+  constructor(public http: Http, private device: Device, private platform: Platform, private loader: LoaderProvider, private authProvider: AuthProvider) {
+    this.platform.ready().then(() => {
+      this.deviceId = (this.device.uuid) ? this.device.uuid : '';
+      this.devicePlatform = (this.device.platform) ? this.device.platform : '';
+      console.log(this.deviceId, "this.deviceId");
+      console.log(this.device.platform, " this.device.platform");
+      this._headers.append('Content-Type', 'application/json');
+      this._headers.append('Accept', 'application/json');
+    })
   }
 
-  //Login user
-  userLogin(phoneNum: string) {
-    this.loader.presentLoadingCustom();
-    let userData = new FormData();
-    userData.append('BrandURLID', this.apiProvider.BRAND_ID);
-    userData.append('IdetentifierKey', 'mobile');
-    userData.append('IdetentifierValue', phoneNum);
-    userData.append('NotificationType', 'mobile');
-    userData.append('lang_code', 'en');
-    let body = userData;
-    return this.http
-      .post(this.apiProvider.BASE_URL + LOGIN, body, { headers: this.auth.getHeader() })
+  // API for getting the OTP to login into the Application.
+  public loginToCaringConnect(mobile): Observable<any> {
+    console.log(this.deviceId, "this.deviceId");
+    const URL = `${CARING_CONNECT_BASE_URL}${SEND_OTP}`;
+    let body = {
+      phonenumber: mobile,
+      deviceId: this.deviceId,
+      client_code: CLIENT_KEY
+    }
+    return this.http.post(URL, body, { headers: this._headers })
       .do((res: Response) => res)
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))
       .finally(() => this.loader.dismissLoader())
   }
 
-  //send Otp
-  userOTP(otp: string, phoneNum: any, isRegistration: string) {
-    this.loader.presentLoadingCustom();
-    let userData = new FormData();
-    userData.append('BrandURLID', this.apiProvider.BRAND_ID);
-    userData.append('IdetentifierKey', 'mobile');
-    userData.append('IdetentifierValue', phoneNum);
-    userData.append('is_social', '0');
-    userData.append('otp', otp);
-    userData.append('is_registration', isRegistration);
-    let body = userData;
-    return this.http
-      .post(this.apiProvider.BASE_URL + OTP, body, { headers: this.auth.getHeader() })
+  // API for validating the OTP using Caring Connect Validate OTP API.
+  public OTPCheckCaringConnect(mobile, otp): Observable<any> {
+    const URL = `${CARING_CONNECT_BASE_URL}${VALIDATE_OTP}`;
+    let body = {
+      phonenumber: mobile,
+      otp: otp,
+      deviceId: this.deviceId,
+      client_code: CLIENT_KEY,
+      device_os: this.devicePlatform
+    }
+    return this.http.post(URL, body, { headers: this._headers })
       .do((res: Response) => res)
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))
       .finally(() => this.loader.dismissLoader())
   }
 
-  //Register user
-  userRegistration(userdata) {
-    this.loader.presentLoadingCustom();
+  // Registration API for Caring Connect.
+  registerCustomer(userData) {
+    let token = this.authProvider.getAuthToken();
+    this._headers.set('x-user-token', token);
+    this._headers.set('client_code', CLIENT_KEY);
+    const URL = `${CARING_CONNECT_BASE_URL}${REGISTER_CUSTOMER}`;
+    let regData = {
+      "first_name": userData.fname,
+      "last_name": userData.lname,
+      "phonenumber": userData.mobile,
+      "email": userData.email,
+      "deviceId": this.deviceId,
+      "device_os": this.devicePlatform
+    };
+    return this.http.post(URL, regData, { headers: this._headers })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(() => this.loader.dismissLoader())
+  }
+
+  // Fetch Customer Details for Caring Connect.
+  getCustomerDetails() {
+    let token = this.authProvider.getAuthToken();
+    this._headers.set('x-user-token', token);
+    this._headers.set('client_code', CLIENT_KEY);
+    const URL = `${CARING_CONNECT_BASE_URL}${GET_CUSTOMER}`;
+    return this.http.get(URL, { headers: this._headers })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(() => this.loader.dismissLoader())
+  }
+
+  logoutCustomer() {
+    let token = this.authProvider.getAuthToken();
+    this._headers.set('x-user-token', token);
+    this._headers.set('client_code', CLIENT_KEY);
+    this._headers.set('session_id', this.authProvider.getSession());
+    const URL = `${CARING_CONNECT_BASE_URL}${LOGOUT_CUSTOMER}`;
+    return this.http.get(URL, { headers: this._headers })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(() => this.loader.dismissLoader())
+  }
+
+  // Update Customer Details for Caring Connect.
+  updateCustomerDetails(customerDetails, isCustomUpdate) {
+    let token = this.authProvider.getAuthToken();
+    this._headers.set('x-user-token', token);
+    this._headers.set('client_code', CLIENT_KEY);
     let data = {
-      first_name: userdata.fname,
-      last_name: userdata.lname,
-      email: userdata.email,
-      mobile: userdata.mobile,
-      BrandURLID: this.apiProvider.BRAND_ID,
-      externalId: userdata.externalId,
+      first_name: customerDetails.fname,
+      last_name: customerDetails.lname,
+      phonenumber: customerDetails.mobile,
       custom_fields: []
     }
-    data.custom_fields.push({ name: "mobile_validated", value: "Yes", type: "string" });
-    let body = data;
-    return this.http
-      .post(this.apiProvider.BASE_URL + REGISTRATION, body, { headers: this.auth.getHeader() })
-      .do((res: Response) => res)
-      .map((res: Response) => res.json())
-      .catch((err: Error) => Observable.throw(err))
-      .finally(() => this.loader.dismissLoader())
-  }
-
-  // get a user details
-  getMyProfile() {
-    this.loader.presentLoadingCustom();
-    const PROFILE = "/mobile/myprofile?mobile=" + localStorage.getItem('phone') + "&BrandURLID=" + this.apiProvider.BRAND_ID;
-    return this.http.get(this.apiProvider.BASE_URL + PROFILE, { headers: this.auth.getHeader() })
-      .do((res: Response) => res)
-      .map((res: Response) => res.json())
-      .catch((err: Error) => Observable.throw(err))
-      .finally(() => this.loader.dismissLoader())
-  }
-
-  // update user details
-  updateProfile(userdata, isCustomUpdate) {
-    this.loader.presentLoadingCustom();
-    let data = {
-      first_name: userdata.fname,
-      lastname: userdata.lname,
-      email: userdata.email,
-      old_email: userdata.old_email ? userdata.old_email : userdata.email,
-      mobile: userdata.mobile,
-      BrandURLID: this.apiProvider.BRAND_ID,
-      externalId: userdata.externalId,
-      custom_fields: []
+    console.log(customerDetails.customFields, ':::::::::::::::::::::::::;')
+    if (customerDetails.customFields.length > 0) {
+      data.custom_fields = customerDetails.customFields[0];
+    } else {
+      data.custom_fields.push({ name: "mobile_validated", value: "Yes" });
+      if (isCustomUpdate)
+        data.custom_fields.push({ name: "app_login", value: "1" });
     }
-    data.custom_fields.push({ name: "mobile_validated", value: "Yes", type: "string" });
-    if (isCustomUpdate)
-      data.custom_fields.push({ name: "app_login", value: "1", type: "string" });
     let body = data;
-    return this.http
-      .post(this.apiProvider.BASE_URL + UPDATE_PROFILE, body, { headers: this.auth.getHeader() })
+    const URL = `${CARING_CONNECT_BASE_URL}${UPDATE_CUSTOMER}`;
+    return this.http.post(URL, body, { headers: this._headers })
       .do((res: Response) => res)
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))

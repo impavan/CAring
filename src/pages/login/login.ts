@@ -6,6 +6,7 @@ import { Component, ViewChild } from '@angular/core';
 import { LoaderProvider } from '../../providers/loader/loader';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
+import { UserdataProvider } from '../../providers/userdata/userdata';
 
 @IonicPage()
 @Component({
@@ -24,6 +25,7 @@ export class LoginPage {
 
   constructor(private menu: MenuController,
     private navCtrl: NavController,
+    private userdataProvider: UserdataProvider,
     private alertProvider: AlertProvider,
     private loaderProvider: LoaderProvider,
     private connectAuthProvider: ConnectAuthProvider,) {
@@ -56,7 +58,7 @@ export class LoginPage {
       this.alertProvider.presentToast('Mobile number cannot contain special characters');
       return;
     } else {
-      this.connectAuthProvider.loginToCaringConnect(phoneNo).subscribe((data) => {
+      this.userdataProvider.loginToCaringConnect(phoneNo).subscribe((data) => {
         if (data.code === 200) {
           this.navCtrl.push("OtpPage", { phone: phoneNo });
           this.alertProvider.presentToast(data.result.message);

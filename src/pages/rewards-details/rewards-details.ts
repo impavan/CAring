@@ -36,7 +36,6 @@ export class RewardsDetailsPage {
     private userdataProvider: UserdataProvider,
     private connectAuthProvider: ConnectAuthProvider,
     private rewardsProvider: RewardsProvider) {
-
     this.offerdata = this.navParams.get('data');
     this._auth = localStorage.getItem('auth_token');
   }
@@ -60,26 +59,31 @@ export class RewardsDetailsPage {
       points: this.offerdata.BrandPointRedeemValue,
       experience_id: this.offerdata.ExperienceID,
     };
-    console.log('::::::::::::::::RedeemData::::::::::::::', redeemData)
+    console.log('::::::::::::::::Test1::::::::::::::', redeemData)
     this.closeRedeemPointsModal();
     this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
       if (isTokenValid) {
-        this.connectAuthProvider.purchaseExperience(redeemData).subscribe(data => {
-
-        // })
-        // this.rewardsProvider.redeemVoucher(redeemData).subscribe(data => {
-          if (data.code == 200) {
-            this.alertProvider.presentToast(data[0].message);
-            this.userdataProvider.getMyProfile().subscribe(res => {
-              this.authProvider.setUser(res[0].customerdata);
-              localStorage.setItem('userdetails', JSON.stringify(res[0].customerdata));
-              this.authProvider.setHeader();
-              this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata });
+        this.rewardsProvider.purchaseExperience(redeemData).subscribe(data => {
+          console.log('::::::::::::::::Test2::::::::::::::', data.result.exp.message)
+          if (data.code == 200 &&data.result.exp.code && data.result.exp.code == 200) {
+            // this.alertProvider.presentToast(data[0].message);
+            this.userdataProvider.getCustomerDetails().subscribe(customerdetails => {
+              console.log(':::::::::::::::::::::Customer Data::::::::::::::::::::::;', customerdetails)
+              if (customerdetails.code === 200 && customerdetails.result.response && customerdetails.result.response.customers.customer) {
+                console.log(':::::::::::::::::::::Customer Data IF::::::::::::::::::::::;')
+                let existingCustomerData = customerdetails.result.response.customers;
+                this.authProvider.setUser(existingCustomerData);
+                localStorage.setItem('userdetails', JSON.stringify(existingCustomerData));
+                this.authProvider.setHeader();
+                this.navCtrl.push("PurchaseRewardsPage", { 'offerData': this.offerdata });
+              } else {
+                this.alertProvider.presentToast(customerdetails.message);
+              }
             }, err => {
               this.exceptionProvider.excpHandler(err);
             });
           } else {
-            this.alertProvider.presentToast(data[0].message);
+            this.alertProvider.presentToast(JSON.stringify(data.result.exp.message));
           }
         }, err => {
           this.closeRedeemPointsModal();

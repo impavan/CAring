@@ -137,7 +137,7 @@
             </figure> -->
             <ion-slides *ngIf="storeBanners && storeBanners.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
 
-                <ion-slide *ngFor="let store of storeBanners">
+                <ion-slide *ngFor="let store of storeBanners" (click) = "goToInappBrowser(store?.bannerurl)">
                     <div class="swiper-zoom-container">
                         <img src="{{store?.bannerimage}}" >
                     </div>
@@ -146,7 +146,7 @@
         </section>
         <ion-grid class="homeTabLinks">
             <ion-row>
-                <ion-col *ngFor ="let access of storeQuickAccessData" clickable (click)="goto(access)" text-center>
+                <ion-col *ngFor ="let access of storeQuickAccessData" clickable (click)="goToInappBrowser(access?.url)" text-center>
                     <img src="{{access?.categoryimage}}" />
                     <span>{{access?.title}}</span>
                 </ion-col>
@@ -155,9 +155,9 @@
     </div>
     <section class="productSlider">
         <ul>
-            <li *ngFor="let deal of hotdeals" (click)="gotoCart(deal)">
+            <li *ngFor="let deal of hotdeals" (click)="goToInappBrowser(deal?.productlink)">
                 <img src="{{deal?.productimage}}" />
-                <h4>{{deal?.producttitle}}</h4>
+                <h4 class="max-line">{{deal?.producttitle}}</h4>
                 <ion-row>
                     <ion-col col-8>
                         <strong>RM {{deal?.productdiscountedprice}}</strong>

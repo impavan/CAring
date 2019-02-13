@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, Events, NavParams } from 'ionic-angular';
-import JsBarcode from 'jsbarcode';
 import moment from 'moment';
 
 // Import Providers.
@@ -10,7 +9,6 @@ import { AlertProvider } from '../../providers/alert/alert';
 import { RewardsProvider } from '../../providers/rewards/rewards';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
-
 
 @IonicPage()
 @Component({
@@ -48,10 +46,7 @@ export class RewardsPage {
     private authProvider: AuthProvider,
     private connectAuthProvider: ConnectAuthProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
-
-
     this.selectTab = navParams.get('selectTab') || '';
-    console.log(this.selectTab, ":::::::::::::::::::selectab:::::::::::::::::")
     this.from = navParams.get('deeplink');
     this.navToId = navParams.get('id');
     if (this.from == 'myrewards') {
@@ -65,13 +60,10 @@ export class RewardsPage {
     } else {
       console.log('coming to else');
     }
-
     if (this.selectTab) {
       this.member = this.selectTab;
-      console.log(this.selectTab, ":::::::::::::::::::pagwe:::::::::::::::::")
       this.fetchAllExperiences();
     }
-
   }
 
   ionViewWillEnter() {
@@ -79,8 +71,6 @@ export class RewardsPage {
     this.auth = localStorage.getItem('auth_token')
     if (this.auth) {
       this.authProvider.setHeader();
-      console.log(":::::::::::::::::::coupon:::::::::::::::::")
-      // this.getRedeemedVouchers();
       this.getPromotions();
     }
   }
@@ -90,14 +80,13 @@ export class RewardsPage {
     this.offerdata = [];
     this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
       if (isTokenValid) {
-        this.connectAuthProvider.getExperiencesData().subscribe(data => {
+        this.rewardsProvider.getExperiencesData().subscribe(data => {
           if (data.code == 200) {
             this.isDataLoaded = true;
             for (let res of data.result[0].response) {
               if (res.is_digital == 0)
                 this.offerdata.push(res);
             }
-            console.log(this.offerdata, '::::::::::::::::::Offer Data:::::::::::::::')
             if (this.offerdata && this.navToId && this.from == 'newrewards') {
               let item = this.offerdata.find(d => d.ExperienceID == this.navToId);
               if (item) {
@@ -114,61 +103,26 @@ export class RewardsPage {
         this.alertProvider.presentToast('Invalid Auth Token');
       }
     });
-
   }
 
   navToLogin() {
-
     this.rewardModal.close();
     this.navCtrl.setRoot("LoginPage");
-
   }
 
   cancelRedeem() {
-
     this.rewardModal.close();
-
   }
 
   navToRedeem(offerData) {
-
     this.auth ? this.navCtrl.push("RewardsDetailsPage", { data: offerData }) : this.rewardModal.open();
-
   }
-
-  //List all the experiences / offers
-  // fetchAllExperiencesWith() {
-
-  //   this.offerdata = [];
-  //   this.rewardsProvider.fetchAllExperiencesWith().subscribe(data => {
-  //     if (data[0].code == 200) {
-  //       this.isDataLoaded = true;
-  //       for (let res of data[0].response) {
-  //         if (res.is_digital == 0)
-  //           this.offerdata.push(res);
-  //       }
-  //       if (this.offerdata && this.navToId && this.from == 'newrewards') {
-  //         let item = this.offerdata.find(d => d.ExperienceID == this.navToId);
-  //         if (item) {
-  //           this.navToRedeem(item);
-  //         }
-  //       }
-  //     } else {
-  //       this.alertProvider.presentToast(data[0].message);
-  //     }
-  //   }, err => {
-  //     this.exceptionProvider.excpHandler(err);
-  //   });
-  // }
 
   getRedeemedVouchers() {
     this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
       if (isTokenValid) {
-        this.connectAuthProvider.getCustomerVouchers().subscribe(res => {
-
-        // })
-        // this.profileProvider.getAllRedeemedVouchers().subscribe(res => {
-          this.redeemedRewards = res[0].customer_vouchers;
+        this.rewardsProvider.getCustomerVouchers().subscribe(res => {
+          this.redeemedRewards = res.result.vouchers.customer_vouchers;
           this.isWalletLoaded = true;
           if (this.redeemedRewards && this.redeemedRewards.length > 0) {
             this.getNewRewardsList();
@@ -192,10 +146,9 @@ export class RewardsPage {
                 this.goto('RedeemPage', this.navToId);
             }
           }
-        },
-          err => {
-            this.exceptionProvider.excpHandler(err);
-          });
+        }, err => {
+          this.exceptionProvider.excpHandler(err);
+        });
       } else {
         this.alertProvider.presentToast('Invalid Auth Token');
       }
