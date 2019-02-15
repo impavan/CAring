@@ -8,10 +8,11 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import { Platform } from 'ionic-angular';
-import { CLIENT_KEY, CARING_CONNECT_BASE_URL } from '../../config';
-import { SEND_OTP, VALIDATE_OTP, GET_CUSTOMER, UPDATE_CUSTOMER, LOGOUT_CUSTOMER, REGISTER_CUSTOMER } from '../../url';
+import { CLIENT_KEY, CARING_CONNECT_BASE_URL,BRAND_ID } from '../../config';
+import { SEND_OTP, VALIDATE_OTP, GET_CUSTOMER, UPDATE_CUSTOMER, LOGOUT_CUSTOMER, REGISTER_CUSTOMER, CUSTOMER_MESSAGES } from '../../url';
 import { Device } from '@ionic-native/device';
 import { AuthProvider } from '../auth/auth';
+import { ApiProvider } from '../api/api';
 
 @Injectable()
 
@@ -23,7 +24,8 @@ export class UserdataProvider {
   public refreshKey: string = null;
   public retryCount: number = 0;
 
-  constructor(public http: Http, private device: Device, private platform: Platform, private loader: LoaderProvider, private authProvider: AuthProvider) {
+  constructor(public http: Http, private device: Device, private platform: Platform,
+    private loader: LoaderProvider, private authProvider: AuthProvider, private apiProvider: ApiProvider) {
     this.platform.ready().then(() => {
       this.deviceId = (this.device.uuid) ? this.device.uuid : '';
       this.devicePlatform = (this.device.platform) ? this.device.platform : '';
@@ -125,8 +127,8 @@ export class UserdataProvider {
       phonenumber: customerDetails.mobile,
       custom_fields: []
     }
-    console.log(customerDetails.customFields, ':::::::::::::::::::::::::;')
-    if (customerDetails.customFields.length > 0) {
+    console.log(data, ':::::::::::::::CUSTOM FILEDS::::::::::;')
+    if (customerDetails.customFields && customerDetails.customFields.length > 0) {
       data.custom_fields = customerDetails.customFields[0];
     } else {
       data.custom_fields.push({ name: "mobile_validated", value: "Yes" });
@@ -134,8 +136,23 @@ export class UserdataProvider {
         data.custom_fields.push({ name: "app_login", value: "1" });
     }
     let body = data;
+    console.log(body, ':::::::::::::::CUSTOM FILEDS::::::::::;')
     const URL = `${CARING_CONNECT_BASE_URL}${UPDATE_CUSTOMER}`;
     return this.http.post(URL, body, { headers: this._headers })
+      .do((res: Response) => res)
+      .map((res: Response) => res.json())
+      .catch((err: Error) => Observable.throw(err))
+      .finally(() => this.loader.dismissLoader())
+  }
+
+  // Get User Push Notifications from Caring Connect /customer/messages API.
+  getAllMessages() {
+    let token = this.authProvider.getAuthToken();
+    this._headers.set('x-user-token', token);
+    this._headers.set('client_code', CLIENT_KEY);
+    // const URL = `${CARING_CONNECT_BASE_URL}${CUSTOMER_MESSAGES}` + this.apiProvider.WEBENGAGE_ID + this.devicePlatform + BRAND_ID;
+    const URL = `${CARING_CONNECT_BASE_URL}${CUSTOMER_MESSAGES}` + this.apiProvider.WEBENGAGE_ID + '/'+ 'ios/' + BRAND_ID;
+    return this.http.get(URL, { headers: this._headers })
       .do((res: Response) => res)
       .map((res: Response) => res.json())
       .catch((err: Error) => Observable.throw(err))

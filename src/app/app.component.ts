@@ -3,7 +3,6 @@ import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { CookieService } from 'ngx-cookie-service';
 
 // import { Badge } from '@ionic-native/badge';
 import { ConnectAuthProvider } from '../providers/connect-auth/connect-auth';
@@ -41,7 +40,6 @@ export class MyApp {
     public pushProvider: PushProvider,
     public apiProvider: ApiProvider,
     public networkprovider: NetworkProvider,
-    private cookieService: CookieService,
     public connectAuthProvider: ConnectAuthProvider,
     // public badge: Badge
 ) {
@@ -88,8 +86,6 @@ export class MyApp {
       this.noConnectionEvent();
       this.notLoggedIn();
       this.pushEvent();
-      let cookieValue = this.cookieService.getAll();
-      console.log('::::::::::Cookie Value:::::::::::', cookieValue);
     });
   }
 

@@ -58,7 +58,9 @@ export class LoginPage {
       this.alertProvider.presentToast('Mobile number cannot contain special characters');
       return;
     } else {
+      this.loaderProvider.presentLoadingCustom();
       this.userdataProvider.loginToCaringConnect(phoneNo).subscribe((data) => {
+        this.loaderProvider.dismissLoader();
         if (data.code === 200) {
           this.navCtrl.push("OtpPage", { phone: phoneNo });
           this.alertProvider.presentToast(data.result.message);

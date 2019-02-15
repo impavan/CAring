@@ -23,7 +23,7 @@
                         <div class="subContent">
                             <h4>{{_totalAvailablePoints}}</h4>
                             <h6>Total Points</h6>
-                            <button value="redeem" (click)="gotoRewards()">redeem</button>
+                            <button value="redeem" (click)="gotoRewards('Redemption')">redeem</button>
                         </div>
                     </div>
                     <div class="content">
@@ -47,7 +47,7 @@
                     <img src="assets/img/newimgs/redemption.png" />
                     <span>My Redemption</span>
                 </ion-col>
-                <ion-col col-4 col-md-3 text-center (click) = "getUserTransaction()">
+                <ion-col col-4 col-md-3 text-center (click) = "navTo('TransactionsPage')">
                     <img src="assets/img/newimgs/transaction.png" />
                     <span>My Transaction</span>
                 </ion-col>  

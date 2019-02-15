@@ -7,8 +7,8 @@ import { ExceptionHandlerProvider } from '../../providers/exception-handler/exce
 import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { RewardsProvider } from '../../providers/rewards/rewards';
-import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 @IonicPage()
 @Component({
@@ -42,15 +42,16 @@ export class RewardsPage {
     public navCtrl: NavController,
     private rewardsProvider: RewardsProvider,
     private alertProvider: AlertProvider,
-    private profileProvider: ProfileProvider,
     private authProvider: AuthProvider,
+    private loaderProvider: LoaderProvider,
     private connectAuthProvider: ConnectAuthProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
+
     this.selectTab = navParams.get('selectTab') || '';
     this.from = navParams.get('deeplink');
     this.navToId = navParams.get('id');
     if (this.from == 'myrewards') {
-      this.member = 'Rewards';
+      this.member = 'Redemption';
       console.log("form rewards");
       this.fetchAllExperiences();
     } else if (this.from == 'newrewards') {
@@ -64,6 +65,12 @@ export class RewardsPage {
       this.member = this.selectTab;
       this.fetchAllExperiences();
     }
+    if(this.member == 'Rewards')
+      this.getRedeemedVouchers();
+    else if(this.member == 'promotions')
+      this.getPromotions();
+    else if(this.member == 'Redemption')
+      this.fetchAllExperiences();
   }
 
   ionViewWillEnter() {
@@ -77,10 +84,12 @@ export class RewardsPage {
 
   //List all the experiences / offers
   fetchAllExperiences() {
+    this.loaderProvider.presentLoadingCustom();
     this.offerdata = [];
     this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
       if (isTokenValid) {
         this.rewardsProvider.getExperiencesData().subscribe(data => {
+          this.loaderProvider.dismissLoader();
           if (data.code == 200) {
             this.isDataLoaded = true;
             for (let res of data.result[0].response) {
@@ -100,6 +109,7 @@ export class RewardsPage {
           this.exceptionProvider.excpHandler(err);
         });
       } else {
+        this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast('Invalid Auth Token');
       }
     });
@@ -119,9 +129,11 @@ export class RewardsPage {
   }
 
   getRedeemedVouchers() {
+    this.loaderProvider.presentLoadingCustom();
     this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isTokenValid => {
       if (isTokenValid) {
         this.rewardsProvider.getCustomerVouchers().subscribe(res => {
+          this.loaderProvider.dismissLoader();
           this.redeemedRewards = res.result.vouchers.customer_vouchers;
           this.isWalletLoaded = true;
           if (this.redeemedRewards && this.redeemedRewards.length > 0) {
@@ -150,6 +162,7 @@ export class RewardsPage {
           this.exceptionProvider.excpHandler(err);
         });
       } else {
+        this.loaderProvider.dismissLoader();
         this.alertProvider.presentToast('Invalid Auth Token');
       }
     });
@@ -188,7 +201,9 @@ export class RewardsPage {
   }
 
   private getPromotions() {
+    this.loaderProvider.presentLoadingCustom();
     this.rewardsProvider.getAllPromotions().subscribe(res => {
+      this.loaderProvider.dismissLoader();
       this._promotions = res.data.filter(promote => {
         if (promote.publishingstartdate && promote.publishingenddate) {
           // moment for checking start date and end date for posting article //

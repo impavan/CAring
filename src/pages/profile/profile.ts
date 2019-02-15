@@ -4,7 +4,6 @@ import moment from 'moment';
 
 // Import Providers.
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
-import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { UserdataProvider } from '../../providers/userdata/userdata';
@@ -54,8 +53,6 @@ export class ProfilePage {
     private authProvider: AuthProvider,
     private alertProvider: AlertProvider,
     private userProvider: UserdataProvider,
-    private profileProvider: ProfileProvider,
-    private exceptionProvider: ExceptionHandlerProvider,
     private connectAuthProvider: ConnectAuthProvider) {
   }
 

@@ -2,278 +2,212 @@
     <header></header>
 </div>
 
-
-
 <ion-content class="mainCont homePage" *ngIf="bannerData">
-
     <div *ngIf="!showEvents">
-    <ion-slides *ngIf="bannerData && bannerData.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
+        <ion-slides *ngIf="bannerData && bannerData.length >= 1" zoom="true" [autoplay]="4000" [loop]="true"
+            [speed]="1000" [paginationType]="bullets" [pager]="true">
 
-        <ion-slide *ngFor="let banner of bannerData | sort:'priority'">
-            <div class="swiper-zoom-container" (click)="gotoLink(banner)">
-                <img src="{{banner?.bannerimage}}" >
-            </div>
-        </ion-slide>
-    </ion-slides>
+            <ion-slide *ngFor="let banner of bannerData | sort:'priority'">
+                <div class="swiper-zoom-container" (click)="gotoLink(banner)">
+                    <img src="{{banner?.bannerimage}}">
+                </div>
+            </ion-slide>
+        </ion-slides>
 
-    <div class="homeContainer">
-        <!-- <ion-grid>
-            <ion-row>
-                <ion-col col-6 clickable (click)="goto('PromotionsPage')">
-                    <img src="assets/img/promotions.png" />
-                </ion-col>
-                <ion-col col-6 clickable (click)="goto('MemberPage')">
-                    <img src="assets/img/member.png" />
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col col-6 clickable (click)="goto('HappeningsPage')">
-                    <img src="assets/img/happnings.png" />
-                </ion-col>
-                <ion-col col-6 clickable (click)="goto('HealthInfoPage')">
-                    <img src="assets/img/health.png" />
-                </ion-col>
-            </ion-row>
-        </ion-grid> -->
-        <ion-grid class="homeTabLinks">
-            <ion-row>
-                <ion-col *ngFor ="let access of quickAccessData" clickable (click)="goto(access)" text-center>
-                    <img src="{{access?.thumbnail}}" />
-                    <span>{{access?.title}}</span>
-                </ion-col>
-                <!-- <ion-col clickable (click)="goto('MemberPage')" text-center> 
-                    <img src="assets/img/newimgs/catalogue.png" />
-                    <span>Catalogue</span>
-                </ion-col>
-                <ion-col clickable (click)="goto('HappeningsPage')" text-center>
-                    <img src="assets/img/newimgs/coupon.png" />
-                    <span>Coupon</span>
-                </ion-col>
-                <ion-col clickable  text-center>
-                    <a (click)="showEvent()">
-                        <img src="assets/img/newimgs/events.png" />
-                        
-                        <span>Events</span>
-                    </a>
-                </ion-col>                 -->
-            </ion-row>
-        </ion-grid>
-        <ion-grid no-padding>
-            <ion-row>
-                <ion-col col-12 col-md-4>
-                    <article class="headerBand">
-                        <strong>- Service -</strong>
-                    </article>
-                    <section class="homeFeeds">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col col-5>
-                                    <figure>
-                                        <img src="assets/img/quit_smoke.jpg" />
-                                    </figure>
-                                </ion-col>
-                                <ion-col col-7>
-                                    <article (click)="navTo('HappeningsPage')">
-                                        <h4>Thinking of quitting smoking?</h4>
-                                        <p>Get your free advice from our certified smoking...</p>
-                                        <!-- <img src="assets/img/quit_smoke.png" /> -->
-                                    </article>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </section>
-                </ion-col>
-                <ion-col col-12 col-md-4>
-                    <article class="headerBand">
-                        <strong>- My Member -</strong>
-                    </article>
-                    <section class="homeFeeds">
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col col-5>
-                                    <figure>
-                                        <img src="assets/img/newimgs/static.png" />
-                                    </figure>
-                                </ion-col>
-                                <ion-col col-7 (click) = "navTo('MemberPage')">
-                                    <article>
-                                        <h4>My Member</h4>
-                                        <p> Some Lorem ipsum dolor dummy content will e displaying here ...</p>
-                                        <img src="assets/img/newimgs/arrow.png" />
-                                    </article>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </section>
-                </ion-col>
-                <ion-col col-12 col-md-4>
-                    <article class="headerBand">
-                        <strong>- Health Info -</strong>
-                    </article>
-                    <section class="homeFeeds">
-                        <ion-grid>
-                            <ion-row (click) = "navTo('HealthInfoPage')">
-                                <ion-col col-5>
-                                    <figure>
-                                        <img src={{healthInfo?.thumbnailimage}} />
-                                    </figure>
-                                </ion-col>
-                                <ion-col col-7>
-                                    <article>
-                                        <h4 class="max-lines">{{healthInfo?.title}}</h4>
-                                        <p class="max-lines"> {{healthInfo?.subtitle}}</p>
-                                        <!-- <img src={{healthInfo?.thumbnailimage}} /> -->
-                                    </article>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </section>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <section class="advBnr">
-            <!-- <figure>
-                <img src="assets/img/newimgs/happningsold.png" />
-            </figure> -->
-            <ion-slides *ngIf="storeBanners && storeBanners.length >= 1" zoom="true" [autoplay]="4000" [loop]="true" [speed]="1000" [paginationType]="bullets" [pager]="true">
-
-                <ion-slide *ngFor="let store of storeBanners" (click) = "goToInappBrowser(store?.bannerurl)">
-                    <div class="swiper-zoom-container">
-                        <img src="{{store?.bannerimage}}" >
-                    </div>
-                </ion-slide>
-            </ion-slides>
-        </section>
-        <ion-grid class="homeTabLinks">
-            <ion-row>
-                <ion-col *ngFor ="let access of storeQuickAccessData" clickable (click)="goToInappBrowser(access?.url)" text-center>
-                    <img src="{{access?.categoryimage}}" />
-                    <span>{{access?.title}}</span>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
-    <section class="productSlider">
-        <ul>
-            <li *ngFor="let deal of hotdeals" (click)="goToInappBrowser(deal?.productlink)">
-                <img src="{{deal?.productimage}}" />
-                <h4 class="max-line">{{deal?.producttitle}}</h4>
+        <div class="homeContainer">
+            <ion-grid class="homeTabLinks">
                 <ion-row>
-                    <ion-col col-8>
-                        <strong>RM {{deal?.productdiscountedprice}}</strong>
-                        <span><del>RM {{deal?.productactualprice}}</del> {{deal?.discount}}%</span>
-                    </ion-col>
-                    <ion-col col-4>
-                        <ion-icon class="cartIco" name="cart"></ion-icon>
+                    <ion-col *ngFor="let access of quickAccessData" clickable (click)="goto(access)" text-center>
+                        <img src="{{access?.thumbnail}}" />
+                        <span>{{access?.title}}</span>
                     </ion-col>
                 </ion-row>
-            </li>
-            <!-- <li>
-                <img src="http://www.caring2u.com/images/estore_59926cde2f123.jpg" />
-                <h4>Item Product Name one</h4>
+            </ion-grid>
+            <ion-grid no-padding>
                 <ion-row>
-                    <ion-col col-8>
-                        <strong>RM 89.00</strong>
-                        <span><del>RM 32.00</del> 22%</span>
+                    <ion-col col-12 col-md-4>
+                        <article class="headerBand">
+                            <strong>- Service -</strong>
+                        </article>
+                        <section class="homeFeeds">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col col-5>
+                                        <figure class="serviceImgOut">
+                                            <img class="serviceImg" src="{{pharmacistData?.bannerimage}}" />
+                                        </figure>
+                                    </ion-col>
+                                    <ion-col col-7>
+                                        <article (click)="navTo('HappeningsPage')">
+                                            <h4>{{pharmacistData?.title}}</h4>
+                                            <p>{{pharmacistData?.subtitle}}</p>
+                                        </article>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </section>
                     </ion-col>
-                    <ion-col col-4>
-                        <ion-icon  class="cartIco" name="cart"></ion-icon>
+                    <ion-col col-12 col-md-4>
+                        <article class="headerBand">
+                            <strong>- My Member -</strong>
+                        </article>
+                        <section class="homeFeeds">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col col-5>
+                                        <figure>
+                                            <img src="assets/img/newimgs/static.png" />
+                                        </figure>
+                                    </ion-col>
+                                    <ion-col col-7 (click)="navTo('MemberPage')">
+                                        <article>
+                                            <h4>My Member</h4>
+                                            <p> Some Lorem ipsum dolor dummy content will e displaying here ...</p>
+                                            <img src="assets/img/newimgs/arrow.png" />
+                                        </article>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </section>
+                    </ion-col>
+                    <ion-col col-12 col-md-4>
+                        <article class="headerBand">
+                            <strong>- Health Info -</strong>
+                        </article>
+                        <section class="homeFeeds">
+                            <ion-grid>
+                                <ion-row (click)="navTo('HealthInfoPage')">
+                                    <ion-col col-5>
+                                        <figure>
+                                            <img src={{healthInfo?.thumbnailimage}} />
+                                        </figure>
+                                    </ion-col>
+                                    <ion-col col-7>
+                                        <article>
+                                            <h4 class="max-lines">{{healthInfo?.title}}</h4>
+                                            <p class="max-lines"> {{healthInfo?.subtitle}}</p>
+                                        </article>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </section>
                     </ion-col>
                 </ion-row>
-            </li>
-            <li>
-                <img src="http://www.caring2u.com/images/estore_59926cde2f123.jpg" />
-                <h4>Item Product Name one</h4>
+            </ion-grid>
+            <section class="advBnr">
+                <ion-slides *ngIf="storeBanners && storeBanners.length >= 1" zoom="true" [autoplay]="4000" [loop]="true"
+                    [speed]="1000" [paginationType]="bullets" [pager]="true">
+                    <ion-slide *ngFor="let store of storeBanners" (click)="goToInappBrowser(store?.bannerurl)">
+                        <div class="swiper-zoom-container">
+                            <img src="{{store?.bannerimage}}">
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+            </section>
+            <ion-grid class="homeTabLinks">
                 <ion-row>
-                    <ion-col col-8>
-                        <strong>RM 89.00</strong>
-                        <span><del>RM 32.00</del> 22%</span>
-                    </ion-col>
-                    <ion-col col-4>
-                        <ion-icon  class="cartIco" name="cart"></ion-icon>
+                    <ion-col *ngFor="let access of storeQuickAccessData" clickable
+                        (click)="goToInappBrowser(access?.url)" text-center>
+                        <img src="{{access?.categoryimage}}" />
+                        <span>{{access?.title}}</span>
                     </ion-col>
                 </ion-row>
-            </li>
-            <li>
-                <img src="http://www.caring2u.com/images/estore_59926cde2f123.jpg" />
-                <h4>Item Product Name one</h4>
-                <ion-row>
-                    <ion-col col-8>
-                        <strong>RM 89.00</strong>
-                        <span><del>RM 32.00</del> 22%</span>
-                    </ion-col>
-                    <ion-col col-4>
-                        <ion-icon  class="cartIco" name="cart"></ion-icon>
-                    </ion-col>
-                </ion-row>
-            </li> -->
-        </ul>
-    </section>
-    <ion-row showWhen="core">
-        <ion-col col-12 no-padding>
-            <section class="footerSec">
-                <ion-grid>
+            </ion-grid>
+        </div>
+        <section class="productSlider">
+            <ion-icon name="arrow-back" class="leftArrow"></ion-icon>
+            <ul>
+                <li *ngFor="let deal of hotdeals" (click)="goToInappBrowser(deal?.productlink)">
+                    <img src="{{deal?.productimage}}" />
+                    <h4 class="max-line">{{deal?.producttitle}}</h4>
                     <ion-row>
-                        <ion-col col-md-4>
-                            <h5>corporate information</h5>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;">History</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Vission & Mission</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">CSR</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">News</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Carrer</a>
-                                </li>
-                            </ul>
+                        <ion-col col-8>
+                            <strong>RM {{deal?.productdiscountedprice}}</strong>
+                            <span><del>RM {{deal?.productactualprice}}</del> {{deal?.discount}}%</span>
                         </ion-col>
-                        <ion-col col-md-4>
-                            <h5>promotion</h5>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;">Catalogue</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Newspaper Ads</a>
-                                </li>
-                            </ul>
-                        </ion-col>
-                        <ion-col col-md-4>
-                            <h5>customer service</h5>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;">Contact Us </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Store Locator</a>
-                                </li>
-                            </ul>
+                        <ion-col col-4>
+                            <ion-icon class="cartIco" name="cart"></ion-icon>
                         </ion-col>
                     </ion-row>
-                </ion-grid>
-                <p>Copyright © 2016 Caring Pharmacy. All rights reserved. </p>
-            </section>
-        </ion-col>
-    </ion-row>
+                </li>
+            </ul>
+            <ion-icon name="arrow-forward" class="rightArrow"></ion-icon>
+        </section>
+        <ion-row showWhen="core">
+            <ion-col col-12 no-padding>
+                <section class="footerSec">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-md-4>
+                                <h5>corporate information</h5>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">History</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Vission & Mission</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">CSR</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">News</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Carrer</a>
+                                    </li>
+                                </ul>
+                            </ion-col>
+                            <ion-col col-md-4>
+                                <h5>promotion</h5>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">Catalogue</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Newspaper Ads</a>
+                                    </li>
+                                </ul>
+                            </ion-col>
+                            <ion-col col-md-4>
+                                <h5>customer service</h5>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">Contact Us </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Store Locator</a>
+                                    </li>
+                                </ul>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <p>Copyright © 2016 Caring Pharmacy. All rights reserved. </p>
+                </section>
+            </ion-col>
+        </ion-row>
     </div>
     <div *ngIf="showEvents">
         <iframe style="width:100%;height: 100vh;" [src]="weblinkurl | safeurl" (beforeunload)="iframeLoad()"></iframe>
     </div>
 </ion-content>
 
+<mymodal #login>
+    <p>Please Login/Register to continue</p>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button class="btn2 cancelBtn" (click)="closeLoginModal()">Cancel</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button class="btn2" (click)="gotoLogin()">Login/Register</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</mymodal>
 
-
-
-<ion-footer  hideWhen="core">
+<ion-footer hideWhen="core">
     <ion-toolbar>
         <page-tabs></page-tabs>
     </ion-toolbar>
 </ion-footer>
-

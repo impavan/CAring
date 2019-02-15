@@ -13,24 +13,35 @@ import { ApiProvider } from '../../providers/api/api';
 
 export class ECartPage {
   URL: string;
+  authData: string;
 
   constructor(private events: Events,
     private authProvider: AuthProvider,
     private iab: InAppBrowser,
     private apiProvider: ApiProvider,
     public navCtrl: NavController) {
+    this.authData = this.authProvider.getAuthToken();
+  }
+
+  ionViewCanEnter() {
+    if (this.authProvider.getAuthToken())
+      return true;
+    return false;
   }
 
   ionViewDidEnter() {
-    let inAppOpt: InAppBrowserOptions = {
-      clearcache: 'yes',
-      hardwareback: 'yes',
-      location: 'no'
+    if (this.authData) {
+      let inAppOpt: InAppBrowserOptions = {
+        clearcache: 'yes',
+        hardwareback: 'yes',
+        location: 'no'
+      }
+      let destination = CARING_ESHOP_LINK;
+      let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=' + this.apiProvider.eshop_client_code + '&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + destination;
+
+      const browser = this.iab.create(link, '_blank', inAppOpt);
+    } else {
+      console.log('::::::::::::::::::::Auth not there:::::::::::::::::::::')
     }
-    let destination = CARING_ESHOP_LINK;
-    let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=' + this.apiProvider.eshop_client_code + '&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + destination;
-  
-    const browser = this.iab.create(link, '_blank', inAppOpt);
-    // this.events.publish('changeIcon', "ECartPage");
   }
 }

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { PushProvider } from '../../providers/push/push';
 import { AlertProvider } from '../../providers/alert/alert';
+import { UserdataProvider } from '../../providers/userdata/userdata';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
+import { ConnectAuthProvider } from '../../providers/connect-auth/connect-auth';
+import { LoaderProvider } from '../../providers/loader/loader';
+
 
 @IonicPage()
 @Component({
@@ -17,8 +20,10 @@ export class MessagesPage {
 
   constructor(public navCtrl: NavController,
     private authProvider: AuthProvider,
-    private pushProvider: PushProvider,
+    private userdataProvider: UserdataProvider,
     private alertProvider: AlertProvider,
+    private loaderProvider: LoaderProvider,
+    private connectAuthProvider: ConnectAuthProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
 
   }
@@ -31,16 +36,24 @@ export class MessagesPage {
   }
 
   getAllMessages() {
-    let phone = this.authProvider.getUserMobileNo();
-    this.pushProvider.getAllMessages(phone).subscribe(res => {
-      if (res[0].code == 200) {
-        this.myMessages = res[0].referalcodedata;
+    this.loaderProvider.presentLoadingCustom();
+    this.connectAuthProvider.validateToken(this.authProvider.getAuthToken()).then(isValid => {
+      if (isValid) {
+        this.userdataProvider.getAllMessages().subscribe(res => {
+          this.loaderProvider.dismissLoader();
+          if (res.code == 200 && res.result.messages.code == 200) {
+            this.myMessages = res.result.messages.referalcodedata;
+          } else {
+            this.alertProvider.presentToast(res.result.messages.message);
+          }
+        }, err => {
+          this.exceptionProvider.excpHandler(err);
+        });
       } else {
-        // this.alertProvider.presentToast(res[0].message);
+        this.loaderProvider.dismissLoader();
+        this.alertProvider.presentToast('Invalid Token');
       }
-    }, err => {
-      this.exceptionProvider.excpHandler(err);
-    });
+    })
   }
 
   gotoLogin() {

@@ -18,14 +18,14 @@
                 </ion-col>
             </ion-row> -->
             <div class="segmentOut">
-                <ion-segment [(ngModel)]="happeningsSegment">
-                    <ion-segment-button value="happenings">
+                <ion-segment [(ngModel)]="happeningsSegment" scrollable (ionChange) = "segmentChange($event)">
+                    <ion-segment-button value="happenings" (ionChange) = "getHappenings()">
                         <span class="happSeg">Happenings</span>
                     </ion-segment-button>
-                    <ion-segment-button value="pharmacistService">
+                    <ion-segment-button value="pharmacistService" (ionChange) = "getpharmacistService()">
                         <span>Pharmacy</span> Service
                     </ion-segment-button>
-                    <ion-segment-button value="inStoreActivities">
+                    <ion-segment-button value="inStoreActivities" (ionChange) = "getInStoreActivities()">
                         <span>In-Store</span> Activities
                     </ion-segment-button>
                 </ion-segment>

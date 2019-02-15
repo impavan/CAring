@@ -4,7 +4,6 @@ import { SharedModule } from '../../app/shared.module';
 import { RewardsPage } from './rewards';
 import { UniquePipe } from '../../pipes/unique/unique';
 import { RewardsProvider } from '../../providers/rewards/rewards';
-import { ProfileProvider } from '../../providers/profile/profile';
 
 
 @NgModule({
@@ -16,6 +15,6 @@ import { ProfileProvider } from '../../providers/profile/profile';
     IonicPageModule.forChild(RewardsPage),
     SharedModule
   ],
-  providers:[RewardsProvider,ProfileProvider]
+  providers:[RewardsProvider]
 })
 export class RewardsPageModule {}

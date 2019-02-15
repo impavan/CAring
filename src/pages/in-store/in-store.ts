@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //All providers goes here
 import { ApiProvider } from '../../providers/api/api';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { LoaderProvider } from '../../providers/loader/loader';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
 
@@ -21,6 +22,7 @@ export class InStorePage {
   constructor(private navParams: NavParams,
     public navCtrl: NavController,
     private apiProvider: ApiProvider,
+    private loaderProvider: LoaderProvider,
     private hapenningsProvider: HapenningsProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
     this.navId = navParams.get('id');
@@ -33,7 +35,9 @@ export class InStorePage {
   }
 
   getInStoreActivities() {
+    this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getInStoreActivities().subscribe(res => {
+      this.loaderProvider.dismissLoader();
       this.storeActivityList = res.data.filter(store => {
         if (store.publishingstartdate && store.publishingenddate) {
           let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');

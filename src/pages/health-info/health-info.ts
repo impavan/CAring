@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { ApiProvider } from '../../providers/api/api';
+import { LoaderProvider } from '../../providers/loader/loader';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
 
@@ -19,6 +20,7 @@ export class HealthInfoPage {
     private navCtrl: NavController,
     private hapenningsProvider: HapenningsProvider,
     private apiProvider: ApiProvider,
+    private loaderProvider: LoaderProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
     this.navToId = navParams.get('id');
     console.log(this.navToId, "this.navToId")
@@ -39,7 +41,9 @@ export class HealthInfoPage {
   }
 
   getHealthInfo() {
+    this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getHealthInfo().subscribe(res => {
+      this.loaderProvider.dismissLoader();
       this._healthInfoList = res.data.filter(health => {
         // moment for checking the start date and end date for posting //
         let psDate = moment(health.publishingstartdate).format('YYYY-MM-DD');

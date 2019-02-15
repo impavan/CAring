@@ -11,14 +11,14 @@
           <ion-item>
             <ion-label stacked>First Name <span class="alert">*</span>
             </ion-label>
-            <ion-input type="text" [(ngModel)]="profileData.firstname"></ion-input>
+            <ion-input type="text" [(ngModel)]="profileData.fname"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label stacked>
               Last Name <span class="alert">*</span>
             </ion-label>
-            <ion-input type="text" [(ngModel)]="profileData.lastname"></ion-input>
+            <ion-input type="text" [(ngModel)]="profileData.lname"></ion-input>
           </ion-item>
 
           <ion-item *ngIf="profileData.email?.length == 0">

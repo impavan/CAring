@@ -4,11 +4,11 @@
 
 <ion-content padding>
   <div *ngIf="_auth" class="myPointsContainer">
-    <p class="urPoints">Your Points:
+    <!-- <p class="urPoints">Your Points:
       <strong>{{_totalAvailablePoints}}</strong>
       <button ion-button value="redeem" class="redeemBtn" (click)="gotoRewards()">Redeem</button>
 
-    </p>
+    </p> -->
     <section>
       <div *ngFor="let transactions of _transactionList | chunk:'5'">
         <ul *ngFor="let transaction of transactions" class="listMyPoints">

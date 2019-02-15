@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
+import { LoaderProvider } from '../../providers/loader/loader';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class FaqPage {
   faqKeys: any = [];
 
   constructor(public happeningProviders: HapenningsProvider,
+    private loaderProvider: LoaderProvider,
     public zone: NgZone) {
   }
 
@@ -23,11 +25,12 @@ export class FaqPage {
   }
 
   getFAQ() {
+    this.loaderProvider.presentLoadingCustom()
     this.happeningProviders.getFAQ().subscribe(res => {
+      this.loaderProvider.dismissLoader();
       this.faq = res.data;
       if (this.faq) {
         this.zone.runOutsideAngular(() => {
-
           this.myCat = this.groupIntoCategories(this.faq);
         });
       }

@@ -620,6 +620,14 @@ ion-header, ion-footer{
             height:100%;
         }
     }
+    .serviceImgOut{
+        height: 150px;
+        overflow: hidden;
+    .serviceImg{
+        width: 100%;
+        height: 150px;
+    }
+    }
     article{
         h4{
             color: #000;
@@ -651,6 +659,21 @@ ion-header, ion-footer{
 .productSlider{
     padding: 0 20px;
     margin: 20px 0;
+    position: relative;
+    .leftArrow{
+        position: absolute;
+        top: 30%;
+        left: 10px;
+        font-size: 25px;
+        color: #777;
+    }
+    .rightArrow{
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-size: 25px;
+        color: #777;
+    }
     ul{
         padding: 0;
         margin:0;
@@ -735,6 +758,21 @@ ion-header, ion-footer{
         /* overflow: hidden; */
     }
     .productSlider{
+        position: relative;
+        .leftArrow{
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            font-size: 35px;
+            color: #777;
+        }
+        .rightArrow{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            font-size: 35px;
+            color: #777;
+        }
         ul{
             li{
                 width:25%;

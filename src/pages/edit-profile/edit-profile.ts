@@ -7,6 +7,7 @@ import moment from 'moment';
 // Import all Providers.
 import { AlertProvider } from '../../providers/alert/alert';
 import { UserdataProvider } from '../../providers/userdata/userdata';
+import { LoaderProvider } from '../../providers/loader/loader';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 
 @IonicPage()
@@ -36,6 +37,7 @@ export class EditProfilePage {
     private authProvider: AuthProvider,
     private alertProvider: AlertProvider,
     private userProvider: UserdataProvider,
+    private loaderProvider: LoaderProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
 
   }
@@ -46,8 +48,8 @@ export class EditProfilePage {
   }
 
   getMyBasicDetails() {
-    this.profileData.firstname = this.authProvider.getUserFirstName();
-    this.profileData.lastname = this.authProvider.getUserLastName() || '';
+    this.profileData.fname = this.authProvider.getUserFirstName();
+    this.profileData.lname = this.authProvider.getUserLastName() || '';
     this.profileData.mobile = this.authProvider.getUserMobileNo();
     this.profileData.email = this.authProvider.getUserEmailId();
     this.profileData.externalId = this.authProvider.getExternalId() || '';
@@ -65,20 +67,20 @@ export class EditProfilePage {
     this.customFields.working = this.authProvider.getUserWorkingStatus();
     this.customFields.occupation = this.authProvider.getUserOccupation();
     this.customFields.preferred_language = this.authProvider.getUserLanguage();
-    this.customFields.socialupdate = 1;
+    this.customFields.socialupdate = "1";
   }
 
   updateProfile() {
-    if (this.profileData.firstname.trim() == EMPTY) {
+    if (this.profileData.fname.trim() == EMPTY) {
       this.alertProvider.presentToast('Enter First name');
       return;
-    } else if (!NAME_REGEXP.test(this.profileData.firstname)) {
+    } else if (!NAME_REGEXP.test(this.profileData.fname)) {
       this.alertProvider.presentToast('Enter valid First Name');
       return;
-    } else if (this.profileData.lastname.trim() == EMPTY) {
+    } else if (this.profileData.lname.trim() == EMPTY) {
       this.alertProvider.presentToast('Enter Last name');
       return;
-    } else if (!NAME_REGEXP.test(this.profileData.lastname)) {
+    } else if (!NAME_REGEXP.test(this.profileData.lname)) {
       this.alertProvider.presentToast('Enter valid Last Name');
       return;
     } else if (this.new_email && this.new_email != EMPTY && !EMAIL_REGEXP.test(this.new_email)) {
@@ -114,12 +116,13 @@ export class EditProfilePage {
     } else if (this.customFields.race == EMPTY) {
       this.alertProvider.presentToast("Enter Race");
     } else {
+      this.loaderProvider.presentLoadingCustom();
       let customfield = this.formCustomField(this.customFields);
-      this.profileData.email = this.new_email;
       this.profileData.customFields.push(customfield);
       console.log("this.profileData", this.profileData);
       this.userProvider.updateCustomerDetails(this.profileData, false).subscribe(data => {
         if (data.code == 200) {
+          this.loaderProvider.dismissLoader();
           this.userProvider.getCustomerDetails().subscribe(data => {
             if (data.code == 200) {
               let customerData = data.result.response;
@@ -137,6 +140,7 @@ export class EditProfilePage {
             this.exceptionProvider.excpHandler(err);
           })
         } else {
+          this.loaderProvider.dismissLoader();
           this.alertProvider.presentToast(data.message);
         }
       }, err => {

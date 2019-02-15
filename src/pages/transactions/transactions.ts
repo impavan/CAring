@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { RewardsProvider } from '../../providers/rewards/rewards';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -10,8 +11,11 @@ import { RewardsProvider } from '../../providers/rewards/rewards';
 })
 export class TransactionsPage {
   _transactionList: any;
+  _auth: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private rewardsProvider: RewardsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    private rewardsProvider: RewardsProvider, private authProvider: AuthProvider) {
+    this._auth = this.authProvider.getAuthToken();
   }
 
   ionViewDidLoad() {

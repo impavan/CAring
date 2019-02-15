@@ -4,6 +4,7 @@ import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { PushProvider } from '../../providers/push/push';
 import { ApiProvider } from '../../providers/api/api';
 import { AuthProvider } from '../../providers/auth/auth';
+import { LoaderProvider } from '../../providers/loader/loader';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
 import moment from 'moment';
@@ -16,6 +17,7 @@ import { CLIENT_KEY, REDIRECT_URL } from '../../config';
   templateUrl: 'homepage.html',
 })
 export class HomePage {
+  @ViewChild('login') LoginModal;
   pages: Array<{ title: string, component: any }>;
   isSlidesLoaded: boolean = false;
   bannerData: any = [];
@@ -29,6 +31,7 @@ export class HomePage {
   _healthInfoList: any;
   healthInfo: any;
   storeQuickAccessData: any = [];
+  pharmacistData: any = [];
 
   constructor(private events: Events,
     public navCtrl: NavController,
@@ -37,18 +40,23 @@ export class HomePage {
     private pushProvider: PushProvider,
     private inAppBrowser: InAppBrowser,
     private authProvider: AuthProvider,
+    private loaderProvider: LoaderProvider,
     private hapenningsProvider: HapenningsProvider,
     private exceptionProvider: ExceptionHandlerProvider) {
+      this.getPharmacistService();
     this.getQuickAccess();
     this.getStoreQuickAccess();
     this.getStoreBanners();
     this.getHotDeals();
     this.getHealthInfo();
+    
   }
 
   ionViewWillEnter() {
     if (!this.isSlidesLoaded) {
+      this.loaderProvider.presentLoadingCustom()
       this.hapenningsProvider.getHomeBanner().subscribe(res => {
+        this.loaderProvider.dismissLoader()
         this.bannerData = res.data.filter(d => {
           if (d.publishingstartdate && d.publishingenddate) {
             if (moment(d.publishingstartdate).isSameOrBefore(this.apiProvider.currentDate) && moment(d.publishingenddate).isSameOrAfter(this.apiProvider.currentDate)) {
@@ -71,54 +79,43 @@ export class HomePage {
   }
 
   goto(data: any) {
-    console.log(data, "::::::::::::")
     if (data.linktype === 'WebLink') {
-      if (data.destination == 'http://caringevents.spurtreetech.com') {
-        let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=ZhtsQLBxA3yy&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + data.destination;
-        this.showEvents = true;
-        this.weblinkurl = link;
-      } else {
-        this.showEvents = true;
-        this.weblinkurl = data.destination;
-      }
+      this.showEvents = true;
+      this.weblinkurl = data.destination;
     } else if (data.linktype === 'InAppLink') {
-      if (data.destination == 'http://caringevents.spurtreetech.com') {
-        let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=ZhtsQLBxA3yy&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + data.destination;
-        this.navCtrl.setRoot(link).then((canEnter) => {
-          if (canEnter == false)
-            this.events.publish('login', false);
-            
-        });
-      } else {
-        console.log(data.destination,':::::::::::::::::::::::')
-        this.navCtrl.setRoot(data.destination).then((canEnter) => {
-          if (canEnter == false)
-            this.events.publish('login', false);
-        });
-      }
-    } 
-    // else {
-    //   let inAppOpt: InAppBrowserOptions = {
-    //     clearcache: 'yes',
-    //     hardwareback: 'yes',
-    //     location: 'no'
-    //   }
-    //   let destination = data.url;
-    //   let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=' + this.apiProvider.eshop_client_code + '&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + destination;
-    //   const browser = this.inAppBrowser.create(link, '_blank', inAppOpt);
-    // }
+      this.navCtrl.setRoot(data.destination).then((canEnter) => {
+        if (canEnter == false)
+          this.events.publish('login', false);
+      });
+    }
+  }
+
+  openLoginModal() {
+    this.LoginModal.open();
+  }
+
+  //close login modal  
+  closeLoginModal() {
+    this.LoginModal.close();
+  }
+
+  gotoLogin() {
+    this.navCtrl.setRoot("LoginPage");
+    this.LoginModal.close();
   }
 
   goToInappBrowser(url: string) {
-    console.log(url,':::::::::::::::::::::::::URL::::::::::::::::::::::::::')
-    let inAppOpt: InAppBrowserOptions = {
-      clearcache: 'yes',
-      hardwareback: 'yes',
-      location: 'no'
-    }
-    let destination = url;
-    let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=' + this.apiProvider.eshop_client_code + '&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + destination;
-    const browser = this.inAppBrowser.create(link, '_blank', inAppOpt);
+    if (this.authProvider.getAuthToken()) {
+      let inAppOpt: InAppBrowserOptions = {
+        clearcache: 'yes',
+        hardwareback: 'yes',
+        location: 'no'
+      }
+      let destination = url;
+      let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=' + this.apiProvider.eshop_client_code + '&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + destination;
+      const browser = this.inAppBrowser.create(link, '_blank', inAppOpt);
+    } else
+      this.openLoginModal();
   }
 
   getHealthInfo() {
@@ -138,13 +135,11 @@ export class HomePage {
           return health;
         }
       });
-      console.log(this._healthInfoList, '::::::::::::::::::::::::::::::;;;')
       this.healthInfo = {
         title: this._healthInfoList[0].title,
         subtitle: this._healthInfoList[0].subtitle,
         thumbnailimage: this._healthInfoList[0].thumbnailimage
       }
-      console.log(this.healthInfo, '::::::::::::::::healthInfo:::::::::::::::;;;')
     }, err => {
       this.exceptionProvider.excpHandler(err);
     });
@@ -181,8 +176,14 @@ export class HomePage {
   showEvent() {
     this.showEvents = true;
   }
+  getPharmacistService() {
+    this.hapenningsProvider.getpharmacistService().subscribe(res => {
+      this.pharmacistData = res.data[0];
+    });
+  }
+  
 
-  getQuickAccess() {
+getQuickAccess() {
     this.hapenningsProvider.getQuickAccess().subscribe(quickaccessdata => {
       this.quickAccessData = quickaccessdata.data.filter(quick => quick.isactive);
     }, err => {
@@ -220,8 +221,8 @@ export class HomePage {
   }
 
   navTo(page) {
-    if(page == 'HappeningsPage')
-      this.navCtrl.setRoot(page, { 'from': 'pharmacistService'});
+    if (page == 'HappeningsPage')
+      this.navCtrl.setRoot(page, { 'from': 'pharmacistService' });
     else
       this.navCtrl.setRoot(page)
   }

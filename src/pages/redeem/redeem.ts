@@ -5,7 +5,6 @@ import { RewardsProvider } from '../../providers/rewards/rewards';
 import JsBarcode from 'jsbarcode';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
-import { ProfileProvider } from '../../providers/profile/profile';
 
 @IonicPage()
 @Component({
@@ -27,7 +26,6 @@ export class RedeemPage {
   constructor(public navParams: NavParams,
     public rewardsProvider: RewardsProvider,
     public alertProvider: AlertProvider,
-    public profileProvider: ProfileProvider,
     public expnHandler: ExceptionHandlerProvider) {
     let data = navParams.get('redeemData');
     if (data) {
@@ -48,7 +46,7 @@ export class RedeemPage {
     this.voucherModal.close();
     this.rewardsProvider.getCustomerVouchers().subscribe(res => {
       if (res.code == 200) {
-        this.newRedeemList = res[0].customer_vouchers;
+        this.newRedeemList = res.result.vouchers.customer_vouchers;
         let myList = this.newRedeemList.filter(data => data.ExperienceId == this.experienceId)
         this.redeemList = myList;
       } else {

@@ -5,7 +5,6 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CookieService } from 'ngx-cookie-service';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -46,7 +45,6 @@ import { Device } from '@ionic-native/device';
     MyApp,
   ],
   providers: [
-    CookieService,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

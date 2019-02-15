@@ -28,51 +28,56 @@ export class HappeningsPage {
     public apiProvider: ApiProvider,
     private hapenningsProvider: HapenningsProvider,
     private exceptionProvider: ExceptionHandlerProvider,
-    private loader: LoaderProvider) {
+    private loaderProvider: LoaderProvider) {
     this.routeLink = navParams.get('routeData');
-    if(navParams.get('from'))
+    if (navParams.get('from'))
       this.happeningsSegment = navParams.get('from');
     this.navToId = navParams.get('id');
     console.log(this.navToId, "navtoid")
+    if(this.happeningsSegment == "happenings")
+      this.getHappenings();
   }
 
-  ionViewDidEnter() {
-    if (this.happenList.length <= 0) {
+  segmentChange(event) {
+    if(event._value == "happenings")
       this.getHappenings();
-    }
-    if (this.storeActivityList.length <= 0) {
+    else if(event._value == 'inStoreActivities')
       this.getInStoreActivities();
-    }
-    if (this.pharmacistServiceList.length <= 0) {
+    else if(event._value == 'pharmacistService')
       this.getpharmacistService();
-    }
   }
 
   getpharmacistService() {
+    this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getpharmacistService().subscribe(res => {
-      console.log(res, "pharmacist data")
-      this.pharmacistServiceList = res.data.filter(store => {
-        // if (store.publishingstartdate && store.publishingenddate) {
+      this.loaderProvider.dismissLoader();
+      if (res.status == 200) {
+        this.pharmacistServiceList = res.data.filter(store => {
+          // if (store.publishingstartdate && store.publishingenddate) {
+          //   let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
+          //   let peDate =  moment(store.publishingenddate).format('YYYY-MM-DD');
+          //   let psMoment = moment(psDate);
+          //   let peMoment =  moment(peDate)
+          //   let currenMoment  =  moment().format('YYYY-MM-DD');
 
-        //   let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
-        //   let peDate =  moment(store.publishingenddate).format('YYYY-MM-DD');
-        //   let psMoment = moment(psDate);
-        //   let peMoment =  moment(peDate)
-        //   let currenMoment  =  moment().format('YYYY-MM-DD');
-
-        // if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
-        //   console.log("after22 store")
-        //   return store;
-        // }
-        // }
-        //  else {
-        return store;
-        // }
-      });
+          // if (moment(psMoment).isSameOrBefore(currenMoment) && moment(peMoment).isSameOrAfter(currenMoment)) {
+          //   console.log("after22 store")
+          //   return store;
+          // }
+          // }
+          //  else {
+          return store;
+          // }
+        });
+      } else {
+        this.pharmacistServiceList = [];
+      }
       if (this.navToId) {
-        let item = this.pharmacistServiceList.filter(d => d.deeplinkingidentifier == this.navToId);
-        if (item.length > 0) {
-          this.gotoPharmacistDetail(item[0]);
+        if(this.pharmacistServiceList.length > 0){
+          let item = this.pharmacistServiceList.filter(d => d.deeplinkingidentifier == this.navToId);
+          if (item.length > 0) {
+            this.gotoPharmacistDetail(item[0]);
+          }
         }
       }
     }, err => {
@@ -81,8 +86,9 @@ export class HappeningsPage {
   }
 
   getInStoreActivities() {
+    this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getInStoreActivities().subscribe(res => {
-      console.log(res, "storeee")
+      this.loaderProvider.dismissLoader();
       this.storeActivityList = res.data.filter(store => {
         if (store.publishingstartdate && store.publishingenddate) {
           let psDate = moment(store.publishingstartdate).format('YYYY-MM-DD');
@@ -111,9 +117,9 @@ export class HappeningsPage {
   }
 
   getHappenings() {
-    // this.loader.presentLoadingCustomDup();
+    this.loaderProvider.presentLoadingCustom();
     this.hapenningsProvider.getHappenings().subscribe(res => {
-      // this.loader.dismissLoader();
+      this.loaderProvider.dismissLoader();
       console.log("happenings")
       this.happenList = res.data.filter(r => {
         //moment for checking start date and end date for posting article //
