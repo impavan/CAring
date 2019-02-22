@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { CLIENT_KEY, CARING_CONNECT_BASE_URL, PRIVATE_KEY } from '../../config';
+import { CLIENT_KEY, CARING_CONNECT_BASE_URL, PRIVATE_KEY, BRAND_ID } from '../../config';
 import { Observable } from 'rxjs/Observable';
 import { REFRESH_TOKEN } from '../../url';
 import { Device } from '@ionic-native/device';
@@ -10,7 +10,6 @@ import { LoaderProvider } from '../loader/loader';
 import { AuthProvider } from '../auth/auth';
 import NODERSA from 'node-rsa';
 import * as jwe from 'node-webtokens';
-import { BRAND_ID } from '../../config';
 
 @Injectable()
 export class ConnectAuthProvider {
@@ -69,8 +68,10 @@ export class ConnectAuthProvider {
     let URL = `${CARING_CONNECT_BASE_URL}${REFRESH_TOKEN}`;
     let body = {
       refresh_key: refreshKey,
-      deviceid: this.deviceId
+      session_id: this.authProvider.getSession(),
+      target_client_code: CLIENT_KEY
     }
+    console.log(body,':::::::::::::::::::RefreshKey Data:::::::::::::::::::::::::::;;;;;')
     this._headers.append('x-user-token', this.authProvider.getAuthToken());
     this._headers.append('client_code', CLIENT_KEY);
     return this.http.post(URL, body, { headers: this._headers })
@@ -96,6 +97,7 @@ export class ConnectAuthProvider {
   private async getUserParsedToken(token) {
     let keys = new NODERSA(PRIVATE_KEY);
     let pKey = await keys.exportKey('pkcs1-private-pem');
+    // .setTokenLifetime(60)
     let parsedToken = await jwe.parse(token).verify(pKey);
     return parsedToken;
   }

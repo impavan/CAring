@@ -5,8 +5,6 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -19,11 +17,9 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AuthProvider } from '../providers/auth/auth';
 import { UserdataProvider } from '../providers/userdata/userdata';
 import { ApiProvider } from '../providers/api/api';
-
 import { SharedModule } from './shared.module';
 import { ConnectAuthProvider } from '../providers/connect-auth/connect-auth';
 import { Device } from '@ionic-native/device';
-
 
 @NgModule({
   declarations: [

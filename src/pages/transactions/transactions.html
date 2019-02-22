@@ -4,14 +4,9 @@
 
 <ion-content padding>
   <div *ngIf="_auth" class="myPointsContainer">
-    <!-- <p class="urPoints">Your Points:
-      <strong>{{_totalAvailablePoints}}</strong>
-      <button ion-button value="redeem" class="redeemBtn" (click)="gotoRewards()">Redeem</button>
-
-    </p> -->
     <section>
-      <div *ngFor="let transactions of _transactionList | chunk:'5'">
-        <ul *ngFor="let transaction of transactions" class="listMyPoints">
+      <!-- <div *ngFor="let transactions of _transactionList | chunk:'5'"> -->
+        <ul *ngFor="let transaction of _transactionList" class="listMyPoints">
           <li *ngIf="transaction?.transaction_earning">
             <label>Points Earned at <b>{{transaction?.store_name}}</b></label>
             <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}} <br> Receipt Amount :
@@ -24,11 +19,11 @@
             <label>Points Redeemed</label>
             <span>{{transaction?.billing_time | date:'dd MMM yyyy hh:mm a'}}</span>
             <b class="amount_display"> - {{transaction?.points_spent }}</b>
-            <br><span *ngIf="transaction.notes.length > 0">Notes: </span> <span *ngIf="transaction.notes.length > 0">
+            <br><span *ngIf="transaction?.notes">Notes: </span> <span *ngIf="transaction?.notes">
               {{transaction?.notes }}</span>
           </li>
         </ul>
-      </div>
+      <!-- </div> -->
     </section>
   </div>
   <ion-card *ngIf="!_auth" class="myPointsContainer sec">

@@ -51,6 +51,10 @@ export class AuthProvider {
     localStorage.setItem('auth_token', authToken);
   }
 
+  // setRefreshToken(refreshKey) {
+  //   localStorage.setItem('refresh_key', refreshKey);
+  // }
+
   setSession(sessionToken) {
     localStorage.setItem('session_token', sessionToken);
   }
@@ -58,6 +62,10 @@ export class AuthProvider {
   getSession() {
     return localStorage.getItem('session_token');
   }
+
+  // getRefreshToken() {
+  //   return localStorage.getItem('refreshKey');
+  // }
 
   // returns auth-Token
   getAuthToken() {

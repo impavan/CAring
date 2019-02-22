@@ -11,16 +11,12 @@ import { SafehtmlPipe } from '../pipes/safehtml/safehtml';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { SafeurlPipe } from '../pipes/safeurl/safeurl';
 
-
 import { HapenningsProvider } from '../providers/hapennings/hapennings';
 import { ExceptionHandlerProvider } from '../providers/exception-handler/exception-handler';
 import { NetworkProvider } from '../providers/network/network';
 import { LoaderProvider } from '../providers/loader/loader';
 import { AlertProvider } from '../providers/alert/alert';
 import { PushProvider } from '../providers/push/push';
-
-
-
 
 @NgModule({
   imports: [
@@ -33,12 +29,10 @@ import { PushProvider } from '../providers/push/push';
     IonicPageModule.forChild(SafehtmlPipe),
     IonicPageModule.forChild(SafeurlPipe),
     IonicImageViewerModule,
-
-   
   ],
-  declarations: [TabsPage,MymodalComponent,ModalComponent,HeaderComponent,ChunkPipe,SortPipe,SafehtmlPipe,SafeurlPipe],
-  exports: [TabsPage, MymodalComponent,ModalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe,LazyLoadImageModule,SafeurlPipe],
-  providers:[HapenningsProvider,ExceptionHandlerProvider,NetworkProvider,LoaderProvider,AlertProvider,PushProvider]
+  declarations: [TabsPage, MymodalComponent, ModalComponent, HeaderComponent, ChunkPipe, SortPipe, SafehtmlPipe, SafeurlPipe],
+  exports: [TabsPage, MymodalComponent, ModalComponent, HeaderComponent, ChunkPipe, SortPipe, IonicImageViewerModule, SafehtmlPipe, LazyLoadImageModule, SafeurlPipe],
+  providers: [HapenningsProvider, ExceptionHandlerProvider, NetworkProvider, LoaderProvider, AlertProvider, PushProvider]
 })
 
 export class SharedModule { } 

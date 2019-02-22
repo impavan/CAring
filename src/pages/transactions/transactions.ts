@@ -25,7 +25,7 @@ export class TransactionsPage {
 
   getUserTransaction() {
     this.rewardsProvider.getUserTransactions().subscribe(data => {
-      this._transactionList = data.result.response.customer.transactions.transaction;
+      this._transactionList = data.result;
     }, err => {
       // this.exceptionProvider.excpHandler(err);
     })

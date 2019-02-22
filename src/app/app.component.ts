@@ -10,7 +10,6 @@ import { ConnectAuthProvider } from '../providers/connect-auth/connect-auth';
 // Import Providers.
 import { ApiProvider } from '../providers/api/api';
 import { AuthProvider } from '../providers/auth/auth';
-import { AlertProvider } from '../providers/alert/alert';
 import { PushProvider } from '../providers/push/push';
 import { NetworkProvider } from '../providers/network/network';
 import { LoaderProvider } from '../providers/loader/loader';
@@ -33,7 +32,6 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private authProvider: AuthProvider,
-    private alertProvider: AlertProvider,
     private screenOrientation: ScreenOrientation,
     public events: Events,
     public loaderProvider: LoaderProvider,
@@ -54,14 +52,8 @@ export class MyApp {
       { title: 'Health Info', component: 'HealthInfoPage', index:6, icon:"iconc-book",ionicon:''},
       { title: 'Location', component: 'StoreLocatorPage', index:1 ,icon:"iconc-map",ionicon:''},
       { title: 'Notification', component: 'MessagesPage', index:7,icon:"ion-md-notifications ion-ios-notifications",ionicon:''},
-      // { title: 'Home', component: 'HomePage', index: 0, icon: "iconc-home", ionicon: '' },
-      // { title: 'Service', component: 'Service', index: 0, icon: "iconc-home", ionicon: '' },
-      // { title: 'Promotions', component: 'PromotionsPage', index: 3, icon: "iconc-bag", ionicon: '' },
-      // { title: 'Member', component: 'MemberPage', index: 3, icon: "iconc-id-card", ionicon: '' },
-      // { title: 'eStore', component: 'ECartPage', index: 3, icon: "iconc-id-card", ionicon: '' },
     ];
     this.connectAuthProvider.validateToken(this._auth).then(data => {
-      console.log(data, "data---");
       this.rootPage = (data) ? "HomePage" : "LoginPage";
     })
     if (this._auth) {
@@ -70,7 +62,6 @@ export class MyApp {
     this.events.subscribe('user:login', (user) => {
       user ? this.getUser() : this._auth = ""
     })
-    console.log(this.connectAuthProvider.validateToken(this._auth), "this.connectAuthProvider.validateToken(this._auth)");
   }
 
   initializeApp() {
@@ -146,18 +137,15 @@ export class MyApp {
 
   pushEvent() {
     if (!this.platform.is('cordova')) {
-      console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
       return;
     }
     webengage.push.onClick((deeplink, customData) => {
       // this.badge.increase(1);
       this.pushProvider.getDeepLinkPath(deeplink).then((navdata) => {
-        console.log(navdata, ":::::::::::::navdata::::::::::::::");
         this.nav.setRoot(navdata['page'], { deeplink: navdata['route'], id: navdata['value'] });
       })
     });
     webengage.engage();
     // this.badge.increase(1);
-    // console.log(this.badge,":::::::::::badgeapp::::::::::")
   }
 }
