@@ -36,6 +36,8 @@ export class HappeningsPage {
     console.log(this.navToId, "navtoid")
     if(this.happeningsSegment == "happenings")
       this.getHappenings();
+    if(this.happeningsSegment == 'pharmacistService')
+      this.getpharmacistService()
   }
 
   segmentChange(event) {

@@ -12,6 +12,7 @@ import { RewardsProvider } from '../../providers/rewards/rewards';
   imports: [
     IonicPageModule.forChild(RedeemPage),
     SharedModule
-  ]
+  ], 
+  providers:[RewardsProvider]
 })
 export class RedeemPageModule {}

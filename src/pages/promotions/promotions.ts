@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { HapenningsProvider } from '../../providers/hapennings/hapennings';
 import { ExceptionHandlerProvider } from '../../providers/exception-handler/exception-handler';
@@ -20,7 +20,8 @@ export class PromotionsPage {
     public navCtrl: NavController,
     public apiProvider: ApiProvider,
     public hapenningsProvider: HapenningsProvider,
-    private exceptionProvider: ExceptionHandlerProvider) {
+    private exceptionProvider: ExceptionHandlerProvider,
+    private events: Events) {
     this.navToId = navParams.get('id');
     console.log(this.navToId, ":::::::::::::navtoid::::::::::::::");
   }
@@ -30,6 +31,7 @@ export class PromotionsPage {
       this.getPromotions();
     }
     this._brochureLinks = this.apiProvider.PROMOTION_URL;
+    this.events.publish('changeIcon',"PromotionsPage");
   }
 
   getPromotions() {
