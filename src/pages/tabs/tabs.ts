@@ -22,11 +22,14 @@ export class TabsPage {
     this.activePage();
   }
 
-  goto(page, event: any) {
-    this.navCtrl.setRoot(page.component).then(canEnter => {
-      if (canEnter == false)
-        this.events.publish('login', false);
-    })
+  // goto(page, event: any) {
+  //   this.navCtrl.setRoot(page.component).then(canEnter => {
+  //     if (canEnter == false)
+  //       this.events.publish('login', false);
+  //   })
+  // }
+  goto(page) {
+    this.navCtrl.setRoot(page);
   }
 
   activePage() {

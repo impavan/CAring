@@ -1,8 +1,21 @@
-<ion-row class="tabsMenu">
+<!-- <ion-row class="tabsMenu">
     <ion-col col class="text-center" *ngFor="let tab of myTabs">
         <button ion-button  [class.active]="tab.active" (click)="goto(tab)">
           <ion-icon  class="{{tab.icon}}"></ion-icon>
           <label style="text-transform: none">{{tab.label}}</label>
         </button>
     </ion-col>
-</ion-row>
+</ion-row> -->
+<ion-fab right bottom>
+    <button ion-fab color="light">
+        <img src="../../assets/images/heart.png" />
+    </button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="goto('HomePage')"><ion-icon class="tabiconc-home" ></ion-icon></button>
+      <button ion-fab (click)="goto('Events')"><ion-icon class="tabiconc-location" ></ion-icon></button>
+      <button ion-fab (click)="goto('PMR')"> <ion-icon class="tabiconc-rewards" ></ion-icon></button>
+      <button ion-fab (click)="goto('MemberPage')"><ion-icon class="tabiconc-members" ></ion-icon></button>
+      <button ion-fab (click)="goto('ECartPage')"><ion-icon class="tabiconc-estore" ></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+

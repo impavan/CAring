@@ -5,56 +5,67 @@ page-tabs {
     .tabiconc-members,
     .tabiconc-estore {
         height: 25px;
+        background-size: 100% 100%; 
     }
     .tabiconc-home {
         //height: 30px;
         width: 24px;
         background: url(../assets/css/tabicons/home_normal.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .active .tabiconc-home {
         // height: 30px;
         // width: 24px;
         background: url(../assets/css/tabicons/home_active.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .tabiconc-location {
         //height: 30px;
         width: 20px;
         background: url(../assets/css/tabicons/location_normal.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .active .tabiconc-location {
         // height: 30px;
         // width: 20px;
         background: url(../assets/css/tabicons/location_active.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .tabiconc-rewards {
         //height: 30px;
         width: 21px;
         background: url(../assets/css/tabicons/rewards_normal.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .active .tabiconc-rewards {
         // height: 30px;
         // width: 21px;
         background: url(../assets/css/tabicons/rewards_active.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .tabiconc-members {
         //height: 30px;
         width: 27px;
         background: url(../assets/css/tabicons/members_normal.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .active .tabiconc-members {
         // height: 30px;
         // width: 27px;
         background: url(../assets/css/tabicons/members_active.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .tabiconc-estore {
         //height: 30px;
         width: 26px;
         background: url(../assets/css/tabicons/estore_normal.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .active .tabiconc-estore {
         // height: 30px;
         // width: 26px;
         background: url(../assets/css/tabicons/estore_active.svg) no-repeat;
+        background-size: 100% 100%;
     }
     .tabsMenu {
         button {
@@ -133,4 +144,19 @@ page-tabs {
     //     width: 29px;
     //     height: 27px;
     // }
+
+    .fab .button-inner{
+        width: 20px !important;
+        margin: auto !important;
+    }
+    .fab-in-list{
+        background: #2e7067;
+        color: #fff;
+    }
+    .fab-md-light{
+        background: #096F67;
+    }
+    .fab-close-active .fab-close-icon {
+        color: #fff;
+    }
 }

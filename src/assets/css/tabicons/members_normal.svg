@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="26px" height="24px" viewBox="0 0 26 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>members_inactive@5x</title>
+    <!-- Generator: Sketch 53.1 (72631) - https://sketchapp.com -->
+    <title>members_normal</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="iPhone-8-Copy-2" transform="translate(-246.000000, -622.000000)">
-            <g id="members_inactive@5x" transform="translate(246.000000, 622.000000)">
-                <rect id="Rectangle-path" stroke="#949494" stroke-linecap="round" stroke-linejoin="round" x="0.705882353" y="5.87294118" width="24.7905882" height="17.5623529" rx="0.88"></rect>
-                <path d="M14.7811765,11.9717647 L21.2470588,11.9717647" id="Shape" stroke="#949494" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M14.7811765,15.1482353 L21.2470588,15.1482353" id="Shape" stroke="#949494" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M14.7811765,18.3247059 L21.2470588,18.3247059" id="Shape" stroke="#949494" stroke-linecap="round" stroke-linejoin="round"></path>
-                <rect id="Rectangle-path" stroke="#949494" stroke-linecap="round" stroke-linejoin="round" x="11.1388235" y="0.705882353" width="4.16470588" height="5.88705882" rx="0.21"></rect>
-                <path d="M4.51764706,19.3552941 C4.51764706,19.3552941 5.22352941,15.5294118 8.62588235,15.2329412 C10.7811921,15.3519769 12.5021407,17.0729256 12.6211765,19.2282353 L4.51764706,19.3552941 Z" id="Shape" stroke="#949494" stroke-linecap="round" stroke-linejoin="round"></path>
-                <circle id="Oval" stroke="#959595" cx="8.56941176" cy="12.5647059" r="2.47058824"></circle>
+    <g id="zeplin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-121.000000, -127.000000)" stroke="#FFFFFF">
+            <g id="members_normal" transform="translate(121.000000, 127.000000)">
+                <rect id="Rectangle-path" stroke-linecap="round" stroke-linejoin="round" x="0.705882353" y="5.87294118" width="24.7905882" height="17.5623529" rx="0.88"></rect>
+                <path d="M14.7811765,11.9717647 L21.2470588,11.9717647" id="Shape" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M14.7811765,15.1482353 L21.2470588,15.1482353" id="Shape" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M14.7811765,18.3247059 L21.2470588,18.3247059" id="Shape" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect id="Rectangle-path" stroke-linecap="round" stroke-linejoin="round" x="11.1388235" y="0.705882353" width="4.16470588" height="5.88705882" rx="0.21"></rect>
+                <path d="M4.51764706,19.3552941 C4.51764706,19.3552941 5.22352941,15.5294118 8.62588235,15.2329412 C10.7811921,15.3519769 12.5021407,17.0729256 12.6211765,19.2282353 L4.51764706,19.3552941 Z" id="Shape" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle id="Oval" cx="8.56941176" cy="12.5647059" r="2.47058824"></circle>
             </g>
         </g>
     </g>

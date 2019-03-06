@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="26px" height="24px" viewBox="0 0 26 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>estore_inactive@5x</title>
+    <!-- Generator: Sketch 53.1 (72631) - https://sketchapp.com -->
+    <title>estore_normal</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="iPhone-8-Copy-2" transform="translate(-324.000000, -622.000000)" stroke="#949494">
-            <g id="estore_inactive@5x" transform="translate(324.000000, 622.000000)">
+    <g id="zeplin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-121.000000, -83.000000)" stroke="#FFFFFF">
+            <g id="estore_normal" transform="translate(121.000000, 83.000000)">
                 <polyline id="Shape" points="0.666666667 0.666666667 3.74666667 0.666666667 9.08 18.3333333 23 18.3333333"></polyline>
                 <polygon id="Shape" points="4.98666667 4 24.68 4 21.6266667 14.5066667 8.04 14.5066667"></polygon>
                 <circle id="Oval" cx="10.2533333" cy="21" r="2.08"></circle>
