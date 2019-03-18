@@ -25,7 +25,7 @@
             </ion-grid>
             <ion-grid no-padding>
                 <ion-row>
-                    <ion-col col-12 col-md-4>
+                    <!-- <ion-col col-12 col-md-4>
                         <article class="headerBand">
                             <strong>- Service -</strong>
                         </article>
@@ -69,23 +69,30 @@
                                 </ion-row>
                             </ion-grid>
                         </section>
-                    </ion-col>
+                    </ion-col> -->
                     <ion-col col-12 col-md-4>
-                        <article class="headerBand">
-                            <strong>- Health Info -</strong>
-                        </article>
+                        <ion-grid class="headingTitle">
+                            <ion-row>
+                                <ion-col col-6>
+                                    <strong>Health Info</strong>
+                                </ion-col>
+                                <ion-col col-6 text-right>
+                                    <span (click)="navTo('HealthInfoPage')">See More ></span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
                         <section class="homeFeeds">
-                            <ion-grid>
-                                <ion-row (click)="navTo('HealthInfoPage')">
+                            <ion-grid *ngFor="let health of healthInfo">
+                                <ion-row (click)="navToHealthDetails(health)">
                                     <ion-col col-5>
                                         <figure>
-                                            <img src={{healthInfo?.thumbnailimage}} />
+                                            <img src={{health?.thumbnailimage}} />
                                         </figure>
                                     </ion-col>
                                     <ion-col col-7>
                                         <article>
-                                            <h4 class="max-lines">{{healthInfo?.title}}</h4>
-                                            <p class="max-lines"> {{healthInfo?.subtitle}}</p>
+                                            <h4 class="max-lines">{{health?.title}}</h4>
+                                            <p class="max-lines"> {{health?.subtitle}}</p>
                                         </article>
                                     </ion-col>
                                 </ion-row>
@@ -94,7 +101,7 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
-            <section class="advBnr">
+            <!-- <section class="advBnr">
                 <ion-slides *ngIf="storeBanners && storeBanners.length >= 1" zoom="true" [autoplay]="4000" [loop]="true"
                     [speed]="1000" [paginationType]="bullets" [pager]="true">
                     <ion-slide *ngFor="let store of storeBanners" (click)="goToInappBrowser(store?.bannerurl)">
@@ -112,7 +119,7 @@
                         <span>{{access?.title}}</span>
                     </ion-col>
                 </ion-row>
-            </ion-grid>
+            </ion-grid> -->
         </div>
         <section class="productSlider">
             <ion-icon name="arrow-back" class="leftArrow"></ion-icon>

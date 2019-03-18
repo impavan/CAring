@@ -1,6 +1,8 @@
 import { Component, ViewChild, } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 
+declare var $:any;
+
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html',
@@ -20,6 +22,11 @@ export class TabsPage {
       { label: 'eStore', icon: 'tabiconc-estore', component: "ECartPage", active: false }
     ]
     this.activePage();
+  }
+
+
+  tglBtn(){
+    $('#fixed').toggleClass('bgFixed');
   }
 
   // goto(page, event: any) {

@@ -6,16 +6,17 @@
         </button>
     </ion-col>
 </ion-row> -->
+<div id="fixed"></div>
 <ion-fab right bottom>
-    <button ion-fab color="light">
-        <img src="assets/images/heart.png" />
+    <button ion-fab color="light" (click)="tglBtn()">
+        <ion-icon name="add"></ion-icon>
     </button>
-    <ion-fab-list side="left">
-      <button ion-fab (click)="goto('HomePage')"><ion-icon class="tabiconc-home" ></ion-icon></button>
-      <button ion-fab (click)="goto('Events')"><ion-icon class="tabiconc-location" ></ion-icon></button>
-      <button ion-fab (click)="goto('PMR')"> <ion-icon class="tabiconc-rewards" ></ion-icon></button>
-      <button ion-fab (click)="goto('MemberPage')"><ion-icon class="tabiconc-members" ></ion-icon></button>
-      <button ion-fab (click)="goto('ECartPage')"><ion-icon class="tabiconc-estore" ></ion-icon></button>
+    <ion-fab-list side="top">
+      <span class="fabName one" ion-fab>Home</span> <button ion-fab (click)="goto('HomePage')"><img src="assets/img/Home_icon.png" /></button>
+      <span class="fabName two" ion-fab>Location</span> <button ion-fab (click)="goto('StoreLocatorPage')"><img src="assets/img/Location_icon.png" /></button>
+      <span class="fabName three" ion-fab>Promotion</span> <button ion-fab (click)="goto('PromotionsPage')"> <img src="assets/img/Promotion_icon.png" /></button>
+      <span class="fabName four" ion-fab>eStore</span> <button ion-fab (click)="goto('ECartPage')"><img src="assets/img/eStore_icon.png" /></button>
+      <span class="fabName five" ion-fab>Member</span> <button ion-fab (click)="goto('MemberPage')"><img src="assets/img/Member_icon.png" /></button>
     </ion-fab-list>
   </ion-fab>
 

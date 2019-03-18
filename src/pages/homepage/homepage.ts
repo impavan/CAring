@@ -135,11 +135,17 @@ export class HomePage {
           return health;
         }
       });
-      this.healthInfo = {
+      this.healthInfo = [{
         title: this._healthInfoList[0].title,
         subtitle: this._healthInfoList[0].subtitle,
-        thumbnailimage: this._healthInfoList[0].thumbnailimage
-      }
+        thumbnailimage: this._healthInfoList[0].thumbnailimage,
+        deeplinkingidentifier: this._healthInfoList[0].deeplinkingidentifier
+      },{
+        title: this._healthInfoList[1].title,
+        subtitle: this._healthInfoList[1].subtitle,
+        thumbnailimage: this._healthInfoList[1].thumbnailimage,
+        deeplinkingidentifier: this._healthInfoList[1].deeplinkingidentifier
+      }]
     }, err => {
       this.exceptionProvider.excpHandler(err);
     });
@@ -225,5 +231,10 @@ getQuickAccess() {
       this.navCtrl.setRoot(page, { 'from': 'pharmacistService' });
     else
       this.navCtrl.setRoot(page)
+  }
+
+
+  navToHealthDetails(health) {
+    this.navCtrl.push("HealthDetailsPage", { id: health.deeplinkingidentifier });
   }
 }
