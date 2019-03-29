@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { LoaderProvider } from '../../providers/loader/loader';
@@ -12,7 +12,12 @@ import { HapenningsProvider } from '../../providers/hapennings/hapennings';
   templateUrl: 'health-details.html',
 })
 
+
+
 export class HealthDetailsPage {
+
+  @ViewChild('iframe') iframe: ElementRef;
+
   healthData: any = [];
   _id: string;
 
@@ -31,6 +36,7 @@ export class HealthDetailsPage {
       this.healthData = navParams.get('data');
     }
   }
+  
 
   zoomArea(url) {
     this.navCtrl.push('ImageViewPage', { imgsource: url });
@@ -47,12 +53,19 @@ export class HealthDetailsPage {
       console.log(err, "Something went wrong");
     })
   }
+  
 
+ 
   getHealthInfoById(id) {
     this.hapenningsProvider.getHealthInfoById(id).subscribe(res => {
       if (res.status == 200) {
-        this.healthData = res.data[0];
+        this.healthData = res.data[0].additionalinfo;
       }
     })
+  }
+
+
+  iframeLoad() {
+    console.log("in loadeddddd")
   }
 }

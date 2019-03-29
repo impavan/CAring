@@ -875,3 +875,9 @@ header .topHeader ion-icon img{
         font-size: 16px;
     }
 }
+iframe{
+    border:0;
+}
+iframe html .header{
+    display: none !important;
+}

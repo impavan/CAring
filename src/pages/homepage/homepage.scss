@@ -83,4 +83,45 @@ page-homepage {
     .homePage .fixed-content{
         background: #fff;
     }
+    .externalSourceLinks{
+        text-align: center;
+        margin: 15px 0;
+        img{
+            width: 70%;
+        }
+        strong{
+            font-weight: bolder;
+            font-size: 12px;
+            color:#333;
+        }
+    }
+    .bigInnerBanner{
+        background: url('../assets/img/top-bg.png') no-repeat !important;
+        min-height:400px;
+        .top{
+            article{
+                text-align: center;
+                padding: 25px 0 0 0;
+                .cart{
+                    width: 15%;
+                }
+                .logo{
+                    width: 50%;
+                    position: relative;
+                    top: 8px;
+                }
+            }
+        }
+    }
+    .externalLinks{
+        text-align: center;
+        img{
+            width: 80%;
+        }
+        strong{
+            display: block;
+            margin: 10px 0 0 0;
+        }
+    }
+
 }

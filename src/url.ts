@@ -57,3 +57,17 @@ export const STORE_QUICK_ACCESS = `storequickaccess?orderby_asc=priority`;
 export const STORE_BANNERS = `storebanners?lang=`;
 
 export const HOT_DEALS = `hotitems?lang=`;
+
+
+
+// Caring Product UAT Api urls
+const time = new Date().getTime();
+
+export const maninUrl = `http://caringeshop.spurtreetech.com/caring_uat/rest/V1/products/?`;
+export const oauthConsumerKey = `etbl3skxpatmd3me8ansc5pj8gxpq8d1`;
+// export const oauthToken = `etbl3skxpatmd3me8ansc5pj8gxpq8d1`;
+export const outhSignMethod = `HMAC-SHA1`;
+export const authTimeStamp = time;
+//export const authNounce = `mMLztv`;
+
+

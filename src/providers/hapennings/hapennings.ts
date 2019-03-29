@@ -6,11 +6,15 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import moment from 'moment';
+import OAuths from 'oauth-signature';
 
 //All providers goes here
 import { STTARTER_BASE_URL } from '../../config';
 import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ, QUICK_ACCESS, STORE_BANNERS, HOT_DEALS, STORE_QUICK_ACCESS } from '../../url';
 import { LoaderProvider } from '../loader/loader';
+
+import { maninUrl, oauthConsumerKey, outhSignMethod, authTimeStamp, } from '../../url'
+
 
 @Injectable()
 export class HapenningsProvider {
@@ -185,4 +189,39 @@ export class HapenningsProvider {
       .catch((err: Error) => Observable.throw(err))
       .finally(() => console.log("done"));
   }
+
+  public getNounce(length):string {
+    let nonce = '';
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < length; i++) {
+      nonce += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return nonce;
+}
+
+  public getOuthSignature(requestType: string,): string {
+    let finalURL
+    const time = new Date().getTime();
+    const oAuthData = {
+        oauth_consumer_key: oauthConsumerKey,
+        oauth_signature_method: outhSignMethod,
+        oauth_timestamp: time,
+        oauth_nonce: this.getNounce(6),
+        oauth_version: '1.0',
+    }
+    const signature = OAuths.generate(requestType, oAuthData);
+    return finalURL =  '?oauth_consumer_key=' + oAuthData.oauth_consumer_key + '&oauth_token' + '&' + 'oauth_signature_method=' + oAuthData.oauth_signature_method + '&' + 'oauth_timestamp=' + oAuthData.oauth_timestamp + '&oauth_nonce=' + oAuthData.oauth_nonce + '&oauth_version=' + oAuthData.oauth_version + '&oauth_signature=' + signature;
+
+  }
+
+
+ validateToken(){
+  //console.log(token, "token recieved");
+  //const url = `Customer/${env.merchantId}/${token}/ValidateToken`;
+  const urlWithOAuthSign = `${maninUrl}${this.getOuthSignature('GET')}`;
+  return this.http.get(urlWithOAuthSign + `&searchCriteria[filter_groups][0][filters][0][field]=news_from_date&searchCriteria[filter_groups][0][filters][0][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][0][condition_type]=gt&searchCriteria[filter_groups][0][filters][1][field]=news_to_Date&searchCriteria[filter_groups][0][filters][1][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][1][condition_type]=lt&searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=news_from_date&searchCriteria[sortOrders][0][direction]=asc&searchCriteria[sortOrders][1][field]=news_to_date`);
+}
+
+//&searchCriteria[filter_groups][0][filters][0][field]=news_from_date&searchCriteria[filter_groups][0][filters][0][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][0][condition_type]=gt&searchCriteria[filter_groups][0][filters][1][field]=news_to_Date&searchCriteria[filter_groups][0][filters][1][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][1][condition_type]=lt&searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=news_from_date&searchCriteria[sortOrders][0][direction]=asc&searchCriteria[sortOrders][1][field]=news_to_date
+
 }

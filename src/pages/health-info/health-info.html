@@ -30,7 +30,7 @@
                 </div>
             </div> -->
             <div *ngFor="let healthy of _healthInfoList | chunk:2">
-                <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="navToHealthDetails(health)">
+                <div class="healthInfoCards" *ngFor="let health of healthy" tappable (click)="  (health)">
                     <ion-row>
                         <ion-col col-8>
                             <h5>{{health?.title}}</h5>

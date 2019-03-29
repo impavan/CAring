@@ -49,6 +49,7 @@ export class HomePage {
     this.getStoreBanners();
     this.getHotDeals();
     this.getHealthInfo();
+    //this.getProducts();
     
   }
 
@@ -139,12 +140,14 @@ export class HomePage {
         title: this._healthInfoList[0].title,
         subtitle: this._healthInfoList[0].subtitle,
         thumbnailimage: this._healthInfoList[0].thumbnailimage,
-        deeplinkingidentifier: this._healthInfoList[0].deeplinkingidentifier
+        deeplinkingidentifier: this._healthInfoList[0].deeplinkingidentifier,
+        additionalinfo: this._healthInfoList[0].additionalinfo
       },{
         title: this._healthInfoList[1].title,
         subtitle: this._healthInfoList[1].subtitle,
         thumbnailimage: this._healthInfoList[1].thumbnailimage,
-        deeplinkingidentifier: this._healthInfoList[1].deeplinkingidentifier
+        deeplinkingidentifier: this._healthInfoList[1].deeplinkingidentifier,
+        additionalinfo: this._healthInfoList[1].additionalinfo
       }]
     }, err => {
       this.exceptionProvider.excpHandler(err);
@@ -237,4 +240,12 @@ getQuickAccess() {
   navToHealthDetails(health) {
     this.navCtrl.push("HealthDetailsPage", { id: health.deeplinkingidentifier });
   }
+
+  getProducts(){
+    this.hapenningsProvider.validateToken().subscribe(res => {
+      console.log(res, '======== Response ==========');
+    })
+  }
+
+  
 }
