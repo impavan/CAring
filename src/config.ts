@@ -16,9 +16,9 @@ export const BASE_URL = `http://52.89.20.38/v2/`;
 
  // Caring Connect Live Base URL.
 //  export const CARING_CONNECT_BASE_URL = `http://caringconnectapi.spurtreetech.com/api/v1/`;
- export const CARING_CONNECT_BASE_URL = `http://connectapi.caring2u.com/api/v1/`;
- export const CARING_ESHOP_LINK = `http://caringeshop.spurtreetech.com/caringpharma`;
- export const REDIRECT_URL = `http://connect.caring2u.com/#/confirmation?session_id=`;
+ export const CARING_CONNECT_BASE_URL = `https://connectapi.caring2u.com/api/v1/`;
+ export const CARING_ESHOP_LINK = `http://estore.caring2u.com`;
+ export const REDIRECT_URL = `https://connect.caring2u.com/#/confirmation?session_id=`;
 
  //caring private key
 

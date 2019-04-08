@@ -2,75 +2,133 @@
     <header></header>
 </div>
 
-<ion-content class="mainCont"  >
+<ion-content class="mainCont">
+    <section class="banner">
+        <figure>
+            <img src="assets/img/accountbnr2.jpg" />
+            <!-- <img src=" https://i.pinimg.com/originals/9e/83/53/9e8353adbfc958020cb9a27977ca8b6f.jpg" /> -->
+            <!-- <img src=" http://images6.fanpop.com/image/photos/40700000/Guilin-China-china-40759336-1800-600.jpg" /> -->
+        </figure>
+    </section>
     <div class="memberContainer">
-        <div class="qrScan">
-            <div class="row">
-                <div class="col">
-                    <img src="assets/img/card_regular.png" alt="" />
-                </div>
-                <div class="col" text-center>
-                    <div class="barCode">
-                        <svg #barcode id="barcode" style="width:100% !important;"></svg>
+        <div *ngIf="_auth">
+            <div class="qrScan">
+                <div class="row">
+                    <div class="col">
+                        <div class="barCode">
+                            <svg #barcode id="barcode" style="width:100% !important;"></svg>
+                        </div>
+                    </div>
+                    <div class="col" text-center>
+                        <article class="userDisplay">
+                            <span>Welcome Back</span>
+                            <strong>{{_userName}}</strong>
+                        </article>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="pointsCount">
-            <div *ngIf="_auth" class="myPointsContainer">
-                <div class="pointsOut">
-                    <div class="content">
-                        <div class="subContent">
-                            <h4>{{_totalAvailablePoints}}</h4>
-                            <h6>Total Points</h6>
-                            <button value="redeem" (click)="gotoRewards('Redemption')">redeem</button>
+            <div class="pointsCount">
+                <div class="myPointsContainer">
+                    <div class="pointsOut">
+                        <div class="content">
+                            <div class="subContent">
+                                <h4>{{_totalAvailablePoints}}</h4>
+                                <h6>Total Points</h6>
+                                <button value="redeem" (click)="gotoRewards('Redemption')">redeem</button>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="subContent" >
+                                <h4>{{expiryPointsLatest}}</h4>
+                                <h6>Points Expiring</h6>
+                                <button value="redeem" (click)="expiryScheduleModal()">view more</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="content">
-                        <div class="subContent" >
-                            <h4>{{expiryPointsLatest}}</h4>
-                            <h6>Points Expiring</h6>
-                            <button value="redeem" (click)="expiryScheduleModal()">view more</button>
-                        </div>
-                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
+                <ion-card *ngIf="!_auth" class="myPointsContainer sec">
+                    <p class="urPoints">You have no points yet</p>
+                    <button ion-button value="Earn Points">Earn Points</button>
+                </ion-card>
             </div>
-            <ion-card *ngIf="!_auth" class="myPointsContainer sec">
-                <p class="urPoints">You have no points yet</p>
-                <button ion-button value="Earn Points">Earn Points</button>
-            </ion-card>
         </div>
-        <ion-grid class="homeTabLinks profileNew">
+        <ion-grid class="externalLinks">
             <ion-row>
-                <ion-col col-4 col-md-3 text-center (click) = "goToRewards('Redemption')">
+                <ion-col col-4 col-md-4 text-center (click) = "goToRewards('Redemption')">
                     <img src="assets/img/newimgs/redemption.png" />
                     <span>My Redemption</span>
                 </ion-col>
-                <ion-col col-4 col-md-3 text-center (click) = "navTo('TransactionsPage')">
+                <ion-col col-4 col-md-4 text-center (click) = "navTo('TransactionsPage')">
                     <img src="assets/img/newimgs/transaction.png" />
                     <span>My Transaction</span>
                 </ion-col>  
-                <ion-col col-4 col-md-3 text-center (click) = "goToRewards('Rewards')"> 
+                <ion-col col-4 col-md-4 text-center (click) = "goToRewards('Rewards')"> 
                     <img src="assets/img/newimgs/voucher.png" />
                     <span>My Voucher</span>
                 </ion-col>
-                <ion-col col-4 col-md-3 text-center (click) = "navTo('ProfilePage')"> 
+                <ion-col col-4 col-md-4 text-center (click) = "navTo('ProfilePage')"> 
                     <img src="assets/img/newimgs/profile.png" />
                     <span>My Profile</span>
                 </ion-col>
-                <!-- <ion-col col-4 col-md-3 text-center>
+                <ion-col col-4 col-md-4 text-center>
                     <img src="assets/img/newimgs/pmr.png" />
                     <span>My PMR</span>
                 </ion-col>
-                <ion-col col-4 col-md-3 text-center>
+                <ion-col col-4 col-md-4 text-center (click)="gotoEventsSite()">
                     <img src="assets/img/newimgs/event.png" />
                     <span>My Events</span>
-                </ion-col> -->
+                </ion-col>
             </ion-row>
         </ion-grid>
-
-    
+        <section class="defaultCont">
+            <video width="100%" controls>
+                <source src="
+                http://player.vimeo.com/external/99102547.sd.mp4?s=c2c9cb2b13d556a2338b7bb765e49c300df927ec&profile_id=112&oauth2_token_id=3993400" type="video/mp4">
+            </video>
+            <article>
+                <div class="accordion vertical">
+                    <ul>
+                        <li>
+                            <input type="radio" id="radio-1" name="radio-accordion" checked="checked" />
+                            <label for="radio-1">Title&nbsp;One</label>
+                            <div class="content">
+                                <h3>This is an example accordion item</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec posuere lorem. Pellentesque hendrerit, lorem luctus porttitor vestibulum, eros sapien mattis libero, euismod congue neque nisi at ipsum. Mauris semper ipsum sit amet metus semper malesuada. Donec vel est justo, ac porta diam.</p>
+                                <p>In ut est in orci commodo blandit. Cras rhoncus ultricies augue. Proin quam odio, venenatis ut tempus tristique, aliquet in velit. Pellentesque volutpat facilisis orci, ut congue mi rhoncus at. Nullam vehicula dignissim neque, sed rhoncus magna ultricies et.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" id="radio-2" name="radio-accordion" />
+                            <label for="radio-2">Title&nbsp;Two</label>
+                            <div class="content">
+                                <h3>Totally another one right here</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec posuere lorem. Pellentesque hendrerit, lorem luctus porttitor vestibulum, eros sapien mattis libero, euismod congue neque nisi at ipsum. Mauris semper ipsum sit amet metus semper malesuada. Donec vel est justo, ac porta diam.</p>
+                                <p>In ut est in orci commodo blandit. Cras rhoncus ultricies augue. Proin quam odio, venenatis ut tempus tristique, aliquet in velit. Pellentesque volutpat facilisis orci, ut congue mi rhoncus at. Nullam vehicula dignissim neque, sed rhoncus magna ultricies et.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" id="radio-3" name="radio-accordion" />
+                            <label for="radio-3">Title&nbsp;Three</label>
+                            <div class="content">
+                                <h3>I think I can go on forever</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec posuere lorem. Pellentesque hendrerit, lorem luctus porttitor vestibulum, eros sapien mattis libero, euismod congue neque nisi at ipsum. Mauris semper ipsum sit amet metus semper malesuada. Donec vel est justo, ac porta diam.</p>
+                                <p>In ut est in orci commodo blandit. Cras rhoncus ultricies augue. Proin quam odio, venenatis ut tempus tristique, aliquet in velit. Pellentesque volutpat facilisis orci, ut congue mi rhoncus at. Nullam vehicula dignissim neque, sed rhoncus magna ultricies et.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" id="radio-4" name="radio-accordion" />
+                            <label for="radio-4">Title&nbsp;Four</label>
+                            <div class="content">
+                                <h3>I was wrong, I'm done</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec posuere lorem. Pellentesque hendrerit, lorem luctus porttitor vestibulum, eros sapien mattis libero, euismod congue neque nisi at ipsum. Mauris semper ipsum sit amet metus semper malesuada. Donec vel est justo, ac porta diam.</p>
+                                <p>In ut est in orci commodo blandit. Cras rhoncus ultricies augue. Proin quam odio, venenatis ut tempus tristique, aliquet in velit. Pellentesque volutpat facilisis orci, ut congue mi rhoncus at. Nullam vehicula dignissim neque, sed rhoncus magna ultricies et.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </section>
     </div>
     <ion-row showWhen="core">
             <ion-col col-12 no-padding>

@@ -81,7 +81,7 @@
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
-                        <section class="homeFeeds">
+                        <section class="homeFeeds" *ngIf = "healthInfo.length > 0">
                             <ion-grid *ngFor="let health of healthInfo">
                                 <ion-row (click)="navToHealthDetails(health)">
                                     <ion-col col-5>

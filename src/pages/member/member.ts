@@ -25,6 +25,7 @@ export class MemberPage {
   loadedProfile: boolean = false;
   expirySchedule: any;
   expiryPointsLatest: any
+  _userName: any;
 
   constructor(private events: Events,
     private navCtrl: NavController,
@@ -40,12 +41,17 @@ export class MemberPage {
     if (this._auth) {
       JsBarcode(this.barcode.nativeElement, localStorage.getItem('phone'));
       this.getMyProfile();
+      this.getUserDetails();
     }
     this.events.publish('changeIcon', "MemberPage");
   }
 
   navTo(page) {
     this.navCtrl.push(page);
+  }
+
+  getUserDetails() {
+    this._userName = this.authProvider.getUserFirstName();
   }
 
   ionViewCanEnter() {
@@ -92,5 +98,8 @@ export class MemberPage {
 
   goToRewards(section) {
     this.navCtrl.setRoot("RewardsPage", { selectTab: section });
+  }
+  gotoEventsSite(){
+    location.href = "http://event.caring2u.com"
   }
 }

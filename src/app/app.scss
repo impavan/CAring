@@ -875,6 +875,14 @@ header .topHeader ion-icon img{
         font-size: 16px;
     }
 }
+.fab-md-light{
+    display: none;
+}
+@media(max-width:767px){
+    .fab-md-light{
+        display: block;
+    }
+}
 iframe{
     border:0;
 }

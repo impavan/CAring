@@ -4,6 +4,7 @@
 
 
 <ion-content class="mainCont" #container>
+    <!-- <subheader></subheader> -->
     <div class="mt30">
     <ion-toolbar>
         <ion-segment [(ngModel)]="member" color="secondary">
@@ -33,6 +34,7 @@
                     </div>
 
                     <div *ngIf="offerdata.length >= 1">
+
                         <div *ngFor="let offer of offerdata">
                             <article *ngIf="offer?.is_visible == 1" (click)="navToRedeem(offer)">
                                 <ion-grid>

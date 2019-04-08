@@ -29,7 +29,7 @@ export class HomePage {
   weblinkurl: any = null;
   hotdeals: any = [];
   _healthInfoList: any;
-  healthInfo: any;
+  healthInfo: any = [];
   storeQuickAccessData: any = [];
   pharmacistData: any = [];
 

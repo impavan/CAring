@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FooterButtonComponent } from './footer-button/footer-button';
 import { StorebannerComponent } from './storebanner/storebanner';
 import { HotdealsComponent } from './hotdeals/hotdeals';
+import { SubheaderComponent } from './subheader/subheader';
 // import { ModalComponent } from './modal/modal';
 // import { MymodalComponent } from './mymodal/mymodal';
 // import { HeaderComponent } from './header/header';
@@ -9,6 +10,7 @@ import { HotdealsComponent } from './hotdeals/hotdeals';
 	declarations: [FooterButtonComponent,
     StorebannerComponent,
     HotdealsComponent,
+    SubheaderComponent,
     // ModalComponent,
     // MymodalComponent,
     // HeaderComponent
@@ -17,6 +19,7 @@ import { HotdealsComponent } from './hotdeals/hotdeals';
 	exports: [FooterButtonComponent,
     StorebannerComponent,
     HotdealsComponent,
+    SubheaderComponent,
     // ModalComponent,
     // MymodalComponent,
     // HeaderComponent
