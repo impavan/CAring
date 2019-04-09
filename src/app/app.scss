@@ -815,7 +815,8 @@ ion-footer {
     }
 }
 
-.ion-md-menu:before {
+.ion-md-menu:before,
+.ion-ios-menu:before {
     content: "\f32a";
     font-size: 30px;
     color: #096F67;
@@ -875,11 +876,13 @@ header .topHeader ion-icon img{
         font-size: 16px;
     }
 }
-.fab-md-light{
+.fab-md-light,
+.fab-ios-light{
     display: none;
 }
 @media(max-width:767px){
-    .fab-md-light{
+    .fab-md-light,
+    .fab-ios-light{
         display: block;
     }
 }

@@ -13,7 +13,7 @@ import { STTARTER_BASE_URL } from '../../config';
 import { HAPPENINGS, HOME_BANNER, INSTORE, PHARMACIST, PROMOTIONS, HEALTH_INFO, FAQ, QUICK_ACCESS, STORE_BANNERS, HOT_DEALS, STORE_QUICK_ACCESS } from '../../url';
 import { LoaderProvider } from '../loader/loader';
 
-import { maninUrl, oauthConsumerKey, outhSignMethod, authTimeStamp, } from '../../url'
+import { maninUrl, oauthConsumerKey, outhSignMethod, authTimeStamp, oauthToken } from '../../url'
 
 
 @Injectable()
@@ -199,27 +199,33 @@ export class HapenningsProvider {
     return nonce;
 }
 
-  public getOuthSignature(requestType: string,): string {
+  public getOuthSignature(requestType: string, url: string, token: string): string {
     let finalURL
     const time = new Date().getTime();
     const oAuthData = {
         oauth_consumer_key: oauthConsumerKey,
+        oauth_token: token,
+        oauth_token_secret: token,
         oauth_signature_method: outhSignMethod,
         oauth_timestamp: time,
         oauth_nonce: this.getNounce(6),
         oauth_version: '1.0',
     }
-    const signature = OAuths.generate(requestType, oAuthData);
-    return finalURL =  '?oauth_consumer_key=' + oAuthData.oauth_consumer_key + '&oauth_token' + '&' + 'oauth_signature_method=' + oAuthData.oauth_signature_method + '&' + 'oauth_timestamp=' + oAuthData.oauth_timestamp + '&oauth_nonce=' + oAuthData.oauth_nonce + '&oauth_version=' + oAuthData.oauth_version + '&oauth_signature=' + signature;
+    const signature = OAuths.generate(requestType, url, oAuthData, token);
+    return finalURL =  '?oauth_consumer_key=' + oAuthData.oauth_consumer_key + '&oauth_token=' + token + '&' + 'oauth_signature_method=' + oAuthData.oauth_signature_method + '&' + 'oauth_timestamp=' + oAuthData.oauth_timestamp + '&oauth_nonce=' + oAuthData.oauth_nonce + '&oauth_version=' + oAuthData.oauth_version + '&oauth_signature=' + signature;
 
   }
 
 
  validateToken(){
   //console.log(token, "token recieved");
-  //const url = `Customer/${env.merchantId}/${token}/ValidateToken`;
-  const urlWithOAuthSign = `${maninUrl}${this.getOuthSignature('GET')}`;
-  return this.http.get(urlWithOAuthSign + `&searchCriteria[filter_groups][0][filters][0][field]=news_from_date&searchCriteria[filter_groups][0][filters][0][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][0][condition_type]=gt&searchCriteria[filter_groups][0][filters][1][field]=news_to_Date&searchCriteria[filter_groups][0][filters][1][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][1][condition_type]=lt&searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=news_from_date&searchCriteria[sortOrders][0][direction]=asc&searchCriteria[sortOrders][1][field]=news_to_date`);
+  const url = maninUrl;
+  const time = new Date().getTime();
+  const signatureData = this.getOuthSignature('GET', `${url}`, oauthToken);
+  let validUrl = maninUrl + signatureData
+  return this.http.get(validUrl + `&searchCriteria[filter_groups][0][filters][0][field]=news_from_date&searchCriteria[filter_groups][0][filters][0][value]=${time}&searchCriteria[filter_groups][0][filters][0][condition_type]=gt&searchCriteria[filter_groups][0][filters][1][field]=news_to_Date&searchCriteria[filter_groups][0][filters][1][value]=${time}&searchCriteria[filter_groups][0][filters][1][condition_type]=lt&searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=news_from_date&searchCriteria[sortOrders][0][direction]=asc&searchCriteria[sortOrders][1][field]=news_to_date`)
+  .catch((err: Error) => Observable.throw(err)).
+  finally(() => console.log("Done"));
 }
 
 //&searchCriteria[filter_groups][0][filters][0][field]=news_from_date&searchCriteria[filter_groups][0][filters][0][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][0][condition_type]=gt&searchCriteria[filter_groups][0][filters][1][field]=news_to_Date&searchCriteria[filter_groups][0][filters][1][value]={{$timestamp}}&searchCriteria[filter_groups][0][filters][1][condition_type]=lt&searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=news_from_date&searchCriteria[sortOrders][0][direction]=asc&searchCriteria[sortOrders][1][field]=news_to_date
