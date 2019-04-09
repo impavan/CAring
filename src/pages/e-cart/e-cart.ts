@@ -12,7 +12,7 @@ import { ApiProvider } from '../../providers/api/api';
 })
 
 export class ECartPage {
-  URL: string;
+  weblinkurl: string;
   authData: string;
 
   constructor(private events: Events,
@@ -31,15 +31,16 @@ export class ECartPage {
 
   ionViewDidEnter() {
     if (this.authData) {
-      let inAppOpt: InAppBrowserOptions = {
-        clearcache: 'yes',
-        hardwareback: 'yes',
-        location: 'no'
-      }
+      // let inAppOpt: InAppBrowserOptions = {
+      //   clearcache: 'yes',
+      //   hardwareback: 'yes',
+      //   location: 'no'
+      // }
       let destination = CARING_ESHOP_LINK;
       let link = REDIRECT_URL + this.authProvider.getSession() + '&target_client_code=' + this.apiProvider.eshop_client_code + '&is_staff=0&token=' + this.authProvider.getAuthToken() + '&client_code=' + CLIENT_KEY + '&redirect_url=' + destination;
 
-      const browser = this.iab.create(link, '_blank', inAppOpt);
+      // const browser = this.iab.create(link, '_self', inAppOpt);
+      this.weblinkurl = link;
     } else {
       console.log('::::::::::::::::::::Auth not there:::::::::::::::::::::')
     }
