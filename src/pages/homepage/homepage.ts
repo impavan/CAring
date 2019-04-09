@@ -49,7 +49,7 @@ export class HomePage {
     this.getStoreBanners();
     this.getHotDeals();
     this.getHealthInfo();
-    //this.getProducts();
+    this.getProducts();
     
   }
 
